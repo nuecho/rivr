@@ -13,3 +13,4 @@ Install the Gradle IDE plugin from [Spring's update site](http://dist.springsour
 * Fix Checkstyle integration
 * Configure Eclipse projects to hide the build dir
 * Use knox instead of mavenCentral
+* Configure JDT settings from Gradle.
