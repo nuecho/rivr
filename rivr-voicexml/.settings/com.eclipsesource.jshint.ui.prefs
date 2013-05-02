@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+globals=_\:false, $\:false, alert\:false, serialize\:false, setTimeout\:false, getServletConfigurations\:false
+included=html/scripts/*.js\:src/com/nuecho/framework/dialogueengine/model/gen1/servlet/scripts/*.js
+options=loopfunc\:true
+projectSpecificOptions=true

@@ -1,0 +1,140 @@
+body {
+	background: #ddd;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 12px;
+}
+
+#main {
+	width: 960px;
+	margin: 0 auto;
+	margin-top: 20px;
+	padding: 20px;
+	border-radius: 8px 8px 8px 8px;
+	background: #fff;
+}
+
+#title {
+	vertical-align: top;
+	margin-bottom: 20px;
+}
+
+#quickPanelToggleButtonDiv {
+	float: right;
+	display: block;
+}
+
+#autoSendDiv {
+	float: right;
+	display: block;
+}
+
+#quickPanelDialogue table {
+	margin: 0 auto;
+}
+
+#quickActionButtons button {
+	width: 100%;
+}
+
+.small-button {
+	font-size: 75%;
+	text-decoration: underline;
+}
+
+.section {
+	margin-top: 10px;
+}
+
+#inputJson {
+	margin: 15px;
+}
+
+.section-title {
+	font-size: 13pt;
+	margin-top: 15px;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+.subsection-title {
+	margin-top: 5px;
+}
+
+.section-content {
+	padding: 10px;
+}
+
+.variable-table {
+	padding: 6px;
+	border: solid;
+	border-width: 1px;
+	width: auto;
+	background: #aaa;
+}
+
+.select {
+	border-radius: 4px;
+	padding: 3px;
+}
+
+
+.sub-table {
+	margin-left: 10px;
+}
+
+#scriptDiv {
+	margin-top: 5px;
+}
+
+#variablesDiv {
+	margin-top: 5px;
+}
+
+.table-header {
+	font-weight: bold;
+	padding: 3px;
+}
+
+.index-cell {
+	padding: 6px;
+	border-top: solid 1px;
+	border-bottom: solid 1px;
+	background: #888888;
+}
+
+.content-cell {
+	padding: 6px;
+	border: solid 1px #909090;
+	background: #fff;
+}
+
+.preformatted {
+	padding: 6px;
+	overflow: auto;
+	border: solid;
+	border-width: 1px;
+	background: #aaa;
+	font-family: monospace;
+	white-space: pre;
+}
+
+.prompt-text {
+	font-style: italic;
+	font-weight: bold;
+}
+
+.inputCell {
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 8px 8px 8px 8px;
+	background: #aaa;
+	padding: 5px;
+}
+
+#turnNameAndType {
+	margin-bottom: 10px;
+}
+
+#sevletSelectionDiv {
+	margin-bottom: 10px;
+}

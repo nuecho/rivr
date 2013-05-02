@@ -1,0 +1,474 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Dialogue Runner</title>
+
+<link rel="stylesheet" type="text/css" media="screen" href="css/reset.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/screen.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/jquery-ui/smoothness/jquery-ui.css" />
+
+<!-- Third-parties -->
+<script src="scripts/underscore/underscore.min.js" type="text/javascript"></script>
+<script src="scripts/jquery/jquery.min.js" type="text/javascript"></script>
+<script src="scripts/jquery/jquery-ui.min.js" type="text/javascript"></script>
+<script src="scripts/jquery/form/jquery.form.js" type="text/javascript"></script>
+<script src="scripts/json2/json2.min.js" type="text/javascript"></script>
+
+<!-- Local scripts -->
+<script src="scripts/parameters.js" type="text/javascript"></script>
+<script src="scripts/runner.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+  <div id="main">
+
+    <div id="title">
+
+      <div id="quickPanelToggleButtonDiv">
+        <input type="checkbox" checked="checked" id="quickPanelToggleButton" /><label
+          for="quickPanelToggleButton">Quick Panel</label>
+      </div>
+      <h1>Dialogue Runner</h1>
+    </div>
+
+    <hr />
+
+    <div id="outputSection">
+      <div class="section-title">Dialogue Output:</div>
+      <div id="turnNameAndType">
+        <div>
+          Name: <span id="turnName"></span>
+        </div>
+        <div>
+          Type: <span id="turnType"></span>
+        </div>
+      </div>
+      <div id="outputTabs" class="section">
+
+        <ul>
+          <li><a href="#outputSimpleTab">Simple</a></li>
+          <li><a href="#outputJsonTab">JSON</a></li>
+          <li><a href="#outputVoiceXmlTab">VoiceXML</a></li>
+        </ul>
+
+        <div id="outputSimpleTab">
+          <div id="interactionSection"></div>
+
+          <div id="transferSection"></div>
+
+          <div id="scriptSection">
+
+            <div id="variablesDiv">
+              <div class="subsection-title">Variables:</div>
+              <table id="variables" class="variable-table">
+                <thead class="table-header">
+                  <tr>
+                    <td>Name</td>
+                    <td>Initial value expression</td>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+
+            <div id="scriptDiv">
+              <div class="subsection-title">Script:</div>
+              <div id="script" class="preformatted"></div>
+            </div>
+
+          </div>
+
+          <div id="subdialogueSection">
+
+            <div id="submitParametersDiv">
+
+              <div>
+                URI: <span id="subdialogueUri"></span>
+              </div>
+              <div>
+                Submit Method: <span id="subdialogueSubmitMethod"></span>
+              </div>
+
+              <div class="subsection-title">Submit Parameters:</div>
+
+              <table id="subdialogueSubmitParameters" class="variable-table">
+                <thead class="table-header">
+                  <tr>
+                    <td>Name</td>
+                    <td>Expression</td>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+
+            <div id="voiceXmlParametersDiv">
+              <div class="subsection-title">VoiceXML Parameters:</div>
+
+              <table id="subdialogueVoiceXmlParameters" class="variable-table">
+                <thead class="table-header">
+                  <tr>
+                    <td>Name</td>
+                    <td>Expression</td>
+                    <td>Value</td>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+
+            <div id="postDialogueScriptDiv">
+              <div class="subsection-title">Post-Dialogue Script:</div>
+              <div id="postDialogueScript" class="preformatted"></div>
+            </div>
+          </div>
+
+          <div id="objectSection">
+
+            <table id="objectDetails">
+            </table>
+
+            <div id="objectParametersDiv">
+              <div class="subsection-title">Parameters:</div>
+
+              <table id="objectParameters" class="variable-table">
+                <thead class="table-header">
+                  <tr>
+                    <td>Name</td>
+                    <td>Expression</td>
+                    <td>Value</td>
+                    <td>ValueType</td>
+                    <td>Type</td>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+
+            <div id="postObjectScriptDiv">
+              <div class="subsection-title">Post-Object Script:</div>
+              <div id="postObjectScript" class="preformatted"></div>
+            </div>
+
+          </div>
+
+          <div id="resultSection">
+            <span class="section-title">Result:</span>
+            <div id="result" class="preformatted"></div>
+          </div>
+        </div>
+
+
+        <div id="outputJsonTab">
+          <div id="outputJson" class="preformatted"></div>
+        </div>
+
+        <div id="outputVoiceXmlTab">
+          <div id="outputVoiceXml" class="preformatted"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="inputSection" class="section">
+      <div class="section-title">Dialogue Input:</div>
+
+      <div id="inputTabs" class="section">
+        <ul>
+          <li><a href="#eventsTab">Events</a></li>
+          <li><a href="#recognitionInputTab">Recognition</a></li>
+          <li><a href="#recordingInputTab">Recording</a></li>
+          <li><a href="#transferStatusTab">Transfer</a></li>
+          <li><a href="#valueInputTab">Value</a></li>
+        </ul>
+
+        <div id="eventsTab">
+
+          <table>
+            <tr>
+              <td>Event Name:</td>
+              <td><input id="eventName" name="eventName" /></td>
+            </tr>
+            <tr>
+              <td>Event Message:</td>
+              <td><input id="eventMessage" name="eventMessage" /></td>
+            </tr>
+          </table>
+          <button id="addEventButton" type="button">Add Event</button>
+          <button id="removeEventButton" type="button">Remove Event</button>
+        </div>
+
+        <div id="recognitionInputTab" class="inputCell">
+          <table id="recognitionInput">
+            <tr>
+              <td>Text:</td>
+              <td><input name="text" type="text" size="30" value="" /></td>
+            </tr>
+            <tr>
+              <td>Interpretation:</td>
+              <td><textarea name="interpretation" cols="30"></textarea></td>
+            </tr>
+
+            <tr>
+              <td>Confidence:</td>
+              <td><input name="confidenceScore" type="text" size="4" value="1.0" /></td>
+            </tr>
+
+            <tr>
+              <td>Input Mode:</td>
+              <td>
+                <div id="inputMode">
+                  <input type="radio" checked="checked" id="inputModeDtmf" value="dtmf"
+                    name="inputModeRadio" /><label for="inputModeDtmf">DTMF</label>
+                  <!--  -->
+                  <input type="radio" value="voice" id="inputModeVoice" name="inputModeRadio" /><label
+                    for="inputModeVoice">Voice</label>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="3">
+                <button id="addHypothesisButton" type="button">Add Hypothesis</button>
+                <button id="removeHypothesisButton" type="button">Remove Hypothesis</button>
+              </td>
+            </tr>
+          </table>
+
+          <hr />
+
+          <table id="markInput">
+            <tr>
+              <td>Mark Name:</td>
+              <td><input name="markName" type="text" size="30" value="" /></td>
+            </tr>
+            <tr>
+              <td>Mark Time:</td>
+              <td><input name="markTime" type="text" size="6" value="" /></td>
+            </tr>
+            <tr>
+              <td><button id="addMarkButton" type="button">Set Mark</button>
+                <button id="clearMarkButton" type="button">Clear Mark</button></td>
+            </tr>
+          </table>
+        </div>
+
+        <div id="recordingInputTab" class="inputCell">
+
+          <table id="recordingInput">
+            <tr>
+              <td>Term DTMF:</td>
+              <td><input name="termChar" type="text" size="6" value="" /></td>
+            </tr>
+            <tr>
+              <td>Maximum time:</td>
+              <td><input name="maxTime" type="checkbox" checked="checked" /></td>
+            </tr>
+            <tr>
+              <td>Duration:</td>
+              <td><input name="duration" type="text" size="6" value="10000" /></td>
+            </tr>
+            <tr>
+              <td>Audio file:</td>
+              <td>
+                <form id="recordForm" method="post">
+                  <fieldset>
+                    <input id="recording" type="file" name="recording" /><span id="fileSize"></span>
+                  </fieldset>
+                </form>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2"><button id="setRecordingButton" type="button">Set
+                  Recording</button>
+                <button id="clearRecordingButton" type="button">Clear Recording</button></td>
+            </tr>
+
+          </table>
+        </div>
+
+        <div id="transferStatusTab" class="inputCell">
+
+          <table id="transferStatus">
+            <tr>
+              <td>Transfer Status:</td>
+              <td><input id="transferStatusCode" type="text" /></td>
+
+            </tr>
+
+            <tr>
+              <td>Duration:</td>
+              <td><input name="duration" type="text" size="8" value="0" /></td>
+            </tr>
+
+            <tr>
+              <td colspan="2">
+                <button id="setTransferResultButton" type="button">Set Transfer Result</button>
+                <button id="clearTransferResultButton" type="button">Clear Transfer Result</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div id="valueInputTab" class="inputCell">
+
+          <table>
+            <tr>
+              <td>JSON:</td>
+              <td><textarea cols="50" rows="10" id="valueInput"></textarea></td>
+            </tr>
+            <tr>
+              <td colspan="4">
+                <div id="addValueDiv">
+                  <button id="addValueButton" type="button">Add Value</button>
+                </div>
+              </td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+
+      <div id="inputPreview" class="section">
+        <div id="autoSendDiv">
+          Auto send: <input name="autoSend" id="autoSend" type="checkbox" />
+        </div>
+        <div class="section-title">JSON:</div>
+        <div id="inputJson" class="preformatted"></div>
+        <div>
+          <button id="editButton" type="button">Edit</button>
+          <button id="sendInputButton" type="button">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="dialogueStartSection" class="section">
+      <span class="section-title">Dialogue Start</span>
+      <div class="section-content">
+        <div id="sevletSelectionDiv">
+          <form>
+            <fieldset>
+              Dialogue: <select class="select" name="configuration" id="configurationSelection">
+              </select>
+            </fieldset>
+          </form>
+        </div>
+        <div id="parameters"></div>
+        <div id="actions">
+          <button id="startDialogueButton" type="button">Start Dialogue</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="editorDialogue">
+      <textarea id="editor"></textarea>
+      <button id="formatButton" type="button">Format</button>
+    </div>
+
+    <div id="longPopupDialogue"></div>
+
+    <div id="alertDialogue"></div>
+
+    <div id="quickPanelDialogue">
+      <div id="keyShortcuts" tabIndex="1">
+
+        <table id="dtmfKeypad">
+          <tr>
+            <td>
+              <button id="dtmf1" type="button">1</button>
+            </td>
+            <td>
+              <button id="dtmf2" type="button">2</button>
+            </td>
+            <td>
+              <button id="dtmf3" type="button">3</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button id="dtmf4" type="button">4</button>
+            </td>
+            <td>
+              <button id="dtmf5" type="button">5</button>
+            </td>
+            <td>
+              <button id="dtmf6" type="button">6</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button id="dtmf7" type="button">7</button>
+            </td>
+            <td>
+              <button id="dtmf8" type="button">8</button>
+            </td>
+            <td>
+              <button id="dtmf9" type="button">9</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button id="dtmfStar" type="button">*</button>
+            </td>
+            <td>
+              <button id="dtmf0" type="button">0</button>
+            </td>
+            <td>
+              <button id="dtmfPound" type="button">#</button>
+            </td>
+          </tr>
+        </table>
+
+        <hr />
+
+        <table id="quickActionButtons">
+          <tr>
+            <td>
+              <button id="noInputButton" type="button">No-Input</button>
+            </td>
+            <td>
+              <button id="noMatchButton" type="button">No-Match</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button id="hangUpButton" type="button">Hang-up</button>
+            </td>
+            <td>
+              <button id="transferButton" type="button">Transfer</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button id="errorButton" type="button">Error</button>
+            </td>
+            <td>
+              <button id="continueButton" type="button">Continue</button>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+
+      <hr />
+
+      <table>
+        <tr>
+          <td colspan="2"><input id="singleHypothesisText" type="text" /></td>
+        </tr>
+        <tr>
+          <td>
+            <button id="singleDtmfHypothesisButton" type="button">DTMF</button>
+          </td>
+          <td>
+            <button id="singleSpeechHypothesisButton" type="button">Speech</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
