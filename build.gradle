@@ -1,17 +1,16 @@
 subprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse'
-    
-    repositories {
-        mavenCentral()
-    }
-    
-    eclipse.project {
-        natures 'net.sf.eclipsecs.core.CheckstyleNature'
-        buildCommand 'net.sf.eclipsecs.core.CheckstyleBuilder'
-    }
-}
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.5'
+    repositories { mavenCentral() }
+
+    eclipse{
+        project {
+            natures 'net.sf.eclipsecs.core.CheckstyleNature'
+            buildCommand 'net.sf.eclipsecs.core.CheckstyleBuilder'
+        }
+        classpath{ defaultOutputDir = file("${project.projectDir}/build/classes") }
+    }
+
+    task wrapper(type: Wrapper) { gradleVersion = '1.5' }
 }
