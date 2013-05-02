@@ -11,3 +11,7 @@ subprojects {
         buildCommand 'net.sf.eclipsecs.core.CheckstyleBuilder'
     }
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.5'
+}
