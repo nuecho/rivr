@@ -9,7 +9,11 @@ subprojects {
             natures 'net.sf.eclipsecs.core.CheckstyleNature'
             buildCommand 'net.sf.eclipsecs.core.CheckstyleBuilder'
         }
-        classpath{ defaultOutputDir = file("${project.projectDir}/build/classes") }
+        classpath { 
+            defaultOutputDir = file("${project.projectDir}/build/classes")
+            containers.clear()
+            containers.add("org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6")
+        }
     }
 
     task wrapper(type: Wrapper) { gradleVersion = '1.5' }
