@@ -5,3 +5,4 @@ build/
 */.settings/gradle
 org.eclipse.jdt.core.prefs
 org.eclipse.jdt.groovy.core.prefs
+.settings/gradle
