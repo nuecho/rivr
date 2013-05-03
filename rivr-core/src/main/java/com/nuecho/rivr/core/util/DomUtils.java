@@ -41,6 +41,10 @@ public final class DomUtils {
         }
     }
 
+    private DomUtils() {
+        //utility class: instantiation forbidden
+    }
+
     public static Document createDocument(String rootElementTagName) {
         Document document = createDocument();
         Element rootElement = document.createElement(rootElementTagName);
@@ -114,5 +118,4 @@ public final class DomUtils {
         return xmlSerializer;
     }
 
-    private DomUtils() {}
 }

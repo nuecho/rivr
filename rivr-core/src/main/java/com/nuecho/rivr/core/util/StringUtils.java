@@ -10,6 +10,11 @@ import java.util.*;
  * @author Nu Echo Inc.
  */
 public final class StringUtils {
+
+    private StringUtils() {
+        //utility class: instantiation forbidden
+    }
+
     public static String join(Iterable<?> list, String delimiter) {
         StringBuilder builder = new StringBuilder();
 
@@ -159,6 +164,4 @@ public final class StringUtils {
 
         return new String(buffer);
     }
-
-    private StringUtils() {}
 }

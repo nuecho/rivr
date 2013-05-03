@@ -9,6 +9,10 @@ package com.nuecho.rivr.core.util;
  */
 public final class Assert {
 
+    private Assert() {
+        //utility class: instantiation forbidden
+    }
+
     public static void notNull(Object item, String symbol) {
         if (item == null) throw new AssertionError(symbol + " should not be null");
     }
@@ -40,5 +44,4 @@ public final class Assert {
         if (!condition) throw new AssertionError(message);
     }
 
-    private Assert() {}
 }
