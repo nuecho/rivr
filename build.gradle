@@ -1,8 +1,15 @@
 subprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse'
+    apply plugin: 'checkstyle'
 
+    dependencies { checkstyle 'com.puppycrawl.tools:checkstyle:5.5' }
     repositories { maven { url 'http://knox.s.nuecho.com/artifactory/libs-release' } }
+
+    checkstyle.configFile = rootProject.file('common/checkstyle/checkstyle.xml')
+    // Fix for Unable to get class information
+    checkstyleMain { classpath += configurations.compile }
+    checkstyleTest { classpath += configurations.compile }
 
     eclipse{
         project {
