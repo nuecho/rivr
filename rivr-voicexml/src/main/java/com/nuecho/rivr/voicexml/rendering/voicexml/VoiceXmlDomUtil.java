@@ -504,7 +504,7 @@ public final class VoiceXmlDomUtil {
     }
 
     public static void applyDocumentFetchConfiguration(Element submitElement,
-                                                     VoiceXmlDialogueContext voiceXmlDialogueContext) {
+                                                       VoiceXmlDialogueContext voiceXmlDialogueContext) {
         FetchConfiguration fetchConfiguration = voiceXmlDialogueContext.getFetchConfiguration();
         if (fetchConfiguration == null) return;
 
@@ -514,7 +514,7 @@ public final class VoiceXmlDomUtil {
     }
 
     public static void applyDocumentFetchConfiguration(Element submitElement,
-                                                     DocumentFetchConfiguration submitTurnFetchConfiguration) {
+                                                       DocumentFetchConfiguration submitTurnFetchConfiguration) {
         if (submitTurnFetchConfiguration == null) return;
         TimeValue timeOut = submitTurnFetchConfiguration.getTimeOut();
         setTimeAttribute(submitElement, FETCH_TIMEOUT_PROPERTY, timeOut);

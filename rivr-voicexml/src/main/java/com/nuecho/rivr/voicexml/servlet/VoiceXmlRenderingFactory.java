@@ -22,13 +22,13 @@ public final class VoiceXmlRenderingFactory implements
 
     @Override
     public VoiceXmlDialogueContext createDialogueContext(HttpServletRequest request,
-                                             String dialogueId,
-                                             DialogueChannel<VoiceXmlInputTurn, VoiceXmlOutputTurn> dialogueChannel,
-                                             Logger logger) {
+                                                         String dialogueId,
+                                                         DialogueChannel<VoiceXmlInputTurn, VoiceXmlOutputTurn> dialogueChannel,
+                                                         Logger logger) {
         return new VoiceXmlDialogueContext(dialogueChannel,
-                                     logger,
-                                     dialogueId,
-                                     request.getContextPath(),
-                                     request.getServletPath());
+                                           logger,
+                                           dialogueId,
+                                           request.getContextPath(),
+                                           request.getServletPath());
     }
 }

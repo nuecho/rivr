@@ -8,7 +8,6 @@ import java.io.*;
 
 import com.nuecho.rivr.core.util.*;
 
-
 /**
  * @author Nu Echo Inc.
  */

@@ -58,13 +58,13 @@ public class ResultUtils {
         for (int index = 0; index < maxFrameIndex; index++) {
             StackTraceElement stackTraceElement = stackTraceElements[index];
             stackTraceBuilder.add(stackTraceElement.getClassName()
-                           + "."
-                           + stackTraceElement.getMethodName()
-                           + "("
-                           + stackTraceElement.getFileName()
-                           + ":"
-                           + stackTraceElement.getLineNumber()
-                           + ")");
+                                  + "."
+                                  + stackTraceElement.getMethodName()
+                                  + "("
+                                  + stackTraceElement.getFileName()
+                                  + ":"
+                                  + stackTraceElement.getLineNumber()
+                                  + ")");
         }
         if (framesInCommon > 0) {
             stackTraceBuilder.add("... " + framesInCommon + " more");

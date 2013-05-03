@@ -12,7 +12,6 @@ import org.w3c.dom.*;
 
 import com.nuecho.rivr.core.servlet.*;
 
-
 public class XmlDocumentServletResponseContent implements ServletResponseContent {
 
     private final Document mDocument;
