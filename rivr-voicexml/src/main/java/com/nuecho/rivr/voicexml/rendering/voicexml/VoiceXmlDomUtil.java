@@ -493,7 +493,11 @@ public final class VoiceXmlDomUtil {
     }
 
     public static String getSubmitPath(VoiceXmlDialogueContext voiceXmlDialogueContext, int turnIndex, String turnName) {
-        return getServletPathWithSessionId(voiceXmlDialogueContext) + "/" + turnIndex + "/" + turnName;
+        return getServletPathWithSessionId(voiceXmlDialogueContext)
+               + "/"
+               + turnIndex
+               + "/"
+               + turnName.replace('/', '_');
     }
 
     public static String getServletPathWithSessionId(VoiceXmlDialogueContext voiceXmlDialogueContext) {
