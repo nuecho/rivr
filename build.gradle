@@ -7,6 +7,8 @@ subprojects {
     repositories { maven { url 'http://knox.s.nuecho.com/artifactory/libs-release' } }
 
     checkstyle.configFile = rootProject.file('common/checkstyle/checkstyle.xml')
+    sourceCompatibility = '1.6'
+
     // Fix for Unable to get class information
     checkstyleMain { classpath += configurations.compile }
     checkstyleTest { classpath += configurations.compile }
@@ -16,8 +18,9 @@ subprojects {
             natures 'net.sf.eclipsecs.core.CheckstyleNature'
             buildCommand 'net.sf.eclipsecs.core.CheckstyleBuilder'
         }
-        classpath { 
+        classpath {
             defaultOutputDir = file("${project.projectDir}/build/classes")
+            // This should probably be submitted as a patch to the eclipse plugin.
             containers.clear()
             containers.add("org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6")
         }
