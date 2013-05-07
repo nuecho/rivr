@@ -18,3 +18,5 @@ You can also configure which version of Gradle the IDE plugin uses: go to Window
 
 * Configure Eclipse projects to hide the build dir
 * Configure JDT settings from Gradle.
+* Revoir la gestion des resources javascript dans rivr-voicexml.
+* Better integration with Eclipse wrt webapp development
