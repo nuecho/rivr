@@ -180,18 +180,16 @@ public class VoiceXmlDialogueServlet
                                                              + type.getName()
                                                              + ". Actual class is "
                                                              + object.getClass().getName());
-        @SuppressWarnings("unchecked")
-        T castedObject = (T) object;
-        return castedObject;
+        return type.cast(object);
     }
 
     private <T> T instantiate(String className, Class<T> type, String item)
             throws DialogueServletInitializationException {
         try {
-            Class<? extends T> classObject = (Class<? extends T>) Class.forName(className);
+            Class<?> classObject = Class.forName(className);
             if (!type.isAssignableFrom(classObject))
                 throw new DialogueServletInitializationException("Incompatible class type.");
-            return classObject.newInstance();
+            return type.cast(classObject.newInstance());
         } catch (ClassNotFoundException exception) {
             throw new DialogueServletInitializationException("Cannot find " + item + " class '" + className + "'",
                                                              exception);
