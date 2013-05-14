@@ -2,3 +2,15 @@ dependencies {
     compile 'javax.servlet:servlet-api:2.5'
     compile 'org.slf4j:slf4j-api:1.5.8'
 }
+
+publishing {
+    publications {
+        ivy(IvyPublication) {
+            from components.java
+            artifact(sourceJar){
+                type 'source'
+                conf 'runtime'
+            }
+        }
+    }
+}

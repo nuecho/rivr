@@ -2,6 +2,10 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse'
     apply plugin: 'checkstyle'
+    apply plugin: 'ivy-publish'
+
+    group = "com.nuecho"
+    version = "0.1.0"
 
     dependencies { checkstyle 'com.puppycrawl.tools:checkstyle:5.5' }
     repositories { maven { url 'http://knox.s.nuecho.com/artifactory/libs-release' } }
@@ -12,6 +16,15 @@ subprojects {
     // Fix for Unable to get class information
     checkstyleMain { classpath += configurations.compile }
     checkstyleTest { classpath += configurations.compile }
+
+    task sourceJar(type: Jar) {
+        from sourceSets.main.java
+        classifier 'source'
+    }
+
+    publishing{
+        repositories { ivy { url 'http://knox.s.nuecho.com/artifactory/libs-release-local' } }
+    }
 
     eclipse{
         project {
@@ -25,6 +38,6 @@ subprojects {
             containers.add("org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6")
         }
     }
-
-    task wrapper(type: Wrapper) { gradleVersion = '1.5' }
 }
+
+task wrapper(type: Wrapper) { gradleVersion = '1.6' }
