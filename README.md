@@ -16,6 +16,26 @@ Install the Gradle IDE plugin from [Spring's update site](http://dist.springsour
 
 You can also configure which version of Gradle the IDE plugin uses: go to Window -> Preferences -> Gradle and change the URI of Gradle distribution. This is the same URL pattern as the Gradle wrapper.
 
+## Publishing
+
+To "publish" the projects on artifactory, simply run the `publish` task: it will build the projects and push the artifacts at knox. The group is set to `com.nuecho`, version is at `0.1.0` for now and the module name maps to the project name. To reference the published artifact, you declare a dependency on `"com.nuecho:rivr-voicexml:0.1.0"`. For the web interface (aka voicexml dialogue runner), here's the recipe to include it in a dependent webapp:
+
+```groovy
+apply plugin: 'war' // Must be a webapp project
+configurations { dialogueRunner } // The name of the configuration can be anything
+dependencies {
+    dialogueRunner 'com.nuecho:dialogue-runner:0.1.0@war'
+}
+repositories { ivy { url 'http://knox.s.nuecho.com/artifactory/libs-release-local' } }
+war{
+    from(zipTree(configurations.dialogueRunner.singleFile)){
+        into 'dialogue-runner' // configure where to put the dialogue-runner. Remove the closure to simply have it at the root.
+    }
+}
+```
+
+This is the Gradle recipe for war overlaying, simplified.
+
 ## TODO
 
 * Configure Eclipse projects to hide the build dir
