@@ -1,1 +1,1 @@
-include 'rivr-core', 'rivr-voicexml'
+include 'rivr-core', 'rivr-voicexml:dialogue-runner'
