@@ -24,18 +24,21 @@ public abstract class VoiceXmlDocumentTurn implements JsonSerializable, NamedTur
 
     private final String mName;
 
-    private final List<VoiceXmlDocumentAdapter> mAdapters;
+    private final List<VoiceXmlDocumentAdapter> mAdapters = new ArrayList<VoiceXmlDocumentAdapter>();
 
     public VoiceXmlDocumentTurn(String name) {
         Assert.notEmpty(name, "name");
         mName = name;
-        mAdapters = null;
     }
 
     protected abstract JsonValue getTurnAsJson();
 
     protected abstract Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException;
+
+    public final void addAdapter(VoiceXmlDocumentAdapter adapter) {
+        mAdapters.add(adapter);
+    }
 
     @Override
     public final String getName() {
@@ -45,10 +48,8 @@ public abstract class VoiceXmlDocumentTurn implements JsonSerializable, NamedTur
     public final Document getVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
         Document document = createVoiceXmlDocument(dialogueContext);
-        if (mAdapters != null) {
-            for (VoiceXmlDocumentAdapter adapter : mAdapters) {
-                adapter.adaptVoiceXmlDocument(document);
-            }
+        for (VoiceXmlDocumentAdapter adapter : mAdapters) {
+            adapter.adaptVoiceXmlDocument(document);
         }
         return document;
     }
