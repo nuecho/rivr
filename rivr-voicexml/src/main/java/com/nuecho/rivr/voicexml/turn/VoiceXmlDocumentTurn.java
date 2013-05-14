@@ -24,11 +24,12 @@ public abstract class VoiceXmlDocumentTurn implements JsonSerializable, NamedTur
 
     private final String mName;
 
-    private List<VoiceXmlDocumentAdapter> mAdapters;
+    private final List<VoiceXmlDocumentAdapter> mAdapters;
 
     public VoiceXmlDocumentTurn(String name) {
         Assert.notEmpty(name, "name");
         mName = name;
+        mAdapters = null;
     }
 
     protected abstract JsonValue getTurnAsJson();
