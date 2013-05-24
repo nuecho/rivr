@@ -5,7 +5,7 @@ subprojects {
     apply plugin: 'ivy-publish'
 
     group = "com.nuecho"
-    version = "0.1.0"
+    version = "0.1.1"
 
     dependencies { checkstyle 'com.puppycrawl.tools:checkstyle:5.5' }
     repositories { maven { url 'http://knox.s.nuecho.com/artifactory/libs-release' } }
