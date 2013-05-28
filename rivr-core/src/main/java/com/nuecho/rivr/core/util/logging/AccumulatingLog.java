@@ -3,10 +3,11 @@
  */
 package com.nuecho.rivr.core.util.logging;
 
+import static org.slf4j.helpers.MessageFormatter.*;
+
 import java.util.*;
 
 import org.slf4j.*;
-import org.slf4j.helpers.*;
 
 /**
  * @author Nu Echo Inc.
@@ -89,8 +90,8 @@ public final class AccumulatingLog extends LoggerAdapter {
     }
 
     @Override
-    protected void logWithFormatting(Marker marker, LogLevel logLevel, String format, Object... argumentArray) {
-        mMessages.add(new LogEntry(logLevel, MessageFormatter.format(format, argumentArray), null, marker));
+    protected void logWithFormatting(Marker marker, LogLevel logLevel, String format, Object... arguments) {
+        mMessages.add(new LogEntry(logLevel, arrayFormat(format, arguments).getMessage(), null, marker));
     }
 
     public void clear() {

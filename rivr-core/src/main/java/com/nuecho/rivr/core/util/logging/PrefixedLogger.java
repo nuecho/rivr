@@ -4,8 +4,9 @@
 
 package com.nuecho.rivr.core.util.logging;
 
+import static org.slf4j.helpers.MessageFormatter.*;
+
 import org.slf4j.*;
-import org.slf4j.helpers.*;
 
 /**
  * @author Nu Echo Inc.
@@ -82,6 +83,6 @@ public class PrefixedLogger extends LoggerAdapter {
 
     @Override
     protected void logWithFormatting(Marker marker, LogLevel logLevel, String format, Object... arguments) {
-        LogUtil.dispatch(mLogger, marker, mPrefix + MessageFormatter.format(format, arguments), logLevel, null);
+        LogUtil.dispatch(mLogger, marker, mPrefix + arrayFormat(format, arguments).getMessage(), logLevel, null);
     }
 }
