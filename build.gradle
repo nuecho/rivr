@@ -2,10 +2,9 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse'
     apply plugin: 'checkstyle'
-    apply plugin: 'ivy-publish'
 
     group = "com.nuecho"
-    version = "0.1.1"
+    version = "0.1.2"
 
     dependencies { checkstyle 'com.puppycrawl.tools:checkstyle:5.5' }
     repositories { maven { url 'http://knox.s.nuecho.com/artifactory/libs-release' } }
@@ -17,15 +16,6 @@ subprojects {
     checkstyleMain { classpath += configurations.compile }
     checkstyleTest { classpath += configurations.compile }
 
-    task sourceJar(type: Jar) {
-        from sourceSets.main.java
-        classifier 'source'
-    }
-
-    publishing{
-        repositories { ivy { url 'http://knox.s.nuecho.com/artifactory/libs-release-local' } }
-    }
-
     eclipse{
         project {
             natures 'net.sf.eclipsecs.core.CheckstyleNature'
@@ -36,6 +26,43 @@ subprojects {
             // This should probably be submitted as a patch to the eclipse plugin.
             containers.clear()
             containers.add("org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6")
+        }
+    }
+}
+
+// Configure the projects that publish something.
+configure([
+    project("rivr-core"),
+    project("rivr-voicexml"),
+    project("rivr-voicexml:dialogue-runner")
+]) {
+    apply plugin: 'ivy-publish'
+    publishing {
+        repositories { ivy { url 'http://knox.s.nuecho.com/artifactory/libs-release-local' } }
+    }
+}
+
+// Configure the publications of java projects, with source code.
+configure([
+    project("rivr-core"),
+    project("rivr-voicexml")
+]) {
+
+    task sourceJar(type: Jar) {
+        from sourceSets.main.java
+        classifier 'sources'
+    }
+
+    publishing {
+        publications {
+            ivy(IvyPublication) {
+                from components.java
+                configurations.create("sources")
+                artifact(sourceJar){
+                    type 'source'
+                    conf 'sources'
+                }
+            }
         }
     }
 }

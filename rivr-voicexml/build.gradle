@@ -6,15 +6,3 @@ dependencies {
     runtime 'org.glassfish:javax.json:1.0-b06'
     
 }
-
-publishing {
-    publications {
-        ivy(IvyPublication) {
-            from components.java
-            artifact(sourceJar){
-                type 'source'
-                conf 'runtime'
-            }
-        }
-    }
-}
