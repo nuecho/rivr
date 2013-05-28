@@ -1,0 +1,9 @@
+apply plugin: 'war'
+
+publishing {
+    publications {
+        ivy(IvyPublication) {
+            from components.web
+        }
+    }
+}
