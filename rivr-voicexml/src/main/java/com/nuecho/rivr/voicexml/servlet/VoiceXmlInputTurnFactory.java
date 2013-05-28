@@ -70,6 +70,7 @@ public final class VoiceXmlInputTurnFactory implements
 
         Map<String, String> parameters = new HashMap<String, String>();
 
+        @SuppressWarnings("unchecked")
         Enumeration<String> parameterNames = request.getParameterNames();
         while (parameterNames.hasMoreElements()) {
             String parameterName = parameterNames.nextElement();
@@ -228,6 +229,7 @@ public final class VoiceXmlInputTurnFactory implements
                 throw new InputTurnFactoryException("Unable to get recording.", exception);
             }
         } else {
+            @SuppressWarnings("unchecked")
             Enumeration<String> parameterNames = request.getParameterNames();
             while (parameterNames.hasMoreElements()) {
                 String parameterName = parameterNames.nextElement();
@@ -270,6 +272,7 @@ public final class VoiceXmlInputTurnFactory implements
 
         if (sourceHeaders == null) return headers;
 
+        @SuppressWarnings("unchecked")
         Iterator<String> headerNames = sourceHeaders.getHeaderNames();
         while (headerNames.hasNext()) {
             String headerName = headerNames.next();

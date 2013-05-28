@@ -16,7 +16,7 @@ public class VoiceXmlFirstTurn implements FirstTurn {
     private final Map<String, String> mParameters;
 
     public VoiceXmlFirstTurn() {
-        mParameters = Collections.EMPTY_MAP;
+        mParameters = Collections.emptyMap();
     }
 
     public VoiceXmlFirstTurn(Map<String, String> parameters) {
