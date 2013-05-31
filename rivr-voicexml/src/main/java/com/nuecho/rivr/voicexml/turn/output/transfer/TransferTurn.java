@@ -62,7 +62,7 @@ public abstract class TransferTurn extends VoiceXmlOutputTurn {
         return builder.build();
     }
 
-    protected void addJsonProperties(@SuppressWarnings("unused") JsonObjectBuilder builder) {}
+    protected void addJsonProperties(JsonObjectBuilder builder) {}
 
     @Override
     public Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)

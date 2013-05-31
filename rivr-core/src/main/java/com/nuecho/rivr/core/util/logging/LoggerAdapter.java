@@ -12,17 +12,14 @@ import org.slf4j.*;
  * @author Nu Echo Inc.
  */
 public abstract class LoggerAdapter implements Logger {
-
     /**
      * To be overridden.
      */
-    @SuppressWarnings("unused")
     protected void log(Marker marker, LogLevel logLevel, String message, Throwable throwable) {}
 
     /**
      * To be overridden.
      */
-    @SuppressWarnings("unused")
     protected void logWithFormatting(Marker marker, LogLevel logLevel, String format, Object... arguments) {}
 
     @Override
@@ -41,8 +38,8 @@ public abstract class LoggerAdapter implements Logger {
     }
 
     @Override
-    public void trace(String format, Object[] argumentArray) {
-        logWithFormatting(null, TRACE, format, argumentArray);
+    public void trace(String format, Object... arguments) {
+        logWithFormatting(null, TRACE, format, arguments);
     }
 
     @Override
@@ -66,8 +63,8 @@ public abstract class LoggerAdapter implements Logger {
     }
 
     @Override
-    public void trace(Marker marker, String format, Object[] argumentArray) {
-        logWithFormatting(marker, TRACE, format, argumentArray);
+    public void trace(Marker marker, String format, Object... arguments) {
+        logWithFormatting(marker, TRACE, format, arguments);
     }
 
     @Override
@@ -91,8 +88,8 @@ public abstract class LoggerAdapter implements Logger {
     }
 
     @Override
-    public void debug(String format, Object[] argumentArray) {
-        logWithFormatting(null, DEBUG, format, argumentArray);
+    public void debug(String format, Object... arguments) {
+        logWithFormatting(null, DEBUG, format, arguments);
     }
 
     @Override
@@ -116,8 +113,8 @@ public abstract class LoggerAdapter implements Logger {
     }
 
     @Override
-    public void debug(Marker marker, String format, Object[] argumentArray) {
-        logWithFormatting(marker, DEBUG, format, argumentArray);
+    public void debug(Marker marker, String format, Object... arguments) {
+        logWithFormatting(marker, DEBUG, format, arguments);
     }
 
     @Override
@@ -141,8 +138,8 @@ public abstract class LoggerAdapter implements Logger {
     }
 
     @Override
-    public void info(String format, Object[] argumentArray) {
-        logWithFormatting(null, INFO, format, argumentArray);
+    public void info(String format, Object... arguments) {
+        logWithFormatting(null, INFO, format, arguments);
     }
 
     @Override
@@ -166,8 +163,8 @@ public abstract class LoggerAdapter implements Logger {
     }
 
     @Override
-    public void info(Marker marker, String format, Object[] argumentArray) {
-        logWithFormatting(marker, INFO, format, argumentArray);
+    public void info(Marker marker, String format, Object... arguments) {
+        logWithFormatting(marker, INFO, format, arguments);
     }
 
     @Override
@@ -191,8 +188,8 @@ public abstract class LoggerAdapter implements Logger {
     }
 
     @Override
-    public void warn(String format, Object[] argumentArray) {
-        logWithFormatting(null, WARN, format, argumentArray);
+    public void warn(String format, Object... arguments) {
+        logWithFormatting(null, WARN, format, arguments);
     }
 
     @Override
@@ -216,8 +213,8 @@ public abstract class LoggerAdapter implements Logger {
     }
 
     @Override
-    public void warn(Marker marker, String format, Object[] argumentArray) {
-        logWithFormatting(marker, WARN, format, argumentArray);
+    public void warn(Marker marker, String format, Object... arguments) {
+        logWithFormatting(marker, WARN, format, arguments);
     }
 
     @Override
@@ -241,8 +238,8 @@ public abstract class LoggerAdapter implements Logger {
     }
 
     @Override
-    public void error(String format, Object[] argumentArray) {
-        logWithFormatting(null, ERROR, format, argumentArray);
+    public void error(String format, Object... arguments) {
+        logWithFormatting(null, ERROR, format, arguments);
     }
 
     @Override
@@ -266,8 +263,8 @@ public abstract class LoggerAdapter implements Logger {
     }
 
     @Override
-    public void error(Marker marker, String format, Object[] argumentArray) {
-        logWithFormatting(marker, ERROR, format, argumentArray);
+    public void error(Marker marker, String format, Object... arguments) {
+        logWithFormatting(marker, ERROR, format, arguments);
     }
 
     @Override
