@@ -2,7 +2,7 @@
 
 ## Command line
 
-To build from the command line, use the gradlew script: `./gradlew build` on *NIX and `gradlew.bat build` on windows. To show a list of the usable tasks, run `gradlew tasks`.
+To build from the command line, use the gradlew script: `./gradlew build` on `*NIX` and `gradlew.bat build` on windows. To show a list of the usable tasks, run `gradlew tasks`.
 
 Note: remember that Gradle permits camel-case shortcuts for the task name, as such `teCl` resolves to `testClasses`.
 

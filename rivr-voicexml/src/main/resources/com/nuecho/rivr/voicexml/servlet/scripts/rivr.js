@@ -1,4 +1,10 @@
 /*global application */
+if (application === undefined) {
+  var application = {};
+}
+if (application.rivr === undefined) {
+  application.rivr = {};
+}
 
 (function(rivr) {
   var functions = {
@@ -187,7 +193,7 @@
     return booleanValue ? "true" : "false";
   }
 
-  if (typeof JSON === "object") {
+  if (typeof JSON === "object" && JSON.stringify) {
     // Using native JSON object if available
     rivr.toJson = JSON.stringify;
   } else {
