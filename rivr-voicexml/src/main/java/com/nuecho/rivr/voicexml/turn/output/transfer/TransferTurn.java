@@ -62,6 +62,10 @@ public abstract class TransferTurn extends VoiceXmlOutputTurn {
         return builder.build();
     }
 
+    /**
+     * @param builder The builder which is used to add subclass-related
+     *            properties
+     */
     protected void addJsonProperties(JsonObjectBuilder builder) {}
 
     @Override

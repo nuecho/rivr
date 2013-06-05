@@ -14,11 +14,21 @@ import org.slf4j.*;
 public abstract class LoggerAdapter implements Logger {
     /**
      * To be overridden.
+     * 
+     * @param marker A marker (can be null).
+     * @param logLevel The log level
+     * @param message The message
+     * @param throwable a throwable (can be null)
      */
     protected void log(Marker marker, LogLevel logLevel, String message, Throwable throwable) {}
 
     /**
      * To be overridden.
+     * 
+     * @param marker A marker (can be null).
+     * @param logLevel The log level
+     * @param format The format string
+     * @param arguments The arguments to format
      */
     protected void logWithFormatting(Marker marker, LogLevel logLevel, String format, Object... arguments) {}
 
