@@ -90,41 +90,8 @@ function addGrammars(grammars, dtmf, table) {
       grammarUriCell.addClass("content-cell");
       var link = $("<a>");
       link.attr("href", grammar.uri);
-
-      var shortLink = grammar.uri.substring(grammar.uri.lastIndexOf("/") + 1);
-      link.text(shortLink);
-
+      link.text(grammar.uri);
       grammarUriCell.append(link);
-
-      var expandUriText = $("<span>");
-      var shortenUriText = $("<span>");
-
-      expandUriText.text("URI");
-      expandUriText.click((function(expandUriText, shortenUriText, grammar) {
-        return function() {
-          link.text(grammar.uri);
-          shortenUriText.show();
-          expandUriText.hide();
-        };
-      }(expandUriText, shortenUriText, grammar)));
-      expandUriText.addClass("small-button");
-
-      shortenUriText.text("file");
-      shortenUriText.click((function(expandUriText, shortenUriText, shortLink) {
-        return function() {
-          link.text(shortLink);
-          shortenUriText.show();
-          expandUriText.hide();
-        };
-      }(expandUriText, shortenUriText, shortLink)));
-      shortenUriText.addClass("small-button");
-
-      grammarUriCell.append(" ");
-      grammarUriCell.append(expandUriText);
-      grammarUriCell.append(" ");
-      grammarUriCell.append(shortenUriText);
-      shortenUriText.hide();
-
       grammarRow.append(grammarUriCell);
     } else if (grammar.source) {
 
