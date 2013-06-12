@@ -293,11 +293,11 @@ public final class VoiceXmlDomUtil {
     public static void createPrompt(String language,
                                     Element parent,
                                     VoiceXmlDialogueContext voiceXmlDialogueContext,
-                                    boolean bargeIn,
+                                    Boolean bargeIn,
                                     List<? extends AudioItem> audioItems) throws VoiceXmlDocumentRenderingException {
 
         Element promptElement = DomUtils.appendNewElement(parent, PROMPT_ATTRIBUTE);
-        promptElement.setAttribute(BARGE_IN_PROPERTY, String.valueOf(bargeIn));
+        setBooleanAttribute(promptElement, BARGE_IN_PROPERTY, bargeIn);
 
         String documentLanguage = voiceXmlDialogueContext.getLanguage();
         if (language != null && !language.equals(documentLanguage)) {

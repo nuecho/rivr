@@ -91,7 +91,8 @@ public class InteractionTurn extends VoiceXmlOutputTurn {
             SpeechRecognitionConfiguration speechRecognitionConfiguration = prompt.getSpeechRecognitionConfiguration();
 
             boolean usingField;
-            boolean bargeIn = prompt.isBargeIn();
+            boolean bargeIn = prompt.getDtmfRecognitionConfiguration() != null
+                              || prompt.getSpeechRecognitionConfiguration() != null;
 
             if (dtmfRecognitionConfiguration == null && speechRecognitionConfiguration == null) {
                 formItemElement = DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
@@ -209,10 +210,10 @@ public class InteractionTurn extends VoiceXmlOutputTurn {
         return document;
     }
 
-    protected static void renderPrompts(InteractionPrompt interactionPrompt,
-                                        Element parentElement,
-                                        VoiceXmlDialogueContext voiceXmlDialogueContext,
-                                        boolean bargeIn) throws VoiceXmlDocumentRenderingException {
+    private static void renderPrompts(InteractionPrompt interactionPrompt,
+                                      Element parentElement,
+                                      VoiceXmlDialogueContext voiceXmlDialogueContext,
+                                      boolean bargeIn) throws VoiceXmlDocumentRenderingException {
         List<? extends AudioItem> audioItems = interactionPrompt.getAudioItems();
         createPrompt(interactionPrompt.getLanguage(), parentElement, voiceXmlDialogueContext, bargeIn, audioItems);
     }
@@ -461,4 +462,5 @@ public class InteractionTurn extends VoiceXmlOutputTurn {
         createScript(filledElement, RIVR_SCOPE_OBJECT + ".addRecognitionResult()");
         createGotoSubmit(filledElement);
     }
+
 }

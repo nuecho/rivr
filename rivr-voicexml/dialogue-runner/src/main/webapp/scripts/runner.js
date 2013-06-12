@@ -281,6 +281,24 @@ function processInteraction(turn) {
 
 }
 
+function processMessageTurn(turn) {
+  var message = turn.data;
+
+  $("#messageSection").empty();
+  var table = $("<table>");
+  $("#messageSection").append(table);
+
+  addProperties(table, _.omit(message, "audioItems"));
+
+  addHeader(table, "audio items");
+  var audioTable = $("<table>");
+  table.append($("<tr>").append($("<td>").append(audioTable)));
+
+  _.each(message.audioItems, function(audioItem) {
+    processAudioItem(audioItem, audioTable);
+  });
+}
+
 function prepareDialogueStart() {
   servletPath = configuration.uri;
   $("#dialogueStartSection").show();
@@ -485,6 +503,7 @@ function processResult(result) {
   $("#scriptSection").hide();
   $("#transferSection").hide();
   $("#interactionSection").hide();
+  $("#messageSection").hide();
 
   $("#dialogueStartSection").hide();
 
@@ -513,6 +532,9 @@ function processResult(result) {
     if (outputTurnType === "interaction") {
       $("#interactionSection").show();
       processInteraction(result.turn);
+    } else if (outputTurnType === "message") {
+      $("#messageSection").show();
+      processMessageTurn(result.turn);
     } else if (outputTurnType === "transfer") {
       $("#transferSection").show();
       processTransferTurn(result.turn);

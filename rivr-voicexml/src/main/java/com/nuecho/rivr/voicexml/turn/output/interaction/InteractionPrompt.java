@@ -20,7 +20,6 @@ public final class InteractionPrompt implements JsonSerializable {
     private static final String SPEECH_RECOGNITION_CONFIGURATION_PROPERTY = "speechRecognitionConfiguration";
     private static final String DTMF_RECOGNITION_CONFIGURATION_PROPERTY = "dtmfRecognitionConfiguration";
     private static final String HOT_WORD_BARGEIN_PROPERTY = "hotWordBargein";
-    private static final String BARGEIN_PROPERTY = "bargein";
     private static final String AUDIO_ITEMS_PROPERTY = "audioItems";
     private static final String LANGUAGE_PROPERTY = "language";
 
@@ -29,7 +28,6 @@ public final class InteractionPrompt implements JsonSerializable {
 
     private final SpeechRecognitionConfiguration mSpeechRecognitionConfiguration;
     private final DtmfRecognitionConfiguration mDtmfRecognitionConfiguration;
-    private final boolean mBargeIn;
     private boolean mHotWordBargeIn;
 
     public InteractionPrompt(List<? extends AudioItem> audioItems,
@@ -41,20 +39,14 @@ public final class InteractionPrompt implements JsonSerializable {
         mLanguage = language;
         mSpeechRecognitionConfiguration = speechRecognitionConfiguration;
         mDtmfRecognitionConfiguration = dtmfRecognitionConfiguration;
-        mBargeIn = speechRecognitionConfiguration != null || dtmfRecognitionConfiguration != null;
     }
 
-    public InteractionPrompt(List<? extends AudioItem> audioItems, boolean bargeIn, String language) {
+    public InteractionPrompt(List<? extends AudioItem> audioItems, String language) {
         Assert.notNull(audioItems, "audioItems");
         mAudioItems = new ArrayList<AudioItem>(audioItems);
         mLanguage = language;
         mSpeechRecognitionConfiguration = null;
         mDtmfRecognitionConfiguration = null;
-        mBargeIn = bargeIn;
-    }
-
-    public boolean isBargeIn() {
-        return mBargeIn;
     }
 
     public boolean isHotWordBargeIn() {
@@ -86,7 +78,6 @@ public final class InteractionPrompt implements JsonSerializable {
         JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
         JsonUtils.add(builder, LANGUAGE_PROPERTY, mLanguage);
         JsonUtils.add(builder, AUDIO_ITEMS_PROPERTY, JsonUtils.toJson(mAudioItems));
-        JsonUtils.addBooleanProperty(builder, BARGEIN_PROPERTY, mBargeIn);
         JsonUtils.addBooleanProperty(builder, HOT_WORD_BARGEIN_PROPERTY, mHotWordBargeIn);
         JsonUtils.add(builder, DTMF_RECOGNITION_CONFIGURATION_PROPERTY, mDtmfRecognitionConfiguration);
         JsonUtils.add(builder, SPEECH_RECOGNITION_CONFIGURATION_PROPERTY, mSpeechRecognitionConfiguration);
