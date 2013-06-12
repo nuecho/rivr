@@ -1,10 +1,4 @@
 /*global application */
-if (application === undefined) {
-  var application = {};
-}
-if (application.rivr === undefined) {
-  application.rivr = {};
-}
 
 (function(rivr) {
   var functions = {
@@ -208,4 +202,4 @@ if (application.rivr === undefined) {
     }
   }
 
-})(application.rivr);
+})(application.rivr !== undefined ? application.rivr : document.rivr);
