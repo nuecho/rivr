@@ -4,7 +4,7 @@ subprojects {
     apply plugin: 'checkstyle'
 
     group = "com.nuecho"
-    version = "0.2.1.1"
+    version = "0.2.1.2"
 
     dependencies { checkstyle 'com.puppycrawl.tools:checkstyle:5.5' }
     repositories { maven { url 'http://knox.s.nuecho.com/artifactory/libs-release' } }
