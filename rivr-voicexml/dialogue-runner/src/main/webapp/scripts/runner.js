@@ -1,7 +1,16 @@
 /*global $, _*/
 
-var configurations;
 var configuration;
+
+var defaultConfigurations = {
+  "Default Configuration" : {
+    uri : "dialogue",
+    prepareParameters : function(table) {}
+  }
+};
+
+var configurations = defaultConfigurations;
+
 var servletPath;
 
 var input = {};
@@ -1116,6 +1125,13 @@ $(function() {
 
   var configurationSelection = $("#configurationSelection");
   configurationSelection.empty();
+
+  if (configurations === defaultConfigurations) {
+    $("#configurationSelection").attr(
+      "title",
+      "This is the default configuration.  You can provide a parameters.js in "
+        + "the current directory and provide a custom configuration.");
+  }
 
   _.each(configurations, function(configuration, name) {
     var option = $("<option>");
