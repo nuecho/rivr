@@ -1164,7 +1164,7 @@ $(function() {
     }
   });
 
-  $("#quickPanelDialogue").on("keypress", function(event) {
+  $("#keyShortcuts").on("keypress", function(event) {
 
     function is(character) {
       return event.charCode == character.toUpperCase().charCodeAt(0) || event.charCode == character.charCodeAt(0);
