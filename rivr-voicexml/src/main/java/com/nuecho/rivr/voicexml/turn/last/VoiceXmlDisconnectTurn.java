@@ -47,12 +47,13 @@ public class VoiceXmlDisconnectTurn extends VoiceXmlLastTurn {
         Document document = createDocument(dialogueContext, this);
         Element formElement = createForm(document);
         Element blockElement = DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
-        Element exitElement = DomUtils.appendNewElement(blockElement, DISCONNECT_ELEMENT);
+        Element disconnectElement = document.createElement(DISCONNECT_ELEMENT);
 
         if (mVariables != null) {
-            addNamelist(blockElement, exitElement, mVariables);
+            addNamelist(blockElement, disconnectElement, mVariables);
         }
 
+        blockElement.appendChild(disconnectElement);
         return document;
     }
 }

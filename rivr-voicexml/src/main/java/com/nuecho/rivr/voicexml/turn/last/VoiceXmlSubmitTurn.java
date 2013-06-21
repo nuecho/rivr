@@ -85,10 +85,11 @@ public class VoiceXmlSubmitTurn extends VoiceXmlLastTurn {
         Document document = createDocument(dialogueContext, this);
         Element formElement = createForm(document);
         Element blockElement = DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
-        Element submitElement = DomUtils.appendNewElement(blockElement, SUBMIT_ELEMENT);
+        Element submitElement = document.createElement(SUBMIT_ELEMENT);
         VoiceXmlDomUtil.setAttribute(submitElement, VoiceXmlDomUtil.NEXT_ATTRIBUTE, mUri);
         addNamelist(blockElement, submitElement, mVariables);
         VoiceXmlDomUtil.applyDocumentFetchConfiguration(submitElement, mFetchConfiguration);
+        blockElement.appendChild(submitElement);
         return document;
     }
 }

@@ -56,7 +56,7 @@ public class VoiceXmlReturnTurn extends VoiceXmlLastTurn {
         Document document = createDocument(dialogueContext, null);
         Element formElement = createForm(document);
         Element blockElement = DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
-        Element returnElement = DomUtils.appendNewElement(blockElement, RETURN_ELEMENT);
+        Element returnElement = document.createElement(RETURN_ELEMENT);
 
         if (mVariables != null) {
             addNamelist(blockElement, returnElement, mVariables);
@@ -67,6 +67,8 @@ public class VoiceXmlReturnTurn extends VoiceXmlLastTurn {
                 returnElement.setAttribute(MESSAGE_ATTRIBUTE, mEventMessage);
             }
         }
+        blockElement.appendChild(returnElement);
+
         return document;
     }
 }

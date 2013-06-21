@@ -55,13 +55,14 @@ public class VoiceXmlExitTurn extends VoiceXmlLastTurn {
         Document document = createDocument(dialogueContext, this);
         Element formElement = createForm(document);
         Element blockElement = DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
-        Element exitElement = DomUtils.appendNewElement(blockElement, EXIT_ELEMENT);
-
+        Element exitElement = document.createElement(EXIT_ELEMENT);
         if (mVariables != null) {
             addNamelist(blockElement, exitElement, mVariables);
         } else if (mExpression != null) {
             exitElement.setAttribute(EXPR_ATTRIBUTE, mExpression);
         }
+        blockElement.appendChild(exitElement);
+
         return document;
     }
 }
