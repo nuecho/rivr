@@ -9,6 +9,7 @@ import java.util.*;
 import javax.json.*;
 
 import com.nuecho.rivr.core.util.*;
+import com.nuecho.rivr.voicexml.rendering.voicexml.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
@@ -69,7 +70,17 @@ public final class VariableDeclarationList implements Iterable<VariableDeclarati
     public static VariableDeclarationList create(JsonObject jsonObject) {
         VariableDeclarationList list = new VariableDeclarationList();
         for (String propertyName : jsonObject.keySet()) {
-            list.addVariable(new VariableDeclaration(propertyName, jsonObject.get(propertyName).toString()));
+            JsonValue jsonValue = jsonObject.get(propertyName);
+
+            String ecmaScriptLiteral;
+            if (jsonValue instanceof JsonString) {
+                JsonString jsonString = (JsonString) jsonValue;
+                ecmaScriptLiteral = VoiceXmlDomUtil.createEcmaScriptStringLiteral(jsonString.getString());
+            } else {
+                ecmaScriptLiteral = jsonValue.toString();
+            }
+
+            list.addVariable(new VariableDeclaration(propertyName, ecmaScriptLiteral));
         }
         return list;
     }
