@@ -26,18 +26,14 @@ public final class DomUtils {
         try {
             DOCUMENT_BUILDER = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         } catch (ParserConfigurationException exception) {
-            AssertionError rethrown = new AssertionError(exception);
-            rethrown.initCause(rethrown);
-            throw rethrown;
+            throw new AssertionError(exception);
         }
 
         try {
             DOMImplementationRegistry registry = DOMImplementationRegistry.newInstance();
             DOM_IMPLEMENTATION = (DOMImplementationLS) registry.getDOMImplementation("LS");
         } catch (Exception exception) {
-            AssertionError rethrown = new AssertionError(exception);
-            rethrown.initCause(rethrown);
-            throw rethrown;
+            throw new AssertionError(exception);
         }
     }
 
