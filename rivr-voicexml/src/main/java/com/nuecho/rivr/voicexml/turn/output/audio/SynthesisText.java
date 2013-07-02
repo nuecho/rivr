@@ -11,23 +11,32 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * A <code>SynthesisText</code> represents a text that will be spoken using a
+ * synthesis voice. It can be either a string of text or a SSML document.
+ * 
  * @author Nu Echo Inc.
+ * @see http://www.w3.org/TR/speech-synthesis/
  */
 public final class SynthesisText extends AudioItem {
-
+    public static final String SYNTHESIS_TEXT_ELEMENT_TYPE = "synthesisText";
     private static final String TEXT_PROPERTY = "text";
     private static final String SSML_PROPERTY = "ssml";
-    public static final String SYNTHESIS_TEXT_ELEMENT_TYPE = "synthesisText";
 
     private final String mText;
     private final DocumentFragment mDocumentFragment;
 
+    /**
+     * @param text The synthesis text. Not empty.
+     */
     public SynthesisText(String text) {
         Assert.notEmpty(text, "text");
         mText = text;
         mDocumentFragment = null;
     }
 
+    /**
+     * @param documentFragment The SSML document. Not null.
+     */
     public SynthesisText(DocumentFragment documentFragment) {
         Assert.notNull(documentFragment, "documentFragment");
         mDocumentFragment = documentFragment;
@@ -53,7 +62,6 @@ public final class SynthesisText extends AudioItem {
 
     @Override
     protected void addJsonProperties(JsonObjectBuilder builder) {
-
         if (isSsml()) {
             JsonUtils.addXmlNodeProperty(builder, SSML_PROPERTY, "SSML fragment", mDocumentFragment);
         } else {
@@ -86,5 +94,4 @@ public final class SynthesisText extends AudioItem {
         } else if (!mText.equals(other.mText)) return false;
         return true;
     }
-
 }

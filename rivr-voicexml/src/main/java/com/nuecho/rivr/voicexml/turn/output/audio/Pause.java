@@ -9,15 +9,20 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * A <code>Pause</code> represents a silence of a specified duration in an
+ * <code>AudioItem</code> sequence.
+ * 
  * @author Nu Echo Inc.
  */
 public final class Pause extends AudioItem {
-
     private static final String PAUSE_PROPERTY = "pause";
     public static final String PAUSE_ELEMENT_TYPE = PAUSE_PROPERTY;
 
     private final TimeValue mDuration;
 
+    /**
+     * @param duration The duration of the pause. Not null.
+     */
     public Pause(TimeValue duration) {
         mDuration = duration;
     }
@@ -55,5 +60,4 @@ public final class Pause extends AudioItem {
         } else if (!mDuration.equals(other.mDuration)) return false;
         return true;
     }
-
 }

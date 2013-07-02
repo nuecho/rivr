@@ -6,17 +6,24 @@ package com.nuecho.rivr.voicexml.turn.output.audio;
 import javax.json.*;
 
 import com.nuecho.rivr.core.util.*;
+import com.nuecho.rivr.voicexml.turn.input.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * A <code>Mark</code> represents a marker in an <code>AudioItem</code> sequence
+ * which can be used to determine when a user started to speak.
+ * 
  * @author Nu Echo Inc.
+ * @see MarkInfo
  */
 public final class Mark extends AudioItem {
-
     private static final String MARK_PROPERTY = "mark";
     private static final String MARK_ELEMENT_TYPE = "mark";
     private final String mName;
 
+    /**
+     * @param name The name of the mark. Not null.
+     */
     public Mark(String name) {
         Assert.notNull(name, "name");
         mName = name;
@@ -55,5 +62,4 @@ public final class Mark extends AudioItem {
         } else if (!mName.equals(other.mName)) return false;
         return true;
     }
-
 }
