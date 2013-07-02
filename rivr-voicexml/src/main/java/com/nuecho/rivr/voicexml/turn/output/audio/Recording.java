@@ -45,8 +45,8 @@ public final class Recording extends AudioItem {
     }
 
     /**
-     * @param resourceFetchConfiguration The resource fetch configuration.
-     *            Reverts to default value if null.
+     * @param resourceFetchConfiguration The resource fetch configuration. Null
+     *            resets the value.
      */
     public void setResourceFetchConfiguration(ResourceFetchConfiguration resourceFetchConfiguration) {
         mResourceFetchConfiguration = resourceFetchConfiguration;
