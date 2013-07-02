@@ -9,10 +9,13 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * An <code>InlineStringGrammar</code> represents a text source grammar inlined
+ * in the VoiceXML document.
+ * 
  * @author Nu Echo Inc.
+ * @see http://www.w3.org/TR/voicexml20/#dml3.1.1.4
  */
 public final class InlineStringGrammar extends GrammarItem {
-
     private static final String INLINE_STRING_ELEMENT_TYPE = "inlineString";
     private static final String VERSION_PROPERTY = "version";
     private static final String TAG_FORMAT_PROPERTY = "tagFormat";
@@ -28,9 +31,51 @@ public final class InlineStringGrammar extends GrammarItem {
     private String mTagFormat;
     private String mBase;
 
+    /**
+     * @param source The text source of the grammar. Not null.
+     */
     public InlineStringGrammar(String source) {
         Assert.notNull(source, "source");
         mSource = source;
+    }
+
+    /**
+     * @param version The version of the grammar. Null resets the value.
+     */
+    public void setVersion(String version) {
+        mVersion = version;
+    }
+
+    /**
+     * @param language The language identifier of the grammar. For example,
+     *            "fr-CA" for Canadian French. Null resets the value.
+     */
+    public void setLanguage(String language) {
+        mLanguage = language;
+    }
+
+    /**
+     * @param root The name of the rule that will act as the root rule. Null
+     *            resets the value.
+     */
+    public void setRoot(String root) {
+        mRoot = root;
+    }
+
+    /**
+     * @param tagFormat The tag content format for all tags within the grammar.
+     *            Null resets the value.
+     */
+    public void setTagFormat(String tagFormat) {
+        mTagFormat = tagFormat;
+    }
+
+    /**
+     * @param base The base URI from which relative URIs in the grammar are
+     *            resolved. Null resets the value.
+     */
+    public void setBase(String base) {
+        mBase = base;
     }
 
     @Override
@@ -46,40 +91,20 @@ public final class InlineStringGrammar extends GrammarItem {
         return mVersion;
     }
 
-    public void setVersion(String version) {
-        mVersion = version;
-    }
-
     public String getLanguage() {
         return mLanguage;
-    }
-
-    public void setLanguage(String language) {
-        mLanguage = language;
     }
 
     public String getRoot() {
         return mRoot;
     }
 
-    public void setRoot(String root) {
-        mRoot = root;
-    }
-
     public String getTagFormat() {
         return mTagFormat;
     }
 
-    public void setTagFormat(String tagFormat) {
-        mTagFormat = tagFormat;
-    }
-
     public String getBase() {
         return mBase;
-    }
-
-    public void setBase(String base) {
-        mBase = base;
     }
 
     @Override
@@ -131,5 +156,4 @@ public final class InlineStringGrammar extends GrammarItem {
         } else if (!mVersion.equals(other.mVersion)) return false;
         return true;
     }
-
 }
