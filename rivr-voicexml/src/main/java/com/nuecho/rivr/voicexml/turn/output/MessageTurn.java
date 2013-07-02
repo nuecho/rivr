@@ -12,15 +12,20 @@ import javax.json.*;
 
 import org.w3c.dom.*;
 
+import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.rendering.voicexml.*;
 import com.nuecho.rivr.voicexml.turn.output.audio.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * A <code>MessageTurn</code> is a <code>VoiceXmlOutputTurn</code> that plays a
+ * sequence of <code>AudioItem</code>.
+ * 
  * @author Nu Echo Inc.
+ * @see AudioItem
+ * @see http://www.w3.org/TR/voicexml20/#dml4.1.8
  */
-public class MessageTurn extends VoiceXmlOutputTurn {
-
+public final class MessageTurn extends VoiceXmlOutputTurn {
     private static final String BARGE_IN_PROPERTY = "bargeIn";
     private static final String LANGUAGE_PROPERTY = "language";
     private static final String AUDIO_ITEMS_PROPERTY = "audioItems";
@@ -29,21 +34,35 @@ public class MessageTurn extends VoiceXmlOutputTurn {
     private String mLanguage;
     private Boolean mBargeIn;
 
+    /**
+     * @param name The name of this turn. Not empty.
+     * @param audioItems The sequence of <code>AudioItem</code> to play. Not
+     *            null.
+     */
     public MessageTurn(String name, AudioItem... audioItems) {
         super(name);
+        Assert.notNull(audioItems, "audioItems");
         mAudioItems = Arrays.asList(audioItems);
     }
 
+    /**
+     * @param language The language identifier for the message. Null resets the
+     *            value.
+     */
     public void setLanguage(String language) {
         mLanguage = language;
     }
 
+    /**
+     * @param bargeIn Boolean.TRUE if the message is interruptible,
+     *            Boolean.FALSE if it is not. Null resets the value.
+     */
     public void setBargeIn(Boolean bargeIn) {
         mBargeIn = bargeIn;
     }
 
     public List<AudioItem> getAudioItems() {
-        return mAudioItems;
+        return Collections.unmodifiableList(mAudioItems);
     }
 
     public String getLanguage() {

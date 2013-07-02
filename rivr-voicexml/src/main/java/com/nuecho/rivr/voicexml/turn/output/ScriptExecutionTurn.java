@@ -16,10 +16,12 @@ import com.nuecho.rivr.voicexml.turn.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * A <code>ScriptExecutionTurn</code> is a <code>VoiceXmlOutputTurn</code> that
+ * declares variables and/or executes a script.
+ * 
  * @author Nu Echo Inc.
  */
-public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
-
+public final class ScriptExecutionTurn extends VoiceXmlOutputTurn {
     private static final String SCRIPT_EXECUTION_TYPE = "scriptExecution";
     private static final String SCRIPT_PROPERTY = "script";
     private static final String VARIABLES_PROPERTY = "variables";
@@ -27,13 +29,26 @@ public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
     private VariableDeclarationList mVariables = new VariableDeclarationList();
     private String mScript;
 
+    /**
+     * @param name The name of this turn. Not empty.
+     */
     public ScriptExecutionTurn(String name) {
         super(name);
     }
 
+    /**
+     * @param variables The list of variables to declare. Not null.
+     */
     public void setVariables(VariableDeclarationList variables) {
         Assert.notNull(variables, "variables");
         mVariables = variables;
+    }
+
+    /**
+     * @param script The script to execute. Null resets the value.
+     */
+    public void setScript(String script) {
+        mScript = script;
     }
 
     public VariableDeclarationList getVariables() {
@@ -42,10 +57,6 @@ public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
 
     public String getScript() {
         return mScript;
-    }
-
-    public void setScript(String script) {
-        mScript = script;
     }
 
     @Override
