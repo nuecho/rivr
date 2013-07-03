@@ -13,10 +13,14 @@ import com.nuecho.rivr.voicexml.turn.output.grammar.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * A <code>DtmfRecognitionConfiguration</code> represents the DTMF part of an
+ * interaction phase recognition configuration. It is composed of a list of DTMF
+ * {@link GrammarItem} and optional properties (inter-digit timeout, term
+ * timeout, term char).
+ * 
  * @author Nu Echo Inc.
  */
 public final class DtmfRecognitionConfiguration extends RecognitionConfiguration {
-
     private static final String INTERDIGIT_TIMEOUT_PROPERTY = "interdigitTimeout";
     private static final String TERM_TIMEOUT_PROPERTY = "termTimeout";
     private static final String TERM_CHAR_PROPERTY = "termChar";
@@ -25,22 +29,44 @@ public final class DtmfRecognitionConfiguration extends RecognitionConfiguration
     private TimeValue mTermTimeout;
     private String mTermChar;
 
+    /**
+     * @param grammarItems The list of DTMF {@link GrammarItem}. Not null.
+     */
     public DtmfRecognitionConfiguration(GrammarItem... grammarItems) {
-        setGrammarItems(grammarItems);
+        super(grammarItems);
     }
 
+    /**
+     * @param grammarItems The list of DTMF {@link GrammarItem}. Not null.
+     */
     public DtmfRecognitionConfiguration(List<GrammarItem> grammarItems) {
-        setGrammarItems(grammarItems);
+        super(grammarItems);
     }
 
+    /**
+     * @param interDigitTimeout The inter-digit timeout value to use when
+     *            recognizing DTMF input. Null reverts to VoiceXML default value.
+     * @see http://www.w3.org/TR/voicexml20/#dml6.3.3
+     */
     public void setInterDigitTimeout(TimeValue interDigitTimeout) {
         mInterDigitTimeout = interDigitTimeout;
     }
 
+    /**
+     * @param termTimeout The terminating timeout to use when recognizing DTMF
+     *            input. Null reverts to VoiceXML default value.
+     * @see http://www.w3.org/TR/voicexml20/#dml6.3.3
+     */
     public void setTermTimeout(TimeValue termTimeout) {
         mTermTimeout = termTimeout;
     }
 
+    /**
+     * @param termChar The terminating DTMF character for DTMF input
+     *            recognition. Must be empty or a single character. Null resets
+     *            the value.
+     * @see http://www.w3.org/TR/voicexml20/#dml6.3.3
+     */
     public void setTermChar(String termChar) {
         if (termChar != null) {
             Assert.ensure(termChar.equals("") || termChar.length() == 1, "Termchar must be empty or single character");

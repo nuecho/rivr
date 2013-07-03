@@ -21,7 +21,7 @@ import com.nuecho.rivr.voicexml.turn.output.audio.*;
  * <li>For each prompt, speech/DTMF recognition can be specified (thus enabling
  * <i>barge-in</i> when the prompt is played).
  * </ul>
- * <li>Once all prompts are added, optionnally specify either:
+ * <li>Once all prompts are added, optionally specify either:
  * <ul>
  * <li>a final recognition windows (speech or DTMF)</li>
  * <li>a recording</li>
@@ -49,8 +49,6 @@ public final class InteractionBuilder {
 
     private final String mName;
     private final List<InteractionPrompt> mPrompts = new ArrayList<InteractionPrompt>();
-    private InteractionRecognition mInteractionRecognition;
-    private InteractionRecording mInteractionRecording;
 
     private String mLanguage;
     private boolean mHotWordBargeIn;
@@ -181,10 +179,10 @@ public final class InteractionBuilder {
     public InteractionBuilder addPrompt(DtmfRecognitionConfiguration dtmfRecognitionConfiguration,
                                         SpeechRecognitionConfiguration speechRecognitionConfiguration,
                                         List<? extends AudioItem> audioItems) {
-        InteractionPrompt prompt = new InteractionPrompt(audioItems,
-                                                         speechRecognitionConfiguration,
+        InteractionPrompt prompt = new InteractionPrompt(speechRecognitionConfiguration,
                                                          dtmfRecognitionConfiguration,
-                                                         mLanguage);
+                                                         audioItems);
+        prompt.setLanguage(mLanguage);
         prompt.setHotWordBargeIn(mHotWordBargeIn);
         mPrompts.add(prompt);
         return this;
@@ -205,7 +203,8 @@ public final class InteractionBuilder {
      * @param audioItems audio items to be played during this prompt.
      */
     public InteractionBuilder addPrompt(List<? extends AudioItem> audioItems) {
-        InteractionPrompt prompt = new InteractionPrompt(audioItems, mLanguage);
+        InteractionPrompt prompt = new InteractionPrompt(audioItems);
+        prompt.setLanguage(mLanguage);
         prompt.setHotWordBargeIn(mHotWordBargeIn);
         mPrompts.add(prompt);
         return this;
@@ -325,11 +324,12 @@ public final class InteractionBuilder {
         Assert.ensure(dtmfRecognitionConfiguration != null || speechRecognitionConfiguration != null,
                       "Must provide at least one recognition configuration (speech or DTMF)");
 
-        mInteractionRecognition = new InteractionRecognition(dtmfRecognitionConfiguration,
-                                                             speechRecognitionConfiguration,
-                                                             noinputTimeout,
-                                                             acknowledgeAudioItems);
-        return build();
+        checkBuilt();
+        InteractionRecognition recognition = new InteractionRecognition(dtmfRecognitionConfiguration,
+                                                                        speechRecognitionConfiguration,
+                                                                        noinputTimeout,
+                                                                        acknowledgeAudioItems);
+        return new InteractionTurn(mName, mPrompts, recognition);
 
     }
 
@@ -364,8 +364,12 @@ public final class InteractionBuilder {
                                  List<? extends AudioItem> acknowledgeAudioItems) {
         Assert.notNull(recordingConfiguration, "recordingConfiguration");
         Assert.notNull(acknowledgeAudioItems, "acknowledgeAudioItems");
-        mInteractionRecording = new InteractionRecording(recordingConfiguration, noinputTimeout, acknowledgeAudioItems);
-        return build();
+
+        checkBuilt();
+        InteractionRecording recording = new InteractionRecording(recordingConfiguration,
+                                                                  noinputTimeout,
+                                                                  acknowledgeAudioItems);
+        return new InteractionTurn(mName, mPrompts, recording);
     }
 
     /**
@@ -373,9 +377,12 @@ public final class InteractionBuilder {
      * recognition after the prompts
      */
     public InteractionTurn build() {
-        if (mBuilt) throw new IllegalStateException("build() method was already called.");
-        mBuilt = true;
-        return new InteractionTurn(mName, mPrompts, mInteractionRecognition, mInteractionRecording);
+        checkBuilt();
+        return new InteractionTurn(mName, mPrompts);
     }
 
+    private void checkBuilt() {
+        if (mBuilt) throw new IllegalStateException("build() method was already called.");
+        mBuilt = true;
+    }
 }

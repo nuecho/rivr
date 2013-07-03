@@ -4,6 +4,8 @@
 
 package com.nuecho.rivr.voicexml.turn.output.interaction;
 
+import static java.util.Arrays.*;
+
 import java.util.*;
 
 import javax.json.*;
@@ -13,10 +15,13 @@ import com.nuecho.rivr.voicexml.turn.output.audio.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * An <code>InteractionPrompt</code> represent a phase in an
+ * {@link InteractionTurn} and is composed of a sequence of {@link AudioItem}
+ * and optionally a speech and/or a dtmf recognition configuration.
+ * 
  * @author Nu Echo Inc.
  */
 public final class InteractionPrompt implements JsonSerializable {
-
     private static final String SPEECH_RECOGNITION_CONFIGURATION_PROPERTY = "speechRecognitionConfiguration";
     private static final String DTMF_RECOGNITION_CONFIGURATION_PROPERTY = "dtmfRecognitionConfiguration";
     private static final String HOT_WORD_BARGEIN_PROPERTY = "hotWordBargein";
@@ -24,35 +29,104 @@ public final class InteractionPrompt implements JsonSerializable {
     private static final String LANGUAGE_PROPERTY = "language";
 
     private final List<AudioItem> mAudioItems;
-    private final String mLanguage;
-
     private final SpeechRecognitionConfiguration mSpeechRecognitionConfiguration;
     private final DtmfRecognitionConfiguration mDtmfRecognitionConfiguration;
+
+    private String mLanguage;
     private boolean mHotWordBargeIn;
 
-    public InteractionPrompt(List<? extends AudioItem> audioItems,
-                             SpeechRecognitionConfiguration speechRecognitionConfiguration,
+    /**
+     * @param speechRecognitionConfiguration The speech recognition
+     *            configuration. Optional.
+     * @param dtmfRecognitionConfiguration The DTMF recognition configuration.
+     *            Optional.
+     * @param audioItems The list of {@link AudioItem}. Not null.
+     */
+    public InteractionPrompt(SpeechRecognitionConfiguration speechRecognitionConfiguration,
                              DtmfRecognitionConfiguration dtmfRecognitionConfiguration,
-                             String language) {
+                             List<? extends AudioItem> audioItems) {
         Assert.notNull(audioItems, "audioItems");
         mAudioItems = new ArrayList<AudioItem>(audioItems);
-        mLanguage = language;
         mSpeechRecognitionConfiguration = speechRecognitionConfiguration;
         mDtmfRecognitionConfiguration = dtmfRecognitionConfiguration;
     }
 
-    public InteractionPrompt(List<? extends AudioItem> audioItems, String language) {
-        Assert.notNull(audioItems, "audioItems");
-        mAudioItems = new ArrayList<AudioItem>(audioItems);
+    /**
+     * @param speechRecognitionConfiguration The speech recognition
+     *            configuration.
+     * @param dtmfRecognitionConfiguration The DTMF recognition configuration.
+     * @param audioItems The list of {@link AudioItem}. Not null.
+     */
+    public InteractionPrompt(SpeechRecognitionConfiguration speechRecognitionConfiguration,
+                             DtmfRecognitionConfiguration dtmfRecognitionConfiguration,
+                             AudioItem... audioItems) {
+        this(speechRecognitionConfiguration, dtmfRecognitionConfiguration, asList(audioItems));
+    }
+
+    /**
+     * @param speechRecognitionConfiguration The speech recognition
+     *            configuration.
+     * @param audioItems The list of {@link AudioItem}. Not null.
+     */
+    public InteractionPrompt(SpeechRecognitionConfiguration speechRecognitionConfiguration,
+                             List<? extends AudioItem> audioItems) {
+        this(speechRecognitionConfiguration, null, audioItems);
+    }
+
+    /**
+     * @param speechRecognitionConfiguration The speech recognition
+     *            configuration.
+     * @param audioItems The list of {@link AudioItem}. Not null.
+     */
+    public InteractionPrompt(SpeechRecognitionConfiguration speechRecognitionConfiguration, AudioItem... audioItems) {
+        this(speechRecognitionConfiguration, null, audioItems);
+    }
+
+    /**
+     * @param dtmfRecognitionConfiguration The DTMF recognition configuration.
+     * @param audioItems The list of {@link AudioItem}. Not null.
+     */
+    public InteractionPrompt(DtmfRecognitionConfiguration dtmfRecognitionConfiguration,
+                             List<? extends AudioItem> audioItems) {
+        this(null, dtmfRecognitionConfiguration, audioItems);
+    }
+
+    /**
+     * @param dtmfRecognitionConfiguration The DTMF recognition configuration.
+     * @param audioItems The list of {@link AudioItem}. Not null.
+     */
+    public InteractionPrompt(DtmfRecognitionConfiguration dtmfRecognitionConfiguration, AudioItem... audioItems) {
+        this(null, dtmfRecognitionConfiguration, audioItems);
+    }
+
+    /**
+     * @param audioItems The list of {@link AudioItem}. Not null.
+     */
+    public InteractionPrompt(List<? extends AudioItem> audioItems) {
+        this(null, null, audioItems);
+    }
+
+    /**
+     * @param audioItems The list of {@link AudioItem}. Not null.
+     */
+    public InteractionPrompt(AudioItem... audioItems) {
+        this(null, null, audioItems);
+    }
+
+    /**
+     * @param language language code for this prompt. <code>null</code> if
+     *            language should be reset to platform-specific default value
+     *            for the prompts to be added.
+     */
+    public void setLanguage(String language) {
         mLanguage = language;
-        mSpeechRecognitionConfiguration = null;
-        mDtmfRecognitionConfiguration = null;
     }
 
-    public boolean isHotWordBargeIn() {
-        return mHotWordBargeIn;
-    }
-
+    /**
+     * @param hotWordBargeIn <code>true</code> to set barge-in type to
+     *            "hotword". <code>false</code> to set barge-in type to
+     *            "speech".
+     */
     public void setHotWordBargeIn(boolean hotWordBargeIn) {
         mHotWordBargeIn = hotWordBargeIn;
     }
@@ -71,6 +145,10 @@ public final class InteractionPrompt implements JsonSerializable {
 
     public DtmfRecognitionConfiguration getDtmfRecognitionConfiguration() {
         return mDtmfRecognitionConfiguration;
+    }
+
+    public boolean isHotWordBargeIn() {
+        return mHotWordBargeIn;
     }
 
     @Override
