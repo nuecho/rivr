@@ -10,7 +10,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
  * A <code>Pause</code> represents a silence of a specified duration in an
- * <code>AudioItem</code> sequence.
+ * {@link AudioItem} sequence.
  * 
  * @author Nu Echo Inc.
  */

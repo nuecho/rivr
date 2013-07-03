@@ -55,7 +55,7 @@ public final class MessageTurn extends VoiceXmlOutputTurn {
 
     /**
      * @param bargeIn Boolean.TRUE if the message is interruptible,
-     *            Boolean.FALSE if it is not. Null resets the value.
+     *            Boolean.FALSE if it is not. Null reverts to VoiceXML default value.
      */
     public void setBargeIn(Boolean bargeIn) {
         mBargeIn = bargeIn;

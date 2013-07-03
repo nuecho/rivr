@@ -10,7 +10,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
  * This abstract class is the superclass of all classes representing a grammar
- * element in the dialogue.
+ * element in the dialogue. It is not intended to be subclassed.
  * 
  * @author Nu Echo Inc.
  * @see GrammarReference
@@ -25,7 +25,7 @@ public abstract class GrammarItem implements JsonSerializable {
     private String mMediaType;
 
     /**
-     * @param weight The relative weight of this grammar. Null resets the value.
+     * @param weight The relative weight of this grammar. Null reverts to VoiceXML default value.
      * @see http://www.w3.org/TR/voicexml20/#dml3.1.1.3
      */
     public final void setWeight(Double weight) {

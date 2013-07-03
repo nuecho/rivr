@@ -45,7 +45,7 @@ public final class ScriptExecutionTurn extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param script The script to execute. Null resets the value.
+     * @param script The script to execute. Null reverts to VoiceXML default value.
      */
     public void setScript(String script) {
         mScript = script;

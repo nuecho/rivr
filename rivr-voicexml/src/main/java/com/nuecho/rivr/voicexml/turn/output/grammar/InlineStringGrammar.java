@@ -40,7 +40,7 @@ public final class InlineStringGrammar extends GrammarItem {
     }
 
     /**
-     * @param version The version of the grammar. Null resets the value.
+     * @param version The version of the grammar. Null reverts to VoiceXML default value.
      */
     public void setVersion(String version) {
         mVersion = version;
@@ -48,7 +48,7 @@ public final class InlineStringGrammar extends GrammarItem {
 
     /**
      * @param language The language identifier of the grammar. For example,
-     *            "fr-CA" for Canadian French. Null resets the value.
+     *            "fr-CA" for Canadian French. Null reverts to VoiceXML default value.
      */
     public void setLanguage(String language) {
         mLanguage = language;
@@ -64,7 +64,7 @@ public final class InlineStringGrammar extends GrammarItem {
 
     /**
      * @param tagFormat The tag content format for all tags within the grammar.
-     *            Null resets the value.
+     *            Null reverts to VoiceXML default value.
      */
     public void setTagFormat(String tagFormat) {
         mTagFormat = tagFormat;
@@ -72,7 +72,7 @@ public final class InlineStringGrammar extends GrammarItem {
 
     /**
      * @param base The base URI from which relative URIs in the grammar are
-     *            resolved. Null resets the value.
+     *            resolved. Null reverts to VoiceXML default value.
      */
     public void setBase(String base) {
         mBase = base;
