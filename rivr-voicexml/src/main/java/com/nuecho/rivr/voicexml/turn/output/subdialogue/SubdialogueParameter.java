@@ -6,13 +6,13 @@ package com.nuecho.rivr.voicexml.turn.output.subdialogue;
 
 import javax.json.*;
 
+import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
  * @author Nu Echo Inc.
  */
 public final class SubdialogueParameter implements JsonSerializable {
-
     private static final String NAME_PROPERTY = "name";
     private static final String VALUE_PROPERTY = "value";
     private static final String EXPRESSION_PROPERTY = "expression";
@@ -22,6 +22,7 @@ public final class SubdialogueParameter implements JsonSerializable {
     private String mValue;
 
     private SubdialogueParameter(String name) {
+        Assert.notEmpty(name, "name");
         mName = name;
     }
 
@@ -38,16 +39,21 @@ public final class SubdialogueParameter implements JsonSerializable {
     }
 
     public static SubdialogueParameter createWithValue(String name, String value) {
+        Assert.notNull(value, "value");
+
         SubdialogueParameter parameter = new SubdialogueParameter(name);
         parameter.mValue = value;
         return parameter;
     }
 
     public static SubdialogueParameter createWithJson(String name, JsonValue json) {
+        Assert.notNull(json, "json");
         return createWithExpression(name, json.toString());
     }
 
     public static SubdialogueParameter createWithExpression(String name, String expression) {
+        Assert.notNull(expression, "expression");
+
         SubdialogueParameter parameter = new SubdialogueParameter(name);
         parameter.mExpression = expression;
         return parameter;
