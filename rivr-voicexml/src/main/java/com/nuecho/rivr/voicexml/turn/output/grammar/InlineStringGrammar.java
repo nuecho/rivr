@@ -40,7 +40,8 @@ public final class InlineStringGrammar extends GrammarItem {
     }
 
     /**
-     * @param version The version of the grammar. Null reverts to VoiceXML default value.
+     * @param version The version of the grammar. Null reverts to VoiceXML
+     *            default value.
      */
     public void setVersion(String version) {
         mVersion = version;
@@ -48,7 +49,8 @@ public final class InlineStringGrammar extends GrammarItem {
 
     /**
      * @param language The language identifier of the grammar. For example,
-     *            "fr-CA" for Canadian French. Null reverts to VoiceXML default value.
+     *            "fr-CA" for Canadian French. Null reverts to VoiceXML default
+     *            value.
      */
     public void setLanguage(String language) {
         mLanguage = language;
@@ -56,7 +58,7 @@ public final class InlineStringGrammar extends GrammarItem {
 
     /**
      * @param root The name of the rule that will act as the root rule. Null
-     *            resets the value.
+     *            reverts to VoiceXML default value.
      */
     public void setRoot(String root) {
         mRoot = root;

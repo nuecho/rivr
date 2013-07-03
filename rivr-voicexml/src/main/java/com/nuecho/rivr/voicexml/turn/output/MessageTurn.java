@@ -46,8 +46,8 @@ public final class MessageTurn extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param language The language identifier for the message. Null resets the
-     *            value.
+     * @param language The language identifier for the message. Null reverts to
+     *            VoiceXML default value.
      */
     public void setLanguage(String language) {
         mLanguage = language;
@@ -55,7 +55,8 @@ public final class MessageTurn extends VoiceXmlOutputTurn {
 
     /**
      * @param bargeIn Boolean.TRUE if the message is interruptible,
-     *            Boolean.FALSE if it is not. Null reverts to VoiceXML default value.
+     *            Boolean.FALSE if it is not. Null reverts to VoiceXML default
+     *            value.
      */
     public void setBargeIn(Boolean bargeIn) {
         mBargeIn = bargeIn;

@@ -53,7 +53,7 @@ public final class RecordingConfiguration implements JsonSerializable {
 
     /**
      * @param beep If true, a tone is emitted just prior to recording. Null
-     *            resets the value. Null reverts to VoiceXML default value.
+     *            reverts to VoiceXML default value.
      */
     public void setBeep(Boolean beep) {
         mBeep = Boolean.valueOf(beep);

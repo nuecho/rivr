@@ -45,7 +45,8 @@ public final class DtmfRecognitionConfiguration extends RecognitionConfiguration
 
     /**
      * @param interDigitTimeout The inter-digit timeout value to use when
-     *            recognizing DTMF input. Null reverts to VoiceXML default value.
+     *            recognizing DTMF input. Null reverts to VoiceXML default
+     *            value.
      * @see http://www.w3.org/TR/voicexml20/#dml6.3.3
      */
     public void setInterDigitTimeout(TimeValue interDigitTimeout) {
@@ -63,8 +64,8 @@ public final class DtmfRecognitionConfiguration extends RecognitionConfiguration
 
     /**
      * @param termChar The terminating DTMF character for DTMF input
-     *            recognition. Must be empty or a single character. Null resets
-     *            the value.
+     *            recognition. Must be empty or a single character. Null reverts
+     *            to VoiceXML default value.
      * @see http://www.w3.org/TR/voicexml20/#dml6.3.3
      */
     public void setTermChar(String termChar) {

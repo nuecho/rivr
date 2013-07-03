@@ -25,7 +25,8 @@ public abstract class GrammarItem implements JsonSerializable {
     private String mMediaType;
 
     /**
-     * @param weight The relative weight of this grammar. Null reverts to VoiceXML default value.
+     * @param weight The relative weight of this grammar. Null reverts to
+     *            VoiceXML default value.
      * @see http://www.w3.org/TR/voicexml20/#dml3.1.1.3
      */
     public final void setWeight(Double weight) {
@@ -33,8 +34,8 @@ public abstract class GrammarItem implements JsonSerializable {
     }
 
     /**
-     * @param mediaType The preferred media type for this grammar. Null resets
-     *            the value.
+     * @param mediaType The preferred media type for this grammar. Null reverts
+     *            to VoiceXML default value.
      * @see http://www.w3.org/TR/voicexml20/#dml3.1.1.4
      */
     public final void setMediaType(String mediaType) {

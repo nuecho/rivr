@@ -74,8 +74,8 @@ public final class SpeechRecognitionConfiguration extends RecognitionConfigurati
     }
 
     /**
-     * @param maxSpeechTimeout The maximum duration of user speech. Null resets
-     *            the value.
+     * @param maxSpeechTimeout The maximum duration of user speech. Null reverts
+     *            to VoiceXML default value.
      * @see http://www.w3.org/TR/voicexml20/#dml6.3.2
      */
     public void setMaxSpeechTimeout(TimeValue maxSpeechTimeout) {
@@ -98,7 +98,8 @@ public final class SpeechRecognitionConfiguration extends RecognitionConfigurati
     /**
      * @param confidenceLevel The speech recognition confidence level. Results
      *            with confidence below this value will be rejected (nomatch).
-     *            Value must be between 0.0 and 1.0. Null reverts to VoiceXML default value.
+     *            Value must be between 0.0 and 1.0. Null reverts to VoiceXML
+     *            default value.
      * @see http://www.w3.org/TR/voicexml20/#dml6.3.2
      */
     public void setConfidenceLevel(Double confidenceLevel) {
@@ -112,8 +113,8 @@ public final class SpeechRecognitionConfiguration extends RecognitionConfigurati
     /**
      * @param speedVersusAccuracy A hint specifying the desired balance between
      *            speed versus accuracy. A value of 0.0 means fastest
-     *            recognition. A value of 1.0 means best accuracy. Null resets
-     *            the value.
+     *            recognition. A value of 1.0 means best accuracy. Null reverts
+     *            to VoiceXML default value.
      * @see http://www.w3.org/TR/voicexml20/#dml6.3.2
      */
     public void setSpeedVersusAccuracy(Double speedVersusAccuracy) {
@@ -127,7 +128,8 @@ public final class SpeechRecognitionConfiguration extends RecognitionConfigurati
     /**
      * @param sensitivity Set the sensitivity level. A value of 1.0 means that
      *            it is highly sensitive to quiet input. A value of 0.0 means it
-     *            is least sensitive to noise. Null reverts to VoiceXML default value.
+     *            is least sensitive to noise. Null reverts to VoiceXML default
+     *            value.
      */
     public void setSensitivity(Double sensitivity) {
         if (sensitivity != null) {

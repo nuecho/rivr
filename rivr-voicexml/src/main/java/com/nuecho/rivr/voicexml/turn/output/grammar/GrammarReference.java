@@ -34,7 +34,7 @@ public final class GrammarReference extends GrammarItem {
 
     /**
      * @param resourceFetchConfiguration The resource fetch configuration. Null
-     *            resets the value.
+     *            reverts to VoiceXML default value.
      */
     public void setResourceFetchConfiguration(ResourceFetchConfiguration resourceFetchConfiguration) {
         mResourceFetchConfiguration = resourceFetchConfiguration;

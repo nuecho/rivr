@@ -46,7 +46,7 @@ public final class Recording extends AudioItem {
 
     /**
      * @param resourceFetchConfiguration The resource fetch configuration. Null
-     *            resets the value.
+     *            reverts to VoiceXML default value.
      */
     public void setResourceFetchConfiguration(ResourceFetchConfiguration resourceFetchConfiguration) {
         mResourceFetchConfiguration = resourceFetchConfiguration;
