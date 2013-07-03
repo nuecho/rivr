@@ -15,10 +15,17 @@ import com.nuecho.rivr.voicexml.turn.output.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * This abstract class is the superclass of all classes representing a transfer
+ * to another entity.
+ * 
  * @author Nu Echo Inc.
+ * @see BlindTransferTurn
+ * @see BridgeTransferTurn
+ * @see ConsultationTransferTurn
+ * @see http://www.w3.org/TR/voicexml20/#dml2.3.6
+ * @see http://www.w3.org/TR/voicexml21/#sec-transfer
  */
 public abstract class TransferTurn extends VoiceXmlOutputTurn {
-
     private static final String TRANSFER_TURN_TYPE = "transfer";
     private static final String TRANSFER_TYPE_PROPERTY = "transferType";
     private static final String APPLICATION_TO_APPLICATION_INFORMATION_PROPERTY = "applicationToApplicationInformation";
@@ -27,12 +34,22 @@ public abstract class TransferTurn extends VoiceXmlOutputTurn {
     private final String mDestination;
     private String mApplicationToApplicationInformation;
 
+    /**
+     * @param name The name of this turn. Not empty.
+     * @param destination The URI of the destination (telephone, IP telephony
+     *            address). Not empty.
+     */
     public TransferTurn(String name, String destination) {
         super(name);
         Assert.notEmpty(destination, "destination");
         mDestination = destination;
     }
 
+    /**
+     * @param applicationToApplicationInformation A string containing data sent
+     *            to an application on the far-end, available in the session
+     *            variable session.connection.aai.
+     */
     public void setApplicationToApplicationInformation(String applicationToApplicationInformation) {
         mApplicationToApplicationInformation = applicationToApplicationInformation;
     }
@@ -102,5 +119,4 @@ public abstract class TransferTurn extends VoiceXmlOutputTurn {
      * @throws VoiceXmlDocumentRenderingException
      */
     protected void customizeTransferElement(Element transferElement) throws VoiceXmlDocumentRenderingException {}
-
 }

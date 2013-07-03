@@ -11,15 +11,22 @@ import org.w3c.dom.*;
 
 import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.rendering.voicexml.*;
+import com.nuecho.rivr.voicexml.turn.input.*;
 import com.nuecho.rivr.voicexml.turn.output.audio.*;
 import com.nuecho.rivr.voicexml.turn.output.interaction.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * A <code>SupervisedTransferTurn</code> is a {@link TransferTurn} where the
+ * outcome is monitored and where a transfer failure can be handled gracefully.
+ * <p>
+ * Recognition can optionally be activated to cancel a supervised transfer.
+ * 
  * @author Nu Echo Inc.
+ * @see BridgeTransferTurn
+ * @see ConsultationTransferTurn
  */
 public abstract class SupervisedTransferTurn extends TransferTurn {
-
     private static final String SPEECH_RECOGNITION_CONFIGURATION_PROPERTY = "speechRecognitionConfiguration";
     private static final String DTMF_RECOGNITION_CONFIGURATION_PROPERTY = "dtmfRecognitionConfiguration";
     private static final String TRANSFER_AUDIO_PROPERTY = "transferAudio";
@@ -31,12 +38,46 @@ public abstract class SupervisedTransferTurn extends TransferTurn {
     private Recording mTransferAudio;
     private TimeValue mConnectTimeout;
 
+    /**
+     * @param name The name of this turn. Not empty.
+     * @param destination The URI of the destination (telephone, IP telephony
+     *            address). Not empty.
+     */
     public SupervisedTransferTurn(String name, String destination) {
         super(name, destination);
     }
 
+    /**
+     * @param dtmfRecognitionConfiguration The active DTMF recognition
+     *            configuration during the transfer.
+     */
+    public void setDtmfRecognitionConfiguration(DtmfRecognitionConfiguration dtmfRecognitionConfiguration) {
+        mDtmfRecognitionConfiguration = dtmfRecognitionConfiguration;
+    }
+
+    /**
+     * @param speechRecognitionConfiguration The active speech recognition
+     *            configuration during the transfer.
+     */
+    public void setSpeechRecognitionConfiguration(SpeechRecognitionConfiguration speechRecognitionConfiguration) {
+        mSpeechRecognitionConfiguration = speechRecognitionConfiguration;
+    }
+
+    /**
+     * @param transferAudio The URI of audio source to play while the transfer
+     *            attempt is in progress.
+     */
     public void setTransferAudio(Recording transferAudio) {
         mTransferAudio = transferAudio;
+    }
+
+    /**
+     * @param connectTimeout The time to wait while trying to connect the call
+     *            before returning with {@link TransferStatus#NO_ANSWER}. Null
+     *            reverts to VoiceXML default value.
+     */
+    public void setConnectTimeout(TimeValue connectTimeout) {
+        mConnectTimeout = connectTimeout;
     }
 
     public Recording getTransferAudio() {
@@ -47,24 +88,12 @@ public abstract class SupervisedTransferTurn extends TransferTurn {
         return mConnectTimeout;
     }
 
-    public void setConnectTimeout(TimeValue connectTimeout) {
-        mConnectTimeout = connectTimeout;
-    }
-
     public DtmfRecognitionConfiguration getDtmfRecognitionConfiguration() {
         return mDtmfRecognitionConfiguration;
     }
 
-    public void setDtmfRecognitionConfiguration(DtmfRecognitionConfiguration dtmfRecognitionConfiguration) {
-        mDtmfRecognitionConfiguration = dtmfRecognitionConfiguration;
-    }
-
     public SpeechRecognitionConfiguration getSpeechRecognitionConfiguration() {
         return mSpeechRecognitionConfiguration;
-    }
-
-    public void setSpeechRecognitionConfiguration(SpeechRecognitionConfiguration speechRecognitionConfiguration) {
-        mSpeechRecognitionConfiguration = speechRecognitionConfiguration;
     }
 
     @Override
