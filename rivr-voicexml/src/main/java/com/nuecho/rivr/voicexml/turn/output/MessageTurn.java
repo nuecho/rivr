@@ -5,6 +5,7 @@
 package com.nuecho.rivr.voicexml.turn.output;
 
 import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;
+import static java.util.Arrays.*;
 
 import java.util.*;
 
@@ -39,10 +40,19 @@ public final class MessageTurn extends VoiceXmlOutputTurn {
      * @param audioItems The sequence of <code>AudioItem</code> to play. Not
      *            null.
      */
-    public MessageTurn(String name, AudioItem... audioItems) {
+    public MessageTurn(String name, List<AudioItem> audioItems) {
         super(name);
         Assert.notNull(audioItems, "audioItems");
-        mAudioItems = Arrays.asList(audioItems);
+        mAudioItems = new ArrayList<AudioItem>(audioItems);
+    }
+
+    /**
+     * @param name The name of this turn. Not empty.
+     * @param audioItems The sequence of <code>AudioItem</code> to play. Not
+     *            null.
+     */
+    public MessageTurn(String name, AudioItem... audioItems) {
+        this(name, asList(audioItems));
     }
 
     /**
