@@ -9,7 +9,6 @@ import java.util.*;
  * @author NuEcho Inc.
  */
 public final class SubdialogueSubmitMethod {
-
     private static Map<String, SubdialogueSubmitMethod> sInstances = new HashMap<String, SubdialogueSubmitMethod>();
 
     public static final SubdialogueSubmitMethod GET = new SubdialogueSubmitMethod("get");
@@ -46,5 +45,4 @@ public final class SubdialogueSubmitMethod {
     public Object readResolve() {
         return getMethodByName(mKey);
     }
-
 }

@@ -21,6 +21,42 @@ public final class SubdialogueParameter implements JsonSerializable {
     private String mExpression;
     private String mValue;
 
+    /**
+     * @param name The name of the parameter. Not empty.
+     * @param value The string value of the parameter. Not null.
+     * @return The newly created subdialogue parameter
+     */
+    public static SubdialogueParameter createWithValue(String name, String value) {
+        Assert.notNull(value, "value");
+
+        SubdialogueParameter parameter = new SubdialogueParameter(name);
+        parameter.mValue = value;
+        return parameter;
+    }
+
+    /**
+     * @param name The name of the parameter. Not empty.
+     * @param json The JSON value of the parameter. Not null.
+     * @return The newly created subdialogue parameter
+     */
+    public static SubdialogueParameter createWithJson(String name, JsonValue json) {
+        Assert.notNull(json, "json");
+        return createWithExpression(name, json.toString());
+    }
+
+    /**
+     * @param name The name of the parameter. Not empty.
+     * @param expression The ECMAScript expression of the parameter. Not null.
+     * @return The newly created subdialogue parameter
+     */
+    public static SubdialogueParameter createWithExpression(String name, String expression) {
+        Assert.notNull(expression, "expression");
+
+        SubdialogueParameter parameter = new SubdialogueParameter(name);
+        parameter.mExpression = expression;
+        return parameter;
+    }
+
     private SubdialogueParameter(String name) {
         Assert.notEmpty(name, "name");
         mName = name;
@@ -36,27 +72,6 @@ public final class SubdialogueParameter implements JsonSerializable {
 
     public String getValue() {
         return mValue;
-    }
-
-    public static SubdialogueParameter createWithValue(String name, String value) {
-        Assert.notNull(value, "value");
-
-        SubdialogueParameter parameter = new SubdialogueParameter(name);
-        parameter.mValue = value;
-        return parameter;
-    }
-
-    public static SubdialogueParameter createWithJson(String name, JsonValue json) {
-        Assert.notNull(json, "json");
-        return createWithExpression(name, json.toString());
-    }
-
-    public static SubdialogueParameter createWithExpression(String name, String expression) {
-        Assert.notNull(expression, "expression");
-
-        SubdialogueParameter parameter = new SubdialogueParameter(name);
-        parameter.mExpression = expression;
-        return parameter;
     }
 
     @Override
