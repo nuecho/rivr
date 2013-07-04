@@ -96,6 +96,23 @@ public final class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
         mMethod = method;
     }
 
+    /**
+     * @param subdialogueFetchConfiguration The
+     *            {@link SubdialogueFetchConfiguration}. Null reverts to
+     *            VoiceXML default value.
+     */
+    public void setSubdialogueFetchConfiguration(SubdialogueFetchConfiguration subdialogueFetchConfiguration) {
+        mSubdialogueFetchConfiguration = subdialogueFetchConfiguration;
+    }
+
+    /**
+     * @param postObjectScript The ECMAScript script to execute after
+     *            subdialogue invocation.
+     */
+    public void setPostDialogueScript(String postDialogueScript) {
+        mPostDialogueScript = postDialogueScript;
+    }
+
     public String getUri() {
         return mUri;
     }
@@ -116,16 +133,8 @@ public final class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
         return mPostDialogueScript;
     }
 
-    public void setPostDialogueScript(String postDialogueScript) {
-        mPostDialogueScript = postDialogueScript;
-    }
-
     public SubdialogueFetchConfiguration getSubdialogueFetchConfiguration() {
         return mSubdialogueFetchConfiguration;
-    }
-
-    public void setSubdialogueFetchConfiguration(SubdialogueFetchConfiguration subdialogueFetchConfiguration) {
-        mSubdialogueFetchConfiguration = subdialogueFetchConfiguration;
     }
 
     @Override
