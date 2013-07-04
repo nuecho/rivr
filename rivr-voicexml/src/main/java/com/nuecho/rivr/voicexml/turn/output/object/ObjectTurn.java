@@ -6,6 +6,7 @@ package com.nuecho.rivr.voicexml.turn.output.object;
 
 import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;
 import static java.util.Arrays.*;
+import static java.util.Collections.*;
 
 import java.util.*;
 
@@ -20,10 +21,13 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * An <code>ObjectTurn</code> is a {@link VoiceXmlOutputTurn} used to exploit
+ * platform specific functionality.
+ * 
  * @author Nu Echo Inc.
+ * @see http://www.w3.org/TR/voicexml20/#dml2.3.5
  */
-public class ObjectTurn extends VoiceXmlOutputTurn {
-
+public final class ObjectTurn extends VoiceXmlOutputTurn {
     private static final String OBJECT_RESULT_VARIABLE_NAME = "object";
 
     private static final String ARCHIVES_PROPERTY = "archives";
@@ -34,6 +38,7 @@ public class ObjectTurn extends VoiceXmlOutputTurn {
     private static final String CODE_TYPE_PROPERTY = "codeType";
     private static final String CODE_BASE_PROPERTY = "codeBase";
     private static final String CLASS_ID_PROPERTY = "classId";
+    private static final String FETCH_CONFIGURATION_PROPERTY = "fetchConfiguration";
 
     private String mClassId;
     private String mCodeBase;
@@ -42,12 +47,92 @@ public class ObjectTurn extends VoiceXmlOutputTurn {
     private String mType;
     private List<String> mArchives;
     private ResourceFetchConfiguration mFetchConfiguration;
-
     private List<ObjectParameter> mParameters = Collections.emptyList();
     private String mPostObjectScript;
 
+    /**
+     * @param name The name of this turn. Not empty.
+     */
     public ObjectTurn(String name) {
         super(name);
+    }
+
+    /**
+     * @param classId The URI specifying the location of the object's
+     *            implementation.
+     */
+    public void setClassId(String classId) {
+        mClassId = classId;
+    }
+
+    /**
+     * @param codeBase The base path used to resolve relative URIs specified by
+     *            classid, data, and archive.
+     */
+    public void setCodeBase(String codeBase) {
+        mCodeBase = codeBase;
+    }
+
+    /**
+     * @param codeType The content type of data expected when downloading the
+     *            object specified by classid.
+     */
+    public void setCodeType(String codeType) {
+        mCodeType = codeType;
+    }
+
+    /**
+     * @param data The URI specifying the location of the object's data.
+     */
+    public void setData(String data) {
+        mData = data;
+    }
+
+    /**
+     * @param type The content type of the data specified by the data attribute
+     */
+    public void setType(String type) {
+        mType = type;
+    }
+
+    /**
+     * @param archives A list of URIs for archives containing resources relevant
+     *            to the object.
+     */
+    public void setArchives(List<String> archives) {
+        mArchives = archives;
+    }
+
+    /**
+     * @param fetchConfiguration The object {@link ResourceFetchConfiguration}.
+     */
+    public void setFetchConfiguration(ResourceFetchConfiguration fetchConfiguration) {
+        mFetchConfiguration = fetchConfiguration;
+    }
+
+    /**
+     * @param parameters A list of parameters passed when invoking object. Not
+     *            null.
+     */
+    public void setParameters(List<ObjectParameter> parameters) {
+        Assert.notNull(parameters, "parameters");
+        mParameters = new ArrayList<ObjectParameter>(parameters);
+    }
+
+    /**
+     * @param parameters A list of parameters passed when invoking object. Not
+     *            null.
+     */
+    public void setParameters(ObjectParameter... parameters) {
+        setParameters(asList(parameters));
+    }
+
+    /**
+     * @param postObjectScript The ECMAScript script to execute after object
+     *            invocation.
+     */
+    public void setPostObjectScript(String postObjectScript) {
+        mPostObjectScript = postObjectScript;
     }
 
     @Override
@@ -59,77 +144,36 @@ public class ObjectTurn extends VoiceXmlOutputTurn {
         return mClassId;
     }
 
-    public void setClassId(String classId) {
-        mClassId = classId;
-    }
-
     public String getCodeBase() {
         return mCodeBase;
-    }
-
-    public void setCodeBase(String codeBase) {
-        mCodeBase = codeBase;
     }
 
     public String getCodeType() {
         return mCodeType;
     }
 
-    public void setCodeType(String codeType) {
-        mCodeType = codeType;
-    }
-
     public String getData() {
         return mData;
-    }
-
-    public void setData(String data) {
-        mData = data;
     }
 
     public String getType() {
         return mType;
     }
 
-    public void setType(String type) {
-        mType = type;
-    }
-
     public List<String> getArchives() {
         return mArchives;
-    }
-
-    public void setArchives(List<String> archives) {
-        mArchives = archives;
     }
 
     public ResourceFetchConfiguration getFetchConfiguration() {
         return mFetchConfiguration;
     }
 
-    public void setFetchConfiguration(ResourceFetchConfiguration fetchConfiguration) {
-        mFetchConfiguration = fetchConfiguration;
-    }
-
     public List<ObjectParameter> getParameters() {
-        return mParameters;
-    }
-
-    public void setParameters(List<ObjectParameter> parameters) {
-        Assert.notNull(parameters, "parameters");
-        mParameters = new ArrayList<ObjectParameter>(parameters);
-    }
-
-    public void setParameters(ObjectParameter... parameters) {
-        setParameters(asList(parameters));
+        return unmodifiableList(mParameters);
     }
 
     public String getPostObjectScript() {
         return mPostObjectScript;
-    }
-
-    public void setPostObjectScript(String postObjectScript) {
-        mPostObjectScript = postObjectScript;
     }
 
     @Override
@@ -144,7 +188,7 @@ public class ObjectTurn extends VoiceXmlOutputTurn {
         JsonUtils.add(builder, POST_OBJECT_SCRIPT_PROPERTY, mPostObjectScript);
 
         JsonUtils.add(builder, PARAMETERS_PROPERTY, JsonUtils.toJson(mParameters));
-        JsonUtils.add(builder, "fetchConfiguration", mFetchConfiguration);
+        JsonUtils.add(builder, FETCH_CONFIGURATION_PROPERTY, mFetchConfiguration);
 
         if (mArchives != null) {
             JsonArrayBuilder archiveBuilder = JsonUtils.createArrayBuilder();
@@ -210,5 +254,4 @@ public class ObjectTurn extends VoiceXmlOutputTurn {
 
         return document;
     }
-
 }
