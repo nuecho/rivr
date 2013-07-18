@@ -38,18 +38,18 @@ public final class MessageTurn extends VoiceXmlOutputTurn {
     /**
      * @param name The name of this turn. Not empty.
      * @param audioItems The sequence of <code>AudioItem</code> to play. Not
-     *            null.
+     *            empty.
      */
     public MessageTurn(String name, List<AudioItem> audioItems) {
         super(name);
-        Assert.notNull(audioItems, "audioItems");
+        Assert.notEmpty(audioItems, "audioItems");
         mAudioItems = new ArrayList<AudioItem>(audioItems);
     }
 
     /**
      * @param name The name of this turn. Not empty.
      * @param audioItems The sequence of <code>AudioItem</code> to play. Not
-     *            null.
+     *            empty.
      */
     public MessageTurn(String name, AudioItem... audioItems) {
         this(name, asList(audioItems));
