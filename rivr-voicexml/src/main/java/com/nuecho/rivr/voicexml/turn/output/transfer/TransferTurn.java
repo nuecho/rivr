@@ -97,6 +97,10 @@ public abstract class TransferTurn extends VoiceXmlOutputTurn {
         transferElement.setAttribute(NAME_ATTRIBUTE, TRANSFER_FORM_ITEM_NAME);
         transferElement.setAttribute(DEST_ATTRIBUTE, mDestination);
 
+        if (mApplicationToApplicationInformation != null) {
+            transferElement.setAttribute(AAI_ATTRIBUTE, mApplicationToApplicationInformation);
+        }
+
         customizeTransferElement(transferElement);
 
         Element filledElement = DomUtils.appendNewElement(transferElement, FILLED_ELEMENT);

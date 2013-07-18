@@ -86,6 +86,7 @@ public final class VoiceXmlDomUtil {
     public static final String CONNECT_TIMEOUT_ATTRIBUTE = "connecttimeout";
     public static final String TRANSFER_AUDIO_ATTRIBUTE = "transferaudio";
     public static final String DEST_ATTRIBUTE = "dest";
+    public static final String AAI_ATTRIBUTE = "aai";
     public static final String FETCH_AUDIO_ATTRIBUTE = "fetchaudio";
     public static final String FETCH_TIMEOUT_ATTRIBUTE = "fetchtimeout";
     public static final String FETCH_HINT_ATTRIBUTE = "fetchhint";
