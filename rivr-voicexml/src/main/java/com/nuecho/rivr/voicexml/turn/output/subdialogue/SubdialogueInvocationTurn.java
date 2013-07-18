@@ -181,7 +181,8 @@ public final class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
         for (SubdialogueParameter subdialogueParameter : mSubdialogueParameters) {
             Element paramElement = DomUtils.appendNewElement(subdialogueElement, PARAM_ELEMENT);
             paramElement.setAttribute(NAME_ATTRIBUTE, subdialogueParameter.getName());
-            paramElement.setAttribute(EXPR_ATTRIBUTE, subdialogueParameter.getExpression());
+            setAttribute(paramElement, VALUE_ATTRIBUTE, subdialogueParameter.getValue());
+            setAttribute(paramElement, EXPR_ATTRIBUTE, subdialogueParameter.getExpression());
         }
 
         SubdialogueSubmitMethod submitMethod = mMethod;
