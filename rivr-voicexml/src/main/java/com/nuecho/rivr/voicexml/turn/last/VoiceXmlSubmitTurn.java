@@ -67,8 +67,7 @@ public class VoiceXmlSubmitTurn extends VoiceXmlLastTurn {
     }
 
     @Override
-    protected JsonValue getTurnAsJson() {
-        JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
+    protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, VARIABLES_PROPERTY, mVariables);
         JsonUtils.add(builder, URI_PROPERTY, mUri);
         JsonUtils.add(builder, FETCH_CONFIGURATION_PROPERTY, mFetchConfiguration);
@@ -76,7 +75,6 @@ public class VoiceXmlSubmitTurn extends VoiceXmlLastTurn {
         if (mMethod != null) {
             JsonUtils.add(builder, METHOD_PROPERTY, mMethod.getValue());
         }
-        return builder.build();
     }
 
     @Override

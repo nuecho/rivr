@@ -38,7 +38,7 @@ public abstract class VoiceXmlOutputTurn extends VoiceXmlDocumentTurn implements
     protected abstract String getOuputTurnType();
 
     @Override
-    protected void putAdditionalTopLevelData(JsonObjectBuilder builder) {
+    protected void addTopLevelProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, OUTPUT_TURN_TYPE_PROPERTY, getOuputTurnType());
     }
 }

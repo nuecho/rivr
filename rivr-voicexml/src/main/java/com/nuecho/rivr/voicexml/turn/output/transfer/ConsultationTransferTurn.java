@@ -12,8 +12,8 @@ package com.nuecho.rivr.voicexml.turn.output.transfer;
  * @author Nu Echo Inc.
  * @see http://www.w3.org/TR/voicexml21/#sec-xfer-consultation
  */
-public final class ConsultationTransferTurn extends SupervisedTransferTurn {
-    public static final String TYPE = "consultation";
+public class ConsultationTransferTurn extends SupervisedTransferTurn {
+    private static final String CONSULTATION_TRANSFER_TYPE = "consultation";
 
     /**
      * @param name The name of this turn. Not empty.
@@ -25,7 +25,7 @@ public final class ConsultationTransferTurn extends SupervisedTransferTurn {
     }
 
     @Override
-    public String getTransferType() {
-        return TYPE;
+    protected final String getTransferType() {
+        return CONSULTATION_TRANSFER_TYPE;
     }
 }

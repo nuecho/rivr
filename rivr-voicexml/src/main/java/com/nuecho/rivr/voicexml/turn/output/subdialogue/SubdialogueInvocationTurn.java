@@ -33,10 +33,11 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see SubdialogueSubmitMethod
  * @see http://www.w3.org/TR/voicexml20/#dml2.3.4
  */
-public final class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
-    private static final String SUBDIALOGUE_RESULT_VARIABLE_NAME = "subdialogue";
+public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
+    public static final String SUBDIALOGUE_RESULT_VARIABLE_NAME = "subdialogue";
 
-    private static final String SUBDIALOGUE_TYPE = "subdialogue";
+    private static final String SUBDIALOGUE_INVOCATION_TURN_TYPE = "subdialogue";
+
     private static final String POST_DIALOGUE_SCRIPT_PROPERTY = "postDialogueScript";
     private static final String SUBDIALOGUE_PARAMETERS_PROPERTY = "subdialogueParameters";
     private static final String SUBMIT_URI_PROPERTY = "uri";
@@ -65,7 +66,7 @@ public final class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
      * @param subdialogueParameters A list of {@link SubdialogueParameter} that
      *            will be passed to the subdialogue. Not null.
      */
-    public void setSubdialogueParameters(List<SubdialogueParameter> subdialogueParameters) {
+    public final void setSubdialogueParameters(List<SubdialogueParameter> subdialogueParameters) {
         Assert.notNull(subdialogueParameters, "subdialogueParameters");
         mSubdialogueParameters = new ArrayList<SubdialogueParameter>(subdialogueParameters);
     }
@@ -74,7 +75,7 @@ public final class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
      * @param subdialogueParameters A list of {@link SubdialogueParameter} that
      *            will be passed to the subdialogue. Not null.
      */
-    public void setSubdialogueParameters(SubdialogueParameter... subdialogueParameters) {
+    public final void setSubdialogueParameters(SubdialogueParameter... subdialogueParameters) {
         setSubdialogueParameters(asList(subdialogueParameters));
     }
 
@@ -82,7 +83,7 @@ public final class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
      * @param subdialogueParameters A list of variable to submit when invoking
      *            the URI. Not null.
      */
-    public void setSubmitParameters(VariableDeclarationList submitParameters) {
+    public final void setSubmitParameters(VariableDeclarationList submitParameters) {
         Assert.notNull(submitParameters, "submitParameters");
         mSubmitParameters = submitParameters;
     }
@@ -92,7 +93,7 @@ public final class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
      *            POST). Null reverts to VoiceXML default value.
      * @see SubdialogueSubmitMethod
      */
-    public void setMethod(SubdialogueSubmitMethod method) {
+    public final void setMethod(SubdialogueSubmitMethod method) {
         mMethod = method;
     }
 
@@ -101,7 +102,7 @@ public final class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
      *            {@link SubdialogueFetchConfiguration}. Null reverts to
      *            VoiceXML default value.
      */
-    public void setSubdialogueFetchConfiguration(SubdialogueFetchConfiguration subdialogueFetchConfiguration) {
+    public final void setSubdialogueFetchConfiguration(SubdialogueFetchConfiguration subdialogueFetchConfiguration) {
         mSubdialogueFetchConfiguration = subdialogueFetchConfiguration;
     }
 
@@ -109,53 +110,51 @@ public final class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
      * @param postObjectScript The ECMAScript script to execute after
      *            subdialogue invocation.
      */
-    public void setPostDialogueScript(String postDialogueScript) {
+    public final void setPostDialogueScript(String postDialogueScript) {
         mPostDialogueScript = postDialogueScript;
     }
 
-    public String getUri() {
+    public final String getUri() {
         return mUri;
     }
 
-    public List<? extends SubdialogueParameter> getVoiceXmlParameters() {
+    public final List<? extends SubdialogueParameter> getVoiceXmlParameters() {
         return unmodifiableList(mSubdialogueParameters);
     }
 
-    public VariableDeclarationList getSubmitParameters() {
+    public final VariableDeclarationList getSubmitParameters() {
         return mSubmitParameters;
     }
 
-    public SubdialogueSubmitMethod getMethod() {
+    public final SubdialogueSubmitMethod getMethod() {
         return mMethod;
     }
 
-    public String getPostDialogueScript() {
+    public final String getPostDialogueScript() {
         return mPostDialogueScript;
     }
 
-    public SubdialogueFetchConfiguration getSubdialogueFetchConfiguration() {
+    public final SubdialogueFetchConfiguration getSubdialogueFetchConfiguration() {
         return mSubdialogueFetchConfiguration;
     }
 
     @Override
-    protected String getOuputTurnType() {
-        return SUBDIALOGUE_TYPE;
+    protected final String getOuputTurnType() {
+        return SUBDIALOGUE_INVOCATION_TURN_TYPE;
     }
 
     @Override
-    protected JsonValue getTurnAsJson() {
-        JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
+    protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, SUBMIT_URI_PROPERTY, mUri);
         JsonUtils.add(builder, SUBMIT_METHOD_PROPERTY, mMethod.getKey());
         JsonUtils.add(builder, SUBMIT_PARAMETERS_PROPERTY, mSubmitParameters);
         JsonUtils.add(builder, SUBDIALOGUE_PARAMETERS_PROPERTY, JsonUtils.toJson(mSubdialogueParameters));
         JsonUtils.add(builder, SUBDIALOGUE_FETCH_CONFIGURATION_PROPERTY, mSubdialogueFetchConfiguration);
         JsonUtils.add(builder, POST_DIALOGUE_SCRIPT_PROPERTY, getPostDialogueScript());
-        return builder.build();
     }
 
     @Override
-    public Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
+    protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
         Document document = createDocument(dialogueContext, null);
         Element formElement = createForm(document);

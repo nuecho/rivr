@@ -20,8 +20,9 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @author Nu Echo Inc.
  * @see http://www.w3.org/TR/voicexml20/#dml2.3.7.2
  */
-public final class BridgeTransferTurn extends SupervisedTransferTurn {
-    public static final String TYPE = "bridge";
+public class BridgeTransferTurn extends SupervisedTransferTurn {
+    private static final String BRIDGE_TRANSFER_TYPE = "bridge";
+
     private static final String MAXIMUM_TIME_PROPERTY_NAME = "maximumTime";
 
     private TimeValue mMaximumTime;
@@ -39,17 +40,17 @@ public final class BridgeTransferTurn extends SupervisedTransferTurn {
      * @param maximumTime The time that the call is allowed to last. Null
      *            reverts to VoiceXML default value.
      */
-    public void setMaximumTime(TimeValue maximumTime) {
+    public final void setMaximumTime(TimeValue maximumTime) {
         mMaximumTime = maximumTime;
     }
 
-    public TimeValue getMaximumTime() {
+    public final TimeValue getMaximumTime() {
         return mMaximumTime;
     }
 
     @Override
-    public String getTransferType() {
-        return TYPE;
+    protected final String getTransferType() {
+        return BRIDGE_TRANSFER_TYPE;
     }
 
     @Override
@@ -58,8 +59,8 @@ public final class BridgeTransferTurn extends SupervisedTransferTurn {
     }
 
     @Override
-    protected void addJsonProperties(JsonObjectBuilder builder) {
-        super.addJsonProperties(builder);
+    protected void addTurnProperties(JsonObjectBuilder builder) {
+        super.addTurnProperties(builder);
         JsonUtils.addTimeProperty(builder, MAXIMUM_TIME_PROPERTY_NAME, mMaximumTime);
     }
 }

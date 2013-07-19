@@ -31,10 +31,12 @@ public abstract class VoiceXmlDocumentTurn implements JsonSerializable, NamedTur
         mName = name;
     }
 
-    protected abstract JsonValue getTurnAsJson();
-
     protected abstract Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException;
+
+    protected void addTopLevelProperties(JsonObjectBuilder builder) {}
+
+    protected abstract void addTurnProperties(JsonObjectBuilder builder);
 
     public final void addAdapter(VoiceXmlDocumentAdapter adapter) {
         mAdapters.add(adapter);
@@ -62,15 +64,12 @@ public abstract class VoiceXmlDocumentTurn implements JsonSerializable, NamedTur
     @Override
     public final JsonValue asJson() {
         JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
+        JsonObjectBuilder dataBuilder = JsonUtils.createObjectBuilder();
+        addTurnProperties(dataBuilder);
+
         JsonUtils.add(builder, NAME_PROPERTY, getName());
-        JsonUtils.add(builder, DATA_PROPERTY, getTurnAsJson());
-        putAdditionalTopLevelData(builder);
+        JsonUtils.add(builder, DATA_PROPERTY, dataBuilder.build());
+        addTopLevelProperties(builder);
         return builder.build();
     }
-
-    /**
-     * @param builder
-     */
-    protected void putAdditionalTopLevelData(JsonObjectBuilder builder) {}
-
 }

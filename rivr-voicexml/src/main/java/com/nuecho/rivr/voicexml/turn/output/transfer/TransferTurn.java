@@ -27,6 +27,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  */
 public abstract class TransferTurn extends VoiceXmlOutputTurn {
     private static final String TRANSFER_TURN_TYPE = "transfer";
+
     private static final String TRANSFER_TYPE_PROPERTY = "transferType";
     private static final String APPLICATION_TO_APPLICATION_INFORMATION_PROPERTY = "applicationToApplicationInformation";
     private static final String DESTINATION_PROPERTY = "destination";
@@ -50,43 +51,40 @@ public abstract class TransferTurn extends VoiceXmlOutputTurn {
      *            to an application on the far-end, available in the session
      *            variable session.connection.aai.
      */
-    public void setApplicationToApplicationInformation(String applicationToApplicationInformation) {
+    public final void setApplicationToApplicationInformation(String applicationToApplicationInformation) {
         mApplicationToApplicationInformation = applicationToApplicationInformation;
     }
 
-    public String getDestination() {
+    public final String getDestination() {
         return mDestination;
     }
 
-    public String getApplicationToApplicationInformation() {
+    public final String getApplicationToApplicationInformation() {
         return mApplicationToApplicationInformation;
     }
+
+    protected abstract String getTransferType();
+
+    /**
+     * @param transferElement The transfer element to customize.
+     * @throws VoiceXmlDocumentRenderingException
+     */
+    protected void customizeTransferElement(Element transferElement) throws VoiceXmlDocumentRenderingException {}
 
     @Override
     protected final String getOuputTurnType() {
         return TRANSFER_TURN_TYPE;
     }
 
-    public abstract String getTransferType();
-
     @Override
-    protected JsonValue getTurnAsJson() {
-        JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
+    protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, DESTINATION_PROPERTY, mDestination);
         JsonUtils.add(builder, APPLICATION_TO_APPLICATION_INFORMATION_PROPERTY, mApplicationToApplicationInformation);
         JsonUtils.add(builder, TRANSFER_TYPE_PROPERTY, getTransferType());
-        addJsonProperties(builder);
-        return builder.build();
     }
 
-    /**
-     * @param builder The builder which is used to add subclass-related
-     *            properties
-     */
-    protected void addJsonProperties(JsonObjectBuilder builder) {}
-
     @Override
-    public Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
+    protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
         Document document = createDocument(dialogueContext, null);
         Element formElement = createForm(document);
@@ -117,10 +115,4 @@ public abstract class TransferTurn extends VoiceXmlOutputTurn {
 
         return document;
     }
-
-    /**
-     * @param transferElement
-     * @throws VoiceXmlDocumentRenderingException
-     */
-    protected void customizeTransferElement(Element transferElement) throws VoiceXmlDocumentRenderingException {}
 }
