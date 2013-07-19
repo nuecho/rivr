@@ -29,8 +29,8 @@ import com.nuecho.rivr.voicexml.turn.output.audio.*;
  * </ul>
  * <p>
  * At any time, it is possible to change the current language used for prompts
- * (relevant for speech synthesis) and the barge-in type, i.e. <i>speech</i>
- * (default) or <i>hotword</i>.
+ * (relevant for speech synthesis) and the barge-in type, i.e. <i>speech</i> or
+ * <i>hotword</i>.
  * <p>
  * This can be translated to:
  * 
@@ -46,12 +46,11 @@ import com.nuecho.rivr.voicexml.turn.output.audio.*;
  * @author Nu Echo Inc.
  */
 public final class InteractionBuilder {
-
     private final String mName;
     private final List<InteractionPrompt> mPrompts = new ArrayList<InteractionPrompt>();
 
     private String mLanguage;
-    private boolean mHotWordBargeIn;
+    private BargeInType mBargeInType;
 
     private boolean mBuilt;
 
@@ -70,19 +69,19 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Sets the barge-in type to "hotword" for the prompts that will be added
-     * using one of the <code>addPrompt(...)</code> methods.
+     * Sets the barge-in type to either "speech" or "hotword" for the prompts
+     * that will be added using one of the <code>addPrompt(...)</code> methods.
      * <p>
      * Note: When an <code>InteractionBuilder</code> is created, the default
-     * value for this flag is <code>false</code>, meaning the barge-in type will
-     * be "speech".
+     * value for this flag is <code>null</code>, meaning the barge-in type will
+     * be platform-dependant.
      * 
-     * @param hotWordBargeIn <code>true</code> to set barge-in type to
-     *            "hotword". <code>false</code> to set barge-in type to
-     *            "speech".
+     * @param bargeInTyoe {@link BargeInType#SPEECH} or
+     *            {@link BargeInType#HOTWORD}. <code>null</code> reverts to
+     *            platform default value.
      */
-    public InteractionBuilder setHotWordBargeIn(boolean hotWordBargeIn) {
-        mHotWordBargeIn = hotWordBargeIn;
+    public InteractionBuilder setBargeInType(BargeInType bargeInType) {
+        mBargeInType = bargeInType;
         return this;
     }
 
@@ -183,7 +182,7 @@ public final class InteractionBuilder {
                                                          dtmfRecognitionConfiguration,
                                                          audioItems);
         prompt.setLanguage(mLanguage);
-        prompt.setHotWordBargeIn(mHotWordBargeIn);
+        prompt.setHotWordBargeIn(mBargeInType);
         mPrompts.add(prompt);
         return this;
     }
@@ -205,7 +204,7 @@ public final class InteractionBuilder {
     public InteractionBuilder addPrompt(List<? extends AudioItem> audioItems) {
         InteractionPrompt prompt = new InteractionPrompt(audioItems);
         prompt.setLanguage(mLanguage);
-        prompt.setHotWordBargeIn(mHotWordBargeIn);
+        prompt.setHotWordBargeIn(mBargeInType);
         mPrompts.add(prompt);
         return this;
     }

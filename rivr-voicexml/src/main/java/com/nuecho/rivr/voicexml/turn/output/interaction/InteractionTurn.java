@@ -399,10 +399,9 @@ public final class InteractionTurn extends VoiceXmlOutputTurn {
                                    DtmfRecognitionConfiguration dtmfRecognitionConfiguration,
                                    SpeechRecognitionConfiguration speechRecognitionConfiguration,
                                    Element formItemElement) {
-        if (prompt.isHotWordBargeIn()) {
-            addProperty(formItemElement, BARGE_IN_TYPE_PROPERTY, HOTWORD_BARGE_IN);
-        } else {
-            addProperty(formItemElement, BARGE_IN_TYPE_PROPERTY, SPEECH_BARGE_IN);
+        BargeInType bargeInType = prompt.getBargeInType();
+        if (bargeInType != null) {
+            addProperty(formItemElement, BARGE_IN_TYPE_PROPERTY, bargeInType.getKey());
         }
 
         if (dtmfRecognitionConfiguration != null && speechRecognitionConfiguration != null) {
