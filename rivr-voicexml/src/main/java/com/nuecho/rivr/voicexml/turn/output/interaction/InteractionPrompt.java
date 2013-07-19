@@ -156,12 +156,8 @@ public final class InteractionPrompt implements JsonSerializable {
     public JsonValue asJson() {
         JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
         JsonUtils.add(builder, LANGUAGE_PROPERTY, mLanguage);
+        JsonUtils.add(builder, BARGE_IN_TYPE_PROPERTY, mBargeInType == null ? null : mBargeInType.getKey());
         JsonUtils.add(builder, AUDIO_ITEMS_PROPERTY, JsonUtils.toJson(mAudioItems));
-
-        if (mBargeInType != null) {
-            JsonUtils.add(builder, BARGE_IN_TYPE_PROPERTY, mBargeInType.getKey());
-        }
-
         JsonUtils.add(builder, DTMF_RECOGNITION_CONFIGURATION_PROPERTY, mDtmfRecognitionConfiguration);
         JsonUtils.add(builder, SPEECH_RECOGNITION_CONFIGURATION_PROPERTY, mSpeechRecognitionConfiguration);
         return builder.build();
