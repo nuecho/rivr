@@ -92,8 +92,7 @@ public class MessageTurn extends VoiceXmlOutputTurn {
     }
 
     @Override
-    protected final JsonValue getTurnAsJson() {
-        JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
+    protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, AUDIO_ITEMS_PROPERTY, JsonUtils.toJson(mAudioItems));
         JsonUtils.add(builder, LANGUAGE_PROPERTY, mLanguage);
         if (mBargeIn == null) {
@@ -101,8 +100,6 @@ public class MessageTurn extends VoiceXmlOutputTurn {
         } else {
             builder.add(BARGE_IN_PROPERTY, mBargeIn.booleanValue());
         }
-
-        return builder.build();
     }
 
     @Override

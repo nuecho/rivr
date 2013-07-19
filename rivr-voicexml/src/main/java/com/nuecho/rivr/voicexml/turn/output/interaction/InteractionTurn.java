@@ -101,12 +101,10 @@ public class InteractionTurn extends VoiceXmlOutputTurn {
     }
 
     @Override
-    protected final JsonValue getTurnAsJson() {
-        JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
+    protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, PROMPTS_PROPERTY, JsonUtils.toJson(mPrompts));
         JsonUtils.add(builder, RECOGNITION_PROPERTY, mRecognition);
         JsonUtils.add(builder, RECORDING_PROPERTY, mRecording);
-        return builder.build();
     }
 
     @Override

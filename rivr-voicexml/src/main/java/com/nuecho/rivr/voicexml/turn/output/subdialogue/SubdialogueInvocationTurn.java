@@ -144,15 +144,13 @@ public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
     }
 
     @Override
-    protected final JsonValue getTurnAsJson() {
-        JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
+    protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, SUBMIT_URI_PROPERTY, mUri);
         JsonUtils.add(builder, SUBMIT_METHOD_PROPERTY, mMethod.getKey());
         JsonUtils.add(builder, SUBMIT_PARAMETERS_PROPERTY, mSubmitParameters);
         JsonUtils.add(builder, SUBDIALOGUE_PARAMETERS_PROPERTY, JsonUtils.toJson(mSubdialogueParameters));
         JsonUtils.add(builder, SUBDIALOGUE_FETCH_CONFIGURATION_PROPERTY, mSubdialogueFetchConfiguration);
         JsonUtils.add(builder, POST_DIALOGUE_SCRIPT_PROPERTY, getPostDialogueScript());
-        return builder.build();
     }
 
     @Override

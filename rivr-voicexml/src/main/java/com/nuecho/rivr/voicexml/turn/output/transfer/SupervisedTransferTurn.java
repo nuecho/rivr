@@ -108,7 +108,8 @@ public abstract class SupervisedTransferTurn extends TransferTurn {
     }
 
     @Override
-    protected void addJsonProperties(JsonObjectBuilder builder) {
+    protected void addTurnProperties(JsonObjectBuilder builder) {
+        super.addTurnProperties(builder);
         JsonUtils.addTimeProperty(builder, CONNECT_TIMEOUT_PROPERTY, mConnectTimeout);
         JsonUtils.add(builder, TRANSFER_AUDIO_PROPERTY, mTransferAudio);
         JsonUtils.add(builder, DTMF_RECOGNITION_CONFIGURATION_PROPERTY, mDtmfRecognitionConfiguration);

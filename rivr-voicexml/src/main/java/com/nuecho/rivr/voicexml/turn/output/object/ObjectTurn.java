@@ -179,9 +179,7 @@ public class ObjectTurn extends VoiceXmlOutputTurn {
     }
 
     @Override
-    protected final JsonValue getTurnAsJson() {
-        JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
-
+    protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, CLASS_ID_PROPERTY, mClassId);
         JsonUtils.add(builder, CODE_BASE_PROPERTY, mCodeBase);
         JsonUtils.add(builder, CODE_TYPE_PROPERTY, mCodeType);
@@ -199,8 +197,6 @@ public class ObjectTurn extends VoiceXmlOutputTurn {
             }
             JsonUtils.add(builder, ARCHIVES_PROPERTY, archiveBuilder);
         }
-
-        return builder.build();
     }
 
     @Override

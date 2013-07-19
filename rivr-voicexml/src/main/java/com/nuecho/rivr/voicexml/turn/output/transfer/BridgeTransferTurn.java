@@ -59,8 +59,8 @@ public class BridgeTransferTurn extends SupervisedTransferTurn {
     }
 
     @Override
-    protected void addJsonProperties(JsonObjectBuilder builder) {
-        super.addJsonProperties(builder);
+    protected void addTurnProperties(JsonObjectBuilder builder) {
+        super.addTurnProperties(builder);
         JsonUtils.addTimeProperty(builder, MAXIMUM_TIME_PROPERTY_NAME, mMaximumTime);
     }
 }

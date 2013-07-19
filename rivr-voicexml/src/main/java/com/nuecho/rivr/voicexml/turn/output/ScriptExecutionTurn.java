@@ -67,11 +67,9 @@ public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
     }
 
     @Override
-    protected final JsonValue getTurnAsJson() {
-        JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
+    protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, SCRIPT_PROPERTY, mScript);
         JsonUtils.add(builder, VARIABLES_PROPERTY, mVariables);
-        return builder.build();
     }
 
     @Override
