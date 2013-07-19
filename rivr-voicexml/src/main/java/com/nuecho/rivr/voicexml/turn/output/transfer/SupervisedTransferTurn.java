@@ -51,7 +51,7 @@ public abstract class SupervisedTransferTurn extends TransferTurn {
      * @param dtmfRecognitionConfiguration The active DTMF recognition
      *            configuration during the transfer.
      */
-    public void setDtmfRecognitionConfiguration(DtmfRecognitionConfiguration dtmfRecognitionConfiguration) {
+    public final void setDtmfRecognitionConfiguration(DtmfRecognitionConfiguration dtmfRecognitionConfiguration) {
         mDtmfRecognitionConfiguration = dtmfRecognitionConfiguration;
     }
 
@@ -59,7 +59,7 @@ public abstract class SupervisedTransferTurn extends TransferTurn {
      * @param speechRecognitionConfiguration The active speech recognition
      *            configuration during the transfer.
      */
-    public void setSpeechRecognitionConfiguration(SpeechRecognitionConfiguration speechRecognitionConfiguration) {
+    public final void setSpeechRecognitionConfiguration(SpeechRecognitionConfiguration speechRecognitionConfiguration) {
         mSpeechRecognitionConfiguration = speechRecognitionConfiguration;
     }
 
@@ -67,7 +67,7 @@ public abstract class SupervisedTransferTurn extends TransferTurn {
      * @param transferAudio The URI of audio source to play while the transfer
      *            attempt is in progress.
      */
-    public void setTransferAudio(Recording transferAudio) {
+    public final void setTransferAudio(Recording transferAudio) {
         mTransferAudio = transferAudio;
     }
 
@@ -76,23 +76,23 @@ public abstract class SupervisedTransferTurn extends TransferTurn {
      *            before returning with {@link TransferStatus#NO_ANSWER}. Null
      *            reverts to VoiceXML default value.
      */
-    public void setConnectTimeout(TimeValue connectTimeout) {
+    public final void setConnectTimeout(TimeValue connectTimeout) {
         mConnectTimeout = connectTimeout;
     }
 
-    public Recording getTransferAudio() {
+    public final Recording getTransferAudio() {
         return mTransferAudio;
     }
 
-    public TimeValue getConnectTimeout() {
+    public final TimeValue getConnectTimeout() {
         return mConnectTimeout;
     }
 
-    public DtmfRecognitionConfiguration getDtmfRecognitionConfiguration() {
+    public final DtmfRecognitionConfiguration getDtmfRecognitionConfiguration() {
         return mDtmfRecognitionConfiguration;
     }
 
-    public SpeechRecognitionConfiguration getSpeechRecognitionConfiguration() {
+    public final SpeechRecognitionConfiguration getSpeechRecognitionConfiguration() {
         return mSpeechRecognitionConfiguration;
     }
 

@@ -13,8 +13,8 @@ package com.nuecho.rivr.voicexml.turn.output.transfer;
  * @author Nu Echo Inc.
  * @see http://www.w3.org/TR/voicexml20/#dml2.3.7.1
  */
-public final class BlindTransferTurn extends TransferTurn {
-    public static final String TYPE = "blind";
+public class BlindTransferTurn extends TransferTurn {
+    private static final String BLIND_TRANSFER_TYPE = "blind";
 
     /**
      * @param name The name of this turn. Not empty.
@@ -26,7 +26,7 @@ public final class BlindTransferTurn extends TransferTurn {
     }
 
     @Override
-    public String getTransferType() {
-        return TYPE;
+    protected final String getTransferType() {
+        return BLIND_TRANSFER_TYPE;
     }
 }

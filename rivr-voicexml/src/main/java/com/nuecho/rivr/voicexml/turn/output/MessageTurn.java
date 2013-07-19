@@ -26,7 +26,9 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see AudioItem
  * @see http://www.w3.org/TR/voicexml20/#dml4.1.8
  */
-public final class MessageTurn extends VoiceXmlOutputTurn {
+public class MessageTurn extends VoiceXmlOutputTurn {
+    private static final String MESSAGE_TURN_TYPE = "message";
+
     private static final String BARGE_IN_PROPERTY = "bargeIn";
     private static final String LANGUAGE_PROPERTY = "language";
     private static final String AUDIO_ITEMS_PROPERTY = "audioItems";
@@ -59,7 +61,7 @@ public final class MessageTurn extends VoiceXmlOutputTurn {
      * @param language The language identifier for the message. Null reverts to
      *            VoiceXML default value.
      */
-    public void setLanguage(String language) {
+    public final void setLanguage(String language) {
         mLanguage = language;
     }
 
@@ -68,29 +70,29 @@ public final class MessageTurn extends VoiceXmlOutputTurn {
      *            Boolean.FALSE if it is not. Null reverts to VoiceXML default
      *            value.
      */
-    public void setBargeIn(Boolean bargeIn) {
+    public final void setBargeIn(Boolean bargeIn) {
         mBargeIn = bargeIn;
     }
 
-    public List<AudioItem> getAudioItems() {
+    public final List<AudioItem> getAudioItems() {
         return Collections.unmodifiableList(mAudioItems);
     }
 
-    public String getLanguage() {
+    public final String getLanguage() {
         return mLanguage;
     }
 
-    public Boolean getBargeIn() {
+    public final Boolean getBargeIn() {
         return mBargeIn;
     }
 
     @Override
-    protected String getOuputTurnType() {
-        return "message";
+    protected final String getOuputTurnType() {
+        return MESSAGE_TURN_TYPE;
     }
 
     @Override
-    protected JsonValue getTurnAsJson() {
+    protected final JsonValue getTurnAsJson() {
         JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
         JsonUtils.add(builder, AUDIO_ITEMS_PROPERTY, JsonUtils.toJson(mAudioItems));
         JsonUtils.add(builder, LANGUAGE_PROPERTY, mLanguage);

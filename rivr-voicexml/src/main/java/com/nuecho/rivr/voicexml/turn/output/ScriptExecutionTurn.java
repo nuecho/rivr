@@ -21,8 +21,9 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * 
  * @author Nu Echo Inc.
  */
-public final class ScriptExecutionTurn extends VoiceXmlOutputTurn {
-    private static final String SCRIPT_EXECUTION_TYPE = "scriptExecution";
+public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
+    private static final String SCRIPT_EXECUTION_TURN_TYPE = "scriptExecution";
+
     private static final String SCRIPT_PROPERTY = "script";
     private static final String VARIABLES_PROPERTY = "variables";
 
@@ -39,33 +40,34 @@ public final class ScriptExecutionTurn extends VoiceXmlOutputTurn {
     /**
      * @param variables The list of variables to declare. Not null.
      */
-    public void setVariables(VariableDeclarationList variables) {
+    public final void setVariables(VariableDeclarationList variables) {
         Assert.notNull(variables, "variables");
         mVariables = variables;
     }
 
     /**
-     * @param script The script to execute. Null reverts to VoiceXML default value.
+     * @param script The script to execute. Null reverts to VoiceXML default
+     *            value.
      */
-    public void setScript(String script) {
+    public final void setScript(String script) {
         mScript = script;
     }
 
-    public VariableDeclarationList getVariables() {
+    public final VariableDeclarationList getVariables() {
         return mVariables;
     }
 
-    public String getScript() {
+    public final String getScript() {
         return mScript;
     }
 
     @Override
-    protected String getOuputTurnType() {
-        return SCRIPT_EXECUTION_TYPE;
+    protected final String getOuputTurnType() {
+        return SCRIPT_EXECUTION_TURN_TYPE;
     }
 
     @Override
-    protected JsonValue getTurnAsJson() {
+    protected final JsonValue getTurnAsJson() {
         JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
         JsonUtils.add(builder, SCRIPT_PROPERTY, mScript);
         JsonUtils.add(builder, VARIABLES_PROPERTY, mVariables);
@@ -73,7 +75,7 @@ public final class ScriptExecutionTurn extends VoiceXmlOutputTurn {
     }
 
     @Override
-    public Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
+    protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
         Document document = createDocument(dialogueContext, null);
         Element formElement = createForm(document);
