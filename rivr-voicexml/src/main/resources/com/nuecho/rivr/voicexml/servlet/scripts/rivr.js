@@ -69,6 +69,10 @@
     addValueResult : function(value) {
       rivr.inputTurn.value = value;
     }
+    
+    hasRecording : function(inputTurn) {
+      return inputTurn.recordingMetaData !== undefined && inputTurn.recordingMetaData.data !== undefined;
+    }
   };
 
   function serialize(value, cycleDetectionValues) {

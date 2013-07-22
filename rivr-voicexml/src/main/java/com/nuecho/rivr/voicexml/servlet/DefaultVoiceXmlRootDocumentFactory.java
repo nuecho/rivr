@@ -6,6 +6,8 @@ package com.nuecho.rivr.voicexml.servlet;
 
 import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;
 
+import java.io.*;
+
 import javax.servlet.http.*;
 
 import org.w3c.dom.*;
@@ -27,19 +29,35 @@ public class DefaultVoiceXmlRootDocumentFactory implements VoiceXmlRootDocumentF
     public Document getDocument(HttpServletRequest request,
                                 Session<VoiceXmlInputTurn, VoiceXmlOutputTurn, VoiceXmlFirstTurn, VoiceXmlLastTurn, VoiceXmlDialogueContext> session) {
 
-        String contextPath = request.getContextPath();
-        String servletPath = request.getServletPath();
-
         VoiceXmlDialogueContext dialogueContext = session.getDialogueContext();
+        String contextPath = dialogueContext.getContextPath();
+        String servletPath = dialogueContext.getServletPath();
+        String sessionId = session.getId();
+        return createElement(contextPath, servletPath, sessionId, dialogueContext);
+    }
+
+    protected Document createElement(String contextPath,
+                                     String servletPath,
+                                     String sessionId,
+                                     VoiceXmlDialogueContext dialogueContext) {
         Element vxmlElement = createVoiceXmlDocumentRoot(dialogueContext);
-        createVarElement(vxmlElement, RIVR_VARIABLE, "{}");
+        createVarElement(vxmlElement, RIVR_VARIABLE, "{\"" + RIVR_DIALOGUE_ID_PROPERTY + "\": \"" + sessionId + "\"}");
+
         addScript(vxmlElement, VoiceXmlDialogueServlet.RIVR_SCRIPT, contextPath + servletPath);
-        addNonFatalEventHandlers(vxmlElement, dialogueContext);
+        addEventHandlers(vxmlElement);
         return vxmlElement.getOwnerDocument();
     }
 
     private static void addScript(Element parent, String scriptPath, String contextPath) {
         Element scriptElement = DomUtils.appendNewElement(parent, SCRIPT_ELEMENT);
         scriptElement.setAttribute(SRC_ATTRIBUTE, contextPath + scriptPath);
+    }
+
+    public static void main(String[] args) throws IOException {
+        VoiceXmlDialogueContext context = new VoiceXmlDialogueContext(null, null, "", "", "");
+        System.out.println(DomUtils.writeToString(new DefaultVoiceXmlRootDocumentFactory().createElement("",
+                                                                                                         "",
+                                                                                                         "sessionId",
+                                                                                                         context)));
     }
 }

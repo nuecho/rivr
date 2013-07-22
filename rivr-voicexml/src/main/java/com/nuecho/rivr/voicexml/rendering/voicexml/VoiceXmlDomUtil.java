@@ -153,6 +153,7 @@ public final class VoiceXmlDomUtil {
 
     public static final String ERROR_EVENT_NAME = "error";
 
+    public static final String FATAL_ERROR_HANDLER_FORM_ID = "fatalErrorForm";
     public static final String SUBMIT_FORM_ID = "submitForm";
 
     public static final String EVENT_MESSAGE_VARIABLE = "_message";
@@ -162,10 +163,17 @@ public final class VoiceXmlDomUtil {
 
     public static final String RIVR_VARIABLE = "rivr";
     public static final String RIVR_SCOPE_OBJECT = "application." + RIVR_VARIABLE;
+
     public static final String RIVR_INPUT_TURN_PROPERTY = "inputTurn";
     public static final String RIVR_INPUT_TURN_SCOPE_OBJECT = RIVR_SCOPE_OBJECT + "." + RIVR_INPUT_TURN_PROPERTY;
 
-    public static final String IN_ERROR_HANDLING_PROPERTY = "inErrorHandling";
+    public static final String RIVR_DIALOGUE_ID_PROPERTY = "dialogueId";
+    public static final String RIVR_DIALOGUE_ID_SCOPE_OBJECT = RIVR_SCOPE_OBJECT + "." + RIVR_DIALOGUE_ID_PROPERTY;
+
+    private static final String RIVR_TURN_INDEX_PROPERTY = "turnIndex";
+    private static final String RIVR_TURN_NAME_PROPERTY = "turnName";
+
+    public static final String LOCAL_ERROR_HANDLING_PROPERTY = "localErrorHandling";
     public static final String RESULT_RECORDING_METADATA_SCOPE_OBJECT = RIVR_INPUT_TURN_SCOPE_OBJECT
                                                                         + ".recordingMetaData";
     public static final String RESULT_RECORDING_METADATA_DATA_SCOPE_OBJECT = RESULT_RECORDING_METADATA_SCOPE_OBJECT
@@ -179,6 +187,7 @@ public final class VoiceXmlDomUtil {
     private static final Pattern ECMASCRIPT_LINEFEED_PATTERN = Pattern.compile("\\u000a");
     private static final Pattern ECMASCRIPT_LINE_SEPARATOR_PATTERN = Pattern.compile("\\u2028");
     private static final Pattern ECMASCRIPT_PARAGRAPH_SEPARATOR_PATTERN = Pattern.compile("\\u2029");
+    private static final Pattern URI_PATH_REPLACEMENT_CHAR = Pattern.compile("[^a-zA-Z0-9./_-]");
 
     public static Element createVoiceXmlDocumentRoot(VoiceXmlDialogueContext voiceXmlDialogueContext) {
         Document document = DomUtils.createDocument(VXML_ELEMENT);
@@ -195,8 +204,7 @@ public final class VoiceXmlDomUtil {
         return vxmlElement;
     }
 
-    public static Document createDocument(VoiceXmlDialogueContext voiceXmlDialogueContext, NamedTurn turn)
-            throws VoiceXmlDocumentRenderingException {
+    public static Document createDocument(VoiceXmlDialogueContext voiceXmlDialogueContext, NamedTurn turn) {
         Element vxmlElement = createVoiceXmlDocumentRoot(voiceXmlDialogueContext);
 
         String rootDocumentPath = voiceXmlDialogueContext.getContextPath()
@@ -206,25 +214,30 @@ public final class VoiceXmlDomUtil {
 
         vxmlElement.setAttribute(APPLICATION_ATTRIBUTE, rootDocumentPath);
 
-        StringBuilder comment = new StringBuilder();
-        comment.append("dialogueId: [");
-        comment.append(voiceXmlDialogueContext.getDialogueId());
-        comment.append("] turnIndex: [");
-        comment.append(voiceXmlDialogueContext.getTurnIndex());
-        if (turn != null) {
-            comment.append("] turnName: [");
-            comment.append(turn.getName());
-        }
-        comment.append("]");
-        DomUtils.appendNewComment(vxmlElement, comment.toString());
-
         StringBuilder script = new StringBuilder();
         script.append(RIVR_SCOPE_OBJECT);
         script.append(".");
-        script.append(IN_ERROR_HANDLING_PROPERTY);
+        script.append(LOCAL_ERROR_HANDLING_PROPERTY);
         script.append(" = ");
         script.append(FALSE);
         script.append("; ");
+
+        if (turn != null) {
+            script.append(RIVR_SCOPE_OBJECT);
+            script.append(".");
+            script.append(RIVR_TURN_NAME_PROPERTY);
+            script.append(" = ");
+            script.append(turn.getName());
+            script.append("; ");
+        }
+
+        script.append(RIVR_SCOPE_OBJECT);
+        script.append(".");
+        script.append(RIVR_TURN_INDEX_PROPERTY);
+        script.append(" = ");
+        script.append(voiceXmlDialogueContext.getTurnIndex());
+        script.append("; ");
+
         script.append(RIVR_INPUT_TURN_SCOPE_OBJECT);
         script.append(" = {};");
         createScript(vxmlElement, script.toString());
@@ -232,8 +245,6 @@ public final class VoiceXmlDomUtil {
         processFetchRendering(voiceXmlDialogueContext, vxmlElement);
 
         processProperties(voiceXmlDialogueContext, vxmlElement);
-
-        addFatalErrorHandler(vxmlElement, voiceXmlDialogueContext);
 
         return vxmlElement.getOwnerDocument();
     }
@@ -535,77 +546,46 @@ public final class VoiceXmlDomUtil {
         }
     }
 
-    public static void addNonFatalEventHandlers(Element vxmlElement, VoiceXmlDialogueContext voiceXmlDialogueContext) {
+    public static void addEventHandlers(Element vxmlElement) {
+        Element catchElement = DomUtils.appendNewElement(vxmlElement, CATCH_ELEMENT);
 
-        Element genericCatchElement = DomUtils.appendNewElement(vxmlElement, CATCH_ELEMENT);
-        createScript(genericCatchElement, RIVR_SCOPE_OBJECT
-                                          + ".addEventResult("
-                                          + EVENT_NAME_VARIABLE
-                                          + ", "
-                                          + EVENT_MESSAGE_VARIABLE
-                                          + ");");
-        createGotoSubmit(genericCatchElement);
+        Element ifErrorElement = DomUtils.appendNewElement(catchElement, IF_ELEMENT);
+        ifErrorElement.setAttribute(COND_ATTRIBUTE, "_event.substring(5) == \"error\"");
 
-        Element nonFatalErrorCatchElement = DomUtils.appendNewElement(vxmlElement, CATCH_ELEMENT);
-        nonFatalErrorCatchElement.setAttribute(EVENT_ATTRIBUTE, ERROR_EVENT_NAME);
-        nonFatalErrorCatchElement.setAttribute(COND_ATTRIBUTE, "!"
-                                                               + RIVR_SCOPE_OBJECT
-                                                               + "."
-                                                               + IN_ERROR_HANDLING_PROPERTY);
+        Element ifErrorHandlingElement = DomUtils.appendNewElement(ifErrorElement, IF_ELEMENT);
+        ifErrorHandlingElement.setAttribute(COND_ATTRIBUTE, RIVR_SCOPE_OBJECT + "." + LOCAL_ERROR_HANDLING_PROPERTY);
+        createGotoFatalHandler(ifErrorHandlingElement);
 
-        DomUtils.appendNewComment(nonFatalErrorCatchElement, "Handling non-fatal error: send back error to server.");
-        createLogElementForError(nonFatalErrorCatchElement, "non-fatal", voiceXmlDialogueContext);
+        DomUtils.appendNewElement(ifErrorHandlingElement, ELSE_ELEMENT);
 
-        StringBuilder script = new StringBuilder();
-        script.append(RIVR_SCOPE_OBJECT);
-        script.append(".addEventResult(");
-        script.append(EVENT_NAME_VARIABLE);
-        script.append(", ");
-        script.append(EVENT_MESSAGE_VARIABLE);
-        script.append(");\n");
+        StringBuilder setErrorHandlingScript = new StringBuilder();
+        setErrorHandlingScript.append(RIVR_SCOPE_OBJECT);
+        setErrorHandlingScript.append(".");
+        setErrorHandlingScript.append(LOCAL_ERROR_HANDLING_PROPERTY);
+        setErrorHandlingScript.append("=");
+        setErrorHandlingScript.append(TRUE);
+        createScript(ifErrorHandlingElement, setErrorHandlingScript.toString());
 
-        script.append(RIVR_SCOPE_OBJECT);
-        script.append(".");
-        script.append(IN_ERROR_HANDLING_PROPERTY);
-        script.append("=");
-        script.append(TRUE);
-        script.append("\n");
-        createScript(nonFatalErrorCatchElement, script.toString());
-        createGotoSubmit(nonFatalErrorCatchElement);
-    }
+        StringBuilder addEventScript = new StringBuilder();
+        addEventScript.append(RIVR_SCOPE_OBJECT);
+        addEventScript.append(".addEventResult(");
+        addEventScript.append(EVENT_NAME_VARIABLE);
+        addEventScript.append(", ");
+        addEventScript.append(EVENT_MESSAGE_VARIABLE);
+        addEventScript.append(")");
+        createScript(catchElement, addEventScript.toString());
 
-    public static void addFatalErrorHandler(Element vxmlElement, VoiceXmlDialogueContext voiceXmlDialogueContext)
-            throws VoiceXmlDocumentRenderingException {
-        Element fatalErrorCatchElement;
-        fatalErrorCatchElement = DomUtils.appendNewElement(vxmlElement, CATCH_ELEMENT);
-        fatalErrorCatchElement.setAttribute(EVENT_ATTRIBUTE, ERROR_EVENT_NAME);
-        fatalErrorCatchElement.setAttribute(COND_ATTRIBUTE, RIVR_SCOPE_OBJECT + "." + IN_ERROR_HANDLING_PROPERTY);
-        DomUtils.appendNewComment(fatalErrorCatchElement, "Handling fatal error: aborting.");
-        createLogElementForError(fatalErrorCatchElement, "fatal", voiceXmlDialogueContext);
-
-        //TODO: allow customization of VoiceXML for handling of error events
-        //VoiceXmlResultHandler voiceXmlResultHandler = voiceXmlDialogueContext.getErrorVoiceXmlResultHandler();
-        //voiceXmlResultHandler.addVoiceXml(fatalErrorCatchElement, JsonValue.NULL);
-    }
-
-    private static void createLogElementForError(Element parentElement,
-                                                 String label,
-                                                 VoiceXmlDialogueContext dialogueContext) {
-        Element logElement = DomUtils.appendNewElement(parentElement, LOG_ELEMENT);
-        DomUtils.appendNewText(logElement, "[" + label + "] Error occurred.  Name=");
-        Element eventValueElement = DomUtils.appendNewElement(logElement, VALUE_ELEMENT);
-        eventValueElement.setAttribute(EXPR_ATTRIBUTE, EVENT_NAME_VARIABLE);
-
-        DomUtils.appendNewText(logElement, " Message=");
-        Element messageValueElement = DomUtils.appendNewElement(logElement, VALUE_ELEMENT);
-        messageValueElement.setAttribute(EXPR_ATTRIBUTE, EVENT_MESSAGE_VARIABLE);
-
-        DomUtils.appendNewText(logElement, " Dialogue ID=" + dialogueContext.getDialogueId());
+        createGotoSubmit(catchElement);
     }
 
     public static void createGotoSubmit(Element parent) {
         Element gotoElement = DomUtils.appendNewElement(parent, GOTO_ELEMENT);
         gotoElement.setAttribute(NEXT_ATTRIBUTE, "#" + SUBMIT_FORM_ID);
+    }
+
+    public static void createGotoFatalHandler(Element parent) {
+        Element gotoElement = DomUtils.appendNewElement(parent, GOTO_ELEMENT);
+        gotoElement.setAttribute(NEXT_ATTRIBUTE, "#" + FATAL_ERROR_HANDLER_FORM_ID);
     }
 
     public static void createScript(Element parent, String script) {
@@ -619,30 +599,15 @@ public final class VoiceXmlDomUtil {
         formElement.setAttribute(ID_ATTRIBUTE, SUBMIT_FORM_ID);
 
         Element blockElement = addBlockElement(formElement);
-
-        Element logElement = DomUtils.appendNewElement(blockElement, LOG_ELEMENT);
-
-        StringBuilder logMessage = new StringBuilder();
-        logMessage.append("dialogueId: [");
-        logMessage.append(dialogueContext.getDialogueId());
-        logMessage.append("] turnIndex: [");
-        logMessage.append(dialogueContext.getTurnIndex());
-        logMessage.append("] turnName: [");
-        logMessage.append(turn.getName());
-        logMessage.append("]");
-        DomUtils.appendNewText(logElement, logMessage.toString());
+        createVarElement(blockElement, INPUT_TURN_VARIABLE, RIVR_SCOPE_OBJECT
+                                                            + ".toJson("
+                                                            + RIVR_INPUT_TURN_SCOPE_OBJECT
+                                                            + ")");
 
         Element ifElement = DomUtils.appendNewElement(blockElement, IF_ELEMENT);
-        ifElement.setAttribute(COND_ATTRIBUTE, RESULT_RECORDING_METADATA_SCOPE_OBJECT
-                                               + " !== undefined && "
-                                               + RESULT_RECORDING_METADATA_DATA_SCOPE_OBJECT
-                                               + " !== undefined");
+        ifElement.setAttribute(COND_ATTRIBUTE, "hasRecording(" + RIVR_INPUT_TURN_SCOPE_OBJECT + ")");
         createVarElement(ifElement, RECORDING_VARIABLE, RESULT_RECORDING_METADATA_DATA_SCOPE_OBJECT);
         createAssignation(ifElement, RESULT_RECORDING_METADATA_DATA_SCOPE_OBJECT, "undefined");
-        createVarElement(ifElement, INPUT_TURN_VARIABLE, RIVR_SCOPE_OBJECT
-                                                         + ".toJson("
-                                                         + RIVR_INPUT_TURN_SCOPE_OBJECT
-                                                         + ")");
 
         Element submitElement = createSubmitElement(ifElement,
                                                     dialogueContext,
@@ -653,11 +618,16 @@ public final class VoiceXmlDomUtil {
         submitElement.setAttribute(ENCTYPE_ATTRIBUTE, MULTIPART_FORM_DATA);
         DomUtils.appendNewElement(ifElement, ELSE_ELEMENT);
 
-        createVarElement(ifElement, INPUT_TURN_VARIABLE, RIVR_SCOPE_OBJECT
-                                                         + ".toJson("
-                                                         + RIVR_INPUT_TURN_SCOPE_OBJECT
-                                                         + ")");
         submitElement = createSubmitElement(ifElement, dialogueContext, SubmitMethod.POST, turn, INPUT_TURN_VARIABLE);
+    }
+
+    public static void addFatalErrorHandlerForm(VoiceXmlDialogueContext dialogueContext,
+                                                Document document,
+                                                VoiceXmlDocumentTurn turn) {
+        Element vxmlElement = document.getDocumentElement();
+        Element fatalErrorForm = DomUtils.appendNewElement(vxmlElement, FORM_ELEMENT);
+        fatalErrorForm.setAttribute(ID_ATTRIBUTE, FATAL_ERROR_HANDLER_FORM_ID);
+        dialogueContext.getFatalErrorFormFactory().addFatalErrorForm(fatalErrorForm, turn);
     }
 
     public static Element addBlockElement(Element formElement) {
