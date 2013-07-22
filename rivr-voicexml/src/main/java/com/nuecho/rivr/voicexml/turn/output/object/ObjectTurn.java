@@ -204,9 +204,10 @@ public class ObjectTurn extends VoiceXmlOutputTurn {
         }
 
         createScript(filledElement, RIVR_SCOPE_OBJECT + ".addValueResult(" + OBJECT_RESULT_VARIABLE_NAME + ");");
-        createGotoSubmit(filledElement);
 
+        createGotoSubmit(filledElement);
         addSubmitForm(dialogueContext, document, this);
+        addFatalErrorHandlerForm(dialogueContext, document, this);
 
         return document;
     }

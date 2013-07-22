@@ -84,8 +84,9 @@ public class MessageTurn extends VoiceXmlOutputTurn {
 
         createPrompt(mLanguage, blockElement, dialogueContext, mBargeIn, mAudioItems);
 
-        addSubmitForm(dialogueContext, document, this);
         createGotoSubmit(blockElement);
+        addSubmitForm(dialogueContext, document, this);
+        addFatalErrorHandlerForm(dialogueContext, document, this);
 
         return document;
     }

@@ -95,9 +95,10 @@ public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
         scriptBuffer.append("});");
 
         createScript(blockElement, scriptBuffer.toString());
-        createGotoSubmit(blockElement);
 
+        createGotoSubmit(blockElement);
         addSubmitForm(dialogueContext, document, this);
+        addFatalErrorHandlerForm(dialogueContext, document, this);
 
         return document;
     }

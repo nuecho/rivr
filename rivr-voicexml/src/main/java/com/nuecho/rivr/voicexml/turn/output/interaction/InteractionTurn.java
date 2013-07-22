@@ -206,6 +206,7 @@ public class InteractionTurn extends VoiceXmlOutputTurn {
         }
 
         addSubmitForm(dialogueContext, document, this);
+        addFatalErrorHandlerForm(dialogueContext, document, this);
 
         return document;
     }

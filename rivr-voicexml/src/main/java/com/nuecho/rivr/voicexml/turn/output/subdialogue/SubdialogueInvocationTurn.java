@@ -162,9 +162,10 @@ public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
         }
 
         createScript(filledElement, RIVR_SCOPE_OBJECT + ".addValueResult(" + SUBDIALOGUE_RESULT_VARIABLE_NAME + ");");
-        createGotoSubmit(filledElement);
 
+        createGotoSubmit(filledElement);
         addSubmitForm(dialogueContext, document, this);
+        addFatalErrorHandlerForm(dialogueContext, document, this);
 
         return document;
     }

@@ -90,9 +90,10 @@ public abstract class TransferTurn extends VoiceXmlOutputTurn {
                         + TRANSFER_FORM_ITEM_NAME
                         + "$);";
         createScript(filledElement, script);
-        createGotoSubmit(filledElement);
 
+        createGotoSubmit(filledElement);
         addSubmitForm(dialogueContext, document, this);
+        addFatalErrorHandlerForm(dialogueContext, document, this);
 
         return document;
     }
