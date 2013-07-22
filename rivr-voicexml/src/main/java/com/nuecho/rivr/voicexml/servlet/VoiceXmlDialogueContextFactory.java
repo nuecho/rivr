@@ -17,7 +17,7 @@ import com.nuecho.rivr.voicexml.turn.output.*;
 /**
  * @author Nu Echo Inc.
  */
-public final class VoiceXmlRenderingFactory implements
+public final class VoiceXmlDialogueContextFactory implements
         DialogueContextFactory<VoiceXmlDialogueContext, VoiceXmlInputTurn, VoiceXmlOutputTurn> {
 
     @Override
