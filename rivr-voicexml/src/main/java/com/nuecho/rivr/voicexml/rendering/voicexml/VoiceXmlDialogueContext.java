@@ -11,6 +11,7 @@ import org.slf4j.*;
 import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.dialogue.*;
 import com.nuecho.rivr.core.util.*;
+import com.nuecho.rivr.voicexml.rendering.voicexml.errorhandling.*;
 import com.nuecho.rivr.voicexml.turn.input.*;
 import com.nuecho.rivr.voicexml.turn.output.*;
 import com.nuecho.rivr.voicexml.turn.output.fetch.*;
@@ -34,6 +35,8 @@ public final class VoiceXmlDialogueContext implements DialogueContext<VoiceXmlIn
     private final DialogueChannel<VoiceXmlInputTurn, VoiceXmlOutputTurn> mDialogueChannel;
 
     private final Logger mLogger;
+
+    private FatalErrorFormFactory mFatalErrorFormFactory = new ExitFatalErrorFormFactory();
 
     public VoiceXmlDialogueContext(DialogueChannel<VoiceXmlInputTurn, VoiceXmlOutputTurn> dialogueChannel,
                                    Logger logger,
@@ -102,6 +105,14 @@ public final class VoiceXmlDialogueContext implements DialogueContext<VoiceXmlIn
         return mLogger;
     }
 
+    public void setFatalErrorFormFactory(FatalErrorFormFactory fatalErrorFormFactory) {
+        mFatalErrorFormFactory = fatalErrorFormFactory;
+    }
+
+    public FatalErrorFormFactory getFatalErrorFormFactory() {
+        return mFatalErrorFormFactory;
+    }
+
     @Override
     public String toString() {
         ToStringBuilder builder = new ToStringBuilder(this);
@@ -112,6 +123,7 @@ public final class VoiceXmlDialogueContext implements DialogueContext<VoiceXmlIn
         builder.appendItem("mContextPath", mContextPath);
         builder.appendItem("mServletPath", mServletPath);
         builder.appendItem("mTurnIndex", mTurnIndex);
+        builder.appendItem("mFatalErrorFormFactory", mFatalErrorFormFactory);
         return builder.getString();
     }
 
