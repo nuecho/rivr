@@ -508,7 +508,7 @@ public final class VoiceXmlDomUtil {
                + "/"
                + turnIndex
                + "/"
-               + turnName.replace('/', '_');
+               + StringUtils.replaceAll(URI_PATH_REPLACEMENT_CHAR, turnName, "_");
     }
 
     public static String getServletPathWithSessionId(VoiceXmlDialogueContext voiceXmlDialogueContext) {

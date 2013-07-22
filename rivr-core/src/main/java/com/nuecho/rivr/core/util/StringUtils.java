@@ -5,6 +5,7 @@
 package com.nuecho.rivr.core.util;
 
 import java.util.*;
+import java.util.regex.*;
 
 /**
  * @author Nu Echo Inc.
@@ -163,5 +164,9 @@ public final class StringUtils {
         }
 
         return new String(buffer);
+    }
+
+    public static String replaceAll(Pattern pattern, String string, String replacement) {
+        return pattern.matcher(string).replaceAll(replacement);
     }
 }
