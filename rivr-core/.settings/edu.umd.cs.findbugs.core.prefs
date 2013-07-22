@@ -1,5 +1,3 @@
-#FindBugs User Preferences
-#Mon May 13 13:51:52 EDT 2013
 cloud_id=edu.umd.cs.findbugs.cloud.doNothingCloud
 detectorAppendingToAnObjectOutputStream=AppendingToAnObjectOutputStream|true
 detectorAtomicityProblem=AtomicityProblem|true
@@ -126,6 +124,7 @@ detectorWaitInLoop=WaitInLoop|true
 detectorWrongMapIterator=WrongMapIterator|true
 detectorXMLFactoryBypass=XMLFactoryBypass|true
 detector_threshold=2
+eclipse.preferences.version=1
 effort=max
 filter_settings=Medium|BAD_PRACTICE,CORRECTNESS,MALICIOUS_CODE,MT_CORRECTNESS,PERFORMANCE,SECURITY,STYLE|false|15
 filter_settings_neg=NOISE,I18N,EXPERIMENTAL|
