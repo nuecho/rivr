@@ -86,7 +86,7 @@ public class VoiceXmlDialogueServlet
     @Override
     protected final void initDialogueServlet() throws DialogueServletInitializationException {
         setInputTurnFactory(new VoiceXmlInputTurnFactory());
-        setDialogueContextFactory(new VoiceXmlRenderingFactory());
+        setDialogueContextFactory(new VoiceXmlDialogueContextFactory());
         setErrorHandler(new DefaultErrorHandler());
         setParameters();
         initVoiceXmlDialogueServlet();
