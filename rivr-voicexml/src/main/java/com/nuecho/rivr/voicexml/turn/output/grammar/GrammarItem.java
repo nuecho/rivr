@@ -9,19 +9,35 @@ import javax.json.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * This abstract class is the superclass of all classes representing a grammar
+ * element in the dialogue. It is not intended to be subclassed.
+ * 
  * @author Nu Echo Inc.
+ * @see GrammarReference
+ * @see InlineStringGrammar
+ * @see InlineXmlGrammar
+ * @see http://www.w3.org/TR/voicexml20/#dml3.1
  */
 public abstract class GrammarItem implements JsonSerializable {
-
     public static final String TYPE_PROPERTY = "type";
 
     private Double mWeight;
     private String mMediaType;
 
-    public final String getMediaType() {
-        return mMediaType;
+    /**
+     * @param weight The relative weight of this grammar. Null reverts to
+     *            VoiceXML default value.
+     * @see http://www.w3.org/TR/voicexml20/#dml3.1.1.3
+     */
+    public final void setWeight(Double weight) {
+        mWeight = weight;
     }
 
+    /**
+     * @param mediaType The preferred media type for this grammar. Null reverts
+     *            to VoiceXML default value.
+     * @see http://www.w3.org/TR/voicexml20/#dml3.1.1.4
+     */
     public final void setMediaType(String mediaType) {
         mMediaType = mediaType;
     }
@@ -30,8 +46,8 @@ public abstract class GrammarItem implements JsonSerializable {
         return mWeight;
     }
 
-    public final void setWeight(Double weight) {
-        mWeight = weight;
+    public final String getMediaType() {
+        return mMediaType;
     }
 
     public abstract String getElementType();
@@ -74,5 +90,4 @@ public abstract class GrammarItem implements JsonSerializable {
         } else if (!mWeight.equals(other.mWeight)) return false;
         return true;
     }
-
 }

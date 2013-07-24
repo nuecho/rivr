@@ -15,10 +15,16 @@ import com.nuecho.rivr.voicexml.turn.output.audio.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * An <code>InteractionRecording</code> is an optional final phase of an
+ * {@link InteractionTurn}.
+ * <p>
+ * It specifies a recording configuration, and optionally, a no input timeout
+ * and a sequence of {@link AudioItem} that is played if a recording is
+ * successful.
+ * 
  * @author Nu Echo Inc.
  */
 public final class InteractionRecording implements JsonSerializable {
-
     private static final String ACKNOWLEDGE_AUDIO_ITEMS_PROPERTY = "acknowledgeAudioItems";
     private static final String RECORDING_CONFIGURATION_PROPERTY = "recordingConfiguration";
     private static final String NO_INPUT_TIMEOUT_PROPERTY = "noInputTimeout";

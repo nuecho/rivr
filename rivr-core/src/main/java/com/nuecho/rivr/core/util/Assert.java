@@ -4,6 +4,8 @@
 
 package com.nuecho.rivr.core.util;
 
+import java.util.*;
+
 /**
  * @author Nu Echo Inc.
  */
@@ -20,6 +22,11 @@ public final class Assert {
     public static void notEmpty(String string, String symbol) {
         notNull(string, symbol);
         ensure(!string.isEmpty(), symbol);
+    }
+
+    public static void notEmpty(Collection<?> collection, String symbol) {
+        notNull(collection, symbol);
+        ensure(!collection.isEmpty(), symbol);
     }
 
     public static void between(long min, long value, long max) {

@@ -5,14 +5,18 @@ package com.nuecho.rivr.voicexml.turn.output.grammar;
 
 import javax.json.*;
 
+import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * A <code>GrammarReference</code> represents an external grammar reachable with
+ * an URI.
+ * 
  * @author Nu Echo Inc.
+ * @see http://www.w3.org/TR/voicexml20/#dml3.1.1.2
  */
 public final class GrammarReference extends GrammarItem {
-
     private static final String REFERENCE_ELEMENT_TYPE = "reference";
     private static final String URI_PROPERTY = "uri";
     private static final String RESOURCE_FETCH_CONFIGURATION_PROPERTY = "resourceFetchConfiguration";
@@ -20,8 +24,20 @@ public final class GrammarReference extends GrammarItem {
     private final String mUri;
     private ResourceFetchConfiguration mResourceFetchConfiguration;
 
+    /**
+     * @param uri The URI of the external grammar. Not empty.
+     */
     public GrammarReference(String uri) {
+        Assert.notEmpty(uri, "uri");
         mUri = uri;
+    }
+
+    /**
+     * @param resourceFetchConfiguration The resource fetch configuration. Null
+     *            reverts to VoiceXML default value.
+     */
+    public void setResourceFetchConfiguration(ResourceFetchConfiguration resourceFetchConfiguration) {
+        mResourceFetchConfiguration = resourceFetchConfiguration;
     }
 
     @Override
@@ -35,10 +51,6 @@ public final class GrammarReference extends GrammarItem {
 
     public ResourceFetchConfiguration getResourceFetchConfiguration() {
         return mResourceFetchConfiguration;
-    }
-
-    public void setResourceFetchConfiguration(ResourceFetchConfiguration resourceFetchConfiguration) {
-        mResourceFetchConfiguration = resourceFetchConfiguration;
     }
 
     @Override
@@ -70,5 +82,4 @@ public final class GrammarReference extends GrammarItem {
         } else if (!mUri.equals(other.mUri)) return false;
         return true;
     }
-
 }

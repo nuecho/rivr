@@ -19,58 +19,96 @@ import com.nuecho.rivr.voicexml.turn.output.grammar.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * An <code>InteractionTurn</code> is a {@link VoiceXmlOutputTurn} that
+ * represents a list of {@link InteractionPrompt} with an optional final
+ * recognition of recording phase.
+ * <p>
+ * Each {@link InteractionPrompt} represents a phase of the interaction with a
+ * sequence of {@link AudioItem} and optional speech/dtmf recognition
+ * configurations.
+ * 
  * @author Nu Echo Inc.
+ * @see InteractionPrompt
+ * @see InteractionRecognition
+ * @see InteractionRecording
  */
 public class InteractionTurn extends VoiceXmlOutputTurn {
+    private static final String INTERACTION_TURN_TYPE = "interaction";
 
     private static final String RECORDING_PROPERTY = "recording";
     private static final String RECOGNITION_PROPERTY = "recognition";
     private static final String PROMPTS_PROPERTY = "prompts";
-    private static final String INTERACTION_TURN_TYPE = "interaction";
 
     private final List<InteractionPrompt> mPrompts;
     private final InteractionRecognition mRecognition;
     private final InteractionRecording mRecording;
 
-    public InteractionTurn(String name,
-                           List<InteractionPrompt> prompts,
-                           InteractionRecognition recognition,
-                           InteractionRecording recording) {
+    /**
+     * @param name The name of this turn. Not empty.
+     * @param prompts The list of {@link InteractionPrompt}. Not null.
+     */
+    public InteractionTurn(String name, List<InteractionPrompt> prompts) {
         super(name);
         Assert.notNull(prompts, "prompts");
         mPrompts = new ArrayList<InteractionPrompt>(prompts);
+        mRecognition = null;
+        mRecording = null;
+    }
+
+    /**
+     * @param name The name of this turn. Not empty.
+     * @param prompts The list of {@link InteractionPrompt}. Not null.
+     * @param recognition The final recognition phase configuration. Not null.
+     */
+    public InteractionTurn(String name, List<InteractionPrompt> prompts, InteractionRecognition recognition) {
+        super(name);
+        Assert.notNull(prompts, "prompts");
+        Assert.notNull(recognition, "recognition");
+        mPrompts = new ArrayList<InteractionPrompt>(prompts);
         mRecognition = recognition;
+        mRecording = null;
+    }
+
+    /**
+     * @param name The name of this turn. Not empty.
+     * @param prompts The list of {@link InteractionPrompt}. Not null.
+     * @param recording The final recording phase configuration. Not null.
+     */
+    public InteractionTurn(String name, List<InteractionPrompt> prompts, InteractionRecording recording) {
+        super(name);
+        Assert.notNull(prompts, "prompts");
+        Assert.notNull(recording, "recording");
+        mPrompts = new ArrayList<InteractionPrompt>(prompts);
         mRecording = recording;
+        mRecognition = null;
     }
 
-    @Override
-    protected String getOuputTurnType() {
-        return INTERACTION_TURN_TYPE;
-    }
-
-    public List<InteractionPrompt> getPrompts() {
+    public final List<InteractionPrompt> getPrompts() {
         return Collections.unmodifiableList(mPrompts);
     }
 
-    public InteractionRecognition getRecognition() {
+    public final InteractionRecognition getRecognition() {
         return mRecognition;
     }
 
-    public InteractionRecording getRecording() {
+    public final InteractionRecording getRecording() {
         return mRecording;
     }
 
     @Override
-    protected JsonValue getTurnAsJson() {
-        JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
-        JsonUtils.add(builder, PROMPTS_PROPERTY, JsonUtils.toJson(mPrompts));
-        JsonUtils.add(builder, RECOGNITION_PROPERTY, mRecognition);
-        JsonUtils.add(builder, RECORDING_PROPERTY, mRecording);
-        return builder.build();
+    protected final String getOuputTurnType() {
+        return INTERACTION_TURN_TYPE;
     }
 
     @Override
-    public Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
+    protected void addTurnProperties(JsonObjectBuilder builder) {
+        JsonUtils.add(builder, PROMPTS_PROPERTY, JsonUtils.toJson(mPrompts));
+        JsonUtils.add(builder, RECOGNITION_PROPERTY, mRecognition);
+        JsonUtils.add(builder, RECORDING_PROPERTY, mRecording);
+    }
+
+    @Override
+    protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
         Document document = createDocument(dialogueContext, null);
         Element formElement = createForm(document);
@@ -463,5 +501,4 @@ public class InteractionTurn extends VoiceXmlOutputTurn {
         createScript(filledElement, RIVR_SCOPE_OBJECT + ".addRecognitionResult()");
         createGotoSubmit(filledElement);
     }
-
 }

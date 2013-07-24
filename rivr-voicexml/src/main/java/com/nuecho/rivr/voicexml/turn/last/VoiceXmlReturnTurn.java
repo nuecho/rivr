@@ -42,12 +42,10 @@ public class VoiceXmlReturnTurn extends VoiceXmlLastTurn {
     }
 
     @Override
-    protected JsonValue getTurnAsJson() {
-        JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
+    protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, VARIABLES_PROPERTY, mVariables);
         JsonUtils.add(builder, EVENT_NAME_PROPERTY, mEventName);
         JsonUtils.add(builder, EVENT_MESSAGE_PROPERTY, mEventMessage);
-        return builder.build();
     }
 
     @Override

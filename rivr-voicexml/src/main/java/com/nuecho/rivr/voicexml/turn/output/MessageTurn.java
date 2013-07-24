@@ -5,6 +5,7 @@
 package com.nuecho.rivr.voicexml.turn.output;
 
 import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;
+import static java.util.Arrays.*;
 
 import java.util.*;
 
@@ -12,14 +13,21 @@ import javax.json.*;
 
 import org.w3c.dom.*;
 
+import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.rendering.voicexml.*;
 import com.nuecho.rivr.voicexml.turn.output.audio.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * A <code>MessageTurn</code> is a <code>VoiceXmlOutputTurn</code> that plays a
+ * sequence of <code>AudioItem</code>.
+ * 
  * @author Nu Echo Inc.
+ * @see AudioItem
+ * @see http://www.w3.org/TR/voicexml20/#dml4.1.8
  */
 public class MessageTurn extends VoiceXmlOutputTurn {
+    private static final String MESSAGE_TURN_TYPE = "message";
 
     private static final String BARGE_IN_PROPERTY = "bargeIn";
     private static final String LANGUAGE_PROPERTY = "language";
@@ -29,39 +37,62 @@ public class MessageTurn extends VoiceXmlOutputTurn {
     private String mLanguage;
     private Boolean mBargeIn;
 
-    public MessageTurn(String name, AudioItem... audioItems) {
+    /**
+     * @param name The name of this turn. Not empty.
+     * @param audioItems The sequence of <code>AudioItem</code> to play. Not
+     *            empty.
+     */
+    public MessageTurn(String name, List<AudioItem> audioItems) {
         super(name);
-        mAudioItems = Arrays.asList(audioItems);
+        Assert.notEmpty(audioItems, "audioItems");
+        mAudioItems = new ArrayList<AudioItem>(audioItems);
     }
 
-    public void setLanguage(String language) {
+    /**
+     * @param name The name of this turn. Not empty.
+     * @param audioItems The sequence of <code>AudioItem</code> to play. Not
+     *            empty.
+     */
+    public MessageTurn(String name, AudioItem... audioItems) {
+        this(name, asList(audioItems));
+    }
+
+    /**
+     * @param language The language identifier for the message. Null reverts to
+     *            VoiceXML default value.
+     */
+    public final void setLanguage(String language) {
         mLanguage = language;
     }
 
-    public void setBargeIn(Boolean bargeIn) {
+    /**
+     * @param bargeIn Boolean.TRUE if the message is interruptible,
+     *            Boolean.FALSE if it is not. Null reverts to VoiceXML default
+     *            value.
+     */
+    public final void setBargeIn(Boolean bargeIn) {
         mBargeIn = bargeIn;
     }
 
-    public List<AudioItem> getAudioItems() {
-        return mAudioItems;
+    public final List<AudioItem> getAudioItems() {
+        return Collections.unmodifiableList(mAudioItems);
     }
 
-    public String getLanguage() {
+    public final String getLanguage() {
         return mLanguage;
     }
 
-    public Boolean getBargeIn() {
+    public final Boolean getBargeIn() {
         return mBargeIn;
     }
 
     @Override
-    protected String getOuputTurnType() {
-        return "message";
+    protected final String getOuputTurnType() {
+        return MESSAGE_TURN_TYPE;
     }
 
     @Override
-    protected JsonValue getTurnAsJson() {
-        JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
+    protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, AUDIO_ITEMS_PROPERTY, JsonUtils.toJson(mAudioItems));
         JsonUtils.add(builder, LANGUAGE_PROPERTY, mLanguage);
         if (mBargeIn == null) {
@@ -69,8 +100,6 @@ public class MessageTurn extends VoiceXmlOutputTurn {
         } else {
             builder.add(BARGE_IN_PROPERTY, mBargeIn.booleanValue());
         }
-
-        return builder.build();
     }
 
     @Override

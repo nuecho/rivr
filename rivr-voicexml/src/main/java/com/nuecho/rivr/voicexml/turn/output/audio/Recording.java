@@ -9,24 +9,47 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
+/**
+ * A <code>Recording</code> represents an audio file with an optional synthesis
+ * text backup.
+ * 
+ * @author Nu Echo Inc.
+ * @see SynthesisText
+ * @see ResourceFetchConfiguration
+ */
 public final class Recording extends AudioItem {
-
+    public static final String RECORDING_ELEMENT_TYPE = "recording";
     private static final String RESOURCE_FETCH_CONFIGURATION_PROPERTY = "resourceFetchConfiguration";
     private static final String PATH_PROPERTY = "path";
-    public static final String RECORDING_ELEMENT_TYPE = "recording";
 
     private final String mPath;
     private final SynthesisText mSynthesisText;
     private ResourceFetchConfiguration mResourceFetchConfiguration;
 
+    /**
+     * @param path The URI of the audio prompt. Not empty.
+     */
     public Recording(String path) {
         this(path, null);
     }
 
+    /**
+     * @param path The URI of the audio prompt. Not empty.
+     * @param synthesisText The synthesis text to play if the audio prompt
+     *            cannot be found.
+     */
     public Recording(String path, SynthesisText synthesisText) {
         Assert.notEmpty(path, "path");
         mPath = path;
         mSynthesisText = synthesisText;
+    }
+
+    /**
+     * @param resourceFetchConfiguration The resource fetch configuration. Null
+     *            reverts to VoiceXML default value.
+     */
+    public void setResourceFetchConfiguration(ResourceFetchConfiguration resourceFetchConfiguration) {
+        mResourceFetchConfiguration = resourceFetchConfiguration;
     }
 
     @Override
@@ -44,10 +67,6 @@ public final class Recording extends AudioItem {
 
     public ResourceFetchConfiguration getResourceFetchConfiguration() {
         return mResourceFetchConfiguration;
-    }
-
-    public void setResourceFetchConfiguration(ResourceFetchConfiguration resourceFetchConfiguration) {
-        mResourceFetchConfiguration = resourceFetchConfiguration;
     }
 
     @Override
@@ -83,5 +102,4 @@ public final class Recording extends AudioItem {
         } else if (!mSynthesisText.equals(other.mSynthesisText)) return false;
         return true;
     }
-
 }

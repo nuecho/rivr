@@ -7,19 +7,26 @@ import javax.json.*;
 
 import org.w3c.dom.*;
 
+import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * An <code>InlineXmlGrammar</code> represents an XML source grammar inlined in
+ * the VoiceXML document.
+ * 
  * @author Nu Echo Inc.
  */
 public final class InlineXmlGrammar extends GrammarItem {
-
     private static final String SOURCE_PROPERTY = "source";
     private static final String INLINE_XML_ELEMENT_TYPE = "inlineXml";
 
     private final Document mDocument;
 
+    /**
+     * @param document The XML source of the grammar. Not null.
+     */
     public InlineXmlGrammar(Document document) {
+        Assert.notNull(document, "document");
         mDocument = document;
     }
 

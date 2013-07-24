@@ -14,30 +14,43 @@ import com.nuecho.rivr.voicexml.rendering.voicexml.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * A <code>BridgeTransferTurn</code> is a {@link SupervisedTransferTurn} that
+ * connects the caller to the callee in a full duplex conversation.
+ * 
  * @author Nu Echo Inc.
+ * @see http://www.w3.org/TR/voicexml20/#dml2.3.7.2
  */
 public class BridgeTransferTurn extends SupervisedTransferTurn {
+    private static final String BRIDGE_TRANSFER_TYPE = "bridge";
 
     private static final String MAXIMUM_TIME_PROPERTY_NAME = "maximumTime";
-    public static final String TYPE = "bridge";
 
     private TimeValue mMaximumTime;
 
+    /**
+     * @param name The name of this turn. Not empty.
+     * @param destination The URI of the destination (telephone, IP telephony
+     *            address). Not empty.
+     */
     public BridgeTransferTurn(String name, String destination) {
         super(name, destination);
     }
 
-    public TimeValue getMaximumTime() {
-        return mMaximumTime;
-    }
-
-    public void setMaximumTime(TimeValue maximumTime) {
+    /**
+     * @param maximumTime The time that the call is allowed to last. Null
+     *            reverts to VoiceXML default value.
+     */
+    public final void setMaximumTime(TimeValue maximumTime) {
         mMaximumTime = maximumTime;
     }
 
+    public final TimeValue getMaximumTime() {
+        return mMaximumTime;
+    }
+
     @Override
-    public String getTransferType() {
-        return TYPE;
+    protected final String getTransferType() {
+        return BRIDGE_TRANSFER_TYPE;
     }
 
     @Override
@@ -46,9 +59,8 @@ public class BridgeTransferTurn extends SupervisedTransferTurn {
     }
 
     @Override
-    protected void addJsonProperties(JsonObjectBuilder builder) {
-        super.addJsonProperties(builder);
+    protected void addTurnProperties(JsonObjectBuilder builder) {
+        super.addTurnProperties(builder);
         JsonUtils.addTimeProperty(builder, MAXIMUM_TIME_PROPERTY_NAME, mMaximumTime);
     }
-
 }

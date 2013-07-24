@@ -9,10 +9,18 @@ import javax.json.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * This abstract class is the superclass of all classes representing an audio
+ * element in the dialogue. It is not intended to be subclassed.
+ * 
  * @author Nu Echo Inc.
+ * @see ClientSideRecording
+ * @see Mark
+ * @see Pause
+ * @see Recording
+ * @see SynthesisText
+ * @see http://www.w3.org/TR/voicexml20/#dml4.1
  */
 public abstract class AudioItem implements JsonSerializable {
-
     public static final String TYPE_PROPERTY = "type";
 
     public abstract String getElementType();
@@ -31,5 +39,4 @@ public abstract class AudioItem implements JsonSerializable {
         addJsonProperties(builder);
         return builder.build();
     }
-
 }

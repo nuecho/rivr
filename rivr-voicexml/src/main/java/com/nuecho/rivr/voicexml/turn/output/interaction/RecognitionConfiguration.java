@@ -11,38 +11,55 @@ import java.util.Map.Entry;
 
 import javax.json.*;
 
+import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.turn.output.grammar.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
  * @author Nu Echo Inc.
+ * @see DtmfRecognitionConfiguration
+ * @see SpeechRecognitionConfiguration
  */
-public abstract class RecognitionConfiguration implements JsonSerializable {
-
+abstract class RecognitionConfiguration implements JsonSerializable {
     private static final String GRAMMARS_PROPERTY = "grammars";
     private static final String PROPERTIES_PROPERTY = "properties";
 
     private List<GrammarItem> mGrammarItems;
     private final Map<String, String> mProperties = new HashMap<String, String>();
 
-    public List<GrammarItem> getGrammarItems() {
-        return Collections.unmodifiableList(mGrammarItems);
+    /**
+     * @param grammarItems The list of {@link GrammarItem}. Not null.
+     */
+    RecognitionConfiguration(List<? extends GrammarItem> grammarItems) {
+        setGrammarItems(grammarItems);
     }
 
-    public void setGrammarItems(GrammarItem... grammarItems) {
-        setGrammarItems(asList(grammarItems));
+    /**
+     * @param grammarItems The list of {@link GrammarItem}. Not null.
+     */
+    RecognitionConfiguration(GrammarItem... grammarItems) {
+        setGrammarItems(grammarItems);
     }
 
-    public void setGrammarItems(List<? extends GrammarItem> grammarItems) {
-        mGrammarItems = new ArrayList<GrammarItem>(grammarItems);
-    }
-
+    /**
+     * Adds a property to the enclosing form
+     * 
+     * @param propertyName The name of the property. Not empty.
+     * @param propertyValue The value of the property. Not null.
+     * @see http://www.w3.org/TR/voicexml20/#dml6.3
+     */
     public void addProperty(String propertyName, String propertyValue) {
+        Assert.notEmpty(propertyName, "propertyName");
+        Assert.notNull(propertyValue, "propertyValue");
         mProperties.put(propertyName, propertyValue);
     }
 
     public void removeProperty(String propertyName) {
         mProperties.remove(propertyName);
+    }
+
+    public List<GrammarItem> getGrammarItems() {
+        return Collections.unmodifiableList(mGrammarItems);
     }
 
     public boolean hasProperty(String propertyName) {
@@ -61,6 +78,15 @@ public abstract class RecognitionConfiguration implements JsonSerializable {
         for (String propertyName : getPropertyNames()) {
             copy.addProperty(propertyName, getProperty(propertyName));
         }
+    }
+
+    protected void setGrammarItems(GrammarItem... grammarItems) {
+        setGrammarItems(asList(grammarItems));
+    }
+
+    protected void setGrammarItems(List<? extends GrammarItem> grammarItems) {
+        Assert.notNull(grammarItems, "grammarItems");
+        mGrammarItems = new ArrayList<GrammarItem>(grammarItems);
     }
 
     @Override

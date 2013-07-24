@@ -15,17 +15,23 @@ import com.nuecho.rivr.voicexml.turn.output.audio.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * An <code>InteractionRecognition</code> is an optional final phase of an
+ * {@link InteractionTurn}.
+ * <p>
+ * It specifies a recognition configuration, and optionally, a no input timeout
+ * and a sequence of {@link AudioItem} that is played if a recognition is
+ * successful.
+ * 
  * @author Nu Echo Inc.
  */
 public final class InteractionRecognition implements JsonSerializable {
-
     private static final String NO_INPUT_TIMEOUT_PROPERTY = "noInputTimeout";
     private static final String SPEECH_RECOGNITION_CONFIGURATION_PROPERTY = "speechRecognitionConfiguration";
     private static final String DTMF_RECOGNITION_CONFIGURATION_PROPERTY = "dtmfRecognitionConfiguration";
     private static final String ACKNOWLEDGE_AUDIO_ITEMS_PROPERTY = "acknowledgeAudioItems";
 
-    private SpeechRecognitionConfiguration mSpeechRecognitionConfiguration;
-    private DtmfRecognitionConfiguration mDtmfRecognitionConfiguration;
+    private final SpeechRecognitionConfiguration mSpeechRecognitionConfiguration;
+    private final DtmfRecognitionConfiguration mDtmfRecognitionConfiguration;
     private TimeValue mNoInputTimeout;
     private final List<AudioItem> mAcknowledgeAudioItems;
 
@@ -50,11 +56,6 @@ public final class InteractionRecognition implements JsonSerializable {
         assertInvariant();
     }
 
-    private void assertInvariant() {
-        Assert.ensure(mSpeechRecognitionConfiguration != null || mDtmfRecognitionConfiguration != null,
-                      "Must provide a non-null configuration for speech or DTMF");
-    }
-
     public SpeechRecognitionConfiguration getSpeechRecognitionConfiguration() {
         return mSpeechRecognitionConfiguration;
     }
@@ -75,14 +76,9 @@ public final class InteractionRecognition implements JsonSerializable {
         mNoInputTimeout = noInputTimeout;
     }
 
-    public void setSpeechRecognitionConfiguration(SpeechRecognitionConfiguration speechRecognitionConfiguration) {
-        mSpeechRecognitionConfiguration = speechRecognitionConfiguration;
-        assertInvariant();
-    }
-
-    public void setDtmfRecognitionConfiguration(DtmfRecognitionConfiguration dtmfRecognitionConfiguration) {
-        mDtmfRecognitionConfiguration = dtmfRecognitionConfiguration;
-        assertInvariant();
+    private void assertInvariant() {
+        Assert.ensure(mSpeechRecognitionConfiguration != null || mDtmfRecognitionConfiguration != null,
+                      "Must provide a non-null configuration for speech or DTMF");
     }
 
     @Override

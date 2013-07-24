@@ -7,13 +7,23 @@ package com.nuecho.rivr.voicexml.turn.output.interaction;
 import javax.json.*;
 
 import com.nuecho.rivr.core.util.*;
+import com.nuecho.rivr.voicexml.turn.input.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * A <code>RecordingConfiguration</code> represents the description of a
+ * recording final phase of an interaction.
+ * <p>
+ * It may have an optional {@link DtmfRecognitionConfiguration} to recognize
+ * DTMF input while recording. A DTMF input matching one of the
+ * {@link DtmfRecognitionConfiguration} grammar will terminate the recording and
+ * place the recording in a variable.
+ * 
  * @author Nu Echo Inc.
+ * @see DtmfRecognitionConfiguration
+ * @see http://www.w3.org/TR/voicexml20/#dml2.3.6
  */
-public class RecordingConfiguration implements JsonSerializable {
-
+public final class RecordingConfiguration implements JsonSerializable {
     private static final String DTMF_TERM_PROPERTY = "dtmfTerm";
     private static final String BEEP_PROPERTY = "beep";
     private static final String POST_AUDIO_TO_SERVER_PROPERTY = "postAudioToServer";
@@ -29,69 +39,73 @@ public class RecordingConfiguration implements JsonSerializable {
     private TimeValue mFinalSilence;
     private String mType;
     private String mClientSideAssignationDestination;
-    private boolean mPostAudioToServer = true;
     private Boolean mDtmfTerm;
+    private boolean mPostAudioToServer = true;
 
-    public TimeValue getMaximumTime() {
-        return mMaximumTime;
+    /**
+     * @param dtmfRecognitionConfiguration The
+     *            {@link DtmfRecognitionConfiguration} used to interrupt the
+     *            recording. Null reverts to VoiceXML default value.
+     */
+    public void setDtmfTermRecognitionConfiguration(DtmfRecognitionConfiguration dtmfRecognitionConfiguration) {
+        mDtmfTermRecognitionConfiguration = dtmfRecognitionConfiguration;
     }
 
+    /**
+     * @param beep If true, a tone is emitted just prior to recording. Null
+     *            reverts to VoiceXML default value.
+     */
+    public void setBeep(Boolean beep) {
+        mBeep = Boolean.valueOf(beep);
+    }
+
+    /**
+     * @param maximumTime The maximum duration to record. Null reverts to
+     *            VoiceXML default value.
+     */
     public void setMaximumTime(TimeValue maximumTime) {
         mMaximumTime = maximumTime;
     }
 
-    public TimeValue getFinalSilence() {
-        return mFinalSilence;
-    }
-
+    /**
+     * @param finalSilence The interval of silence that indicates end of speech.
+     *            Null reverts to VoiceXML default value.
+     */
     public void setFinalSilence(TimeValue finalSilence) {
         mFinalSilence = finalSilence;
     }
 
-    public Boolean getBeep() {
-        return mBeep;
-    }
-
-    public void setBeep(boolean beep) {
-        mBeep = Boolean.valueOf(beep);
-    }
-
-    public void resetBeep() {
-        mBeep = null;
-    }
-
-    public Boolean getDtmfTerm() {
-        return mDtmfTerm;
-    }
-
-    public void setDtmfTerm(boolean dtmfTerm) {
-        mDtmfTerm = Boolean.valueOf(dtmfTerm);
-    }
-
-    public void resetDtmfTerm() {
-        mDtmfTerm = null;
-    }
-
-    public String getType() {
-        return mType;
-    }
-
+    /**
+     * @param type The media format of the resulting recording. Null reverts to
+     *            VoiceXML default value.
+     * @see http://www.w3.org/TR/voicexml20/#dmlAAudioFormats
+     */
     public void setType(String type) {
         mType = type;
     }
 
-    public String getClientSideAssignationDestination() {
-        return mClientSideAssignationDestination;
-    }
-
+    /**
+     * @param clientSideAssignationDestination The variable where the recording
+     *            will be stored.
+     */
     public void setClientSideAssignationDestination(String clientSideAssignationDestination) {
         mClientSideAssignationDestination = clientSideAssignationDestination;
     }
 
-    public boolean isPostAudioToServer() {
-        return mPostAudioToServer;
+    /**
+     * @param dtmfTerm If true, any DTMF keypress not matched by an active
+     *            grammar will be treated as a match of an active local DTMF
+     *            grammar. Null reverts to VoiceXML default value.
+     */
+    public void setDtmfTerm(Boolean dtmfTerm) {
+        mDtmfTerm = Boolean.valueOf(dtmfTerm);
     }
 
+    /**
+     * @param postAudioToServer If true, recording will be posted to server and
+     *            made available in the {@link RecordingData} property of the
+     *            {@link RecordingInfo}.
+     */
     public void setPostAudioToServer(boolean postAudioToServer) {
         mPostAudioToServer = postAudioToServer;
     }
@@ -100,8 +114,32 @@ public class RecordingConfiguration implements JsonSerializable {
         return mDtmfTermRecognitionConfiguration;
     }
 
-    public void setDtmfTermRecognitionConfiguration(DtmfRecognitionConfiguration dtmfRecognitionConfiguration) {
-        mDtmfTermRecognitionConfiguration = dtmfRecognitionConfiguration;
+    public Boolean getBeep() {
+        return mBeep;
+    }
+
+    public TimeValue getMaximumTime() {
+        return mMaximumTime;
+    }
+
+    public TimeValue getFinalSilence() {
+        return mFinalSilence;
+    }
+
+    public Boolean getDtmfTerm() {
+        return mDtmfTerm;
+    }
+
+    public String getType() {
+        return mType;
+    }
+
+    public String getClientSideAssignationDestination() {
+        return mClientSideAssignationDestination;
+    }
+
+    public boolean isPostAudioToServer() {
+        return mPostAudioToServer;
     }
 
     @Override
