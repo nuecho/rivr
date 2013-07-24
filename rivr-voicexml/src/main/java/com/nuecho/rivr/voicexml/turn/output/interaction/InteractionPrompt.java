@@ -24,7 +24,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
 public final class InteractionPrompt implements JsonSerializable {
     private static final String SPEECH_RECOGNITION_CONFIGURATION_PROPERTY = "speechRecognitionConfiguration";
     private static final String DTMF_RECOGNITION_CONFIGURATION_PROPERTY = "dtmfRecognitionConfiguration";
-    private static final String HOT_WORD_BARGEIN_PROPERTY = "hotWordBargein";
+    private static final String BARGE_IN_TYPE_PROPERTY = "bargeInType";
     private static final String AUDIO_ITEMS_PROPERTY = "audioItems";
     private static final String LANGUAGE_PROPERTY = "language";
 
@@ -33,7 +33,7 @@ public final class InteractionPrompt implements JsonSerializable {
     private final DtmfRecognitionConfiguration mDtmfRecognitionConfiguration;
 
     private String mLanguage;
-    private boolean mHotWordBargeIn;
+    private BargeInType mBargeInType;
 
     /**
      * @param speechRecognitionConfiguration The speech recognition
@@ -123,12 +123,13 @@ public final class InteractionPrompt implements JsonSerializable {
     }
 
     /**
-     * @param hotWordBargeIn <code>true</code> to set barge-in type to
-     *            "hotword". <code>false</code> to set barge-in type to
-     *            "speech".
+     * @param bargeInType {@link BargeInType#SPEECH} or
+     *            {@link BargeInType#HOTWORD}. <code>null</code> if language
+     *            should be reset to platform-specific default value for the
+     *            prompts to be added.
      */
-    public void setHotWordBargeIn(boolean hotWordBargeIn) {
-        mHotWordBargeIn = hotWordBargeIn;
+    public void setHotWordBargeIn(BargeInType bargeInType) {
+        mBargeInType = bargeInType;
     }
 
     public List<? extends AudioItem> getAudioItems() {
@@ -147,16 +148,16 @@ public final class InteractionPrompt implements JsonSerializable {
         return mDtmfRecognitionConfiguration;
     }
 
-    public boolean isHotWordBargeIn() {
-        return mHotWordBargeIn;
+    public BargeInType getBargeInType() {
+        return mBargeInType;
     }
 
     @Override
     public JsonValue asJson() {
         JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
         JsonUtils.add(builder, LANGUAGE_PROPERTY, mLanguage);
+        JsonUtils.add(builder, BARGE_IN_TYPE_PROPERTY, mBargeInType == null ? null : mBargeInType.getKey());
         JsonUtils.add(builder, AUDIO_ITEMS_PROPERTY, JsonUtils.toJson(mAudioItems));
-        JsonUtils.addBooleanProperty(builder, HOT_WORD_BARGEIN_PROPERTY, mHotWordBargeIn);
         JsonUtils.add(builder, DTMF_RECOGNITION_CONFIGURATION_PROPERTY, mDtmfRecognitionConfiguration);
         JsonUtils.add(builder, SPEECH_RECOGNITION_CONFIGURATION_PROPERTY, mSpeechRecognitionConfiguration);
         return builder.build();

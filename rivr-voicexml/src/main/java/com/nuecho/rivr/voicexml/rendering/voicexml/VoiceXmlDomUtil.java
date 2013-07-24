@@ -141,9 +141,6 @@ public final class VoiceXmlDomUtil {
     public static final String MAX_AGE_PROPERTY_SUFFIX = "maxage";
     public static final String FETCH_HINT_PROPERTY_SUFFIX = "fetchhint";
 
-    public static final String HOTWORD_BARGE_IN = "hotword";
-    public static final String SPEECH_BARGE_IN = "speech";
-
     public static final String MILLISECOND_UNIT_SUFFIX = "ms";
     public static final String FORM_ID = "form";
     public static final String PREFETCH_PROPERTY_VALUE = "prefetch";
