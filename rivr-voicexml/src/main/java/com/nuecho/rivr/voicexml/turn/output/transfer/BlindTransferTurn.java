@@ -11,7 +11,7 @@ package com.nuecho.rivr.voicexml.turn.output.transfer;
  * the platform throws connection.disconnect.transfer.
  * 
  * @author Nu Echo Inc.
- * @see http://www.w3.org/TR/voicexml20/#dml2.3.7.1
+ * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.7.1">http://www.w3.org/TR/voicexml20/#dml2.3.7.1</a>
  */
 public class BlindTransferTurn extends TransferTurn {
     private static final String BLIND_TRANSFER_TYPE = "blind";

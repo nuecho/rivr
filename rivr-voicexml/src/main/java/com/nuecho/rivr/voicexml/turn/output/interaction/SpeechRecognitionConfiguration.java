@@ -57,7 +57,7 @@ public final class SpeechRecognitionConfiguration extends RecognitionConfigurati
      * @param completeTimeout The required length of silence following user
      *            speech before the speech recognizer finalizes a complete
      *            result. Null reverts to VoiceXML default value.
-     * @see http://www.w3.org/TR/voicexml20/#dml6.3.2
+     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setCompleteTimeout(TimeValue completeTimeout) {
         mCompleteTimeout = completeTimeout;
@@ -67,7 +67,7 @@ public final class SpeechRecognitionConfiguration extends RecognitionConfigurati
      * @param incompleteTimeout The required length of silence following user
      *            speech after which a recognizer finalizes an incomplete
      *            result. Null reverts to VoiceXML default value.
-     * @see http://www.w3.org/TR/voicexml20/#dml6.3.2
+     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setIncompleteTimeout(TimeValue incompleteTimeout) {
         mIncompleteTimeout = incompleteTimeout;
@@ -76,7 +76,7 @@ public final class SpeechRecognitionConfiguration extends RecognitionConfigurati
     /**
      * @param maxSpeechTimeout The maximum duration of user speech. Null reverts
      *            to VoiceXML default value.
-     * @see http://www.w3.org/TR/voicexml20/#dml6.3.2
+     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setMaxSpeechTimeout(TimeValue maxSpeechTimeout) {
         mMaxSpeechTimeout = maxSpeechTimeout;
@@ -85,7 +85,7 @@ public final class SpeechRecognitionConfiguration extends RecognitionConfigurati
     /**
      * @param maxNBest The maximum size of the recognition result. Must be a
      *            positive integer. Null reverts to VoiceXML default value.
-     * @see http://www.w3.org/TR/voicexml20/#dml6.3.2
+     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setMaxNBest(Integer maxNBest) {
         if (maxNBest != null) {
@@ -100,7 +100,7 @@ public final class SpeechRecognitionConfiguration extends RecognitionConfigurati
      *            with confidence below this value will be rejected (nomatch).
      *            Value must be between 0.0 and 1.0. Null reverts to VoiceXML
      *            default value.
-     * @see http://www.w3.org/TR/voicexml20/#dml6.3.2
+     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setConfidenceLevel(Double confidenceLevel) {
         if (confidenceLevel != null) {
@@ -115,7 +115,7 @@ public final class SpeechRecognitionConfiguration extends RecognitionConfigurati
      *            speed versus accuracy. A value of 0.0 means fastest
      *            recognition. A value of 1.0 means best accuracy. Null reverts
      *            to VoiceXML default value.
-     * @see http://www.w3.org/TR/voicexml20/#dml6.3.2
+     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setSpeedVersusAccuracy(Double speedVersusAccuracy) {
         if (speedVersusAccuracy != null) {

@@ -16,7 +16,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see GrammarReference
  * @see InlineStringGrammar
  * @see InlineXmlGrammar
- * @see http://www.w3.org/TR/voicexml20/#dml3.1
+ * @see <a href="http://www.w3.org/TR/voicexml20/#dml3.1">http://www.w3.org/TR/voicexml20/#dml3.1</a>
  */
 public abstract class GrammarItem implements JsonSerializable {
     public static final String TYPE_PROPERTY = "type";
@@ -27,7 +27,7 @@ public abstract class GrammarItem implements JsonSerializable {
     /**
      * @param weight The relative weight of this grammar. Null reverts to
      *            VoiceXML default value.
-     * @see http://www.w3.org/TR/voicexml20/#dml3.1.1.3
+     * @see <a href="http://www.w3.org/TR/voicexml20/#dml3.1.1.3">http://www.w3.org/TR/voicexml20/#dml3.1.1.3</a>
      */
     public final void setWeight(Double weight) {
         mWeight = weight;
@@ -36,7 +36,7 @@ public abstract class GrammarItem implements JsonSerializable {
     /**
      * @param mediaType The preferred media type for this grammar. Null reverts
      *            to VoiceXML default value.
-     * @see http://www.w3.org/TR/voicexml20/#dml3.1.1.4
+     * @see <a href="http://www.w3.org/TR/voicexml20/#dml3.1.1.4">http://www.w3.org/TR/voicexml20/#dml3.1.1.4</a>
      */
     public final void setMediaType(String mediaType) {
         mMediaType = mediaType;

@@ -21,7 +21,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * 
  * @author Nu Echo Inc.
  * @see DtmfRecognitionConfiguration
- * @see http://www.w3.org/TR/voicexml20/#dml2.3.6
+ * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.6">http://www.w3.org/TR/voicexml20/#dml2.3.6</a>
  */
 public final class RecordingConfiguration implements JsonSerializable {
     private static final String DTMF_TERM_PROPERTY = "dtmfTerm";
@@ -78,7 +78,7 @@ public final class RecordingConfiguration implements JsonSerializable {
     /**
      * @param type The media format of the resulting recording. Null reverts to
      *            VoiceXML default value.
-     * @see http://www.w3.org/TR/voicexml20/#dmlAAudioFormats
+     * @see <a href="http://www.w3.org/TR/voicexml20/#dmlAAudioFormats">http://www.w3.org/TR/voicexml20/#dmlAAudioFormats</a>
      */
     public void setType(String type) {
         mType = type;

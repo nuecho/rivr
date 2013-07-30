@@ -22,8 +22,8 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see BlindTransferTurn
  * @see BridgeTransferTurn
  * @see ConsultationTransferTurn
- * @see http://www.w3.org/TR/voicexml20/#dml2.3.6
- * @see http://www.w3.org/TR/voicexml21/#sec-transfer
+ * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.6">http://www.w3.org/TR/voicexml20/#dml2.3.6</a>
+ * @see <a href="http://www.w3.org/TR/voicexml21/#sec-transfer">http://www.w3.org/TR/voicexml21/#sec-transfer</a>
  */
 public abstract class TransferTurn extends VoiceXmlOutputTurn {
     private static final String TRANSFER_TURN_TYPE = "transfer";

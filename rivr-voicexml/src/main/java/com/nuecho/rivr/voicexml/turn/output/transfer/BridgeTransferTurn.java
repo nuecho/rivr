@@ -18,7 +18,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * connects the caller to the callee in a full duplex conversation.
  * 
  * @author Nu Echo Inc.
- * @see http://www.w3.org/TR/voicexml20/#dml2.3.7.2
+ * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.7.2">http://www.w3.org/TR/voicexml20/#dml2.3.7.2</a>
  */
 public class BridgeTransferTurn extends SupervisedTransferTurn {
     private static final String BRIDGE_TRANSFER_TYPE = "bridge";

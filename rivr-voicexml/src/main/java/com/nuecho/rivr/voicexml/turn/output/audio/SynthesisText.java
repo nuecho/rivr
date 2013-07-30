@@ -15,7 +15,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * synthesis voice. It can be either a string of text or a SSML document.
  * 
  * @author Nu Echo Inc.
- * @see http://www.w3.org/TR/speech-synthesis/
+ * @see <a href="http://www.w3.org/TR/speech-synthesis/">http://www.w3.org/TR/speech-synthesis/</a>
  */
 public final class SynthesisText extends AudioItem {
     public static final String SYNTHESIS_TEXT_ELEMENT_TYPE = "synthesisText";

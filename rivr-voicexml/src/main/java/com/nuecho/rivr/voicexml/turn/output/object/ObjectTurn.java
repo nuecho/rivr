@@ -25,7 +25,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * platform specific functionality.
  * 
  * @author Nu Echo Inc.
- * @see http://www.w3.org/TR/voicexml20/#dml2.3.5
+ * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.5">http://www.w3.org/TR/voicexml20/#dml2.3.5</a>
  */
 public class ObjectTurn extends VoiceXmlOutputTurn {
     public static final String OBJECT_RESULT_VARIABLE_NAME = "object";

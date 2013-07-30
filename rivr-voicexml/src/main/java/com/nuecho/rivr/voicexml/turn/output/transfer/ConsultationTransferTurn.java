@@ -10,7 +10,7 @@ package com.nuecho.rivr.voicexml.turn.output.transfer;
  * not dropped as a result of an unsuccessful transfer attempt.
  * 
  * @author Nu Echo Inc.
- * @see http://www.w3.org/TR/voicexml21/#sec-xfer-consultation
+ * @see <a href="http://www.w3.org/TR/voicexml21/#sec-xfer-consultation">http://www.w3.org/TR/voicexml21/#sec-xfer-consultation</a>
  */
 public class ConsultationTransferTurn extends SupervisedTransferTurn {
     private static final String CONSULTATION_TRANSFER_TYPE = "consultation";
