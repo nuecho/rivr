@@ -247,7 +247,12 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
         DialogueInitializationInfo<I, O, C> initializationInfo;
         initializationInfo = createInitializationInfo(request, response, dialogueContext);
-        Dialogue<I, O, F, L, C> dialogue = mDialogueFactory.create(initializationInfo);
+        Dialogue<I, O, F, L, C> dialogue;
+        try {
+            dialogue = mDialogueFactory.create(initializationInfo);
+        } catch (DialogueFactoryException exception) {
+            throw new ServletException("Unable to create dialogue.", exception);
+        }
         F firstTurn = createFirstTurn(request, response);
         return dialogueChannel.start(dialogue, firstTurn, mDialogueTimeout, dialogueContext);
     }
