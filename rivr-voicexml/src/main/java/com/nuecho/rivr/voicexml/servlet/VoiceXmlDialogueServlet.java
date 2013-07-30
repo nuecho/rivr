@@ -38,6 +38,14 @@ public class VoiceXmlDialogueServlet
         extends
         DialogueServlet<VoiceXmlInputTurn, VoiceXmlOutputTurn, VoiceXmlFirstTurn, VoiceXmlLastTurn, VoiceXmlDialogueContext> {
 
+    private static final String DIALOGUE_TIMEOUT_INITIAL_ARGUMENT = "dialogueTimeout";
+    private static final String SESSION_TIMEOUT_INITIAL_ARGUMENT = "sessionTimeout";
+    private static final String SESSION_SCAN_PERIOD_INITIAL_ARGUMENT = "sessionScanPeriod";
+    private static final String ERROR_HANDLER_INITIAL_ARGUMENT = "errorHandler";
+    private static final String DIALOGUE_FACTORY_INITIAL_ARGUMENT = "dialogueFactory";
+    private static final String DIALOGUE_CLASS_INITIAL_ARGUMENT = "dialogue.class";
+    private static final String LOGGER_FACTORY_INITIAL_ARGUMENT = "loggerFactory";
+
     private static final long serialVersionUID = 1L;
 
     public static final String ROOT_PATH = "/root/";
@@ -102,34 +110,34 @@ public class VoiceXmlDialogueServlet
 
     private void setParameters() throws DialogueServletInitializationException {
 
-        ILoggerFactory loggerFactory = find("loggerFactory", ILoggerFactory.class);
+        ILoggerFactory loggerFactory = find(LOGGER_FACTORY_INITIAL_ARGUMENT, ILoggerFactory.class);
         if (loggerFactory != null) {
             setLoggerFactory(loggerFactory);
         }
 
-        VoiceXmlDialogueFactory dialogueFactory = find("dialogueFactory", VoiceXmlDialogueFactory.class);
+        VoiceXmlDialogueFactory dialogueFactory = find(DIALOGUE_FACTORY_INITIAL_ARGUMENT, VoiceXmlDialogueFactory.class);
         if (dialogueFactory != null) {
             setDialogueFactory(dialogueFactory);
         } else {
             setImplicitDialogueFactory();
         }
 
-        VoiceXmlErrorHandler errorHandler = find("errorHandler", VoiceXmlErrorHandler.class);
+        VoiceXmlErrorHandler errorHandler = find(ERROR_HANDLER_INITIAL_ARGUMENT, VoiceXmlErrorHandler.class);
         if (errorHandler != null) {
             setErrorHandler(errorHandler);
         }
 
-        TimeValue sessionScanPeriod = getTimeValue("sessionScanPeriod");
+        TimeValue sessionScanPeriod = getTimeValue(SESSION_SCAN_PERIOD_INITIAL_ARGUMENT);
         if (sessionScanPeriod != null) {
             setSessionScanPeriod(sessionScanPeriod);
         }
 
-        TimeValue sessionTimeout = getTimeValue("sessionTimeout");
+        TimeValue sessionTimeout = getTimeValue(SESSION_TIMEOUT_INITIAL_ARGUMENT);
         if (sessionTimeout != null) {
             setSessionTimeout(sessionTimeout);
         }
 
-        TimeValue dialogueTimeout = getTimeValue("dialogueTimeout");
+        TimeValue dialogueTimeout = getTimeValue(DIALOGUE_TIMEOUT_INITIAL_ARGUMENT);
         if (dialogueTimeout != null) {
             setDialogueTimeout(dialogueTimeout);
         }
