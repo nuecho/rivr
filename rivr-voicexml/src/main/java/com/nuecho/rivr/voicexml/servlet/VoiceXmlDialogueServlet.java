@@ -158,6 +158,7 @@ public class VoiceXmlDialogueServlet
                 throw new DialogueServletInitializationException(message);
             }
 
+            @SuppressWarnings("unchecked")
             Class<? extends VoiceXmlDialogue> dialogueClass = (Class<? extends VoiceXmlDialogue>) rawDialogueClass;
             setDialogueFactory(new SimpleVoiceXmlDialogueFactory(dialogueClass));
         } catch (ClassNotFoundException exception) {
