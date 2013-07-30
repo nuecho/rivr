@@ -66,6 +66,7 @@ public class VoiceXmlReturnTurn extends VoiceXmlLastTurn {
             }
         }
         blockElement.appendChild(returnElement);
+        addFatalErrorHandlerForm(dialogueContext, document, this);
 
         return document;
     }

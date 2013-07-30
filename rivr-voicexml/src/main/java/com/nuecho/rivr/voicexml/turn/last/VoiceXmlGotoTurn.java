@@ -59,6 +59,7 @@ public class VoiceXmlGotoTurn extends VoiceXmlLastTurn {
         if (mFetchConfiguration != null) {
             VoiceXmlDomUtil.applyDocumentFetchConfiguration(submitElement, dialogueContext);
         }
+        addFatalErrorHandlerForm(dialogueContext, document, this);
 
         return document;
     }

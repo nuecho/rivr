@@ -88,6 +88,8 @@ public class VoiceXmlSubmitTurn extends VoiceXmlLastTurn {
         addNamelist(blockElement, submitElement, mVariables);
         VoiceXmlDomUtil.applyDocumentFetchConfiguration(submitElement, mFetchConfiguration);
         blockElement.appendChild(submitElement);
+        addFatalErrorHandlerForm(dialogueContext, document, this);
+
         return document;
     }
 }

@@ -59,7 +59,9 @@ public class VoiceXmlExitTurn extends VoiceXmlLastTurn {
         } else if (mExpression != null) {
             exitElement.setAttribute(EXPR_ATTRIBUTE, mExpression);
         }
+
         blockElement.appendChild(exitElement);
+        addFatalErrorHandlerForm(dialogueContext, document, this);
 
         return document;
     }

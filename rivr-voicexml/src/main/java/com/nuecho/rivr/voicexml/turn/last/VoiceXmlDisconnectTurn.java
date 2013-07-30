@@ -52,6 +52,8 @@ public class VoiceXmlDisconnectTurn extends VoiceXmlLastTurn {
         }
 
         blockElement.appendChild(disconnectElement);
+        addFatalErrorHandlerForm(dialogueContext, document, this);
+
         return document;
     }
 }
