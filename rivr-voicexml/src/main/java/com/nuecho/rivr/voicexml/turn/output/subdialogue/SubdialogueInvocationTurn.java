@@ -31,7 +31,8 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @author Nu Echo Inc.
  * @see SubdialogueParameter
  * @see SubdialogueSubmitMethod
- * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.4">http://www.w3.org/TR/voicexml20/#dml2.3.4</a>
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml2.3.4">http://www.w3.org/TR/voicexml20/#dml2.3.4</a>
  */
 public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
     public static final String SUBDIALOGUE_RESULT_VARIABLE_NAME = "subdialogue";
@@ -80,8 +81,8 @@ public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param subdialogueParameters A list of variable to submit when invoking
-     *            the URI. Not null.
+     * @param submitParameters A list of variable to submit when invoking the
+     *            URI. Not null.
      */
     public final void setSubmitParameters(VariableDeclarationList submitParameters) {
         Assert.notNull(submitParameters, "submitParameters");
@@ -107,7 +108,7 @@ public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param postObjectScript The ECMAScript script to execute after
+     * @param postDialogueScript The ECMAScript script to execute after
      *            subdialogue invocation.
      */
     public final void setPostDialogueScript(String postDialogueScript) {

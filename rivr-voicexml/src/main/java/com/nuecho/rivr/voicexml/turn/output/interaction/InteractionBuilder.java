@@ -76,7 +76,7 @@ public final class InteractionBuilder {
      * value for this flag is <code>null</code>, meaning the barge-in type will
      * be platform-dependant.
      * 
-     * @param bargeInTyoe {@link BargeInType#SPEECH} or
+     * @param bargeInType {@link BargeInType#SPEECH} or
      *            {@link BargeInType#HOTWORD}. <code>null</code> reverts to
      *            platform default value.
      */
