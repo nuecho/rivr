@@ -14,6 +14,7 @@ import javax.servlet.http.*;
 import org.slf4j.*;
 import org.w3c.dom.*;
 
+import com.nuecho.rivr.core.dialogue.*;
 import com.nuecho.rivr.core.servlet.*;
 import com.nuecho.rivr.core.servlet.session.*;
 import com.nuecho.rivr.core.util.*;
@@ -109,6 +110,8 @@ public class VoiceXmlDialogueServlet
         VoiceXmlDialogueFactory dialogueFactory = find("dialogueFactory", VoiceXmlDialogueFactory.class);
         if (dialogueFactory != null) {
             setDialogueFactory(dialogueFactory);
+        } else {
+            setImplicitDialogueFactory();
         }
 
         VoiceXmlErrorHandler errorHandler = find("errorHandler", VoiceXmlErrorHandler.class);
@@ -129,6 +132,30 @@ public class VoiceXmlDialogueServlet
         TimeValue dialogueTimeout = getTimeValue("dialogueTimeout");
         if (dialogueTimeout != null) {
             setDialogueTimeout(dialogueTimeout);
+        }
+    }
+
+    private void setImplicitDialogueFactory() throws DialogueServletInitializationException {
+        String dialogueClassName = getServletConfig().getInitParameter(DIALOGUE_CLASS_INITIAL_ARGUMENT);
+        if (dialogueClassName == null) return;
+
+        try {
+            Class<?> rawDialogueClass = Class.forName(dialogueClassName);
+            if (!VoiceXmlDialogue.class.isAssignableFrom(rawDialogueClass)) {
+                String message = "Dialogue class "
+                                 + rawDialogueClass
+                                 + " does not implements "
+                                 + VoiceXmlDialogue.class.getName()
+                                 + ".";
+                throw new DialogueServletInitializationException(message);
+            }
+
+            Class<? extends VoiceXmlDialogue> dialogueClass = (Class<? extends VoiceXmlDialogue>) rawDialogueClass;
+            setDialogueFactory(new SimpleVoiceXmlDialogueFactory(dialogueClass));
+        } catch (ClassNotFoundException exception) {
+            throw new DialogueServletInitializationException("Cannot find dialogue class.", exception);
+        } catch (DialogueFactoryException exception) {
+            throw new DialogueServletInitializationException("Cannot initialize dialogue factory.", exception);
         }
     }
 
