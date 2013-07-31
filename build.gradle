@@ -59,7 +59,9 @@ subprojects {
         repositories {
             mavenDeployer(name: 'mavenCentral') {
                 repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                    authentication(userName: sonatypeUsername, password: sonatypePassword)
+                    if(hasProperty('sonatypeUsername') && hasProperty('sonatypePassword')){
+                        authentication(userName: sonatypeUsername, password: sonatypePassword)
+                    }
                 }
             }
             mavenDeployer(name: 'knox') { repository(url: "http://knox.s.nuecho.com/artifactory/libs-release-local") }
