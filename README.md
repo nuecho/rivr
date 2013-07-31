@@ -24,17 +24,18 @@ To "publish" the projects on artifactory, simply run the `publish` task: it will
 apply plugin: 'war' // Must be a webapp project
 configurations { dialogueRunner } // The name of the configuration can be anything
 dependencies {
-    dialogueRunner 'com.nuecho:dialogue-runner:0.1.0@war'
+    dialogueRunner 'com.nuecho:dialogue-runner:0.2.5@war'
 }
-repositories { ivy { url 'http://knox.s.nuecho.com/artifactory/libs-release-local' } }
+repositories { ivy { url 'your repository here.' } } // Use your favorite repository
 war{
-    from(zipTree(configurations.dialogueRunner.singleFile)){
-        into 'dialogue-runner' // configure where to put the dialogue-runner. Remove the closure to simply have it at the root.
+    def dialogueRunner = { zipTree(configurations.dialogueRunner.singleFile) } // This enables lazy resolving
+    from(dialogueRunner){
+        into 'dialogue-runner' // configure where to put in the webapp; remove to simply have it at the root.
     }
 }
 ```
 
-This is the Gradle recipe for war overlaying, simplified.
+This is the Gradle recipe for war overlaying, simplified for only one file.
 
 ## TODO
 
