@@ -2,12 +2,19 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse'
     apply plugin: 'checkstyle'
+    apply plugin: 'ivy-publish' // ivy publishing is for fallback if maven doesn't work.
+    apply plugin: 'maven'
+    apply plugin: 'signing'
 
     group = "com.nuecho"
     version = "0.2.5"
 
     dependencies { checkstyle 'com.puppycrawl.tools:checkstyle:5.5' }
     repositories { maven { url 'http://knox.s.nuecho.com/artifactory/libs-release' } }
+
+    publishing {
+        repositories { ivy { url 'http://knox.s.nuecho.com/artifactory/libs-release-local' } }
+    }
 
     checkstyle.configFile = rootProject.file('common/checkstyle/checkstyle.xml')
     sourceCompatibility = '1.6'
@@ -16,7 +23,7 @@ subprojects {
     checkstyleMain { classpath += configurations.compile }
     checkstyleTest { classpath += configurations.compile }
 
-    eclipse{
+    eclipse {
         project {
             natures 'net.sf.eclipsecs.core.CheckstyleNature'
             buildCommand 'net.sf.eclipsecs.core.CheckstyleBuilder'
@@ -28,29 +35,82 @@ subprojects {
             containers.add("org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6")
         }
     }
-}
 
-// Configure the projects that publish something.
-configure([
-    project("rivr-core"),
-    project("rivr-voicexml"),
-    project("rivr-voicexml:dialogue-runner")
-]) {
-    apply plugin: 'ivy-publish'
-    publishing {
-        repositories { ivy { url 'http://knox.s.nuecho.com/artifactory/libs-release-local' } }
+    task sourcesJar(type: Jar) {
+        from sourceSets.main.java
+        classifier 'sources'
+    }
+
+    // Required for Maven central
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    // Maven central release use the "old" uploadArchives mechanism since maven-publish doesn't support signing yet.
+    artifacts {
+        archives javadocJar
+        archives sourcesJar
+    }
+
+    signing { sign configurations.archives }
+
+    uploadArchives {
+        repositories {
+            mavenDeployer(name: 'mavenCentral') {
+                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                    authentication(userName: sonatypeUsername, password: sonatypePassword)
+                }
+            }
+            mavenDeployer(name: 'knox') { repository(url: "http://knox.s.nuecho.com/artifactory/libs-release-local") }
+            
+            configure([mavenCentral, knox]) {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+                pom.project {
+                    name 'rivr'
+                    description 'Rivr is a lightweight open-source dialogue engine enabling flexible VoiceXML web application development for the agile Java developer and enterprise.'
+                    url 'http://rivr.nuecho.com/'
+
+                    scm {
+                        url 'scm:git@github.com:nuecho/rivr.git'
+                        connection 'scm:git@github.com:nuecho/rivr.git'
+                        developerConnection 'scm:git@github.com:nuecho/rivr.git'
+                    }
+
+                    licenses {
+                        license {
+                            name 'The Apache Software License, Version 2.0'
+                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            distribution 'repo'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id 'nuecho'
+                            name 'Nu Echo inc.'
+                            email 'rivr@nuecho.com'
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
-// Configure the publications of java projects, with source code.
+// Configure the java projects release.
 configure([
     project("rivr-core"),
     project("rivr-voicexml")
 ]) {
+    artifacts { archives jar }
 
-    task sourceJar(type: Jar) {
-        from sourceSets.main.java
-        classifier 'sources'
+    uploadArchives{
+        repositories {
+            configure([mavenCentral, knox]){
+                pom.project{ packaging 'jar' }
+            }
+        }
     }
 
     publishing {
@@ -58,7 +118,7 @@ configure([
             ivy(IvyPublication) {
                 from components.java
                 configurations.create("sources")
-                artifact(sourceJar){
+                artifact(sourcesJar){
                     type 'source'
                     conf 'sources'
                 }
