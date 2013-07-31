@@ -54,7 +54,7 @@ subprojects {
     }
 
     signing {
-        required { gradle.taskGraph.hasTask("uploadArchives") }
+        required { gradle.taskGraph.hasTask("uploadArchives") } // Only sign during release.
         sign configurations.archives
     }
 
@@ -62,6 +62,8 @@ subprojects {
         repositories {
             mavenDeployer(name: 'mavenCentral') {
                 repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                    // Add credentials only if they are present in the project. 
+                    // Avoid build failure if not trying to release and user doesn't have proper credentials.
                     if(hasProperty('sonatypeUsername') && hasProperty('sonatypePassword')){
                         authentication(userName: sonatypeUsername, password: sonatypePassword)
                     }
@@ -69,8 +71,12 @@ subprojects {
             }
             mavenDeployer(name: 'knox') { repository(url: "http://knox.s.nuecho.com/artifactory/libs-release-local") }
 
+            // Configure both the mavenCentral and knox (internal) release in the same way.
             configure([mavenCentral, knox]) {
                 beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+                
+                // All these are required for maven central release. 
+                // See https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide#SonatypeOSSMavenRepositoryUsageGuide-6.CentralSyncRequirement
                 pom.project {
                     name 'rivr'
                     description 'Rivr is a lightweight open-source dialogue engine enabling flexible VoiceXML web application development for the agile Java developer and enterprise.'
@@ -85,7 +91,7 @@ subprojects {
                     licenses {
                         license {
                             name 'The Apache Software License, Version 2.0'
-                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            url 'http://www.apache.org/licenses/LICENSE-2.0.html'
                             distribution 'repo'
                         }
                     }
