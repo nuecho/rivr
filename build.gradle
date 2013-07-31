@@ -53,7 +53,10 @@ subprojects {
         archives sourcesJar
     }
 
-    signing { sign configurations.archives }
+    signing {
+        required { gradle.taskGraph.hasTask("uploadArchives") }
+        sign configurations.archives
+    }
 
     uploadArchives {
         repositories {
@@ -65,7 +68,7 @@ subprojects {
                 }
             }
             mavenDeployer(name: 'knox') { repository(url: "http://knox.s.nuecho.com/artifactory/libs-release-local") }
-            
+
             configure([mavenCentral, knox]) {
                 beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
                 pom.project {
