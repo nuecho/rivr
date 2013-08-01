@@ -16,7 +16,7 @@ subprojects {
         repositories { ivy { url 'http://knox.s.nuecho.com/artifactory/libs-release-local' } }
     }
 
-    checkstyle.configFile = rootProject.file('common/checkstyle/checkstyle.xml')
+    checkstyle.configFile = rootProject.file('checkstyle/checkstyle.xml')
     sourceCompatibility = '1.6'
 
     // Fix for Unable to get class information
