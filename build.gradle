@@ -100,7 +100,7 @@ subprojects {
                         developer {
                             id 'nuecho'
                             name 'Nu Echo inc.'
-                            email 'rivr@nuecho.com'
+                            email 'rivr-support@nuecho.com'
                         }
                     }
                 }
