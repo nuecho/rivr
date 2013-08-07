@@ -10,7 +10,7 @@ artifacts { archives war }
 
 uploadArchives {
     repositories {
-        configure([mavenCentral, knox]) {
+        mavenCentral {
             pom.project { packaging 'war' }
         }
     }

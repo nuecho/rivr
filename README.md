@@ -14,17 +14,17 @@ Install the Gradle IDE plugin from [Spring's update site](http://dist.springsour
 
 You can also configure which version of Gradle the IDE plugin uses: go to Window -> Preferences -> Gradle and change the URI of Gradle distribution. This is the same URL pattern as the Gradle wrapper.
 
-## Publishing
+## Dependency declaration
 
-To "publish" the projects on artifactory, simply run the `publish` task: it will build the projects and push the artifacts at knox. The group is set to `com.nuecho`, version is at `0.1.0` for now and the module name maps to the project name. To reference the published artifact, you declare a dependency on `"com.nuecho:rivr-voicexml:0.1.0"`. For the web interface (aka voicexml dialogue runner), here's the recipe to include it in a dependent webapp:
+To reference the published artifact, you declare a dependency on `"com.nuecho:rivr-voicexml:0.9.0"`. For the web interface (aka voicexml dialogue runner), here's the recipe to include it in a dependent webapp:
 
 ```groovy
 apply plugin: 'war' // Must be a webapp project
 configurations { dialogueRunner } // The name of the configuration can be anything
 dependencies {
-    dialogueRunner 'com.nuecho:dialogue-runner:0.2.5@war'
+    dialogueRunner 'com.nuecho:dialogue-runner:0.9,0@war'
 }
-repositories { ivy { url 'your repository here.' } } // Use your favorite repository
+repositories { mavenCentral() }
 war{
     def dialogueRunner = { zipTree(configurations.dialogueRunner.singleFile) } // This enables lazy resolving
     from(dialogueRunner){
@@ -34,10 +34,3 @@ war{
 ```
 
 This is the Gradle recipe for war overlaying, simplified for only one file.
-
-## TODO
-
-* Configure Eclipse projects to hide the build dir
-* Configure JDT settings from Gradle.
-* Revoir la gestion des resources javascript dans rivr-voicexml.
-* Better integration with Eclipse wrt webapp development

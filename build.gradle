@@ -12,10 +12,6 @@ subprojects {
     dependencies { checkstyle 'com.puppycrawl.tools:checkstyle:5.5' }
     repositories { mavenCentral() }
 
-    publishing {
-        repositories { ivy { url 'http://knox.s.nuecho.com/artifactory/libs-release-local' } }
-    }
-
     checkstyle.configFile = rootProject.file('checkstyle/checkstyle.xml')
     sourceCompatibility = '1.6'
 
@@ -68,14 +64,10 @@ subprojects {
                         authentication(userName: sonatypeUsername, password: sonatypePassword)
                     }
                 }
-            }
-            mavenDeployer(name: 'knox') { repository(url: "http://knox.s.nuecho.com/artifactory/libs-release-local") }
 
-            // Configure both the mavenCentral and knox (internal) release in the same way.
-            configure([mavenCentral, knox]) {
                 beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-                
-                // All these are required for maven central release. 
+
+                // All these are required for maven central release.
                 // See https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide#SonatypeOSSMavenRepositoryUsageGuide-6.CentralSyncRequirement
                 pom.project {
                     name 'rivr'
@@ -118,21 +110,8 @@ configure([
 
     uploadArchives{
         repositories {
-            configure([mavenCentral, knox]){
+            mavenCentral{
                 pom.project{ packaging 'jar' }
-            }
-        }
-    }
-
-    publishing {
-        publications {
-            ivy(IvyPublication) {
-                from components.java
-                configurations.create("sources")
-                artifact(sourcesJar){
-                    type 'source'
-                    conf 'sources'
-                }
             }
         }
     }
