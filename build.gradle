@@ -10,7 +10,7 @@ subprojects {
     version = "0.2.5"
 
     dependencies { checkstyle 'com.puppycrawl.tools:checkstyle:5.5' }
-    repositories { maven { url 'http://knox.s.nuecho.com/artifactory/libs-release' } }
+    repositories { mavenCentral() }
 
     publishing {
         repositories { ivy { url 'http://knox.s.nuecho.com/artifactory/libs-release-local' } }
