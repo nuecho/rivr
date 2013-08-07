@@ -62,9 +62,9 @@ subprojects {
         repositories {
             mavenDeployer(name: 'mavenCentral') {
                 repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                    // Add credentials only if they are present in the project. 
+                    // Add credentials only if they are present in the project.
                     // Avoid build failure if not trying to release and user doesn't have proper credentials.
-                    if(hasProperty('sonatypeUsername') && hasProperty('sonatypePassword')){
+                    if(project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')){
                         authentication(userName: sonatypeUsername, password: sonatypePassword)
                     }
                 }
