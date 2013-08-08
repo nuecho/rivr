@@ -21,7 +21,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
 /**
  * An <code>InteractionTurn</code> is a {@link VoiceXmlOutputTurn} that
  * represents a list of {@link InteractionPrompt} with an optional final
- * recognition of recording phase.
+ * recognition or recording phase.
  * <p>
  * Each {@link InteractionPrompt} represents a phase of the interaction with a
  * sequence of {@link AudioItem} and optional speech/dtmf recognition

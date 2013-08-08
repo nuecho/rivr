@@ -12,7 +12,7 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.turn.output.audio.*;
 
 /**
- * Builder used to ease creation of {@link InteractionTurn}
+ * Builder used to ease creation of instances of {@link InteractionTurn}
  * <p>
  * Building an {@link InteractionTurn} implies the following steps:
  * <ul>
@@ -23,13 +23,13 @@ import com.nuecho.rivr.voicexml.turn.output.audio.*;
  * </ul>
  * <li>Once all prompts are added, optionally specify either:
  * <ul>
- * <li>a final recognition windows (speech or DTMF)</li>
+ * <li>a final recognition window (speech or DTMF)</li>
  * <li>a recording</li>
  * </ul>
  * </ul>
  * <p>
  * At any time, it is possible to change the current language used for prompts
- * (relevant for speech synthesis) and the barge-in type, i.e. <i>speech</i> or
+ * (relevant to speech synthesis) and the barge-in type, i.e. <i>speech</i> or
  * <i>hotword</i>.
  * <p>
  * This can be translated to:
@@ -104,7 +104,7 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Add a prompt with DTMF recognition only.
+     * Adds a prompt with DTMF recognition only.
      * 
      * @param dtmfRecognitionConfiguration configuration for the DTMF
      *            recognition
@@ -116,7 +116,7 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Add a prompt with DTMF recognition only.
+     * Adds a prompt with DTMF recognition only.
      * 
      * @param dtmfRecognitionConfiguration configuration for the DTMF
      *            recognition
@@ -128,7 +128,7 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Add a prompt with speech recognition only.
+     * Adds a prompt with speech recognition only.
      * 
      * @param speechRecognitionConfiguration configuration for the speech
      *            recognition
@@ -140,7 +140,7 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Add a prompt with speech recognition only.
+     * Adds a prompt with speech recognition only.
      * 
      * @param speechRecognitionConfiguration configuration for the speech
      *            recognition
@@ -152,7 +152,7 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Add a prompt with both DTMF and speech recognition.
+     * Adds a prompt with both DTMF and speech recognition.
      * 
      * @param speechRecognitionConfiguration configuration for the speech
      *            recognition or <code>null</code> to disable DTMF recognition.
@@ -167,7 +167,7 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Add a prompt with both DTMF and speech recognition.
+     * Adds a prompt with both DTMF and speech recognition.
      * 
      * @param speechRecognitionConfiguration configuration for the speech
      *            recognition or <code>null</code> to disable DTMF recognition.
@@ -188,7 +188,7 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Add a prompt without any DTMF nor speech recognition (no barge-in).
+     * Adds a prompt without any DTMF nor speech recognition (no barge-in).
      * 
      * @param audioItems audio items to be played during this prompt.
      */
@@ -197,7 +197,7 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Add a prompt without any DTMF nor speech recognition (no barge-in).
+     * Adds a prompt without any DTMF nor speech recognition (no barge-in).
      * 
      * @param audioItems audio items to be played during this prompt.
      */
@@ -210,8 +210,8 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Build the interaction. This method will add a DTMF recognition window
-     * after the prompts.
+     * Builds the interaction. This method adds a DTMF recognition window after
+     * the prompts.
      * 
      * @param dtmfRecognitionConfiguration configuration for the DTMF
      *            recognition
@@ -228,7 +228,7 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Build the interaction. This method will add a speech recognition window
+     * Builds the interaction. This method adds a speech recognition window
      * after the prompts.
      * 
      * @param speechRecognitionConfiguration configuration for the speech
@@ -246,8 +246,8 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Build the interaction. This method will add a DTMF recognition window
-     * after the prompts.
+     * Builds the interaction. This method adds a DTMF recognition window after
+     * the prompts.
      * 
      * @param dtmfRecognitionConfiguration configuration for the DTMF
      *            recognition
@@ -263,7 +263,7 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Build the interaction. This method will add a speech recognition window
+     * Builds the interaction. This method adds a speech recognition window
      * after the prompts.
      * 
      * @param speechRecognitionConfiguration configuration for the speech
@@ -280,7 +280,7 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Build the interaction. This method will add a speech and DTMF recognition
+     * Builds the interaction. This method adds a speech and DTMF recognition
      * window after the prompts.
      * 
      * @param speechRecognitionConfiguration configuration for the speech
@@ -304,7 +304,7 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Build the interaction. This method will add a speech and DTMF recognition
+     * Builds the interaction. This method adds a speech and DTMF recognition
      * window after the prompts.
      * 
      * @param speechRecognitionConfiguration configuration for the speech
@@ -333,7 +333,7 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Build the interaction. This method will add a recording window after the
+     * Builds the interaction. This method adds a recording window after the
      * prompts.
      * 
      * @param recordingConfiguration configuration for the recording
@@ -349,7 +349,7 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Build the interaction. This method will add a recording window after the
+     * Builds the interaction. This method adds a recording window after the
      * prompts.
      * 
      * @param recordingConfiguration configuration for the recording
@@ -372,8 +372,8 @@ public final class InteractionBuilder {
     }
 
     /**
-     * Build the interaction. This method will not allow any recording nor
-     * recognition after the prompts
+     * Builds the interaction. This method does not allow any recording nor
+     * recognition after the prompts.
      */
     public InteractionTurn build() {
         checkBuilt();

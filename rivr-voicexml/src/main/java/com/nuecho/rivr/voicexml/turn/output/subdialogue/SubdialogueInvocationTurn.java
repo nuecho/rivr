@@ -16,7 +16,6 @@ import org.w3c.dom.*;
 import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.rendering.voicexml.*;
 import com.nuecho.rivr.voicexml.turn.*;
-import com.nuecho.rivr.voicexml.turn.last.*;
 import com.nuecho.rivr.voicexml.turn.output.*;
 import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
@@ -26,7 +25,8 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * invokes another external dialogue.
  * <p>
  * Parameters may be passed to the subdialogue and return values may be
- * retrieved if the subdialogue ends with a {@link VoiceXmlReturnTurn}.
+ * retrieved if the invoked subdialogue ends with a <code>&lt;return&gt;</code>
+ * instruction.
  * 
  * @author Nu Echo Inc.
  * @see SubdialogueParameter
