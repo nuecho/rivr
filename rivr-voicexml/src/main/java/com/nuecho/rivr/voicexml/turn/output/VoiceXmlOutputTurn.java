@@ -73,21 +73,20 @@ public abstract class VoiceXmlOutputTurn extends VoiceXmlDocumentTurn implements
         DomUtils.appendNewElement(ifErrorHandlingElement, ELSE_ELEMENT);
 
         StringBuilder setErrorHandlingScript = new StringBuilder();
-        setErrorHandlingScript.append(RIVR_SCOPE_OBJECT);
-        setErrorHandlingScript.append(".");
-        setErrorHandlingScript.append(LOCAL_ERROR_HANDLING_PROPERTY);
-        setErrorHandlingScript.append("=");
-        setErrorHandlingScript.append(TRUE);
+        setErrorHandlingScript.append(RIVR_SCOPE_OBJECT)
+                              .append(".")
+                              .append(LOCAL_ERROR_HANDLING_PROPERTY)
+                              .append("=")
+                              .append(TRUE);
         createScript(ifErrorHandlingElement, setErrorHandlingScript.toString());
 
         StringBuilder addEventScript = new StringBuilder();
-        addEventScript.append(RIVR_SCOPE_OBJECT);
-        addEventScript.append(".addEventResult(");
-        addEventScript.append(EVENT_NAME_VARIABLE);
-        addEventScript.append(", ");
-        addEventScript.append(EVENT_MESSAGE_VARIABLE);
-        addEventScript.append(")");
-        createScript(catchElement, addEventScript.toString());
+        addEventScript.append(RIVR_SCOPE_OBJECT)
+                      .append(".addEventResult(")
+                      .append(EVENT_NAME_VARIABLE)
+                      .append(", ")
+                      .append(EVENT_MESSAGE_VARIABLE)
+                      .append(")");
 
         createGotoSubmit(catchElement);
     }

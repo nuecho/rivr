@@ -213,31 +213,30 @@ public final class VoiceXmlDomUtil {
         vxmlElement.setAttribute(APPLICATION_ATTRIBUTE, rootDocumentPath);
 
         StringBuilder script = new StringBuilder();
-        script.append(RIVR_SCOPE_OBJECT);
-        script.append(".");
-        script.append(LOCAL_ERROR_HANDLING_PROPERTY);
-        script.append(" = ");
-        script.append(FALSE);
-        script.append("; ");
+        script.append(RIVR_SCOPE_OBJECT)
+              .append(".")
+              .append(LOCAL_ERROR_HANDLING_PROPERTY)
+              .append(" = ")
+              .append(FALSE)
+              .append("; ");
 
         if (turn != null) {
-            script.append(RIVR_SCOPE_OBJECT);
-            script.append(".");
-            script.append(RIVR_TURN_NAME_PROPERTY);
-            script.append(" = '");
-            script.append(turn.getName());
-            script.append("'; ");
+            script.append(RIVR_SCOPE_OBJECT)
+                  .append(".")
+                  .append(RIVR_TURN_NAME_PROPERTY)
+                  .append(" = ")
+                  .append(turn.getName())
+                  .append("; ");
         }
 
-        script.append(RIVR_SCOPE_OBJECT);
-        script.append(".");
-        script.append(RIVR_TURN_INDEX_PROPERTY);
-        script.append(" = ");
-        script.append(voiceXmlDialogueContext.getTurnIndex());
-        script.append("; ");
+        script.append(RIVR_SCOPE_OBJECT)
+              .append(".")
+              .append(RIVR_TURN_INDEX_PROPERTY)
+              .append(" = ")
+              .append(voiceXmlDialogueContext.getTurnIndex())
+              .append("; ");
 
-        script.append(RIVR_INPUT_TURN_SCOPE_OBJECT);
-        script.append(" = {};");
+        script.append(RIVR_INPUT_TURN_SCOPE_OBJECT).append(" = {};");
         createScript(vxmlElement, script.toString());
 
         processFetchRendering(voiceXmlDialogueContext, vxmlElement);
@@ -464,10 +463,8 @@ public final class VoiceXmlDomUtil {
         content = ECMASCRIPT_LINE_SEPARATOR_PATTERN.matcher(content).replaceAll("\\u2028");
         content = ECMASCRIPT_PARAGRAPH_SEPARATOR_PATTERN.matcher(content).replaceAll("\\u2029");
 
-        StringBuffer out = new StringBuffer();
-        out.append("'");
-        out.append(content);
-        out.append("'");
+        StringBuilder out = new StringBuilder();
+        out.append("'").append(content).append("'");
         return out.toString();
     }
 
