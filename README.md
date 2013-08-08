@@ -1,4 +1,12 @@
-## Command line
+## Overview
+
+
+Rivr is a lightweight open-source dialogue engine enabling flexible VoiceXML web application development for 
+the agile Java developer and enterprise.
+
+Read our [Getting Started](https://github.com/nuecho/rivr/wiki/Getting-Started) to learn more.
+
+## Command Line
 
 To build from the command line, use the gradlew script: `./gradlew build` on `*NIX` and `gradlew.bat build` on windows. To show a list of the usable tasks, run `gradlew tasks`.
 
