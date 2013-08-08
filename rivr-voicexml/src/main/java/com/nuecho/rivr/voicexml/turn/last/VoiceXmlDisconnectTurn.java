@@ -40,10 +40,8 @@ public class VoiceXmlDisconnectTurn extends VoiceXmlLastTurn {
     }
 
     @Override
-    protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
+    protected void fillVoiceXmlDocument(Document document, Element formElement, VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
-        Document document = createDocument(dialogueContext, this);
-        Element formElement = createForm(document);
         Element blockElement = DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
         Element disconnectElement = document.createElement(DISCONNECT_ELEMENT);
 
@@ -52,8 +50,5 @@ public class VoiceXmlDisconnectTurn extends VoiceXmlLastTurn {
         }
 
         blockElement.appendChild(disconnectElement);
-        addFatalErrorHandlerForm(dialogueContext, document, this);
-
-        return document;
     }
 }

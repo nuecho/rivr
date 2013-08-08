@@ -25,7 +25,8 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * platform-specific functionality.
  * 
  * @author Nu Echo Inc.
- * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.5">http://www.w3.org/TR/voicexml20/#dml2.3.5</a>
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml2.3.5">http://www.w3.org/TR/voicexml20/#dml2.3.5</a>
  */
 public class ObjectTurn extends VoiceXmlOutputTurn {
     public static final String OBJECT_RESULT_VARIABLE_NAME = "object";
@@ -200,10 +201,8 @@ public class ObjectTurn extends VoiceXmlOutputTurn {
     }
 
     @Override
-    protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
+    protected void fillVoiceXmlDocument(Document document, Element formElement, VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
-        Document document = createDocument(dialogueContext, this);
-        Element formElement = createForm(document);
 
         Element objectElement = DomUtils.appendNewElement(formElement, OBJECT_ELEMENT);
         objectElement.setAttribute(NAME_ATTRIBUTE, OBJECT_FORM_ITEM_NAME);
@@ -246,11 +245,6 @@ public class ObjectTurn extends VoiceXmlOutputTurn {
         }
 
         createScript(filledElement, RIVR_SCOPE_OBJECT + ".addValueResult(" + OBJECT_RESULT_VARIABLE_NAME + ");");
-
         createGotoSubmit(filledElement);
-        addSubmitForm(dialogueContext, document, this);
-        addFatalErrorHandlerForm(dialogueContext, document, this);
-
-        return document;
     }
 }

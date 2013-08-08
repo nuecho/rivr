@@ -49,10 +49,8 @@ public class VoiceXmlReturnTurn extends VoiceXmlLastTurn {
     }
 
     @Override
-    protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
+    protected void fillVoiceXmlDocument(Document document, Element formElement, VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
-        Document document = createDocument(dialogueContext, null);
-        Element formElement = createForm(document);
         Element blockElement = DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
         Element returnElement = document.createElement(RETURN_ELEMENT);
 
@@ -66,8 +64,5 @@ public class VoiceXmlReturnTurn extends VoiceXmlLastTurn {
             }
         }
         blockElement.appendChild(returnElement);
-        addFatalErrorHandlerForm(dialogueContext, document, this);
-
-        return document;
     }
 }

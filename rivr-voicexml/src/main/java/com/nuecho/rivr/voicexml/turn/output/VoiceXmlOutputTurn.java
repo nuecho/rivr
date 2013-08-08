@@ -3,9 +3,15 @@
  */
 package com.nuecho.rivr.voicexml.turn.output;
 
+import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;
+
 import javax.json.*;
 
+import org.w3c.dom.*;
+
 import com.nuecho.rivr.core.channel.*;
+import com.nuecho.rivr.core.util.*;
+import com.nuecho.rivr.voicexml.rendering.voicexml.*;
 import com.nuecho.rivr.voicexml.turn.*;
 import com.nuecho.rivr.voicexml.turn.output.interaction.*;
 import com.nuecho.rivr.voicexml.turn.output.object.*;
@@ -41,4 +47,53 @@ public abstract class VoiceXmlOutputTurn extends VoiceXmlDocumentTurn implements
     protected void addTopLevelProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, OUTPUT_TURN_TYPE_PROPERTY, getOuputTurnType());
     }
+
+    @Override
+    protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
+            throws VoiceXmlDocumentRenderingException {
+        Document document = createDocument(dialogueContext, this);
+        Element formElement = createForm(document);
+        fillVoiceXmlDocument(document, formElement, dialogueContext);
+        addEventHandler(document.getDocumentElement());
+        addFatalErrorHandlerForm(dialogueContext, document, this);
+        addSubmitForm(dialogueContext, document, this);
+        return document;
+    }
+
+    private static void addEventHandler(Element vxmlElement) {
+        Element catchElement = DomUtils.appendNewElement(vxmlElement, CATCH_ELEMENT);
+
+        Element ifErrorElement = DomUtils.appendNewElement(catchElement, IF_ELEMENT);
+        ifErrorElement.setAttribute(COND_ATTRIBUTE, "_event.substring(5) == \"error\"");
+
+        Element ifErrorHandlingElement = DomUtils.appendNewElement(ifErrorElement, IF_ELEMENT);
+        ifErrorHandlingElement.setAttribute(COND_ATTRIBUTE, RIVR_SCOPE_OBJECT + "." + LOCAL_ERROR_HANDLING_PROPERTY);
+        createGotoFatalHandler(ifErrorHandlingElement);
+
+        DomUtils.appendNewElement(ifErrorHandlingElement, ELSE_ELEMENT);
+
+        StringBuilder setErrorHandlingScript = new StringBuilder();
+        setErrorHandlingScript.append(RIVR_SCOPE_OBJECT);
+        setErrorHandlingScript.append(".");
+        setErrorHandlingScript.append(LOCAL_ERROR_HANDLING_PROPERTY);
+        setErrorHandlingScript.append("=");
+        setErrorHandlingScript.append(TRUE);
+        createScript(ifErrorHandlingElement, setErrorHandlingScript.toString());
+
+        StringBuilder addEventScript = new StringBuilder();
+        addEventScript.append(RIVR_SCOPE_OBJECT);
+        addEventScript.append(".addEventResult(");
+        addEventScript.append(EVENT_NAME_VARIABLE);
+        addEventScript.append(", ");
+        addEventScript.append(EVENT_MESSAGE_VARIABLE);
+        addEventScript.append(")");
+        createScript(catchElement, addEventScript.toString());
+
+        createGotoSubmit(catchElement);
+    }
+
+    protected abstract void fillVoiceXmlDocument(Document document,
+                                                 Element formElement,
+                                                 VoiceXmlDialogueContext dialogueContext)
+            throws VoiceXmlDocumentRenderingException;
 }

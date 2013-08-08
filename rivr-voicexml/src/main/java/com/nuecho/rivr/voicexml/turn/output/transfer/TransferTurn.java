@@ -22,8 +22,10 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see BlindTransferTurn
  * @see BridgeTransferTurn
  * @see ConsultationTransferTurn
- * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.6">http://www.w3.org/TR/voicexml20/#dml2.3.6</a>
- * @see <a href="http://www.w3.org/TR/voicexml21/#sec-transfer">http://www.w3.org/TR/voicexml21/#sec-transfer</a>
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml2.3.6">http://www.w3.org/TR/voicexml20/#dml2.3.6</a>
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml21/#sec-transfer">http://www.w3.org/TR/voicexml21/#sec-transfer</a>
  */
 public abstract class TransferTurn extends VoiceXmlOutputTurn {
     private static final String TRANSFER_TURN_TYPE = "transfer";
@@ -84,10 +86,8 @@ public abstract class TransferTurn extends VoiceXmlOutputTurn {
     }
 
     @Override
-    protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
+    protected void fillVoiceXmlDocument(Document document, Element formElement, VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
-        Document document = createDocument(dialogueContext, null);
-        Element formElement = createForm(document);
 
         Element transferElement = DomUtils.appendNewElement(formElement, TRANSFER_ELEMENT);
 
@@ -109,11 +109,6 @@ public abstract class TransferTurn extends VoiceXmlOutputTurn {
                         + TRANSFER_FORM_ITEM_NAME
                         + "$);";
         createScript(filledElement, script);
-
         createGotoSubmit(filledElement);
-        addSubmitForm(dialogueContext, document, this);
-        addFatalErrorHandlerForm(dialogueContext, document, this);
-
-        return document;
     }
 }

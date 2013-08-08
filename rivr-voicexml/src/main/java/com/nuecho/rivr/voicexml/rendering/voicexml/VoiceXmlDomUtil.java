@@ -243,7 +243,6 @@ public final class VoiceXmlDomUtil {
         processFetchRendering(voiceXmlDialogueContext, vxmlElement);
 
         processProperties(voiceXmlDialogueContext, vxmlElement);
-        addEventHandlers(vxmlElement);
 
         return vxmlElement.getOwnerDocument();
     }
@@ -543,38 +542,6 @@ public final class VoiceXmlDomUtil {
             Assert.notNull(fetchAudioHref, "fetchAudioHref");
             element.setAttribute(FETCH_AUDIO_ATTRIBUTE, fetchAudioHref);
         }
-    }
-
-    public static void addEventHandlers(Element vxmlElement) {
-        Element catchElement = DomUtils.appendNewElement(vxmlElement, CATCH_ELEMENT);
-
-        Element ifErrorElement = DomUtils.appendNewElement(catchElement, IF_ELEMENT);
-        ifErrorElement.setAttribute(COND_ATTRIBUTE, "_event.substring(0, 5) == \"error\"");
-
-        Element ifErrorHandlingElement = DomUtils.appendNewElement(ifErrorElement, IF_ELEMENT);
-        ifErrorHandlingElement.setAttribute(COND_ATTRIBUTE, RIVR_SCOPE_OBJECT + "." + LOCAL_ERROR_HANDLING_PROPERTY);
-        createGotoFatalHandler(ifErrorHandlingElement);
-
-        DomUtils.appendNewElement(ifErrorHandlingElement, ELSE_ELEMENT);
-
-        StringBuilder setErrorHandlingScript = new StringBuilder();
-        setErrorHandlingScript.append(RIVR_SCOPE_OBJECT);
-        setErrorHandlingScript.append(".");
-        setErrorHandlingScript.append(LOCAL_ERROR_HANDLING_PROPERTY);
-        setErrorHandlingScript.append("=");
-        setErrorHandlingScript.append(TRUE);
-        createScript(ifErrorHandlingElement, setErrorHandlingScript.toString());
-
-        StringBuilder addEventScript = new StringBuilder();
-        addEventScript.append(RIVR_SCOPE_OBJECT);
-        addEventScript.append(".addEventResult(");
-        addEventScript.append(EVENT_NAME_VARIABLE);
-        addEventScript.append(", ");
-        addEventScript.append(EVENT_MESSAGE_VARIABLE);
-        addEventScript.append(")");
-        createScript(catchElement, addEventScript.toString());
-
-        createGotoSubmit(catchElement);
     }
 
     public static void createGotoSubmit(Element parent) {

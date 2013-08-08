@@ -73,11 +73,8 @@ public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
     }
 
     @Override
-    protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
+    protected void fillVoiceXmlDocument(Document document, Element formElement, VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
-        Document document = createDocument(dialogueContext, null);
-        Element formElement = createForm(document);
-
         addVariableDeclarations(formElement, mVariables);
 
         Element blockElement = DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
@@ -106,11 +103,6 @@ public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
         scriptBuffer.append("});");
 
         createScript(blockElement, scriptBuffer.toString());
-
         createGotoSubmit(blockElement);
-        addSubmitForm(dialogueContext, document, this);
-        addFatalErrorHandlerForm(dialogueContext, document, this);
-
-        return document;
     }
 }

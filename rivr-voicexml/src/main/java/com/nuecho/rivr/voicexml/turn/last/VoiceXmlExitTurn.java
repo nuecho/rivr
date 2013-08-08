@@ -48,10 +48,8 @@ public class VoiceXmlExitTurn extends VoiceXmlLastTurn {
     }
 
     @Override
-    protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
+    protected void fillVoiceXmlDocument(Document document, Element formElement, VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
-        Document document = createDocument(dialogueContext, this);
-        Element formElement = createForm(document);
         Element blockElement = DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
         Element exitElement = document.createElement(EXIT_ELEMENT);
         if (mVariables != null) {
@@ -61,8 +59,5 @@ public class VoiceXmlExitTurn extends VoiceXmlLastTurn {
         }
 
         blockElement.appendChild(exitElement);
-        addFatalErrorHandlerForm(dialogueContext, document, this);
-
-        return document;
     }
 }

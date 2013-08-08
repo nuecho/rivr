@@ -108,10 +108,8 @@ public class InteractionTurn extends VoiceXmlOutputTurn {
     }
 
     @Override
-    protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
+    protected void fillVoiceXmlDocument(Document document, Element formElement, VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
-        Document document = createDocument(dialogueContext, null);
-        Element formElement = createForm(document);
 
         DtmfRecognitionConfiguration dtmfGlobalConfiguration = factorizeGlobalDtmfConfiguration();
         SpeechRecognitionConfiguration speechGlobalConfiguration = factorizeGlobalSpeechConfiguration();
@@ -242,11 +240,6 @@ public class InteractionTurn extends VoiceXmlOutputTurn {
         if (hasAtLeastOneField) {
             createFormLevelFilled(formElement);
         }
-
-        addSubmitForm(dialogueContext, document, this);
-        addFatalErrorHandlerForm(dialogueContext, document, this);
-
-        return document;
     }
 
     private static void renderPrompts(InteractionPrompt interactionPrompt,

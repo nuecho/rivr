@@ -155,10 +155,8 @@ public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
     }
 
     @Override
-    protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
+    protected void fillVoiceXmlDocument(Document document, Element formElement, VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
-        Document document = createDocument(dialogueContext, null);
-        Element formElement = createForm(document);
 
         List<String> submitNameList = new ArrayList<String>();
         VariableDeclarationList submitVariableList = mSubmitParameters;
@@ -205,11 +203,6 @@ public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
         }
 
         createScript(filledElement, RIVR_SCOPE_OBJECT + ".addValueResult(" + SUBDIALOGUE_RESULT_VARIABLE_NAME + ");");
-
         createGotoSubmit(filledElement);
-        addSubmitForm(dialogueContext, document, this);
-        addFatalErrorHandlerForm(dialogueContext, document, this);
-
-        return document;
     }
 }

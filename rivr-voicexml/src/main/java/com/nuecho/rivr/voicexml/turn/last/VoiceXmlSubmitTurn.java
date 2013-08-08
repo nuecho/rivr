@@ -78,18 +78,13 @@ public class VoiceXmlSubmitTurn extends VoiceXmlLastTurn {
     }
 
     @Override
-    protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
+    protected void fillVoiceXmlDocument(Document document, Element formElement, VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
-        Document document = createDocument(dialogueContext, this);
-        Element formElement = createForm(document);
         Element blockElement = DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
         Element submitElement = document.createElement(SUBMIT_ELEMENT);
         VoiceXmlDomUtil.setAttribute(submitElement, VoiceXmlDomUtil.NEXT_ATTRIBUTE, mUri);
         addNamelist(blockElement, submitElement, mVariables);
         VoiceXmlDomUtil.applyDocumentFetchConfiguration(submitElement, mFetchConfiguration);
         blockElement.appendChild(submitElement);
-        addFatalErrorHandlerForm(dialogueContext, document, this);
-
-        return document;
     }
 }
