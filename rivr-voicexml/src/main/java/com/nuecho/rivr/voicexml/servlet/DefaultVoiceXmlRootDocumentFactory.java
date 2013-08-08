@@ -6,8 +6,6 @@ package com.nuecho.rivr.voicexml.servlet;
 
 import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;
 
-import java.io.*;
-
 import javax.servlet.http.*;
 
 import org.w3c.dom.*;
@@ -44,7 +42,6 @@ public class DefaultVoiceXmlRootDocumentFactory implements VoiceXmlRootDocumentF
         createVarElement(vxmlElement, RIVR_VARIABLE, "{\"" + RIVR_DIALOGUE_ID_PROPERTY + "\": \"" + sessionId + "\"}");
 
         addScript(vxmlElement, VoiceXmlDialogueServlet.RIVR_SCRIPT, contextPath + servletPath);
-        addEventHandlers(vxmlElement);
         return vxmlElement.getOwnerDocument();
     }
 
@@ -53,11 +50,4 @@ public class DefaultVoiceXmlRootDocumentFactory implements VoiceXmlRootDocumentF
         scriptElement.setAttribute(SRC_ATTRIBUTE, contextPath + scriptPath);
     }
 
-    public static void main(String[] args) throws IOException {
-        VoiceXmlDialogueContext context = new VoiceXmlDialogueContext(null, null, "", "", "");
-        System.out.println(DomUtils.writeToString(new DefaultVoiceXmlRootDocumentFactory().createElement("",
-                                                                                                         "",
-                                                                                                         "sessionId",
-                                                                                                         context)));
-    }
 }
