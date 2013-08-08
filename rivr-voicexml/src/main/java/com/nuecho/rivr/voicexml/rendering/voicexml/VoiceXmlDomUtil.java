@@ -224,9 +224,9 @@ public final class VoiceXmlDomUtil {
             script.append(RIVR_SCOPE_OBJECT);
             script.append(".");
             script.append(RIVR_TURN_NAME_PROPERTY);
-            script.append(" = ");
+            script.append(" = '");
             script.append(turn.getName());
-            script.append("; ");
+            script.append("'; ");
         }
 
         script.append(RIVR_SCOPE_OBJECT);
@@ -603,7 +603,10 @@ public final class VoiceXmlDomUtil {
                                                             + ")");
 
         Element ifElement = DomUtils.appendNewElement(blockElement, IF_ELEMENT);
-        ifElement.setAttribute(COND_ATTRIBUTE, "hasRecording(" + RIVR_INPUT_TURN_SCOPE_OBJECT + ")");
+        ifElement.setAttribute(COND_ATTRIBUTE, RIVR_SCOPE_OBJECT
+                                               + ".hasRecording("
+                                               + RIVR_INPUT_TURN_SCOPE_OBJECT
+                                               + ")");
         createVarElement(ifElement, RECORDING_VARIABLE, RESULT_RECORDING_METADATA_DATA_SCOPE_OBJECT);
         createAssignation(ifElement, RESULT_RECORDING_METADATA_DATA_SCOPE_OBJECT, "undefined");
 
