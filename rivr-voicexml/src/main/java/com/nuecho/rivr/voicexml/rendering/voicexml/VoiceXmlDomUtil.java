@@ -243,6 +243,7 @@ public final class VoiceXmlDomUtil {
         processFetchRendering(voiceXmlDialogueContext, vxmlElement);
 
         processProperties(voiceXmlDialogueContext, vxmlElement);
+        addEventHandlers(vxmlElement);
 
         return vxmlElement.getOwnerDocument();
     }
