@@ -22,7 +22,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
  * An <code>ObjectTurn</code> is a {@link VoiceXmlOutputTurn} used to exploit
- * platform specific functionality.
+ * platform-specific functionality.
  * 
  * @author Nu Echo Inc.
  * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.5">http://www.w3.org/TR/voicexml20/#dml2.3.5</a>

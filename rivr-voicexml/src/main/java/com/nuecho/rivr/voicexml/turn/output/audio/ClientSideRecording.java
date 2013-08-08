@@ -26,7 +26,8 @@ public final class ClientSideRecording extends AudioItem {
     /**
      * @param expression An ECMAScript expression which determines the source of
      *            the audio to be played. The expression must be a reference to
-     *            audio previously recorded with the <record/> item. Not null.
+     *            an audio previously recorded with the <record/> item. Not
+     *            null.
      */
     public ClientSideRecording(String expression) {
         Assert.notNull(expression, "expression");
