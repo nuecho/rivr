@@ -548,7 +548,7 @@ public final class VoiceXmlDomUtil {
         Element catchElement = DomUtils.appendNewElement(vxmlElement, CATCH_ELEMENT);
 
         Element ifErrorElement = DomUtils.appendNewElement(catchElement, IF_ELEMENT);
-        ifErrorElement.setAttribute(COND_ATTRIBUTE, "_event.substring(5) == \"error\"");
+        ifErrorElement.setAttribute(COND_ATTRIBUTE, "_event.substring(0, 5) == \"error\"");
 
         Element ifErrorHandlingElement = DomUtils.appendNewElement(ifErrorElement, IF_ELEMENT);
         ifErrorHandlingElement.setAttribute(COND_ATTRIBUTE, RIVR_SCOPE_OBJECT + "." + LOCAL_ERROR_HANDLING_PROPERTY);
