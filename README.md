@@ -35,9 +35,7 @@ dependencies {
 repositories { mavenCentral() }
 war{
     def dialogueRunner = { zipTree(configurations.dialogueRunner.singleFile) } // This enables lazy resolving
-    from(dialogueRunner){
-        into 'dialogue-runner' // configure where to put in the webapp; remove to simply have it at the root.
-    }
+    from(dialogueRunner)
 }
 ```
 
