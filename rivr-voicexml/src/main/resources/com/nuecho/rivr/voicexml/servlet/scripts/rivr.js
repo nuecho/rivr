@@ -1,78 +1,76 @@
 /*global application */
 
 (function(rivr) {
-  var functions = {
-    addRecognitionResult : function() {
-      rivr.inputTurn.recognition = {
-        result : application.lastresult$,
-        inputMode : application.lastresult$.inputmode
+  
+  rivr.addRecognitionResult = function() {
+    rivr.inputTurn.recognition = {
+      result : application.lastresult$,
+      inputMode : application.lastresult$.inputmode
+    };
+
+    if (application.lastresult$.markname) {
+      rivr.inputTurn.recognition.mark = {
+        name : application.lastresult$.markname,
+        time : application.lastresult$.marktime
       };
-
-      if (application.lastresult$.markname) {
-        rivr.inputTurn.recognition.mark = {
-          name : application.lastresult$.markname,
-          time : application.lastresult$.marktime
-        };
-      }
-
-      if (application.lastresult$.recording) {
-        rivr.inputTurn.recordingMetaData = {
-          duration : application.lastresult$.recordingduration,
-          size : application.lastresult$.recordingsize
-        };
-
-        rivr.inputTurn.recordingMetaData.data = application.lastresult$.recording;
-      }
-    },
-
-    addRecordingResult : function(field, fieldShadow, addAudio) {
-      rivr.inputTurn.recordingMetaData = {
-        duration : fieldShadow.duration,
-        size : fieldShadow.size,
-        termChar : fieldShadow.termchar,
-        maxTime : fieldShadow.maxtime
-      };
-
-      if (addAudio) {
-        rivr.inputTurn.recordingMetaData.data = field;
-      }
-    },
-
-    addTransferResult : function(field, fieldShadow) {
-
-      var duration;
-      if (fieldShadow) {
-        duration = fieldShadow.duration;
-      } else {
-        duration = 0;
-      }
-
-      rivr.inputTurn.transfer = {
-        status : field,
-        duration : duration
-      };
-    },
-
-    addEventResult : function(name, message) {
-      if (!rivr.inputTurn.events) {
-        rivr.inputTurn.events = [];
-      }
-
-      var event = {
-        name : name,
-        message : message
-      };
-
-      rivr.inputTurn.events.push(event);
-    },
-
-    addValueResult : function(value) {
-      rivr.inputTurn.value = value;
-    },
-    
-    hasRecording : function(inputTurn) {
-      return inputTurn.recordingMetaData !== undefined && inputTurn.recordingMetaData.data !== undefined;
     }
+
+    if (application.lastresult$.recording) {
+      rivr.inputTurn.recordingMetaData = {
+        duration : application.lastresult$.recordingduration,
+        size : application.lastresult$.recordingsize
+      };
+
+      rivr.inputTurn.recordingMetaData.data = application.lastresult$.recording;
+    }
+  };
+
+  rivr.addRecordingResult = function(field, fieldShadow, addAudio) {
+    rivr.inputTurn.recordingMetaData = {
+      duration : fieldShadow.duration,
+      size : fieldShadow.size,
+      termChar : fieldShadow.termchar,
+      maxTime : fieldShadow.maxtime
+    };
+
+    if (addAudio) {
+      rivr.inputTurn.recordingMetaData.data = field;
+    }
+  };
+
+  rivr.addTransferResult = function(field, fieldShadow) {
+    var duration;
+    if (fieldShadow) {
+      duration = fieldShadow.duration;
+    } else {
+      duration = 0;
+    }
+
+    rivr.inputTurn.transfer = {
+      status : field,
+      duration : duration
+    };
+  };
+
+  rivr.addEventResult = function(name, message) {
+    if (!rivr.inputTurn.events) {
+      rivr.inputTurn.events = [];
+    }
+
+    var event = {
+      name : name,
+      message : message
+    };
+
+    rivr.inputTurn.events.push(event);
+  };
+
+  rivr.addValueResult = function(value) {
+    rivr.inputTurn.value = value;
+  };
+
+  rivr.hasRecording = function(inputTurn) {
+    return inputTurn.recordingMetaData !== undefined && inputTurn.recordingMetaData.data !== undefined;
   };
 
   function serialize(value, cycleDetectionValues) {
@@ -197,13 +195,6 @@
   } else {
     // defaulting to custom JSON serialization function
     rivr.toJson = serialize;
-  }
-
-  var functionName;
-  for (functionName in functions) {
-    if (functions.hasOwnProperty(functionName)) {
-      rivr[functionName] = functions[functionName];
-    }
   }
 
 })(application.rivr !== undefined ? application.rivr : document.rivr);
