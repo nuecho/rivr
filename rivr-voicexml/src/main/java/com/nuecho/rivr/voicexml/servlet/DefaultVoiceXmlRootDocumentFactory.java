@@ -39,7 +39,7 @@ public class DefaultVoiceXmlRootDocumentFactory implements VoiceXmlRootDocumentF
                                      String sessionId,
                                      VoiceXmlDialogueContext dialogueContext) {
         Element vxmlElement = createVoiceXmlDocumentRoot(dialogueContext);
-        createVarElement(vxmlElement, RIVR_VARIABLE, "{\"" + RIVR_DIALOGUE_ID_PROPERTY + "\": \"" + sessionId + "\"}");
+        createVarElement(vxmlElement, RIVR_VARIABLE, "({\"" + RIVR_DIALOGUE_ID_PROPERTY + "\": \"" + sessionId + "\"})");
 
         addScript(vxmlElement, VoiceXmlDialogueServlet.RIVR_SCRIPT, contextPath + servletPath);
         return vxmlElement.getOwnerDocument();
