@@ -67,7 +67,7 @@ public class VoiceXmlDialogueServlet
 
     private List<VoiceXmlDocumentAdapter> mVoiceXmlDocumentAdapters;
 
-    protected void initVoiceXmlDialogueServlet() {}
+    protected void initializeVoiceXmlDialogueServlet() {}
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -98,8 +98,8 @@ public class VoiceXmlDialogueServlet
         setInputTurnFactory(new VoiceXmlInputTurnFactory());
         setDialogueContextFactory(new VoiceXmlDialogueContextFactory());
         setErrorHandler(new DefaultErrorHandler());
-        setParameters();
-        initVoiceXmlDialogueServlet();
+        initializeProperties();
+        initializeVoiceXmlDialogueServlet();
 
         mVoiceXmlStepRenderer = new VoiceXmlStepRenderer(mVoiceXmlDocumentAdapters);
         mJsonStepRenderer = new JsonStepRenderer(mVoiceXmlStepRenderer);
@@ -109,7 +109,7 @@ public class VoiceXmlDialogueServlet
         mVoiceXmlDocumentAdapters = voiceXmlDocumentAdapters;
     }
 
-    private void setParameters() throws DialogueServletInitializationException {
+    private void initializeProperties() throws DialogueServletInitializationException {
 
         ILoggerFactory loggerFactory = find(INITIAL_ARGUMENT_LOGGER_FACTORY, ILoggerFactory.class);
         if (loggerFactory != null) {
