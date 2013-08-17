@@ -38,15 +38,16 @@ public class VoiceXmlDialogueServlet
         extends
         DialogueServlet<VoiceXmlInputTurn, VoiceXmlOutputTurn, VoiceXmlFirstTurn, VoiceXmlLastTurn, VoiceXmlDialogueContext> {
 
-    private static final String DIALOGUE_TIMEOUT_INITIAL_ARGUMENT = "dialogueTimeout";
-    private static final String SESSION_TIMEOUT_INITIAL_ARGUMENT = "sessionTimeout";
-    private static final String SESSION_SCAN_PERIOD_INITIAL_ARGUMENT = "sessionScanPeriod";
-    private static final String ERROR_HANDLER_INITIAL_ARGUMENT = "errorHandler";
-    private static final String DIALOGUE_FACTORY_INITIAL_ARGUMENT = "dialogueFactory";
-    private static final String DIALOGUE_CLASS_INITIAL_ARGUMENT = "dialogue.class";
-    private static final String LOGGER_FACTORY_INITIAL_ARGUMENT = "loggerFactory";
-
     private static final long serialVersionUID = 1L;
+
+    private static final String INITIAL_ARGUMENT_PREFIX = "com.nuecho.rivr.voicexml.";
+    private static final String INITIAL_ARGUMENT_DIALOGUE_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "dialogueTimeout";
+    private static final String INITIAL_ARGUMENT_SESSION_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "sessionTimeout";
+    private static final String INITIAL_ARGUMENT_SESSION_SCAN_PERIOD = INITIAL_ARGUMENT_PREFIX + "sessionScanPeriod";
+    private static final String INITIAL_ARGUMENT_ERROR_HANDLER = INITIAL_ARGUMENT_PREFIX + "errorHandler";
+    private static final String INITIAL_ARGUMENT_DIALOGUE_FACTORY = INITIAL_ARGUMENT_PREFIX + "dialogueFactory";
+    private static final String INITIAL_ARGUMENT_DIALOGUE_CLASS = INITIAL_ARGUMENT_PREFIX + "dialogue.class";
+    private static final String INITIAL_ARGUMENT_LOGGER_FACTORY = INITIAL_ARGUMENT_PREFIX + "loggerFactory";
 
     public static final String ROOT_PATH = "/root/";
     public static final String RIVR_SCRIPT = "/scripts/rivr.js";
@@ -110,7 +111,7 @@ public class VoiceXmlDialogueServlet
 
     private void setParameters() throws DialogueServletInitializationException {
 
-        ILoggerFactory loggerFactory = find(LOGGER_FACTORY_INITIAL_ARGUMENT, ILoggerFactory.class);
+        ILoggerFactory loggerFactory = find(INITIAL_ARGUMENT_LOGGER_FACTORY, ILoggerFactory.class);
         if (loggerFactory != null) {
             setLoggerFactory(loggerFactory);
         }
@@ -122,29 +123,29 @@ public class VoiceXmlDialogueServlet
             setImplicitDialogueFactory();
         }
 
-        VoiceXmlErrorHandler errorHandler = find(ERROR_HANDLER_INITIAL_ARGUMENT, VoiceXmlErrorHandler.class);
+        VoiceXmlErrorHandler errorHandler = find(INITIAL_ARGUMENT_ERROR_HANDLER, VoiceXmlErrorHandler.class);
         if (errorHandler != null) {
             setErrorHandler(errorHandler);
         }
 
-        TimeValue sessionScanPeriod = getTimeValue(SESSION_SCAN_PERIOD_INITIAL_ARGUMENT);
+        TimeValue sessionScanPeriod = getTimeValue(INITIAL_ARGUMENT_SESSION_SCAN_PERIOD);
         if (sessionScanPeriod != null) {
             setSessionScanPeriod(sessionScanPeriod);
         }
 
-        TimeValue sessionTimeout = getTimeValue(SESSION_TIMEOUT_INITIAL_ARGUMENT);
+        TimeValue sessionTimeout = getTimeValue(INITIAL_ARGUMENT_SESSION_TIMEOUT);
         if (sessionTimeout != null) {
             setSessionTimeout(sessionTimeout);
         }
 
-        TimeValue dialogueTimeout = getTimeValue(DIALOGUE_TIMEOUT_INITIAL_ARGUMENT);
+        TimeValue dialogueTimeout = getTimeValue(INITIAL_ARGUMENT_DIALOGUE_TIMEOUT);
         if (dialogueTimeout != null) {
             setDialogueTimeout(dialogueTimeout);
         }
     }
 
     private void setImplicitDialogueFactory() throws DialogueServletInitializationException {
-        String dialogueClassName = getServletConfig().getInitParameter(DIALOGUE_CLASS_INITIAL_ARGUMENT);
+        String dialogueClassName = getServletConfig().getInitParameter(INITIAL_ARGUMENT_DIALOGUE_CLASS);
         if (dialogueClassName == null) return;
 
         try {
