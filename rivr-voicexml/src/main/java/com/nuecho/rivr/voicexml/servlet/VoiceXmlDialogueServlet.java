@@ -261,7 +261,7 @@ public class VoiceXmlDialogueServlet
         String ifNoneMatch = request.getHeader(IF_NONE_MATCH);
 
         if (eTag.equals(ifNoneMatch)) {
-            response.sendError(HttpServletResponse.SC_NOT_MODIFIED, "Not Modifed");
+            response.sendError(HttpServletResponse.SC_NOT_MODIFIED, "Not Modified");
         } else {
             response.setContentType(JAVASCRIPT_CONTENT_TYPE);
             response.addHeader(ETAG, eTag);
