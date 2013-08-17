@@ -225,7 +225,7 @@ public final class VoiceXmlDomUtil {
                   .append(".")
                   .append(RIVR_TURN_NAME_PROPERTY)
                   .append(" = ")
-                  .append(turn.getName())
+                  .append(createEcmaScriptStringLiteral(turn.getName()))
                   .append("; ");
         }
 
