@@ -25,6 +25,8 @@ import com.nuecho.rivr.core.util.*;
 public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn, F extends FirstTurn, L extends LastTurn, C extends DialogueContext<I, O>>
         extends HttpServlet {
 
+    private static final String MDC_KEY_DIALOGUE_ID = "dialogueId";
+
     private static final String SESSION_LOGGER_NAME = "com.nuecho.rivr.session";
     private static final String DIALOGUE_LOGGER_NAME = "com.nuecho.rivr.dialogue";
 
@@ -175,7 +177,7 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         Session<I, O, F, L, C> session;
         try {
             session = getSession(request);
-            MDC.put("dialogueId", session.getId());
+            MDC.put(MDC_KEY_DIALOGUE_ID, session.getId());
         } catch (SessionNotFoundException exception) {
             throw new ServletException("Cannot find session.", exception);
         }
