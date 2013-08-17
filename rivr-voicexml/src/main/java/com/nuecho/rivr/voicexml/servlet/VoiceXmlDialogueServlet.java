@@ -116,7 +116,7 @@ public class VoiceXmlDialogueServlet
             setLoggerFactory(loggerFactory);
         }
 
-        VoiceXmlDialogueFactory dialogueFactory = find(DIALOGUE_FACTORY_INITIAL_ARGUMENT, VoiceXmlDialogueFactory.class);
+        VoiceXmlDialogueFactory dialogueFactory = getDialogueFactory();
         if (dialogueFactory != null) {
             setDialogueFactory(dialogueFactory);
         } else {
@@ -196,7 +196,7 @@ public class VoiceXmlDialogueServlet
     }
 
     protected VoiceXmlDialogueFactory getDialogueFactory() throws DialogueServletInitializationException {
-        return find("dialogFactory", VoiceXmlDialogueFactory.class);
+        return find(INITIAL_ARGUMENT_DIALOGUE_FACTORY, VoiceXmlDialogueFactory.class);
     }
 
     private <T> T findInServletContext(String servletContextKey, Class<T> type, String item)
