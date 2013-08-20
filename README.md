@@ -1,8 +1,6 @@
 ## Overview
 
-
-Rivr is a lightweight open-source dialogue engine enabling flexible VoiceXML web application development for 
-the agile Java developer and enterprise.
+Rivr is a lightweight open-source dialogue engine enabling Java developers to easily create enterprise-grade VoiceXML applications.
 
 Read our [Getting Started](https://github.com/nuecho/rivr/wiki/Getting-Started) to learn more.
 
@@ -24,13 +22,13 @@ You can also configure which version of Gradle the IDE plugin uses: go to Window
 
 ## Dependency declaration
 
-To reference the published artifact, you declare a dependency on `"com.nuecho:rivr-voicexml:0.9.0"`. For the web interface (aka voicexml dialogue runner), here's the recipe to include it in a dependent webapp:
+To reference the published artifact, you declare a dependency on `"com.nuecho:rivr-voicexml:0.9.2"`. For the web interface (aka voicexml dialogue runner), here's the recipe to include it in a dependent webapp:
 
 ```groovy
 apply plugin: 'war' // Must be a webapp project
 configurations { dialogueRunner } // The name of the configuration can be anything
 dependencies {
-    dialogueRunner 'com.nuecho:dialogue-runner:0.9,0@war'
+    dialogueRunner 'com.nuecho:dialogue-runner:0.9.2@war'
 }
 repositories { mavenCentral() }
 war{
