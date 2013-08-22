@@ -4,11 +4,17 @@ Rivr is a lightweight open-source dialogue engine enabling Java developers to ea
 
 Read our [Getting Started](https://github.com/nuecho/rivr/wiki/Getting-Started) to learn more.
 
-## Command Line
+You can also get started by trying some of the Rivr sample applications:
 
-To build from the command line, use the gradlew script: `./gradlew build` on `*NIX` and `gradlew.bat build` on windows. To show a list of the usable tasks, run `gradlew tasks`.
+- [Hello World](http://github.com/nuecho/rivr-helloworld) - a very simple hello world application
+- [Voicemail](http://github.com/nuecho/rivr-voicemail) - a prototype voicemail application 
+- [SpeechTEK 2013 Demo](http://github.com/schemeway/rivr-speechtek-demo)
 
-Note: remember that Gradle permits camel-case shortcuts for the task name, as such `teCl` resolves to `testClasses`.
+## How to build
+
+To build the library from the command line, use the gradlew script: `./gradlew build` on `*NIX` and `gradlew.bat build` on windows. To show a list of the usable tasks, run `gradlew tasks`.
+
+Note: remember that Gradle allwos camel-case shortcuts for the task name, as such `teCl` resolves to `testClasses`.
 
 ### Configuring the Gradle wrapper
 
@@ -20,21 +26,34 @@ Install the Gradle IDE plugin from [Spring's update site](http://dist.springsour
 
 You can also configure which version of Gradle the IDE plugin uses: go to Window -> Preferences -> Gradle and change the URI of Gradle distribution. This is the same URL pattern as the Gradle wrapper.
 
+The Rivr subprojects (rivr-core and rivr-voicexml) can also be imported into Eclipse without using the Gradle plugin. In order to to so, you must generate the corresponding `.project` files. Simply run `gradlew eclipse`.
+
 ## Dependency declaration
 
-To reference the published artifact, you declare a dependency on `"com.nuecho:rivr-voicexml:0.9.2"`. For the web interface (aka voicexml dialogue runner), here's the recipe to include it in a dependent webapp:
+To reference the published artifact from another project, you declare a dependency on `"com.nuecho:rivr-voicexml:0.9.2"`:
+
+```groovy
+dependencies {
+    compile 'com.nuecho:rivr-voicexml:0.9.2'
+}
+```
+
+## Dialogue runner
+
+
+To include the dialogue runner (web interface to simulate VoiceXML) in your Rivr application, include the following in your `build.gradle` file:
 
 ```groovy
 apply plugin: 'war' // Must be a webapp project
-configurations { dialogueRunner } // The name of the configuration can be anything
+configurations { dialogueRunner } 
 dependencies {
     dialogueRunner 'com.nuecho:dialogue-runner:0.9.2@war'
 }
 repositories { mavenCentral() }
-war{
+war {
     def dialogueRunner = { zipTree(configurations.dialogueRunner.singleFile) } // This enables lazy resolving
     from(dialogueRunner)
 }
 ```
 
-This is the Gradle recipe for war overlaying, simplified for only one file.
+(See the Gradle documentatin for more information on war overlaying.)
