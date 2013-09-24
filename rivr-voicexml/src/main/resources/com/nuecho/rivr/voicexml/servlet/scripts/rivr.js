@@ -1,7 +1,7 @@
 /*global application */
 
 (function(rivr) {
-  
+
   rivr.addRecognitionResult = function() {
     rivr.inputTurn.recognition = {
       result : application.lastresult$,
@@ -53,7 +53,7 @@
   };
 
   rivr.addEventResult = function(name, message) {
-    if (!rivr.inputTurn.events) {
+    if (!rivr.inputTurn.hasOwnProperty("events")) {
       rivr.inputTurn.events = [];
     }
 
@@ -70,7 +70,7 @@
   };
 
   rivr.hasRecording = function(inputTurn) {
-    return inputTurn.recordingMetaData !== undefined && inputTurn.recordingMetaData.data !== undefined;
+    return inputTurn.hasOwnProperty("recordingMetaData") && inputTurn.recordingMetaData.hasOwnProperty("data");
   };
 
   function serialize(value, cycleDetectionValues) {
@@ -197,4 +197,4 @@
     rivr.toJson = serialize;
   }
 
-})(application.rivr !== undefined ? application.rivr : document.rivr);
+})(application.hasOwnProperty("rivr") ? application.rivr : document.rivr);
