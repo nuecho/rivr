@@ -65,7 +65,7 @@ public class VoiceXmlDialogueServlet
 
     private VoiceXmlRootDocumentFactory mRootDocumentFactory = new DefaultVoiceXmlRootDocumentFactory();
 
-    private List<VoiceXmlDocumentAdapter> mVoiceXmlDocumentAdapters;
+    private List<? extends VoiceXmlDocumentAdapter> mVoiceXmlDocumentAdapters;
 
     protected void initializeVoiceXmlDialogueServlet() {}
 
