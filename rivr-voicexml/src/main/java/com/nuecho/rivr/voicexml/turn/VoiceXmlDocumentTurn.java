@@ -34,6 +34,9 @@ public abstract class VoiceXmlDocumentTurn implements JsonSerializable, NamedTur
     protected abstract Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException;
 
+    /**
+     * @param builder
+     */
     protected void addTopLevelProperties(JsonObjectBuilder builder) {}
 
     protected abstract void addTurnProperties(JsonObjectBuilder builder);
