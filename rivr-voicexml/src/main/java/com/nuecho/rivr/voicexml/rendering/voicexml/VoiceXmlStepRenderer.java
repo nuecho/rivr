@@ -27,8 +27,8 @@ public class VoiceXmlStepRenderer implements
 
     private final List<VoiceXmlDocumentAdapter> mVoiceXmlDocumentAdapters;
 
-    public VoiceXmlStepRenderer(List<VoiceXmlDocumentAdapter> voiceXmlDocumentAdapters) {
-        mVoiceXmlDocumentAdapters = voiceXmlDocumentAdapters;
+    public VoiceXmlStepRenderer(List<? extends VoiceXmlDocumentAdapter> voiceXmlDocumentAdapters) {
+        mVoiceXmlDocumentAdapters = new ArrayList<VoiceXmlDocumentAdapter>(voiceXmlDocumentAdapters);
     }
 
     @Override
