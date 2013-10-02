@@ -255,7 +255,7 @@ public class VoiceXmlDialogueServlet
 
     private void processRessource(HttpServletRequest request, HttpServletResponse response, String pathInfo)
             throws IOException, ServletException {
-        InputStream inputStream = getClass().getResourceAsStream(pathInfo.substring(1));
+        InputStream inputStream = VoiceXmlDialogueServlet.class.getResourceAsStream(pathInfo.substring(1));
         byte[] bytes = IOUtils.toByteArray(inputStream);
         String eTag = getETag(bytes);
         String ifNoneMatch = request.getHeader(IF_NONE_MATCH);
