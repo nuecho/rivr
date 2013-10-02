@@ -25,10 +25,10 @@ public class VoiceXmlStepRenderer implements
 
     private static final String VOICE_XML_MIME_TYPE = "application/voicexml+xml";
 
-    private final List<? extends VoiceXmlDocumentAdapter> mVoiceXmlDocumentAdapters;
+    private final List<VoiceXmlDocumentAdapter> mVoiceXmlDocumentAdapters;
 
     public VoiceXmlStepRenderer(List<? extends VoiceXmlDocumentAdapter> voiceXmlDocumentAdapters) {
-        mVoiceXmlDocumentAdapters = voiceXmlDocumentAdapters;
+        mVoiceXmlDocumentAdapters = new ArrayList<VoiceXmlDocumentAdapter>(voiceXmlDocumentAdapters);
     }
 
     @Override
