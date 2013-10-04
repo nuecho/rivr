@@ -41,6 +41,18 @@ public class VoiceXmlReturnTurn extends VoiceXmlLastTurn {
         mEventMessage = eventMessage;
     }
 
+    public VariableDeclarationList getVariables() {
+        return mVariables;
+    }
+
+    public String getEventName() {
+        return mEventName;
+    }
+
+    public String getEventMessage() {
+        return mEventMessage;
+    }
+
     @Override
     protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, VARIABLES_PROPERTY, mVariables);

@@ -40,6 +40,10 @@ public class VoiceXmlGotoTurn extends VoiceXmlLastTurn {
         mFetchConfiguration = fetchConfiguration;
     }
 
+    public String getUri() {
+        return mUri;
+    }
+
     @Override
     protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, URI_PROPERTY, mUri);

@@ -41,6 +41,14 @@ public class VoiceXmlExitTurn extends VoiceXmlLastTurn {
         mExpression = expression;
     }
 
+    public VariableDeclarationList getVariables() {
+        return mVariables;
+    }
+
+    public String getExpression() {
+        return mExpression;
+    }
+
     @Override
     protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, VARIABLES_PROPERTY, mVariables);
