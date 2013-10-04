@@ -145,7 +145,7 @@ public abstract class TestDialogueChannel<I extends InputTurn, O extends OutputT
         throw new AssertionError("Last output turn was not a last turn step. Last step=" + mLastStep);
     }
 
-    public final Throwable getLastAsError() {
+    public final Throwable getLastStepAsError() {
         if (mLastStep instanceof ErrorStep) {
             ErrorStep<O, L> errorStep = (ErrorStep<O, L>) mLastStep;
             return errorStep.getThrowable();
