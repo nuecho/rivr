@@ -157,6 +157,56 @@ public final class RecordingConfiguration implements JsonSerializable {
     }
 
     @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((mBeep == null) ? 0 : mBeep.hashCode());
+        result = prime
+                 * result
+                 + ((mClientSideAssignationDestination == null) ? 0 : mClientSideAssignationDestination.hashCode());
+        result = prime * result + ((mDtmfTerm == null) ? 0 : mDtmfTerm.hashCode());
+        result = prime
+                 * result
+                 + ((mDtmfTermRecognitionConfiguration == null) ? 0 : mDtmfTermRecognitionConfiguration.hashCode());
+        result = prime * result + ((mFinalSilence == null) ? 0 : mFinalSilence.hashCode());
+        result = prime * result + ((mMaximumTime == null) ? 0 : mMaximumTime.hashCode());
+        result = prime * result + (mPostAudioToServer ? 1231 : 1237);
+        result = prime * result + ((mType == null) ? 0 : mType.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        RecordingConfiguration other = (RecordingConfiguration) obj;
+        if (mBeep == null) {
+            if (other.mBeep != null) return false;
+        } else if (!mBeep.equals(other.mBeep)) return false;
+        if (mClientSideAssignationDestination == null) {
+            if (other.mClientSideAssignationDestination != null) return false;
+        } else if (!mClientSideAssignationDestination.equals(other.mClientSideAssignationDestination)) return false;
+        if (mDtmfTerm == null) {
+            if (other.mDtmfTerm != null) return false;
+        } else if (!mDtmfTerm.equals(other.mDtmfTerm)) return false;
+        if (mDtmfTermRecognitionConfiguration == null) {
+            if (other.mDtmfTermRecognitionConfiguration != null) return false;
+        } else if (!mDtmfTermRecognitionConfiguration.equals(other.mDtmfTermRecognitionConfiguration)) return false;
+        if (mFinalSilence == null) {
+            if (other.mFinalSilence != null) return false;
+        } else if (!mFinalSilence.equals(other.mFinalSilence)) return false;
+        if (mMaximumTime == null) {
+            if (other.mMaximumTime != null) return false;
+        } else if (!mMaximumTime.equals(other.mMaximumTime)) return false;
+        if (mPostAudioToServer != other.mPostAudioToServer) return false;
+        if (mType == null) {
+            if (other.mType != null) return false;
+        } else if (!mType.equals(other.mType)) return false;
+        return true;
+    }
+
+    @Override
     public String toString() {
         return asJson().toString();
     }

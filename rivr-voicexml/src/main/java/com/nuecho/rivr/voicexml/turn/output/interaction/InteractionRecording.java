@@ -71,6 +71,34 @@ public final class InteractionRecording implements JsonSerializable {
     }
 
     @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((mAcknowledgeAudioItems == null) ? 0 : mAcknowledgeAudioItems.hashCode());
+        result = prime * result + ((mNoInputTimeout == null) ? 0 : mNoInputTimeout.hashCode());
+        result = prime * result + ((mRecordingConfiguration == null) ? 0 : mRecordingConfiguration.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        InteractionRecording other = (InteractionRecording) obj;
+        if (mAcknowledgeAudioItems == null) {
+            if (other.mAcknowledgeAudioItems != null) return false;
+        } else if (!mAcknowledgeAudioItems.equals(other.mAcknowledgeAudioItems)) return false;
+        if (mNoInputTimeout == null) {
+            if (other.mNoInputTimeout != null) return false;
+        } else if (!mNoInputTimeout.equals(other.mNoInputTimeout)) return false;
+        if (mRecordingConfiguration == null) {
+            if (other.mRecordingConfiguration != null) return false;
+        } else if (!mRecordingConfiguration.equals(other.mRecordingConfiguration)) return false;
+        return true;
+    }
+
+    @Override
     public String toString() {
         return asJson().toString();
     }
