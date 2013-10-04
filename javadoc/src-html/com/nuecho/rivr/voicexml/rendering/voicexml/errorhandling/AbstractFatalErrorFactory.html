@@ -1,0 +1,104 @@
+<HTML>
+<BODY BGCOLOR="white">
+<PRE>
+<FONT color="green">001</FONT>    /*<a name="line.1"></a>
+<FONT color="green">002</FONT>     * Copyright (c) 2013 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
+<FONT color="green">003</FONT>     */<a name="line.3"></a>
+<FONT color="green">004</FONT>    <a name="line.4"></a>
+<FONT color="green">005</FONT>    package com.nuecho.rivr.voicexml.rendering.voicexml.errorhandling;<a name="line.5"></a>
+<FONT color="green">006</FONT>    <a name="line.6"></a>
+<FONT color="green">007</FONT>    import org.w3c.dom.*;<a name="line.7"></a>
+<FONT color="green">008</FONT>    <a name="line.8"></a>
+<FONT color="green">009</FONT>    import com.nuecho.rivr.core.util.*;<a name="line.9"></a>
+<FONT color="green">010</FONT>    import com.nuecho.rivr.voicexml.rendering.voicexml.*;<a name="line.10"></a>
+<FONT color="green">011</FONT>    import com.nuecho.rivr.voicexml.turn.*;<a name="line.11"></a>
+<FONT color="green">012</FONT>    <a name="line.12"></a>
+<FONT color="green">013</FONT>    /**<a name="line.13"></a>
+<FONT color="green">014</FONT>     * @author Nu Echo Inc.<a name="line.14"></a>
+<FONT color="green">015</FONT>     */<a name="line.15"></a>
+<FONT color="green">016</FONT>    public class AbstractFatalErrorFactory implements FatalErrorFormFactory {<a name="line.16"></a>
+<FONT color="green">017</FONT>    <a name="line.17"></a>
+<FONT color="green">018</FONT>        private final String mElementName;<a name="line.18"></a>
+<FONT color="green">019</FONT>    <a name="line.19"></a>
+<FONT color="green">020</FONT>        public AbstractFatalErrorFactory(String elementName) {<a name="line.20"></a>
+<FONT color="green">021</FONT>            mElementName = elementName;<a name="line.21"></a>
+<FONT color="green">022</FONT>        }<a name="line.22"></a>
+<FONT color="green">023</FONT>    <a name="line.23"></a>
+<FONT color="green">024</FONT>        @Override<a name="line.24"></a>
+<FONT color="green">025</FONT>        public void addFatalErrorForm(Element form, VoiceXmlDocumentTurn turn) {<a name="line.25"></a>
+<FONT color="green">026</FONT>            Element blockElement = VoiceXmlDomUtil.addBlockElement(form);<a name="line.26"></a>
+<FONT color="green">027</FONT>            Element element = DomUtils.appendNewElement(blockElement, mElementName);<a name="line.27"></a>
+<FONT color="green">028</FONT>            customizeForm(form, blockElement, element);<a name="line.28"></a>
+<FONT color="green">029</FONT>        }<a name="line.29"></a>
+<FONT color="green">030</FONT>    <a name="line.30"></a>
+<FONT color="green">031</FONT>        /**<a name="line.31"></a>
+<FONT color="green">032</FONT>         * @param form<a name="line.32"></a>
+<FONT color="green">033</FONT>         * @param blockElement<a name="line.33"></a>
+<FONT color="green">034</FONT>         * @param element<a name="line.34"></a>
+<FONT color="green">035</FONT>         */<a name="line.35"></a>
+<FONT color="green">036</FONT>        protected void customizeForm(Element form, Element blockElement, Element element) {}<a name="line.36"></a>
+<FONT color="green">037</FONT>    <a name="line.37"></a>
+<FONT color="green">038</FONT>    }<a name="line.38"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+</BODY>
+</HTML>

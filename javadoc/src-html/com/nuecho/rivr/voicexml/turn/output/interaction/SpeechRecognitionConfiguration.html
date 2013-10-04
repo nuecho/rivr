@@ -1,0 +1,303 @@
+<HTML>
+<BODY BGCOLOR="white">
+<PRE>
+<FONT color="green">001</FONT>    /*<a name="line.1"></a>
+<FONT color="green">002</FONT>     * Copyright (c) 2002-2010 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
+<FONT color="green">003</FONT>     */<a name="line.3"></a>
+<FONT color="green">004</FONT>    <a name="line.4"></a>
+<FONT color="green">005</FONT>    package com.nuecho.rivr.voicexml.turn.output.interaction;<a name="line.5"></a>
+<FONT color="green">006</FONT>    <a name="line.6"></a>
+<FONT color="green">007</FONT>    import java.util.*;<a name="line.7"></a>
+<FONT color="green">008</FONT>    <a name="line.8"></a>
+<FONT color="green">009</FONT>    import javax.json.*;<a name="line.9"></a>
+<FONT color="green">010</FONT>    <a name="line.10"></a>
+<FONT color="green">011</FONT>    import com.nuecho.rivr.core.util.*;<a name="line.11"></a>
+<FONT color="green">012</FONT>    import com.nuecho.rivr.voicexml.turn.output.grammar.*;<a name="line.12"></a>
+<FONT color="green">013</FONT>    import com.nuecho.rivr.voicexml.util.json.*;<a name="line.13"></a>
+<FONT color="green">014</FONT>    <a name="line.14"></a>
+<FONT color="green">015</FONT>    /**<a name="line.15"></a>
+<FONT color="green">016</FONT>     * A &lt;code&gt;SpeechRecognitionConfiguration&lt;/code&gt; represents the speech part of<a name="line.16"></a>
+<FONT color="green">017</FONT>     * an interaction phase recognition configuration. It is composed of a list of<a name="line.17"></a>
+<FONT color="green">018</FONT>     * speech {@link GrammarItem} and optional properties (complete timeout,<a name="line.18"></a>
+<FONT color="green">019</FONT>     * incomplete timeout, max speech timeout, max nbest, confidence level, speed<a name="line.19"></a>
+<FONT color="green">020</FONT>     * versus accuracy and sensitivity).<a name="line.20"></a>
+<FONT color="green">021</FONT>     * <a name="line.21"></a>
+<FONT color="green">022</FONT>     * @author Nu Echo Inc.<a name="line.22"></a>
+<FONT color="green">023</FONT>     */<a name="line.23"></a>
+<FONT color="green">024</FONT>    public final class SpeechRecognitionConfiguration extends RecognitionConfiguration {<a name="line.24"></a>
+<FONT color="green">025</FONT>    <a name="line.25"></a>
+<FONT color="green">026</FONT>        private static final String SPEED_VERSUS_ACCURACY_PROPERTY = "speedVersusAccuracy";<a name="line.26"></a>
+<FONT color="green">027</FONT>        private static final String SENSITIVITY_PROPERTY = "sensitivity";<a name="line.27"></a>
+<FONT color="green">028</FONT>        private static final String MAX_N_BEST_PROPERTY = "maxNBest";<a name="line.28"></a>
+<FONT color="green">029</FONT>        private static final String CONFIDENCE_LEVEL_PROPERTY = "confidenceLevel";<a name="line.29"></a>
+<FONT color="green">030</FONT>        private static final String MAX_SPEECH_TIMEOUT_PROPERTY = "maxSpeechTimeout";<a name="line.30"></a>
+<FONT color="green">031</FONT>        private static final String INCOMPLETE_TIMEOUT_PROPERTY = "incompleteTimeout";<a name="line.31"></a>
+<FONT color="green">032</FONT>        private static final String COMPLETE_TIMEOUT_PROPERTY = "completeTimeout";<a name="line.32"></a>
+<FONT color="green">033</FONT>        private TimeValue mCompleteTimeout;<a name="line.33"></a>
+<FONT color="green">034</FONT>        private TimeValue mIncompleteTimeout;<a name="line.34"></a>
+<FONT color="green">035</FONT>        private TimeValue mMaxSpeechTimeout;<a name="line.35"></a>
+<FONT color="green">036</FONT>        private Integer mMaxNBest;<a name="line.36"></a>
+<FONT color="green">037</FONT>    <a name="line.37"></a>
+<FONT color="green">038</FONT>        private Double mConfidenceLevel;<a name="line.38"></a>
+<FONT color="green">039</FONT>        private Double mSpeedVersusAccuracy;<a name="line.39"></a>
+<FONT color="green">040</FONT>        private Double mSensitivity;<a name="line.40"></a>
+<FONT color="green">041</FONT>    <a name="line.41"></a>
+<FONT color="green">042</FONT>        /**<a name="line.42"></a>
+<FONT color="green">043</FONT>         * @param grammarItems The list of speech {@link GrammarItem}. Not null.<a name="line.43"></a>
+<FONT color="green">044</FONT>         */<a name="line.44"></a>
+<FONT color="green">045</FONT>        public SpeechRecognitionConfiguration(GrammarItem... grammarItems) {<a name="line.45"></a>
+<FONT color="green">046</FONT>            super(grammarItems);<a name="line.46"></a>
+<FONT color="green">047</FONT>        }<a name="line.47"></a>
+<FONT color="green">048</FONT>    <a name="line.48"></a>
+<FONT color="green">049</FONT>        /**<a name="line.49"></a>
+<FONT color="green">050</FONT>         * @param grammarItems The list of speech {@link GrammarItem}. Not null.<a name="line.50"></a>
+<FONT color="green">051</FONT>         */<a name="line.51"></a>
+<FONT color="green">052</FONT>        public SpeechRecognitionConfiguration(List&lt;GrammarItem&gt; grammarItems) {<a name="line.52"></a>
+<FONT color="green">053</FONT>            super(grammarItems);<a name="line.53"></a>
+<FONT color="green">054</FONT>        }<a name="line.54"></a>
+<FONT color="green">055</FONT>    <a name="line.55"></a>
+<FONT color="green">056</FONT>        /**<a name="line.56"></a>
+<FONT color="green">057</FONT>         * @param completeTimeout The required length of silence following user<a name="line.57"></a>
+<FONT color="green">058</FONT>         *            speech before the speech recognizer finalizes a complete<a name="line.58"></a>
+<FONT color="green">059</FONT>         *            result. Null reverts to VoiceXML default value.<a name="line.59"></a>
+<FONT color="green">060</FONT>         * @see &lt;a href="http://www.w3.org/TR/voicexml20/#dml6.3.2"&gt;http://www.w3.org/TR/voicexml20/#dml6.3.2&lt;/a&gt;<a name="line.60"></a>
+<FONT color="green">061</FONT>         */<a name="line.61"></a>
+<FONT color="green">062</FONT>        public void setCompleteTimeout(TimeValue completeTimeout) {<a name="line.62"></a>
+<FONT color="green">063</FONT>            mCompleteTimeout = completeTimeout;<a name="line.63"></a>
+<FONT color="green">064</FONT>        }<a name="line.64"></a>
+<FONT color="green">065</FONT>    <a name="line.65"></a>
+<FONT color="green">066</FONT>        /**<a name="line.66"></a>
+<FONT color="green">067</FONT>         * @param incompleteTimeout The required length of silence following user<a name="line.67"></a>
+<FONT color="green">068</FONT>         *            speech after which a recognizer finalizes an incomplete<a name="line.68"></a>
+<FONT color="green">069</FONT>         *            result. Null reverts to VoiceXML default value.<a name="line.69"></a>
+<FONT color="green">070</FONT>         * @see &lt;a href="http://www.w3.org/TR/voicexml20/#dml6.3.2"&gt;http://www.w3.org/TR/voicexml20/#dml6.3.2&lt;/a&gt;<a name="line.70"></a>
+<FONT color="green">071</FONT>         */<a name="line.71"></a>
+<FONT color="green">072</FONT>        public void setIncompleteTimeout(TimeValue incompleteTimeout) {<a name="line.72"></a>
+<FONT color="green">073</FONT>            mIncompleteTimeout = incompleteTimeout;<a name="line.73"></a>
+<FONT color="green">074</FONT>        }<a name="line.74"></a>
+<FONT color="green">075</FONT>    <a name="line.75"></a>
+<FONT color="green">076</FONT>        /**<a name="line.76"></a>
+<FONT color="green">077</FONT>         * @param maxSpeechTimeout The maximum duration of user speech. Null reverts<a name="line.77"></a>
+<FONT color="green">078</FONT>         *            to VoiceXML default value.<a name="line.78"></a>
+<FONT color="green">079</FONT>         * @see &lt;a href="http://www.w3.org/TR/voicexml20/#dml6.3.2"&gt;http://www.w3.org/TR/voicexml20/#dml6.3.2&lt;/a&gt;<a name="line.79"></a>
+<FONT color="green">080</FONT>         */<a name="line.80"></a>
+<FONT color="green">081</FONT>        public void setMaxSpeechTimeout(TimeValue maxSpeechTimeout) {<a name="line.81"></a>
+<FONT color="green">082</FONT>            mMaxSpeechTimeout = maxSpeechTimeout;<a name="line.82"></a>
+<FONT color="green">083</FONT>        }<a name="line.83"></a>
+<FONT color="green">084</FONT>    <a name="line.84"></a>
+<FONT color="green">085</FONT>        /**<a name="line.85"></a>
+<FONT color="green">086</FONT>         * @param maxNBest The maximum size of the recognition result. Must be a<a name="line.86"></a>
+<FONT color="green">087</FONT>         *            positive integer. Null reverts to VoiceXML default value.<a name="line.87"></a>
+<FONT color="green">088</FONT>         * @see &lt;a href="http://www.w3.org/TR/voicexml20/#dml6.3.2"&gt;http://www.w3.org/TR/voicexml20/#dml6.3.2&lt;/a&gt;<a name="line.88"></a>
+<FONT color="green">089</FONT>         */<a name="line.89"></a>
+<FONT color="green">090</FONT>        public void setMaxNBest(Integer maxNBest) {<a name="line.90"></a>
+<FONT color="green">091</FONT>            if (maxNBest != null) {<a name="line.91"></a>
+<FONT color="green">092</FONT>                Assert.positive(maxNBest, "maxNBest");<a name="line.92"></a>
+<FONT color="green">093</FONT>            }<a name="line.93"></a>
+<FONT color="green">094</FONT>    <a name="line.94"></a>
+<FONT color="green">095</FONT>            mMaxNBest = maxNBest;<a name="line.95"></a>
+<FONT color="green">096</FONT>        }<a name="line.96"></a>
+<FONT color="green">097</FONT>    <a name="line.97"></a>
+<FONT color="green">098</FONT>        /**<a name="line.98"></a>
+<FONT color="green">099</FONT>         * @param confidenceLevel The speech recognition confidence level. Results<a name="line.99"></a>
+<FONT color="green">100</FONT>         *            with confidence below this value will be rejected (nomatch).<a name="line.100"></a>
+<FONT color="green">101</FONT>         *            Value must be between 0.0 and 1.0. Null reverts to VoiceXML<a name="line.101"></a>
+<FONT color="green">102</FONT>         *            default value.<a name="line.102"></a>
+<FONT color="green">103</FONT>         * @see &lt;a href="http://www.w3.org/TR/voicexml20/#dml6.3.2"&gt;http://www.w3.org/TR/voicexml20/#dml6.3.2&lt;/a&gt;<a name="line.103"></a>
+<FONT color="green">104</FONT>         */<a name="line.104"></a>
+<FONT color="green">105</FONT>        public void setConfidenceLevel(Double confidenceLevel) {<a name="line.105"></a>
+<FONT color="green">106</FONT>            if (confidenceLevel != null) {<a name="line.106"></a>
+<FONT color="green">107</FONT>                Assert.between(0, confidenceLevel, 1.0);<a name="line.107"></a>
+<FONT color="green">108</FONT>            }<a name="line.108"></a>
+<FONT color="green">109</FONT>    <a name="line.109"></a>
+<FONT color="green">110</FONT>            mConfidenceLevel = confidenceLevel;<a name="line.110"></a>
+<FONT color="green">111</FONT>        }<a name="line.111"></a>
+<FONT color="green">112</FONT>    <a name="line.112"></a>
+<FONT color="green">113</FONT>        /**<a name="line.113"></a>
+<FONT color="green">114</FONT>         * @param speedVersusAccuracy A hint specifying the desired balance between<a name="line.114"></a>
+<FONT color="green">115</FONT>         *            speed versus accuracy. A value of 0.0 means fastest<a name="line.115"></a>
+<FONT color="green">116</FONT>         *            recognition. A value of 1.0 means best accuracy. Null reverts<a name="line.116"></a>
+<FONT color="green">117</FONT>         *            to VoiceXML default value.<a name="line.117"></a>
+<FONT color="green">118</FONT>         * @see &lt;a href="http://www.w3.org/TR/voicexml20/#dml6.3.2"&gt;http://www.w3.org/TR/voicexml20/#dml6.3.2&lt;/a&gt;<a name="line.118"></a>
+<FONT color="green">119</FONT>         */<a name="line.119"></a>
+<FONT color="green">120</FONT>        public void setSpeedVersusAccuracy(Double speedVersusAccuracy) {<a name="line.120"></a>
+<FONT color="green">121</FONT>            if (speedVersusAccuracy != null) {<a name="line.121"></a>
+<FONT color="green">122</FONT>                Assert.between(0, speedVersusAccuracy, 1.0);<a name="line.122"></a>
+<FONT color="green">123</FONT>            }<a name="line.123"></a>
+<FONT color="green">124</FONT>    <a name="line.124"></a>
+<FONT color="green">125</FONT>            mSpeedVersusAccuracy = speedVersusAccuracy;<a name="line.125"></a>
+<FONT color="green">126</FONT>        }<a name="line.126"></a>
+<FONT color="green">127</FONT>    <a name="line.127"></a>
+<FONT color="green">128</FONT>        /**<a name="line.128"></a>
+<FONT color="green">129</FONT>         * @param sensitivity Set the sensitivity level. A value of 1.0 means that<a name="line.129"></a>
+<FONT color="green">130</FONT>         *            it is highly sensitive to quiet input. A value of 0.0 means it<a name="line.130"></a>
+<FONT color="green">131</FONT>         *            is least sensitive to noise. Null reverts to VoiceXML default<a name="line.131"></a>
+<FONT color="green">132</FONT>         *            value.<a name="line.132"></a>
+<FONT color="green">133</FONT>         */<a name="line.133"></a>
+<FONT color="green">134</FONT>        public void setSensitivity(Double sensitivity) {<a name="line.134"></a>
+<FONT color="green">135</FONT>            if (sensitivity != null) {<a name="line.135"></a>
+<FONT color="green">136</FONT>                Assert.between(0, sensitivity, 1.0);<a name="line.136"></a>
+<FONT color="green">137</FONT>            }<a name="line.137"></a>
+<FONT color="green">138</FONT>    <a name="line.138"></a>
+<FONT color="green">139</FONT>            mSensitivity = sensitivity;<a name="line.139"></a>
+<FONT color="green">140</FONT>        }<a name="line.140"></a>
+<FONT color="green">141</FONT>    <a name="line.141"></a>
+<FONT color="green">142</FONT>        public TimeValue getCompleteTimeout() {<a name="line.142"></a>
+<FONT color="green">143</FONT>            return mCompleteTimeout;<a name="line.143"></a>
+<FONT color="green">144</FONT>        }<a name="line.144"></a>
+<FONT color="green">145</FONT>    <a name="line.145"></a>
+<FONT color="green">146</FONT>        public TimeValue getIncompleteTimeout() {<a name="line.146"></a>
+<FONT color="green">147</FONT>            return mIncompleteTimeout;<a name="line.147"></a>
+<FONT color="green">148</FONT>        }<a name="line.148"></a>
+<FONT color="green">149</FONT>    <a name="line.149"></a>
+<FONT color="green">150</FONT>        public TimeValue getMaxSpeechTimeout() {<a name="line.150"></a>
+<FONT color="green">151</FONT>            return mMaxSpeechTimeout;<a name="line.151"></a>
+<FONT color="green">152</FONT>        }<a name="line.152"></a>
+<FONT color="green">153</FONT>    <a name="line.153"></a>
+<FONT color="green">154</FONT>        public Integer getMaxNBest() {<a name="line.154"></a>
+<FONT color="green">155</FONT>            return mMaxNBest;<a name="line.155"></a>
+<FONT color="green">156</FONT>        }<a name="line.156"></a>
+<FONT color="green">157</FONT>    <a name="line.157"></a>
+<FONT color="green">158</FONT>        public Double getConfidenceLevel() {<a name="line.158"></a>
+<FONT color="green">159</FONT>            return mConfidenceLevel;<a name="line.159"></a>
+<FONT color="green">160</FONT>        }<a name="line.160"></a>
+<FONT color="green">161</FONT>    <a name="line.161"></a>
+<FONT color="green">162</FONT>        public Double getSpeedVersusAccuracy() {<a name="line.162"></a>
+<FONT color="green">163</FONT>            return mSpeedVersusAccuracy;<a name="line.163"></a>
+<FONT color="green">164</FONT>        }<a name="line.164"></a>
+<FONT color="green">165</FONT>    <a name="line.165"></a>
+<FONT color="green">166</FONT>        public Double getSensitivity() {<a name="line.166"></a>
+<FONT color="green">167</FONT>            return mSensitivity;<a name="line.167"></a>
+<FONT color="green">168</FONT>        }<a name="line.168"></a>
+<FONT color="green">169</FONT>    <a name="line.169"></a>
+<FONT color="green">170</FONT>        @Override<a name="line.170"></a>
+<FONT color="green">171</FONT>        protected void addJsonProperties(JsonObjectBuilder builder) {<a name="line.171"></a>
+<FONT color="green">172</FONT>            JsonUtils.addTimeProperty(builder, COMPLETE_TIMEOUT_PROPERTY, mCompleteTimeout);<a name="line.172"></a>
+<FONT color="green">173</FONT>            JsonUtils.addTimeProperty(builder, INCOMPLETE_TIMEOUT_PROPERTY, mIncompleteTimeout);<a name="line.173"></a>
+<FONT color="green">174</FONT>            JsonUtils.addTimeProperty(builder, MAX_SPEECH_TIMEOUT_PROPERTY, mMaxSpeechTimeout);<a name="line.174"></a>
+<FONT color="green">175</FONT>            JsonUtils.addNumberProperty(builder, CONFIDENCE_LEVEL_PROPERTY, mConfidenceLevel);<a name="line.175"></a>
+<FONT color="green">176</FONT>            JsonUtils.addNumberProperty(builder, MAX_N_BEST_PROPERTY, mMaxNBest);<a name="line.176"></a>
+<FONT color="green">177</FONT>            JsonUtils.addNumberProperty(builder, SENSITIVITY_PROPERTY, mSensitivity);<a name="line.177"></a>
+<FONT color="green">178</FONT>            JsonUtils.addNumberProperty(builder, SPEED_VERSUS_ACCURACY_PROPERTY, mSpeedVersusAccuracy);<a name="line.178"></a>
+<FONT color="green">179</FONT>        }<a name="line.179"></a>
+<FONT color="green">180</FONT>    <a name="line.180"></a>
+<FONT color="green">181</FONT>        @Override<a name="line.181"></a>
+<FONT color="green">182</FONT>        public int hashCode() {<a name="line.182"></a>
+<FONT color="green">183</FONT>            final int prime = 31;<a name="line.183"></a>
+<FONT color="green">184</FONT>            int result = 1;<a name="line.184"></a>
+<FONT color="green">185</FONT>            result = prime * result + (mCompleteTimeout == null ? 0 : mCompleteTimeout.hashCode());<a name="line.185"></a>
+<FONT color="green">186</FONT>            result = prime * result + (mMaxNBest == null ? 0 : mMaxNBest.hashCode());<a name="line.186"></a>
+<FONT color="green">187</FONT>            result = prime * result + (mIncompleteTimeout == null ? 0 : mIncompleteTimeout.hashCode());<a name="line.187"></a>
+<FONT color="green">188</FONT>            result = prime * result + (mMaxSpeechTimeout == null ? 0 : mMaxSpeechTimeout.hashCode());<a name="line.188"></a>
+<FONT color="green">189</FONT>            result = prime * result + (mConfidenceLevel == null ? 0 : mConfidenceLevel.hashCode());<a name="line.189"></a>
+<FONT color="green">190</FONT>            result = prime * result + (mSensitivity == null ? 0 : mSensitivity.hashCode());<a name="line.190"></a>
+<FONT color="green">191</FONT>            result = prime * result + (mSpeedVersusAccuracy == null ? 0 : mSpeedVersusAccuracy.hashCode());<a name="line.191"></a>
+<FONT color="green">192</FONT>            return result;<a name="line.192"></a>
+<FONT color="green">193</FONT>        }<a name="line.193"></a>
+<FONT color="green">194</FONT>    <a name="line.194"></a>
+<FONT color="green">195</FONT>        @Override<a name="line.195"></a>
+<FONT color="green">196</FONT>        public boolean equals(Object obj) {<a name="line.196"></a>
+<FONT color="green">197</FONT>            if (this == obj) return true;<a name="line.197"></a>
+<FONT color="green">198</FONT>            if (obj == null) return false;<a name="line.198"></a>
+<FONT color="green">199</FONT>            if (getClass() != obj.getClass()) return false;<a name="line.199"></a>
+<FONT color="green">200</FONT>            SpeechRecognitionConfiguration other = (SpeechRecognitionConfiguration) obj;<a name="line.200"></a>
+<FONT color="green">201</FONT>            if (mCompleteTimeout == null) {<a name="line.201"></a>
+<FONT color="green">202</FONT>                if (other.mCompleteTimeout != null) return false;<a name="line.202"></a>
+<FONT color="green">203</FONT>            } else if (!mCompleteTimeout.equals(other.mCompleteTimeout)) return false;<a name="line.203"></a>
+<FONT color="green">204</FONT>            if (mMaxNBest == null) {<a name="line.204"></a>
+<FONT color="green">205</FONT>                if (other.mMaxNBest != null) return false;<a name="line.205"></a>
+<FONT color="green">206</FONT>            } else if (!mMaxNBest.equals(other.mMaxNBest)) return false;<a name="line.206"></a>
+<FONT color="green">207</FONT>            if (mIncompleteTimeout == null) {<a name="line.207"></a>
+<FONT color="green">208</FONT>                if (other.mIncompleteTimeout != null) return false;<a name="line.208"></a>
+<FONT color="green">209</FONT>            } else if (!mIncompleteTimeout.equals(other.mIncompleteTimeout)) return false;<a name="line.209"></a>
+<FONT color="green">210</FONT>            if (mMaxSpeechTimeout == null) {<a name="line.210"></a>
+<FONT color="green">211</FONT>                if (other.mMaxSpeechTimeout != null) return false;<a name="line.211"></a>
+<FONT color="green">212</FONT>            } else if (!mMaxSpeechTimeout.equals(other.mMaxSpeechTimeout)) return false;<a name="line.212"></a>
+<FONT color="green">213</FONT>            if (mConfidenceLevel == null) {<a name="line.213"></a>
+<FONT color="green">214</FONT>                if (other.mConfidenceLevel != null) return false;<a name="line.214"></a>
+<FONT color="green">215</FONT>            } else if (!mConfidenceLevel.equals(other.mConfidenceLevel)) return false;<a name="line.215"></a>
+<FONT color="green">216</FONT>            if (mSensitivity == null) {<a name="line.216"></a>
+<FONT color="green">217</FONT>                if (other.mSensitivity != null) return false;<a name="line.217"></a>
+<FONT color="green">218</FONT>            } else if (!mSensitivity.equals(other.mSensitivity)) return false;<a name="line.218"></a>
+<FONT color="green">219</FONT>            if (mSpeedVersusAccuracy == null) {<a name="line.219"></a>
+<FONT color="green">220</FONT>                if (other.mSpeedVersusAccuracy != null) return false;<a name="line.220"></a>
+<FONT color="green">221</FONT>            } else if (!mSpeedVersusAccuracy.equals(other.mSpeedVersusAccuracy)) return false;<a name="line.221"></a>
+<FONT color="green">222</FONT>            return true;<a name="line.222"></a>
+<FONT color="green">223</FONT>        }<a name="line.223"></a>
+<FONT color="green">224</FONT>    <a name="line.224"></a>
+<FONT color="green">225</FONT>        public SpeechRecognitionConfiguration copy() {<a name="line.225"></a>
+<FONT color="green">226</FONT>            SpeechRecognitionConfiguration copy = new SpeechRecognitionConfiguration(getGrammarItems());<a name="line.226"></a>
+<FONT color="green">227</FONT>            copy.mCompleteTimeout = mCompleteTimeout;<a name="line.227"></a>
+<FONT color="green">228</FONT>            copy.mMaxNBest = mMaxNBest;<a name="line.228"></a>
+<FONT color="green">229</FONT>            copy.mIncompleteTimeout = mIncompleteTimeout;<a name="line.229"></a>
+<FONT color="green">230</FONT>            copy.mMaxSpeechTimeout = mMaxSpeechTimeout;<a name="line.230"></a>
+<FONT color="green">231</FONT>            copy.mConfidenceLevel = mConfidenceLevel;<a name="line.231"></a>
+<FONT color="green">232</FONT>            copy.mSensitivity = mSensitivity;<a name="line.232"></a>
+<FONT color="green">233</FONT>            copy.mSpeedVersusAccuracy = mSpeedVersusAccuracy;<a name="line.233"></a>
+<FONT color="green">234</FONT>            copyPropertiesTo(copy);<a name="line.234"></a>
+<FONT color="green">235</FONT>            return copy;<a name="line.235"></a>
+<FONT color="green">236</FONT>        }<a name="line.236"></a>
+<FONT color="green">237</FONT>    }<a name="line.237"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+</BODY>
+</HTML>

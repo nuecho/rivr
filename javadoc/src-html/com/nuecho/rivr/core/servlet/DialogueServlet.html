@@ -1,0 +1,399 @@
+<HTML>
+<BODY BGCOLOR="white">
+<PRE>
+<FONT color="green">001</FONT>    /*<a name="line.1"></a>
+<FONT color="green">002</FONT>     * Copyright (c) 2012 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
+<FONT color="green">003</FONT>     */<a name="line.3"></a>
+<FONT color="green">004</FONT>    <a name="line.4"></a>
+<FONT color="green">005</FONT>    package com.nuecho.rivr.core.servlet;<a name="line.5"></a>
+<FONT color="green">006</FONT>    <a name="line.6"></a>
+<FONT color="green">007</FONT>    import java.io.*;<a name="line.7"></a>
+<FONT color="green">008</FONT>    import java.util.*;<a name="line.8"></a>
+<FONT color="green">009</FONT>    <a name="line.9"></a>
+<FONT color="green">010</FONT>    import javax.servlet.*;<a name="line.10"></a>
+<FONT color="green">011</FONT>    import javax.servlet.http.*;<a name="line.11"></a>
+<FONT color="green">012</FONT>    <a name="line.12"></a>
+<FONT color="green">013</FONT>    import org.slf4j.*;<a name="line.13"></a>
+<FONT color="green">014</FONT>    <a name="line.14"></a>
+<FONT color="green">015</FONT>    import com.nuecho.rivr.core.channel.*;<a name="line.15"></a>
+<FONT color="green">016</FONT>    import com.nuecho.rivr.core.channel.synchronous.*;<a name="line.16"></a>
+<FONT color="green">017</FONT>    import com.nuecho.rivr.core.channel.synchronous.step.*;<a name="line.17"></a>
+<FONT color="green">018</FONT>    import com.nuecho.rivr.core.dialogue.*;<a name="line.18"></a>
+<FONT color="green">019</FONT>    import com.nuecho.rivr.core.servlet.session.*;<a name="line.19"></a>
+<FONT color="green">020</FONT>    import com.nuecho.rivr.core.util.*;<a name="line.20"></a>
+<FONT color="green">021</FONT>    <a name="line.21"></a>
+<FONT color="green">022</FONT>    /**<a name="line.22"></a>
+<FONT color="green">023</FONT>     * @author Nu Echo Inc.<a name="line.23"></a>
+<FONT color="green">024</FONT>     */<a name="line.24"></a>
+<FONT color="green">025</FONT>    public abstract class DialogueServlet&lt;I extends InputTurn, O extends OutputTurn, F extends FirstTurn, L extends LastTurn, C extends DialogueContext&lt;I, O&gt;&gt;<a name="line.25"></a>
+<FONT color="green">026</FONT>            extends HttpServlet {<a name="line.26"></a>
+<FONT color="green">027</FONT>    <a name="line.27"></a>
+<FONT color="green">028</FONT>        private static final String MDC_KEY_DIALOGUE_ID = "dialogueId";<a name="line.28"></a>
+<FONT color="green">029</FONT>    <a name="line.29"></a>
+<FONT color="green">030</FONT>        private static final String SESSION_LOGGER_NAME = "com.nuecho.rivr.session";<a name="line.30"></a>
+<FONT color="green">031</FONT>        private static final String DIALOGUE_LOGGER_NAME = "com.nuecho.rivr.dialogue";<a name="line.31"></a>
+<FONT color="green">032</FONT>    <a name="line.32"></a>
+<FONT color="green">033</FONT>        private static final long serialVersionUID = 1L;<a name="line.33"></a>
+<FONT color="green">034</FONT>        private static final String SESSION_CONTAINER_NAME = "com.nuecho.rivr.sessionContainer";<a name="line.34"></a>
+<FONT color="green">035</FONT>    <a name="line.35"></a>
+<FONT color="green">036</FONT>        private ErrorHandler&lt;L&gt; mErrorHandler;<a name="line.36"></a>
+<FONT color="green">037</FONT>        private DialogueFactory&lt;I, O, F, L, C&gt; mDialogueFactory;<a name="line.37"></a>
+<FONT color="green">038</FONT>        private DialogueContextFactory&lt;C, I, O&gt; mDialogueContextFactory;<a name="line.38"></a>
+<FONT color="green">039</FONT>        private ILoggerFactory mLoggerFactory;<a name="line.39"></a>
+<FONT color="green">040</FONT>        private SessionContainer&lt;I, O, F, L, C&gt; mSessionContainer;<a name="line.40"></a>
+<FONT color="green">041</FONT>        private InputTurnFactory&lt;I, F&gt; mInputTurnFactory;<a name="line.41"></a>
+<FONT color="green">042</FONT>    <a name="line.42"></a>
+<FONT color="green">043</FONT>        private TimeValue mDialogueTimeout = TimeValue.milliseconds(10000);<a name="line.43"></a>
+<FONT color="green">044</FONT>        private TimeValue mSessionTimeout = TimeValue.minutes(30);<a name="line.44"></a>
+<FONT color="green">045</FONT>        private TimeValue mSessionScanPeriod = TimeValue.minutes(2);<a name="line.45"></a>
+<FONT color="green">046</FONT>    <a name="line.46"></a>
+<FONT color="green">047</FONT>        protected abstract void initDialogueServlet() throws DialogueServletInitializationException;<a name="line.47"></a>
+<FONT color="green">048</FONT>    <a name="line.48"></a>
+<FONT color="green">049</FONT>        protected abstract StepRenderer&lt;I, O, L, C&gt; getStepRenderer(HttpServletRequest request,<a name="line.49"></a>
+<FONT color="green">050</FONT>                                                                    Session&lt;I, O, F, L, C&gt; session);<a name="line.50"></a>
+<FONT color="green">051</FONT>    <a name="line.51"></a>
+<FONT color="green">052</FONT>        @Override<a name="line.52"></a>
+<FONT color="green">053</FONT>        public final void init() throws ServletException {<a name="line.53"></a>
+<FONT color="green">054</FONT>    <a name="line.54"></a>
+<FONT color="green">055</FONT>            try {<a name="line.55"></a>
+<FONT color="green">056</FONT>                initDialogueServlet();<a name="line.56"></a>
+<FONT color="green">057</FONT>            } catch (DialogueServletInitializationException exception) {<a name="line.57"></a>
+<FONT color="green">058</FONT>                throw new ServletException("Unable to initialize dialogue servlet.s", exception);<a name="line.58"></a>
+<FONT color="green">059</FONT>            }<a name="line.59"></a>
+<FONT color="green">060</FONT>    <a name="line.60"></a>
+<FONT color="green">061</FONT>            if (mLoggerFactory == null) {<a name="line.61"></a>
+<FONT color="green">062</FONT>                mLoggerFactory = LoggerFactory.getILoggerFactory();<a name="line.62"></a>
+<FONT color="green">063</FONT>            }<a name="line.63"></a>
+<FONT color="green">064</FONT>    <a name="line.64"></a>
+<FONT color="green">065</FONT>            ensureFieldIsSet(mInputTurnFactory, "InputTurnFactory");<a name="line.65"></a>
+<FONT color="green">066</FONT>            ensureFieldIsSet(mDialogueFactory, "DialogueFactory");<a name="line.66"></a>
+<FONT color="green">067</FONT>            ensureFieldIsSet(mDialogueContextFactory, "DialogueContextFactory");<a name="line.67"></a>
+<FONT color="green">068</FONT>            ensureFieldIsSet(mErrorHandler, "ErrorHandler");<a name="line.68"></a>
+<FONT color="green">069</FONT>    <a name="line.69"></a>
+<FONT color="green">070</FONT>            Logger logger = mLoggerFactory.getLogger(SESSION_LOGGER_NAME);<a name="line.70"></a>
+<FONT color="green">071</FONT>    <a name="line.71"></a>
+<FONT color="green">072</FONT>            mSessionContainer = new SessionContainer&lt;I, O, F, L, C&gt;(logger,<a name="line.72"></a>
+<FONT color="green">073</FONT>                                                                    mSessionTimeout,<a name="line.73"></a>
+<FONT color="green">074</FONT>                                                                    mSessionScanPeriod,<a name="line.74"></a>
+<FONT color="green">075</FONT>                                                                    SESSION_CONTAINER_NAME);<a name="line.75"></a>
+<FONT color="green">076</FONT>    <a name="line.76"></a>
+<FONT color="green">077</FONT>        }<a name="line.77"></a>
+<FONT color="green">078</FONT>    <a name="line.78"></a>
+<FONT color="green">079</FONT>        private void ensureFieldIsSet(Object fieldValue, String fieldName) {<a name="line.79"></a>
+<FONT color="green">080</FONT>            if (fieldValue == null) throw new IllegalStateException(fieldName + "  is not set.");<a name="line.80"></a>
+<FONT color="green">081</FONT>        }<a name="line.81"></a>
+<FONT color="green">082</FONT>    <a name="line.82"></a>
+<FONT color="green">083</FONT>        @Override<a name="line.83"></a>
+<FONT color="green">084</FONT>        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {<a name="line.84"></a>
+<FONT color="green">085</FONT>            process(request, response);<a name="line.85"></a>
+<FONT color="green">086</FONT>        }<a name="line.86"></a>
+<FONT color="green">087</FONT>    <a name="line.87"></a>
+<FONT color="green">088</FONT>        @Override<a name="line.88"></a>
+<FONT color="green">089</FONT>        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,<a name="line.89"></a>
+<FONT color="green">090</FONT>                IOException {<a name="line.90"></a>
+<FONT color="green">091</FONT>            process(request, response);<a name="line.91"></a>
+<FONT color="green">092</FONT>        }<a name="line.92"></a>
+<FONT color="green">093</FONT>    <a name="line.93"></a>
+<FONT color="green">094</FONT>        public final ILoggerFactory getLoggerFactory() {<a name="line.94"></a>
+<FONT color="green">095</FONT>            return mLoggerFactory;<a name="line.95"></a>
+<FONT color="green">096</FONT>        }<a name="line.96"></a>
+<FONT color="green">097</FONT>    <a name="line.97"></a>
+<FONT color="green">098</FONT>        public void renderOutputTurn(O outputTurn,<a name="line.98"></a>
+<FONT color="green">099</FONT>                                     HttpServletRequest request,<a name="line.99"></a>
+<FONT color="green">100</FONT>                                     final HttpServletResponse response,<a name="line.100"></a>
+<FONT color="green">101</FONT>                                     Session&lt;I, O, F, L, C&gt; session) throws IOException, StepRendererException {<a name="line.101"></a>
+<FONT color="green">102</FONT>            ServletResponseContent responseContent = getStepRenderer(request, session).createDocumentForOutputTurn(outputTurn,<a name="line.102"></a>
+<FONT color="green">103</FONT>                                                                                                                   request,<a name="line.103"></a>
+<FONT color="green">104</FONT>                                                                                                                   response,<a name="line.104"></a>
+<FONT color="green">105</FONT>                                                                                                                   session.getDialogueContext());<a name="line.105"></a>
+<FONT color="green">106</FONT>            commitToResponse(response, responseContent);<a name="line.106"></a>
+<FONT color="green">107</FONT>        }<a name="line.107"></a>
+<FONT color="green">108</FONT>    <a name="line.108"></a>
+<FONT color="green">109</FONT>        public void renderLastTurn(L result,<a name="line.109"></a>
+<FONT color="green">110</FONT>                                   HttpServletRequest request,<a name="line.110"></a>
+<FONT color="green">111</FONT>                                   HttpServletResponse response,<a name="line.111"></a>
+<FONT color="green">112</FONT>                                   Session&lt;I, O, F, L, C&gt; session) throws IOException, StepRendererException {<a name="line.112"></a>
+<FONT color="green">113</FONT>            ServletResponseContent responseContent = getStepRenderer(request, session).createDocumentForLastTurn(result,<a name="line.113"></a>
+<FONT color="green">114</FONT>                                                                                                                 request,<a name="line.114"></a>
+<FONT color="green">115</FONT>                                                                                                                 response,<a name="line.115"></a>
+<FONT color="green">116</FONT>                                                                                                                 session.getDialogueContext());<a name="line.116"></a>
+<FONT color="green">117</FONT>            commitToResponse(response, responseContent);<a name="line.117"></a>
+<FONT color="green">118</FONT>            session.stop();<a name="line.118"></a>
+<FONT color="green">119</FONT>        }<a name="line.119"></a>
+<FONT color="green">120</FONT>    <a name="line.120"></a>
+<FONT color="green">121</FONT>        public void renderError(Throwable error,<a name="line.121"></a>
+<FONT color="green">122</FONT>                                HttpServletRequest request,<a name="line.122"></a>
+<FONT color="green">123</FONT>                                HttpServletResponse response,<a name="line.123"></a>
+<FONT color="green">124</FONT>                                Session&lt;I, O, F, L, C&gt; session) throws IOException, StepRendererException {<a name="line.124"></a>
+<FONT color="green">125</FONT>    <a name="line.125"></a>
+<FONT color="green">126</FONT>            L fatalErrorTurn = mErrorHandler.handleError(error);<a name="line.126"></a>
+<FONT color="green">127</FONT>    <a name="line.127"></a>
+<FONT color="green">128</FONT>            ServletResponseContent responseContent = getStepRenderer(request, session).createDocumentForLastTurn(fatalErrorTurn,<a name="line.128"></a>
+<FONT color="green">129</FONT>                                                                                                                 request,<a name="line.129"></a>
+<FONT color="green">130</FONT>                                                                                                                 response,<a name="line.130"></a>
+<FONT color="green">131</FONT>                                                                                                                 session.getDialogueContext());<a name="line.131"></a>
+<FONT color="green">132</FONT>            commitToResponse(response, responseContent);<a name="line.132"></a>
+<FONT color="green">133</FONT>            session.stop();<a name="line.133"></a>
+<FONT color="green">134</FONT>        }<a name="line.134"></a>
+<FONT color="green">135</FONT>    <a name="line.135"></a>
+<FONT color="green">136</FONT>        public final void setInputTurnFactory(InputTurnFactory&lt;I, F&gt; inputTurnFactory) {<a name="line.136"></a>
+<FONT color="green">137</FONT>            Assert.notNull(inputTurnFactory, "inputTurnFactory");<a name="line.137"></a>
+<FONT color="green">138</FONT>            mInputTurnFactory = inputTurnFactory;<a name="line.138"></a>
+<FONT color="green">139</FONT>        }<a name="line.139"></a>
+<FONT color="green">140</FONT>    <a name="line.140"></a>
+<FONT color="green">141</FONT>        public final void setDialogueFactory(DialogueFactory&lt;I, O, F, L, C&gt; dialogueFactory) {<a name="line.141"></a>
+<FONT color="green">142</FONT>            Assert.notNull(dialogueFactory, "dialogueFactory");<a name="line.142"></a>
+<FONT color="green">143</FONT>            mDialogueFactory = dialogueFactory;<a name="line.143"></a>
+<FONT color="green">144</FONT>        }<a name="line.144"></a>
+<FONT color="green">145</FONT>    <a name="line.145"></a>
+<FONT color="green">146</FONT>        public final void setDialogueContextFactory(DialogueContextFactory&lt;C, I, O&gt; dialogueContextFactory) {<a name="line.146"></a>
+<FONT color="green">147</FONT>            Assert.notNull(dialogueContextFactory, "dialogueContextFactory");<a name="line.147"></a>
+<FONT color="green">148</FONT>            mDialogueContextFactory = dialogueContextFactory;<a name="line.148"></a>
+<FONT color="green">149</FONT>        }<a name="line.149"></a>
+<FONT color="green">150</FONT>    <a name="line.150"></a>
+<FONT color="green">151</FONT>        public final void setLoggerFactory(ILoggerFactory loggerFactory) {<a name="line.151"></a>
+<FONT color="green">152</FONT>            Assert.notNull(loggerFactory, "loggerFactory");<a name="line.152"></a>
+<FONT color="green">153</FONT>            mLoggerFactory = loggerFactory;<a name="line.153"></a>
+<FONT color="green">154</FONT>        }<a name="line.154"></a>
+<FONT color="green">155</FONT>    <a name="line.155"></a>
+<FONT color="green">156</FONT>        public final void setDialogueTimeout(TimeValue dialogueTimeout) {<a name="line.156"></a>
+<FONT color="green">157</FONT>            Assert.notNull(dialogueTimeout, "dialogueTimeout");<a name="line.157"></a>
+<FONT color="green">158</FONT>            mDialogueTimeout = dialogueTimeout;<a name="line.158"></a>
+<FONT color="green">159</FONT>        }<a name="line.159"></a>
+<FONT color="green">160</FONT>    <a name="line.160"></a>
+<FONT color="green">161</FONT>        public void setSessionTimeout(TimeValue sessionTimeout) {<a name="line.161"></a>
+<FONT color="green">162</FONT>            Assert.notNull(sessionTimeout, "sessionTimeout");<a name="line.162"></a>
+<FONT color="green">163</FONT>            mSessionTimeout = sessionTimeout;<a name="line.163"></a>
+<FONT color="green">164</FONT>        }<a name="line.164"></a>
+<FONT color="green">165</FONT>    <a name="line.165"></a>
+<FONT color="green">166</FONT>        public void setSessionScanPeriod(TimeValue sessionScanPeriod) {<a name="line.166"></a>
+<FONT color="green">167</FONT>            Assert.notNull(sessionScanPeriod, "sessionScanPeriod");<a name="line.167"></a>
+<FONT color="green">168</FONT>            mSessionScanPeriod = sessionScanPeriod;<a name="line.168"></a>
+<FONT color="green">169</FONT>        }<a name="line.169"></a>
+<FONT color="green">170</FONT>    <a name="line.170"></a>
+<FONT color="green">171</FONT>        public void setErrorHandler(ErrorHandler&lt;L&gt; errorHandler) {<a name="line.171"></a>
+<FONT color="green">172</FONT>            Assert.notNull(errorHandler, "errorHandler");<a name="line.172"></a>
+<FONT color="green">173</FONT>            mErrorHandler = errorHandler;<a name="line.173"></a>
+<FONT color="green">174</FONT>        }<a name="line.174"></a>
+<FONT color="green">175</FONT>    <a name="line.175"></a>
+<FONT color="green">176</FONT>        private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException {<a name="line.176"></a>
+<FONT color="green">177</FONT>            Session&lt;I, O, F, L, C&gt; session;<a name="line.177"></a>
+<FONT color="green">178</FONT>            try {<a name="line.178"></a>
+<FONT color="green">179</FONT>                session = getSession(request);<a name="line.179"></a>
+<FONT color="green">180</FONT>                MDC.put(MDC_KEY_DIALOGUE_ID, session.getId());<a name="line.180"></a>
+<FONT color="green">181</FONT>            } catch (SessionNotFoundException exception) {<a name="line.181"></a>
+<FONT color="green">182</FONT>                throw new ServletException("Cannot find session.", exception);<a name="line.182"></a>
+<FONT color="green">183</FONT>            }<a name="line.183"></a>
+<FONT color="green">184</FONT>    <a name="line.184"></a>
+<FONT color="green">185</FONT>            process(request, response, session);<a name="line.185"></a>
+<FONT color="green">186</FONT>        }<a name="line.186"></a>
+<FONT color="green">187</FONT>    <a name="line.187"></a>
+<FONT color="green">188</FONT>        private void process(HttpServletRequest request, HttpServletResponse response, Session&lt;I, O, F, L, C&gt; session)<a name="line.188"></a>
+<FONT color="green">189</FONT>                throws ServletException {<a name="line.189"></a>
+<FONT color="green">190</FONT>            try {<a name="line.190"></a>
+<FONT color="green">191</FONT>    <a name="line.191"></a>
+<FONT color="green">192</FONT>                Step&lt;O, L&gt; step;<a name="line.192"></a>
+<FONT color="green">193</FONT>                C dialogueContext = session.getDialogueContext();<a name="line.193"></a>
+<FONT color="green">194</FONT>    <a name="line.194"></a>
+<FONT color="green">195</FONT>                try {<a name="line.195"></a>
+<FONT color="green">196</FONT>                    if (dialogueContext == null) {<a name="line.196"></a>
+<FONT color="green">197</FONT>                        step = startDialogue(request, response, session);<a name="line.197"></a>
+<FONT color="green">198</FONT>                    } else {<a name="line.198"></a>
+<FONT color="green">199</FONT>                        step = continueDialogue(request, response, session);<a name="line.199"></a>
+<FONT color="green">200</FONT>                    }<a name="line.200"></a>
+<FONT color="green">201</FONT>                } catch (Timeout exception) {<a name="line.201"></a>
+<FONT color="green">202</FONT>                    renderError(exception, request, response, session);<a name="line.202"></a>
+<FONT color="green">203</FONT>                    return;<a name="line.203"></a>
+<FONT color="green">204</FONT>                } catch (InterruptedException exception) {<a name="line.204"></a>
+<FONT color="green">205</FONT>                    Thread.currentThread().interrupt();<a name="line.205"></a>
+<FONT color="green">206</FONT>                    renderError(exception, request, response, session);<a name="line.206"></a>
+<FONT color="green">207</FONT>                    return;<a name="line.207"></a>
+<FONT color="green">208</FONT>                }<a name="line.208"></a>
+<FONT color="green">209</FONT>    <a name="line.209"></a>
+<FONT color="green">210</FONT>                if (step instanceof OutputTurnStep) {<a name="line.210"></a>
+<FONT color="green">211</FONT>                    OutputTurnStep&lt;O, L&gt; outputTurnStep = (OutputTurnStep&lt;O, L&gt;) step;<a name="line.211"></a>
+<FONT color="green">212</FONT>                    renderOutputTurn(outputTurnStep.getOutputTurn(), request, response, session);<a name="line.212"></a>
+<FONT color="green">213</FONT>                } else if (step instanceof LastTurnStep) {<a name="line.213"></a>
+<FONT color="green">214</FONT>                    LastTurnStep&lt;O, L&gt; lastTurnStep = (LastTurnStep&lt;O, L&gt;) step;<a name="line.214"></a>
+<FONT color="green">215</FONT>                    renderLastTurn(lastTurnStep.getLastTurn(), request, response, session);<a name="line.215"></a>
+<FONT color="green">216</FONT>                } else if (step instanceof ErrorStep) {<a name="line.216"></a>
+<FONT color="green">217</FONT>                    ErrorStep&lt;O, L&gt; errorStep = (ErrorStep&lt;O, L&gt;) step;<a name="line.217"></a>
+<FONT color="green">218</FONT>                    Throwable throwable = errorStep.getThrowable();<a name="line.218"></a>
+<FONT color="green">219</FONT>                    renderError(throwable, request, response, session);<a name="line.219"></a>
+<FONT color="green">220</FONT>                }<a name="line.220"></a>
+<FONT color="green">221</FONT>            } catch (Exception exception) {<a name="line.221"></a>
+<FONT color="green">222</FONT>                throw new ServletException("Error while rendering step.", exception);<a name="line.222"></a>
+<FONT color="green">223</FONT>            }<a name="line.223"></a>
+<FONT color="green">224</FONT>        }<a name="line.224"></a>
+<FONT color="green">225</FONT>    <a name="line.225"></a>
+<FONT color="green">226</FONT>        private Step&lt;O, L&gt; continueDialogue(HttpServletRequest request,<a name="line.226"></a>
+<FONT color="green">227</FONT>                                            HttpServletResponse response,<a name="line.227"></a>
+<FONT color="green">228</FONT>                                            Session&lt;I, O, F, L, C&gt; session) throws ServletException, Timeout,<a name="line.228"></a>
+<FONT color="green">229</FONT>                InterruptedException {<a name="line.229"></a>
+<FONT color="green">230</FONT>            Assert.notNull(session, "session");<a name="line.230"></a>
+<FONT color="green">231</FONT>            I inputTurn = createInputTurn(request, response);<a name="line.231"></a>
+<FONT color="green">232</FONT>            SynchronousDialogueChannel&lt;I, O, F, L, C&gt; dialogueChannel = session.getDialogueChannel();<a name="line.232"></a>
+<FONT color="green">233</FONT>            Assert.notNull(dialogueChannel, "dialogueChannel");<a name="line.233"></a>
+<FONT color="green">234</FONT>            return dialogueChannel.doTurn(inputTurn, mDialogueTimeout);<a name="line.234"></a>
+<FONT color="green">235</FONT>        }<a name="line.235"></a>
+<FONT color="green">236</FONT>    <a name="line.236"></a>
+<FONT color="green">237</FONT>        private Step&lt;O, L&gt; startDialogue(HttpServletRequest request,<a name="line.237"></a>
+<FONT color="green">238</FONT>                                         HttpServletResponse response,<a name="line.238"></a>
+<FONT color="green">239</FONT>                                         Session&lt;I, O, F, L, C&gt; session) throws ServletException, Timeout,<a name="line.239"></a>
+<FONT color="green">240</FONT>                InterruptedException {<a name="line.240"></a>
+<FONT color="green">241</FONT>            SynchronousDialogueChannel&lt;I, O, F, L, C&gt; dialogueChannel;<a name="line.241"></a>
+<FONT color="green">242</FONT>            dialogueChannel = new SynchronousDialogueChannel&lt;I, O, F, L, C&gt;();<a name="line.242"></a>
+<FONT color="green">243</FONT>            session.setDialogueChannel(dialogueChannel);<a name="line.243"></a>
+<FONT color="green">244</FONT>    <a name="line.244"></a>
+<FONT color="green">245</FONT>            Logger logger = mLoggerFactory.getLogger(DIALOGUE_LOGGER_NAME);<a name="line.245"></a>
+<FONT color="green">246</FONT>            dialogueChannel.setLogger(logger);<a name="line.246"></a>
+<FONT color="green">247</FONT>    <a name="line.247"></a>
+<FONT color="green">248</FONT>            C dialogueContext = createContext(request, session, dialogueChannel, logger);<a name="line.248"></a>
+<FONT color="green">249</FONT>    <a name="line.249"></a>
+<FONT color="green">250</FONT>            DialogueInitializationInfo&lt;I, O, C&gt; initializationInfo;<a name="line.250"></a>
+<FONT color="green">251</FONT>            initializationInfo = createInitializationInfo(request, response, dialogueContext);<a name="line.251"></a>
+<FONT color="green">252</FONT>            Dialogue&lt;I, O, F, L, C&gt; dialogue;<a name="line.252"></a>
+<FONT color="green">253</FONT>            try {<a name="line.253"></a>
+<FONT color="green">254</FONT>                dialogue = mDialogueFactory.create(initializationInfo);<a name="line.254"></a>
+<FONT color="green">255</FONT>            } catch (DialogueFactoryException exception) {<a name="line.255"></a>
+<FONT color="green">256</FONT>                throw new ServletException("Unable to create dialogue.", exception);<a name="line.256"></a>
+<FONT color="green">257</FONT>            }<a name="line.257"></a>
+<FONT color="green">258</FONT>            F firstTurn = createFirstTurn(request, response);<a name="line.258"></a>
+<FONT color="green">259</FONT>            return dialogueChannel.start(dialogue, firstTurn, mDialogueTimeout, dialogueContext);<a name="line.259"></a>
+<FONT color="green">260</FONT>        }<a name="line.260"></a>
+<FONT color="green">261</FONT>    <a name="line.261"></a>
+<FONT color="green">262</FONT>        private C createContext(HttpServletRequest request,<a name="line.262"></a>
+<FONT color="green">263</FONT>                                Session&lt;I, O, F, L, C&gt; session,<a name="line.263"></a>
+<FONT color="green">264</FONT>                                SynchronousDialogueChannel&lt;I, O, F, L, C&gt; dialogueChannel,<a name="line.264"></a>
+<FONT color="green">265</FONT>                                Logger logger) {<a name="line.265"></a>
+<FONT color="green">266</FONT>            C dialogueContext = mDialogueContextFactory.createDialogueContext(request,<a name="line.266"></a>
+<FONT color="green">267</FONT>                                                                              session.getId(),<a name="line.267"></a>
+<FONT color="green">268</FONT>                                                                              dialogueChannel,<a name="line.268"></a>
+<FONT color="green">269</FONT>                                                                              logger);<a name="line.269"></a>
+<FONT color="green">270</FONT>            session.setDialogueContext(dialogueContext);<a name="line.270"></a>
+<FONT color="green">271</FONT>            return dialogueContext;<a name="line.271"></a>
+<FONT color="green">272</FONT>        }<a name="line.272"></a>
+<FONT color="green">273</FONT>    <a name="line.273"></a>
+<FONT color="green">274</FONT>        private WebDialogueInitializationInfo&lt;I, O, C&gt; createInitializationInfo(HttpServletRequest request,<a name="line.274"></a>
+<FONT color="green">275</FONT>                                                                                HttpServletResponse response,<a name="line.275"></a>
+<FONT color="green">276</FONT>                                                                                C dialogueContext) {<a name="line.276"></a>
+<FONT color="green">277</FONT>            return new WebDialogueInitializationInfo&lt;I, O, C&gt;(dialogueContext, request, response, getServletContext(), this);<a name="line.277"></a>
+<FONT color="green">278</FONT>        }<a name="line.278"></a>
+<FONT color="green">279</FONT>    <a name="line.279"></a>
+<FONT color="green">280</FONT>        protected Session&lt;I, O, F, L, C&gt; getSession(HttpServletRequest request) throws SessionNotFoundException {<a name="line.280"></a>
+<FONT color="green">281</FONT>            String pathInfo = request.getPathInfo();<a name="line.281"></a>
+<FONT color="green">282</FONT>    <a name="line.282"></a>
+<FONT color="green">283</FONT>            if (pathInfo != null &amp;&amp; !pathInfo.equals("/")) {<a name="line.283"></a>
+<FONT color="green">284</FONT>                if (pathInfo.startsWith("/")) {<a name="line.284"></a>
+<FONT color="green">285</FONT>                    pathInfo = pathInfo.substring(1);<a name="line.285"></a>
+<FONT color="green">286</FONT>                }<a name="line.286"></a>
+<FONT color="green">287</FONT>    <a name="line.287"></a>
+<FONT color="green">288</FONT>                int firstSlash = pathInfo.indexOf('/');<a name="line.288"></a>
+<FONT color="green">289</FONT>                if (firstSlash != -1) {<a name="line.289"></a>
+<FONT color="green">290</FONT>                    pathInfo = pathInfo.substring(0, firstSlash);<a name="line.290"></a>
+<FONT color="green">291</FONT>                }<a name="line.291"></a>
+<FONT color="green">292</FONT>    <a name="line.292"></a>
+<FONT color="green">293</FONT>                return getExistingSession(pathInfo);<a name="line.293"></a>
+<FONT color="green">294</FONT>            } else {<a name="line.294"></a>
+<FONT color="green">295</FONT>                String sessionId = UUID.randomUUID().toString();<a name="line.295"></a>
+<FONT color="green">296</FONT>    <a name="line.296"></a>
+<FONT color="green">297</FONT>                Session&lt;I, O, F, L, C&gt; session = new Session&lt;I, O, F, L, C&gt;(mSessionContainer, sessionId);<a name="line.297"></a>
+<FONT color="green">298</FONT>                mSessionContainer.addSession(session);<a name="line.298"></a>
+<FONT color="green">299</FONT>                return session;<a name="line.299"></a>
+<FONT color="green">300</FONT>            }<a name="line.300"></a>
+<FONT color="green">301</FONT>        }<a name="line.301"></a>
+<FONT color="green">302</FONT>    <a name="line.302"></a>
+<FONT color="green">303</FONT>        protected Session&lt;I, O, F, L, C&gt; getExistingSession(String sessionId) throws SessionNotFoundException {<a name="line.303"></a>
+<FONT color="green">304</FONT>            Session&lt;I, O, F, L, C&gt; session = mSessionContainer.getSession(sessionId);<a name="line.304"></a>
+<FONT color="green">305</FONT>    <a name="line.305"></a>
+<FONT color="green">306</FONT>            if (session == null) throw new SessionNotFoundException("Unable to find session [" + sessionId + "]");<a name="line.306"></a>
+<FONT color="green">307</FONT>    <a name="line.307"></a>
+<FONT color="green">308</FONT>            return session;<a name="line.308"></a>
+<FONT color="green">309</FONT>        }<a name="line.309"></a>
+<FONT color="green">310</FONT>    <a name="line.310"></a>
+<FONT color="green">311</FONT>        private I createInputTurn(HttpServletRequest request, HttpServletResponse response) throws ServletException {<a name="line.311"></a>
+<FONT color="green">312</FONT>            try {<a name="line.312"></a>
+<FONT color="green">313</FONT>                return mInputTurnFactory.createInputTurn(request, response);<a name="line.313"></a>
+<FONT color="green">314</FONT>            } catch (InputTurnFactoryException exception) {<a name="line.314"></a>
+<FONT color="green">315</FONT>                throw new ServletException(exception);<a name="line.315"></a>
+<FONT color="green">316</FONT>            }<a name="line.316"></a>
+<FONT color="green">317</FONT>        }<a name="line.317"></a>
+<FONT color="green">318</FONT>    <a name="line.318"></a>
+<FONT color="green">319</FONT>        private F createFirstTurn(HttpServletRequest request, HttpServletResponse response) throws ServletException {<a name="line.319"></a>
+<FONT color="green">320</FONT>            try {<a name="line.320"></a>
+<FONT color="green">321</FONT>                return mInputTurnFactory.createFirstTurn(request, response);<a name="line.321"></a>
+<FONT color="green">322</FONT>            } catch (InputTurnFactoryException exception) {<a name="line.322"></a>
+<FONT color="green">323</FONT>                throw new ServletException(exception);<a name="line.323"></a>
+<FONT color="green">324</FONT>            }<a name="line.324"></a>
+<FONT color="green">325</FONT>        }<a name="line.325"></a>
+<FONT color="green">326</FONT>    <a name="line.326"></a>
+<FONT color="green">327</FONT>        private static void commitToResponse(final HttpServletResponse response, ServletResponseContent responseContent)<a name="line.327"></a>
+<FONT color="green">328</FONT>                throws IOException {<a name="line.328"></a>
+<FONT color="green">329</FONT>            ServletOutputStream outputStream = response.getOutputStream();<a name="line.329"></a>
+<FONT color="green">330</FONT>            response.setContentType(responseContent.getContentType());<a name="line.330"></a>
+<FONT color="green">331</FONT>            responseContent.writeTo(outputStream);<a name="line.331"></a>
+<FONT color="green">332</FONT>        }<a name="line.332"></a>
+<FONT color="green">333</FONT>    }<a name="line.333"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+</BODY>
+</HTML>

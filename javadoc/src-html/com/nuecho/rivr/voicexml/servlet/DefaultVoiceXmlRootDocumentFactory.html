@@ -1,0 +1,119 @@
+<HTML>
+<BODY BGCOLOR="white">
+<PRE>
+<FONT color="green">001</FONT>    /*<a name="line.1"></a>
+<FONT color="green">002</FONT>     * Copyright (c) 2013 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
+<FONT color="green">003</FONT>     */<a name="line.3"></a>
+<FONT color="green">004</FONT>    <a name="line.4"></a>
+<FONT color="green">005</FONT>    package com.nuecho.rivr.voicexml.servlet;<a name="line.5"></a>
+<FONT color="green">006</FONT>    <a name="line.6"></a>
+<FONT color="green">007</FONT>    import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;<a name="line.7"></a>
+<FONT color="green">008</FONT>    <a name="line.8"></a>
+<FONT color="green">009</FONT>    import javax.servlet.http.*;<a name="line.9"></a>
+<FONT color="green">010</FONT>    <a name="line.10"></a>
+<FONT color="green">011</FONT>    import org.w3c.dom.*;<a name="line.11"></a>
+<FONT color="green">012</FONT>    <a name="line.12"></a>
+<FONT color="green">013</FONT>    import com.nuecho.rivr.core.servlet.session.*;<a name="line.13"></a>
+<FONT color="green">014</FONT>    import com.nuecho.rivr.core.util.*;<a name="line.14"></a>
+<FONT color="green">015</FONT>    import com.nuecho.rivr.voicexml.rendering.voicexml.*;<a name="line.15"></a>
+<FONT color="green">016</FONT>    import com.nuecho.rivr.voicexml.turn.first.*;<a name="line.16"></a>
+<FONT color="green">017</FONT>    import com.nuecho.rivr.voicexml.turn.input.*;<a name="line.17"></a>
+<FONT color="green">018</FONT>    import com.nuecho.rivr.voicexml.turn.last.*;<a name="line.18"></a>
+<FONT color="green">019</FONT>    import com.nuecho.rivr.voicexml.turn.output.*;<a name="line.19"></a>
+<FONT color="green">020</FONT>    <a name="line.20"></a>
+<FONT color="green">021</FONT>    /**<a name="line.21"></a>
+<FONT color="green">022</FONT>     * @author Nu Echo Inc.<a name="line.22"></a>
+<FONT color="green">023</FONT>     */<a name="line.23"></a>
+<FONT color="green">024</FONT>    public class DefaultVoiceXmlRootDocumentFactory implements VoiceXmlRootDocumentFactory {<a name="line.24"></a>
+<FONT color="green">025</FONT>    <a name="line.25"></a>
+<FONT color="green">026</FONT>        @Override<a name="line.26"></a>
+<FONT color="green">027</FONT>        public Document getDocument(HttpServletRequest request,<a name="line.27"></a>
+<FONT color="green">028</FONT>                                    Session&lt;VoiceXmlInputTurn, VoiceXmlOutputTurn, VoiceXmlFirstTurn, VoiceXmlLastTurn, VoiceXmlDialogueContext&gt; session) {<a name="line.28"></a>
+<FONT color="green">029</FONT>    <a name="line.29"></a>
+<FONT color="green">030</FONT>            VoiceXmlDialogueContext dialogueContext = session.getDialogueContext();<a name="line.30"></a>
+<FONT color="green">031</FONT>            String contextPath = dialogueContext.getContextPath();<a name="line.31"></a>
+<FONT color="green">032</FONT>            String servletPath = dialogueContext.getServletPath();<a name="line.32"></a>
+<FONT color="green">033</FONT>            String sessionId = session.getId();<a name="line.33"></a>
+<FONT color="green">034</FONT>            return createElement(contextPath, servletPath, sessionId, dialogueContext);<a name="line.34"></a>
+<FONT color="green">035</FONT>        }<a name="line.35"></a>
+<FONT color="green">036</FONT>    <a name="line.36"></a>
+<FONT color="green">037</FONT>        protected Document createElement(String contextPath,<a name="line.37"></a>
+<FONT color="green">038</FONT>                                         String servletPath,<a name="line.38"></a>
+<FONT color="green">039</FONT>                                         String sessionId,<a name="line.39"></a>
+<FONT color="green">040</FONT>                                         VoiceXmlDialogueContext dialogueContext) {<a name="line.40"></a>
+<FONT color="green">041</FONT>            Element vxmlElement = createVoiceXmlDocumentRoot(dialogueContext);<a name="line.41"></a>
+<FONT color="green">042</FONT>            createVarElement(vxmlElement, RIVR_VARIABLE, "({\"" + RIVR_DIALOGUE_ID_PROPERTY + "\": \"" + sessionId + "\"})");<a name="line.42"></a>
+<FONT color="green">043</FONT>    <a name="line.43"></a>
+<FONT color="green">044</FONT>            addScript(vxmlElement, VoiceXmlDialogueServlet.RIVR_SCRIPT, contextPath + servletPath);<a name="line.44"></a>
+<FONT color="green">045</FONT>            return vxmlElement.getOwnerDocument();<a name="line.45"></a>
+<FONT color="green">046</FONT>        }<a name="line.46"></a>
+<FONT color="green">047</FONT>    <a name="line.47"></a>
+<FONT color="green">048</FONT>        private static void addScript(Element parent, String scriptPath, String contextPath) {<a name="line.48"></a>
+<FONT color="green">049</FONT>            Element scriptElement = DomUtils.appendNewElement(parent, SCRIPT_ELEMENT);<a name="line.49"></a>
+<FONT color="green">050</FONT>            scriptElement.setAttribute(SRC_ATTRIBUTE, contextPath + scriptPath);<a name="line.50"></a>
+<FONT color="green">051</FONT>        }<a name="line.51"></a>
+<FONT color="green">052</FONT>    <a name="line.52"></a>
+<FONT color="green">053</FONT>    }<a name="line.53"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+</BODY>
+</HTML>

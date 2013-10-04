@@ -1,0 +1,810 @@
+<HTML>
+<BODY BGCOLOR="white">
+<PRE>
+<FONT color="green">001</FONT>    /*<a name="line.1"></a>
+<FONT color="green">002</FONT>     * Copyright (c) 2004 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
+<FONT color="green">003</FONT>     */<a name="line.3"></a>
+<FONT color="green">004</FONT>    package com.nuecho.rivr.voicexml.rendering.voicexml;<a name="line.4"></a>
+<FONT color="green">005</FONT>    <a name="line.5"></a>
+<FONT color="green">006</FONT>    import java.text.*;<a name="line.6"></a>
+<FONT color="green">007</FONT>    import java.util.*;<a name="line.7"></a>
+<FONT color="green">008</FONT>    import java.util.regex.*;<a name="line.8"></a>
+<FONT color="green">009</FONT>    <a name="line.9"></a>
+<FONT color="green">010</FONT>    import org.w3c.dom.*;<a name="line.10"></a>
+<FONT color="green">011</FONT>    <a name="line.11"></a>
+<FONT color="green">012</FONT>    import com.nuecho.rivr.core.util.*;<a name="line.12"></a>
+<FONT color="green">013</FONT>    import com.nuecho.rivr.voicexml.servlet.*;<a name="line.13"></a>
+<FONT color="green">014</FONT>    import com.nuecho.rivr.voicexml.turn.*;<a name="line.14"></a>
+<FONT color="green">015</FONT>    import com.nuecho.rivr.voicexml.turn.output.*;<a name="line.15"></a>
+<FONT color="green">016</FONT>    import com.nuecho.rivr.voicexml.turn.output.audio.*;<a name="line.16"></a>
+<FONT color="green">017</FONT>    import com.nuecho.rivr.voicexml.turn.output.fetch.*;<a name="line.17"></a>
+<FONT color="green">018</FONT>    import com.nuecho.rivr.voicexml.turn.output.grammar.*;<a name="line.18"></a>
+<FONT color="green">019</FONT>    import com.nuecho.rivr.voicexml.turn.output.interaction.*;<a name="line.19"></a>
+<FONT color="green">020</FONT>    <a name="line.20"></a>
+<FONT color="green">021</FONT>    /**<a name="line.21"></a>
+<FONT color="green">022</FONT>     * @author Nu Echo Inc.<a name="line.22"></a>
+<FONT color="green">023</FONT>     */<a name="line.23"></a>
+<FONT color="green">024</FONT>    public final class VoiceXmlDomUtil {<a name="line.24"></a>
+<FONT color="green">025</FONT>    <a name="line.25"></a>
+<FONT color="green">026</FONT>        public static final String PARAM_ELEMENT = "param";<a name="line.26"></a>
+<FONT color="green">027</FONT>        public static final String ASSIGN_ELEMENT = "assign";<a name="line.27"></a>
+<FONT color="green">028</FONT>        public static final String VXML_ELEMENT = "vxml";<a name="line.28"></a>
+<FONT color="green">029</FONT>        public static final String EXIT_ELEMENT = "exit";<a name="line.29"></a>
+<FONT color="green">030</FONT>        public static final String BLOCK_ELEMENT = "block";<a name="line.30"></a>
+<FONT color="green">031</FONT>        public static final String IF_ELEMENT = "if";<a name="line.31"></a>
+<FONT color="green">032</FONT>        public static final String ELSE_ELEMENT = "else";<a name="line.32"></a>
+<FONT color="green">033</FONT>        public static final String FORM_ELEMENT = "form";<a name="line.33"></a>
+<FONT color="green">034</FONT>        public static final String FIELD_ELEMENT = "field";<a name="line.34"></a>
+<FONT color="green">035</FONT>        public static final String RECORD_ELEMENT = "record";<a name="line.35"></a>
+<FONT color="green">036</FONT>        public static final String FILLED_ELEMENT = "filled";<a name="line.36"></a>
+<FONT color="green">037</FONT>        public static final String GRAMMAR_ELEMENT = "grammar";<a name="line.37"></a>
+<FONT color="green">038</FONT>        public static final String LOG_ELEMENT = "log";<a name="line.38"></a>
+<FONT color="green">039</FONT>        public static final String SCRIPT_ELEMENT = "script";<a name="line.39"></a>
+<FONT color="green">040</FONT>        public static final String NOINPUT_ELEMENT = "noinput";<a name="line.40"></a>
+<FONT color="green">041</FONT>        public static final String NOMATCH_ELEMENT = "nomatch";<a name="line.41"></a>
+<FONT color="green">042</FONT>        public static final String RETURN_ELEMENT = "return";<a name="line.42"></a>
+<FONT color="green">043</FONT>        public static final String DISCONNECT_ELEMENT = "disconnect";<a name="line.43"></a>
+<FONT color="green">044</FONT>        public static final String CATCH_ELEMENT = "catch";<a name="line.44"></a>
+<FONT color="green">045</FONT>        public static final String PROPERTY_ELEMENT = "property";<a name="line.45"></a>
+<FONT color="green">046</FONT>        public static final String SUBMIT_ELEMENT = "submit";<a name="line.46"></a>
+<FONT color="green">047</FONT>        public static final String VALUE_ELEMENT = "value";<a name="line.47"></a>
+<FONT color="green">048</FONT>        public static final String VAR_ELEMENT = "var";<a name="line.48"></a>
+<FONT color="green">049</FONT>        public static final String BREAK_ELEMENT = "break";<a name="line.49"></a>
+<FONT color="green">050</FONT>        public static final String MARK_ELEMENT = "mark";<a name="line.50"></a>
+<FONT color="green">051</FONT>        public static final String AUDIO_ELEMENT = "audio";<a name="line.51"></a>
+<FONT color="green">052</FONT>        public static final String GOTO_ELEMENT = "goto";<a name="line.52"></a>
+<FONT color="green">053</FONT>        public static final String TRANSFER_ELEMENT = "transfer";<a name="line.53"></a>
+<FONT color="green">054</FONT>        public static final String SUBDIALOG_ELEMENT = "subdialog";<a name="line.54"></a>
+<FONT color="green">055</FONT>        public static final String OBJECT_ELEMENT = "object";<a name="line.55"></a>
+<FONT color="green">056</FONT>        public static final String REPROMPT_ELEMENT = "reprompt";<a name="line.56"></a>
+<FONT color="green">057</FONT>    <a name="line.57"></a>
+<FONT color="green">058</FONT>        public static final String BRIDGE_ATTRIBUTE = "bridge";<a name="line.58"></a>
+<FONT color="green">059</FONT>        public static final String ID_ATTRIBUTE = "id";<a name="line.59"></a>
+<FONT color="green">060</FONT>        public static final String MODE_ATTRIBUTE = "mode";<a name="line.60"></a>
+<FONT color="green">061</FONT>        public static final String SRC_ATTRIBUTE = "src";<a name="line.61"></a>
+<FONT color="green">062</FONT>        public static final String NAME_LIST_ATTRIBUTE = "namelist";<a name="line.62"></a>
+<FONT color="green">063</FONT>        public static final String COND_ATTRIBUTE = "cond";<a name="line.63"></a>
+<FONT color="green">064</FONT>        public static final String EVENT_ATTRIBUTE = "event";<a name="line.64"></a>
+<FONT color="green">065</FONT>        public static final String COUNT_ATTRIBUTE = "count";<a name="line.65"></a>
+<FONT color="green">066</FONT>        public static final String MESSAGE_ATTRIBUTE = "message";<a name="line.66"></a>
+<FONT color="green">067</FONT>        public static final String MESSAGE_EXPRESSION_ATTRIBUTE = "messageexpr";<a name="line.67"></a>
+<FONT color="green">068</FONT>        public static final String METHOD_ATTRIBUTE = "method";<a name="line.68"></a>
+<FONT color="green">069</FONT>        public static final String NEXT_ATTRIBUTE = "next";<a name="line.69"></a>
+<FONT color="green">070</FONT>        public static final String NAME_ATTRIBUTE = "name";<a name="line.70"></a>
+<FONT color="green">071</FONT>        public static final String EXPR_ATTRIBUTE = "expr";<a name="line.71"></a>
+<FONT color="green">072</FONT>        public static final String VALUE_ATTRIBUTE = "value";<a name="line.72"></a>
+<FONT color="green">073</FONT>        public static final String VALUE_TYPE_ATTRIBUTE = "valuetype";<a name="line.73"></a>
+<FONT color="green">074</FONT>        public static final String TIME_ATTRIBUTE = "time";<a name="line.74"></a>
+<FONT color="green">075</FONT>        public static final String PROMPT_ATTRIBUTE = "prompt";<a name="line.75"></a>
+<FONT color="green">076</FONT>        public static final String XML_LANGUAGE_ATTRIBUTE = "xml:lang";<a name="line.76"></a>
+<FONT color="green">077</FONT>        public static final String APPLICATION_ATTRIBUTE = "application";<a name="line.77"></a>
+<FONT color="green">078</FONT>        public static final String XMLNS_ATTRIBUTE = "xmlns";<a name="line.78"></a>
+<FONT color="green">079</FONT>        public static final String VERSION_ATTRIBUTE = "version";<a name="line.79"></a>
+<FONT color="green">080</FONT>        public static final String TYPE_ATTRIBUTE = "type";<a name="line.80"></a>
+<FONT color="green">081</FONT>        public static final String MAXTIME_ATTRIBUTE = "maxtime";<a name="line.81"></a>
+<FONT color="green">082</FONT>        public static final String FINAL_SILENCE_ATTRIBUTE = "finalsilence";<a name="line.82"></a>
+<FONT color="green">083</FONT>        public static final String DTMFTERM_ATTRIBUTE = "dtmfterm";<a name="line.83"></a>
+<FONT color="green">084</FONT>        public static final String BEEP_ATTRIBUTE = "beep";<a name="line.84"></a>
+<FONT color="green">085</FONT>        public static final String ENCTYPE_ATTRIBUTE = "enctype";<a name="line.85"></a>
+<FONT color="green">086</FONT>        public static final String CONNECT_TIMEOUT_ATTRIBUTE = "connecttimeout";<a name="line.86"></a>
+<FONT color="green">087</FONT>        public static final String TRANSFER_AUDIO_ATTRIBUTE = "transferaudio";<a name="line.87"></a>
+<FONT color="green">088</FONT>        public static final String DEST_ATTRIBUTE = "dest";<a name="line.88"></a>
+<FONT color="green">089</FONT>        public static final String AAI_ATTRIBUTE = "aai";<a name="line.89"></a>
+<FONT color="green">090</FONT>        public static final String FETCH_AUDIO_ATTRIBUTE = "fetchaudio";<a name="line.90"></a>
+<FONT color="green">091</FONT>        public static final String FETCH_TIMEOUT_ATTRIBUTE = "fetchtimeout";<a name="line.91"></a>
+<FONT color="green">092</FONT>        public static final String FETCH_HINT_ATTRIBUTE = "fetchhint";<a name="line.92"></a>
+<FONT color="green">093</FONT>        public static final String MAX_STALE_ATTRIBUTE = "maxstale";<a name="line.93"></a>
+<FONT color="green">094</FONT>        public static final String MAX_AGE_ATTRIBUTE = "maxage";<a name="line.94"></a>
+<FONT color="green">095</FONT>        public static final String TAG_FORMAT_ATTRIBUTE = "tag-format";<a name="line.95"></a>
+<FONT color="green">096</FONT>        public static final String ROOT_ATTRIBUTE = "root";<a name="line.96"></a>
+<FONT color="green">097</FONT>        public static final String BASE_ATTRIBUTE = "base";<a name="line.97"></a>
+<FONT color="green">098</FONT>        public static final String WEIGHT_ATTRIBUTE = "weight";<a name="line.98"></a>
+<FONT color="green">099</FONT>        public static final String ARCHIVE_ATTRIBUTE = "archive";<a name="line.99"></a>
+<FONT color="green">100</FONT>        public static final String DATA_ATTRIBUTE = "data";<a name="line.100"></a>
+<FONT color="green">101</FONT>        public static final String CODE_TYPE_ATTRIBUTE = "codetype";<a name="line.101"></a>
+<FONT color="green">102</FONT>        public static final String CODE_BASE_ATTRIBUTE = "codebase";<a name="line.102"></a>
+<FONT color="green">103</FONT>        public static final String CLASS_ID_ATTRIBUTE = "classid";<a name="line.103"></a>
+<FONT color="green">104</FONT>    <a name="line.104"></a>
+<FONT color="green">105</FONT>        public static final String MULTIPART_FORM_DATA = "multipart/form-data";<a name="line.105"></a>
+<FONT color="green">106</FONT>    <a name="line.106"></a>
+<FONT color="green">107</FONT>        public static final String POST_METHOD = "post";<a name="line.107"></a>
+<FONT color="green">108</FONT>        public static final String GET_METHOD = "get";<a name="line.108"></a>
+<FONT color="green">109</FONT>    <a name="line.109"></a>
+<FONT color="green">110</FONT>        public static final String PROMPT_FORM_ITEM_NAME_PREFIX = "prompt";<a name="line.110"></a>
+<FONT color="green">111</FONT>        public static final String RECOGNITION_FORM_ITEM_NAME = "recognition";<a name="line.111"></a>
+<FONT color="green">112</FONT>        public static final String SUBDIALOGUE_FORM_ITEM_NAME = "subdialogue";<a name="line.112"></a>
+<FONT color="green">113</FONT>        public static final String OBJECT_FORM_ITEM_NAME = "object";<a name="line.113"></a>
+<FONT color="green">114</FONT>        public static final String RECORD_FORM_ITEM_NAME = "record";<a name="line.114"></a>
+<FONT color="green">115</FONT>        public static final String TRANSFER_FORM_ITEM_NAME = "transfer";<a name="line.115"></a>
+<FONT color="green">116</FONT>    <a name="line.116"></a>
+<FONT color="green">117</FONT>        public static final String TRUE = "true";<a name="line.117"></a>
+<FONT color="green">118</FONT>        public static final String FALSE = "false";<a name="line.118"></a>
+<FONT color="green">119</FONT>        public static final String ANY_MODE = "any";<a name="line.119"></a>
+<FONT color="green">120</FONT>    <a name="line.120"></a>
+<FONT color="green">121</FONT>        public static final String BARGE_IN_PROPERTY = "bargein";<a name="line.121"></a>
+<FONT color="green">122</FONT>        public static final String CONFIDENCE_LEVEL_PROPERTY = "confidencelevel";<a name="line.122"></a>
+<FONT color="green">123</FONT>        public static final String MAX_N_BEST_PROPERTY = "maxnbest";<a name="line.123"></a>
+<FONT color="green">124</FONT>        public static final String INPUT_MODES_PROPERTY = "inputmodes";<a name="line.124"></a>
+<FONT color="green">125</FONT>        public static final String INCOMPLETE_TIMEOUT_PROPERTY = "incompletetimeout";<a name="line.125"></a>
+<FONT color="green">126</FONT>        public static final String COMPLETE_TIMEOUT_PROPERTY = "completetimeout";<a name="line.126"></a>
+<FONT color="green">127</FONT>        public static final String TIMEOUT_PROPERTY = "timeout";<a name="line.127"></a>
+<FONT color="green">128</FONT>        public static final String BARGE_IN_TYPE_PROPERTY = "bargeintype";<a name="line.128"></a>
+<FONT color="green">129</FONT>        public static final String SPEED_VERSUS_ACCURACY_PROPERTY = "speedvsaccuracy";<a name="line.129"></a>
+<FONT color="green">130</FONT>        public static final String SENSITIVITY_PROPERTY = "sensitivity";<a name="line.130"></a>
+<FONT color="green">131</FONT>        public static final String MAX_SPEECH_TIMEOUT_PROPERTY = "maxspeechtimeout";<a name="line.131"></a>
+<FONT color="green">132</FONT>        public static final String TERM_CHAR_PROPERTY = "termchar";<a name="line.132"></a>
+<FONT color="green">133</FONT>        public static final String TERM_TIMEOUT_PROPERTY = "termtimeout";<a name="line.133"></a>
+<FONT color="green">134</FONT>        public static final String INTER_DIGIT_TIMEOUT_PROPERTY = "interdigittimeout";<a name="line.134"></a>
+<FONT color="green">135</FONT>        public static final String FETCH_AUDIO_MINIMUM_PROPERTY = "fetchaudiominimum";<a name="line.135"></a>
+<FONT color="green">136</FONT>        public static final String FETCH_AUDIO_DELAY_PROPERTY = "fetchaudiodelay";<a name="line.136"></a>
+<FONT color="green">137</FONT>        public static final String FETCH_AUDIO_PROPERTY = "fetchaudio";<a name="line.137"></a>
+<FONT color="green">138</FONT>        public static final String FETCH_TIMEOUT_PROPERTY = "fetchtimeout";<a name="line.138"></a>
+<FONT color="green">139</FONT>    <a name="line.139"></a>
+<FONT color="green">140</FONT>        public static final String MAX_STALE_PROPERTY_SUFFIX = "maxstale";<a name="line.140"></a>
+<FONT color="green">141</FONT>        public static final String MAX_AGE_PROPERTY_SUFFIX = "maxage";<a name="line.141"></a>
+<FONT color="green">142</FONT>        public static final String FETCH_HINT_PROPERTY_SUFFIX = "fetchhint";<a name="line.142"></a>
+<FONT color="green">143</FONT>    <a name="line.143"></a>
+<FONT color="green">144</FONT>        public static final String MILLISECOND_UNIT_SUFFIX = "ms";<a name="line.144"></a>
+<FONT color="green">145</FONT>        public static final String FORM_ID = "form";<a name="line.145"></a>
+<FONT color="green">146</FONT>        public static final String PREFETCH_PROPERTY_VALUE = "prefetch";<a name="line.146"></a>
+<FONT color="green">147</FONT>    <a name="line.147"></a>
+<FONT color="green">148</FONT>        public static final String DTMF_VOICE_INPUT_MODE = "dtmf voice";<a name="line.148"></a>
+<FONT color="green">149</FONT>        public static final String DTMF_INPUT_MODE = "dtmf";<a name="line.149"></a>
+<FONT color="green">150</FONT>        public static final String VOICE_INPUT_MODE = "voice";<a name="line.150"></a>
+<FONT color="green">151</FONT>    <a name="line.151"></a>
+<FONT color="green">152</FONT>        public static final String ERROR_EVENT_NAME = "error";<a name="line.152"></a>
+<FONT color="green">153</FONT>    <a name="line.153"></a>
+<FONT color="green">154</FONT>        public static final String FATAL_ERROR_HANDLER_FORM_ID = "fatalErrorForm";<a name="line.154"></a>
+<FONT color="green">155</FONT>        public static final String SUBMIT_FORM_ID = "submitForm";<a name="line.155"></a>
+<FONT color="green">156</FONT>    <a name="line.156"></a>
+<FONT color="green">157</FONT>        public static final String EVENT_MESSAGE_VARIABLE = "_message";<a name="line.157"></a>
+<FONT color="green">158</FONT>        public static final String EVENT_NAME_VARIABLE = "_event";<a name="line.158"></a>
+<FONT color="green">159</FONT>        public static final String INPUT_TURN_VARIABLE = "inputTurn";<a name="line.159"></a>
+<FONT color="green">160</FONT>        public static final String RECORDING_VARIABLE = "recording";<a name="line.160"></a>
+<FONT color="green">161</FONT>    <a name="line.161"></a>
+<FONT color="green">162</FONT>        public static final String RIVR_VARIABLE = "rivr";<a name="line.162"></a>
+<FONT color="green">163</FONT>        public static final String RIVR_SCOPE_OBJECT = "application." + RIVR_VARIABLE;<a name="line.163"></a>
+<FONT color="green">164</FONT>    <a name="line.164"></a>
+<FONT color="green">165</FONT>        public static final String RIVR_INPUT_TURN_PROPERTY = "inputTurn";<a name="line.165"></a>
+<FONT color="green">166</FONT>        public static final String RIVR_INPUT_TURN_SCOPE_OBJECT = RIVR_SCOPE_OBJECT + "." + RIVR_INPUT_TURN_PROPERTY;<a name="line.166"></a>
+<FONT color="green">167</FONT>    <a name="line.167"></a>
+<FONT color="green">168</FONT>        public static final String RIVR_DIALOGUE_ID_PROPERTY = "dialogueId";<a name="line.168"></a>
+<FONT color="green">169</FONT>        public static final String RIVR_DIALOGUE_ID_SCOPE_OBJECT = RIVR_SCOPE_OBJECT + "." + RIVR_DIALOGUE_ID_PROPERTY;<a name="line.169"></a>
+<FONT color="green">170</FONT>    <a name="line.170"></a>
+<FONT color="green">171</FONT>        private static final String RIVR_TURN_INDEX_PROPERTY = "turnIndex";<a name="line.171"></a>
+<FONT color="green">172</FONT>        private static final String RIVR_TURN_NAME_PROPERTY = "turnName";<a name="line.172"></a>
+<FONT color="green">173</FONT>    <a name="line.173"></a>
+<FONT color="green">174</FONT>        public static final String LOCAL_ERROR_HANDLING_PROPERTY = "localErrorHandling";<a name="line.174"></a>
+<FONT color="green">175</FONT>        public static final String RESULT_RECORDING_METADATA_SCOPE_OBJECT = RIVR_INPUT_TURN_SCOPE_OBJECT<a name="line.175"></a>
+<FONT color="green">176</FONT>                                                                            + ".recordingMetaData";<a name="line.176"></a>
+<FONT color="green">177</FONT>        public static final String RESULT_RECORDING_METADATA_DATA_SCOPE_OBJECT = RESULT_RECORDING_METADATA_SCOPE_OBJECT<a name="line.177"></a>
+<FONT color="green">178</FONT>                                                                                 + ".data";<a name="line.178"></a>
+<FONT color="green">179</FONT>    <a name="line.179"></a>
+<FONT color="green">180</FONT>        public static final String VOICEXML_NAMESPACE = "http://www.w3.org/2001/vxml";<a name="line.180"></a>
+<FONT color="green">181</FONT>    <a name="line.181"></a>
+<FONT color="green">182</FONT>        private static final Pattern ECMASCRIPT_BACKSLASH_PATTERN = Pattern.compile("\\\\");<a name="line.182"></a>
+<FONT color="green">183</FONT>        private static final Pattern ECMASCRIPT_QUOTE_PATTERN = Pattern.compile("\\'");<a name="line.183"></a>
+<FONT color="green">184</FONT>        private static final Pattern ECMASCRIPT_CARRIAGE_RETURN_PATTERN = Pattern.compile("\\u000d");<a name="line.184"></a>
+<FONT color="green">185</FONT>        private static final Pattern ECMASCRIPT_LINEFEED_PATTERN = Pattern.compile("\\u000a");<a name="line.185"></a>
+<FONT color="green">186</FONT>        private static final Pattern ECMASCRIPT_LINE_SEPARATOR_PATTERN = Pattern.compile("\\u2028");<a name="line.186"></a>
+<FONT color="green">187</FONT>        private static final Pattern ECMASCRIPT_PARAGRAPH_SEPARATOR_PATTERN = Pattern.compile("\\u2029");<a name="line.187"></a>
+<FONT color="green">188</FONT>        private static final Pattern URI_PATH_REPLACEMENT_CHAR = Pattern.compile("[^a-zA-Z0-9./_-]");<a name="line.188"></a>
+<FONT color="green">189</FONT>    <a name="line.189"></a>
+<FONT color="green">190</FONT>        public static Element createVoiceXmlDocumentRoot(VoiceXmlDialogueContext voiceXmlDialogueContext) {<a name="line.190"></a>
+<FONT color="green">191</FONT>            Document document = DomUtils.createDocument(VXML_ELEMENT);<a name="line.191"></a>
+<FONT color="green">192</FONT>    <a name="line.192"></a>
+<FONT color="green">193</FONT>            Element vxmlElement = document.getDocumentElement();<a name="line.193"></a>
+<FONT color="green">194</FONT>            vxmlElement.setAttribute(XMLNS_ATTRIBUTE, VOICEXML_NAMESPACE);<a name="line.194"></a>
+<FONT color="green">195</FONT>            vxmlElement.setAttribute(VERSION_ATTRIBUTE, "2.1");<a name="line.195"></a>
+<FONT color="green">196</FONT>    <a name="line.196"></a>
+<FONT color="green">197</FONT>            String language = voiceXmlDialogueContext.getLanguage();<a name="line.197"></a>
+<FONT color="green">198</FONT>            if (language != null) {<a name="line.198"></a>
+<FONT color="green">199</FONT>                vxmlElement.setAttribute(XML_LANGUAGE_ATTRIBUTE, language);<a name="line.199"></a>
+<FONT color="green">200</FONT>            }<a name="line.200"></a>
+<FONT color="green">201</FONT>    <a name="line.201"></a>
+<FONT color="green">202</FONT>            return vxmlElement;<a name="line.202"></a>
+<FONT color="green">203</FONT>        }<a name="line.203"></a>
+<FONT color="green">204</FONT>    <a name="line.204"></a>
+<FONT color="green">205</FONT>        public static Document createDocument(VoiceXmlDialogueContext voiceXmlDialogueContext, NamedTurn turn) {<a name="line.205"></a>
+<FONT color="green">206</FONT>            Element vxmlElement = createVoiceXmlDocumentRoot(voiceXmlDialogueContext);<a name="line.206"></a>
+<FONT color="green">207</FONT>    <a name="line.207"></a>
+<FONT color="green">208</FONT>            String rootDocumentPath = voiceXmlDialogueContext.getContextPath()<a name="line.208"></a>
+<FONT color="green">209</FONT>                                      + voiceXmlDialogueContext.getServletPath()<a name="line.209"></a>
+<FONT color="green">210</FONT>                                      + VoiceXmlDialogueServlet.ROOT_PATH<a name="line.210"></a>
+<FONT color="green">211</FONT>                                      + voiceXmlDialogueContext.getDialogueId();<a name="line.211"></a>
+<FONT color="green">212</FONT>    <a name="line.212"></a>
+<FONT color="green">213</FONT>            vxmlElement.setAttribute(APPLICATION_ATTRIBUTE, rootDocumentPath);<a name="line.213"></a>
+<FONT color="green">214</FONT>    <a name="line.214"></a>
+<FONT color="green">215</FONT>            StringBuilder script = new StringBuilder();<a name="line.215"></a>
+<FONT color="green">216</FONT>            script.append(RIVR_SCOPE_OBJECT)<a name="line.216"></a>
+<FONT color="green">217</FONT>                  .append(".")<a name="line.217"></a>
+<FONT color="green">218</FONT>                  .append(LOCAL_ERROR_HANDLING_PROPERTY)<a name="line.218"></a>
+<FONT color="green">219</FONT>                  .append(" = ")<a name="line.219"></a>
+<FONT color="green">220</FONT>                  .append(FALSE)<a name="line.220"></a>
+<FONT color="green">221</FONT>                  .append("; ");<a name="line.221"></a>
+<FONT color="green">222</FONT>    <a name="line.222"></a>
+<FONT color="green">223</FONT>            if (turn != null) {<a name="line.223"></a>
+<FONT color="green">224</FONT>                script.append(RIVR_SCOPE_OBJECT)<a name="line.224"></a>
+<FONT color="green">225</FONT>                      .append(".")<a name="line.225"></a>
+<FONT color="green">226</FONT>                      .append(RIVR_TURN_NAME_PROPERTY)<a name="line.226"></a>
+<FONT color="green">227</FONT>                      .append(" = ")<a name="line.227"></a>
+<FONT color="green">228</FONT>                      .append(createEcmaScriptStringLiteral(turn.getName()))<a name="line.228"></a>
+<FONT color="green">229</FONT>                      .append("; ");<a name="line.229"></a>
+<FONT color="green">230</FONT>            }<a name="line.230"></a>
+<FONT color="green">231</FONT>    <a name="line.231"></a>
+<FONT color="green">232</FONT>            script.append(RIVR_SCOPE_OBJECT)<a name="line.232"></a>
+<FONT color="green">233</FONT>                  .append(".")<a name="line.233"></a>
+<FONT color="green">234</FONT>                  .append(RIVR_TURN_INDEX_PROPERTY)<a name="line.234"></a>
+<FONT color="green">235</FONT>                  .append(" = ")<a name="line.235"></a>
+<FONT color="green">236</FONT>                  .append(voiceXmlDialogueContext.getTurnIndex())<a name="line.236"></a>
+<FONT color="green">237</FONT>                  .append("; ");<a name="line.237"></a>
+<FONT color="green">238</FONT>    <a name="line.238"></a>
+<FONT color="green">239</FONT>            script.append(RIVR_INPUT_TURN_SCOPE_OBJECT).append(" = {};");<a name="line.239"></a>
+<FONT color="green">240</FONT>            createScript(vxmlElement, script.toString());<a name="line.240"></a>
+<FONT color="green">241</FONT>    <a name="line.241"></a>
+<FONT color="green">242</FONT>            processFetchRendering(voiceXmlDialogueContext, vxmlElement);<a name="line.242"></a>
+<FONT color="green">243</FONT>    <a name="line.243"></a>
+<FONT color="green">244</FONT>            processProperties(voiceXmlDialogueContext, vxmlElement);<a name="line.244"></a>
+<FONT color="green">245</FONT>    <a name="line.245"></a>
+<FONT color="green">246</FONT>            return vxmlElement.getOwnerDocument();<a name="line.246"></a>
+<FONT color="green">247</FONT>        }<a name="line.247"></a>
+<FONT color="green">248</FONT>    <a name="line.248"></a>
+<FONT color="green">249</FONT>        private static void processProperties(VoiceXmlDialogueContext voiceXmlDialogueContext, Element vxmlElement) {<a name="line.249"></a>
+<FONT color="green">250</FONT>            Map&lt;String, String&gt; properties = voiceXmlDialogueContext.getProperties();<a name="line.250"></a>
+<FONT color="green">251</FONT>            if (properties != null) {<a name="line.251"></a>
+<FONT color="green">252</FONT>                for (String propertyName : properties.keySet()) {<a name="line.252"></a>
+<FONT color="green">253</FONT>                    addProperty(vxmlElement, propertyName, properties.get(propertyName));<a name="line.253"></a>
+<FONT color="green">254</FONT>                }<a name="line.254"></a>
+<FONT color="green">255</FONT>            }<a name="line.255"></a>
+<FONT color="green">256</FONT>        }<a name="line.256"></a>
+<FONT color="green">257</FONT>    <a name="line.257"></a>
+<FONT color="green">258</FONT>        private static void processFetchRendering(VoiceXmlDialogueContext voiceXmlDialogueContext, Element vxmlElement) {<a name="line.258"></a>
+<FONT color="green">259</FONT>            FetchConfiguration fetchConfiguration = voiceXmlDialogueContext.getFetchConfiguration();<a name="line.259"></a>
+<FONT color="green">260</FONT>            if (fetchConfiguration == null) return;<a name="line.260"></a>
+<FONT color="green">261</FONT>    <a name="line.261"></a>
+<FONT color="green">262</FONT>            Recording fetchAudio = fetchConfiguration.getDefaultFetchAudio();<a name="line.262"></a>
+<FONT color="green">263</FONT>            if (fetchAudio != null) {<a name="line.263"></a>
+<FONT color="green">264</FONT>                addFetchAudioProperty(vxmlElement, fetchAudio);<a name="line.264"></a>
+<FONT color="green">265</FONT>            }<a name="line.265"></a>
+<FONT color="green">266</FONT>    <a name="line.266"></a>
+<FONT color="green">267</FONT>            addTimeProperty(vxmlElement, FETCH_TIMEOUT_PROPERTY, fetchConfiguration.getDefaultFetchTimeout());<a name="line.267"></a>
+<FONT color="green">268</FONT>    <a name="line.268"></a>
+<FONT color="green">269</FONT>            applyDefaultResourceFetchConfiguration(vxmlElement, fetchConfiguration.getDefaultAudioFetchConfiguration());<a name="line.269"></a>
+<FONT color="green">270</FONT>            applyDefaultResourceFetchConfiguration(vxmlElement, fetchConfiguration.getDefaultGrammarFetchConfiguration());<a name="line.270"></a>
+<FONT color="green">271</FONT>            applyDefaultResourceFetchConfiguration(vxmlElement, fetchConfiguration.getDefaultObjectFetchConfiguration());<a name="line.271"></a>
+<FONT color="green">272</FONT>            applyDefaultResourceFetchConfiguration(vxmlElement, fetchConfiguration.getDefaultScriptFetchConfiguration());<a name="line.272"></a>
+<FONT color="green">273</FONT>        }<a name="line.273"></a>
+<FONT color="green">274</FONT>    <a name="line.274"></a>
+<FONT color="green">275</FONT>        public static void createAssignation(Element parent, String variableName, String expression) {<a name="line.275"></a>
+<FONT color="green">276</FONT>            Element assingElement = DomUtils.appendNewElement(parent, ASSIGN_ELEMENT);<a name="line.276"></a>
+<FONT color="green">277</FONT>            assingElement.setAttribute(NAME_ATTRIBUTE, variableName);<a name="line.277"></a>
+<FONT color="green">278</FONT>            assingElement.setAttribute(EXPR_ATTRIBUTE, expression);<a name="line.278"></a>
+<FONT color="green">279</FONT>        }<a name="line.279"></a>
+<FONT color="green">280</FONT>    <a name="line.280"></a>
+<FONT color="green">281</FONT>        public static void applyRessourceFetchConfiguration(Element element,<a name="line.281"></a>
+<FONT color="green">282</FONT>                                                            ResourceFetchConfiguration resourceFetchConfiguration) {<a name="line.282"></a>
+<FONT color="green">283</FONT>            if (resourceFetchConfiguration != null) {<a name="line.283"></a>
+<FONT color="green">284</FONT>                setCacheControlTimeAttribute(element, MAX_AGE_ATTRIBUTE, resourceFetchConfiguration.getMaxAge());<a name="line.284"></a>
+<FONT color="green">285</FONT>                setCacheControlTimeAttribute(element, MAX_STALE_ATTRIBUTE, resourceFetchConfiguration.getMaxStale());<a name="line.285"></a>
+<FONT color="green">286</FONT>                setFetchHintAttribute(element, FETCH_HINT_ATTRIBUTE, resourceFetchConfiguration.getFetchHint());<a name="line.286"></a>
+<FONT color="green">287</FONT>                setTimeAttribute(element, FETCH_TIMEOUT_ATTRIBUTE, resourceFetchConfiguration.getTimeOut());<a name="line.287"></a>
+<FONT color="green">288</FONT>            }<a name="line.288"></a>
+<FONT color="green">289</FONT>        }<a name="line.289"></a>
+<FONT color="green">290</FONT>    <a name="line.290"></a>
+<FONT color="green">291</FONT>        private static void applyDefaultResourceFetchConfiguration(Element parent,<a name="line.291"></a>
+<FONT color="green">292</FONT>                                                                   BaseResourceFetchConfiguration fetchConfiguration) {<a name="line.292"></a>
+<FONT color="green">293</FONT>            if (fetchConfiguration != null) {<a name="line.293"></a>
+<FONT color="green">294</FONT>                String name = fetchConfiguration.getName();<a name="line.294"></a>
+<FONT color="green">295</FONT>                addFetchHintProperty(parent, name + FETCH_HINT_PROPERTY_SUFFIX, fetchConfiguration.getFetchHint());<a name="line.295"></a>
+<FONT color="green">296</FONT>                addCacheControlTimeProperty(parent, name + MAX_AGE_PROPERTY_SUFFIX, fetchConfiguration.getMaxAge());<a name="line.296"></a>
+<FONT color="green">297</FONT>                addCacheControlTimeProperty(parent, name + MAX_STALE_PROPERTY_SUFFIX, fetchConfiguration.getMaxStale());<a name="line.297"></a>
+<FONT color="green">298</FONT>            }<a name="line.298"></a>
+<FONT color="green">299</FONT>        }<a name="line.299"></a>
+<FONT color="green">300</FONT>    <a name="line.300"></a>
+<FONT color="green">301</FONT>        public static void createPrompt(String language,<a name="line.301"></a>
+<FONT color="green">302</FONT>                                        Element parent,<a name="line.302"></a>
+<FONT color="green">303</FONT>                                        VoiceXmlDialogueContext voiceXmlDialogueContext,<a name="line.303"></a>
+<FONT color="green">304</FONT>                                        Boolean bargeIn,<a name="line.304"></a>
+<FONT color="green">305</FONT>                                        List&lt;? extends AudioItem&gt; audioItems) throws VoiceXmlDocumentRenderingException {<a name="line.305"></a>
+<FONT color="green">306</FONT>    <a name="line.306"></a>
+<FONT color="green">307</FONT>            Element promptElement = DomUtils.appendNewElement(parent, PROMPT_ATTRIBUTE);<a name="line.307"></a>
+<FONT color="green">308</FONT>            setBooleanAttribute(promptElement, BARGE_IN_PROPERTY, bargeIn);<a name="line.308"></a>
+<FONT color="green">309</FONT>    <a name="line.309"></a>
+<FONT color="green">310</FONT>            String documentLanguage = voiceXmlDialogueContext.getLanguage();<a name="line.310"></a>
+<FONT color="green">311</FONT>            if (language != null &amp;&amp; !language.equals(documentLanguage)) {<a name="line.311"></a>
+<FONT color="green">312</FONT>                promptElement.setAttribute(XML_LANGUAGE_ATTRIBUTE, language);<a name="line.312"></a>
+<FONT color="green">313</FONT>            }<a name="line.313"></a>
+<FONT color="green">314</FONT>    <a name="line.314"></a>
+<FONT color="green">315</FONT>            processAudioItems(audioItems, promptElement);<a name="line.315"></a>
+<FONT color="green">316</FONT>        }<a name="line.316"></a>
+<FONT color="green">317</FONT>    <a name="line.317"></a>
+<FONT color="green">318</FONT>        public static void processAudioItems(List&lt;? extends AudioItem&gt; audioItems, Element promptElement)<a name="line.318"></a>
+<FONT color="green">319</FONT>                throws VoiceXmlDocumentRenderingException {<a name="line.319"></a>
+<FONT color="green">320</FONT>    <a name="line.320"></a>
+<FONT color="green">321</FONT>            boolean lastItemWasText = false;<a name="line.321"></a>
+<FONT color="green">322</FONT>            for (AudioItem audioItem : audioItems) {<a name="line.322"></a>
+<FONT color="green">323</FONT>                if (audioItem instanceof Recording) {<a name="line.323"></a>
+<FONT color="green">324</FONT>                    Recording recording = (Recording) audioItem;<a name="line.324"></a>
+<FONT color="green">325</FONT>                    Element audioElement = DomUtils.appendNewElement(promptElement, AUDIO_ELEMENT);<a name="line.325"></a>
+<FONT color="green">326</FONT>                    audioElement.setAttribute(SRC_ATTRIBUTE, recording.getPath());<a name="line.326"></a>
+<FONT color="green">327</FONT>    <a name="line.327"></a>
+<FONT color="green">328</FONT>                    SynthesisText synthesis = recording.getSynthesisText();<a name="line.328"></a>
+<FONT color="green">329</FONT>    <a name="line.329"></a>
+<FONT color="green">330</FONT>                    if (synthesis != null) {<a name="line.330"></a>
+<FONT color="green">331</FONT>                        if (synthesis.isSsml()) {<a name="line.331"></a>
+<FONT color="green">332</FONT>                            DocumentFragment ssmlNodes = synthesis.getDocumentFragment();<a name="line.332"></a>
+<FONT color="green">333</FONT>                            audioElement.appendChild(audioElement.getOwnerDocument().importNode(ssmlNodes, true));<a name="line.333"></a>
+<FONT color="green">334</FONT>                            lastItemWasText = false;<a name="line.334"></a>
+<FONT color="green">335</FONT>                        } else {<a name="line.335"></a>
+<FONT color="green">336</FONT>                            DomUtils.appendNewText(audioElement, synthesis.getText());<a name="line.336"></a>
+<FONT color="green">337</FONT>                            lastItemWasText = true;<a name="line.337"></a>
+<FONT color="green">338</FONT>                        }<a name="line.338"></a>
+<FONT color="green">339</FONT>                    }<a name="line.339"></a>
+<FONT color="green">340</FONT>    <a name="line.340"></a>
+<FONT color="green">341</FONT>                    applyRessourceFetchConfiguration(audioElement, recording.getResourceFetchConfiguration());<a name="line.341"></a>
+<FONT color="green">342</FONT>                } else if (audioItem instanceof SynthesisText) {<a name="line.342"></a>
+<FONT color="green">343</FONT>                    SynthesisText synthesisText = (SynthesisText) audioItem;<a name="line.343"></a>
+<FONT color="green">344</FONT>    <a name="line.344"></a>
+<FONT color="green">345</FONT>                    if (synthesisText.isSsml()) {<a name="line.345"></a>
+<FONT color="green">346</FONT>                        NodeList childNodes = synthesisText.getDocumentFragment().getChildNodes();<a name="line.346"></a>
+<FONT color="green">347</FONT>                        Document document = promptElement.getOwnerDocument();<a name="line.347"></a>
+<FONT color="green">348</FONT>    <a name="line.348"></a>
+<FONT color="green">349</FONT>                        for (int childNodeIndex = 0; childNodeIndex &lt; childNodes.getLength(); childNodeIndex++) {<a name="line.349"></a>
+<FONT color="green">350</FONT>                            Node node = document.importNode(childNodes.item(childNodeIndex).cloneNode(true), true);<a name="line.350"></a>
+<FONT color="green">351</FONT>                            promptElement.appendChild(node);<a name="line.351"></a>
+<FONT color="green">352</FONT>                        }<a name="line.352"></a>
+<FONT color="green">353</FONT>                        lastItemWasText = false;<a name="line.353"></a>
+<FONT color="green">354</FONT>                    } else {<a name="line.354"></a>
+<FONT color="green">355</FONT>                        String spaceIfRequired = lastItemWasText ? " " : "";<a name="line.355"></a>
+<FONT color="green">356</FONT>                        DomUtils.appendNewText(promptElement, spaceIfRequired + synthesisText.getText());<a name="line.356"></a>
+<FONT color="green">357</FONT>                        lastItemWasText = true;<a name="line.357"></a>
+<FONT color="green">358</FONT>                    }<a name="line.358"></a>
+<FONT color="green">359</FONT>                } else if (audioItem instanceof Pause) {<a name="line.359"></a>
+<FONT color="green">360</FONT>                    Pause pause = (Pause) audioItem;<a name="line.360"></a>
+<FONT color="green">361</FONT>                    Element breakElement = DomUtils.appendNewElement(promptElement, BREAK_ELEMENT);<a name="line.361"></a>
+<FONT color="green">362</FONT>                    setTimeAttribute(breakElement, TIME_ATTRIBUTE, pause.getDuration());<a name="line.362"></a>
+<FONT color="green">363</FONT>                    lastItemWasText = false;<a name="line.363"></a>
+<FONT color="green">364</FONT>                } else if (audioItem instanceof Mark) {<a name="line.364"></a>
+<FONT color="green">365</FONT>                    Mark mark = (Mark) audioItem;<a name="line.365"></a>
+<FONT color="green">366</FONT>                    Element markElement = DomUtils.appendNewElement(promptElement, MARK_ELEMENT);<a name="line.366"></a>
+<FONT color="green">367</FONT>                    markElement.setAttribute(NAME_ATTRIBUTE, mark.getName());<a name="line.367"></a>
+<FONT color="green">368</FONT>                    lastItemWasText = false;<a name="line.368"></a>
+<FONT color="green">369</FONT>                } else if (audioItem instanceof ClientSideRecording) {<a name="line.369"></a>
+<FONT color="green">370</FONT>                    ClientSideRecording clientSideRecording = (ClientSideRecording) audioItem;<a name="line.370"></a>
+<FONT color="green">371</FONT>                    Element audioElement = DomUtils.appendNewElement(promptElement, AUDIO_ELEMENT);<a name="line.371"></a>
+<FONT color="green">372</FONT>                    audioElement.setAttribute(EXPR_ATTRIBUTE, clientSideRecording.getExpression());<a name="line.372"></a>
+<FONT color="green">373</FONT>                    lastItemWasText = false;<a name="line.373"></a>
+<FONT color="green">374</FONT>                } else throw new VoiceXmlDocumentRenderingException("Cannot handle prompt rendering element of type '"<a name="line.374"></a>
+<FONT color="green">375</FONT>                                                                    + audioItem.getClass()<a name="line.375"></a>
+<FONT color="green">376</FONT>                                                                    + "'");<a name="line.376"></a>
+<FONT color="green">377</FONT>            }<a name="line.377"></a>
+<FONT color="green">378</FONT>        }<a name="line.378"></a>
+<FONT color="green">379</FONT>    <a name="line.379"></a>
+<FONT color="green">380</FONT>        public static void addFetchHintProperty(Element parent, String propertyName, FetchHint fetchHint) {<a name="line.380"></a>
+<FONT color="green">381</FONT>            if (fetchHint != null) {<a name="line.381"></a>
+<FONT color="green">382</FONT>                addProperty(parent, propertyName, fetchHint.getKey());<a name="line.382"></a>
+<FONT color="green">383</FONT>            }<a name="line.383"></a>
+<FONT color="green">384</FONT>        }<a name="line.384"></a>
+<FONT color="green">385</FONT>    <a name="line.385"></a>
+<FONT color="green">386</FONT>        public static void setFetchHintAttribute(Element parent, String propertyName, FetchHint fetchHint) {<a name="line.386"></a>
+<FONT color="green">387</FONT>            if (fetchHint != null) {<a name="line.387"></a>
+<FONT color="green">388</FONT>                setAttribute(parent, propertyName, fetchHint.getKey());<a name="line.388"></a>
+<FONT color="green">389</FONT>            }<a name="line.389"></a>
+<FONT color="green">390</FONT>        }<a name="line.390"></a>
+<FONT color="green">391</FONT>    <a name="line.391"></a>
+<FONT color="green">392</FONT>        public static void addCacheControlTimeProperty(Element parent, String propertyName, TimeValue value) {<a name="line.392"></a>
+<FONT color="green">393</FONT>            if (value != null) {<a name="line.393"></a>
+<FONT color="green">394</FONT>                addProperty(parent, propertyName, String.valueOf(value.getMilliseconds() / 1000));<a name="line.394"></a>
+<FONT color="green">395</FONT>            }<a name="line.395"></a>
+<FONT color="green">396</FONT>        }<a name="line.396"></a>
+<FONT color="green">397</FONT>    <a name="line.397"></a>
+<FONT color="green">398</FONT>        public static void setCacheControlTimeAttribute(Element parent, String propertyName, TimeValue value) {<a name="line.398"></a>
+<FONT color="green">399</FONT>            if (value != null) {<a name="line.399"></a>
+<FONT color="green">400</FONT>                setAttribute(parent, propertyName, String.valueOf(value.getMilliseconds() / 1000));<a name="line.400"></a>
+<FONT color="green">401</FONT>            }<a name="line.401"></a>
+<FONT color="green">402</FONT>        }<a name="line.402"></a>
+<FONT color="green">403</FONT>    <a name="line.403"></a>
+<FONT color="green">404</FONT>        public static void addTimeProperty(Element parent, String propertyName, TimeValue value) {<a name="line.404"></a>
+<FONT color="green">405</FONT>            if (value != null) {<a name="line.405"></a>
+<FONT color="green">406</FONT>                addProperty(parent, propertyName, value.getMilliseconds() + MILLISECOND_UNIT_SUFFIX);<a name="line.406"></a>
+<FONT color="green">407</FONT>            }<a name="line.407"></a>
+<FONT color="green">408</FONT>        }<a name="line.408"></a>
+<FONT color="green">409</FONT>    <a name="line.409"></a>
+<FONT color="green">410</FONT>        public static void setTimeAttribute(Element element, String attributeName, TimeValue value) {<a name="line.410"></a>
+<FONT color="green">411</FONT>            if (value != null) {<a name="line.411"></a>
+<FONT color="green">412</FONT>                setAttribute(element, attributeName, value.getMilliseconds() + MILLISECOND_UNIT_SUFFIX);<a name="line.412"></a>
+<FONT color="green">413</FONT>            }<a name="line.413"></a>
+<FONT color="green">414</FONT>        }<a name="line.414"></a>
+<FONT color="green">415</FONT>    <a name="line.415"></a>
+<FONT color="green">416</FONT>        public static void addBooleanProperty(Element parent, String propertyName, Boolean value) {<a name="line.416"></a>
+<FONT color="green">417</FONT>            if (value != null) {<a name="line.417"></a>
+<FONT color="green">418</FONT>                addProperty(parent, propertyName, value.booleanValue() ? TRUE : FALSE);<a name="line.418"></a>
+<FONT color="green">419</FONT>            }<a name="line.419"></a>
+<FONT color="green">420</FONT>        }<a name="line.420"></a>
+<FONT color="green">421</FONT>    <a name="line.421"></a>
+<FONT color="green">422</FONT>        public static void setBooleanAttribute(Element element, String attributeName, Boolean value) {<a name="line.422"></a>
+<FONT color="green">423</FONT>            if (value != null) {<a name="line.423"></a>
+<FONT color="green">424</FONT>                setAttribute(element, attributeName, value.booleanValue() ? TRUE : FALSE);<a name="line.424"></a>
+<FONT color="green">425</FONT>            }<a name="line.425"></a>
+<FONT color="green">426</FONT>        }<a name="line.426"></a>
+<FONT color="green">427</FONT>    <a name="line.427"></a>
+<FONT color="green">428</FONT>        public static void setAttribute(Element element, String attributeName, String value) {<a name="line.428"></a>
+<FONT color="green">429</FONT>            if (value != null) {<a name="line.429"></a>
+<FONT color="green">430</FONT>                element.setAttribute(attributeName, value);<a name="line.430"></a>
+<FONT color="green">431</FONT>            }<a name="line.431"></a>
+<FONT color="green">432</FONT>        }<a name="line.432"></a>
+<FONT color="green">433</FONT>    <a name="line.433"></a>
+<FONT color="green">434</FONT>        public static void addProperty(Element parent, String propertyName, String propertyValue) {<a name="line.434"></a>
+<FONT color="green">435</FONT>            Assert.notNull(propertyName, "propertyName");<a name="line.435"></a>
+<FONT color="green">436</FONT>    <a name="line.436"></a>
+<FONT color="green">437</FONT>            if (propertyValue != null) {<a name="line.437"></a>
+<FONT color="green">438</FONT>                Element propertyElement = DomUtils.appendNewElement(parent, PROPERTY_ELEMENT);<a name="line.438"></a>
+<FONT color="green">439</FONT>                propertyElement.setAttribute(NAME_ATTRIBUTE, propertyName);<a name="line.439"></a>
+<FONT color="green">440</FONT>                propertyElement.setAttribute(VALUE_ELEMENT, propertyValue);<a name="line.440"></a>
+<FONT color="green">441</FONT>            }<a name="line.441"></a>
+<FONT color="green">442</FONT>        }<a name="line.442"></a>
+<FONT color="green">443</FONT>    <a name="line.443"></a>
+<FONT color="green">444</FONT>        public static void addFetchAudioProperty(Element parent, Recording fetchAudioRecording) {<a name="line.444"></a>
+<FONT color="green">445</FONT>            addProperty(parent, FETCH_AUDIO_PROPERTY, fetchAudioRecording.getPath());<a name="line.445"></a>
+<FONT color="green">446</FONT>        }<a name="line.446"></a>
+<FONT color="green">447</FONT>    <a name="line.447"></a>
+<FONT color="green">448</FONT>        public static void addVariableDeclarations(Element formElement, VariableDeclarationList variableList) {<a name="line.448"></a>
+<FONT color="green">449</FONT>            for (VariableDeclaration declaration : variableList) {<a name="line.449"></a>
+<FONT color="green">450</FONT>                createVarElement(formElement, declaration.getName(), declaration.getInitialValueExpression());<a name="line.450"></a>
+<FONT color="green">451</FONT>            }<a name="line.451"></a>
+<FONT color="green">452</FONT>        }<a name="line.452"></a>
+<FONT color="green">453</FONT>    <a name="line.453"></a>
+<FONT color="green">454</FONT>        public static String createEcmaScriptStringLiteral(String content) {<a name="line.454"></a>
+<FONT color="green">455</FONT>            if (content == null) return "undefined";<a name="line.455"></a>
+<FONT color="green">456</FONT>    <a name="line.456"></a>
+<FONT color="green">457</FONT>            //believe it: this creates \\ for each \<a name="line.457"></a>
+<FONT color="green">458</FONT>            content = ECMASCRIPT_BACKSLASH_PATTERN.matcher(content).replaceAll("\\\\\\\\");<a name="line.458"></a>
+<FONT color="green">459</FONT>    <a name="line.459"></a>
+<FONT color="green">460</FONT>            content = ECMASCRIPT_QUOTE_PATTERN.matcher(content).replaceAll("\\\\'");<a name="line.460"></a>
+<FONT color="green">461</FONT>            content = ECMASCRIPT_LINEFEED_PATTERN.matcher(content).replaceAll("\\u000a");<a name="line.461"></a>
+<FONT color="green">462</FONT>            content = ECMASCRIPT_CARRIAGE_RETURN_PATTERN.matcher(content).replaceAll("\\u000d");<a name="line.462"></a>
+<FONT color="green">463</FONT>            content = ECMASCRIPT_LINE_SEPARATOR_PATTERN.matcher(content).replaceAll("\\u2028");<a name="line.463"></a>
+<FONT color="green">464</FONT>            content = ECMASCRIPT_PARAGRAPH_SEPARATOR_PATTERN.matcher(content).replaceAll("\\u2029");<a name="line.464"></a>
+<FONT color="green">465</FONT>    <a name="line.465"></a>
+<FONT color="green">466</FONT>            StringBuilder out = new StringBuilder();<a name="line.466"></a>
+<FONT color="green">467</FONT>            out.append("'").append(content).append("'");<a name="line.467"></a>
+<FONT color="green">468</FONT>            return out.toString();<a name="line.468"></a>
+<FONT color="green">469</FONT>        }<a name="line.469"></a>
+<FONT color="green">470</FONT>    <a name="line.470"></a>
+<FONT color="green">471</FONT>        public static void createVarElement(Element parent, String name, String expr) {<a name="line.471"></a>
+<FONT color="green">472</FONT>            Element varElement = DomUtils.appendNewElement(parent, VAR_ELEMENT);<a name="line.472"></a>
+<FONT color="green">473</FONT>            varElement.setAttribute(NAME_ATTRIBUTE, name);<a name="line.473"></a>
+<FONT color="green">474</FONT>    <a name="line.474"></a>
+<FONT color="green">475</FONT>            if (expr != null) {<a name="line.475"></a>
+<FONT color="green">476</FONT>                varElement.setAttribute(EXPR_ATTRIBUTE, expr);<a name="line.476"></a>
+<FONT color="green">477</FONT>            }<a name="line.477"></a>
+<FONT color="green">478</FONT>        }<a name="line.478"></a>
+<FONT color="green">479</FONT>    <a name="line.479"></a>
+<FONT color="green">480</FONT>        private static Element createSubmitElement(Element parent,<a name="line.480"></a>
+<FONT color="green">481</FONT>                                                   VoiceXmlDialogueContext voiceXmlDialogueContext,<a name="line.481"></a>
+<FONT color="green">482</FONT>                                                   SubmitMethod method,<a name="line.482"></a>
+<FONT color="green">483</FONT>                                                   VoiceXmlOutputTurn outputTurn,<a name="line.483"></a>
+<FONT color="green">484</FONT>                                                   String... nameList) {<a name="line.484"></a>
+<FONT color="green">485</FONT>            Element submitElement = DomUtils.appendNewElement(parent, SUBMIT_ELEMENT);<a name="line.485"></a>
+<FONT color="green">486</FONT>            submitElement.setAttribute(NEXT_ATTRIBUTE, getSubmitPathForTurn(voiceXmlDialogueContext, outputTurn));<a name="line.486"></a>
+<FONT color="green">487</FONT>    <a name="line.487"></a>
+<FONT color="green">488</FONT>            submitElement.setAttribute(NAME_LIST_ATTRIBUTE, StringUtils.join(nameList, " "));<a name="line.488"></a>
+<FONT color="green">489</FONT>            submitElement.setAttribute(METHOD_ATTRIBUTE, method.getValue());<a name="line.489"></a>
+<FONT color="green">490</FONT>    <a name="line.490"></a>
+<FONT color="green">491</FONT>            applyDocumentFetchConfiguration(submitElement, voiceXmlDialogueContext);<a name="line.491"></a>
+<FONT color="green">492</FONT>    <a name="line.492"></a>
+<FONT color="green">493</FONT>            return submitElement;<a name="line.493"></a>
+<FONT color="green">494</FONT>        }<a name="line.494"></a>
+<FONT color="green">495</FONT>    <a name="line.495"></a>
+<FONT color="green">496</FONT>        public static String getSubmitPathForTurn(VoiceXmlDialogueContext voiceXmlDialogueContext,<a name="line.496"></a>
+<FONT color="green">497</FONT>                                                  VoiceXmlOutputTurn outputTurn) {<a name="line.497"></a>
+<FONT color="green">498</FONT>            return getSubmitPath(voiceXmlDialogueContext, voiceXmlDialogueContext.getTurnIndex(), outputTurn.getName());<a name="line.498"></a>
+<FONT color="green">499</FONT>        }<a name="line.499"></a>
+<FONT color="green">500</FONT>    <a name="line.500"></a>
+<FONT color="green">501</FONT>        public static String getSubmitPath(VoiceXmlDialogueContext voiceXmlDialogueContext, int turnIndex, String turnName) {<a name="line.501"></a>
+<FONT color="green">502</FONT>            return getServletPathWithSessionId(voiceXmlDialogueContext)<a name="line.502"></a>
+<FONT color="green">503</FONT>                   + "/"<a name="line.503"></a>
+<FONT color="green">504</FONT>                   + turnIndex<a name="line.504"></a>
+<FONT color="green">505</FONT>                   + "/"<a name="line.505"></a>
+<FONT color="green">506</FONT>                   + StringUtils.replaceAll(URI_PATH_REPLACEMENT_CHAR, turnName, "_");<a name="line.506"></a>
+<FONT color="green">507</FONT>        }<a name="line.507"></a>
+<FONT color="green">508</FONT>    <a name="line.508"></a>
+<FONT color="green">509</FONT>        public static String getServletPathWithSessionId(VoiceXmlDialogueContext voiceXmlDialogueContext) {<a name="line.509"></a>
+<FONT color="green">510</FONT>            return voiceXmlDialogueContext.getContextPath()<a name="line.510"></a>
+<FONT color="green">511</FONT>                   + voiceXmlDialogueContext.getServletPath()<a name="line.511"></a>
+<FONT color="green">512</FONT>                   + "/"<a name="line.512"></a>
+<FONT color="green">513</FONT>                   + voiceXmlDialogueContext.getDialogueId();<a name="line.513"></a>
+<FONT color="green">514</FONT>        }<a name="line.514"></a>
+<FONT color="green">515</FONT>    <a name="line.515"></a>
+<FONT color="green">516</FONT>        public static void applyDocumentFetchConfiguration(Element submitElement,<a name="line.516"></a>
+<FONT color="green">517</FONT>                                                           VoiceXmlDialogueContext voiceXmlDialogueContext) {<a name="line.517"></a>
+<FONT color="green">518</FONT>            FetchConfiguration fetchConfiguration = voiceXmlDialogueContext.getFetchConfiguration();<a name="line.518"></a>
+<FONT color="green">519</FONT>            if (fetchConfiguration == null) return;<a name="line.519"></a>
+<FONT color="green">520</FONT>    <a name="line.520"></a>
+<FONT color="green">521</FONT>            DocumentFetchConfiguration documentFetchConfiguration = fetchConfiguration.getDocumentFetchConfiguration();<a name="line.521"></a>
+<FONT color="green">522</FONT>    <a name="line.522"></a>
+<FONT color="green">523</FONT>            applyDocumentFetchConfiguration(submitElement, documentFetchConfiguration);<a name="line.523"></a>
+<FONT color="green">524</FONT>        }<a name="line.524"></a>
+<FONT color="green">525</FONT>    <a name="line.525"></a>
+<FONT color="green">526</FONT>        public static void applyDocumentFetchConfiguration(Element submitElement,<a name="line.526"></a>
+<FONT color="green">527</FONT>                                                           DocumentFetchConfiguration submitTurnFetchConfiguration) {<a name="line.527"></a>
+<FONT color="green">528</FONT>            if (submitTurnFetchConfiguration == null) return;<a name="line.528"></a>
+<FONT color="green">529</FONT>            TimeValue timeOut = submitTurnFetchConfiguration.getTimeOut();<a name="line.529"></a>
+<FONT color="green">530</FONT>            setTimeAttribute(submitElement, FETCH_TIMEOUT_PROPERTY, timeOut);<a name="line.530"></a>
+<FONT color="green">531</FONT>    <a name="line.531"></a>
+<FONT color="green">532</FONT>            Recording fetchAudio = submitTurnFetchConfiguration.getFetchAudio();<a name="line.532"></a>
+<FONT color="green">533</FONT>            applyFetchAudio(submitElement, fetchAudio);<a name="line.533"></a>
+<FONT color="green">534</FONT>        }<a name="line.534"></a>
+<FONT color="green">535</FONT>    <a name="line.535"></a>
+<FONT color="green">536</FONT>        public static void applyFetchAudio(Element element, Recording fetchAudio) {<a name="line.536"></a>
+<FONT color="green">537</FONT>            if (fetchAudio != null) {<a name="line.537"></a>
+<FONT color="green">538</FONT>                String fetchAudioHref = fetchAudio.getPath();<a name="line.538"></a>
+<FONT color="green">539</FONT>                Assert.notNull(fetchAudioHref, "fetchAudioHref");<a name="line.539"></a>
+<FONT color="green">540</FONT>                element.setAttribute(FETCH_AUDIO_ATTRIBUTE, fetchAudioHref);<a name="line.540"></a>
+<FONT color="green">541</FONT>            }<a name="line.541"></a>
+<FONT color="green">542</FONT>        }<a name="line.542"></a>
+<FONT color="green">543</FONT>    <a name="line.543"></a>
+<FONT color="green">544</FONT>        public static void createGotoSubmit(Element parent) {<a name="line.544"></a>
+<FONT color="green">545</FONT>            Element gotoElement = DomUtils.appendNewElement(parent, GOTO_ELEMENT);<a name="line.545"></a>
+<FONT color="green">546</FONT>            gotoElement.setAttribute(NEXT_ATTRIBUTE, "#" + SUBMIT_FORM_ID);<a name="line.546"></a>
+<FONT color="green">547</FONT>        }<a name="line.547"></a>
+<FONT color="green">548</FONT>    <a name="line.548"></a>
+<FONT color="green">549</FONT>        public static void createGotoFatalHandler(Element parent) {<a name="line.549"></a>
+<FONT color="green">550</FONT>            Element gotoElement = DomUtils.appendNewElement(parent, GOTO_ELEMENT);<a name="line.550"></a>
+<FONT color="green">551</FONT>            gotoElement.setAttribute(NEXT_ATTRIBUTE, "#" + FATAL_ERROR_HANDLER_FORM_ID);<a name="line.551"></a>
+<FONT color="green">552</FONT>        }<a name="line.552"></a>
+<FONT color="green">553</FONT>    <a name="line.553"></a>
+<FONT color="green">554</FONT>        public static void createScript(Element parent, String script) {<a name="line.554"></a>
+<FONT color="green">555</FONT>            Element scriptElement = DomUtils.appendNewElement(parent, SCRIPT_ELEMENT);<a name="line.555"></a>
+<FONT color="green">556</FONT>            DomUtils.appendNewText(scriptElement, script);<a name="line.556"></a>
+<FONT color="green">557</FONT>        }<a name="line.557"></a>
+<FONT color="green">558</FONT>    <a name="line.558"></a>
+<FONT color="green">559</FONT>        public static void addSubmitForm(VoiceXmlDialogueContext dialogueContext, Document document, VoiceXmlOutputTurn turn) {<a name="line.559"></a>
+<FONT color="green">560</FONT>            Element vxmlElement = document.getDocumentElement();<a name="line.560"></a>
+<FONT color="green">561</FONT>            Element formElement = DomUtils.appendNewElement(vxmlElement, FORM_ELEMENT);<a name="line.561"></a>
+<FONT color="green">562</FONT>            formElement.setAttribute(ID_ATTRIBUTE, SUBMIT_FORM_ID);<a name="line.562"></a>
+<FONT color="green">563</FONT>    <a name="line.563"></a>
+<FONT color="green">564</FONT>            Element blockElement = addBlockElement(formElement);<a name="line.564"></a>
+<FONT color="green">565</FONT>            createVarElement(blockElement, INPUT_TURN_VARIABLE, RIVR_SCOPE_OBJECT<a name="line.565"></a>
+<FONT color="green">566</FONT>                                                                + ".toJson("<a name="line.566"></a>
+<FONT color="green">567</FONT>                                                                + RIVR_INPUT_TURN_SCOPE_OBJECT<a name="line.567"></a>
+<FONT color="green">568</FONT>                                                                + ")");<a name="line.568"></a>
+<FONT color="green">569</FONT>    <a name="line.569"></a>
+<FONT color="green">570</FONT>            Element ifElement = DomUtils.appendNewElement(blockElement, IF_ELEMENT);<a name="line.570"></a>
+<FONT color="green">571</FONT>            ifElement.setAttribute(COND_ATTRIBUTE, RIVR_SCOPE_OBJECT<a name="line.571"></a>
+<FONT color="green">572</FONT>                                                   + ".hasRecording("<a name="line.572"></a>
+<FONT color="green">573</FONT>                                                   + RIVR_INPUT_TURN_SCOPE_OBJECT<a name="line.573"></a>
+<FONT color="green">574</FONT>                                                   + ")");<a name="line.574"></a>
+<FONT color="green">575</FONT>            createVarElement(ifElement, RECORDING_VARIABLE, RESULT_RECORDING_METADATA_DATA_SCOPE_OBJECT);<a name="line.575"></a>
+<FONT color="green">576</FONT>            createAssignation(ifElement, RESULT_RECORDING_METADATA_DATA_SCOPE_OBJECT, "undefined");<a name="line.576"></a>
+<FONT color="green">577</FONT>    <a name="line.577"></a>
+<FONT color="green">578</FONT>            Element submitElement = createSubmitElement(ifElement,<a name="line.578"></a>
+<FONT color="green">579</FONT>                                                        dialogueContext,<a name="line.579"></a>
+<FONT color="green">580</FONT>                                                        SubmitMethod.POST,<a name="line.580"></a>
+<FONT color="green">581</FONT>                                                        turn,<a name="line.581"></a>
+<FONT color="green">582</FONT>                                                        INPUT_TURN_VARIABLE,<a name="line.582"></a>
+<FONT color="green">583</FONT>                                                        RECORDING_VARIABLE);<a name="line.583"></a>
+<FONT color="green">584</FONT>            submitElement.setAttribute(ENCTYPE_ATTRIBUTE, MULTIPART_FORM_DATA);<a name="line.584"></a>
+<FONT color="green">585</FONT>            DomUtils.appendNewElement(ifElement, ELSE_ELEMENT);<a name="line.585"></a>
+<FONT color="green">586</FONT>    <a name="line.586"></a>
+<FONT color="green">587</FONT>            submitElement = createSubmitElement(ifElement, dialogueContext, SubmitMethod.POST, turn, INPUT_TURN_VARIABLE);<a name="line.587"></a>
+<FONT color="green">588</FONT>        }<a name="line.588"></a>
+<FONT color="green">589</FONT>    <a name="line.589"></a>
+<FONT color="green">590</FONT>        public static void addFatalErrorHandlerForm(VoiceXmlDialogueContext dialogueContext,<a name="line.590"></a>
+<FONT color="green">591</FONT>                                                    Document document,<a name="line.591"></a>
+<FONT color="green">592</FONT>                                                    VoiceXmlDocumentTurn turn) {<a name="line.592"></a>
+<FONT color="green">593</FONT>            Element vxmlElement = document.getDocumentElement();<a name="line.593"></a>
+<FONT color="green">594</FONT>            Element fatalErrorForm = DomUtils.appendNewElement(vxmlElement, FORM_ELEMENT);<a name="line.594"></a>
+<FONT color="green">595</FONT>            fatalErrorForm.setAttribute(ID_ATTRIBUTE, FATAL_ERROR_HANDLER_FORM_ID);<a name="line.595"></a>
+<FONT color="green">596</FONT>            dialogueContext.getFatalErrorFormFactory().addFatalErrorForm(fatalErrorForm, turn);<a name="line.596"></a>
+<FONT color="green">597</FONT>        }<a name="line.597"></a>
+<FONT color="green">598</FONT>    <a name="line.598"></a>
+<FONT color="green">599</FONT>        public static Element addBlockElement(Element formElement) {<a name="line.599"></a>
+<FONT color="green">600</FONT>            return DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);<a name="line.600"></a>
+<FONT color="green">601</FONT>        }<a name="line.601"></a>
+<FONT color="green">602</FONT>    <a name="line.602"></a>
+<FONT color="green">603</FONT>        public static void processDtmfConfiguration(DtmfRecognitionConfiguration dtmfRecognitionConfiguration,<a name="line.603"></a>
+<FONT color="green">604</FONT>                                                    Element formItemElement) throws VoiceXmlDocumentRenderingException {<a name="line.604"></a>
+<FONT color="green">605</FONT>            if (dtmfRecognitionConfiguration == null) return;<a name="line.605"></a>
+<FONT color="green">606</FONT>    <a name="line.606"></a>
+<FONT color="green">607</FONT>            VoiceXmlDomUtil.renderGrammars(dtmfRecognitionConfiguration.getGrammarItems(), formItemElement, DTMF_INPUT_MODE);<a name="line.607"></a>
+<FONT color="green">608</FONT>    <a name="line.608"></a>
+<FONT color="green">609</FONT>            addTimeProperty(formItemElement,<a name="line.609"></a>
+<FONT color="green">610</FONT>                            INTER_DIGIT_TIMEOUT_PROPERTY,<a name="line.610"></a>
+<FONT color="green">611</FONT>                            dtmfRecognitionConfiguration.getInterDigitTimeout());<a name="line.611"></a>
+<FONT color="green">612</FONT>    <a name="line.612"></a>
+<FONT color="green">613</FONT>            addTimeProperty(formItemElement, TERM_TIMEOUT_PROPERTY, dtmfRecognitionConfiguration.getTermTimeout());<a name="line.613"></a>
+<FONT color="green">614</FONT>    <a name="line.614"></a>
+<FONT color="green">615</FONT>            addProperty(formItemElement, TERM_CHAR_PROPERTY, dtmfRecognitionConfiguration.getTermChar());<a name="line.615"></a>
+<FONT color="green">616</FONT>    <a name="line.616"></a>
+<FONT color="green">617</FONT>            for (String propertyName : dtmfRecognitionConfiguration.getPropertyNames()) {<a name="line.617"></a>
+<FONT color="green">618</FONT>                addProperty(formItemElement, propertyName, dtmfRecognitionConfiguration.getProperty(propertyName));<a name="line.618"></a>
+<FONT color="green">619</FONT>            }<a name="line.619"></a>
+<FONT color="green">620</FONT>        }<a name="line.620"></a>
+<FONT color="green">621</FONT>    <a name="line.621"></a>
+<FONT color="green">622</FONT>        public static void processSpeechConfiguration(SpeechRecognitionConfiguration speechRecognitionConfiguration,<a name="line.622"></a>
+<FONT color="green">623</FONT>                                                      Element formItemElement) throws VoiceXmlDocumentRenderingException {<a name="line.623"></a>
+<FONT color="green">624</FONT>            if (speechRecognitionConfiguration == null) return;<a name="line.624"></a>
+<FONT color="green">625</FONT>    <a name="line.625"></a>
+<FONT color="green">626</FONT>            VoiceXmlDomUtil.renderGrammars(speechRecognitionConfiguration.getGrammarItems(),<a name="line.626"></a>
+<FONT color="green">627</FONT>                                           formItemElement,<a name="line.627"></a>
+<FONT color="green">628</FONT>                                           VOICE_INPUT_MODE);<a name="line.628"></a>
+<FONT color="green">629</FONT>    <a name="line.629"></a>
+<FONT color="green">630</FONT>            addTimeProperty(formItemElement, COMPLETE_TIMEOUT_PROPERTY, speechRecognitionConfiguration.getCompleteTimeout());<a name="line.630"></a>
+<FONT color="green">631</FONT>    <a name="line.631"></a>
+<FONT color="green">632</FONT>            addTimeProperty(formItemElement,<a name="line.632"></a>
+<FONT color="green">633</FONT>                            INCOMPLETE_TIMEOUT_PROPERTY,<a name="line.633"></a>
+<FONT color="green">634</FONT>                            speechRecognitionConfiguration.getIncompleteTimeout());<a name="line.634"></a>
+<FONT color="green">635</FONT>    <a name="line.635"></a>
+<FONT color="green">636</FONT>            addTimeProperty(formItemElement,<a name="line.636"></a>
+<FONT color="green">637</FONT>                            MAX_SPEECH_TIMEOUT_PROPERTY,<a name="line.637"></a>
+<FONT color="green">638</FONT>                            speechRecognitionConfiguration.getMaxSpeechTimeout());<a name="line.638"></a>
+<FONT color="green">639</FONT>    <a name="line.639"></a>
+<FONT color="green">640</FONT>            VoiceXmlDomUtil.addNumberProperty(formItemElement,<a name="line.640"></a>
+<FONT color="green">641</FONT>                                              MAX_N_BEST_PROPERTY,<a name="line.641"></a>
+<FONT color="green">642</FONT>                                              speechRecognitionConfiguration.getMaxNBest());<a name="line.642"></a>
+<FONT color="green">643</FONT>    <a name="line.643"></a>
+<FONT color="green">644</FONT>            VoiceXmlDomUtil.addNumberProperty(formItemElement,<a name="line.644"></a>
+<FONT color="green">645</FONT>                                              CONFIDENCE_LEVEL_PROPERTY,<a name="line.645"></a>
+<FONT color="green">646</FONT>                                              speechRecognitionConfiguration.getConfidenceLevel());<a name="line.646"></a>
+<FONT color="green">647</FONT>    <a name="line.647"></a>
+<FONT color="green">648</FONT>            VoiceXmlDomUtil.addNumberProperty(formItemElement,<a name="line.648"></a>
+<FONT color="green">649</FONT>                                              SENSITIVITY_PROPERTY,<a name="line.649"></a>
+<FONT color="green">650</FONT>                                              speechRecognitionConfiguration.getSensitivity());<a name="line.650"></a>
+<FONT color="green">651</FONT>    <a name="line.651"></a>
+<FONT color="green">652</FONT>            VoiceXmlDomUtil.addNumberProperty(formItemElement,<a name="line.652"></a>
+<FONT color="green">653</FONT>                                              SPEED_VERSUS_ACCURACY_PROPERTY,<a name="line.653"></a>
+<FONT color="green">654</FONT>                                              speechRecognitionConfiguration.getSpeedVersusAccuracy());<a name="line.654"></a>
+<FONT color="green">655</FONT>    <a name="line.655"></a>
+<FONT color="green">656</FONT>            for (String propertyName : speechRecognitionConfiguration.getPropertyNames()) {<a name="line.656"></a>
+<FONT color="green">657</FONT>                addProperty(formItemElement, propertyName, speechRecognitionConfiguration.getProperty(propertyName));<a name="line.657"></a>
+<FONT color="green">658</FONT>            }<a name="line.658"></a>
+<FONT color="green">659</FONT>        }<a name="line.659"></a>
+<FONT color="green">660</FONT>    <a name="line.660"></a>
+<FONT color="green">661</FONT>        public static void renderGrammars(List&lt;? extends GrammarItem&gt; grammarItems, Element parent, String mode)<a name="line.661"></a>
+<FONT color="green">662</FONT>                throws VoiceXmlDocumentRenderingException {<a name="line.662"></a>
+<FONT color="green">663</FONT>            for (GrammarItem grammarItem : grammarItems) {<a name="line.663"></a>
+<FONT color="green">664</FONT>                Element grammarElement;<a name="line.664"></a>
+<FONT color="green">665</FONT>    <a name="line.665"></a>
+<FONT color="green">666</FONT>                if (grammarItem instanceof GrammarReference) {<a name="line.666"></a>
+<FONT color="green">667</FONT>                    grammarElement = DomUtils.appendNewElement(parent, GRAMMAR_ELEMENT);<a name="line.667"></a>
+<FONT color="green">668</FONT>                    GrammarReference grammarReference = (GrammarReference) grammarItem;<a name="line.668"></a>
+<FONT color="green">669</FONT>    <a name="line.669"></a>
+<FONT color="green">670</FONT>                    VoiceXmlDomUtil.renderGrammarReference(grammarReference, grammarElement);<a name="line.670"></a>
+<FONT color="green">671</FONT>                } else if (grammarItem instanceof InlineStringGrammar) {<a name="line.671"></a>
+<FONT color="green">672</FONT>                    grammarElement = DomUtils.appendNewElement(parent, GRAMMAR_ELEMENT);<a name="line.672"></a>
+<FONT color="green">673</FONT>                    InlineStringGrammar inlineStringGrammar = (InlineStringGrammar) grammarItem;<a name="line.673"></a>
+<FONT color="green">674</FONT>                    VoiceXmlDomUtil.renderInlineStringGrammar(grammarElement, inlineStringGrammar);<a name="line.674"></a>
+<FONT color="green">675</FONT>                } else if (grammarItem instanceof InlineXmlGrammar) {<a name="line.675"></a>
+<FONT color="green">676</FONT>                    InlineXmlGrammar inlineXmlGrammar = (InlineXmlGrammar) grammarItem;<a name="line.676"></a>
+<FONT color="green">677</FONT>                    Document document = inlineXmlGrammar.getDocument();<a name="line.677"></a>
+<FONT color="green">678</FONT>                    Element documentRootElement = document.getDocumentElement();<a name="line.678"></a>
+<FONT color="green">679</FONT>                    if (!documentRootElement.getTagName().equals(GRAMMAR_ELEMENT))<a name="line.679"></a>
+<FONT color="green">680</FONT>                        throw new VoiceXmlDocumentRenderingException("XML grammar root element must be 'gramar'");<a name="line.680"></a>
+<FONT color="green">681</FONT>    <a name="line.681"></a>
+<FONT color="green">682</FONT>                    grammarElement = (Element) parent.getOwnerDocument().importNode(documentRootElement, true);<a name="line.682"></a>
+<FONT color="green">683</FONT>                    parent.appendChild(grammarElement);<a name="line.683"></a>
+<FONT color="green">684</FONT>                } else throw new AssertionError("Unsupported grammar item: " + grammarItem);<a name="line.684"></a>
+<FONT color="green">685</FONT>    <a name="line.685"></a>
+<FONT color="green">686</FONT>                Double weight = grammarItem.getWeight();<a name="line.686"></a>
+<FONT color="green">687</FONT>                if (weight != null) {<a name="line.687"></a>
+<FONT color="green">688</FONT>                    DecimalFormat weigthDecimalFormat = new DecimalFormat("#.##########");<a name="line.688"></a>
+<FONT color="green">689</FONT>                    double weightDoubleValue = weight.doubleValue();<a name="line.689"></a>
+<FONT color="green">690</FONT>                    grammarElement.setAttribute(WEIGHT_ATTRIBUTE, weigthDecimalFormat.format(weightDoubleValue));<a name="line.690"></a>
+<FONT color="green">691</FONT>                }<a name="line.691"></a>
+<FONT color="green">692</FONT>    <a name="line.692"></a>
+<FONT color="green">693</FONT>                setAttribute(grammarElement, TYPE_ATTRIBUTE, grammarItem.getMediaType());<a name="line.693"></a>
+<FONT color="green">694</FONT>                setAttribute(grammarElement, MODE_ATTRIBUTE, mode);<a name="line.694"></a>
+<FONT color="green">695</FONT>            }<a name="line.695"></a>
+<FONT color="green">696</FONT>        }<a name="line.696"></a>
+<FONT color="green">697</FONT>    <a name="line.697"></a>
+<FONT color="green">698</FONT>        public static void renderInlineStringGrammar(Element grammarElement, InlineStringGrammar inlineStringGrammar) {<a name="line.698"></a>
+<FONT color="green">699</FONT>            DomUtils.appendNewCData(grammarElement, inlineStringGrammar.getSource());<a name="line.699"></a>
+<FONT color="green">700</FONT>            setAttribute(grammarElement, BASE_ATTRIBUTE, inlineStringGrammar.getBase());<a name="line.700"></a>
+<FONT color="green">701</FONT>            setAttribute(grammarElement, XML_LANGUAGE_ATTRIBUTE, inlineStringGrammar.getLanguage());<a name="line.701"></a>
+<FONT color="green">702</FONT>            setAttribute(grammarElement, ROOT_ATTRIBUTE, inlineStringGrammar.getRoot());<a name="line.702"></a>
+<FONT color="green">703</FONT>            setAttribute(grammarElement, TAG_FORMAT_ATTRIBUTE, inlineStringGrammar.getTagFormat());<a name="line.703"></a>
+<FONT color="green">704</FONT>            setAttribute(grammarElement, VERSION_ATTRIBUTE, inlineStringGrammar.getVersion());<a name="line.704"></a>
+<FONT color="green">705</FONT>        }<a name="line.705"></a>
+<FONT color="green">706</FONT>    <a name="line.706"></a>
+<FONT color="green">707</FONT>        public static void renderGrammarReference(GrammarReference grammarReference, Element grammarElement) {<a name="line.707"></a>
+<FONT color="green">708</FONT>            Assert.notNull(grammarReference, "grammarReference");<a name="line.708"></a>
+<FONT color="green">709</FONT>    <a name="line.709"></a>
+<FONT color="green">710</FONT>            grammarElement.setAttribute(SRC_ATTRIBUTE, grammarReference.getUri());<a name="line.710"></a>
+<FONT color="green">711</FONT>    <a name="line.711"></a>
+<FONT color="green">712</FONT>            ResourceFetchConfiguration resourceFetchConfiguration = grammarReference.getResourceFetchConfiguration();<a name="line.712"></a>
+<FONT color="green">713</FONT>            applyRessourceFetchConfiguration(grammarElement, resourceFetchConfiguration);<a name="line.713"></a>
+<FONT color="green">714</FONT>        }<a name="line.714"></a>
+<FONT color="green">715</FONT>    <a name="line.715"></a>
+<FONT color="green">716</FONT>        public static void addNumberProperty(Element parent, String propertyName, Number value) {<a name="line.716"></a>
+<FONT color="green">717</FONT>            if (value != null) {<a name="line.717"></a>
+<FONT color="green">718</FONT>                addProperty(parent, propertyName, value.toString());<a name="line.718"></a>
+<FONT color="green">719</FONT>            }<a name="line.719"></a>
+<FONT color="green">720</FONT>        }<a name="line.720"></a>
+<FONT color="green">721</FONT>    <a name="line.721"></a>
+<FONT color="green">722</FONT>        public static Element createForm(Document document) {<a name="line.722"></a>
+<FONT color="green">723</FONT>            Element vxmlElement = document.getDocumentElement();<a name="line.723"></a>
+<FONT color="green">724</FONT>            Element formElement = DomUtils.appendNewElement(vxmlElement, FORM_ELEMENT);<a name="line.724"></a>
+<FONT color="green">725</FONT>            formElement.setAttribute(ID_ATTRIBUTE, FORM_ID);<a name="line.725"></a>
+<FONT color="green">726</FONT>            return formElement;<a name="line.726"></a>
+<FONT color="green">727</FONT>        }<a name="line.727"></a>
+<FONT color="green">728</FONT>    <a name="line.728"></a>
+<FONT color="green">729</FONT>        public static void addNamelist(Element parentElement,<a name="line.729"></a>
+<FONT color="green">730</FONT>                                       Element namelistHolderElement,<a name="line.730"></a>
+<FONT color="green">731</FONT>                                       VariableDeclarationList variables) {<a name="line.731"></a>
+<FONT color="green">732</FONT>            if (variables == null) return;<a name="line.732"></a>
+<FONT color="green">733</FONT>            if (variables.isEmpty()) return;<a name="line.733"></a>
+<FONT color="green">734</FONT>    <a name="line.734"></a>
+<FONT color="green">735</FONT>            List&lt;String&gt; variableNames = new ArrayList&lt;String&gt;();<a name="line.735"></a>
+<FONT color="green">736</FONT>            for (VariableDeclaration declaration : variables) {<a name="line.736"></a>
+<FONT color="green">737</FONT>                variableNames.add(declaration.getName());<a name="line.737"></a>
+<FONT color="green">738</FONT>                createVarElement(parentElement, declaration.getName(), declaration.getInitialValueExpression());<a name="line.738"></a>
+<FONT color="green">739</FONT>            }<a name="line.739"></a>
+<FONT color="green">740</FONT>    <a name="line.740"></a>
+<FONT color="green">741</FONT>            namelistHolderElement.setAttribute(NAME_LIST_ATTRIBUTE, StringUtils.join(variableNames, " "));<a name="line.741"></a>
+<FONT color="green">742</FONT>        }<a name="line.742"></a>
+<FONT color="green">743</FONT>    <a name="line.743"></a>
+<FONT color="green">744</FONT>    }<a name="line.744"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</PRE>
+</BODY>
+</HTML>
