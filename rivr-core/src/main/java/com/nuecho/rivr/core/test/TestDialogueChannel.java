@@ -133,7 +133,16 @@ public abstract class TestDialogueChannel<I extends InputTurn, O extends OutputT
             return turnStep.getOutputTurn();
         }
 
-        throw new AssertionError("Last output turn was not a turn step. Last step=" + mLastStep);
+        throw new AssertionError("Last output turn was not an output turn step. Last step=" + mLastStep);
+    }
+
+    public final L getLastStepAsLastTurn() {
+        if (mLastStep instanceof LastTurnStep) {
+            LastTurnStep<O, L> turnStep = (LastTurnStep<O, L>) mLastStep;
+            return turnStep.getLastTurn();
+        }
+
+        throw new AssertionError("Last output turn was not a last turn step. Last step=" + mLastStep);
     }
 
     public final Throwable getLastAsError() {
