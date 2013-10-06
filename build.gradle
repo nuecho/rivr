@@ -131,13 +131,14 @@ task globalJavadoc(type: Javadoc) {
         docTitle "Rivr documentation ($project.version)"
         bottom 'Copyright &copy; 2013 <a href="http://www.nuecho.com">Nu Echo Inc.</a>.'
         use = true 
+        noTimestamp = true
         group("Rivr Core Packages", "com.nuecho.rivr.core*")
         group("Rivr VoiceXML Packages", "com.nuecho.rivr.voicexml*")
         links "http://download.oracle.com/javase/6/docs/api/"
         links "http://download.oracle.com/javaee/6/api/"
         setOverview("${projectDir}/doc/javadoc-extra/overview.html")
         stylesheetFile = new File( projectDir, 'doc/javadoc-extra/rivr-javadoc.css' ) 
-        docTitle "<a href=\"http://rivr.nuecho.com/\" target=\"_blank\"><img src=\"http://rivr.nuecho.com/img/logo.png\" /></a><br/>API documentation of <a href=\"http://rivr.nuecho.com/\" target=\"_blank\">Rivr</a>"
+        docTitle "<a href=\"http://rivr.nuecho.com/\" target=\"_blank\"><img src=\"http://rivr.nuecho.com/img/logo.png\" /></a><br/>API documentation of <a href=\"http://rivr.nuecho.com/\" target=\"_blank\">Rivr</a> $project.version"
     }
 }
 

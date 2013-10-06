@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic);
 /* Javadoc style sheet */
 /*
 Overall document style
@@ -5,7 +6,7 @@ Overall document style
 body {
 	background-color: #ffffff;
 	color: #353833;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Ubuntu, Arial, Helvetica, sans-serif;
 	font-size: 76%;
 	margin: 0;
 }
@@ -573,7 +574,6 @@ h1.hidden {
 }
 
 /* RIVR - extra */
-
 dt {
 	font-weight: bold;
 }
@@ -583,5 +583,5 @@ dt {
 }
 
 body {
-    margin: 15px;
+	margin: 15px;
 }
