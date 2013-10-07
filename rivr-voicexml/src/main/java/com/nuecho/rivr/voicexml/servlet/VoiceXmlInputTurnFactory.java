@@ -88,7 +88,9 @@ public final class VoiceXmlInputTurnFactory implements
         String result = (String) parameters.get(INPUT_TURN_PARAMETER);
 
         if (result == null)
-            throw new InputTurnFactoryException("Unable to process request. Missing 'result' parameter.");
+            throw new InputTurnFactoryException("Unable to process request. Missing '"
+                                                + INPUT_TURN_PARAMETER
+                                                + "' parameter.");
 
         JsonReader jsonReader = JsonUtils.createReader(result);
         JsonObject resultObject = jsonReader.readObject();
