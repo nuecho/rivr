@@ -92,6 +92,42 @@ public final class InteractionRecognition implements JsonSerializable {
     }
 
     @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((mAcknowledgeAudioItems == null) ? 0 : mAcknowledgeAudioItems.hashCode());
+        result = prime
+                 * result
+                 + ((mDtmfRecognitionConfiguration == null) ? 0 : mDtmfRecognitionConfiguration.hashCode());
+        result = prime * result + ((mNoInputTimeout == null) ? 0 : mNoInputTimeout.hashCode());
+        result = prime
+                 * result
+                 + ((mSpeechRecognitionConfiguration == null) ? 0 : mSpeechRecognitionConfiguration.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        InteractionRecognition other = (InteractionRecognition) obj;
+        if (mAcknowledgeAudioItems == null) {
+            if (other.mAcknowledgeAudioItems != null) return false;
+        } else if (!mAcknowledgeAudioItems.equals(other.mAcknowledgeAudioItems)) return false;
+        if (mDtmfRecognitionConfiguration == null) {
+            if (other.mDtmfRecognitionConfiguration != null) return false;
+        } else if (!mDtmfRecognitionConfiguration.equals(other.mDtmfRecognitionConfiguration)) return false;
+        if (mNoInputTimeout == null) {
+            if (other.mNoInputTimeout != null) return false;
+        } else if (!mNoInputTimeout.equals(other.mNoInputTimeout)) return false;
+        if (mSpeechRecognitionConfiguration == null) {
+            if (other.mSpeechRecognitionConfiguration != null) return false;
+        } else if (!mSpeechRecognitionConfiguration.equals(other.mSpeechRecognitionConfiguration)) return false;
+        return true;
+    }
+
+    @Override
     public String toString() {
         return asJson().toString();
     }

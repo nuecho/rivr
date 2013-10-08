@@ -164,6 +164,44 @@ public final class InteractionPrompt implements JsonSerializable {
     }
 
     @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((mAudioItems == null) ? 0 : mAudioItems.hashCode());
+        result = prime * result + ((mBargeInType == null) ? 0 : mBargeInType.hashCode());
+        result = prime
+                 * result
+                 + ((mDtmfRecognitionConfiguration == null) ? 0 : mDtmfRecognitionConfiguration.hashCode());
+        result = prime * result + ((mLanguage == null) ? 0 : mLanguage.hashCode());
+        result = prime
+                 * result
+                 + ((mSpeechRecognitionConfiguration == null) ? 0 : mSpeechRecognitionConfiguration.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        InteractionPrompt other = (InteractionPrompt) obj;
+        if (mAudioItems == null) {
+            if (other.mAudioItems != null) return false;
+        } else if (!mAudioItems.equals(other.mAudioItems)) return false;
+        if (mBargeInType != other.mBargeInType) return false;
+        if (mDtmfRecognitionConfiguration == null) {
+            if (other.mDtmfRecognitionConfiguration != null) return false;
+        } else if (!mDtmfRecognitionConfiguration.equals(other.mDtmfRecognitionConfiguration)) return false;
+        if (mLanguage == null) {
+            if (other.mLanguage != null) return false;
+        } else if (!mLanguage.equals(other.mLanguage)) return false;
+        if (mSpeechRecognitionConfiguration == null) {
+            if (other.mSpeechRecognitionConfiguration != null) return false;
+        } else if (!mSpeechRecognitionConfiguration.equals(other.mSpeechRecognitionConfiguration)) return false;
+        return true;
+    }
+
+    @Override
     public String toString() {
         return asJson().toString();
     }

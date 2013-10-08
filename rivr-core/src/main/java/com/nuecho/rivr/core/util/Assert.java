@@ -21,12 +21,12 @@ public final class Assert {
 
     public static void notEmpty(String string, String symbol) {
         notNull(string, symbol);
-        ensure(!string.isEmpty(), symbol);
+        ensure(!string.isEmpty(), symbol + " should not be empty.");
     }
 
     public static void notEmpty(Collection<?> collection, String symbol) {
         notNull(collection, symbol);
-        ensure(!collection.isEmpty(), symbol);
+        ensure(!collection.isEmpty(), symbol + " should not be empty.");
     }
 
     public static void between(long min, long value, long max) {

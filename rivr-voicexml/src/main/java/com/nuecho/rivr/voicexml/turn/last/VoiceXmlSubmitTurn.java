@@ -66,6 +66,14 @@ public class VoiceXmlSubmitTurn extends VoiceXmlLastTurn {
         mMediaEncodingType = mediaEncodingType;
     }
 
+    public VariableDeclarationList getVariables() {
+        return mVariables;
+    }
+
+    public String getUri() {
+        return mUri;
+    }
+
     @Override
     protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, VARIABLES_PROPERTY, mVariables);
