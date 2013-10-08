@@ -6,15 +6,17 @@ Read our [Getting Started](https://github.com/nuecho/rivr/wiki/Getting-Started) 
 
 You can also get started by trying some of the Rivr sample applications:
 
-- [Hello World](http://github.com/nuecho/rivr-helloworld) - a very simple hello world application
+- [Hello World](https://github.com/nuecho/rivr-cookbook/tree/hello-world) - a very simple hello world application
 - [Voicemail](http://github.com/nuecho/rivr-voicemail) - a prototype voicemail application 
 - [SpeechTEK 2013 Demo](http://github.com/schemeway/rivr-speechtek-demo)
+
+You can continue to learn by example with the [Rivr cookbook](https://github.com/nuecho/rivr-cookbook/wiki).
 
 ## How to build
 
 To build the library from the command line, use the gradlew script: `./gradlew build` on `*NIX` and `gradlew.bat build` on windows. To show a list of the usable tasks, run `gradlew tasks`.
 
-Note: remember that Gradle allwos camel-case shortcuts for the task name, as such `teCl` resolves to `testClasses`.
+Note: remember that Gradle allows camel-case shortcuts for the task name, as such `teCl` resolves to `testClasses`.
 
 ### Configuring the Gradle wrapper
 
