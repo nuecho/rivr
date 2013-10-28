@@ -24,7 +24,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * interpreted by the VoiceXML platform.
  * 
  * @author Nu Echo Inc.
- * @see InteractionTurn
+ * @see Interaction
  * @see MessageTurn
  * @see ObjectCall
  * @see Script

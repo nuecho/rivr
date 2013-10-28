@@ -16,7 +16,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
  * An <code>InteractionPrompt</code> represent a phase in an
- * {@link InteractionTurn} and is composed of a sequence of {@link AudioItem}
+ * {@link Interaction} and is composed of a sequence of {@link AudioItem}
  * and optionally a speech and/or a dtmf recognition configuration.
  * 
  * @author Nu Echo Inc.

@@ -36,9 +36,9 @@ public class VoiceXmlTestDialogueChannel
         super(name, defaultTimeout);
     }
 
-    public final InteractionTurn getLastInteractionTurn() {
+    public final Interaction getLastInteraction() {
         OutputTurn lastOutputTurn = getLastStepAsOutputTurn();
-        if (lastOutputTurn instanceof InteractionTurn) return (InteractionTurn) getLastStepAsOutputTurn();
+        if (lastOutputTurn instanceof Interaction) return (Interaction) getLastStepAsOutputTurn();
         throw new AssertionError("Last output turn was not an interaction. Last step=" + lastOutputTurn);
     }
 

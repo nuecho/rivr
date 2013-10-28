@@ -16,7 +16,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
  * An <code>InteractionRecognition</code> is an optional final phase of an
- * {@link InteractionTurn}.
+ * {@link Interaction}.
  * <p>
  * It specifies a recognition configuration, and optionally, a no input timeout
  * and a sequence of {@link AudioItem} that is played if a recognition is

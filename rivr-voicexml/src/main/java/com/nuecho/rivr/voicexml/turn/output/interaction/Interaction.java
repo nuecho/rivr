@@ -19,7 +19,7 @@ import com.nuecho.rivr.voicexml.turn.output.grammar.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * An <code>InteractionTurn</code> is a {@link VoiceXmlOutputTurn} that
+ * An <code>Interaction</code> is a {@link VoiceXmlOutputTurn} that
  * represents a list of {@link InteractionPrompt} with an optional final
  * recognition or recording phase.
  * <p>
@@ -32,7 +32,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see InteractionRecognition
  * @see InteractionRecording
  */
-public class InteractionTurn extends VoiceXmlOutputTurn {
+public class Interaction extends VoiceXmlOutputTurn {
     private static final String INTERACTION_TURN_TYPE = "interaction";
 
     private static final String RECORDING_PROPERTY = "recording";
@@ -47,7 +47,7 @@ public class InteractionTurn extends VoiceXmlOutputTurn {
      * @param name The name of this turn. Not empty.
      * @param prompts The list of {@link InteractionPrompt}. Not null.
      */
-    public InteractionTurn(String name, List<InteractionPrompt> prompts) {
+    public Interaction(String name, List<InteractionPrompt> prompts) {
         super(name);
         Assert.notNull(prompts, "prompts");
         mPrompts = new ArrayList<InteractionPrompt>(prompts);
@@ -60,7 +60,7 @@ public class InteractionTurn extends VoiceXmlOutputTurn {
      * @param prompts The list of {@link InteractionPrompt}. Not null.
      * @param recognition The final recognition phase configuration. Not null.
      */
-    public InteractionTurn(String name, List<InteractionPrompt> prompts, InteractionRecognition recognition) {
+    public Interaction(String name, List<InteractionPrompt> prompts, InteractionRecognition recognition) {
         super(name);
         Assert.notNull(prompts, "prompts");
         Assert.notNull(recognition, "recognition");
@@ -74,7 +74,7 @@ public class InteractionTurn extends VoiceXmlOutputTurn {
      * @param prompts The list of {@link InteractionPrompt}. Not null.
      * @param recording The final recording phase configuration. Not null.
      */
-    public InteractionTurn(String name, List<InteractionPrompt> prompts, InteractionRecording recording) {
+    public Interaction(String name, List<InteractionPrompt> prompts, InteractionRecording recording) {
         super(name);
         Assert.notNull(prompts, "prompts");
         Assert.notNull(recording, "recording");
