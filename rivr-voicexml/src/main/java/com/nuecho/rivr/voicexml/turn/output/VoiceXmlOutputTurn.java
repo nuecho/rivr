@@ -26,7 +26,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @author Nu Echo Inc.
  * @see InteractionTurn
  * @see MessageTurn
- * @see ObjectTurn
+ * @see ObjectCall
  * @see ScriptExecutionTurn
  * @see SubdialogueInvocationTurn
  * @see TransferTurn

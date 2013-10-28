@@ -21,14 +21,14 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * An <code>ObjectTurn</code> is a {@link VoiceXmlOutputTurn} used to exploit
+ * An <code>ObjectCall</code> is a {@link VoiceXmlOutputTurn} used to exploit
  * platform-specific functionality.
  * 
  * @author Nu Echo Inc.
  * @see <a
  *      href="http://www.w3.org/TR/voicexml20/#dml2.3.5">http://www.w3.org/TR/voicexml20/#dml2.3.5</a>
  */
-public class ObjectTurn extends VoiceXmlOutputTurn {
+public class ObjectCall extends VoiceXmlOutputTurn {
     public static final String OBJECT_RESULT_VARIABLE_NAME = "object";
 
     private static final String OBJECT_TURN_TYPE = "object";
@@ -56,7 +56,7 @@ public class ObjectTurn extends VoiceXmlOutputTurn {
     /**
      * @param name The name of this turn. Not empty.
      */
-    public ObjectTurn(String name) {
+    public ObjectCall(String name) {
         super(name);
     }
 
