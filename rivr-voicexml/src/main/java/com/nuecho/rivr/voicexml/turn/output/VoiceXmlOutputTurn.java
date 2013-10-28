@@ -28,7 +28,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see MessageTurn
  * @see ObjectCall
  * @see ScriptExecutionTurn
- * @see SubdialogueInvocationTurn
+ * @see SubdialogueCall
  * @see TransferTurn
  */
 public abstract class VoiceXmlOutputTurn extends VoiceXmlDocumentTurn implements OutputTurn {

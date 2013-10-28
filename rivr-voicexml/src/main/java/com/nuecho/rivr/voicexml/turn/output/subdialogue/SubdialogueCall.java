@@ -22,7 +22,7 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>SubdialogueInvocationTurn</code> is a {@link VoiceXmlOutputTurn} that
+ * A <code>SubdialogueCall</code> is a {@link VoiceXmlOutputTurn} that
  * invokes another external dialogue.
  * <p>
  * Parameters may be passed to the subdialogue and return values may be
@@ -35,7 +35,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see <a
  *      href="http://www.w3.org/TR/voicexml20/#dml2.3.4">http://www.w3.org/TR/voicexml20/#dml2.3.4</a>
  */
-public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
+public class SubdialogueCall extends VoiceXmlOutputTurn {
     public static final String SUBDIALOGUE_RESULT_VARIABLE_NAME = "subdialogue";
 
     private static final String SUBDIALOGUE_INVOCATION_TURN_TYPE = "subdialogue";
@@ -58,7 +58,7 @@ public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
      * @param name The name of this turn. Not empty.
      * @param uri The URI of the subdialogue. Not empty.
      */
-    public SubdialogueInvocationTurn(String name, String uri) {
+    public SubdialogueCall(String name, String uri) {
         super(name);
         Assert.notEmpty(uri, "uri");
         mUri = uri;
