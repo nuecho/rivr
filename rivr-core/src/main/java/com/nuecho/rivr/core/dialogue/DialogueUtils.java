@@ -16,13 +16,14 @@ public final class DialogueUtils {
         //utility class: instantiation forbidden
     }
 
-    public static <I extends InputTurn, O extends OutputTurn> I doTurn(DialogueContext<I, O> context, O outputTurn)
+    public static <I extends InputTurn, O extends OutputTurn> I doTurn(O outputTurn,
+                                                                       DialogueContext<I, O> context)
             throws Timeout, InterruptedException {
         return context.getDialogueChannel().doTurn(outputTurn, null);
     }
 
-    public static <I extends InputTurn, O extends OutputTurn> I doTurn(DialogueContext<I, O> context,
-                                                                       O outputTurn,
+    public static <I extends InputTurn, O extends OutputTurn> I doTurn(O outputTurn,
+                                                                       DialogueContext<I, O> context,
                                                                        TimeValue timeout) throws Timeout,
             InterruptedException {
         return context.getDialogueChannel().doTurn(outputTurn, timeout);

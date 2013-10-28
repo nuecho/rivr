@@ -12,9 +12,9 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.turn.output.audio.*;
 
 /**
- * Builder used to ease creation of instances of {@link InteractionTurn}
+ * Builder used to ease creation of instances of {@link Interaction}
  * <p>
- * Building an {@link InteractionTurn} implies the following steps:
+ * Building an {@link Interaction} implies the following steps:
  * <ul>
  * <li>Add some prompts</li>
  * <ul>
@@ -35,18 +35,18 @@ import com.nuecho.rivr.voicexml.turn.output.audio.*;
  * This can be translated to:
  * 
  * <pre>
- *  InteractionBuilder builder = InteractionBuilder.newInteractionBuilder();
+ *  InteractionBuilder builder = InteractionBuilder.newInteraction();
  *  builder.addPrompt(...);
  *  builder.addPrompt(...);
  *  //repeat as needed
  *  builder.addPrompt(...);
- *  InteractionTurn interactionTurn = builder.build(...);
+ *  Interaction interaction = builder.build(...);
  * </pre>
  * 
  * @author Nu Echo Inc.
  */
 public final class InteractionBuilder {
-    private final String mName;
+    private final String mTurnName;
     private final List<InteractionPrompt> mPrompts = new ArrayList<InteractionPrompt>();
 
     private String mLanguage;
@@ -54,18 +54,18 @@ public final class InteractionBuilder {
 
     private boolean mBuilt;
 
-    private InteractionBuilder(String name) {
-        mName = name;
+    private InteractionBuilder(String turnName) {
+        mTurnName = turnName;
     }
 
     /**
      * Creates an InteractionBuilder.
      * 
-     * @param name of the interaction to be created.
+     * @param turnName of the interaction to be created.
      */
 
-    public static InteractionBuilder newInteractionBuilder(String name) {
-        return new InteractionBuilder(name);
+    public static InteractionBuilder newInteraction(String turnName) {
+        return new InteractionBuilder(turnName);
     }
 
     /**
@@ -219,9 +219,9 @@ public final class InteractionBuilder {
      *            generated.
      * @param acknowledgeAudioItems audioItems to be played upon recognition
      */
-    public InteractionTurn build(DtmfRecognitionConfiguration dtmfRecognitionConfiguration,
-                                 TimeValue noinputTimeout,
-                                 AudioItem... acknowledgeAudioItems) {
+    public Interaction build(DtmfRecognitionConfiguration dtmfRecognitionConfiguration,
+                             TimeValue noinputTimeout,
+                             AudioItem... acknowledgeAudioItems) {
 
         return build(dtmfRecognitionConfiguration, null, noinputTimeout, asList(acknowledgeAudioItems));
 
@@ -237,9 +237,9 @@ public final class InteractionBuilder {
      *            generated.
      * @param acknowledgeAudioItems audioItems to be played upon recognition
      */
-    public InteractionTurn build(SpeechRecognitionConfiguration speechRecognitionConfiguration,
-                                 TimeValue noinputTimeout,
-                                 AudioItem... acknowledgeAudioItems) {
+    public Interaction build(SpeechRecognitionConfiguration speechRecognitionConfiguration,
+                             TimeValue noinputTimeout,
+                             AudioItem... acknowledgeAudioItems) {
 
         return build(null, speechRecognitionConfiguration, noinputTimeout, asList(acknowledgeAudioItems));
 
@@ -255,9 +255,9 @@ public final class InteractionBuilder {
      *            generated.
      * @param acknowledgeAudioItems audioItems to be played upon recognition
      */
-    public InteractionTurn build(DtmfRecognitionConfiguration dtmfRecognitionConfiguration,
-                                 TimeValue noinputTimeout,
-                                 List<? extends AudioItem> acknowledgeAudioItems) {
+    public Interaction build(DtmfRecognitionConfiguration dtmfRecognitionConfiguration,
+                             TimeValue noinputTimeout,
+                             List<? extends AudioItem> acknowledgeAudioItems) {
         return build(dtmfRecognitionConfiguration, null, noinputTimeout, acknowledgeAudioItems);
 
     }
@@ -272,9 +272,9 @@ public final class InteractionBuilder {
      *            generated.
      * @param acknowledgeAudioItems audioItems to be played upon recognition
      */
-    public InteractionTurn build(SpeechRecognitionConfiguration speechRecognitionConfiguration,
-                                 TimeValue noinputTimeout,
-                                 List<? extends AudioItem> acknowledgeAudioItems) {
+    public Interaction build(SpeechRecognitionConfiguration speechRecognitionConfiguration,
+                             TimeValue noinputTimeout,
+                             List<? extends AudioItem> acknowledgeAudioItems) {
         return build(null, speechRecognitionConfiguration, noinputTimeout, acknowledgeAudioItems);
 
     }
@@ -291,10 +291,10 @@ public final class InteractionBuilder {
      *            generated.
      * @param acknowledgeAudioItems audioItems to be played upon recognition
      */
-    public InteractionTurn build(DtmfRecognitionConfiguration dtmfRecognitionConfiguration,
-                                 SpeechRecognitionConfiguration speechRecognitionConfiguration,
-                                 TimeValue noinputTimeout,
-                                 AudioItem... acknowledgeAudioItems) {
+    public Interaction build(DtmfRecognitionConfiguration dtmfRecognitionConfiguration,
+                             SpeechRecognitionConfiguration speechRecognitionConfiguration,
+                             TimeValue noinputTimeout,
+                             AudioItem... acknowledgeAudioItems) {
 
         return build(dtmfRecognitionConfiguration,
                      speechRecognitionConfiguration,
@@ -315,10 +315,10 @@ public final class InteractionBuilder {
      *            generated.
      * @param acknowledgeAudioItems audioItems to be played upon recognition
      */
-    public InteractionTurn build(DtmfRecognitionConfiguration dtmfRecognitionConfiguration,
-                                 SpeechRecognitionConfiguration speechRecognitionConfiguration,
-                                 TimeValue noinputTimeout,
-                                 List<? extends AudioItem> acknowledgeAudioItems) {
+    public Interaction build(DtmfRecognitionConfiguration dtmfRecognitionConfiguration,
+                             SpeechRecognitionConfiguration speechRecognitionConfiguration,
+                             TimeValue noinputTimeout,
+                             List<? extends AudioItem> acknowledgeAudioItems) {
 
         Assert.ensure(dtmfRecognitionConfiguration != null || speechRecognitionConfiguration != null,
                       "Must provide at least one recognition configuration (speech or DTMF)");
@@ -328,7 +328,7 @@ public final class InteractionBuilder {
                                                                         speechRecognitionConfiguration,
                                                                         noinputTimeout,
                                                                         acknowledgeAudioItems);
-        return new InteractionTurn(mName, mPrompts, recognition);
+        return new Interaction(mTurnName, mPrompts, recognition);
 
     }
 
@@ -342,9 +342,9 @@ public final class InteractionBuilder {
      * @param acknowledgeAudioItems audioItems to be played upon recording
      *            completion
      */
-    public InteractionTurn build(RecordingConfiguration recordingConfiguration,
-                                 TimeValue noinputTimeout,
-                                 AudioItem... acknowledgeAudioItems) {
+    public Interaction build(RecordingConfiguration recordingConfiguration,
+                             TimeValue noinputTimeout,
+                             AudioItem... acknowledgeAudioItems) {
         return build(recordingConfiguration, noinputTimeout, asList(acknowledgeAudioItems));
     }
 
@@ -358,9 +358,9 @@ public final class InteractionBuilder {
      * @param acknowledgeAudioItems audioItems to be played upon recording
      *            completion
      */
-    public InteractionTurn build(RecordingConfiguration recordingConfiguration,
-                                 TimeValue noinputTimeout,
-                                 List<? extends AudioItem> acknowledgeAudioItems) {
+    public Interaction build(RecordingConfiguration recordingConfiguration,
+                             TimeValue noinputTimeout,
+                             List<? extends AudioItem> acknowledgeAudioItems) {
         Assert.notNull(recordingConfiguration, "recordingConfiguration");
         Assert.notNull(acknowledgeAudioItems, "acknowledgeAudioItems");
 
@@ -368,16 +368,16 @@ public final class InteractionBuilder {
         InteractionRecording recording = new InteractionRecording(recordingConfiguration,
                                                                   noinputTimeout,
                                                                   acknowledgeAudioItems);
-        return new InteractionTurn(mName, mPrompts, recording);
+        return new Interaction(mTurnName, mPrompts, recording);
     }
 
     /**
      * Builds the interaction. This method does not allow any recording nor
      * recognition after the prompts.
      */
-    public InteractionTurn build() {
+    public Interaction build() {
         checkBuilt();
-        return new InteractionTurn(mName, mPrompts);
+        return new Interaction(mTurnName, mPrompts);
     }
 
     private void checkBuilt() {

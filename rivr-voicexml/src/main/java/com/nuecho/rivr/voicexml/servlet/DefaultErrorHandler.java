@@ -12,6 +12,6 @@ import com.nuecho.rivr.voicexml.turn.last.*;
 public class DefaultErrorHandler implements VoiceXmlErrorHandler {
     @Override
     public VoiceXmlLastTurn handleError(Throwable error) {
-        return new VoiceXmlExitTurn("error");
+        return new Exit("error");
     }
 }

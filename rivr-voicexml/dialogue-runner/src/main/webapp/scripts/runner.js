@@ -553,7 +553,7 @@ function processResult(result) {
     } else if (outputTurnType === "object") {
       $("#objectSection").show();
       processObjectTurn(result.turn);
-    } else if (outputTurnType === "scriptExecution") {
+    } else if (outputTurnType === "script") {
       $("#scriptSection").show();
       processScriptExecutionTurn(result.turn);
     }

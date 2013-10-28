@@ -19,7 +19,7 @@ import com.nuecho.rivr.voicexml.turn.output.audio.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>MessageTurn</code> is a <code>VoiceXmlOutputTurn</code> that plays a
+ * A <code>Message</code> is a <code>VoiceXmlOutputTurn</code> that plays a
  * sequence of <code>AudioItem</code>.
  * 
  * @author Nu Echo Inc.
@@ -27,7 +27,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see <a
  *      href="http://www.w3.org/TR/voicexml20/#dml4.1.8">http://www.w3.org/TR/voicexml20/#dml4.1.8</a>
  */
-public class MessageTurn extends VoiceXmlOutputTurn {
+public class Message extends VoiceXmlOutputTurn {
     private static final String MESSAGE_TURN_TYPE = "message";
 
     private static final String BARGE_IN_PROPERTY = "bargeIn";
@@ -43,7 +43,7 @@ public class MessageTurn extends VoiceXmlOutputTurn {
      * @param audioItems The sequence of <code>AudioItem</code> to play. Not
      *            empty.
      */
-    public MessageTurn(String name, List<AudioItem> audioItems) {
+    public Message(String name, List<AudioItem> audioItems) {
         super(name);
         Assert.notEmpty(audioItems, "audioItems");
         mAudioItems = new ArrayList<AudioItem>(audioItems);
@@ -54,7 +54,7 @@ public class MessageTurn extends VoiceXmlOutputTurn {
      * @param audioItems The sequence of <code>AudioItem</code> to play. Not
      *            empty.
      */
-    public MessageTurn(String name, AudioItem... audioItems) {
+    public Message(String name, AudioItem... audioItems) {
         this(name, asList(audioItems));
     }
 

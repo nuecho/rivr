@@ -24,12 +24,12 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * interpreted by the VoiceXML platform.
  * 
  * @author Nu Echo Inc.
- * @see InteractionTurn
- * @see MessageTurn
- * @see ObjectTurn
- * @see ScriptExecutionTurn
- * @see SubdialogueInvocationTurn
- * @see TransferTurn
+ * @see Interaction
+ * @see Message
+ * @see ObjectCall
+ * @see Script
+ * @see SubdialogueCall
+ * @see Transfer
  */
 public abstract class VoiceXmlOutputTurn extends VoiceXmlDocumentTurn implements OutputTurn {
     private static final String OUTPUT_TURN_TYPE_PROPERTY = "outputTurnType";

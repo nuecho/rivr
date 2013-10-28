@@ -17,16 +17,16 @@ import com.nuecho.rivr.voicexml.turn.output.interaction.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>SupervisedTransferTurn</code> is a {@link TransferTurn} where the
- * outcome is monitored and where a transfer failure can be handled gracefully.
+ * A <code>SupervisedTransfer</code> is a {@link Transfer} where the outcome is
+ * monitored and where a transfer failure can be handled gracefully.
  * <p>
  * Recognition can optionally be activated to cancel a supervised transfer.
  * 
  * @author Nu Echo Inc.
- * @see BridgeTransferTurn
- * @see ConsultationTransferTurn
+ * @see BridgeTransfer
+ * @see ConsultationTransfer
  */
-public abstract class SupervisedTransferTurn extends TransferTurn {
+public abstract class SupervisedTransfer extends Transfer {
     private static final String SPEECH_RECOGNITION_CONFIGURATION_PROPERTY = "speechRecognitionConfiguration";
     private static final String DTMF_RECOGNITION_CONFIGURATION_PROPERTY = "dtmfRecognitionConfiguration";
     private static final String TRANSFER_AUDIO_PROPERTY = "transferAudio";
@@ -43,7 +43,7 @@ public abstract class SupervisedTransferTurn extends TransferTurn {
      * @param destination The URI of the destination (telephone, IP telephony
      *            address). Not empty.
      */
-    public SupervisedTransferTurn(String name, String destination) {
+    public SupervisedTransfer(String name, String destination) {
         super(name, destination);
     }
 

@@ -19,15 +19,15 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * to another entity.
  * 
  * @author Nu Echo Inc.
- * @see BlindTransferTurn
- * @see BridgeTransferTurn
- * @see ConsultationTransferTurn
+ * @see BlindTransfer
+ * @see BridgeTransfer
+ * @see ConsultationTransfer
  * @see <a
  *      href="http://www.w3.org/TR/voicexml20/#dml2.3.6">http://www.w3.org/TR/voicexml20/#dml2.3.6</a>
  * @see <a
  *      href="http://www.w3.org/TR/voicexml21/#sec-transfer">http://www.w3.org/TR/voicexml21/#sec-transfer</a>
  */
-public abstract class TransferTurn extends VoiceXmlOutputTurn {
+public abstract class Transfer extends VoiceXmlOutputTurn {
     private static final String TRANSFER_TURN_TYPE = "transfer";
 
     private static final String TRANSFER_TYPE_PROPERTY = "transferType";
@@ -42,7 +42,7 @@ public abstract class TransferTurn extends VoiceXmlOutputTurn {
      * @param destination The URI of the destination (telephone, IP telephony
      *            address). Not empty.
      */
-    public TransferTurn(String name, String destination) {
+    public Transfer(String name, String destination) {
         super(name);
         Assert.notEmpty(destination, "destination");
         mDestination = destination;

@@ -18,23 +18,23 @@ import com.nuecho.rivr.voicexml.util.json.*;
 /**
  * @author Nu Echo Inc.
  */
-public class VoiceXmlDisconnectTurn extends VoiceXmlLastTurn {
+public class Disconnect extends VoiceXmlLastTurn {
 
     private static final String VARIABLES_PROPERTY = "variables";
 
-    private VariableDeclarationList mVariables;
+    private VariableList mVariables;
 
-    public VoiceXmlDisconnectTurn(String name) {
+    public Disconnect(String name) {
         super(name);
     }
 
-    public VoiceXmlDisconnectTurn(String name, VariableDeclarationList variables) {
+    public Disconnect(String name, VariableList variables) {
         super(name);
         Assert.notNull(variables, VARIABLES_PROPERTY);
         mVariables = variables;
     }
 
-    public VariableDeclarationList getVariables() {
+    public VariableList getVariables() {
         return mVariables;
     }
 

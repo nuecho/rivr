@@ -5,6 +5,7 @@ package com.nuecho.rivr.voicexml.rendering.voicexml;
 
 import java.text.*;
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.regex.*;
 
 import org.w3c.dom.*;
@@ -445,9 +446,9 @@ public final class VoiceXmlDomUtil {
         addProperty(parent, FETCH_AUDIO_PROPERTY, fetchAudioRecording.getPath());
     }
 
-    public static void addVariableDeclarations(Element formElement, VariableDeclarationList variableList) {
-        for (VariableDeclaration declaration : variableList) {
-            createVarElement(formElement, declaration.getName(), declaration.getInitialValueExpression());
+    public static void addVariables(Element formElement, VariableList variableList) {
+        for (Entry<String, String> entry : variableList) {
+            createVarElement(formElement, entry.getKey(), entry.getValue());
         }
     }
 
@@ -728,14 +729,14 @@ public final class VoiceXmlDomUtil {
 
     public static void addNamelist(Element parentElement,
                                    Element namelistHolderElement,
-                                   VariableDeclarationList variables) {
+                                   VariableList variables) {
         if (variables == null) return;
         if (variables.isEmpty()) return;
 
         List<String> variableNames = new ArrayList<String>();
-        for (VariableDeclaration declaration : variables) {
-            variableNames.add(declaration.getName());
-            createVarElement(parentElement, declaration.getName(), declaration.getInitialValueExpression());
+        for (Entry<String, String> entry : variables) {
+            variableNames.add(entry.getKey());
+            createVarElement(parentElement, entry.getKey(), entry.getValue());
         }
 
         namelistHolderElement.setAttribute(NAME_LIST_ATTRIBUTE, StringUtils.join(variableNames, " "));

@@ -8,6 +8,7 @@ import static java.util.Arrays.*;
 import static java.util.Collections.*;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 import javax.json.*;
 
@@ -21,7 +22,7 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>SubdialogueInvocationTurn</code> is a {@link VoiceXmlOutputTurn} that
+ * A <code>SubdialogueCall</code> is a {@link VoiceXmlOutputTurn} that
  * invokes another external dialogue.
  * <p>
  * Parameters may be passed to the subdialogue and return values may be
@@ -34,7 +35,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see <a
  *      href="http://www.w3.org/TR/voicexml20/#dml2.3.4">http://www.w3.org/TR/voicexml20/#dml2.3.4</a>
  */
-public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
+public class SubdialogueCall extends VoiceXmlOutputTurn {
     public static final String SUBDIALOGUE_RESULT_VARIABLE_NAME = "subdialogue";
 
     private static final String SUBDIALOGUE_INVOCATION_TURN_TYPE = "subdialogue";
@@ -48,7 +49,7 @@ public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
 
     private final String mUri;
     private List<SubdialogueParameter> mSubdialogueParameters = Collections.emptyList();
-    private VariableDeclarationList mSubmitParameters = new VariableDeclarationList();
+    private VariableList mSubmitParameters = new VariableList();
     private SubdialogueSubmitMethod mMethod = SubdialogueSubmitMethod.GET;
     private SubdialogueFetchConfiguration mSubdialogueFetchConfiguration;
     private String mPostDialogueScript;
@@ -57,7 +58,7 @@ public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
      * @param name The name of this turn. Not empty.
      * @param uri The URI of the subdialogue. Not empty.
      */
-    public SubdialogueInvocationTurn(String name, String uri) {
+    public SubdialogueCall(String name, String uri) {
         super(name);
         Assert.notEmpty(uri, "uri");
         mUri = uri;
@@ -84,7 +85,7 @@ public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
      * @param submitParameters A list of variable to submit when invoking the
      *            URI. Not null.
      */
-    public final void setSubmitParameters(VariableDeclarationList submitParameters) {
+    public final void setSubmitParameters(VariableList submitParameters) {
         Assert.notNull(submitParameters, "submitParameters");
         mSubmitParameters = submitParameters;
     }
@@ -123,7 +124,7 @@ public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
         return unmodifiableList(mSubdialogueParameters);
     }
 
-    public final VariableDeclarationList getSubmitParameters() {
+    public final VariableList getSubmitParameters() {
         return mSubmitParameters;
     }
 
@@ -159,12 +160,12 @@ public class SubdialogueInvocationTurn extends VoiceXmlOutputTurn {
             throws VoiceXmlDocumentRenderingException {
 
         List<String> submitNameList = new ArrayList<String>();
-        VariableDeclarationList submitVariableList = mSubmitParameters;
+        VariableList submitVariableList = mSubmitParameters;
         if (submitVariableList != null) {
-            addVariableDeclarations(formElement, submitVariableList);
+            addVariables(formElement, submitVariableList);
 
-            for (VariableDeclaration declaration : mSubmitParameters) {
-                submitNameList.add(declaration.getName());
+            for (Entry<String, String> entry : mSubmitParameters) {
+                submitNameList.add(entry.getKey());
             }
         }
 

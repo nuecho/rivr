@@ -18,30 +18,30 @@ import com.nuecho.rivr.voicexml.util.json.*;
 /**
  * @author Nu Echo Inc.
  */
-public class VoiceXmlExitTurn extends VoiceXmlLastTurn {
+public class Exit extends VoiceXmlLastTurn {
 
     private static final String VARIABLES_PROPERTY = "variables";
     private static final String EXPRESSION_PROPERTY = "expression";
 
-    private VariableDeclarationList mVariables;
+    private VariableList mVariables;
     private String mExpression;
 
-    public VoiceXmlExitTurn(String name) {
+    public Exit(String name) {
         super(name);
     }
 
-    public VoiceXmlExitTurn(String name, VariableDeclarationList variables) {
+    public Exit(String name, VariableList variables) {
         super(name);
         Assert.notNull(variables, VARIABLES_PROPERTY);
         mVariables = variables;
     }
 
-    public VoiceXmlExitTurn(String name, String expression) {
+    public Exit(String name, String expression) {
         super(name);
         mExpression = expression;
     }
 
-    public VariableDeclarationList getVariables() {
+    public VariableList getVariables() {
         return mVariables;
     }
 
