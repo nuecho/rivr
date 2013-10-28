@@ -35,7 +35,7 @@ import com.nuecho.rivr.voicexml.turn.output.audio.*;
  * This can be translated to:
  * 
  * <pre>
- *  InteractionBuilder builder = InteractionBuilder.newInteractionBuilder();
+ *  InteractionBuilder builder = InteractionBuilder.newInteraction();
  *  builder.addPrompt(...);
  *  builder.addPrompt(...);
  *  //repeat as needed
@@ -61,11 +61,11 @@ public final class InteractionBuilder {
     /**
      * Creates an InteractionBuilder.
      * 
-     * @param name of the interaction to be created.
+     * @param turnName of the interaction to be created.
      */
 
-    public static InteractionBuilder newInteractionBuilder(String name) {
-        return new InteractionBuilder(name);
+    public static InteractionBuilder newInteraction(String turnName) {
+        return new InteractionBuilder(turnName);
     }
 
     /**
