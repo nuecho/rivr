@@ -18,7 +18,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
 /**
  * @author Nu Echo Inc.
  */
-public class VoiceXmlReturnTurn extends VoiceXmlLastTurn {
+public class Return extends VoiceXmlLastTurn {
 
     private static final String VARIABLES_PROPERTY = "variables";
     private static final String EVENT_MESSAGE_PROPERTY = "eventMessage";
@@ -28,13 +28,13 @@ public class VoiceXmlReturnTurn extends VoiceXmlLastTurn {
     private String mEventName;
     private String mEventMessage;
 
-    public VoiceXmlReturnTurn(String name, VariableList variables) {
+    public Return(String name, VariableList variables) {
         super(name);
         Assert.notNull(variables, VARIABLES_PROPERTY);
         mVariables = variables;
     }
 
-    public VoiceXmlReturnTurn(String name, String eventName, String eventMessage) {
+    public Return(String name, String eventName, String eventMessage) {
         super(name);
         Assert.notNull(eventName, EVENT_NAME_PROPERTY);
         mEventName = eventName;

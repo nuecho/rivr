@@ -18,54 +18,41 @@ import com.nuecho.rivr.voicexml.util.json.*;
 /**
  * @author Nu Echo Inc.
  */
-public class VoiceXmlExitTurn extends VoiceXmlLastTurn {
+public class Disconnect extends VoiceXmlLastTurn {
 
     private static final String VARIABLES_PROPERTY = "variables";
-    private static final String EXPRESSION_PROPERTY = "expression";
 
     private VariableList mVariables;
-    private String mExpression;
 
-    public VoiceXmlExitTurn(String name) {
+    public Disconnect(String name) {
         super(name);
     }
 
-    public VoiceXmlExitTurn(String name, VariableList variables) {
+    public Disconnect(String name, VariableList variables) {
         super(name);
         Assert.notNull(variables, VARIABLES_PROPERTY);
         mVariables = variables;
-    }
-
-    public VoiceXmlExitTurn(String name, String expression) {
-        super(name);
-        mExpression = expression;
     }
 
     public VariableList getVariables() {
         return mVariables;
     }
 
-    public String getExpression() {
-        return mExpression;
-    }
-
     @Override
     protected void addTurnProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, VARIABLES_PROPERTY, mVariables);
-        JsonUtils.add(builder, EXPRESSION_PROPERTY, mExpression);
     }
 
     @Override
     protected void fillVoiceXmlDocument(Document document, Element formElement, VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
         Element blockElement = DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
-        Element exitElement = document.createElement(EXIT_ELEMENT);
+        Element disconnectElement = document.createElement(DISCONNECT_ELEMENT);
+
         if (mVariables != null) {
-            addNamelist(blockElement, exitElement, mVariables);
-        } else if (mExpression != null) {
-            exitElement.setAttribute(EXPR_ATTRIBUTE, mExpression);
+            addNamelist(blockElement, disconnectElement, mVariables);
         }
 
-        blockElement.appendChild(exitElement);
+        blockElement.appendChild(disconnectElement);
     }
 }
