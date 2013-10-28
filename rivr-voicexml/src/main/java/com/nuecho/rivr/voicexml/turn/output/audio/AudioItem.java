@@ -15,7 +15,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @author Nu Echo Inc.
  * @see Mark
  * @see Pause
- * @see Recording
+ * @see AudioFile
  * @see SynthesisText
  * @see <a
  *      href="http://www.w3.org/TR/voicexml20/#dml4.1">http://www.w3.org/TR/voicexml20/#dml4.1</a>

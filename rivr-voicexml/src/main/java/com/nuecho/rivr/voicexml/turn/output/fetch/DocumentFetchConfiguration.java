@@ -16,13 +16,13 @@ public class DocumentFetchConfiguration extends ResourceFetchConfiguration {
 
     private static final String FETCH_AUDIO_PROPERTY = "fetchAudio";
 
-    private Recording mFetchAudio;
+    private AudioFile mFetchAudio;
 
-    public Recording getFetchAudio() {
+    public AudioFile getFetchAudio() {
         return mFetchAudio;
     }
 
-    public void setFetchAudio(Recording fetchAudio) {
+    public void setFetchAudio(AudioFile fetchAudio) {
         mFetchAudio = fetchAudio;
     }
 

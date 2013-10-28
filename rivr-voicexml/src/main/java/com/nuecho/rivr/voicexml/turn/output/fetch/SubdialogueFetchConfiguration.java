@@ -18,13 +18,13 @@ public final class SubdialogueFetchConfiguration implements JsonSerializable {
     private static final String FETCH_AUDIO = "fetchAudio";
 
     private ResourceFetchConfiguration mResourceFetchConfiguration;
-    private Recording mFetchAudio;
+    private AudioFile mFetchAudio;
 
     public ResourceFetchConfiguration getResourceFetchConfiguration() {
         return mResourceFetchConfiguration;
     }
 
-    public Recording getFetchAudio() {
+    public AudioFile getFetchAudio() {
         return mFetchAudio;
     }
 
@@ -32,7 +32,7 @@ public final class SubdialogueFetchConfiguration implements JsonSerializable {
         mResourceFetchConfiguration = resourceFetchConfiguration;
     }
 
-    public void setFetchAudio(Recording fetchAudio) {
+    public void setFetchAudio(AudioFile fetchAudio) {
         mFetchAudio = fetchAudio;
     }
 

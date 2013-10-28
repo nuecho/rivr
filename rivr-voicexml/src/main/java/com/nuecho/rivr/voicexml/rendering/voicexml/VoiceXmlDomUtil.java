@@ -260,7 +260,7 @@ public final class VoiceXmlDomUtil {
         FetchConfiguration fetchConfiguration = voiceXmlDialogueContext.getFetchConfiguration();
         if (fetchConfiguration == null) return;
 
-        Recording fetchAudio = fetchConfiguration.getDefaultFetchAudio();
+        AudioFile fetchAudio = fetchConfiguration.getDefaultFetchAudio();
         if (fetchAudio != null) {
             addFetchAudioProperty(vxmlElement, fetchAudio);
         }
@@ -321,18 +321,18 @@ public final class VoiceXmlDomUtil {
 
         boolean lastItemWasText = false;
         for (AudioItem audioItem : audioItems) {
-            if (audioItem instanceof Recording) {
-                Recording recording = (Recording) audioItem;
+            if (audioItem instanceof AudioFile) {
+                AudioFile audioFile = (AudioFile) audioItem;
                 Element audioElement = DomUtils.appendNewElement(promptElement, AUDIO_ELEMENT);
 
-                if (recording.getPath() != null) {
-                    audioElement.setAttribute(SRC_ATTRIBUTE, recording.getPath());
+                if (audioFile.getPath() != null) {
+                    audioElement.setAttribute(SRC_ATTRIBUTE, audioFile.getPath());
                 } else {
-                    Assert.notNull(recording.getExpression(), "recording.getExpression()");
-                    audioElement.setAttribute(EXPR_ATTRIBUTE, recording.getExpression());
+                    Assert.notNull(audioFile.getExpression(), "audioFile.getExpression()");
+                    audioElement.setAttribute(EXPR_ATTRIBUTE, audioFile.getExpression());
                 }
 
-                SynthesisText alternative = recording.getAlternative();
+                SynthesisText alternative = audioFile.getAlternative();
 
                 if (alternative != null) {
                     if (alternative.isSsml()) {
@@ -345,7 +345,7 @@ public final class VoiceXmlDomUtil {
                     }
                 }
 
-                applyRessourceFetchConfiguration(audioElement, recording.getResourceFetchConfiguration());
+                applyRessourceFetchConfiguration(audioElement, audioFile.getResourceFetchConfiguration());
             } else if (audioItem instanceof SynthesisText) {
                 SynthesisText synthesisText = (SynthesisText) audioItem;
 
@@ -443,8 +443,8 @@ public final class VoiceXmlDomUtil {
         }
     }
 
-    public static void addFetchAudioProperty(Element parent, Recording fetchAudioRecording) {
-        addProperty(parent, FETCH_AUDIO_PROPERTY, fetchAudioRecording.getPath());
+    public static void addFetchAudioProperty(Element parent, AudioFile fetchAudioFile) {
+        addProperty(parent, FETCH_AUDIO_PROPERTY, fetchAudioFile.getPath());
     }
 
     public static void addVariables(Element formElement, VariableList variableList) {
@@ -531,11 +531,11 @@ public final class VoiceXmlDomUtil {
         TimeValue timeOut = submitTurnFetchConfiguration.getTimeOut();
         setTimeAttribute(submitElement, FETCH_TIMEOUT_PROPERTY, timeOut);
 
-        Recording fetchAudio = submitTurnFetchConfiguration.getFetchAudio();
+        AudioFile fetchAudio = submitTurnFetchConfiguration.getFetchAudio();
         applyFetchAudio(submitElement, fetchAudio);
     }
 
-    public static void applyFetchAudio(Element element, Recording fetchAudio) {
+    public static void applyFetchAudio(Element element, AudioFile fetchAudio) {
         if (fetchAudio != null) {
             String fetchAudioHref = fetchAudio.getPath();
             Assert.notNull(fetchAudioHref, "fetchAudioHref");

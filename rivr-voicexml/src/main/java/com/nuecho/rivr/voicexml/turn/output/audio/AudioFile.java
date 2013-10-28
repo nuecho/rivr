@@ -9,15 +9,15 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>Recording</code> represents an audio file with an optional synthesis
+ * A <code>AudioFile</code> represents an audio file with an optional synthesis
  * text backup.
  * 
  * @author Nu Echo Inc.
  * @see SynthesisText
  * @see ResourceFetchConfiguration
  */
-public final class Recording extends AudioItem {
-    public static final String RECORDING_ELEMENT_TYPE = "recording";
+public final class AudioFile extends AudioItem {
+    public static final String AUDIO_FILE_ELEMENT_TYPE = "audioFile";
     private static final String RESOURCE_FETCH_CONFIGURATION_PROPERTY = "resourceFetchConfiguration";
     private static final String PATH_PROPERTY = "path";
     private static final String EXPRESSION_PROPERTY = "expression";
@@ -28,16 +28,16 @@ public final class Recording extends AudioItem {
     private SynthesisText mAlternative;
     private ResourceFetchConfiguration mResourceFetchConfiguration;
 
-    public static Recording fromPath(String path) {
-        Recording recording = new Recording();
-        recording.mPath = path;
-        return recording;
+    public static AudioFile fromPath(String path) {
+        AudioFile audioFile = new AudioFile();
+        audioFile.mPath = path;
+        return audioFile;
     }
 
-    public static Recording fromExpression(String expression) {
-        Recording recording = new Recording();
-        recording.mExpression = expression;
-        return recording;
+    public static AudioFile fromExpression(String expression) {
+        AudioFile audioFile = new AudioFile();
+        audioFile.mExpression = expression;
+        return audioFile;
     }
 
     /**
@@ -54,7 +54,7 @@ public final class Recording extends AudioItem {
 
     @Override
     public String getElementType() {
-        return RECORDING_ELEMENT_TYPE;
+        return AUDIO_FILE_ELEMENT_TYPE;
     }
 
     public String getPath() {
@@ -97,7 +97,7 @@ public final class Recording extends AudioItem {
         if (this == obj) return true;
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
-        Recording other = (Recording) obj;
+        AudioFile other = (AudioFile) obj;
         if (mExpression == null) {
             if (other.mExpression != null) return false;
         } else if (!mExpression.equals(other.mExpression)) return false;

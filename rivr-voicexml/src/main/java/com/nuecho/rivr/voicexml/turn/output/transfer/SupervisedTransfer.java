@@ -35,7 +35,7 @@ public abstract class SupervisedTransfer extends Transfer {
     private DtmfRecognitionConfiguration mDtmfRecognitionConfiguration;
     private SpeechRecognitionConfiguration mSpeechRecognitionConfiguration;
 
-    private Recording mTransferAudio;
+    private AudioFile mTransferAudio;
     private TimeValue mConnectTimeout;
 
     /**
@@ -67,7 +67,7 @@ public abstract class SupervisedTransfer extends Transfer {
      * @param transferAudio The URI of audio source to play while the transfer
      *            attempt is in progress.
      */
-    public final void setTransferAudio(Recording transferAudio) {
+    public final void setTransferAudio(AudioFile transferAudio) {
         mTransferAudio = transferAudio;
     }
 
@@ -80,7 +80,7 @@ public abstract class SupervisedTransfer extends Transfer {
         mConnectTimeout = connectTimeout;
     }
 
-    public final Recording getTransferAudio() {
+    public final AudioFile getTransferAudio() {
         return mTransferAudio;
     }
 
