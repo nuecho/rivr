@@ -4,7 +4,7 @@
 package com.nuecho.rivr.voicexml.turn.output.transfer;
 
 /**
- * A <code>BlindTransferTurn</code> is a {@link TransferTurn} where the outcome
+ * A <code>BlindTransfer</code> is a {@link Transfer} where the outcome
  * is not monitored.
  * <p>
  * Once the transfer begins and the interpreter disconnects from the session,
@@ -13,7 +13,7 @@ package com.nuecho.rivr.voicexml.turn.output.transfer;
  * @author Nu Echo Inc.
  * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.7.1">http://www.w3.org/TR/voicexml20/#dml2.3.7.1</a>
  */
-public class BlindTransferTurn extends TransferTurn {
+public class BlindTransfer extends Transfer {
     private static final String BLIND_TRANSFER_TYPE = "blind";
 
     /**
@@ -21,7 +21,7 @@ public class BlindTransferTurn extends TransferTurn {
      * @param destination The URI of the destination (telephone, IP telephony
      *            address). Not empty.
      */
-    public BlindTransferTurn(String name, String destination) {
+    public BlindTransfer(String name, String destination) {
         super(name, destination);
     }
 

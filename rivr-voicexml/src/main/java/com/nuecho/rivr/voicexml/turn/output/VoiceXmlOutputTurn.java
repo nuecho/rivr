@@ -29,7 +29,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see ObjectCall
  * @see Script
  * @see SubdialogueCall
- * @see TransferTurn
+ * @see Transfer
  */
 public abstract class VoiceXmlOutputTurn extends VoiceXmlDocumentTurn implements OutputTurn {
     private static final String OUTPUT_TURN_TYPE_PROPERTY = "outputTurnType";

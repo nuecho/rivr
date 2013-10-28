@@ -14,13 +14,13 @@ import com.nuecho.rivr.voicexml.rendering.voicexml.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>BridgeTransferTurn</code> is a {@link SupervisedTransferTurn} that
+ * A <code>BridgeTransfer</code> is a {@link SupervisedTransfer} that
  * connects the caller to the callee in a full duplex conversation.
  * 
  * @author Nu Echo Inc.
  * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.7.2">http://www.w3.org/TR/voicexml20/#dml2.3.7.2</a>
  */
-public class BridgeTransferTurn extends SupervisedTransferTurn {
+public class BridgeTransfer extends SupervisedTransfer {
     private static final String BRIDGE_TRANSFER_TYPE = "bridge";
 
     private static final String MAXIMUM_TIME_PROPERTY_NAME = "maximumTime";
@@ -32,7 +32,7 @@ public class BridgeTransferTurn extends SupervisedTransferTurn {
      * @param destination The URI of the destination (telephone, IP telephony
      *            address). Not empty.
      */
-    public BridgeTransferTurn(String name, String destination) {
+    public BridgeTransfer(String name, String destination) {
         super(name, destination);
     }
 
