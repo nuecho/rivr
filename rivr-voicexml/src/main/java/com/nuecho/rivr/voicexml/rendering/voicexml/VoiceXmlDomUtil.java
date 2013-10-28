@@ -324,17 +324,23 @@ public final class VoiceXmlDomUtil {
             if (audioItem instanceof Recording) {
                 Recording recording = (Recording) audioItem;
                 Element audioElement = DomUtils.appendNewElement(promptElement, AUDIO_ELEMENT);
-                audioElement.setAttribute(SRC_ATTRIBUTE, recording.getPath());
 
-                SynthesisText synthesis = recording.getSynthesisText();
+                if (recording.getPath() != null) {
+                    audioElement.setAttribute(SRC_ATTRIBUTE, recording.getPath());
+                } else {
+                    Assert.notNull(recording.getExpression(), "recording.getExpression()");
+                    audioElement.setAttribute(EXPR_ATTRIBUTE, recording.getExpression());
+                }
 
-                if (synthesis != null) {
-                    if (synthesis.isSsml()) {
-                        DocumentFragment ssmlNodes = synthesis.getDocumentFragment();
+                SynthesisText alternative = recording.getAlternative();
+
+                if (alternative != null) {
+                    if (alternative.isSsml()) {
+                        DocumentFragment ssmlNodes = alternative.getDocumentFragment();
                         audioElement.appendChild(audioElement.getOwnerDocument().importNode(ssmlNodes, true));
                         lastItemWasText = false;
                     } else {
-                        DomUtils.appendNewText(audioElement, synthesis.getText());
+                        DomUtils.appendNewText(audioElement, alternative.getText());
                         lastItemWasText = true;
                     }
                 }
@@ -366,11 +372,6 @@ public final class VoiceXmlDomUtil {
                 Mark mark = (Mark) audioItem;
                 Element markElement = DomUtils.appendNewElement(promptElement, MARK_ELEMENT);
                 markElement.setAttribute(NAME_ATTRIBUTE, mark.getName());
-                lastItemWasText = false;
-            } else if (audioItem instanceof ClientSideRecording) {
-                ClientSideRecording clientSideRecording = (ClientSideRecording) audioItem;
-                Element audioElement = DomUtils.appendNewElement(promptElement, AUDIO_ELEMENT);
-                audioElement.setAttribute(EXPR_ATTRIBUTE, clientSideRecording.getExpression());
                 lastItemWasText = false;
             } else throw new VoiceXmlDocumentRenderingException("Cannot handle prompt rendering element of type '"
                                                                 + audioItem.getClass()
@@ -727,9 +728,7 @@ public final class VoiceXmlDomUtil {
         return formElement;
     }
 
-    public static void addNamelist(Element parentElement,
-                                   Element namelistHolderElement,
-                                   VariableList variables) {
+    public static void addNamelist(Element parentElement, Element namelistHolderElement, VariableList variables) {
         if (variables == null) return;
         if (variables.isEmpty()) return;
 
