@@ -18,13 +18,13 @@ import com.nuecho.rivr.voicexml.turn.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>ScriptExecutionTurn</code> is a <code>VoiceXmlOutputTurn</code> that
- * declares variables and/or executes a script.
+ * A <code>Script</code> is a <code>VoiceXmlOutputTurn</code> that declares
+ * variables and/or executes a script.
  * 
  * @author Nu Echo Inc.
  */
-public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
-    private static final String SCRIPT_EXECUTION_TURN_TYPE = "scriptExecution";
+public class Script extends VoiceXmlOutputTurn {
+    private static final String SCRIPT_TURN_TYPE = "script";
 
     private static final String SCRIPT_PROPERTY = "script";
     private static final String VARIABLES_PROPERTY = "variables";
@@ -35,7 +35,7 @@ public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
     /**
      * @param name The name of this turn. Not empty.
      */
-    public ScriptExecutionTurn(String name) {
+    public Script(String name) {
         super(name);
     }
 
@@ -65,7 +65,7 @@ public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
 
     @Override
     protected final String getOuputTurnType() {
-        return SCRIPT_EXECUTION_TURN_TYPE;
+        return SCRIPT_TURN_TYPE;
     }
 
     @Override

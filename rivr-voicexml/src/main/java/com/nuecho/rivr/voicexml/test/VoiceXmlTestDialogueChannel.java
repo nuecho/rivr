@@ -64,7 +64,7 @@ public class VoiceXmlTestDialogueChannel
         return processInputTurn(inputTurn);
     }
 
-    public final Step<VoiceXmlOutputTurn, VoiceXmlLastTurn> processScriptExecutionTurn(JsonValue value) {
+    public final Step<VoiceXmlOutputTurn, VoiceXmlLastTurn> processScript(JsonValue value) {
         return processValue(value);
     }
 

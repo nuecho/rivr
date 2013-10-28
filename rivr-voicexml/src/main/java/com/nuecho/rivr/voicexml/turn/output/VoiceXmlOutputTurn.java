@@ -27,7 +27,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see InteractionTurn
  * @see MessageTurn
  * @see ObjectCall
- * @see ScriptExecutionTurn
+ * @see Script
  * @see SubdialogueCall
  * @see TransferTurn
  */
