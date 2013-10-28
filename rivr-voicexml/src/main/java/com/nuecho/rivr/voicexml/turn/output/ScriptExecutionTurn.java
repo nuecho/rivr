@@ -6,6 +6,8 @@ package com.nuecho.rivr.voicexml.turn.output;
 
 import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;
 
+import java.util.Map.Entry;
+
 import javax.json.*;
 
 import org.w3c.dom.*;
@@ -27,7 +29,7 @@ public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
     private static final String SCRIPT_PROPERTY = "script";
     private static final String VARIABLES_PROPERTY = "variables";
 
-    private VariableDeclarationList mVariables = new VariableDeclarationList();
+    private VariableList mVariables = new VariableList();
     private String mScript;
 
     /**
@@ -40,7 +42,7 @@ public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
     /**
      * @param variables The list of variables to declare. Not null.
      */
-    public final void setVariables(VariableDeclarationList variables) {
+    public final void setVariables(VariableList variables) {
         Assert.notNull(variables, "variables");
         mVariables = variables;
     }
@@ -53,7 +55,7 @@ public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
         mScript = script;
     }
 
-    public final VariableDeclarationList getVariables() {
+    public final VariableList getVariables() {
         return mVariables;
     }
 
@@ -75,7 +77,7 @@ public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
     @Override
     protected void fillVoiceXmlDocument(Document document, Element formElement, VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
-        addVariableDeclarations(formElement, mVariables);
+        addVariables(formElement, mVariables);
 
         Element blockElement = DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
 
@@ -88,17 +90,17 @@ public class ScriptExecutionTurn extends VoiceXmlOutputTurn {
 
         scriptBuffer.append(RIVR_SCOPE_OBJECT + ".addValueResult({");
         boolean first = true;
-        for (VariableDeclaration variableDeclaration : mVariables) {
+        for (Entry<String, String> entry : mVariables) {
             if (!first) {
                 scriptBuffer.append(", ");
             } else {
                 first = false;
             }
             scriptBuffer.append("\"");
-            scriptBuffer.append(variableDeclaration.getName());
+            scriptBuffer.append(entry.getKey());
             scriptBuffer.append("\": ");
             scriptBuffer.append("dialog.");
-            scriptBuffer.append(variableDeclaration.getName());
+            scriptBuffer.append(entry.getKey());
         }
         scriptBuffer.append("});");
 

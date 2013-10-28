@@ -22,19 +22,19 @@ public class VoiceXmlDisconnectTurn extends VoiceXmlLastTurn {
 
     private static final String VARIABLES_PROPERTY = "variables";
 
-    private VariableDeclarationList mVariables;
+    private VariableList mVariables;
 
     public VoiceXmlDisconnectTurn(String name) {
         super(name);
     }
 
-    public VoiceXmlDisconnectTurn(String name, VariableDeclarationList variables) {
+    public VoiceXmlDisconnectTurn(String name, VariableList variables) {
         super(name);
         Assert.notNull(variables, VARIABLES_PROPERTY);
         mVariables = variables;
     }
 
-    public VariableDeclarationList getVariables() {
+    public VariableList getVariables() {
         return mVariables;
     }
 

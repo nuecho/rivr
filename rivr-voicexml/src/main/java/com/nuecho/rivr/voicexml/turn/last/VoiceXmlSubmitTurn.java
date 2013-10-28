@@ -27,7 +27,7 @@ public class VoiceXmlSubmitTurn extends VoiceXmlLastTurn {
     private static final String URI_PROPERTY = "uri";
     private static final String VARIABLES_PROPERTY = "variables";
 
-    private final VariableDeclarationList mVariables;
+    private final VariableList mVariables;
     private final String mUri;
 
     private SubmitMethod mMethod = SubmitMethod.GET;
@@ -35,7 +35,7 @@ public class VoiceXmlSubmitTurn extends VoiceXmlLastTurn {
 
     private DocumentFetchConfiguration mFetchConfiguration;
 
-    public VoiceXmlSubmitTurn(String name, String uri, VariableDeclarationList variables) {
+    public VoiceXmlSubmitTurn(String name, String uri, VariableList variables) {
         super(name);
         Assert.notNull(uri, "uri");
         mVariables = variables;
@@ -66,7 +66,7 @@ public class VoiceXmlSubmitTurn extends VoiceXmlLastTurn {
         mMediaEncodingType = mediaEncodingType;
     }
 
-    public VariableDeclarationList getVariables() {
+    public VariableList getVariables() {
         return mVariables;
     }
 

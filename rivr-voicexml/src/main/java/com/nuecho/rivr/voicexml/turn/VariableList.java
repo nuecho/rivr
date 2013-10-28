@@ -5,41 +5,49 @@
 package com.nuecho.rivr.voicexml.turn;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 import javax.json.*;
 
 import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.rendering.voicexml.*;
+import com.nuecho.rivr.voicexml.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
  * @author Nu Echo Inc.
  */
-public final class VariableDeclarationList implements Iterable<VariableDeclaration>, JsonSerializable {
+public final class VariableList implements Iterable<Entry<String, String>>, JsonSerializable {
 
     private static final String VARIABLE_NAME_PROPERTY = "name";
     private static final String INITIAL_VALUE_PROPERTY = "initialValue";
 
-    private final LinkedHashMap<String, VariableDeclaration> mVariables = new LinkedHashMap<String, VariableDeclaration>();
+    private final LinkedHashMap<String, String> mVariables = new LinkedHashMap<String, String>();
 
-    public void addVariable(VariableDeclaration variableDeclaration) {
-        Assert.notNull(variableDeclaration, "variableDeclaration");
-        String name = variableDeclaration.getName();
-        if (mVariables.containsKey(name)) throw new IllegalArgumentException("Variable " + name + " already present.");
-
-        mVariables.put(name, variableDeclaration);
+    public void add(String name) {
+        addWithExpression(name, null);
     }
 
-    public void removeVariable(VariableDeclaration variableDeclaration) {
-        Assert.notNull(variableDeclaration, "variableDeclaration");
-        mVariables.remove(variableDeclaration.getName());
+    public void addWithExpression(String name, String initialExpression) {
+        Assert.notNull(name, "name");
+        Assert.ensure(VoiceXmlUtils.isValidIdentifierName(name), "Invalid ECMAScript identifier name: '" + name + "'");
+        mVariables.put(name, initialExpression);
+    }
+
+    public void addWithString(String name, String string) {
+        mVariables.put(name, VoiceXmlDomUtil.createEcmaScriptStringLiteral(string));
+    }
+
+    public void remove(String name) {
+        Assert.notNull(name, "name");
+        mVariables.remove(name);
     }
 
     public boolean has(String variableName) {
         return mVariables.containsKey(variableName);
     }
 
-    public VariableDeclaration get(String variableName) {
+    public String get(String variableName) {
         return mVariables.get(variableName);
     }
 
@@ -60,27 +68,25 @@ public final class VariableDeclarationList implements Iterable<VariableDeclarati
         if (this == obj) return true;
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
-        VariableDeclarationList other = (VariableDeclarationList) obj;
+        VariableList other = (VariableList) obj;
         if (mVariables == null) {
             if (other.mVariables != null) return false;
         } else if (!mVariables.equals(other.mVariables)) return false;
         return true;
     }
 
-    public static VariableDeclarationList create(JsonObject jsonObject) {
-        VariableDeclarationList list = new VariableDeclarationList();
+    public static VariableList create(JsonObject jsonObject) {
+        VariableList list = new VariableList();
         for (String propertyName : jsonObject.keySet()) {
             JsonValue jsonValue = jsonObject.get(propertyName);
 
-            String ecmaScriptLiteral;
             if (jsonValue instanceof JsonString) {
                 JsonString jsonString = (JsonString) jsonValue;
-                ecmaScriptLiteral = VoiceXmlDomUtil.createEcmaScriptStringLiteral(jsonString.getString());
+                list.addWithString(propertyName, jsonString.getString());
             } else {
-                ecmaScriptLiteral = jsonValue.toString();
+                list.addWithExpression(propertyName, jsonValue.toString());
             }
 
-            list.addVariable(new VariableDeclaration(propertyName, ecmaScriptLiteral));
         }
         return list;
     }
@@ -93,11 +99,11 @@ public final class VariableDeclarationList implements Iterable<VariableDeclarati
     @Override
     public JsonValue asJson() {
         JsonArrayBuilder builder = JsonUtils.createArrayBuilder();
-        for (VariableDeclaration variableDeclaration : this) {
+        for (Entry<String, String> entry : this) {
             JsonObjectBuilder variableBuilder = JsonUtils.createObjectBuilder();
-            JsonUtils.add(variableBuilder, VARIABLE_NAME_PROPERTY, variableDeclaration.getName());
-            if (variableDeclaration.getInitialValueExpression() != null) {
-                JsonUtils.add(variableBuilder, INITIAL_VALUE_PROPERTY, variableDeclaration.getInitialValueExpression());
+            JsonUtils.add(variableBuilder, VARIABLE_NAME_PROPERTY, entry.getKey());
+            if (entry.getValue() != null) {
+                JsonUtils.add(variableBuilder, INITIAL_VALUE_PROPERTY, entry.getValue());
             }
 
             builder.add(variableBuilder);
@@ -106,7 +112,7 @@ public final class VariableDeclarationList implements Iterable<VariableDeclarati
     }
 
     @Override
-    public Iterator<VariableDeclaration> iterator() {
-        return Collections.unmodifiableCollection(mVariables.values()).iterator();
+    public Iterator<Entry<String, String>> iterator() {
+        return Collections.unmodifiableCollection(mVariables.entrySet()).iterator();
     }
 }

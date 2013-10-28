@@ -62,6 +62,13 @@ public final class VoiceXmlEvent implements JsonSerializable {
         return false;
     }
 
+    public static VoiceXmlEvent getEvent(String prefix, Collection<? extends VoiceXmlEvent> events) {
+        for (VoiceXmlEvent voiceXmlEvent : events) {
+            if (voiceXmlEvent.isSubtypeOf(prefix)) return voiceXmlEvent;
+        }
+        return null;
+    }
+
     public VoiceXmlEvent(String name, String message) {
         Assert.notEmpty(name, NAME_PROPERTY);
         mName = name;

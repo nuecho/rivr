@@ -24,11 +24,11 @@ public class VoiceXmlReturnTurn extends VoiceXmlLastTurn {
     private static final String EVENT_MESSAGE_PROPERTY = "eventMessage";
     private static final String EVENT_NAME_PROPERTY = "eventName";
 
-    private VariableDeclarationList mVariables;
+    private VariableList mVariables;
     private String mEventName;
     private String mEventMessage;
 
-    public VoiceXmlReturnTurn(String name, VariableDeclarationList variables) {
+    public VoiceXmlReturnTurn(String name, VariableList variables) {
         super(name);
         Assert.notNull(variables, VARIABLES_PROPERTY);
         mVariables = variables;
@@ -41,7 +41,7 @@ public class VoiceXmlReturnTurn extends VoiceXmlLastTurn {
         mEventMessage = eventMessage;
     }
 
-    public VariableDeclarationList getVariables() {
+    public VariableList getVariables() {
         return mVariables;
     }
 
