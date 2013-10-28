@@ -59,7 +59,7 @@ public final class VoiceXmlInputTurnFactory implements
     public static final String TRANSFER_DURATION_PROPERTY = "duration";
     public static final String TRANSFER_STATUS_PROPERTY = "status";
 
-    //subdialogue-related & script execution
+    //for subdialogue, script and object
     public static final String VALUE_PROPERTY = "value";
 
     private static final Pattern CHAR_SET_PATTERN = Pattern.compile("charset\\s*=\\s*([^ ;])");
