@@ -5,6 +5,7 @@ package com.nuecho.rivr.voicexml.turn.output.audio;
 
 import javax.json.*;
 
+import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
@@ -29,12 +30,14 @@ public final class AudioFile extends AudioItem {
     private ResourceFetchConfiguration mResourceFetchConfiguration;
 
     public static AudioFile fromLocation(String location) {
+        Assert.notEmpty(location, "location");
         AudioFile audioFile = new AudioFile();
         audioFile.mLocation = location;
         return audioFile;
     }
 
     public static AudioFile fromExpression(String expression) {
+        Assert.notEmpty(expression, "expression");
         AudioFile audioFile = new AudioFile();
         audioFile.mExpression = expression;
         return audioFile;
