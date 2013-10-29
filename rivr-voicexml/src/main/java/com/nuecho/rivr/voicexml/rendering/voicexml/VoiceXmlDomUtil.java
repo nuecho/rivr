@@ -258,9 +258,9 @@ public final class VoiceXmlDomUtil {
         FetchConfiguration fetchConfiguration = voiceXmlDialogueContext.getFetchConfiguration();
         if (fetchConfiguration == null) return;
 
-        AudioFile fetchAudio = fetchConfiguration.getDefaultFetchAudio();
-        if (fetchAudio != null) {
-            addFetchAudioProperty(vxmlElement, fetchAudio);
+        String fetchAudioLocation = fetchConfiguration.getDefaultFetchAudio();
+        if (fetchAudioLocation != null) {
+            addFetchAudioProperty(vxmlElement, fetchAudioLocation);
         }
 
         addTimeProperty(vxmlElement, FETCH_TIMEOUT_PROPERTY, fetchConfiguration.getDefaultFetchTimeout());
@@ -438,8 +438,8 @@ public final class VoiceXmlDomUtil {
         }
     }
 
-    public static void addFetchAudioProperty(Element parent, AudioFile fetchAudioFile) {
-        addProperty(parent, FETCH_AUDIO_PROPERTY, fetchAudioFile.getLocation());
+    public static void addFetchAudioProperty(Element parent, String fetchAudioLocation) {
+        addProperty(parent, FETCH_AUDIO_PROPERTY, fetchAudioLocation);
     }
 
     public static void addVariables(Element formElement, VariableList variableList) {
@@ -523,16 +523,12 @@ public final class VoiceXmlDomUtil {
         TimeValue timeOut = submitTurnFetchConfiguration.getTimeOut();
         setTimeAttribute(submitElement, FETCH_TIMEOUT_PROPERTY, timeOut);
 
-        AudioFile fetchAudio = submitTurnFetchConfiguration.getFetchAudio();
+        String fetchAudio = submitTurnFetchConfiguration.getFetchAudio();
         applyFetchAudio(submitElement, fetchAudio);
     }
 
-    public static void applyFetchAudio(Element element, AudioFile fetchAudio) {
-        if (fetchAudio != null) {
-            String fetchAudioHref = fetchAudio.getLocation();
-            Assert.notNull(fetchAudioHref, "fetchAudioHref");
-            element.setAttribute(FETCH_AUDIO_ATTRIBUTE, fetchAudioHref);
-        }
+    public static void applyFetchAudio(Element element, String fetchAudioLocation) {
+        setAttribute(element, FETCH_AUDIO_ATTRIBUTE, fetchAudioLocation);
     }
 
     public static void createGotoSubmit(Element parent) {
