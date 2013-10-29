@@ -147,9 +147,9 @@ function processAudioItem(audioItem, table) {
 
   var type = audioItem.type;
 
-  if (audioItem.path) {
+  if (audioItem.location) {
     var link = $("<a>");
-    link.attr("href", audioItem.path);
+    link.attr("href", audioItem.location);
     link.text(type);
     audioItemTypeCell.append(link);
   } else {

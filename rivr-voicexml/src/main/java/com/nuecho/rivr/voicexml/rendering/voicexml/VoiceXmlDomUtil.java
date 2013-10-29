@@ -325,22 +325,22 @@ public final class VoiceXmlDomUtil {
                 AudioFile audioFile = (AudioFile) audioItem;
                 Element audioElement = DomUtils.appendNewElement(promptElement, AUDIO_ELEMENT);
 
-                if (audioFile.getPath() != null) {
-                    audioElement.setAttribute(SRC_ATTRIBUTE, audioFile.getPath());
+                if (audioFile.getLocation() != null) {
+                    audioElement.setAttribute(SRC_ATTRIBUTE, audioFile.getLocation());
                 } else {
                     Assert.notNull(audioFile.getExpression(), "audioFile.getExpression()");
                     audioElement.setAttribute(EXPR_ATTRIBUTE, audioFile.getExpression());
                 }
 
-                SynthesisText alternative = audioFile.getAlternative();
+                SynthesisText alternate = audioFile.getAlternate();
 
-                if (alternative != null) {
-                    if (alternative.isSsml()) {
-                        DocumentFragment ssmlNodes = alternative.getDocumentFragment();
+                if (alternate != null) {
+                    if (alternate.isSsml()) {
+                        DocumentFragment ssmlNodes = alternate.getDocumentFragment();
                         audioElement.appendChild(audioElement.getOwnerDocument().importNode(ssmlNodes, true));
                         lastItemWasText = false;
                     } else {
-                        DomUtils.appendNewText(audioElement, alternative.getText());
+                        DomUtils.appendNewText(audioElement, alternate.getText());
                         lastItemWasText = true;
                     }
                 }
@@ -444,7 +444,7 @@ public final class VoiceXmlDomUtil {
     }
 
     public static void addFetchAudioProperty(Element parent, AudioFile fetchAudioFile) {
-        addProperty(parent, FETCH_AUDIO_PROPERTY, fetchAudioFile.getPath());
+        addProperty(parent, FETCH_AUDIO_PROPERTY, fetchAudioFile.getLocation());
     }
 
     public static void addVariables(Element formElement, VariableList variableList) {
@@ -537,7 +537,7 @@ public final class VoiceXmlDomUtil {
 
     public static void applyFetchAudio(Element element, AudioFile fetchAudio) {
         if (fetchAudio != null) {
-            String fetchAudioHref = fetchAudio.getPath();
+            String fetchAudioHref = fetchAudio.getLocation();
             Assert.notNull(fetchAudioHref, "fetchAudioHref");
             element.setAttribute(FETCH_AUDIO_ATTRIBUTE, fetchAudioHref);
         }
@@ -570,10 +570,7 @@ public final class VoiceXmlDomUtil {
                                                             + ")");
 
         Element ifElement = DomUtils.appendNewElement(blockElement, IF_ELEMENT);
-        ifElement.setAttribute(COND_ATTRIBUTE, RIVR_SCOPE_OBJECT
-                                               + ".hasRecording("
-                                               + RIVR_INPUT_TURN_SCOPE_OBJECT
-                                               + ")");
+        ifElement.setAttribute(COND_ATTRIBUTE, RIVR_SCOPE_OBJECT + ".hasRecording(" + RIVR_INPUT_TURN_SCOPE_OBJECT + ")");
         createVarElement(ifElement, RECORDING_VARIABLE, RESULT_RECORDING_METADATA_DATA_SCOPE_OBJECT);
         createAssignation(ifElement, RESULT_RECORDING_METADATA_DATA_SCOPE_OBJECT, "undefined");
 

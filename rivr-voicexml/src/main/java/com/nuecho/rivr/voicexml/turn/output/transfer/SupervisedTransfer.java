@@ -103,7 +103,7 @@ public abstract class SupervisedTransfer extends Transfer {
         setTimeAttribute(transferElement, CONNECT_TIMEOUT_ATTRIBUTE, mConnectTimeout);
 
         if (mTransferAudio != null) {
-            setAttribute(transferElement, TRANSFER_AUDIO_ATTRIBUTE, mTransferAudio.getPath());
+            setAttribute(transferElement, TRANSFER_AUDIO_ATTRIBUTE, mTransferAudio.getLocation());
         }
     }
 
