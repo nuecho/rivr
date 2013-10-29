@@ -5,7 +5,6 @@
 package com.nuecho.rivr.voicexml.turn.output.fetch;
 
 import com.nuecho.rivr.core.util.*;
-import com.nuecho.rivr.voicexml.turn.output.audio.*;
 
 /**
  * @author Nu Echo Inc.
@@ -20,7 +19,7 @@ public final class FetchConfiguration {
     private DocumentFetchConfiguration mDocumentFetchConfiguration;
 
     private TimeValue mDefaultFetchTimeout;
-    private AudioFile mDefaultFetchAudio;
+    private String mDefaultFetchAudio;
 
     public AudioFetchConfiguration getDefaultAudioFetchConfiguration() {
         return mAudioFetchConfiguration;
@@ -62,11 +61,11 @@ public final class FetchConfiguration {
         mDefaultFetchTimeout = defaultFetchTimeout;
     }
 
-    public AudioFile getDefaultFetchAudio() {
+    public String getDefaultFetchAudio() {
         return mDefaultFetchAudio;
     }
 
-    public void setDefaultFetchAudio(AudioFile defaultFetchAudio) {
+    public void setDefaultFetchAudio(String defaultFetchAudio) {
         mDefaultFetchAudio = defaultFetchAudio;
     }
 
