@@ -32,8 +32,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @author Nu Echo Inc.
  * @see SubdialogueParameter
  * @see SubdialogueSubmitMethod
- * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml2.3.4">http://www.w3.org/TR/voicexml20/#dml2.3.4</a>
+ * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.4">http://www.w3.org/TR/voicexml20/#dml2.3.4</a>
  */
 public class SubdialogueCall extends VoiceXmlOutputTurn {
     public static final String SUBDIALOGUE_RESULT_VARIABLE_NAME = "subdialogue";

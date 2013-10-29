@@ -17,8 +17,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see Pause
  * @see AudioFile
  * @see SynthesisText
- * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml4.1">http://www.w3.org/TR/voicexml20/#dml4.1</a>
+ * @see <a href="http://www.w3.org/TR/voicexml20/#dml4.1">http://www.w3.org/TR/voicexml20/#dml4.1</a>
  */
 public abstract class AudioItem implements JsonSerializable {
     public static final String TYPE_PROPERTY = "type";

@@ -133,10 +133,7 @@ public class VoiceXmlTestDialogueChannel
         return createHypothesis(dtmfString, interpretation, InputMode.DTMF, 1.0);
     }
 
-    private JsonObject createHypothesis(String uterance,
-                                        JsonValue interpretation,
-                                        InputMode inputMode,
-                                        double confidence) {
+    private JsonObject createHypothesis(String uterance, JsonValue interpretation, InputMode inputMode, double confidence) {
         JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
         JsonUtils.add(builder, UTTERANCE_PROPERTY, uterance);
         JsonUtils.add(builder, INPUTMODE_PROPERTY, inputMode.getKey());

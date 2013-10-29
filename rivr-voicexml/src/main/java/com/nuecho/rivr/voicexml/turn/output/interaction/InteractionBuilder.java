@@ -12,8 +12,7 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.turn.output.audio.*;
 
 /**
- * Builder used to ease creation of instances of {@link Interaction}
- * <p>
+ * Builder used to ease creation of instances of {@link Interaction} <p>
  * Building an {@link Interaction} implies the following steps:
  * <ul>
  * <li>Add some prompts</li>
@@ -33,14 +32,13 @@ import com.nuecho.rivr.voicexml.turn.output.audio.*;
  * <i>hotword</i>.
  * <p>
  * This can be translated to:
- * 
  * <pre>
- *  InteractionBuilder builder = InteractionBuilder.newInteraction();
- *  builder.addPrompt(...);
- *  builder.addPrompt(...);
- *  //repeat as needed
- *  builder.addPrompt(...);
- *  Interaction interaction = builder.build(...);
+ * InteractionBuilder builder = InteractionBuilder.newInteraction();
+ * builder.addPrompt(...);
+ * builder.addPrompt(...);
+ * //repeat as needed
+ * builder.addPrompt(...);
+ * Interaction interaction = builder.build(...);
  * </pre>
  * 
  * @author Nu Echo Inc.

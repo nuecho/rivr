@@ -39,10 +39,7 @@ public final class InteractionRecognition implements JsonSerializable {
                                   SpeechRecognitionConfiguration speechRecognitionConfiguration,
                                   TimeValue noInputTimeout,
                                   AudioItem... acknowledgeAudioItems) {
-        this(dtmfRecognitionConfiguration,
-             speechRecognitionConfiguration,
-             noInputTimeout,
-             asList(acknowledgeAudioItems));
+        this(dtmfRecognitionConfiguration, speechRecognitionConfiguration, noInputTimeout, asList(acknowledgeAudioItems));
     }
 
     public InteractionRecognition(DtmfRecognitionConfiguration dtmfRecognitionConfiguration,

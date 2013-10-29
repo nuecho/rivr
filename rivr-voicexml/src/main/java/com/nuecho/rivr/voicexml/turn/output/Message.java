@@ -24,8 +24,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * 
  * @author Nu Echo Inc.
  * @see AudioItem
- * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml4.1.8">http://www.w3.org/TR/voicexml20/#dml4.1.8</a>
+ * @see <a href="http://www.w3.org/TR/voicexml20/#dml4.1.8">http://www.w3.org/TR/voicexml20/#dml4.1.8</a>
  */
 public class Message extends VoiceXmlOutputTurn {
     private static final String MESSAGE_TURN_TYPE = "message";

@@ -154,8 +154,7 @@ public class Interaction extends VoiceXmlOutputTurn {
                 if (mRecognition != null
                     && interactionPromptIndex == mPrompts.size() - 1
                     && same(mRecognition.getDtmfRecognitionConfiguration(), prompt.getDtmfRecognitionConfiguration())
-                    && same(mRecognition.getSpeechRecognitionConfiguration(),
-                            prompt.getSpeechRecognitionConfiguration())) {
+                    && same(mRecognition.getSpeechRecognitionConfiguration(), prompt.getSpeechRecognitionConfiguration())) {
                     addTimeProperty(formItemElement, TIMEOUT_PROPERTY, mRecognition.getNoInputTimeout());
                     recognitionMergedWithLastPrompt = true;
                 } else {
@@ -201,9 +200,7 @@ public class Interaction extends VoiceXmlOutputTurn {
             setBooleanAttribute(recordingFormItemElement, DTMFTERM_ATTRIBUTE, recordingConfiguration.getDtmfTerm());
 
             addTimeProperty(recordingFormItemElement, TIMEOUT_PROPERTY, mRecording.getNoInputTimeout());
-            setTimeAttribute(recordingFormItemElement,
-                             FINAL_SILENCE_ATTRIBUTE,
-                             recordingConfiguration.getFinalSilence());
+            setTimeAttribute(recordingFormItemElement, FINAL_SILENCE_ATTRIBUTE, recordingConfiguration.getFinalSilence());
             setTimeAttribute(recordingFormItemElement, MAXTIME_ATTRIBUTE, recordingConfiguration.getMaximumTime());
             setAttribute(recordingFormItemElement, TYPE_ATTRIBUTE, recordingConfiguration.getType());
 
