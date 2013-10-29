@@ -6,7 +6,6 @@ package com.nuecho.rivr.voicexml.turn.output.fetch;
 
 import javax.json.*;
 
-import com.nuecho.rivr.voicexml.turn.output.audio.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
@@ -18,13 +17,13 @@ public final class SubdialogueFetchConfiguration implements JsonSerializable {
     private static final String FETCH_AUDIO = "fetchAudio";
 
     private ResourceFetchConfiguration mResourceFetchConfiguration;
-    private AudioFile mFetchAudio;
+    private String mFetchAudio;
 
     public ResourceFetchConfiguration getResourceFetchConfiguration() {
         return mResourceFetchConfiguration;
     }
 
-    public AudioFile getFetchAudio() {
+    public String getFetchAudio() {
         return mFetchAudio;
     }
 
@@ -32,7 +31,7 @@ public final class SubdialogueFetchConfiguration implements JsonSerializable {
         mResourceFetchConfiguration = resourceFetchConfiguration;
     }
 
-    public void setFetchAudio(AudioFile fetchAudio) {
+    public void setFetchAudio(String fetchAudio) {
         mFetchAudio = fetchAudio;
     }
 
