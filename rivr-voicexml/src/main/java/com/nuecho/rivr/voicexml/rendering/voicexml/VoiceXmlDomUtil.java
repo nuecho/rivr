@@ -196,9 +196,7 @@ public final class VoiceXmlDomUtil {
         vxmlElement.setAttribute(VERSION_ATTRIBUTE, "2.1");
 
         String language = voiceXmlDialogueContext.getLanguage();
-        if (language != null) {
-            vxmlElement.setAttribute(XML_LANGUAGE_ATTRIBUTE, language);
-        }
+        setAttribute(vxmlElement, XML_LANGUAGE_ATTRIBUTE, language);
 
         return vxmlElement;
     }
@@ -325,12 +323,9 @@ public final class VoiceXmlDomUtil {
                 AudioFile audioFile = (AudioFile) audioItem;
                 Element audioElement = DomUtils.appendNewElement(promptElement, AUDIO_ELEMENT);
 
-                if (audioFile.getLocation() != null) {
-                    audioElement.setAttribute(SRC_ATTRIBUTE, audioFile.getLocation());
-                } else {
-                    Assert.notNull(audioFile.getExpression(), "audioFile.getExpression()");
-                    audioElement.setAttribute(EXPR_ATTRIBUTE, audioFile.getExpression());
-                }
+                //src and expr are mutually exclusive, this is enforced in AudioFile.
+                setAttribute(audioElement, SRC_ATTRIBUTE, audioFile.getLocation());
+                setAttribute(audioElement, EXPR_ATTRIBUTE, audioFile.getExpression());
 
                 SynthesisText alternate = audioFile.getAlternate();
 
@@ -473,10 +468,7 @@ public final class VoiceXmlDomUtil {
     public static void createVarElement(Element parent, String name, String expr) {
         Element varElement = DomUtils.appendNewElement(parent, VAR_ELEMENT);
         varElement.setAttribute(NAME_ATTRIBUTE, name);
-
-        if (expr != null) {
-            varElement.setAttribute(EXPR_ATTRIBUTE, expr);
-        }
+        setAttribute(varElement, EXPR_ATTRIBUTE, expr);
     }
 
     private static Element createSubmitElement(Element parent,
