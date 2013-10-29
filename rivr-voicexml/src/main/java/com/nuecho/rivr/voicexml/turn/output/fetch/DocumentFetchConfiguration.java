@@ -6,7 +6,6 @@ package com.nuecho.rivr.voicexml.turn.output.fetch;
 
 import javax.json.*;
 
-import com.nuecho.rivr.voicexml.turn.output.audio.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
@@ -16,13 +15,13 @@ public class DocumentFetchConfiguration extends ResourceFetchConfiguration {
 
     private static final String FETCH_AUDIO_PROPERTY = "fetchAudio";
 
-    private AudioFile mFetchAudio;
+    private String mFetchAudio;
 
-    public AudioFile getFetchAudio() {
+    public String getFetchAudio() {
         return mFetchAudio;
     }
 
-    public void setFetchAudio(AudioFile fetchAudio) {
+    public void setFetchAudio(String fetchAudio) {
         mFetchAudio = fetchAudio;
     }
 
