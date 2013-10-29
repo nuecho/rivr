@@ -12,7 +12,6 @@ import org.w3c.dom.*;
 import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.rendering.voicexml.*;
 import com.nuecho.rivr.voicexml.turn.input.*;
-import com.nuecho.rivr.voicexml.turn.output.audio.*;
 import com.nuecho.rivr.voicexml.turn.output.interaction.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
@@ -35,7 +34,7 @@ public abstract class SupervisedTransfer extends Transfer {
     private DtmfRecognitionConfiguration mDtmfRecognitionConfiguration;
     private SpeechRecognitionConfiguration mSpeechRecognitionConfiguration;
 
-    private AudioFile mTransferAudio;
+    private String mTransferAudio;
     private TimeValue mConnectTimeout;
 
     /**
@@ -64,10 +63,11 @@ public abstract class SupervisedTransfer extends Transfer {
     }
 
     /**
-     * @param transferAudio The URI of audio source to play while the transfer
+     * @param transferAudio The location (URI or path) of audio source to play
+     *            while the transfer
      *            attempt is in progress.
      */
-    public final void setTransferAudio(AudioFile transferAudio) {
+    public final void setTransferAudio(String transferAudio) {
         mTransferAudio = transferAudio;
     }
 
@@ -80,7 +80,7 @@ public abstract class SupervisedTransfer extends Transfer {
         mConnectTimeout = connectTimeout;
     }
 
-    public final AudioFile getTransferAudio() {
+    public final String getTransferAudio() {
         return mTransferAudio;
     }
 
@@ -101,10 +101,7 @@ public abstract class SupervisedTransfer extends Transfer {
         VoiceXmlDomUtil.processDtmfConfiguration(mDtmfRecognitionConfiguration, transferElement);
         VoiceXmlDomUtil.processSpeechConfiguration(mSpeechRecognitionConfiguration, transferElement);
         setTimeAttribute(transferElement, CONNECT_TIMEOUT_ATTRIBUTE, mConnectTimeout);
-
-        if (mTransferAudio != null) {
-            setAttribute(transferElement, TRANSFER_AUDIO_ATTRIBUTE, mTransferAudio.getLocation());
-        }
+        setAttribute(transferElement, TRANSFER_AUDIO_ATTRIBUTE, mTransferAudio);
     }
 
     @Override
