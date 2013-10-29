@@ -14,7 +14,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * text backup.
  * 
  * @author Nu Echo Inc.
- * @see SynthesisText
+ * @see SpeechSynthesis
  * @see ResourceFetchConfiguration
  */
 public final class AudioFile extends AudioItem {
@@ -26,7 +26,7 @@ public final class AudioFile extends AudioItem {
 
     private String mLocation;
     private String mExpression;
-    private SynthesisText mAlternate;
+    private SpeechSynthesis mAlternate;
     private ResourceFetchConfiguration mResourceFetchConfiguration;
 
     public static AudioFile fromLocation(String location) {
@@ -43,13 +43,13 @@ public final class AudioFile extends AudioItem {
         return audioFile;
     }
 
-    public static AudioFile fromLocation(String location, SynthesisText alternate) {
+    public static AudioFile fromLocation(String location, SpeechSynthesis alternate) {
         AudioFile audioFile = fromLocation(location);
         audioFile.setAlternate(alternate);
         return audioFile;
     }
 
-    public static AudioFile fromExpression(String expression, SynthesisText alternate) {
+    public static AudioFile fromExpression(String expression, SpeechSynthesis alternate) {
         AudioFile audioFile = fromExpression(expression);
         audioFile.setAlternate(alternate);
         return audioFile;
@@ -75,12 +75,12 @@ public final class AudioFile extends AudioItem {
         mResourceFetchConfiguration = resourceFetchConfiguration;
     }
 
-    public void setAlternate(SynthesisText alternate) {
+    public void setAlternate(SpeechSynthesis alternate) {
         mAlternate = alternate;
     }
 
     public void setAlternate(String alternate) {
-        mAlternate = new SynthesisText(alternate);
+        mAlternate = new SpeechSynthesis(alternate);
     }
 
     @Override
@@ -96,7 +96,7 @@ public final class AudioFile extends AudioItem {
         return mExpression;
     }
 
-    public SynthesisText getAlternate() {
+    public SpeechSynthesis getAlternate() {
         return mAlternate;
     }
 

@@ -11,14 +11,15 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>SynthesisText</code> represents a text that will be spoken using a
+ * A <code>SpeechSynthesis</code> represents a text that will be spoken using a
  * synthesis voice. It can be either a string of text or a SSML document.
  * 
  * @author Nu Echo Inc.
- * @see <a href="http://www.w3.org/TR/speech-synthesis/">http://www.w3.org/TR/speech-synthesis/</a>
+ * @see <a
+ *      href="http://www.w3.org/TR/speech-synthesis/">http://www.w3.org/TR/speech-synthesis/</a>
  */
-public final class SynthesisText extends AudioItem {
-    public static final String SYNTHESIS_TEXT_ELEMENT_TYPE = "synthesisText";
+public final class SpeechSynthesis extends AudioItem {
+    public static final String SPEECH_SYNTHESIS_ELEMENT_TYPE = "speechSynthesis";
     private static final String TEXT_PROPERTY = "text";
     private static final String SSML_PROPERTY = "ssml";
 
@@ -28,7 +29,7 @@ public final class SynthesisText extends AudioItem {
     /**
      * @param text The synthesis text. Not empty.
      */
-    public SynthesisText(String text) {
+    public SpeechSynthesis(String text) {
         Assert.notEmpty(text, "text");
         mText = text;
         mDocumentFragment = null;
@@ -37,7 +38,7 @@ public final class SynthesisText extends AudioItem {
     /**
      * @param documentFragment The SSML document. Not null.
      */
-    public SynthesisText(DocumentFragment documentFragment) {
+    public SpeechSynthesis(DocumentFragment documentFragment) {
         Assert.notNull(documentFragment, "documentFragment");
         mDocumentFragment = documentFragment;
         mText = null;
@@ -45,7 +46,7 @@ public final class SynthesisText extends AudioItem {
 
     @Override
     public String getElementType() {
-        return SYNTHESIS_TEXT_ELEMENT_TYPE;
+        return SPEECH_SYNTHESIS_ELEMENT_TYPE;
     }
 
     public String getText() {
@@ -85,7 +86,7 @@ public final class SynthesisText extends AudioItem {
         if (this == obj) return true;
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
-        SynthesisText other = (SynthesisText) obj;
+        SpeechSynthesis other = (SpeechSynthesis) obj;
         if (mDocumentFragment == null) {
             if (other.mDocumentFragment != null) return false;
         } else if (!mDocumentFragment.equals(other.mDocumentFragment)) return false;

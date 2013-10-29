@@ -327,7 +327,7 @@ public final class VoiceXmlDomUtil {
                 setAttribute(audioElement, SRC_ATTRIBUTE, audioFile.getLocation());
                 setAttribute(audioElement, EXPR_ATTRIBUTE, audioFile.getExpression());
 
-                SynthesisText alternate = audioFile.getAlternate();
+                SpeechSynthesis alternate = audioFile.getAlternate();
 
                 if (alternate != null) {
                     if (alternate.isSsml()) {
@@ -341,11 +341,11 @@ public final class VoiceXmlDomUtil {
                 }
 
                 applyRessourceFetchConfiguration(audioElement, audioFile.getResourceFetchConfiguration());
-            } else if (audioItem instanceof SynthesisText) {
-                SynthesisText synthesisText = (SynthesisText) audioItem;
+            } else if (audioItem instanceof SpeechSynthesis) {
+                SpeechSynthesis speechSynthesis = (SpeechSynthesis) audioItem;
 
-                if (synthesisText.isSsml()) {
-                    NodeList childNodes = synthesisText.getDocumentFragment().getChildNodes();
+                if (speechSynthesis.isSsml()) {
+                    NodeList childNodes = speechSynthesis.getDocumentFragment().getChildNodes();
                     Document document = promptElement.getOwnerDocument();
 
                     for (int childNodeIndex = 0; childNodeIndex < childNodes.getLength(); childNodeIndex++) {
@@ -355,7 +355,7 @@ public final class VoiceXmlDomUtil {
                     lastItemWasText = false;
                 } else {
                     String spaceIfRequired = lastItemWasText ? " " : "";
-                    DomUtils.appendNewText(promptElement, spaceIfRequired + synthesisText.getText());
+                    DomUtils.appendNewText(promptElement, spaceIfRequired + speechSynthesis.getText());
                     lastItemWasText = true;
                 }
             } else if (audioItem instanceof Pause) {

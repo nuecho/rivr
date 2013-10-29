@@ -16,7 +16,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see Mark
  * @see Pause
  * @see AudioFile
- * @see SynthesisText
+ * @see SpeechSynthesis
  * @see <a href="http://www.w3.org/TR/voicexml20/#dml4.1">http://www.w3.org/TR/voicexml20/#dml4.1</a>
  */
 public abstract class AudioItem implements JsonSerializable {
