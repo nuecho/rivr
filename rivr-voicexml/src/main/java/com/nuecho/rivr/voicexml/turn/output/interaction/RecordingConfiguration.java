@@ -103,7 +103,7 @@ public final class RecordingConfiguration implements JsonSerializable {
 
     /**
      * @param postAudioToServer If true, recording will be posted to server and
-     *            made available in the {@link RecordingData} property of the
+     *            made available in the <code>file</code> property of the
      *            {@link RecordingInfo}.
      */
     public void setPostAudioToServer(boolean postAudioToServer) {

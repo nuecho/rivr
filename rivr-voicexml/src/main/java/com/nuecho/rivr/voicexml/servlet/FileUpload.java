@@ -6,20 +6,28 @@ package com.nuecho.rivr.voicexml.servlet;
 
 import java.util.*;
 
+import javax.json.*;
+
+import com.nuecho.rivr.voicexml.util.json.*;
+
 /**
  * @author Nu Echo Inc.
  */
-public final class FileUpload {
+public final class FileUpload implements JsonSerializable {
+
+    private static final String SIZE_PROPERTY = "size";
+    private static final String TYPE_PROPERTY = "type";
+    private static final String FILENAME_PROPERTY = "filename";
 
     private final String mName;
     private final String mContentType;
-    private final byte[] mData;
+    private final byte[] mContent;
     private final Map<String, String> mHeaders;
 
-    public FileUpload(String name, String contentType, byte[] data, Map<String, String> headers) {
+    public FileUpload(String name, String contentType, byte[] content, Map<String, String> headers) {
         mName = name;
         mContentType = contentType;
-        mData = data;
+        mContent = content;
         mHeaders = headers;
     }
 
@@ -31,8 +39,8 @@ public final class FileUpload {
         return mContentType;
     }
 
-    public byte[] getData() {
-        return mData;
+    public byte[] getContent() {
+        return mContent;
     }
 
     public Set<String> getHeaderNames() {
@@ -44,11 +52,28 @@ public final class FileUpload {
     }
 
     @Override
+    public String toString() {
+        return asJson().toString();
+    }
+
+    @Override
+    public JsonValue asJson() {
+        JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
+        JsonUtils.add(builder, FILENAME_PROPERTY, mName);
+        JsonUtils.add(builder, TYPE_PROPERTY, mContentType);
+        if (mContent != null) {
+            builder.add(SIZE_PROPERTY, (long) mContent.length);
+        }
+        //content is not serialized
+        return builder.build();
+    }
+
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((mContentType == null) ? 0 : mContentType.hashCode());
-        result = prime * result + Arrays.hashCode(mData);
+        result = prime * result + Arrays.hashCode(mContent);
         result = prime * result + ((mHeaders == null) ? 0 : mHeaders.hashCode());
         result = prime * result + ((mName == null) ? 0 : mName.hashCode());
         return result;
@@ -63,7 +88,7 @@ public final class FileUpload {
         if (mContentType == null) {
             if (other.mContentType != null) return false;
         } else if (!mContentType.equals(other.mContentType)) return false;
-        if (!Arrays.equals(mData, other.mData)) return false;
+        if (!Arrays.equals(mContent, other.mContent)) return false;
         if (mHeaders == null) {
             if (other.mHeaders != null) return false;
         } else if (!mHeaders.equals(other.mHeaders)) return false;

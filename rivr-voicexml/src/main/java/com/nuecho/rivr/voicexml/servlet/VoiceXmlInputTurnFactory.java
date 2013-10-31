@@ -83,9 +83,12 @@ public final class VoiceXmlInputTurnFactory implements
     @Override
     public VoiceXmlInputTurn createInputTurn(HttpServletRequest request, HttpServletResponse response)
             throws InputTurnFactoryException {
-        Map<String, Object> parameters = buildParameterMap(request);
 
-        String result = (String) parameters.get(INPUT_TURN_PARAMETER);
+        Map<String, String> parameters = new HashMap<String, String>();
+        Map<String, FileUpload> files = new HashMap<String, FileUpload>();
+        processRequestParametersAndFiles(request, parameters, files);
+
+        String result = parameters.get(INPUT_TURN_PARAMETER);
 
         if (result == null)
             throw new InputTurnFactoryException("Unable to process request. Missing '"
@@ -95,12 +98,13 @@ public final class VoiceXmlInputTurnFactory implements
         JsonReader jsonReader = JsonUtils.createReader(result);
         JsonObject resultObject = jsonReader.readObject();
         VoiceXmlInputTurn voiceXmlInputTurn = new VoiceXmlInputTurn();
+        voiceXmlInputTurn.setFiles(files);
 
         addEvents(resultObject, voiceXmlInputTurn);
         addObject(resultObject, voiceXmlInputTurn);
         addTransferStatusInfo(resultObject, voiceXmlInputTurn);
         addRecognitionInfo(resultObject, voiceXmlInputTurn);
-        addRecordingInfo(resultObject, voiceXmlInputTurn, parameters);
+        addRecordingInfo(resultObject, voiceXmlInputTurn, parameters, files);
         return voiceXmlInputTurn;
     }
 
@@ -150,7 +154,8 @@ public final class VoiceXmlInputTurnFactory implements
 
     private static void addRecordingInfo(JsonObject resultObject,
                                          VoiceXmlInputTurn voiceXmlInputTurn,
-                                         Map<String, Object> parameters) {
+                                         Map<String, String> parameters,
+                                         Map<String, FileUpload> files) {
         if (!resultObject.containsKey(RECORDING_META_DATA_PROPERTY)) return;
 
         JsonObject recordingMetaData = resultObject.getJsonObject(RECORDING_META_DATA_PROPERTY);
@@ -167,15 +172,14 @@ public final class VoiceXmlInputTurnFactory implements
 
         String dtmfTermChar = recordingMetaData.getString(TERM_CHAR_PROPERTY, null);
 
-        RecordingData recordingData;
+        FileUpload file;
         if (!parameters.containsKey(RECORDING_PARAMETER)) {
-            recordingData = null;
+            file = null;
         } else {
-            FileUpload fileUpload = (FileUpload) parameters.get(RECORDING_PARAMETER);
-            recordingData = new RecordingData(fileUpload.getData(), fileUpload.getContentType(), fileUpload.getName());
+            file = files.get(RECORDING_PARAMETER);
         }
 
-        voiceXmlInputTurn.setRecordingInfo(new RecordingInfo(recordingData, duration, maxTime, dtmfTermChar));
+        voiceXmlInputTurn.setRecordingInfo(new RecordingInfo(file, duration, maxTime, dtmfTermChar));
     }
 
     private void addRecognitionInfo(JsonObject jsonObject, VoiceXmlInputTurn voiceXmlInputTurn) {
@@ -196,8 +200,9 @@ public final class VoiceXmlInputTurnFactory implements
         voiceXmlInputTurn.setRecognitionInfo(new RecognitionInfo(recognitionResultArray, markInfo));
     }
 
-    private Map<String, Object> buildParameterMap(HttpServletRequest request) throws InputTurnFactoryException {
-        Map<String, Object> parameters = new HashMap<String, Object>();
+    private void processRequestParametersAndFiles(HttpServletRequest request,
+                                                  Map<String, String> parameters,
+                                                  Map<String, FileUpload> files) throws InputTurnFactoryException {
         if (ServletFileUpload.isMultipartContent(request)) {
             ServletFileUpload servletFileUpload = new ServletFileUpload();
             try {
@@ -220,7 +225,7 @@ public final class VoiceXmlInputTurnFactory implements
                                                                bytes,
                                                                getHeaders(fileItemStream));
 
-                        parameters.put(fileItemStream.getFieldName(), fileUpload);
+                        files.put(fileItemStream.getFieldName(), fileUpload);
                     } else {
                         String encoding = findEncoding(request, fileItemStream);
                         parameters.put(fileItemStream.getFieldName(), new String(bytes, encoding));
@@ -239,7 +244,6 @@ public final class VoiceXmlInputTurnFactory implements
             }
         }
 
-        return parameters;
     }
 
     private String findEncoding(HttpServletRequest request, FileItemStream fileItemStream) {

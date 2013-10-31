@@ -11,6 +11,7 @@ import javax.json.*;
 
 import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.util.*;
+import com.nuecho.rivr.voicexml.servlet.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 public final class VoiceXmlInputTurn implements InputTurn, JsonSerializable {
@@ -26,6 +27,7 @@ public final class VoiceXmlInputTurn implements InputTurn, JsonSerializable {
     private RecognitionInfo mRecognitionInfo;
     private RecordingInfo mRecordingInfo;
     private TransferStatusInfo mTransferResult;
+    private Map<String, FileUpload> mFiles;
 
     public List<VoiceXmlEvent> getEvents() {
         return Collections.unmodifiableList(mEvents);
@@ -68,6 +70,14 @@ public final class VoiceXmlInputTurn implements InputTurn, JsonSerializable {
         mTransferResult = transferResult;
     }
 
+    public void setFiles(Map<String, FileUpload> files) {
+        mFiles = new HashMap<String, FileUpload>(files);
+    }
+
+    public Map<String, FileUpload> getFiles() {
+        return unmodifiableMap(mFiles);
+    }
+
     @Override
     public String toString() {
         return asJson().toString();
@@ -83,4 +93,5 @@ public final class VoiceXmlInputTurn implements InputTurn, JsonSerializable {
         JsonUtils.add(builder, TRANSFER_RESULT_PROPERTY, mTransferResult);
         return builder.build();
     }
+
 }
