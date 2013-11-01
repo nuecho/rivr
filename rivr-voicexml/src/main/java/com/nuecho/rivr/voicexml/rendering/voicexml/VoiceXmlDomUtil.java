@@ -189,19 +189,26 @@ public final class VoiceXmlDomUtil {
     private static final Pattern URI_PATH_REPLACEMENT_CHAR = Pattern.compile("[^a-zA-Z0-9./_-]");
 
     public static Element createVoiceXmlDocumentRoot(VoiceXmlDialogueContext voiceXmlDialogueContext) {
+        String language = voiceXmlDialogueContext.getLanguage();
+        return createVoiceXmlDocumentRoot(language);
+    }
+
+    public static Element createVoiceXmlDocumentRoot() {
+        return createVoiceXmlDocumentRoot((String) null);
+    }
+
+    public static Element createVoiceXmlDocumentRoot(String language) {
         Document document = DomUtils.createDocument(VXML_ELEMENT);
 
         Element vxmlElement = document.getDocumentElement();
         vxmlElement.setAttribute(XMLNS_ATTRIBUTE, VOICEXML_NAMESPACE);
         vxmlElement.setAttribute(VERSION_ATTRIBUTE, "2.1");
-
-        String language = voiceXmlDialogueContext.getLanguage();
         setAttribute(vxmlElement, XML_LANGUAGE_ATTRIBUTE, language);
 
         return vxmlElement;
     }
 
-    public static Document createDocument(VoiceXmlDialogueContext voiceXmlDialogueContext, NamedTurn turn) {
+    public static Document createDocument(VoiceXmlDialogueContext voiceXmlDialogueContext) {
         Element vxmlElement = createVoiceXmlDocumentRoot(voiceXmlDialogueContext);
 
         String rootDocumentPath = voiceXmlDialogueContext.getContextPath()

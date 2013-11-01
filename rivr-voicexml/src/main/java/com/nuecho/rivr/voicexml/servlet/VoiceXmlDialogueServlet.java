@@ -75,7 +75,7 @@ public class VoiceXmlDialogueServlet
 
         if (pathInfo != null) {
             if (pathInfo.startsWith(ROOT_PATH)) {
-                processRootDocument(request, response, pathInfo);
+                processRootDocument(request, response);
                 return;
             }
 
@@ -269,18 +269,13 @@ public class VoiceXmlDialogueServlet
         }
     }
 
-    private void processRootDocument(HttpServletRequest request, HttpServletResponse response, String pathInfo)
-            throws ServletException, IOException {
-
-        String sessionId = pathInfo.substring(ROOT_PATH.length());
+    private void processRootDocument(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
 
         try {
-            Session<VoiceXmlInputTurn, VoiceXmlOutputTurn, VoiceXmlFirstTurn, VoiceXmlLastTurn, VoiceXmlDialogueContext> session = getExistingSession(sessionId);
-            Document rootDocument = mRootDocumentFactory.getDocument(request, session);
+            Document rootDocument = mRootDocumentFactory.getDocument(request);
             response.setContentType(VOICE_XML_CONTENT_TYPE);
             DomUtils.writeToOutputStream(rootDocument, response.getOutputStream());
-        } catch (SessionNotFoundException exception) {
-            throw new ServletException("Unable to find session.", exception);
         } catch (VoiceXmlDocumentRenderingException exception) {
             throw new ServletException("Error while rendering root document.", exception);
         }

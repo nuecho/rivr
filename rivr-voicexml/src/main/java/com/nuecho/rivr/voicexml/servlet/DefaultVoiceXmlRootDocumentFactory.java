@@ -10,13 +10,7 @@ import javax.servlet.http.*;
 
 import org.w3c.dom.*;
 
-import com.nuecho.rivr.core.servlet.session.*;
 import com.nuecho.rivr.core.util.*;
-import com.nuecho.rivr.voicexml.rendering.voicexml.*;
-import com.nuecho.rivr.voicexml.turn.first.*;
-import com.nuecho.rivr.voicexml.turn.input.*;
-import com.nuecho.rivr.voicexml.turn.last.*;
-import com.nuecho.rivr.voicexml.turn.output.*;
 
 /**
  * @author Nu Echo Inc.
@@ -24,22 +18,15 @@ import com.nuecho.rivr.voicexml.turn.output.*;
 public class DefaultVoiceXmlRootDocumentFactory implements VoiceXmlRootDocumentFactory {
 
     @Override
-    public Document getDocument(HttpServletRequest request,
-                                Session<VoiceXmlInputTurn, VoiceXmlOutputTurn, VoiceXmlFirstTurn, VoiceXmlLastTurn, VoiceXmlDialogueContext> session) {
-
-        VoiceXmlDialogueContext dialogueContext = session.getDialogueContext();
-        String contextPath = dialogueContext.getContextPath();
-        String servletPath = dialogueContext.getServletPath();
-        String sessionId = session.getId();
-        return createElement(contextPath, servletPath, sessionId, dialogueContext);
+    public Document getDocument(HttpServletRequest request) {
+        String contextPath = request.getContextPath();
+        String servletPath = request.getServletPath();
+        return createElement(contextPath, servletPath);
     }
 
-    protected Document createElement(String contextPath,
-                                     String servletPath,
-                                     String sessionId,
-                                     VoiceXmlDialogueContext dialogueContext) {
-        Element vxmlElement = createVoiceXmlDocumentRoot(dialogueContext);
-        createVarElement(vxmlElement, RIVR_VARIABLE, "({\"" + RIVR_DIALOGUE_ID_PROPERTY + "\": \"" + sessionId + "\"})");
+    protected Document createElement(String contextPath, String servletPath) {
+        Element vxmlElement = createVoiceXmlDocumentRoot();
+        createVarElement(vxmlElement, RIVR_VARIABLE, null);
 
         addScript(vxmlElement, VoiceXmlDialogueServlet.RIVR_SCRIPT, contextPath + servletPath);
         return vxmlElement.getOwnerDocument();
