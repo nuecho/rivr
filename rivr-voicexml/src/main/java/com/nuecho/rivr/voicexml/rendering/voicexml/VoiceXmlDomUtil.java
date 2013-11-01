@@ -169,9 +169,6 @@ public final class VoiceXmlDomUtil {
     public static final String RIVR_DIALOGUE_ID_PROPERTY = "dialogueId";
     public static final String RIVR_DIALOGUE_ID_SCOPE_OBJECT = RIVR_SCOPE_OBJECT + "." + RIVR_DIALOGUE_ID_PROPERTY;
 
-    private static final String RIVR_TURN_INDEX_PROPERTY = "turnIndex";
-    private static final String RIVR_TURN_NAME_PROPERTY = "turnName";
-
     public static final String LOCAL_ERROR_HANDLING_PROPERTY = "localErrorHandling";
     public static final String RESULT_RECORDING_METADATA_SCOPE_OBJECT = RIVR_INPUT_TURN_SCOPE_OBJECT
                                                                         + ".recordingMetaData";
@@ -224,22 +221,6 @@ public final class VoiceXmlDomUtil {
               .append(LOCAL_ERROR_HANDLING_PROPERTY)
               .append(" = ")
               .append(FALSE)
-              .append("; ");
-
-        if (turn != null) {
-            script.append(RIVR_SCOPE_OBJECT)
-                  .append(".")
-                  .append(RIVR_TURN_NAME_PROPERTY)
-                  .append(" = ")
-                  .append(createEcmaScriptStringLiteral(turn.getName()))
-                  .append("; ");
-        }
-
-        script.append(RIVR_SCOPE_OBJECT)
-              .append(".")
-              .append(RIVR_TURN_INDEX_PROPERTY)
-              .append(" = ")
-              .append(voiceXmlDialogueContext.getTurnIndex())
               .append("; ");
 
         script.append(RIVR_INPUT_TURN_SCOPE_OBJECT).append(" = {};");

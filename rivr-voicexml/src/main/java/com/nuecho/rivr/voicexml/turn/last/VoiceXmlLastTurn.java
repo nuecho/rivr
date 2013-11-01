@@ -25,7 +25,7 @@ public abstract class VoiceXmlLastTurn extends VoiceXmlDocumentTurn implements L
     @Override
     protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
-        Document document = createDocument(dialogueContext, this);
+        Document document = createDocument(dialogueContext);
         Element formElement = createForm(document);
         fillVoiceXmlDocument(document, formElement, dialogueContext);
         addEventHandlers(document.getDocumentElement());

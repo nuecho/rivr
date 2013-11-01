@@ -51,7 +51,7 @@ public abstract class VoiceXmlOutputTurn extends VoiceXmlDocumentTurn implements
     @Override
     protected Document createVoiceXmlDocument(VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
-        Document document = createDocument(dialogueContext, this);
+        Document document = createDocument(dialogueContext);
         Element formElement = createForm(document);
         fillVoiceXmlDocument(document, formElement, dialogueContext);
         addEventHandler(document.getDocumentElement());
