@@ -11,12 +11,12 @@ import com.nuecho.rivr.core.util.*;
  */
 public final class FetchConfiguration {
 
-    private AudioFetchConfiguration mAudioFetchConfiguration;
-    private GrammarFetchConfiguration mGrammarFetchConfiguration;
-    private ScriptFetchConfiguration mScriptFetchConfiguration;
-    private ObjectFetchConfiguration mObjectFetchConfiguration;
+    private AudioFetchConfiguration mAudioFetchConfiguration = new AudioFetchConfiguration();
+    private GrammarFetchConfiguration mGrammarFetchConfiguration = new GrammarFetchConfiguration();
+    private ScriptFetchConfiguration mScriptFetchConfiguration = new ScriptFetchConfiguration();
+    private ObjectFetchConfiguration mObjectFetchConfiguration = new ObjectFetchConfiguration();
 
-    private DocumentFetchConfiguration mDocumentFetchConfiguration;
+    private DocumentFetchConfiguration mDocumentFetchConfiguration = new DocumentFetchConfiguration();
 
     private TimeValue mDefaultFetchTimeout;
     private String mDefaultFetchAudio;
