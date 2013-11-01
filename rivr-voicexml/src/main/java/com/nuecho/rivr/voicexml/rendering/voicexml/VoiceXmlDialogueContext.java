@@ -23,7 +23,7 @@ public final class VoiceXmlDialogueContext implements DialogueContext<VoiceXmlIn
 
     private String mLanguage;
 
-    private FetchConfiguration mFetchConfiguration;
+    private FetchConfiguration mFetchConfiguration = new FetchConfiguration();
     private final Map<String, String> mProperties = new HashMap<String, String>();
 
     private String mDialogueId;
