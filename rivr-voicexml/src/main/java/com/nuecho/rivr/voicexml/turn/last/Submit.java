@@ -31,7 +31,7 @@ public class Submit extends VoiceXmlLastTurn {
     private final VariableList mVariables;
     private final String mUri;
 
-    private SubmitMethod mMethod = SubmitMethod.GET;
+    private SubmitMethod mMethod = SubmitMethod.get;
     private String mMediaEncodingType;
 
     private DocumentFetchConfiguration mFetchConfiguration;
@@ -82,7 +82,7 @@ public class Submit extends VoiceXmlLastTurn {
         JsonUtils.add(builder, FETCH_CONFIGURATION_PROPERTY, mFetchConfiguration);
         JsonUtils.add(builder, MEDIA_ENCODING_TYPE_PROPERTY, mMediaEncodingType);
         if (mMethod != null) {
-            JsonUtils.add(builder, METHOD_PROPERTY, mMethod.getValue());
+            JsonUtils.add(builder, METHOD_PROPERTY, mMethod.name());
         }
     }
 

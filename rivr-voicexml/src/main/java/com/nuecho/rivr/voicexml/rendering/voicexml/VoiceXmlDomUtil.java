@@ -105,9 +105,6 @@ public final class VoiceXmlDomUtil {
 
     public static final String MULTIPART_FORM_DATA = "multipart/form-data";
 
-    public static final String POST_METHOD = "post";
-    public static final String GET_METHOD = "get";
-
     public static final String PROMPT_FORM_ITEM_NAME_PREFIX = "prompt";
     public static final String RECOGNITION_FORM_ITEM_NAME = "recognition";
     public static final String SUBDIALOGUE_FORM_ITEM_NAME = "subdialogue";
@@ -468,7 +465,7 @@ public final class VoiceXmlDomUtil {
         submitElement.setAttribute(NEXT_ATTRIBUTE, getSubmitPathForTurn(voiceXmlDialogueContext, outputTurn));
 
         submitElement.setAttribute(NAME_LIST_ATTRIBUTE, StringUtils.join(nameList, " "));
-        submitElement.setAttribute(METHOD_ATTRIBUTE, method.getValue());
+        submitElement.setAttribute(METHOD_ATTRIBUTE, method.name());
 
         applyDocumentFetchConfiguration(submitElement, voiceXmlDialogueContext);
 
@@ -552,14 +549,14 @@ public final class VoiceXmlDomUtil {
 
         Element submitElement = createSubmitElement(ifElement,
                                                     dialogueContext,
-                                                    SubmitMethod.POST,
+                                                    SubmitMethod.post,
                                                     turn,
                                                     INPUT_TURN_VARIABLE,
                                                     RECORDING_VARIABLE);
         submitElement.setAttribute(ENCTYPE_ATTRIBUTE, MULTIPART_FORM_DATA);
         DomUtils.appendNewElement(ifElement, ELSE_ELEMENT);
 
-        submitElement = createSubmitElement(ifElement, dialogueContext, SubmitMethod.POST, turn, INPUT_TURN_VARIABLE);
+        submitElement = createSubmitElement(ifElement, dialogueContext, SubmitMethod.post, turn, INPUT_TURN_VARIABLE);
     }
 
     public static void addFatalErrorHandlerForm(VoiceXmlDialogueContext dialogueContext,
