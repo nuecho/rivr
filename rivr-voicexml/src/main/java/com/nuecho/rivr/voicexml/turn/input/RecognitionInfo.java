@@ -14,12 +14,12 @@ import com.nuecho.rivr.voicexml.util.json.*;
 public final class RecognitionInfo implements JsonSerializable {
 
     private static final String MARK_INFO_PROPERTY = "markInfo";
-    private static final String RECOGNITION_RESULT_PROPERTYY = "recognitionResult";
+    private static final String RECOGNITION_RESULT_PROPERTY = "recognitionResult";
     private final JsonArray mRecognitionResult;
     private final MarkInfo mMarkInfo;
 
     public RecognitionInfo(JsonArray recognitionResult, MarkInfo markInfo) {
-        Assert.notNull(recognitionResult, RECOGNITION_RESULT_PROPERTYY);
+        Assert.notNull(recognitionResult, RECOGNITION_RESULT_PROPERTY);
         mRecognitionResult = recognitionResult;
         mMarkInfo = markInfo;
     }
@@ -40,7 +40,7 @@ public final class RecognitionInfo implements JsonSerializable {
     @Override
     public JsonValue asJson() {
         JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
-        JsonUtils.add(builder, RECOGNITION_RESULT_PROPERTYY, mRecognitionResult);
+        JsonUtils.add(builder, RECOGNITION_RESULT_PROPERTY, mRecognitionResult);
         JsonUtils.add(builder, MARK_INFO_PROPERTY, mMarkInfo);
         return builder.build();
     }
