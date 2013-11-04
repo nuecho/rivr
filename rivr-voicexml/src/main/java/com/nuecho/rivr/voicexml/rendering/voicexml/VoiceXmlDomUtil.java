@@ -17,7 +17,6 @@ import com.nuecho.rivr.voicexml.turn.output.*;
 import com.nuecho.rivr.voicexml.turn.output.audio.*;
 import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.turn.output.grammar.*;
-import com.nuecho.rivr.voicexml.turn.output.interaction.*;
 
 /**
  * @author Nu Echo Inc.
@@ -575,61 +574,49 @@ public final class VoiceXmlDomUtil {
         return DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
     }
 
-    public static void processDtmfConfiguration(DtmfRecognitionConfiguration dtmfRecognitionConfiguration,
-                                                Element formItemElement) throws VoiceXmlDocumentRenderingException {
-        if (dtmfRecognitionConfiguration == null) return;
+    public static void processDtmfRecognition(DtmfRecognition dtmfRecognition, Element formItemElement)
+            throws VoiceXmlDocumentRenderingException {
+        if (dtmfRecognition == null) return;
 
-        VoiceXmlDomUtil.renderGrammars(dtmfRecognitionConfiguration.getGrammarItems(), formItemElement, DTMF_INPUT_MODE);
+        VoiceXmlDomUtil.renderGrammars(dtmfRecognition.getGrammarItems(), formItemElement, DTMF_INPUT_MODE);
 
-        addTimeProperty(formItemElement,
-                        INTER_DIGIT_TIMEOUT_PROPERTY,
-                        dtmfRecognitionConfiguration.getInterDigitTimeout());
+        addTimeProperty(formItemElement, INTER_DIGIT_TIMEOUT_PROPERTY, dtmfRecognition.getInterDigitTimeout());
 
-        addTimeProperty(formItemElement, TERM_TIMEOUT_PROPERTY, dtmfRecognitionConfiguration.getTermTimeout());
+        addTimeProperty(formItemElement, TERM_TIMEOUT_PROPERTY, dtmfRecognition.getTermTimeout());
 
-        addProperty(formItemElement, TERM_CHAR_PROPERTY, dtmfRecognitionConfiguration.getTermChar());
+        addProperty(formItemElement, TERM_CHAR_PROPERTY, dtmfRecognition.getTermChar());
 
-        for (String propertyName : dtmfRecognitionConfiguration.getPropertyNames()) {
-            addProperty(formItemElement, propertyName, dtmfRecognitionConfiguration.getProperty(propertyName));
+        for (String propertyName : dtmfRecognition.getPropertyNames()) {
+            addProperty(formItemElement, propertyName, dtmfRecognition.getProperty(propertyName));
         }
     }
 
-    public static void processSpeechConfiguration(SpeechRecognitionConfiguration speechRecognitionConfiguration,
-                                                  Element formItemElement) throws VoiceXmlDocumentRenderingException {
-        if (speechRecognitionConfiguration == null) return;
+    public static void processSpeechRecognition(SpeechRecognition speechRecognition, Element formItemElement)
+            throws VoiceXmlDocumentRenderingException {
+        if (speechRecognition == null) return;
 
-        VoiceXmlDomUtil.renderGrammars(speechRecognitionConfiguration.getGrammarItems(),
-                                       formItemElement,
-                                       VOICE_INPUT_MODE);
+        VoiceXmlDomUtil.renderGrammars(speechRecognition.getGrammarItems(), formItemElement, VOICE_INPUT_MODE);
 
-        addTimeProperty(formItemElement, COMPLETE_TIMEOUT_PROPERTY, speechRecognitionConfiguration.getCompleteTimeout());
+        addTimeProperty(formItemElement, COMPLETE_TIMEOUT_PROPERTY, speechRecognition.getCompleteTimeout());
 
-        addTimeProperty(formItemElement,
-                        INCOMPLETE_TIMEOUT_PROPERTY,
-                        speechRecognitionConfiguration.getIncompleteTimeout());
+        addTimeProperty(formItemElement, INCOMPLETE_TIMEOUT_PROPERTY, speechRecognition.getIncompleteTimeout());
 
-        addTimeProperty(formItemElement,
-                        MAX_SPEECH_TIMEOUT_PROPERTY,
-                        speechRecognitionConfiguration.getMaxSpeechTimeout());
+        addTimeProperty(formItemElement, MAX_SPEECH_TIMEOUT_PROPERTY, speechRecognition.getMaxSpeechTimeout());
 
-        VoiceXmlDomUtil.addNumberProperty(formItemElement,
-                                          MAX_N_BEST_PROPERTY,
-                                          speechRecognitionConfiguration.getMaxNBest());
+        VoiceXmlDomUtil.addNumberProperty(formItemElement, MAX_N_BEST_PROPERTY, speechRecognition.getMaxNBest());
 
         VoiceXmlDomUtil.addNumberProperty(formItemElement,
                                           CONFIDENCE_LEVEL_PROPERTY,
-                                          speechRecognitionConfiguration.getConfidenceLevel());
+                                          speechRecognition.getConfidenceLevel());
 
-        VoiceXmlDomUtil.addNumberProperty(formItemElement,
-                                          SENSITIVITY_PROPERTY,
-                                          speechRecognitionConfiguration.getSensitivity());
+        VoiceXmlDomUtil.addNumberProperty(formItemElement, SENSITIVITY_PROPERTY, speechRecognition.getSensitivity());
 
         VoiceXmlDomUtil.addNumberProperty(formItemElement,
                                           SPEED_VERSUS_ACCURACY_PROPERTY,
-                                          speechRecognitionConfiguration.getSpeedVersusAccuracy());
+                                          speechRecognition.getSpeedVersusAccuracy());
 
-        for (String propertyName : speechRecognitionConfiguration.getPropertyNames()) {
-            addProperty(formItemElement, propertyName, speechRecognitionConfiguration.getProperty(propertyName));
+        for (String propertyName : speechRecognition.getPropertyNames()) {
+            addProperty(formItemElement, propertyName, speechRecognition.getProperty(propertyName));
         }
     }
 
