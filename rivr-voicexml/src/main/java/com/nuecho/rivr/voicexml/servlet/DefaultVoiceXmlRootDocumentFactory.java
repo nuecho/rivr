@@ -23,7 +23,7 @@ public class DefaultVoiceXmlRootDocumentFactory implements VoiceXmlRootDocumentF
         String servletPath = request.getServletPath();
 
         Element vxmlElement = createVoiceXmlDocumentRoot();
-        createVarElement(vxmlElement, RIVR_VARIABLE, null);
+        createVarElement(vxmlElement, RIVR_VARIABLE, "new Object()");
 
         Element scriptElement = DomUtils.appendNewElement(vxmlElement, SCRIPT_ELEMENT);
         scriptElement.setAttribute(SRC_ATTRIBUTE, contextPath + servletPath + VoiceXmlDialogueServlet.RIVR_SCRIPT);
