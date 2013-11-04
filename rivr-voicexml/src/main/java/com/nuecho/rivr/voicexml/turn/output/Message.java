@@ -14,6 +14,7 @@ import javax.json.*;
 import org.w3c.dom.*;
 
 import com.nuecho.rivr.core.util.*;
+import com.nuecho.rivr.voicexml.dialogue.*;
 import com.nuecho.rivr.voicexml.rendering.voicexml.*;
 import com.nuecho.rivr.voicexml.turn.output.audio.*;
 import com.nuecho.rivr.voicexml.util.json.*;

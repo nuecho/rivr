@@ -12,7 +12,7 @@ import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.channel.synchronous.step.*;
 import com.nuecho.rivr.core.test.*;
 import com.nuecho.rivr.core.util.*;
-import com.nuecho.rivr.voicexml.rendering.voicexml.*;
+import com.nuecho.rivr.voicexml.dialogue.*;
 import com.nuecho.rivr.voicexml.turn.first.*;
 import com.nuecho.rivr.voicexml.turn.input.*;
 import com.nuecho.rivr.voicexml.turn.last.*;

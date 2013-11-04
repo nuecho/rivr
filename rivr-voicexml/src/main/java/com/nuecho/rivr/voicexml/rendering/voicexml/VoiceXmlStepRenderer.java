@@ -12,6 +12,7 @@ import org.w3c.dom.*;
 
 import com.nuecho.rivr.core.servlet.*;
 import com.nuecho.rivr.core.util.*;
+import com.nuecho.rivr.voicexml.dialogue.*;
 import com.nuecho.rivr.voicexml.turn.*;
 import com.nuecho.rivr.voicexml.turn.input.*;
 import com.nuecho.rivr.voicexml.turn.last.*;

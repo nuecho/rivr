@@ -10,7 +10,7 @@ import org.slf4j.*;
 
 import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.servlet.*;
-import com.nuecho.rivr.voicexml.rendering.voicexml.*;
+import com.nuecho.rivr.voicexml.dialogue.*;
 import com.nuecho.rivr.voicexml.turn.input.*;
 import com.nuecho.rivr.voicexml.turn.output.*;
 

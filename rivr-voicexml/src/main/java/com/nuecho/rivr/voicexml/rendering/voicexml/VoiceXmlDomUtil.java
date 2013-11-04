@@ -11,6 +11,7 @@ import java.util.regex.*;
 import org.w3c.dom.*;
 
 import com.nuecho.rivr.core.util.*;
+import com.nuecho.rivr.voicexml.dialogue.*;
 import com.nuecho.rivr.voicexml.servlet.*;
 import com.nuecho.rivr.voicexml.turn.*;
 import com.nuecho.rivr.voicexml.turn.output.*;
