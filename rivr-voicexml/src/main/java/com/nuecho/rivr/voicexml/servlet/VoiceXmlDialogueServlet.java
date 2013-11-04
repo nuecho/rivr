@@ -105,6 +105,9 @@ public class VoiceXmlDialogueServlet
         mJsonStepRenderer = new JsonStepRenderer(mVoiceXmlStepRenderer);
     }
 
+    @Override
+    protected void destroyDialogueServlet() {}
+
     public void setVoiceXmlDocumentAdapters(List<VoiceXmlDocumentAdapter> voiceXmlDocumentAdapters) {
         mVoiceXmlDocumentAdapters = voiceXmlDocumentAdapters;
     }

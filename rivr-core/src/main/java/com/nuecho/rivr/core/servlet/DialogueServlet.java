@@ -46,6 +46,8 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
     protected abstract void initDialogueServlet() throws DialogueServletInitializationException;
 
+    protected abstract void destroyDialogueServlet();
+
     protected abstract StepRenderer<I, O, L, C> getStepRenderer(HttpServletRequest request,
                                                                 Session<I, O, F, L, C> session);
 
@@ -76,6 +78,11 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
     }
 
+    @Override
+    public void destroy() {
+        destroyDialogueServlet();
+    }
+
     private void ensureFieldIsSet(Object fieldValue, String fieldName) {
         if (fieldValue == null) throw new IllegalStateException(fieldName + "  is not set.");
     }
@@ -86,8 +93,7 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-            IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         process(request, response);
     }
 
