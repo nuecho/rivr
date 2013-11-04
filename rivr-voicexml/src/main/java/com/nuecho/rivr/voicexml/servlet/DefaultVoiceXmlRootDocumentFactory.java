@@ -21,20 +21,13 @@ public class DefaultVoiceXmlRootDocumentFactory implements VoiceXmlRootDocumentF
     public Document getDocument(HttpServletRequest request) {
         String contextPath = request.getContextPath();
         String servletPath = request.getServletPath();
-        return createElement(contextPath, servletPath);
-    }
 
-    protected Document createElement(String contextPath, String servletPath) {
         Element vxmlElement = createVoiceXmlDocumentRoot();
         createVarElement(vxmlElement, RIVR_VARIABLE, null);
 
-        addScript(vxmlElement, VoiceXmlDialogueServlet.RIVR_SCRIPT, contextPath + servletPath);
+        Element scriptElement = DomUtils.appendNewElement(vxmlElement, SCRIPT_ELEMENT);
+        scriptElement.setAttribute(SRC_ATTRIBUTE, contextPath + servletPath + VoiceXmlDialogueServlet.RIVR_SCRIPT);
         return vxmlElement.getOwnerDocument();
-    }
-
-    private static void addScript(Element parent, String scriptPath, String contextPath) {
-        Element scriptElement = DomUtils.appendNewElement(parent, SCRIPT_ELEMENT);
-        scriptElement.setAttribute(SRC_ATTRIBUTE, contextPath + scriptPath);
     }
 
 }
