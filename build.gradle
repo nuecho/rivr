@@ -137,7 +137,8 @@ task globalJavadoc(type: Javadoc) {
         noTimestamp = true
         group("Rivr Core Packages", "com.nuecho.rivr.core*")
         group("Rivr VoiceXML Packages", "com.nuecho.rivr.voicexml*")
-        links "http://download.oracle.com/javase/6/docs/api/"
+        footer "To report errors, inconsistencies and omissions in the Rivr API documentation, please <a href=\"https://github.com/nuecho/rivr/issues/new\" target=\"_blank\">open an issue</a>."
+        links "http://download.oracle.com/javase/6/docs/api/" 
         links "http://download.oracle.com/javaee/6/api/"
         setOverview("${projectDir}/doc/javadoc-extra/overview.html")
         stylesheetFile = new File( projectDir, 'doc/javadoc-extra/rivr-javadoc.css' ) 
