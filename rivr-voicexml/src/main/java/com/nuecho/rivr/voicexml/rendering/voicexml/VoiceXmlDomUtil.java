@@ -364,13 +364,13 @@ public final class VoiceXmlDomUtil {
 
     public static void addFetchHintProperty(Element parent, String propertyName, FetchHint fetchHint) {
         if (fetchHint != null) {
-            addProperty(parent, propertyName, fetchHint.getKey());
+            addProperty(parent, propertyName, fetchHint.name());
         }
     }
 
     public static void setFetchHintAttribute(Element parent, String propertyName, FetchHint fetchHint) {
         if (fetchHint != null) {
-            setAttribute(parent, propertyName, fetchHint.getKey());
+            setAttribute(parent, propertyName, fetchHint.name());
         }
     }
 

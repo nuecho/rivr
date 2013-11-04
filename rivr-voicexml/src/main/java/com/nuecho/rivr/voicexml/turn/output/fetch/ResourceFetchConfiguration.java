@@ -71,7 +71,7 @@ public class ResourceFetchConfiguration implements JsonSerializable {
         if (mFetchHint == null) {
             builder.addNull(FETCH_HINT_PROPERTY);
         } else {
-            JsonUtils.add(builder, FETCH_HINT_PROPERTY, mFetchHint.getKey());
+            JsonUtils.add(builder, FETCH_HINT_PROPERTY, mFetchHint.name());
         }
 
         return builder.build();
