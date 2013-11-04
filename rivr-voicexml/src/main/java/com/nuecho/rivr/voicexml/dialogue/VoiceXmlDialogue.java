@@ -12,6 +12,8 @@ import com.nuecho.rivr.voicexml.turn.last.*;
 import com.nuecho.rivr.voicexml.turn.output.*;
 
 /**
+ * VoiceXML implementation of Dialogue.
+ * 
  * @author Nu Echo Inc.
  */
 public interface VoiceXmlDialogue extends

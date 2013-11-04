@@ -17,6 +17,21 @@ import com.nuecho.rivr.voicexml.turn.output.*;
 import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 
 /**
+ * VoiceXML implementation of a dialogue context.
+ * In addition to properties provided by a <code>DialogueContext</code> (like
+ * <code>dialogueChannel</code>, <code>dialogueId</code>, and
+ * <code>logger</code>), the <code>VoiceXmlDialogueContext</code> exposes:
+ * <ul>
+ * <li>servlet information used to build URI of some resources.:</li>
+ * <ul>
+ * <li><code>servletPath</code></li>
+ * <li><code>contextPath</code></li>
+ * </ul>
+ * <li>VoiceXML properties (for each generated document)</li>
+ * <li>VoiceXML default language (for each generated document)</li>
+ * <li><code>turnIndex</code></li>
+ * </ul>
+ * 
  * @author Nu Echo Inc.
  */
 public final class VoiceXmlDialogueContext implements DialogueContext<VoiceXmlInputTurn, VoiceXmlOutputTurn> {
