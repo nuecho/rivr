@@ -86,15 +86,15 @@ public class Interaction extends VoiceXmlOutputTurn {
         mFinalRecognitionWindow = null;
     }
 
-    protected final List<Prompt> getPrompts() {
+    public final List<Prompt> getPrompts() {
         return Collections.unmodifiableList(mPrompts);
     }
 
-    protected final FinalRecognitionWindow getRecognition() {
+    public final FinalRecognitionWindow getRecognition() {
         return mFinalRecognitionWindow;
     }
 
-    protected final FinalRecordingWindow getRecording() {
+    public final FinalRecordingWindow getRecording() {
         return mFinalRecordingWindow;
     }
 
@@ -507,7 +507,7 @@ public class Interaction extends VoiceXmlOutputTurn {
      * 
      * @author Nu Echo Inc.
      */
-    static final class FinalRecognitionWindow implements JsonSerializable {
+    public static final class FinalRecognitionWindow implements JsonSerializable {
 
         private static final String NO_INPUT_TIMEOUT_PROPERTY = "noInputTimeout";
         private static final String SPEECH_RECOGNITION_PROPERTY = "speechRecognition";
@@ -621,7 +621,7 @@ public class Interaction extends VoiceXmlOutputTurn {
      * 
      * @author Nu Echo Inc.
      */
-    static final class FinalRecordingWindow implements JsonSerializable {
+    public static final class FinalRecordingWindow implements JsonSerializable {
         private static final String ACKNOWLEDGE_AUDIO_ITEMS_PROPERTY = "acknowledgeAudioItems";
         @SuppressWarnings("hiding")
         private static final String RECORDING_PROPERTY = "recording";
@@ -707,7 +707,7 @@ public class Interaction extends VoiceXmlOutputTurn {
      * 
      * @author Nu Echo Inc.
      */
-    static final class Prompt implements JsonSerializable {
+    public static final class Prompt implements JsonSerializable {
         private static final String SPEECH_RECOGNITION_PROPERTY = "speechRecognition";
         private static final String DTMF_RECOGNITION_PROPERTY = "dtmfRecognition";
         @SuppressWarnings("hiding")
