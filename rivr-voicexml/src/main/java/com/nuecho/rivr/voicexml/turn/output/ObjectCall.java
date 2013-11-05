@@ -50,7 +50,7 @@ public class ObjectCall extends VoiceXmlOutputTurn {
     private String mType;
     private List<String> mArchives;
     private ResourceFetchConfiguration mFetchConfiguration;
-    private List<ObjectParameter> mParameters = Collections.emptyList();
+    private List<Parameter> mParameters = Collections.emptyList();
     private String mPostObjectScript;
 
     /**
@@ -117,16 +117,16 @@ public class ObjectCall extends VoiceXmlOutputTurn {
      * @param parameters A list of parameters passed when invoking object. Not
      *            null.
      */
-    public final void setParameters(List<ObjectParameter> parameters) {
+    public final void setParameters(List<Parameter> parameters) {
         Assert.notNull(parameters, "parameters");
-        mParameters = new ArrayList<ObjectParameter>(parameters);
+        mParameters = new ArrayList<Parameter>(parameters);
     }
 
     /**
      * @param parameters A list of parameters passed when invoking object. Not
      *            null.
      */
-    public final void setParameters(ObjectParameter... parameters) {
+    public final void setParameters(Parameter... parameters) {
         setParameters(asList(parameters));
     }
 
@@ -166,7 +166,7 @@ public class ObjectCall extends VoiceXmlOutputTurn {
         return mFetchConfiguration;
     }
 
-    public final List<ObjectParameter> getParameters() {
+    public final List<Parameter> getParameters() {
         return unmodifiableList(mParameters);
     }
 
@@ -218,7 +218,7 @@ public class ObjectCall extends VoiceXmlOutputTurn {
         setAttribute(objectElement, DATA_ATTRIBUTE, mData);
         setAttribute(objectElement, TYPE_ATTRIBUTE, mType);
 
-        for (ObjectParameter parameter : mParameters) {
+        for (Parameter parameter : mParameters) {
             Element paramElement = DomUtils.appendNewElement(objectElement, PARAM_ELEMENT);
             paramElement.setAttribute(NAME_ATTRIBUTE, parameter.getName());
 
@@ -248,7 +248,7 @@ public class ObjectCall extends VoiceXmlOutputTurn {
         createGotoSubmit(filledElement);
     }
 
-    public static final class ObjectParameter implements JsonSerializable {
+    public static final class Parameter implements JsonSerializable {
         private static final String NAME_PROPERTY = "name";
         private static final String VALUE_PROPERTY = "value";
         @SuppressWarnings("hiding")
@@ -267,13 +267,13 @@ public class ObjectCall extends VoiceXmlOutputTurn {
          * @param value The string value of the parameter. Not null.
          * @return The newly created object parameter
          */
-        public static ObjectParameter createWithValue(String name, String value) {
+        public static Parameter createWithValue(String name, String value) {
             Assert.notEmpty(name, "name");
             Assert.notNull(value, "value");
 
-            ObjectParameter objectParameter = new ObjectParameter(name);
-            objectParameter.mValue = value;
-            return objectParameter;
+            Parameter parameter = new Parameter(name);
+            parameter.mValue = value;
+            return parameter;
         }
 
         /**
@@ -282,13 +282,13 @@ public class ObjectCall extends VoiceXmlOutputTurn {
          *            null.
          * @return The newly created object parameter
          */
-        public static ObjectParameter createWithExpression(String name, String expression) {
+        public static Parameter createWithExpression(String name, String expression) {
             Assert.notEmpty(name, "name");
             Assert.notNull(expression, "expression");
 
-            ObjectParameter objectParameter = new ObjectParameter(name);
-            objectParameter.mExpression = expression;
-            return objectParameter;
+            Parameter parameter = new Parameter(name);
+            parameter.mExpression = expression;
+            return parameter;
         }
 
         /**
@@ -296,14 +296,14 @@ public class ObjectCall extends VoiceXmlOutputTurn {
          * @param json The JSON value of the parameter. Not null.
          * @return The newly created object parameter
          */
-        public static ObjectParameter createWithJson(String name, JsonValue json) {
+        public static Parameter createWithJson(String name, JsonValue json) {
             Assert.notEmpty(name, "name");
             Assert.notNull(json, "json");
 
             return createWithExpression(name, json.toString());
         }
 
-        private ObjectParameter(String name) {
+        private Parameter(String name) {
             mName = name;
         }
 
