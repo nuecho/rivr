@@ -20,12 +20,13 @@ import com.nuecho.rivr.voicexml.turn.output.audio.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>Message</code> is a <code>VoiceXmlOutputTurn</code> that plays a
- * sequence of <code>AudioItem</code>.
+ * A {@link Message} is a {@link VoiceXmlOutputTurn} that plays a
+ * sequence of {@link AudioItem}.
  * 
  * @author Nu Echo Inc.
  * @see AudioItem
- * @see <a href="http://www.w3.org/TR/voicexml20/#dml4.1.8">http://www.w3.org/TR/voicexml20/#dml4.1.8</a>
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml4.1.8">http://www.w3.org/TR/voicexml20/#dml4.1.8</a>
  */
 public class Message extends VoiceXmlOutputTurn {
     private static final String MESSAGE_TURN_TYPE = "message";
@@ -40,7 +41,7 @@ public class Message extends VoiceXmlOutputTurn {
 
     /**
      * @param name The name of this turn. Not empty.
-     * @param audioItems The sequence of <code>AudioItem</code> to play. Not
+     * @param audioItems The sequence of {@link AudioItem} to play. Not
      *            empty.
      */
     public Message(String name, List<AudioItem> audioItems) {
@@ -51,7 +52,7 @@ public class Message extends VoiceXmlOutputTurn {
 
     /**
      * @param name The name of this turn. Not empty.
-     * @param audioItems The sequence of <code>AudioItem</code> to play. Not
+     * @param audioItems The sequence of {@link AudioItem} to play. Not
      *            empty.
      */
     public Message(String name, AudioItem... audioItems) {
@@ -59,17 +60,19 @@ public class Message extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param language The language identifier for the message. Null reverts to
-     *            VoiceXML default value.
+     * @param language The language identifier (e.g. "en-US") for the message.
+     *            <code>null</code> to use the VoiceXML platform
+     *            default
      */
     public final void setLanguage(String language) {
         mLanguage = language;
     }
 
     /**
-     * @param bargeIn Boolean.TRUE if the message is interruptible,
-     *            Boolean.FALSE if it is not. Null reverts to VoiceXML default
-     *            value.
+     * @param bargeIn <ul><li>{@link Boolean#TRUE} to enable barge-in</li>
+     *            <li>{@link Boolean#FALSE} to disable barge-in</li>
+     *            <li><code>null</code> to use the VoiceXML platform
+     *            default</li></ul>
      */
     public final void setBargeIn(Boolean bargeIn) {
         mBargeIn = bargeIn;

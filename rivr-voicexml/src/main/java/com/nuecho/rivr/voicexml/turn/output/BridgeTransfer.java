@@ -14,7 +14,7 @@ import com.nuecho.rivr.voicexml.rendering.voicexml.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>BridgeTransfer</code> is a {@link SupervisedTransfer} that
+ * A {@link BridgeTransfer} is a {@link SupervisedTransfer} that
  * connects the caller to the callee in a full duplex conversation.
  * 
  * @author Nu Echo Inc.
@@ -37,8 +37,7 @@ public class BridgeTransfer extends SupervisedTransfer {
     }
 
     /**
-     * @param maximumTime The time that the call is allowed to last. Null
-     *            reverts to VoiceXML default value.
+     * @param maximumTime The time that the call is allowed to last. <code>null</code> to use the VoiceXML platform default.
      */
     public final void setMaximumTime(TimeValue maximumTime) {
         mMaximumTime = maximumTime;

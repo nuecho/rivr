@@ -13,7 +13,7 @@ import com.nuecho.rivr.voicexml.turn.output.grammar.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>DtmfRecognition</code> represents the DTMF part of an
+ * A {@link DtmfRecognition} represents the DTMF part of an
  * interaction phase recognition configuration. It is composed of a list of DTMF
  * {@link GrammarItem} and optional properties (inter-digit timeout, term
  * timeout, term char).
@@ -45,8 +45,7 @@ public final class DtmfRecognition extends Recognition {
 
     /**
      * @param interDigitTimeout The inter-digit timeout value to use when
-     *            recognizing DTMF input. Null reverts to VoiceXML default
-     *            value.
+     *            recognizing DTMF input. <code>null</code> to use the VoiceXML platform default.
      * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.3">http://www.w3.org/TR/voicexml20/#dml6.3.3</a>
      */
     public void setInterDigitTimeout(TimeValue interDigitTimeout) {
@@ -55,7 +54,7 @@ public final class DtmfRecognition extends Recognition {
 
     /**
      * @param termTimeout The terminating timeout to use when recognizing DTMF
-     *            input. Null reverts to VoiceXML default value.
+     *            input. <code>null</code> to use the VoiceXML platform default
      * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.3">http://www.w3.org/TR/voicexml20/#dml6.3.3</a>
      */
     public void setTermTimeout(TimeValue termTimeout) {
@@ -64,8 +63,7 @@ public final class DtmfRecognition extends Recognition {
 
     /**
      * @param termChar The terminating DTMF character for DTMF input
-     *            recognition. Must be empty or a single character. Null reverts
-     *            to VoiceXML default value.
+     *            recognition. Must be empty or a single character. <code>null</code> to use the VoiceXML platform default
      * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.3">http://www.w3.org/TR/voicexml20/#dml6.3.3</a>
      */
     public void setTermChar(String termChar) {

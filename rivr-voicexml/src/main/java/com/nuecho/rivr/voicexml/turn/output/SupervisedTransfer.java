@@ -15,7 +15,7 @@ import com.nuecho.rivr.voicexml.turn.input.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>SupervisedTransfer</code> is a {@link Transfer} where the outcome is
+ * A {@link SupervisedTransfer} is a {@link Transfer} where the outcome is
  * monitored and where a transfer failure can be handled gracefully.
  * <p>
  * Recognition can optionally be activated to cancel a supervised transfer.
@@ -72,8 +72,7 @@ public abstract class SupervisedTransfer extends Transfer {
 
     /**
      * @param connectTimeout The time to wait while trying to connect the call
-     *            before returning with {@link TransferStatus#NO_ANSWER}. Null
-     *            reverts to VoiceXML default value.
+     *            before returning with {@link TransferStatus#NO_ANSWER}. <code>null</code> to use the VoiceXML platform default.
      */
     public final void setConnectTimeout(TimeValue connectTimeout) {
         mConnectTimeout = connectTimeout;

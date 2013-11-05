@@ -4,7 +4,7 @@
 package com.nuecho.rivr.voicexml.turn.output;
 
 /**
- * A <code>BlindTransfer</code> is a {@link Transfer} where the outcome
+ * A {@link BlindTransfer} is a {@link Transfer} where the outcome
  * is not monitored.
  * <p>
  * Once the transfer begins and the interpreter disconnects from the session,

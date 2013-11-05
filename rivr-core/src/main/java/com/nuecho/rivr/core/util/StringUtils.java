@@ -145,11 +145,11 @@ public final class StringUtils {
     }
 
     /**
-     * Create a lowercase hexadecimal <code>String</code> representing a
+     * Create a lowercase hexadecimal {@link String} representing a
      * <code>byte</code> array.
      * 
      * @param bytes the <code>byte</code> array to be expressed
-     * @return the resulting <code>String</code>, in which each input byte has
+     * @return the resulting {@link String}, in which each input byte has
      *         been turned into two hexadecimal characters.
      */
     public static String bytesToHex(byte[] bytes) {

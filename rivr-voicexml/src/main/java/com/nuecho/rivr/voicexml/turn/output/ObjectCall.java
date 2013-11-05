@@ -21,7 +21,7 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * An <code>ObjectCall</code> is a {@link VoiceXmlOutputTurn} used to exploit
+ * An {@link ObjectCall} is a {@link VoiceXmlOutputTurn} used to exploit
  * platform-specific functionality.
  * 
  * @author Nu Echo Inc.
@@ -310,8 +310,8 @@ public class ObjectCall extends VoiceXmlOutputTurn {
         /**
          * @param valueType One of {@link ParameterValueType#data} or
          *            {@link ParameterValueType#ref}. Indicates to an object if
-         *            the value associated with name is data or a URI. Null
-         *            reverts to VoiceXML default value.
+         *            the value associated with name is data or a URI.
+         *            <code>null</code> to use the VoiceXML platform default.
          */
         public void setValueType(ParameterValueType valueType) {
             mValueType = valueType;
@@ -319,8 +319,8 @@ public class ObjectCall extends VoiceXmlOutputTurn {
 
         /**
          * @param type The media type of the result provided by a URI if the
-         *            value type is {@link ParameterValueType#ref}. Null reverts
-         *            to VoiceXML default value.
+         *            value type is {@link ParameterValueType#ref}.
+         *            <code>null</code> to use the VoiceXML platform default
          */
         public void setType(String type) {
             mType = type;

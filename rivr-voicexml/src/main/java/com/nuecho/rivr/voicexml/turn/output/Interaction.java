@@ -20,13 +20,11 @@ import com.nuecho.rivr.voicexml.turn.output.grammar.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * An <code>Interaction</code> is a {@link VoiceXmlOutputTurn} that
- * represents a list of {@link Interaction.Prompt} with an optional final
- * recognition or recording phase.
- * <p>
- * Each {@link Interaction.Prompt} represents a phase of the interaction with a
- * sequence of {@link AudioItem} and optional speech/dtmf recognition
- * configurations.
+ * An {@link Interaction} is a {@link VoiceXmlOutputTurn} that represents a list
+ * of {@link Prompt} with an optional {@link FinalRecognitionWindow} or
+ * {@link FinalRecordingWindow} phase. <p> Each {@link Interaction.Prompt}
+ * represents a phase of the interaction with a sequence of {@link AudioItem}
+ * and optional speech/DTMF recognition configurations.
  * 
  * @author Nu Echo Inc.
  * @see Interaction.Prompt
@@ -497,13 +495,10 @@ public class Interaction extends VoiceXmlOutputTurn {
     }
 
     /**
-     * A <code>FinalRecognitionWindow</code> is an optional final phase of an
-     * {@link Interaction}.
-     * <p>
-     * It specifies a recognition configuration, and optionally, a no input
-     * timeout
-     * and a sequence of {@link AudioItem} that is played if a recognition is
-     * successful.
+     * A {@link FinalRecognitionWindow} is an optional final phase of an
+     * {@link Interaction}. <p> It specifies a recognition configuration, and
+     * optionally, a no input timeout and a sequence of {@link AudioItem} that
+     * is played if a recognition is successful.
      * 
      * @author Nu Echo Inc.
      */
@@ -611,13 +606,10 @@ public class Interaction extends VoiceXmlOutputTurn {
     }
 
     /**
-     * A <code>FinalRecordingWindow</code> is an optional final phase of an
-     * {@link Interaction}.
-     * <p>
-     * It specifies a recording configuration, and optionally, a no input
-     * timeout
-     * and a sequence of {@link AudioItem} that is played if a recording is
-     * successful.
+     * A {@link FinalRecordingWindow} is an optional final phase of an
+     * {@link Interaction}. <p> It specifies a recording configuration, and
+     * optionally, a no input timeout and a sequence of {@link AudioItem} that
+     * is played if a recording is successful.
      * 
      * @author Nu Echo Inc.
      */
@@ -701,9 +693,9 @@ public class Interaction extends VoiceXmlOutputTurn {
     }
 
     /**
-     * An <code>Prompt</code> represent a phase in an {@link Interaction} and is
+     * A {@link Prompt} represent a phase in an {@link Interaction} and is
      * composed of a sequence of {@link AudioItem} and optionally a speech
-     * and/or a dtmf recognition configuration.
+     * and/or a DTMF recognition configuration.
      * 
      * @author Nu Echo Inc.
      */
@@ -723,11 +715,9 @@ public class Interaction extends VoiceXmlOutputTurn {
         private BargeInType mBargeInType;
 
         /**
-         * @param speechRecognition The speech recognition
-         *            configuration. Optional.
-         * @param dtmfRecognition The DTMF recognition
-         *            configuration.
+         * @param speechRecognition The speech recognition configuration.
          *            Optional.
+         * @param dtmfRecognition The DTMF recognition configuration. Optional.
          * @param audioItems The list of {@link AudioItem}. Not null.
          */
         public Prompt(SpeechRecognition speechRecognition,
@@ -740,10 +730,8 @@ public class Interaction extends VoiceXmlOutputTurn {
         }
 
         /**
-         * @param speechRecognition The speech recognition
-         *            configuration.
-         * @param dtmfRecognition The DTMF recognition
-         *            configuration.
+         * @param speechRecognition The speech recognition configuration.
+         * @param dtmfRecognition The DTMF recognition configuration.
          * @param audioItems The list of {@link AudioItem}. Not null.
          */
         public Prompt(SpeechRecognition speechRecognition, DtmfRecognition dtmfRecognition, AudioItem... audioItems) {
@@ -751,8 +739,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         }
 
         /**
-         * @param speechRecognition The speech recognition
-         *            configuration.
+         * @param speechRecognition The speech recognition configuration.
          * @param audioItems The list of {@link AudioItem}. Not null.
          */
         public Prompt(SpeechRecognition speechRecognition, List<? extends AudioItem> audioItems) {
@@ -760,8 +747,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         }
 
         /**
-         * @param speechRecognition The speech recognition
-         *            configuration.
+         * @param speechRecognition The speech recognition configuration.
          * @param audioItems The list of {@link AudioItem}. Not null.
          */
         public Prompt(SpeechRecognition speechRecognition, AudioItem... audioItems) {
@@ -769,8 +755,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         }
 
         /**
-         * @param dtmfRecognition The DTMF recognition
-         *            configuration.
+         * @param dtmfRecognition The DTMF recognition configuration.
          * @param audioItems The list of {@link AudioItem}. Not null.
          */
         public Prompt(DtmfRecognition dtmfRecognition, List<? extends AudioItem> audioItems) {
@@ -778,8 +763,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         }
 
         /**
-         * @param dtmfRecognition The DTMF recognition
-         *            configuration.
+         * @param dtmfRecognition The DTMF recognition configuration.
          * @param audioItems The list of {@link AudioItem}. Not null.
          */
         public Prompt(DtmfRecognition dtmfRecognition, AudioItem... audioItems) {
@@ -803,8 +787,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         /**
          * @param language language code for this prompt. <code>null</code> if
          *            language should be reset to platform-specific default
-         *            value
-         *            for the prompts to be added.
+         *            value for the prompts to be added.
          */
         public void setLanguage(String language) {
             mLanguage = language;
@@ -893,35 +876,17 @@ public class Interaction extends VoiceXmlOutputTurn {
 
     /**
      * Builder used to ease creation of instances of {@link Interaction} <p>
-     * Building an {@link Interaction} implies the following steps:
-     * <ul>
-     * <li>Add some prompts</li>
-     * <ul>
-     * <li>For each prompt, speech/DTMF recognition can be specified (thus
-     * enabling
-     * <i>barge-in</i> when the prompt is played).
-     * </ul>
-     * <li>Once all prompts are added, optionally specify either:
-     * <ul>
-     * <li>a final recognition window (speech or DTMF)</li>
-     * <li>a recording</li>
-     * </ul>
-     * </ul>
-     * <p>
-     * At any time, it is possible to change the current language used for
-     * prompts
-     * (relevant to speech synthesis) and the barge-in type, i.e. <i>speech</i>
-     * or
-     * <i>hotword</i>.
-     * <p>
-     * This can be translated to:
-     * <pre>
-     * Builder builder = Builder.newInteraction();
-     * builder.addPrompt(...);
-     * builder.addPrompt(...);
-     * //repeat as needed
-     * builder.addPrompt(...);
-     * Interaction interaction = builder.build(...);
+     * Building an {@link Interaction} implies the following steps: <ul> <li>Add
+     * some prompts</li> <ul> <li>For each prompt, speech/DTMF recognition can
+     * be specified (thus enabling <i>barge-in</i> when the prompt is played).
+     * </ul> <li>Once all prompts are added, optionally specify either: <ul>
+     * <li>a final recognition window (speech or DTMF)</li> <li>a recording</li>
+     * </ul> </ul> <p> At any time, it is possible to change the current
+     * language used for prompts (relevant to speech synthesis) and the barge-in
+     * type, i.e. <i>speech</i> or <i>hotword</i>. <p> This can be translated
+     * to: <pre> Builder builder = Builder.newInteraction();
+     * builder.addPrompt(...); builder.addPrompt(...); //repeat as needed
+     * builder.addPrompt(...); Interaction interaction = builder.build(...);
      * </pre>
      * 
      * @author Nu Echo Inc.
@@ -940,7 +905,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         }
 
         /**
-         * Creates an Builder.
+         * Creates a {@link Builder}.
          * 
          * @param turnName of the interaction to be created.
          */
@@ -950,19 +915,16 @@ public class Interaction extends VoiceXmlOutputTurn {
         }
 
         /**
-         * Sets the barge-in type to either "speech" or "hotword" for the
-         * prompts
-         * that will be added using one of the <code>addPrompt(...)</code>
-         * methods.
-         * <p>
-         * Note: When an <code>Builder</code> is created, the default
-         * value for this flag is <code>null</code>, meaning the barge-in type
-         * will
-         * be platform-dependant.
+         * Sets the barge-in type to either {@link BargeInType#speech} or
+         * {@link BargeInType#hotword} for the prompts that will be added using
+         * one of the <code>addPrompt(...)</code> methods. <p> Note: When a
+         * {@link Builder} is created, the default value for this flag is
+         * <code>null</code>, meaning the barge-in type will be
+         * platform-dependant.
          * 
-         * @param bargeInType {@link BargeInType#speech} or
-         *            {@link BargeInType#hotword}. <code>null</code> reverts to
-         *            platform default value.
+         * @param bargeInType <ul> <li>{@link BargeInType#speech}</li> <li>
+         *            {@link BargeInType#hotword}</li><li><code>null</code>
+         *            reverts to platform default value</li></ul
          */
         public Builder setBargeInType(BargeInType bargeInType) {
             mBargeInType = bargeInType;
@@ -971,19 +933,15 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         /**
          * Sets the language code for the prompts that will be added using one
-         * of
-         * the <code>addPrompt(...)</code> methods.
-         * <p>
-         * Note: When an <code>Builder</code> is created, the default
-         * value for this property is <code>null</code>, i.e. no explicit
-         * language
-         * code will be generated in the VoiceXML thus relying on the
-         * platform-specific default language code.
+         * of the <code>addPrompt(...)</code> methods. <p> Note: When a @{link
+         * Builder} is created, the default value for this property is
+         * <code>null</code>, i.e. no explicit language code will be generated
+         * in the VoiceXML thus relying on the platform-specific default
+         * language code.
          * 
          * @param language language code for this prompt. <code>null</code> if
          *            language should be reset to platform-specific default
-         *            value
-         *            for the prompts to be added.
+         *            value for the prompts to be added.
          */
         public Builder setLanguage(String language) {
             mLanguage = language;
@@ -993,8 +951,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         /**
          * Adds a prompt with DTMF recognition only.
          * 
-         * @param dtmfRecognition configuration for the DTMF
-         *            recognition
+         * @param dtmfRecognition configuration for the DTMF recognition
          * @param audioItems audio items to be played during this prompt.
          */
         public Builder addPrompt(DtmfRecognition dtmfRecognition, AudioItem... audioItems) {
@@ -1004,8 +961,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         /**
          * Adds a prompt with DTMF recognition only.
          * 
-         * @param dtmfRecognition configuration for the DTMF
-         *            recognition
+         * @param dtmfRecognition configuration for the DTMF recognition
          * @param audioItems audio items to be played during this prompt.
          */
         public Builder addPrompt(DtmfRecognition dtmfRecognition, List<? extends AudioItem> audioItems) {
@@ -1015,8 +971,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         /**
          * Adds a prompt with speech recognition only.
          * 
-         * @param speechRecognition configuration for the speech
-         *            recognition
+         * @param speechRecognition configuration for the speech recognition
          * @param audioItems audio items to be played during this prompt.
          */
         public Builder addPrompt(SpeechRecognition speechRecognition, AudioItem... audioItems) {
@@ -1026,8 +981,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         /**
          * Adds a prompt with speech recognition only.
          * 
-         * @param speechRecognition configuration for the speech
-         *            recognition
+         * @param speechRecognition configuration for the speech recognition
          * @param audioItems audio items to be played during this prompt.
          */
         public Builder addPrompt(SpeechRecognition speechRecognition, List<? extends AudioItem> audioItems) {
@@ -1037,12 +991,10 @@ public class Interaction extends VoiceXmlOutputTurn {
         /**
          * Adds a prompt with both DTMF and speech recognition.
          * 
-         * @param speechRecognition configuration for the speech
-         *            recognition or <code>null</code> to disable DTMF
-         *            recognition.
-         * @param dtmfRecognition configuration for the DTMF
-         *            recognition or <code>null</code> to disable DTMF
-         *            recognition.
+         * @param speechRecognition configuration for the speech recognition or
+         *            <code>null</code> to disable DTMF recognition.
+         * @param dtmfRecognition configuration for the DTMF recognition or
+         *            <code>null</code> to disable DTMF recognition.
          * @param audioItems audio items to be played during this prompt.
          */
         public Builder addPrompt(DtmfRecognition dtmfRecognition,
@@ -1054,12 +1006,10 @@ public class Interaction extends VoiceXmlOutputTurn {
         /**
          * Adds a prompt with both DTMF and speech recognition.
          * 
-         * @param speechRecognition configuration for the speech
-         *            recognition or <code>null</code> to disable DTMF
-         *            recognition.
-         * @param dtmfRecognition configuration for the DTMF
-         *            recognition or <code>null</code> to disable DTMF
-         *            recognition.
+         * @param speechRecognition configuration for the speech recognition or
+         *            <code>null</code> to disable DTMF recognition.
+         * @param dtmfRecognition configuration for the DTMF recognition or
+         *            <code>null</code> to disable DTMF recognition.
          * @param audioItems audio items to be played during this prompt.
          */
         public Builder addPrompt(DtmfRecognition dtmfRecognition,
@@ -1096,11 +1046,9 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         /**
          * Builds the interaction. This method adds a DTMF recognition window
-         * after
-         * the prompts.
+         * after the prompts.
          * 
-         * @param dtmfRecognition configuration for the DTMF
-         *            recognition
+         * @param dtmfRecognition configuration for the DTMF recognition
          * @param noinputTimeout timeout value before a <code>noinput</code> is
          *            generated.
          * @param acknowledgeAudioItems audioItems to be played upon recognition
@@ -1117,8 +1065,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          * Builds the interaction. This method adds a speech recognition window
          * after the prompts.
          * 
-         * @param speechRecognition configuration for the speech
-         *            recognition
+         * @param speechRecognition configuration for the speech recognition
          * @param noinputTimeout timeout value before a <code>noinput</code> is
          *            generated.
          * @param acknowledgeAudioItems audioItems to be played upon recognition
@@ -1133,11 +1080,9 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         /**
          * Builds the interaction. This method adds a DTMF recognition window
-         * after
-         * the prompts.
+         * after the prompts.
          * 
-         * @param dtmfRecognition configuration for the DTMF
-         *            recognition
+         * @param dtmfRecognition configuration for the DTMF recognition
          * @param noinputTimeout timeout value before a <code>noinput</code> is
          *            generated.
          * @param acknowledgeAudioItems audioItems to be played upon recognition
@@ -1153,8 +1098,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          * Builds the interaction. This method adds a speech recognition window
          * after the prompts.
          * 
-         * @param speechRecognition configuration for the speech
-         *            recognition
+         * @param speechRecognition configuration for the speech recognition
          * @param noinputTimeout timeout value before a <code>noinput</code> is
          *            generated.
          * @param acknowledgeAudioItems audioItems to be played upon recognition
@@ -1168,13 +1112,10 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         /**
          * Builds the interaction. This method adds a speech and DTMF
-         * recognition
-         * window after the prompts.
+         * recognition window after the prompts.
          * 
-         * @param speechRecognition configuration for the speech
-         *            recognition
-         * @param dtmfRecognition configuration for the DTMF
-         *            recognition
+         * @param speechRecognition configuration for the speech recognition
+         * @param dtmfRecognition configuration for the DTMF recognition
          * @param noinputTimeout timeout value before a <code>noinput</code> is
          *            generated.
          * @param acknowledgeAudioItems audioItems to be played upon recognition
@@ -1190,13 +1131,10 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         /**
          * Builds the interaction. This method adds a speech and DTMF
-         * recognition
-         * window after the prompts.
+         * recognition window after the prompts.
          * 
-         * @param speechRecognition configuration for the speech
-         *            recognition
-         * @param dtmfRecognition configuration for the DTMF
-         *            recognition
+         * @param speechRecognition configuration for the speech recognition
+         * @param dtmfRecognition configuration for the DTMF recognition
          * @param noinputTimeout timeout value before a <code>noinput</code> is
          *            generated.
          * @param acknowledgeAudioItems audioItems to be played upon recognition

@@ -18,9 +18,9 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 
 /**
  * VoiceXML implementation of a dialogue context.
- * In addition to properties provided by a <code>DialogueContext</code> (like
+ * In addition to properties provided by a {@link DialogueContext} (like
  * <code>dialogueChannel</code>, <code>dialogueId</code>, and
- * <code>logger</code>), the <code>VoiceXmlDialogueContext</code> exposes:
+ * <code>logger</code>), the {@link VoiceXmlDialogueContext} exposes:
  * <ul>
  * <li>servlet information used to build URI of some resources.:</li>
  * <ul>

@@ -9,7 +9,7 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * An <code>InlineStringGrammar</code> represents a text source grammar inlined
+ * An {@link InlineStringGrammar} represents a text source grammar inlined
  * in the VoiceXML document.
  * 
  * @author Nu Echo Inc.
@@ -40,8 +40,7 @@ public final class InlineStringGrammar extends GrammarItem {
     }
 
     /**
-     * @param version The version of the grammar. Null reverts to VoiceXML
-     *            default value.
+     * @param version The version of the grammar.<code>null</code> to use the VoiceXML platform default.
      */
     public void setVersion(String version) {
         mVersion = version;
@@ -49,16 +48,14 @@ public final class InlineStringGrammar extends GrammarItem {
 
     /**
      * @param language The language identifier of the grammar. For example,
-     *            "fr-CA" for Canadian French. Null reverts to VoiceXML default
-     *            value.
+     *            "fr-CA" for Canadian French. <code>null</code> to use the VoiceXML platform default.
      */
     public void setLanguage(String language) {
         mLanguage = language;
     }
 
     /**
-     * @param root The name of the rule that will act as the root rule. Null
-     *            reverts to VoiceXML default value.
+     * @param root The name of the rule that will act as the root rule. <code>null</code> to use the VoiceXML platform default.
      */
     public void setRoot(String root) {
         mRoot = root;
@@ -66,7 +63,7 @@ public final class InlineStringGrammar extends GrammarItem {
 
     /**
      * @param tagFormat The tag content format for all tags within the grammar.
-     *            Null reverts to VoiceXML default value.
+     *            <code>null</code> to use the VoiceXML platform default
      */
     public void setTagFormat(String tagFormat) {
         mTagFormat = tagFormat;
@@ -74,7 +71,7 @@ public final class InlineStringGrammar extends GrammarItem {
 
     /**
      * @param base The base URI from which relative URIs in the grammar are
-     *            resolved. Null reverts to VoiceXML default value.
+     *            resolved. <code>null</code> to use the VoiceXML platform default
      */
     public void setBase(String base) {
         mBase = base;

@@ -11,7 +11,7 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>SpeechSynthesis</code> represents a text that will be spoken using a
+ * A {@link SpeechSynthesis} represents a text that will be spoken using a
  * synthesis voice. It can be either a string of text or a SSML document.
  * 
  * @author Nu Echo Inc.

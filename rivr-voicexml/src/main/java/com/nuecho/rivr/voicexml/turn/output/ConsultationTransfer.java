@@ -4,7 +4,7 @@
 package com.nuecho.rivr.voicexml.turn.output;
 
 /**
- * A <code>ConsultationTransfer</code> is a is a {@link SupervisedTransfer} that
+ * A {@link ConsultationTransfer} is a is a {@link SupervisedTransfer} that
  * is similar to a {@link BlindTransfer} except that the outcome of the transfer
  * call setup is known and the caller is
  * not dropped as a result of an unsuccessful transfer attempt.

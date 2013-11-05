@@ -9,7 +9,7 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>Pause</code> represents a silence of a specified duration in an
+ * A {@link Pause} represents a silence of a specified duration in an
  * {@link AudioItem} sequence.
  * 
  * @author Nu Echo Inc.

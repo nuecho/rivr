@@ -11,17 +11,16 @@ import com.nuecho.rivr.voicexml.turn.input.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>Recording</code> represents the description of a
- * recording final phase of an interaction.
- * <p>
- * It may have an optional {@link DtmfRecognition} to recognize
- * DTMF input while recording. A DTMF input matching one of the
- * {@link DtmfRecognition} grammar will terminate the recording and
- * place the recording in a variable.
+ * A {@link Recording} represents the description of a recording final phase of
+ * an interaction. <p> It may have an optional {@link DtmfRecognition} to
+ * recognize DTMF input while recording. A DTMF input matching one of the
+ * {@link DtmfRecognition} grammar will terminate the recording and place the
+ * recording in a variable.
  * 
  * @author Nu Echo Inc.
  * @see DtmfRecognition
- * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.6">http://www.w3.org/TR/voicexml20/#dml2.3.6</a>
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml2.3.6">http://www.w3.org/TR/voicexml20/#dml2.3.6</a>
  */
 public final class Recording implements JsonSerializable {
     private static final String DTMF_TERM_PROPERTY = "dtmfTerm";
@@ -43,25 +42,25 @@ public final class Recording implements JsonSerializable {
     private boolean mPostAudioToServer = true;
 
     /**
-     * @param dtmfRecognition The
-     *            {@link DtmfRecognition} used to interrupt the
-     *            recording. Null reverts to VoiceXML default value.
+     * @param dtmfRecognition The {@link DtmfRecognition} used to interrupt the
+     *            recording. <code>null</code> to use the VoiceXML platform
+     *            default
      */
     public void setDtmfTermRecognition(DtmfRecognition dtmfRecognition) {
         mDtmfTermRecognition = dtmfRecognition;
     }
 
     /**
-     * @param beep If true, a tone is emitted just prior to recording. Null
-     *            reverts to VoiceXML default value.
+     * @param beep If true, a tone is emitted just prior to recording.
+     *            <code>null</code> to use the VoiceXML platform default.
      */
     public void setBeep(Boolean beep) {
         mBeep = Boolean.valueOf(beep);
     }
 
     /**
-     * @param maximumTime The maximum duration to record. Null reverts to
-     *            VoiceXML default value.
+     * @param maximumTime The maximum duration to record. <code>null</code> to
+     *            use the VoiceXML platform default.
      */
     public void setMaximumTime(TimeValue maximumTime) {
         mMaximumTime = maximumTime;
@@ -69,16 +68,17 @@ public final class Recording implements JsonSerializable {
 
     /**
      * @param finalSilence The interval of silence that indicates end of speech.
-     *            Null reverts to VoiceXML default value.
+     *            <code>null</code> to use the VoiceXML platform default
      */
     public void setFinalSilence(TimeValue finalSilence) {
         mFinalSilence = finalSilence;
     }
 
     /**
-     * @param type The media format of the resulting recording. Null reverts to
-     *            VoiceXML default value.
-     * @see <a href="http://www.w3.org/TR/voicexml20/#dmlAAudioFormats">http://www.w3.org/TR/voicexml20/#dmlAAudioFormats</a>
+     * @param type The media format of the resulting recording.
+     *            <code>null</code> to use the VoiceXML platform default.
+     * @see <a
+     *      href="http://www.w3.org/TR/voicexml20/#dmlAAudioFormats">http://www.w3.org/TR/voicexml20/#dmlAAudioFormats</a>
      */
     public void setType(String type) {
         mType = type;
@@ -95,7 +95,8 @@ public final class Recording implements JsonSerializable {
     /**
      * @param dtmfTerm If true, any DTMF keypress not matched by an active
      *            grammar will be treated as a match of an active local DTMF
-     *            grammar. Null reverts to VoiceXML default value.
+     *            grammar. <code>null</code> to use the VoiceXML platform
+     *            default
      */
     public void setDtmfTerm(Boolean dtmfTerm) {
         mDtmfTerm = Boolean.valueOf(dtmfTerm);
@@ -165,9 +166,7 @@ public final class Recording implements JsonSerializable {
                  * result
                  + ((mClientSideAssignationDestination == null) ? 0 : mClientSideAssignationDestination.hashCode());
         result = prime * result + ((mDtmfTerm == null) ? 0 : mDtmfTerm.hashCode());
-        result = prime
-                 * result
-                 + ((mDtmfTermRecognition == null) ? 0 : mDtmfTermRecognition.hashCode());
+        result = prime * result + ((mDtmfTermRecognition == null) ? 0 : mDtmfTermRecognition.hashCode());
         result = prime * result + ((mFinalSilence == null) ? 0 : mFinalSilence.hashCode());
         result = prime * result + ((mMaximumTime == null) ? 0 : mMaximumTime.hashCode());
         result = prime * result + (mPostAudioToServer ? 1231 : 1237);

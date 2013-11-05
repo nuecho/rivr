@@ -13,11 +13,11 @@ import com.nuecho.rivr.voicexml.turn.output.grammar.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>SpeechRecognition</code> represents the speech part of
- * an interaction phase recognition configuration. It is composed of a list of
- * speech {@link GrammarItem} and optional properties (complete timeout,
- * incomplete timeout, max speech timeout, max nbest, confidence level, speed
- * versus accuracy and sensitivity).
+ * A {@link SpeechRecognition} represents the speech part of an interaction phase
+ * recognition configuration. It is composed of a list of speech
+ * {@link GrammarItem} and optional properties (complete timeout, incomplete
+ * timeout, max speech timeout, max nbest, confidence level, speed versus
+ * accuracy and sensitivity).
  * 
  * @author Nu Echo Inc.
  */
@@ -56,8 +56,9 @@ public final class SpeechRecognition extends Recognition {
     /**
      * @param completeTimeout The required length of silence following user
      *            speech before the speech recognizer finalizes a complete
-     *            result. Null reverts to VoiceXML default value.
-     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
+     *            result. <code>null</code> to use the VoiceXML platform default
+     * @see <a
+     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setCompleteTimeout(TimeValue completeTimeout) {
         mCompleteTimeout = completeTimeout;
@@ -66,17 +67,18 @@ public final class SpeechRecognition extends Recognition {
     /**
      * @param incompleteTimeout The required length of silence following user
      *            speech after which a recognizer finalizes an incomplete
-     *            result. Null reverts to VoiceXML default value.
-     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
+     *            result. <code>null</code> to use the VoiceXML platform default
+     * @see <a
+     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setIncompleteTimeout(TimeValue incompleteTimeout) {
         mIncompleteTimeout = incompleteTimeout;
     }
 
     /**
-     * @param maxSpeechTimeout The maximum duration of user speech. Null reverts
-     *            to VoiceXML default value.
-     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
+     * @param maxSpeechTimeout The maximum duration of user speech. <code>null</code> to use the VoiceXML platform default
+     * @see <a
+     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setMaxSpeechTimeout(TimeValue maxSpeechTimeout) {
         mMaxSpeechTimeout = maxSpeechTimeout;
@@ -84,8 +86,9 @@ public final class SpeechRecognition extends Recognition {
 
     /**
      * @param maxNBest The maximum size of the recognition result. Must be a
-     *            positive integer. Null reverts to VoiceXML default value.
-     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
+     *            positive integer. <code>null</code> to use the VoiceXML platform default
+     * @see <a
+     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setMaxNBest(Integer maxNBest) {
         if (maxNBest != null) {
@@ -98,9 +101,9 @@ public final class SpeechRecognition extends Recognition {
     /**
      * @param confidenceLevel The speech recognition confidence level. Results
      *            with confidence below this value will be rejected (nomatch).
-     *            Value must be between 0.0 and 1.0. Null reverts to VoiceXML
-     *            default value.
-     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
+     *            Value must be between 0.0 and 1.0.<code>null</code> to use the VoiceXML platform default.
+     * @see <a
+     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setConfidenceLevel(Double confidenceLevel) {
         if (confidenceLevel != null) {
@@ -113,9 +116,9 @@ public final class SpeechRecognition extends Recognition {
     /**
      * @param speedVersusAccuracy A hint specifying the desired balance between
      *            speed versus accuracy. A value of 0.0 means fastest
-     *            recognition. A value of 1.0 means best accuracy. Null reverts
-     *            to VoiceXML default value.
-     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
+     *            recognition. A value of 1.0 means best accuracy. <code>null</code> to use the VoiceXML platform default
+     * @see <a
+     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setSpeedVersusAccuracy(Double speedVersusAccuracy) {
         if (speedVersusAccuracy != null) {
@@ -128,8 +131,7 @@ public final class SpeechRecognition extends Recognition {
     /**
      * @param sensitivity Set the sensitivity level. A value of 1.0 means that
      *            it is highly sensitive to quiet input. A value of 0.0 means it
-     *            is least sensitive to noise. Null reverts to VoiceXML default
-     *            value.
+     *            is least sensitive to noise. <code>null</code> to use the VoiceXML platform default.
      */
     public void setSensitivity(Double sensitivity) {
         if (sensitivity != null) {

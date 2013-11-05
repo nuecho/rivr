@@ -10,8 +10,8 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>AudioFile</code> represents an audio file with an optional synthesis
- * text backup.
+ * A {@link AudioFile} represents an audio file with an optional synthesis text
+ * backup.
  * 
  * @author Nu Echo Inc.
  * @see SpeechSynthesis
@@ -68,8 +68,8 @@ public final class AudioFile extends AudioItem {
     }
 
     /**
-     * @param resourceFetchConfiguration The resource fetch configuration. Null
-     *            reverts to VoiceXML default value.
+     * @param resourceFetchConfiguration The resource fetch configuration.
+     *            <code>null</code> to use the VoiceXML platform default.
      */
     public void setResourceFetchConfiguration(ResourceFetchConfiguration resourceFetchConfiguration) {
         mResourceFetchConfiguration = resourceFetchConfiguration;

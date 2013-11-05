@@ -22,7 +22,7 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A <code>SubdialogueCall</code> is a {@link VoiceXmlOutputTurn} that
+ * A {@link SubdialogueCall} is a {@link VoiceXmlOutputTurn} that
  * invokes another external dialogue.
  * <p>
  * Parameters may be passed to the subdialogue and return values may be
@@ -91,7 +91,7 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
 
     /**
      * @param method The HTTP method used to invoke the subdialogue (GET or
-     *            POST). Null reverts to VoiceXML default value.
+     *            POST). <code>null</code> to use the VoiceXML platform default
      * @see SubmitMethod
      */
     public final void setMethod(SubmitMethod method) {
@@ -99,8 +99,7 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param fetchConfiguration The {@link FetchConfiguration}. Null reverts to
-     *            VoiceXML default value.
+     * @param fetchConfiguration The {@link FetchConfiguration}.  <code>null</code> to use the VoiceXML platform default.
      */
     public final void setSubdialogueFetchConfiguration(FetchConfiguration fetchConfiguration) {
         mFetchConfiguration = fetchConfiguration;
