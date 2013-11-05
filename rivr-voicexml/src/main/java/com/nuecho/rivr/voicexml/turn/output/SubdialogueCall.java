@@ -31,7 +31,6 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * 
  * @author Nu Echo Inc.
  * @see Parameter
- * @see SubmitMethod
  * @see <a
  *      href="http://www.w3.org/TR/voicexml20/#dml2.3.4">http://www.w3.org/TR/voicexml20/#dml2.3.4</a>
  */
@@ -311,12 +310,5 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
             return builder.build();
         }
 
-    }
-
-    /**
-     * @author NuEcho Inc.
-     */
-    enum SubmitMethod {
-        get, post
     }
 }
