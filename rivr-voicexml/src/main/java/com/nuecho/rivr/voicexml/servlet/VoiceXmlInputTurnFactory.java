@@ -193,8 +193,8 @@ public final class VoiceXmlInputTurnFactory implements
         MarkInfo markInfo = null;
         if (recognitionObject.containsKey(MARK_PROPERTY)) {
             JsonObject markObject = recognitionObject.getJsonObject(MARK_PROPERTY);
-            markInfo = new MarkInfo(markObject.getString(MARK_NAME_PROPERTY),
-                                    JsonUtils.getLongProperty(markObject, MARK_TIME_PROPERTY));
+            long timeInMilliseconds = JsonUtils.getLongProperty(markObject, MARK_TIME_PROPERTY);
+            markInfo = new MarkInfo(markObject.getString(MARK_NAME_PROPERTY), Duration.milliseconds(timeInMilliseconds));
         }
 
         voiceXmlInputTurn.setRecognitionInfo(new RecognitionInfo(recognitionResultArray, markInfo));

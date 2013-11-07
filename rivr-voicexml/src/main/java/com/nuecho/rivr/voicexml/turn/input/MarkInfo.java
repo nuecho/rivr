@@ -10,11 +10,10 @@ public final class MarkInfo implements JsonSerializable {
     private static final String TIME_PROPERTY = "time";
     private static final String NAME_PROPERTY = "name";
     private final String mName;
-    private final long mTime;
+    private final Duration mTime;
 
-    public MarkInfo(String name, long time) {
+    public MarkInfo(String name, Duration time) {
         Assert.notEmpty(name, NAME_PROPERTY);
-        Assert.notNegative(time, TIME_PROPERTY);
         mName = name;
         mTime = time;
     }
@@ -23,7 +22,7 @@ public final class MarkInfo implements JsonSerializable {
         return mName;
     }
 
-    public long getTime() {
+    public Duration getTime() {
         return mTime;
     }
 
@@ -31,7 +30,7 @@ public final class MarkInfo implements JsonSerializable {
     public JsonValue asJson() {
         JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
         JsonUtils.add(builder, NAME_PROPERTY, mName);
-        builder.add(TIME_PROPERTY, mTime);
+        JsonUtils.addDurationProperty(builder, TIME_PROPERTY, mTime);
         return builder.build();
     }
 }
