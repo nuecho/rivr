@@ -46,7 +46,7 @@ public class Interaction extends VoiceXmlOutputTurn {
      * @param name The name of this turn. Not empty.
      * @param prompts The list of {@link Prompt}. Not null.
      */
-    Interaction(String name, List<Prompt> prompts) {
+    public Interaction(String name, List<Prompt> prompts) {
         super(name);
         Assert.notNull(prompts, "prompts");
         mPrompts = new ArrayList<Prompt>(prompts);
@@ -60,7 +60,7 @@ public class Interaction extends VoiceXmlOutputTurn {
      * @param finalRecognitionWindow The final recognition phase configuration.
      *            Not null.
      */
-    Interaction(String name, List<Prompt> prompts, FinalRecognitionWindow finalRecognitionWindow) {
+    public Interaction(String name, List<Prompt> prompts, FinalRecognitionWindow finalRecognitionWindow) {
         super(name);
         Assert.notNull(prompts, "prompts");
         Assert.notNull(finalRecognitionWindow, "recognition");
@@ -75,13 +75,17 @@ public class Interaction extends VoiceXmlOutputTurn {
      * @param finalRecordingWindow The final recording phase configuration. Not
      *            null.
      */
-    Interaction(String name, List<Prompt> prompts, FinalRecordingWindow finalRecordingWindow) {
+    public Interaction(String name, List<Prompt> prompts, FinalRecordingWindow finalRecordingWindow) {
         super(name);
         Assert.notNull(prompts, "prompts");
         Assert.notNull(finalRecordingWindow, "recording");
         mPrompts = new ArrayList<Prompt>(prompts);
         mFinalRecordingWindow = finalRecordingWindow;
         mFinalRecognitionWindow = null;
+    }
+
+    public static Builder interaction(String interactionName) {
+        return new Builder(interactionName);
     }
 
     public final List<Prompt> getPrompts() {
@@ -884,7 +888,7 @@ public class Interaction extends VoiceXmlOutputTurn {
      * </ul> </ul> <p> At any time, it is possible to change the current
      * language used for prompts (relevant to speech synthesis) and the barge-in
      * type, i.e. <i>speech</i> or <i>hotword</i>. <p> This can be translated
-     * to: <pre> Builder builder = Builder.newInteraction();
+     * to: <pre> Builder builder = Builder.interaction();
      * builder.addPrompt(...); builder.addPrompt(...); //repeat as needed
      * builder.addPrompt(...); Interaction interaction = builder.build(...);
      * </pre>
@@ -900,7 +904,7 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         private boolean mBuilt;
 
-        private Builder(String turnName) {
+        public Builder(String turnName) {
             mTurnName = turnName;
         }
 
@@ -910,7 +914,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          * @param turnName of the interaction to be created.
          */
 
-        public static Builder newInteraction(String turnName) {
+        public static Builder interaction(String turnName) {
             return new Builder(turnName);
         }
 
