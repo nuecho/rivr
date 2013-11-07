@@ -40,9 +40,9 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     private SessionContainer<I, O, F, L, C> mSessionContainer;
     private InputTurnFactory<I, F> mInputTurnFactory;
 
-    private TimeValue mDialogueTimeout = TimeValue.milliseconds(10000);
-    private TimeValue mSessionTimeout = TimeValue.minutes(30);
-    private TimeValue mSessionScanPeriod = TimeValue.minutes(2);
+    private Duration mDialogueTimeout = Duration.milliseconds(10000);
+    private Duration mSessionTimeout = Duration.minutes(30);
+    private Duration mSessionScanPeriod = Duration.minutes(2);
 
     protected abstract void initDialogueServlet() throws DialogueServletInitializationException;
 
@@ -159,17 +159,17 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         mLoggerFactory = loggerFactory;
     }
 
-    public final void setDialogueTimeout(TimeValue dialogueTimeout) {
+    public final void setDialogueTimeout(Duration dialogueTimeout) {
         Assert.notNull(dialogueTimeout, "dialogueTimeout");
         mDialogueTimeout = dialogueTimeout;
     }
 
-    public void setSessionTimeout(TimeValue sessionTimeout) {
+    public void setSessionTimeout(Duration sessionTimeout) {
         Assert.notNull(sessionTimeout, "sessionTimeout");
         mSessionTimeout = sessionTimeout;
     }
 
-    public void setSessionScanPeriod(TimeValue sessionScanPeriod) {
+    public void setSessionScanPeriod(Duration sessionScanPeriod) {
         Assert.notNull(sessionScanPeriod, "sessionScanPeriod");
         mSessionScanPeriod = sessionScanPeriod;
     }

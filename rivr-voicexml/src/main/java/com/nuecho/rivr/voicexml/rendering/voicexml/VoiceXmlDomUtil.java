@@ -248,7 +248,7 @@ public final class VoiceXmlDomUtil {
             addFetchAudioProperty(vxmlElement, fetchAudioLocation);
         }
 
-        addTimeProperty(vxmlElement, FETCH_TIMEOUT_PROPERTY, fetchConfiguration.getDefaultFetchTimeout());
+        addDurationProperty(vxmlElement, FETCH_TIMEOUT_PROPERTY, fetchConfiguration.getDefaultFetchTimeout());
 
         applyDefaultResourceFetchConfiguration(vxmlElement, fetchConfiguration.getDefaultAudioFetchConfiguration());
         applyDefaultResourceFetchConfiguration(vxmlElement, fetchConfiguration.getDefaultGrammarFetchConfiguration());
@@ -265,10 +265,10 @@ public final class VoiceXmlDomUtil {
     public static void applyRessourceFetchConfiguration(Element element,
                                                         ResourceFetchConfiguration resourceFetchConfiguration) {
         if (resourceFetchConfiguration != null) {
-            setCacheControlTimeAttribute(element, MAX_AGE_ATTRIBUTE, resourceFetchConfiguration.getMaxAge());
-            setCacheControlTimeAttribute(element, MAX_STALE_ATTRIBUTE, resourceFetchConfiguration.getMaxStale());
+            setCacheControlDurationAttribute(element, MAX_AGE_ATTRIBUTE, resourceFetchConfiguration.getMaxAge());
+            setCacheControlDurationAttribute(element, MAX_STALE_ATTRIBUTE, resourceFetchConfiguration.getMaxStale());
             setFetchHintAttribute(element, FETCH_HINT_ATTRIBUTE, resourceFetchConfiguration.getFetchHint());
-            setTimeAttribute(element, FETCH_TIMEOUT_ATTRIBUTE, resourceFetchConfiguration.getTimeOut());
+            setDurationAttribute(element, FETCH_TIMEOUT_ATTRIBUTE, resourceFetchConfiguration.getTimeOut());
         }
     }
 
@@ -277,8 +277,8 @@ public final class VoiceXmlDomUtil {
         if (fetchConfiguration != null) {
             String name = fetchConfiguration.getName();
             addFetchHintProperty(parent, name + FETCH_HINT_PROPERTY_SUFFIX, fetchConfiguration.getFetchHint());
-            addCacheControlTimeProperty(parent, name + MAX_AGE_PROPERTY_SUFFIX, fetchConfiguration.getMaxAge());
-            addCacheControlTimeProperty(parent, name + MAX_STALE_PROPERTY_SUFFIX, fetchConfiguration.getMaxStale());
+            addCacheControlDurationProperty(parent, name + MAX_AGE_PROPERTY_SUFFIX, fetchConfiguration.getMaxAge());
+            addCacheControlDurationProperty(parent, name + MAX_STALE_PROPERTY_SUFFIX, fetchConfiguration.getMaxStale());
         }
     }
 
@@ -346,7 +346,7 @@ public final class VoiceXmlDomUtil {
             } else if (audioItem instanceof Pause) {
                 Pause pause = (Pause) audioItem;
                 Element breakElement = DomUtils.appendNewElement(promptElement, BREAK_ELEMENT);
-                setTimeAttribute(breakElement, TIME_ATTRIBUTE, pause.getDuration());
+                setDurationAttribute(breakElement, TIME_ATTRIBUTE, pause.getDuration());
                 lastItemWasText = false;
             } else if (audioItem instanceof Mark) {
                 Mark mark = (Mark) audioItem;
@@ -371,25 +371,25 @@ public final class VoiceXmlDomUtil {
         }
     }
 
-    public static void addCacheControlTimeProperty(Element parent, String propertyName, TimeValue value) {
+    public static void addCacheControlDurationProperty(Element parent, String propertyName, Duration value) {
         if (value != null) {
             addProperty(parent, propertyName, String.valueOf(value.getMilliseconds() / 1000));
         }
     }
 
-    public static void setCacheControlTimeAttribute(Element parent, String propertyName, TimeValue value) {
+    public static void setCacheControlDurationAttribute(Element parent, String propertyName, Duration value) {
         if (value != null) {
             setAttribute(parent, propertyName, String.valueOf(value.getMilliseconds() / 1000));
         }
     }
 
-    public static void addTimeProperty(Element parent, String propertyName, TimeValue value) {
+    public static void addDurationProperty(Element parent, String propertyName, Duration value) {
         if (value != null) {
             addProperty(parent, propertyName, value.getMilliseconds() + MILLISECOND_UNIT_SUFFIX);
         }
     }
 
-    public static void setTimeAttribute(Element element, String attributeName, TimeValue value) {
+    public static void setDurationAttribute(Element element, String attributeName, Duration value) {
         if (value != null) {
             setAttribute(element, attributeName, value.getMilliseconds() + MILLISECOND_UNIT_SUFFIX);
         }
@@ -505,8 +505,8 @@ public final class VoiceXmlDomUtil {
     public static void applyDocumentFetchConfiguration(Element submitElement,
                                                        DocumentFetchConfiguration submitTurnFetchConfiguration) {
         if (submitTurnFetchConfiguration == null) return;
-        TimeValue timeOut = submitTurnFetchConfiguration.getTimeOut();
-        setTimeAttribute(submitElement, FETCH_TIMEOUT_PROPERTY, timeOut);
+        Duration timeOut = submitTurnFetchConfiguration.getTimeOut();
+        setDurationAttribute(submitElement, FETCH_TIMEOUT_PROPERTY, timeOut);
 
         String fetchAudio = submitTurnFetchConfiguration.getFetchAudio();
         applyFetchAudio(submitElement, fetchAudio);
@@ -578,9 +578,9 @@ public final class VoiceXmlDomUtil {
 
         VoiceXmlDomUtil.renderGrammars(dtmfRecognition.getGrammarItems(), formItemElement, DTMF_INPUT_MODE);
 
-        addTimeProperty(formItemElement, INTER_DIGIT_TIMEOUT_PROPERTY, dtmfRecognition.getInterDigitTimeout());
+        addDurationProperty(formItemElement, INTER_DIGIT_TIMEOUT_PROPERTY, dtmfRecognition.getInterDigitTimeout());
 
-        addTimeProperty(formItemElement, TERM_TIMEOUT_PROPERTY, dtmfRecognition.getTermTimeout());
+        addDurationProperty(formItemElement, TERM_TIMEOUT_PROPERTY, dtmfRecognition.getTermTimeout());
 
         addProperty(formItemElement, TERM_CHAR_PROPERTY, dtmfRecognition.getTermChar());
 
@@ -595,11 +595,11 @@ public final class VoiceXmlDomUtil {
 
         VoiceXmlDomUtil.renderGrammars(speechRecognition.getGrammarItems(), formItemElement, VOICE_INPUT_MODE);
 
-        addTimeProperty(formItemElement, COMPLETE_TIMEOUT_PROPERTY, speechRecognition.getCompleteTimeout());
+        addDurationProperty(formItemElement, COMPLETE_TIMEOUT_PROPERTY, speechRecognition.getCompleteTimeout());
 
-        addTimeProperty(formItemElement, INCOMPLETE_TIMEOUT_PROPERTY, speechRecognition.getIncompleteTimeout());
+        addDurationProperty(formItemElement, INCOMPLETE_TIMEOUT_PROPERTY, speechRecognition.getIncompleteTimeout());
 
-        addTimeProperty(formItemElement, MAX_SPEECH_TIMEOUT_PROPERTY, speechRecognition.getMaxSpeechTimeout());
+        addDurationProperty(formItemElement, MAX_SPEECH_TIMEOUT_PROPERTY, speechRecognition.getMaxSpeechTimeout());
 
         VoiceXmlDomUtil.addNumberProperty(formItemElement, MAX_N_BEST_PROPERTY, speechRecognition.getMaxNBest());
 

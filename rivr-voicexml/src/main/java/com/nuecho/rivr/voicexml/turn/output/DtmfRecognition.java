@@ -25,8 +25,8 @@ public final class DtmfRecognition extends Recognition {
     private static final String TERM_TIMEOUT_PROPERTY = "termTimeout";
     private static final String TERM_CHAR_PROPERTY = "termChar";
 
-    private TimeValue mInterDigitTimeout;
-    private TimeValue mTermTimeout;
+    private Duration mInterDigitTimeout;
+    private Duration mTermTimeout;
     private String mTermChar;
 
     /**
@@ -48,7 +48,7 @@ public final class DtmfRecognition extends Recognition {
      *            recognizing DTMF input. <code>null</code> to use the VoiceXML platform default.
      * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.3">http://www.w3.org/TR/voicexml20/#dml6.3.3</a>
      */
-    public void setInterDigitTimeout(TimeValue interDigitTimeout) {
+    public void setInterDigitTimeout(Duration interDigitTimeout) {
         mInterDigitTimeout = interDigitTimeout;
     }
 
@@ -57,7 +57,7 @@ public final class DtmfRecognition extends Recognition {
      *            input. <code>null</code> to use the VoiceXML platform default
      * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.3">http://www.w3.org/TR/voicexml20/#dml6.3.3</a>
      */
-    public void setTermTimeout(TimeValue termTimeout) {
+    public void setTermTimeout(Duration termTimeout) {
         mTermTimeout = termTimeout;
     }
 
@@ -74,11 +74,11 @@ public final class DtmfRecognition extends Recognition {
         mTermChar = termChar;
     }
 
-    public TimeValue getInterDigitTimeout() {
+    public Duration getInterDigitTimeout() {
         return mInterDigitTimeout;
     }
 
-    public TimeValue getTermTimeout() {
+    public Duration getTermTimeout() {
         return mTermTimeout;
     }
 
@@ -88,8 +88,8 @@ public final class DtmfRecognition extends Recognition {
 
     @Override
     protected void addJsonProperties(JsonObjectBuilder builder) {
-        JsonUtils.addTimeProperty(builder, INTERDIGIT_TIMEOUT_PROPERTY, mInterDigitTimeout);
-        JsonUtils.addTimeProperty(builder, TERM_TIMEOUT_PROPERTY, mTermTimeout);
+        JsonUtils.addDurationProperty(builder, INTERDIGIT_TIMEOUT_PROPERTY, mInterDigitTimeout);
+        JsonUtils.addDurationProperty(builder, TERM_TIMEOUT_PROPERTY, mTermTimeout);
         JsonUtils.add(builder, TERM_CHAR_PROPERTY, mTermChar);
     }
 

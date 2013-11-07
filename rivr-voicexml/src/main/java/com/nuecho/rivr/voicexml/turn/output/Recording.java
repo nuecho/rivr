@@ -34,8 +34,8 @@ public final class Recording implements JsonSerializable {
 
     private DtmfRecognition mDtmfTermRecognition;
     private Boolean mBeep;
-    private TimeValue mMaximumTime;
-    private TimeValue mFinalSilence;
+    private Duration mMaximumTime;
+    private Duration mFinalSilence;
     private String mType;
     private String mClientSideAssignationDestination;
     private Boolean mDtmfTerm;
@@ -62,7 +62,7 @@ public final class Recording implements JsonSerializable {
      * @param maximumTime The maximum duration to record. <code>null</code> to
      *            use the VoiceXML platform default.
      */
-    public void setMaximumTime(TimeValue maximumTime) {
+    public void setMaximumTime(Duration maximumTime) {
         mMaximumTime = maximumTime;
     }
 
@@ -70,7 +70,7 @@ public final class Recording implements JsonSerializable {
      * @param finalSilence The interval of silence that indicates end of speech.
      *            <code>null</code> to use the VoiceXML platform default
      */
-    public void setFinalSilence(TimeValue finalSilence) {
+    public void setFinalSilence(Duration finalSilence) {
         mFinalSilence = finalSilence;
     }
 
@@ -119,11 +119,11 @@ public final class Recording implements JsonSerializable {
         return mBeep;
     }
 
-    public TimeValue getMaximumTime() {
+    public Duration getMaximumTime() {
         return mMaximumTime;
     }
 
-    public TimeValue getFinalSilence() {
+    public Duration getFinalSilence() {
         return mFinalSilence;
     }
 
@@ -149,8 +149,8 @@ public final class Recording implements JsonSerializable {
         JsonUtils.addBooleanProperty(builder, BEEP_PROPERTY, mBeep);
         JsonUtils.addBooleanProperty(builder, DTMF_TERM_PROPERTY, mDtmfTerm);
         JsonUtils.addBooleanProperty(builder, POST_AUDIO_TO_SERVER_PROPERTY, mPostAudioToServer);
-        JsonUtils.addTimeProperty(builder, MAXIMUM_TIME_PROPERTY, mMaximumTime);
-        JsonUtils.addTimeProperty(builder, FINAL_SILENCE_PROPERTY, mFinalSilence);
+        JsonUtils.addDurationProperty(builder, MAXIMUM_TIME_PROPERTY, mMaximumTime);
+        JsonUtils.addDurationProperty(builder, FINAL_SILENCE_PROPERTY, mFinalSilence);
         JsonUtils.add(builder, DTMF_TERM_RECOGNITION_PROPERTY, mDtmfTermRecognition);
         JsonUtils.add(builder, TYPE_PROPERTY, mType);
         JsonUtils.add(builder, CLIENT_SIDE_ASSIGNATION_DESTINATION_PROPERTY, mClientSideAssignationDestination);

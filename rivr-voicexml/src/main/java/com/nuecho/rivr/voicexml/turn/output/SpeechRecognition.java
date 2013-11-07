@@ -30,9 +30,9 @@ public final class SpeechRecognition extends Recognition {
     private static final String MAX_SPEECH_TIMEOUT_PROPERTY = "maxSpeechTimeout";
     private static final String INCOMPLETE_TIMEOUT_PROPERTY = "incompleteTimeout";
     private static final String COMPLETE_TIMEOUT_PROPERTY = "completeTimeout";
-    private TimeValue mCompleteTimeout;
-    private TimeValue mIncompleteTimeout;
-    private TimeValue mMaxSpeechTimeout;
+    private Duration mCompleteTimeout;
+    private Duration mIncompleteTimeout;
+    private Duration mMaxSpeechTimeout;
     private Integer mMaxNBest;
 
     private Double mConfidenceLevel;
@@ -60,7 +60,7 @@ public final class SpeechRecognition extends Recognition {
      * @see <a
      *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
-    public void setCompleteTimeout(TimeValue completeTimeout) {
+    public void setCompleteTimeout(Duration completeTimeout) {
         mCompleteTimeout = completeTimeout;
     }
 
@@ -71,7 +71,7 @@ public final class SpeechRecognition extends Recognition {
      * @see <a
      *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
-    public void setIncompleteTimeout(TimeValue incompleteTimeout) {
+    public void setIncompleteTimeout(Duration incompleteTimeout) {
         mIncompleteTimeout = incompleteTimeout;
     }
 
@@ -80,7 +80,7 @@ public final class SpeechRecognition extends Recognition {
      * @see <a
      *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
-    public void setMaxSpeechTimeout(TimeValue maxSpeechTimeout) {
+    public void setMaxSpeechTimeout(Duration maxSpeechTimeout) {
         mMaxSpeechTimeout = maxSpeechTimeout;
     }
 
@@ -141,15 +141,15 @@ public final class SpeechRecognition extends Recognition {
         mSensitivity = sensitivity;
     }
 
-    public TimeValue getCompleteTimeout() {
+    public Duration getCompleteTimeout() {
         return mCompleteTimeout;
     }
 
-    public TimeValue getIncompleteTimeout() {
+    public Duration getIncompleteTimeout() {
         return mIncompleteTimeout;
     }
 
-    public TimeValue getMaxSpeechTimeout() {
+    public Duration getMaxSpeechTimeout() {
         return mMaxSpeechTimeout;
     }
 
@@ -171,9 +171,9 @@ public final class SpeechRecognition extends Recognition {
 
     @Override
     protected void addJsonProperties(JsonObjectBuilder builder) {
-        JsonUtils.addTimeProperty(builder, COMPLETE_TIMEOUT_PROPERTY, mCompleteTimeout);
-        JsonUtils.addTimeProperty(builder, INCOMPLETE_TIMEOUT_PROPERTY, mIncompleteTimeout);
-        JsonUtils.addTimeProperty(builder, MAX_SPEECH_TIMEOUT_PROPERTY, mMaxSpeechTimeout);
+        JsonUtils.addDurationProperty(builder, COMPLETE_TIMEOUT_PROPERTY, mCompleteTimeout);
+        JsonUtils.addDurationProperty(builder, INCOMPLETE_TIMEOUT_PROPERTY, mIncompleteTimeout);
+        JsonUtils.addDurationProperty(builder, MAX_SPEECH_TIMEOUT_PROPERTY, mMaxSpeechTimeout);
         JsonUtils.addNumberProperty(builder, CONFIDENCE_LEVEL_PROPERTY, mConfidenceLevel);
         JsonUtils.addNumberProperty(builder, MAX_N_BEST_PROPERTY, mMaxNBest);
         JsonUtils.addNumberProperty(builder, SENSITIVITY_PROPERTY, mSensitivity);

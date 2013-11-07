@@ -147,7 +147,7 @@ public final class VoiceXmlInputTurnFactory implements
             durationValue = 0;
         }
 
-        TimeValue duration = TimeValue.milliseconds(durationValue);
+        Duration duration = Duration.milliseconds(durationValue);
 
         voiceXmlInputTurn.setTransferResult(new TransferStatusInfo(transferStatus, duration));
     }
@@ -160,10 +160,10 @@ public final class VoiceXmlInputTurnFactory implements
 
         JsonObject recordingMetaData = resultObject.getJsonObject(RECORDING_META_DATA_PROPERTY);
 
-        TimeValue duration;
+        Duration duration;
         if (recordingMetaData.containsKey(DURATION_PROPERTY)) {
             long durationInMilliseconds = JsonUtils.getLongProperty(recordingMetaData, DURATION_PROPERTY);
-            duration = TimeValue.milliseconds(durationInMilliseconds);
+            duration = Duration.milliseconds(durationInMilliseconds);
         } else {
             duration = null;
         }

@@ -84,11 +84,11 @@ public final class JsonUtils {
         return new JsonStringImplementation(string);
     }
 
-    public static void addTimeProperty(JsonObjectBuilder builder, String propertyName, TimeValue timeValue) {
-        if (timeValue == null) {
+    public static void addDurationProperty(JsonObjectBuilder builder, String propertyName, Duration duration) {
+        if (duration == null) {
             builder.addNull(propertyName);
         } else {
-            builder.add(propertyName, timeValue.getMilliseconds());
+            builder.add(propertyName, duration.getMilliseconds());
         }
     }
 

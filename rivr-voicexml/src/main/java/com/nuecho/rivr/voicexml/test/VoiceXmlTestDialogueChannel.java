@@ -31,7 +31,7 @@ public class VoiceXmlTestDialogueChannel
     private static final String INPUTMODE_PROPERTY = "inputmode";
     private static final String UTTERANCE_PROPERTY = "utterance";
 
-    public VoiceXmlTestDialogueChannel(String name, TimeValue defaultTimeout) {
+    public VoiceXmlTestDialogueChannel(String name, Duration defaultTimeout) {
         super(name, defaultTimeout);
     }
 

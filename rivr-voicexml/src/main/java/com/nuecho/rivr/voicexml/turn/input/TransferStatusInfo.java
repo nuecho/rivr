@@ -16,9 +16,9 @@ public final class TransferStatusInfo implements JsonSerializable {
     private static final String DURATION_PROPERTY = "duration";
     private static final String STATUS_PROPERTY = "status";
     private final TransferStatus mStatus;
-    private final TimeValue mDuration;
+    private final Duration mDuration;
 
-    public TransferStatusInfo(TransferStatus status, TimeValue duration) {
+    public TransferStatusInfo(TransferStatus status, Duration duration) {
         Assert.notNull(status, STATUS_PROPERTY);
         Assert.notNull(duration, DURATION_PROPERTY);
         mStatus = status;
@@ -29,7 +29,7 @@ public final class TransferStatusInfo implements JsonSerializable {
         return mStatus;
     }
 
-    public TimeValue getDuration() {
+    public Duration getDuration() {
         return mDuration;
     }
 

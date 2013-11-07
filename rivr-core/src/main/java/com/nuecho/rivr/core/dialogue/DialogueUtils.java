@@ -24,7 +24,7 @@ public final class DialogueUtils {
 
     public static <I extends InputTurn, O extends OutputTurn> I doTurn(O outputTurn,
                                                                        DialogueContext<I, O> context,
-                                                                       TimeValue timeout) throws Timeout,
+                                                                       Duration timeout) throws Timeout,
             InterruptedException {
         return context.getDialogueChannel().doTurn(outputTurn, timeout);
     }

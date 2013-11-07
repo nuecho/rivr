@@ -154,10 +154,10 @@ public class Interaction extends VoiceXmlOutputTurn {
                     && interactionPromptIndex == mPrompts.size() - 1
                     && same(mFinalRecognitionWindow.getDtmfRecognition(), prompt.getDtmfRecognition())
                     && same(mFinalRecognitionWindow.getSpeechRecognition(), prompt.getSpeechRecognition())) {
-                    addTimeProperty(formItemElement, TIMEOUT_PROPERTY, mFinalRecognitionWindow.getNoInputTimeout());
+                    addDurationProperty(formItemElement, TIMEOUT_PROPERTY, mFinalRecognitionWindow.getNoInputTimeout());
                     recognitionMergedWithLastPrompt = true;
                 } else {
-                    addTimeProperty(formItemElement, TIMEOUT_PROPERTY, TimeValue.ZERO);
+                    addDurationProperty(formItemElement, TIMEOUT_PROPERTY, Duration.ZERO);
                 }
             }
 
@@ -183,7 +183,7 @@ public class Interaction extends VoiceXmlOutputTurn {
                                                                    speechGlobalRecognition),
                                          recognitionFormItemElement);
 
-                addTimeProperty(recognitionFormItemElement,
+                addDurationProperty(recognitionFormItemElement,
                                 TIMEOUT_PROPERTY,
                                 mFinalRecognitionWindow.getNoInputTimeout());
             }
@@ -200,9 +200,9 @@ public class Interaction extends VoiceXmlOutputTurn {
             setBooleanAttribute(recordingFormItemElement, BEEP_ATTRIBUTE, recording.getBeep());
             setBooleanAttribute(recordingFormItemElement, DTMFTERM_ATTRIBUTE, recording.getDtmfTerm());
 
-            addTimeProperty(recordingFormItemElement, TIMEOUT_PROPERTY, mFinalRecordingWindow.getNoInputTimeout());
-            setTimeAttribute(recordingFormItemElement, FINAL_SILENCE_ATTRIBUTE, recording.getFinalSilence());
-            setTimeAttribute(recordingFormItemElement, MAXTIME_ATTRIBUTE, recording.getMaximumTime());
+            addDurationProperty(recordingFormItemElement, TIMEOUT_PROPERTY, mFinalRecordingWindow.getNoInputTimeout());
+            setDurationAttribute(recordingFormItemElement, FINAL_SILENCE_ATTRIBUTE, recording.getFinalSilence());
+            setDurationAttribute(recordingFormItemElement, MAXTIME_ATTRIBUTE, recording.getMaximumTime());
             setAttribute(recordingFormItemElement, TYPE_ATTRIBUTE, recording.getType());
 
             Element filledElement = DomUtils.appendNewElement(recordingFormItemElement, FILLED_ELEMENT);
@@ -511,19 +511,19 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         private final SpeechRecognition mSpeechRecognition;
         private final DtmfRecognition mDtmfRecognition;
-        private TimeValue mNoInputTimeout;
+        private Duration mNoInputTimeout;
         private final List<AudioItem> mAcknowledgeAudioItems;
 
         public FinalRecognitionWindow(DtmfRecognition dtmfRecognition,
                                       SpeechRecognition speechRecognition,
-                                      TimeValue noInputTimeout,
+                                      Duration noInputTimeout,
                                       AudioItem... acknowledgeAudioItems) {
             this(dtmfRecognition, speechRecognition, noInputTimeout, asList(acknowledgeAudioItems));
         }
 
         public FinalRecognitionWindow(DtmfRecognition dtmfRecognition,
                                       SpeechRecognition speechRecognition,
-                                      TimeValue noInputTimeout,
+                                      Duration noInputTimeout,
                                       List<? extends AudioItem> acknowledgeAudioItems) {
             mSpeechRecognition = speechRecognition;
             mDtmfRecognition = dtmfRecognition;
@@ -540,7 +540,7 @@ public class Interaction extends VoiceXmlOutputTurn {
             return mDtmfRecognition;
         }
 
-        public TimeValue getNoInputTimeout() {
+        public Duration getNoInputTimeout() {
             return mNoInputTimeout;
         }
 
@@ -548,7 +548,7 @@ public class Interaction extends VoiceXmlOutputTurn {
             return Collections.unmodifiableList(mAcknowledgeAudioItems);
         }
 
-        public void setNoInputTimeout(TimeValue noInputTimeout) {
+        public void setNoInputTimeout(Duration noInputTimeout) {
             mNoInputTimeout = noInputTimeout;
         }
 
@@ -563,7 +563,7 @@ public class Interaction extends VoiceXmlOutputTurn {
             JsonUtils.add(builder, ACKNOWLEDGE_AUDIO_ITEMS_PROPERTY, JsonUtils.toJson(mAcknowledgeAudioItems));
             JsonUtils.add(builder, DTMF_RECOGNITION_PROPERTY, mDtmfRecognition);
             JsonUtils.add(builder, SPEECH_RECOGNITION_PROPERTY, mSpeechRecognition);
-            JsonUtils.addTimeProperty(builder, NO_INPUT_TIMEOUT_PROPERTY, mNoInputTimeout);
+            JsonUtils.addDurationProperty(builder, NO_INPUT_TIMEOUT_PROPERTY, mNoInputTimeout);
             return builder.build();
         }
 
@@ -620,15 +620,15 @@ public class Interaction extends VoiceXmlOutputTurn {
         private static final String NO_INPUT_TIMEOUT_PROPERTY = "noInputTimeout";
 
         private final Recording mRecording;
-        private final TimeValue mNoInputTimeout;
+        private final Duration mNoInputTimeout;
         private final List<AudioItem> mAcknowledgeAudioItems;
 
-        public FinalRecordingWindow(Recording recording, TimeValue noInputTimeout, AudioItem... acknowledgeAudioItems) {
+        public FinalRecordingWindow(Recording recording, Duration noInputTimeout, AudioItem... acknowledgeAudioItems) {
             this(recording, noInputTimeout, asList(acknowledgeAudioItems));
         }
 
         public FinalRecordingWindow(Recording recording,
-                                    TimeValue noInputTimeout,
+                                    Duration noInputTimeout,
                                     List<? extends AudioItem> acknowledgeAudioItems) {
             Assert.notNull(recording, "recording");
             Assert.notNull(acknowledgeAudioItems, "acknowledgeAudioItems");
@@ -641,7 +641,7 @@ public class Interaction extends VoiceXmlOutputTurn {
             return mRecording;
         }
 
-        public TimeValue getNoInputTimeout() {
+        public Duration getNoInputTimeout() {
             return mNoInputTimeout;
         }
 
@@ -652,7 +652,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         @Override
         public JsonValue asJson() {
             JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
-            JsonUtils.addTimeProperty(builder, NO_INPUT_TIMEOUT_PROPERTY, mNoInputTimeout);
+            JsonUtils.addDurationProperty(builder, NO_INPUT_TIMEOUT_PROPERTY, mNoInputTimeout);
             JsonUtils.add(builder, RECORDING_PROPERTY, mRecording);
             JsonUtils.add(builder, ACKNOWLEDGE_AUDIO_ITEMS_PROPERTY, JsonUtils.toJson(mAcknowledgeAudioItems));
             return builder.build();
@@ -1054,7 +1054,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          * @param acknowledgeAudioItems audioItems to be played upon recognition
          */
         public Interaction build(DtmfRecognition dtmfRecognition,
-                                 TimeValue noinputTimeout,
+                                 Duration noinputTimeout,
                                  AudioItem... acknowledgeAudioItems) {
 
             return build(dtmfRecognition, null, noinputTimeout, asList(acknowledgeAudioItems));
@@ -1071,7 +1071,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          * @param acknowledgeAudioItems audioItems to be played upon recognition
          */
         public Interaction build(SpeechRecognition speechRecognition,
-                                 TimeValue noinputTimeout,
+                                 Duration noinputTimeout,
                                  AudioItem... acknowledgeAudioItems) {
 
             return build(null, speechRecognition, noinputTimeout, asList(acknowledgeAudioItems));
@@ -1088,7 +1088,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          * @param acknowledgeAudioItems audioItems to be played upon recognition
          */
         public Interaction build(DtmfRecognition dtmfRecognition,
-                                 TimeValue noinputTimeout,
+                                 Duration noinputTimeout,
                                  List<? extends AudioItem> acknowledgeAudioItems) {
             return build(dtmfRecognition, null, noinputTimeout, acknowledgeAudioItems);
 
@@ -1104,7 +1104,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          * @param acknowledgeAudioItems audioItems to be played upon recognition
          */
         public Interaction build(SpeechRecognition speechRecognition,
-                                 TimeValue noinputTimeout,
+                                 Duration noinputTimeout,
                                  List<? extends AudioItem> acknowledgeAudioItems) {
             return build(null, speechRecognition, noinputTimeout, acknowledgeAudioItems);
 
@@ -1122,7 +1122,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          */
         public Interaction build(DtmfRecognition dtmfRecognition,
                                  SpeechRecognition speechRecognition,
-                                 TimeValue noinputTimeout,
+                                 Duration noinputTimeout,
                                  AudioItem... acknowledgeAudioItems) {
 
             return build(dtmfRecognition, speechRecognition, noinputTimeout, asList(acknowledgeAudioItems));
@@ -1141,7 +1141,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          */
         public Interaction build(DtmfRecognition dtmfRecognition,
                                  SpeechRecognition speechRecognition,
-                                 TimeValue noinputTimeout,
+                                 Duration noinputTimeout,
                                  List<? extends AudioItem> acknowledgeAudioItems) {
 
             Assert.ensure(dtmfRecognition != null || speechRecognition != null,
@@ -1166,7 +1166,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          * @param acknowledgeAudioItems audioItems to be played upon recording
          *            completion
          */
-        public Interaction build(Recording recording, TimeValue noinputTimeout, AudioItem... acknowledgeAudioItems) {
+        public Interaction build(Recording recording, Duration noinputTimeout, AudioItem... acknowledgeAudioItems) {
             return build(recording, noinputTimeout, asList(acknowledgeAudioItems));
         }
 
@@ -1181,7 +1181,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          *            completion
          */
         public Interaction build(Recording recording,
-                                 TimeValue noinputTimeout,
+                                 Duration noinputTimeout,
                                  List<? extends AudioItem> acknowledgeAudioItems) {
             Assert.notNull(recording, "recording");
             Assert.notNull(acknowledgeAudioItems, "acknowledgeAudioItems");

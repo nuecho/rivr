@@ -18,7 +18,7 @@ public final class FetchConfiguration {
 
     private DocumentFetchConfiguration mDocumentFetchConfiguration = new DocumentFetchConfiguration();
 
-    private TimeValue mDefaultFetchTimeout;
+    private Duration mDefaultFetchTimeout;
     private String mDefaultFetchAudio;
 
     public AudioFetchConfiguration getDefaultAudioFetchConfiguration() {
@@ -53,11 +53,11 @@ public final class FetchConfiguration {
         mObjectFetchConfiguration = objectFetchConfiguration;
     }
 
-    public TimeValue getDefaultFetchTimeout() {
+    public Duration getDefaultFetchTimeout() {
         return mDefaultFetchTimeout;
     }
 
-    public void setDefaultFetchTimeout(TimeValue defaultFetchTimeout) {
+    public void setDefaultFetchTimeout(Duration defaultFetchTimeout) {
         mDefaultFetchTimeout = defaultFetchTimeout;
     }
 

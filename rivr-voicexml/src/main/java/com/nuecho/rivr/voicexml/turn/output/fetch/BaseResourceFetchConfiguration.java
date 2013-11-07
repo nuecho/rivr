@@ -13,8 +13,8 @@ public abstract class BaseResourceFetchConfiguration {
 
     private final String mName;
 
-    private TimeValue mMaxAge;
-    private TimeValue mMaxStale;
+    private Duration mMaxAge;
+    private Duration mMaxStale;
     private FetchHint mFetchHint;
 
     protected BaseResourceFetchConfiguration(String name) {
@@ -25,19 +25,19 @@ public abstract class BaseResourceFetchConfiguration {
         return mName;
     }
 
-    public final TimeValue getMaxAge() {
+    public final Duration getMaxAge() {
         return mMaxAge;
     }
 
-    public final void setMaxAge(TimeValue maxAge) {
+    public final void setMaxAge(Duration maxAge) {
         mMaxAge = maxAge;
     }
 
-    public final TimeValue getMaxStale() {
+    public final Duration getMaxStale() {
         return mMaxStale;
     }
 
-    public final void setMaxStale(TimeValue maxStale) {
+    public final void setMaxStale(Duration maxStale) {
         mMaxStale = maxStale;
     }
 

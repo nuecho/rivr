@@ -10,7 +10,7 @@ import java.util.regex.*;
 /**
  * @author Nu Echo Inc.
  */
-public final class TimeValue implements Comparable<TimeValue>, Serializable {
+public final class Duration implements Comparable<Duration>, Serializable {
 
     /* Even though they fit inside an integer, those constant should be kept as long to avoid 
      * potential mistakes (overflow) when doing arithmetics with them. By having them in a long,
@@ -25,97 +25,97 @@ public final class TimeValue implements Comparable<TimeValue>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final TimeValue ZERO = new TimeValue(0);
-    public static final Pattern TIME_EXPRESSION_REGEXP = Pattern.compile("((\\d+)\\s*y)?\\s*"
+    public static final Duration ZERO = new Duration(0);
+    public static final Pattern DURATION_EXPRESSION_REGEXP = Pattern.compile("((\\d+)\\s*y)?\\s*"
                                                                          + "((\\d+)\\s*d)?\\s*"
                                                                          + "((\\d+)\\s*h)?\\s*"
                                                                          + "((\\d+)\\s*m)?\\s*"
                                                                          + "((\\d+)\\s*s)?\\s*"
                                                                          + "((\\d+)\\s*ms)?");
 
-    public static TimeValue seconds(long seconds) {
+    public static Duration seconds(long seconds) {
         Assert.between(0, seconds, Long.MAX_VALUE / SECOND_IN_MILLIS);
-        return new TimeValue(seconds * SECOND_IN_MILLIS);
+        return new Duration(seconds * SECOND_IN_MILLIS);
     }
 
-    public static TimeValue minutes(long minutes) {
+    public static Duration minutes(long minutes) {
         Assert.between(0, minutes, Long.MAX_VALUE / MINUTE_IN_MILLIS);
-        return new TimeValue(minutes * MINUTE_IN_MILLIS);
+        return new Duration(minutes * MINUTE_IN_MILLIS);
     }
 
-    public static TimeValue hours(long hours) {
+    public static Duration hours(long hours) {
         Assert.between(0, hours, Long.MAX_VALUE / HOUR_IN_MILLIS);
-        return new TimeValue(hours * HOUR_IN_MILLIS);
+        return new Duration(hours * HOUR_IN_MILLIS);
     }
 
-    public static TimeValue days(long days) {
+    public static Duration days(long days) {
         Assert.between(0, days, Long.MAX_VALUE / DAY_IN_MILLIS);
-        return new TimeValue(days * DAY_IN_MILLIS);
+        return new Duration(days * DAY_IN_MILLIS);
     }
 
-    public static TimeValue year(long year) {
+    public static Duration year(long year) {
         Assert.between(0, year, Long.MAX_VALUE / YEAR_IN_MILLIS);
-        return new TimeValue(year * YEAR_IN_MILLIS);
+        return new Duration(year * YEAR_IN_MILLIS);
     }
 
-    public static TimeValue milliseconds(long milliseconds) {
+    public static Duration milliseconds(long milliseconds) {
         Assert.notNegative(milliseconds, "milliseconds");
-        return new TimeValue(milliseconds);
+        return new Duration(milliseconds);
     }
 
-    public static TimeValue parse(String text) {
-        TimeValue timeValue = TimeValue.ZERO;
+    public static Duration parse(String text) {
+        Duration duration = Duration.ZERO;
 
         text = text.trim();
-        Matcher matcher = TIME_EXPRESSION_REGEXP.matcher(text);
+        Matcher matcher = DURATION_EXPRESSION_REGEXP.matcher(text);
 
         if (!matcher.matches()) throw new IllegalArgumentException("Invalid time value syntax: [" + text + "]");
 
         String yearsMatch = matcher.group(2);
         if (yearsMatch != null) {
-            timeValue = TimeValue.sum(timeValue, TimeValue.year(Long.parseLong(yearsMatch)));
+            duration = Duration.sum(duration, Duration.year(Long.parseLong(yearsMatch)));
         }
 
         String daysMatch = matcher.group(4);
         if (daysMatch != null) {
-            timeValue = TimeValue.sum(timeValue, TimeValue.days(Long.parseLong(daysMatch)));
+            duration = Duration.sum(duration, Duration.days(Long.parseLong(daysMatch)));
         }
 
         String hoursMatch = matcher.group(6);
         if (hoursMatch != null) {
-            timeValue = TimeValue.sum(timeValue, TimeValue.hours(Long.parseLong(hoursMatch)));
+            duration = Duration.sum(duration, Duration.hours(Long.parseLong(hoursMatch)));
         }
 
         String minutesMatch = matcher.group(8);
         if (minutesMatch != null) {
-            timeValue = TimeValue.sum(timeValue, TimeValue.minutes(Long.parseLong(minutesMatch)));
+            duration = Duration.sum(duration, Duration.minutes(Long.parseLong(minutesMatch)));
         }
 
         String secondsMatch = matcher.group(10);
         if (secondsMatch != null) {
-            timeValue = TimeValue.sum(timeValue, TimeValue.seconds(Long.parseLong(secondsMatch)));
+            duration = Duration.sum(duration, Duration.seconds(Long.parseLong(secondsMatch)));
         }
 
         String millisecondsMatch = matcher.group(12);
         if (millisecondsMatch != null) {
-            timeValue = TimeValue.sum(timeValue, TimeValue.milliseconds(Long.parseLong(millisecondsMatch)));
+            duration = Duration.sum(duration, Duration.milliseconds(Long.parseLong(millisecondsMatch)));
         }
-        return timeValue;
+        return duration;
     }
 
-    public static TimeValue sum(TimeValue a, TimeValue b) {
+    public static Duration sum(Duration a, Duration b) {
         long millisecondsA = a.getMilliseconds();
         long millisecondsB = b.getMilliseconds();
 
         long allowedMax = Long.MAX_VALUE - millisecondsA;
         if (millisecondsB > allowedMax) throw new AssertionError("Time sum would overflow Long capacity.");
 
-        return new TimeValue(millisecondsA + millisecondsB);
+        return new Duration(millisecondsA + millisecondsB);
     }
 
     private final long mMilliseconds;
 
-    private TimeValue(long milliseconds) {
+    private Duration(long milliseconds) {
         mMilliseconds = milliseconds;
     }
 
@@ -124,7 +124,7 @@ public final class TimeValue implements Comparable<TimeValue>, Serializable {
     }
 
     @Override
-    public int compareTo(TimeValue other) {
+    public int compareTo(Duration other) {
         // Don't simply return (int) mMilliseconds - other.mMilliseconds because of potential int overflow.
         long diff = mMilliseconds - other.mMilliseconds;
         if (diff < 0) return -1;
@@ -189,7 +189,7 @@ public final class TimeValue implements Comparable<TimeValue>, Serializable {
         if (this == obj) return true;
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
-        TimeValue other = (TimeValue) obj;
+        Duration other = (Duration) obj;
         if (mMilliseconds != other.mMilliseconds) return false;
         return true;
     }

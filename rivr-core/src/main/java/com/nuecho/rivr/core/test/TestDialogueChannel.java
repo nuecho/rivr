@@ -22,12 +22,12 @@ public abstract class TestDialogueChannel<I extends InputTurn, O extends OutputT
     private final SynchronousDialogueChannel<I, O, F, L, C> mChannel;
     private Step<O, L> mLastStep;
     private final String mName;
-    private TimeValue mDefaultTimeout;
+    private Duration mDefaultTimeout;
 
     private final AccumulatingLog mAccumulatingLog;
     private Logger mLogger;
 
-    public TestDialogueChannel(String name, TimeValue defaultTimeout) {
+    public TestDialogueChannel(String name, Duration defaultTimeout) {
         mName = name;
         mChannel = new SynchronousDialogueChannel<I, O, F, L, C>();
         mAccumulatingLog = new AccumulatingLog(name);
@@ -36,7 +36,7 @@ public abstract class TestDialogueChannel<I extends InputTurn, O extends OutputT
     }
 
     @Override
-    public I doTurn(O outputTurn, TimeValue timeout) throws Timeout, InterruptedException {
+    public I doTurn(O outputTurn, Duration timeout) throws Timeout, InterruptedException {
         return mChannel.doTurn(outputTurn, timeout);
     }
 
@@ -50,11 +50,11 @@ public abstract class TestDialogueChannel<I extends InputTurn, O extends OutputT
         mChannel.removeListener(listener);
     }
 
-    public void getDefaultTimeout(TimeValue defaultTimeout) {
+    public void getDefaultTimeout(Duration defaultTimeout) {
         mDefaultTimeout = defaultTimeout;
     }
 
-    public void setDefaultTimeout(TimeValue defaultTimeout) {
+    public void setDefaultTimeout(Duration defaultTimeout) {
         Assert.notNull(defaultTimeout, "defaultTimeout");
         mDefaultTimeout = defaultTimeout;
     }
@@ -74,7 +74,7 @@ public abstract class TestDialogueChannel<I extends InputTurn, O extends OutputT
     public final void stop() {
         if (!mChannel.isDialogueActive()) throw new IllegalStateException("Dialogue not active.");
         try {
-            mChannel.stop(TimeValue.ZERO);
+            mChannel.stop(Duration.ZERO);
         } catch (InterruptedException exception) {
             mLogger.warn("Interrupted.");
             Thread.currentThread().interrupt();
@@ -87,7 +87,7 @@ public abstract class TestDialogueChannel<I extends InputTurn, O extends OutputT
 
     public final Step<O, L> startDialogue(Dialogue<I, O, F, L, C> dialogue,
                                           F firstTurn,
-                                          TimeValue timeout,
+                                          Duration timeout,
                                           C dialogueContext) {
         if (mChannel.isDialogueActive()) throw new IllegalStateException("Dialogue already started.");
 
@@ -105,7 +105,7 @@ public abstract class TestDialogueChannel<I extends InputTurn, O extends OutputT
         return processInputTurn(inputTurn, mDefaultTimeout);
     }
 
-    public final Step<O, L> processInputTurn(I inputTurn, TimeValue timeout) {
+    public final Step<O, L> processInputTurn(I inputTurn, Duration timeout) {
 
         if (!mChannel.isDialogueActive()) throw new IllegalStateException("Dialogue not started.");
 

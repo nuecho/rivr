@@ -18,8 +18,8 @@ import com.nuecho.rivr.core.util.*;
 public final class SessionContainer<I extends InputTurn, O extends OutputTurn, F extends FirstTurn, L extends LastTurn, C extends DialogueContext<I, O>> {
 
     private final Logger mLogger;
-    private final TimeValue mSessionTimeout;
-    private final TimeValue mTimeoutCheckScanPeriod;
+    private final Duration mSessionTimeout;
+    private final Duration mTimeoutCheckScanPeriod;
     private final String mName;
 
     private final Map<String, Session<I, O, F, L, C>> mSessions = new HashMap<String, Session<I, O, F, L, C>>();
@@ -27,7 +27,7 @@ public final class SessionContainer<I extends InputTurn, O extends OutputTurn, F
     private boolean mStopped;
     private Thread mTimeoutCheckScanThread;
 
-    public SessionContainer(Logger logger, TimeValue sessionTimeout, TimeValue timeoutCheckScanPeriod, String name) {
+    public SessionContainer(Logger logger, Duration sessionTimeout, Duration timeoutCheckScanPeriod, String name) {
         mLogger = logger;
         mSessionTimeout = sessionTimeout;
         mTimeoutCheckScanPeriod = timeoutCheckScanPeriod;

@@ -34,7 +34,7 @@ public abstract class SupervisedTransfer extends Transfer {
     private SpeechRecognition mSpeechRecognition;
 
     private String mTransferAudio;
-    private TimeValue mConnectTimeout;
+    private Duration mConnectTimeout;
 
     /**
      * @param name The name of this turn. Not empty.
@@ -74,7 +74,7 @@ public abstract class SupervisedTransfer extends Transfer {
      * @param connectTimeout The time to wait while trying to connect the call
      *            before returning with {@link TransferStatus#NO_ANSWER}. <code>null</code> to use the VoiceXML platform default.
      */
-    public final void setConnectTimeout(TimeValue connectTimeout) {
+    public final void setConnectTimeout(Duration connectTimeout) {
         mConnectTimeout = connectTimeout;
     }
 
@@ -82,7 +82,7 @@ public abstract class SupervisedTransfer extends Transfer {
         return mTransferAudio;
     }
 
-    public final TimeValue getConnectTimeout() {
+    public final Duration getConnectTimeout() {
         return mConnectTimeout;
     }
 
@@ -98,14 +98,14 @@ public abstract class SupervisedTransfer extends Transfer {
     protected void customizeTransferElement(Element transferElement) throws VoiceXmlDocumentRenderingException {
         VoiceXmlDomUtil.processDtmfRecognition(mDtmfRecognition, transferElement);
         VoiceXmlDomUtil.processSpeechRecognition(mSpeechRecognition, transferElement);
-        setTimeAttribute(transferElement, CONNECT_TIMEOUT_ATTRIBUTE, mConnectTimeout);
+        setDurationAttribute(transferElement, CONNECT_TIMEOUT_ATTRIBUTE, mConnectTimeout);
         setAttribute(transferElement, TRANSFER_AUDIO_ATTRIBUTE, mTransferAudio);
     }
 
     @Override
     protected void addTurnProperties(JsonObjectBuilder builder) {
         super.addTurnProperties(builder);
-        JsonUtils.addTimeProperty(builder, CONNECT_TIMEOUT_PROPERTY, mConnectTimeout);
+        JsonUtils.addDurationProperty(builder, CONNECT_TIMEOUT_PROPERTY, mConnectTimeout);
         JsonUtils.add(builder, TRANSFER_AUDIO_PROPERTY, mTransferAudio);
         JsonUtils.add(builder, DTMF_RECOGNITION_PROPERTY, mDtmfRecognition);
         JsonUtils.add(builder, SPEECH_RECOGNITION_PROPERTY, mSpeechRecognition);

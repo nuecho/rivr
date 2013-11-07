@@ -28,10 +28,10 @@ public final class SynchronousDialogueChannel<I extends InputTurn, O extends Out
                                                                                               true);
     private Thread mDialogueThread;
 
-    private TimeValue mSendTimeout = TimeValue.seconds(5);
+    private Duration mSendTimeout = Duration.seconds(5);
 
-    private TimeValue mDefaultReceiveFromDialogueTimeout = TimeValue.minutes(1);
-    private TimeValue mDefaultReceiveFromControllerTimeout = TimeValue.minutes(5);
+    private Duration mDefaultReceiveFromDialogueTimeout = Duration.minutes(1);
+    private Duration mDefaultReceiveFromControllerTimeout = Duration.minutes(5);
 
     private final List<DialogueChannelListener<I, O>> mListener = new ArrayList<DialogueChannelListener<I, O>>();
     private Logger mLogger = NOPLogger.NOP_LOGGER;
@@ -40,29 +40,29 @@ public final class SynchronousDialogueChannel<I extends InputTurn, O extends Out
     private boolean mDialogueStarted;
     private boolean mDialogueDone;
 
-    public TimeValue getSendTimeout() {
+    public Duration getSendTimeout() {
         return mSendTimeout;
     }
 
-    public void setSendTimeout(TimeValue sendTimeout) {
+    public void setSendTimeout(Duration sendTimeout) {
         Assert.notNull(sendTimeout, "sendTimeout");
         mSendTimeout = sendTimeout;
     }
 
-    public TimeValue getDefaultReceiveFromDialogueTimeout() {
+    public Duration getDefaultReceiveFromDialogueTimeout() {
         return mDefaultReceiveFromDialogueTimeout;
     }
 
-    public void setDefaultReceiveFromDialogueTimeout(TimeValue defaultReceiveFromDialogueTimeout) {
+    public void setDefaultReceiveFromDialogueTimeout(Duration defaultReceiveFromDialogueTimeout) {
         Assert.notNull(defaultReceiveFromDialogueTimeout, "defaultReceiveFromDialogueTimeout");
         mDefaultReceiveFromDialogueTimeout = defaultReceiveFromDialogueTimeout;
     }
 
-    public TimeValue getDefaultReceiveFromControllerTimeout() {
+    public Duration getDefaultReceiveFromControllerTimeout() {
         return mDefaultReceiveFromControllerTimeout;
     }
 
-    public void setDefaultReceiveFromControllerTimeout(TimeValue defaultReceiveFromControllerTimeout) {
+    public void setDefaultReceiveFromControllerTimeout(Duration defaultReceiveFromControllerTimeout) {
         Assert.notNull(defaultReceiveFromControllerTimeout, "defaultReceiveFromControllerTimeout");
         mDefaultReceiveFromControllerTimeout = defaultReceiveFromControllerTimeout;
     }
@@ -74,7 +74,7 @@ public final class SynchronousDialogueChannel<I extends InputTurn, O extends Out
 
     public Step<O, L> start(final Dialogue<I, O, F, L, C> dialogue,
                             final F firstTurn,
-                            TimeValue timeout,
+                            Duration timeout,
                             final C context) throws Timeout, InterruptedException {
 
         Runnable runnable = new Runnable() {
@@ -135,9 +135,9 @@ public final class SynchronousDialogueChannel<I extends InputTurn, O extends Out
 
     /**
      * @param timeout Time to wait for dialogue thread to terminate. A value of
-     *            TimeValue.ZERO (or equivalent) means to wait forever.
+     *            Duration.ZERO (or equivalent) means to wait forever.
      */
-    public void stop(TimeValue timeout) throws InterruptedException {
+    public void stop(Duration timeout) throws InterruptedException {
         stop();
         join(timeout);
     }
@@ -147,12 +147,12 @@ public final class SynchronousDialogueChannel<I extends InputTurn, O extends Out
         mDialogueThread.interrupt();
     }
 
-    public void join(TimeValue timeout) throws InterruptedException {
+    public void join(Duration timeout) throws InterruptedException {
         mDialogueThread.join(timeout.getMilliseconds());
     }
 
     @Override
-    public I doTurn(O turn, TimeValue timeout) throws Timeout, InterruptedException {
+    public I doTurn(O turn, Duration timeout) throws Timeout, InterruptedException {
         verifyState();
         mLogger.trace("OutputTurn: {}", turn);
         OutputTurnStep<O, L> turnStep = new OutputTurnStep<O, L>(turn);
@@ -162,7 +162,7 @@ public final class SynchronousDialogueChannel<I extends InputTurn, O extends Out
         return exchange(mFromDialogueToController, mFromControllerToDialogue, turnStep, mSendTimeout, timeout);
     }
 
-    public Step<O, L> doTurn(I turn, TimeValue timeout) throws Timeout, InterruptedException {
+    public Step<O, L> doTurn(I turn, Duration timeout) throws Timeout, InterruptedException {
         verifyState();
         mLogger.trace("InputTurn: {}", turn);
         if (timeout == null) {
@@ -180,8 +180,8 @@ public final class SynchronousDialogueChannel<I extends InputTurn, O extends Out
     private <S, R> R exchange(NamedSynchronousQueue<S> sendQueue,
                               NamedSynchronousQueue<R> receiveQueue,
                               S itemToSend,
-                              TimeValue sendTimeout,
-                              TimeValue receiveTimeout) throws Timeout, InterruptedException {
+                              Duration sendTimeout,
+                              Duration receiveTimeout) throws Timeout, InterruptedException {
         try {
             send(sendQueue, itemToSend, sendTimeout);
             return receive(receiveQueue, receiveTimeout);
@@ -191,7 +191,7 @@ public final class SynchronousDialogueChannel<I extends InputTurn, O extends Out
         }
     }
 
-    private static <R> R receive(NamedSynchronousQueue<R> receiveQueue, TimeValue timeout) throws Timeout,
+    private static <R> R receive(NamedSynchronousQueue<R> receiveQueue, Duration timeout) throws Timeout,
             InterruptedException {
         if (receiveQueue == null) throw new IllegalStateException("Receive queue is closed.");
         R result = receiveQueue.poll(timeout.getMilliseconds(), TimeUnit.MILLISECONDS);
@@ -200,7 +200,7 @@ public final class SynchronousDialogueChannel<I extends InputTurn, O extends Out
         return result;
     }
 
-    private static <S> void send(NamedSynchronousQueue<S> sendQueue, S itemToSend, TimeValue timeout) throws Timeout,
+    private static <S> void send(NamedSynchronousQueue<S> sendQueue, S itemToSend, Duration timeout) throws Timeout,
             InterruptedException {
         if (sendQueue == null) throw new IllegalStateException("Send queue is closed.");
         boolean success = sendQueue.offer(itemToSend, timeout.getMilliseconds(), TimeUnit.MILLISECONDS);

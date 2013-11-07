@@ -19,20 +19,20 @@ public class ResourceFetchConfiguration implements JsonSerializable {
     private static final String TIME_OUT_PROPERTY = "timeOut";
     private static final String FETCH_HINT_PROPERTY = "fetchHint";
 
-    private TimeValue mTimeOut;
-    private TimeValue mMaxAge;
-    private TimeValue mMaxStale;
+    private Duration mTimeOut;
+    private Duration mMaxAge;
+    private Duration mMaxStale;
     private FetchHint mFetchHint;
 
-    public TimeValue getTimeOut() {
+    public Duration getTimeOut() {
         return mTimeOut;
     }
 
-    public TimeValue getMaxAge() {
+    public Duration getMaxAge() {
         return mMaxAge;
     }
 
-    public TimeValue getMaxStale() {
+    public Duration getMaxStale() {
         return mMaxStale;
     }
 
@@ -40,15 +40,15 @@ public class ResourceFetchConfiguration implements JsonSerializable {
         return mFetchHint;
     }
 
-    public void setTimeOut(TimeValue timeOut) {
+    public void setTimeOut(Duration timeOut) {
         mTimeOut = timeOut;
     }
 
-    public void setMaxAge(TimeValue maxAge) {
+    public void setMaxAge(Duration maxAge) {
         mMaxAge = maxAge;
     }
 
-    public void setMaxStale(TimeValue maxStale) {
+    public void setMaxStale(Duration maxStale) {
         mMaxStale = maxStale;
     }
 
@@ -64,9 +64,9 @@ public class ResourceFetchConfiguration implements JsonSerializable {
     @Override
     public JsonValue asJson() {
         JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
-        JsonUtils.addTimeProperty(builder, MAX_AGE_PROPERTY, mMaxAge);
-        JsonUtils.addTimeProperty(builder, MAX_STALE_PROPERTY, mMaxStale);
-        JsonUtils.addTimeProperty(builder, TIME_OUT_PROPERTY, mTimeOut);
+        JsonUtils.addDurationProperty(builder, MAX_AGE_PROPERTY, mMaxAge);
+        JsonUtils.addDurationProperty(builder, MAX_STALE_PROPERTY, mMaxStale);
+        JsonUtils.addDurationProperty(builder, TIME_OUT_PROPERTY, mTimeOut);
 
         if (mFetchHint == null) {
             builder.addNull(FETCH_HINT_PROPERTY);

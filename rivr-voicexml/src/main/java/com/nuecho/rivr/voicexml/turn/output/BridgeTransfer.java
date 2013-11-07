@@ -25,7 +25,7 @@ public class BridgeTransfer extends SupervisedTransfer {
 
     private static final String MAXIMUM_TIME_PROPERTY_NAME = "maximumTime";
 
-    private TimeValue mMaximumTime;
+    private Duration mMaximumTime;
 
     /**
      * @param name The name of this turn. Not empty.
@@ -39,11 +39,11 @@ public class BridgeTransfer extends SupervisedTransfer {
     /**
      * @param maximumTime The time that the call is allowed to last. <code>null</code> to use the VoiceXML platform default.
      */
-    public final void setMaximumTime(TimeValue maximumTime) {
+    public final void setMaximumTime(Duration maximumTime) {
         mMaximumTime = maximumTime;
     }
 
-    public final TimeValue getMaximumTime() {
+    public final Duration getMaximumTime() {
         return mMaximumTime;
     }
 
@@ -54,12 +54,12 @@ public class BridgeTransfer extends SupervisedTransfer {
 
     @Override
     protected void customizeTransferElement(Element transferElement) throws VoiceXmlDocumentRenderingException {
-        setTimeAttribute(transferElement, MAXTIME_ATTRIBUTE, mMaximumTime);
+        setDurationAttribute(transferElement, MAXTIME_ATTRIBUTE, mMaximumTime);
     }
 
     @Override
     protected void addTurnProperties(JsonObjectBuilder builder) {
         super.addTurnProperties(builder);
-        JsonUtils.addTimeProperty(builder, MAXIMUM_TIME_PROPERTY_NAME, mMaximumTime);
+        JsonUtils.addDurationProperty(builder, MAXIMUM_TIME_PROPERTY_NAME, mMaximumTime);
     }
 }

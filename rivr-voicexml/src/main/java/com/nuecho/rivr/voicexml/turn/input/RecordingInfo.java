@@ -19,11 +19,11 @@ public final class RecordingInfo implements JsonSerializable {
     private static final String DTMF_TERM_PROPERTY = "dtmfTerm";
 
     private final FileUpload mFile;
-    private final TimeValue mDuration;
+    private final Duration mDuration;
     private final boolean mMaxTime;
     private final String mDtmfTerm;
 
-    public RecordingInfo(FileUpload file, TimeValue duration, boolean maxTime, String dtmfTerm) {
+    public RecordingInfo(FileUpload file, Duration duration, boolean maxTime, String dtmfTerm) {
         mFile = file;
         mDuration = duration;
         mMaxTime = maxTime;
@@ -42,7 +42,7 @@ public final class RecordingInfo implements JsonSerializable {
         return mDtmfTerm;
     }
 
-    public TimeValue getDuration() {
+    public Duration getDuration() {
         return mDuration;
     }
 

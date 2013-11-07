@@ -131,17 +131,17 @@ public class VoiceXmlDialogueServlet
             setErrorHandler(errorHandler);
         }
 
-        TimeValue sessionScanPeriod = getTimeValue(INITIAL_ARGUMENT_SESSION_SCAN_PERIOD);
+        Duration sessionScanPeriod = getDuration(INITIAL_ARGUMENT_SESSION_SCAN_PERIOD);
         if (sessionScanPeriod != null) {
             setSessionScanPeriod(sessionScanPeriod);
         }
 
-        TimeValue sessionTimeout = getTimeValue(INITIAL_ARGUMENT_SESSION_TIMEOUT);
+        Duration sessionTimeout = getDuration(INITIAL_ARGUMENT_SESSION_TIMEOUT);
         if (sessionTimeout != null) {
             setSessionTimeout(sessionTimeout);
         }
 
-        TimeValue dialogueTimeout = getTimeValue(INITIAL_ARGUMENT_DIALOGUE_TIMEOUT);
+        Duration dialogueTimeout = getDuration(INITIAL_ARGUMENT_DIALOGUE_TIMEOUT);
         if (dialogueTimeout != null) {
             setDialogueTimeout(dialogueTimeout);
         }
@@ -172,14 +172,14 @@ public class VoiceXmlDialogueServlet
         }
     }
 
-    private TimeValue getTimeValue(String key) throws DialogueServletInitializationException {
+    private Duration getDuration(String key) throws DialogueServletInitializationException {
         ServletConfig servletConfig = getServletConfig();
-        String timeValue = servletConfig.getInitParameter(key);
-        if (timeValue == null) return null;
+        String duration = servletConfig.getInitParameter(key);
+        if (duration == null) return null;
         try {
-            return TimeValue.parse(timeValue);
+            return Duration.parse(duration);
         } catch (IllegalArgumentException exception) {
-            throw new DialogueServletInitializationException("Unable to parse time value.", exception);
+            throw new DialogueServletInitializationException("Unable to parse duration.", exception);
         }
     }
 

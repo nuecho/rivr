@@ -18,12 +18,12 @@ public final class Pause extends AudioItem {
     private static final String PAUSE_PROPERTY = "pause";
     public static final String PAUSE_ELEMENT_TYPE = PAUSE_PROPERTY;
 
-    private final TimeValue mDuration;
+    private final Duration mDuration;
 
     /**
      * @param duration The duration of the pause. Not null.
      */
-    public Pause(TimeValue duration) {
+    public Pause(Duration duration) {
         mDuration = duration;
     }
 
@@ -32,13 +32,13 @@ public final class Pause extends AudioItem {
         return PAUSE_ELEMENT_TYPE;
     }
 
-    public TimeValue getDuration() {
+    public Duration getDuration() {
         return mDuration;
     }
 
     @Override
     protected void addJsonProperties(JsonObjectBuilder builder) {
-        JsonUtils.addTimeProperty(builder, PAUSE_PROPERTY, mDuration);
+        JsonUtils.addDurationProperty(builder, PAUSE_PROPERTY, mDuration);
     }
 
     @Override

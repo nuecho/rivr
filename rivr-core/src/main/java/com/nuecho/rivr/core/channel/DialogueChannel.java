@@ -12,7 +12,7 @@ import com.nuecho.rivr.core.util.*;
  */
 public interface DialogueChannel<I extends InputTurn, O extends OutputTurn> {
 
-    I doTurn(O outputTurn, TimeValue timeout) throws Timeout, InterruptedException;
+    I doTurn(O outputTurn, Duration timeout) throws Timeout, InterruptedException;
 
     void addListener(DialogueChannelListener<I, O> listener);
 
