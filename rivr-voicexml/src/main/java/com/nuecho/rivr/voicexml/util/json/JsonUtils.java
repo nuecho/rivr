@@ -5,7 +5,6 @@
 package com.nuecho.rivr.voicexml.util.json;
 
 import java.io.*;
-import java.util.*;
 
 import javax.json.*;
 import javax.json.spi.*;
@@ -121,7 +120,7 @@ public final class JsonUtils {
 
     }
 
-    public static JsonValue toJson(List<? extends JsonSerializable> serializables) {
+    public static JsonValue toJson(Iterable<? extends JsonSerializable> serializables) {
         if (serializables == null) return JsonValue.NULL;
         JsonArrayBuilder builder = createArrayBuilder();
         for (JsonSerializable jsonSerializable : serializables) {
