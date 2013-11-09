@@ -14,11 +14,12 @@ import com.nuecho.rivr.voicexml.rendering.voicexml.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A {@link BridgeTransfer} is a {@link SupervisedTransfer} that
- * connects the caller to the callee in a full duplex conversation.
+ * A {@link BridgeTransfer} is a {@link SupervisedTransfer} that connects the
+ * caller to the callee in a full duplex conversation.
  * 
  * @author Nu Echo Inc.
- * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.7.2">http://www.w3.org/TR/voicexml20/#dml2.3.7.2</a>
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml2.3.7.2">http://www.w3.org/TR/voicexml20/#dml2.3.7.2</a>
  */
 public class BridgeTransfer extends SupervisedTransfer {
     private static final String BRIDGE_TRANSFER_TYPE = "bridge";
@@ -37,7 +38,8 @@ public class BridgeTransfer extends SupervisedTransfer {
     }
 
     /**
-     * @param maximumTime The time that the call is allowed to last. <code>null</code> to use the VoiceXML platform default.
+     * @param maximumTime The time that the call is allowed to last.
+     *            <code>null</code> to use the VoiceXML platform default.
      */
     public final void setMaximumTime(Duration maximumTime) {
         mMaximumTime = maximumTime;

@@ -22,8 +22,8 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A {@link SubdialogueCall} is a {@link VoiceXmlOutputTurn} that
- * invokes another external dialogue.
+ * A {@link SubdialogueCall} is a {@link VoiceXmlOutputTurn} that invokes
+ * another external dialogue.
  * <p>
  * Parameters may be passed to the subdialogue and return values may be
  * retrieved if the invoked subdialogue ends with a <code>&lt;return&gt;</code>
@@ -64,17 +64,17 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param parameters A list of {@link Parameter} that
-     *            will be passed to the subdialogue. Not null.
+     * @param parameters A list of {@link Parameter} that will be passed to the
+     *            subdialogue. Not null.
      */
-    public final void setSubdialogueParameters(List<Parameter> parameters) {
+    public final void setSubdialogueParameters(Collection<Parameter> parameters) {
         Assert.notNull(parameters, "subdialogueParameters");
         mParameters = new ArrayList<Parameter>(parameters);
     }
 
     /**
-     * @param subdialogueParameters A list of {@link Parameter} that
-     *            will be passed to the subdialogue. Not null.
+     * @param subdialogueParameters A list of {@link Parameter} that will be
+     *            passed to the subdialogue. Not null.
      */
     public final void setSubdialogueParameters(Parameter... subdialogueParameters) {
         setSubdialogueParameters(asList(subdialogueParameters));
@@ -99,7 +99,8 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param fetchConfiguration The {@link FetchConfiguration}.  <code>null</code> to use the VoiceXML platform default.
+     * @param fetchConfiguration The {@link FetchConfiguration}.
+     *            <code>null</code> to use the VoiceXML platform default.
      */
     public final void setSubdialogueFetchConfiguration(FetchConfiguration fetchConfiguration) {
         mFetchConfiguration = fetchConfiguration;

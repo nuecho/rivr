@@ -10,8 +10,8 @@ import com.nuecho.rivr.voicexml.turn.input.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A {@link Mark} represents a marker in an {@link AudioItem} sequence
- * which can be used to determine when a user started to speak.
+ * A {@link Mark} represents a marker in an {@link AudioItem} sequence which can
+ * be used to determine when a user started to speak.
  * 
  * @author Nu Echo Inc.
  * @see MarkInfo

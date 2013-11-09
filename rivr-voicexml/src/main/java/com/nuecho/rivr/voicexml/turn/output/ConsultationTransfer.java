@@ -4,13 +4,14 @@
 package com.nuecho.rivr.voicexml.turn.output;
 
 /**
- * A {@link ConsultationTransfer} is a is a {@link SupervisedTransfer} that
- * is similar to a {@link BlindTransfer} except that the outcome of the transfer
- * call setup is known and the caller is
- * not dropped as a result of an unsuccessful transfer attempt.
+ * A {@link ConsultationTransfer} is a is a {@link SupervisedTransfer} that is
+ * similar to a {@link BlindTransfer} except that the outcome of the transfer
+ * call setup is known and the caller is not dropped as a result of an
+ * unsuccessful transfer attempt.
  * 
  * @author Nu Echo Inc.
- * @see <a href="http://www.w3.org/TR/voicexml21/#sec-xfer-consultation">http://www.w3.org/TR/voicexml21/#sec-xfer-consultation</a>
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml21/#sec-xfer-consultation">http://www.w3.org/TR/voicexml21/#sec-xfer-consultation</a>
  */
 public class ConsultationTransfer extends SupervisedTransfer {
     private static final String CONSULTATION_TRANSFER_TYPE = "consultation";

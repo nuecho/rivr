@@ -10,11 +10,12 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A {@link GrammarReference} represents an external grammar reachable with
- * an URI.
+ * A {@link GrammarReference} represents an external grammar reachable with an
+ * URI.
  * 
  * @author Nu Echo Inc.
- * @see <a href="http://www.w3.org/TR/voicexml20/#dml3.1.1.2">http://www.w3.org/TR/voicexml20/#dml3.1.1.2</a>
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml3.1.1.2">http://www.w3.org/TR/voicexml20/#dml3.1.1.2</a>
  */
 public final class GrammarReference extends GrammarItem {
     private static final String REFERENCE_ELEMENT_TYPE = "reference";
@@ -33,7 +34,8 @@ public final class GrammarReference extends GrammarItem {
     }
 
     /**
-     * @param resourceFetchConfiguration The resource fetch configuration. <code>null</code> to use the VoiceXML platform default.
+     * @param resourceFetchConfiguration The resource fetch configuration.
+     *            <code>null</code> to use the VoiceXML platform default.
      */
     public void setResourceFetchConfiguration(ResourceFetchConfiguration resourceFetchConfiguration) {
         mResourceFetchConfiguration = resourceFetchConfiguration;

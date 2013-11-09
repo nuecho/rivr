@@ -4,14 +4,15 @@
 package com.nuecho.rivr.voicexml.turn.output;
 
 /**
- * A {@link BlindTransfer} is a {@link Transfer} where the outcome
- * is not monitored.
+ * A {@link BlindTransfer} is a {@link Transfer} where the outcome is not
+ * monitored.
  * <p>
  * Once the transfer begins and the interpreter disconnects from the session,
  * the platform throws connection.disconnect.transfer.
  * 
  * @author Nu Echo Inc.
- * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.7.1">http://www.w3.org/TR/voicexml20/#dml2.3.7.1</a>
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml2.3.7.1">http://www.w3.org/TR/voicexml20/#dml2.3.7.1</a>
  */
 public class BlindTransfer extends Transfer {
     private static final String BLIND_TRANSFER_TYPE = "blind";

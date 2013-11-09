@@ -19,8 +19,8 @@ import com.nuecho.rivr.voicexml.turn.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A {@link Script} is a {@link VoiceXmlOutputTurn} that declares
- * variables and/or executes a script.
+ * A {@link Script} is a {@link VoiceXmlOutputTurn} that declares variables
+ * and/or executes a script.
  * 
  * @author Nu Echo Inc.
  */
@@ -49,7 +49,8 @@ public class Script extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param script The script to execute. <code>null</code> to use the VoiceXML platform default.
+     * @param script The script to execute. <code>null</code> to use the
+     *            VoiceXML platform default.
      */
     public final void setScript(String script) {
         mScript = script;
