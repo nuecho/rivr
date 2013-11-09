@@ -47,7 +47,7 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
     private static final String FETCH_CONFIGURATION_PROPERTY = "fetchConfiguration";
 
     private final String mUri;
-    private List<Parameter> mParameters = Collections.emptyList();
+    private Collection<Parameter> mParameters = Collections.emptyList();
     private VariableList mSubmitParameters = new VariableList();
     private SubmitMethod mMethod = SubmitMethod.get;
     private FetchConfiguration mFetchConfiguration;
@@ -117,8 +117,8 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
         return mUri;
     }
 
-    public final List<? extends Parameter> getVoiceXmlParameters() {
-        return unmodifiableList(mParameters);
+    public final Collection<Parameter> getVoiceXmlParameters() {
+        return unmodifiableCollection(mParameters);
     }
 
     public final VariableList getSubmitParameters() {
@@ -308,6 +308,70 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
             JsonUtils.add(builder, RESOURCE_FETCH_CONFIGURATION, mResourceFetchConfiguration);
             return builder.build();
         }
+    }
 
+    public static class Builder {
+
+        private final String mName;
+        private String mUri;
+        private final List<Parameter> mParameters = Collections.emptyList();
+        private final VariableList mSubmitParameters = new VariableList();
+        private SubmitMethod mMethod = SubmitMethod.get;
+        private FetchConfiguration mFetchConfiguration;
+        private String mPostDialogueScript;
+
+        public Builder(String name) {
+            mName = name;
+        }
+
+        public Builder uri(String uri) {
+            Assert.notEmpty(uri, "uri");
+            mUri = uri;
+            return this;
+        }
+
+        public Builder addVoiceXmlParameter(Parameter parameter) {
+            Assert.notNull(parameter, "parameter");
+            mParameters.add(parameter);
+            return this;
+        }
+
+        public Builder addSubmitParameterExpression(String name, String expression) {
+            Assert.notEmpty(name, "name");
+            mSubmitParameters.addWithExpression(name, expression);
+            return this;
+        }
+
+        public Builder addSubmitParameterString(String name, String string) {
+            Assert.notEmpty(name, "name");
+            mSubmitParameters.addWithString(name, string);
+            return this;
+        }
+
+        public Builder method(SubmitMethod method) {
+            Assert.notNull(method, "method");
+            mMethod = method;
+            return this;
+        }
+
+        public Builder fetchConfiguration(FetchConfiguration fetchConfiguration) {
+            mFetchConfiguration = fetchConfiguration;
+            return this;
+        }
+
+        public Builder audio(String postDialogueScript) {
+            mPostDialogueScript = postDialogueScript;
+            return this;
+        }
+
+        public SubdialogueCall build() {
+            SubdialogueCall subdialogueCall = new SubdialogueCall(mName, mUri);
+            subdialogueCall.setMethod(mMethod);
+            subdialogueCall.setPostDialogueScript(mPostDialogueScript);
+            subdialogueCall.setSubdialogueFetchConfiguration(mFetchConfiguration);
+            subdialogueCall.setSubdialogueParameters(mParameters);
+            subdialogueCall.setSubmitParameters(mSubmitParameters);
+            return subdialogueCall;
+        }
     }
 }

@@ -110,4 +110,44 @@ public abstract class SupervisedTransfer extends Transfer {
         JsonUtils.add(builder, DTMF_RECOGNITION_PROPERTY, mDtmfRecognition);
         JsonUtils.add(builder, SPEECH_RECOGNITION_PROPERTY, mSpeechRecognition);
     }
+
+    protected static class Builder extends Transfer.Builder {
+
+        private DtmfRecognition mDtmfRecognition;
+        private SpeechRecognition mSpeechRecognition;
+        private String mTransferAudio;
+        private Duration mConnectTimeout;
+
+        protected Builder(String name) {
+            super(name);
+        }
+
+        public Builder dtmfRecognition(DtmfRecognition dtmfRecognition) {
+            mDtmfRecognition = dtmfRecognition;
+            return this;
+        }
+
+        public Builder speechRecognition(SpeechRecognition speechRecognition) {
+            mSpeechRecognition = speechRecognition;
+            return this;
+        }
+
+        public Builder audio(String transferAudio) {
+            mTransferAudio = transferAudio;
+            return this;
+        }
+
+        public Builder connectTimeout(Duration connectTimeout) {
+            mConnectTimeout = connectTimeout;
+            return this;
+        }
+
+        public void build(SupervisedTransfer supervisedTransfer) {
+            supervisedTransfer.setConnectTimeout(mConnectTimeout);
+            supervisedTransfer.setDtmfRecognition(mDtmfRecognition);
+            supervisedTransfer.setSpeechRecognition(mSpeechRecognition);
+            supervisedTransfer.setTransferAudio(mTransferAudio);
+            super.build(supervisedTransfer);
+        }
+    }
 }

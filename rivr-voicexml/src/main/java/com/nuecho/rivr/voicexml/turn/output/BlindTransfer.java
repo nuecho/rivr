@@ -29,4 +29,20 @@ public class BlindTransfer extends Transfer {
     protected final String getTransferType() {
         return BLIND_TRANSFER_TYPE;
     }
+
+    public static class Builder extends Transfer.Builder {
+
+        public Builder(String name) {
+            super(name);
+        }
+
+        public BlindTransfer build() {
+            BlindTransfer blindTransfer = new BlindTransfer(getName(), getDestination());
+            super.build(blindTransfer);
+            return blindTransfer;
+
+        }
+
+    }
+
 }

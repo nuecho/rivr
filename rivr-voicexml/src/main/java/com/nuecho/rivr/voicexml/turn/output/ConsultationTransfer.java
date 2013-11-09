@@ -28,4 +28,18 @@ public class ConsultationTransfer extends SupervisedTransfer {
     protected final String getTransferType() {
         return CONSULTATION_TRANSFER_TYPE;
     }
+
+    public static class Builder extends SupervisedTransfer.Builder {
+
+        public Builder(String name) {
+            super(name);
+        }
+
+        public ConsultationTransfer build() {
+            ConsultationTransfer consultationTransfer = new ConsultationTransfer(getName(), getDestination());
+            super.build(consultationTransfer);
+            return consultationTransfer;
+
+        }
+    }
 }

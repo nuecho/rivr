@@ -369,4 +369,84 @@ public class ObjectCall extends VoiceXmlOutputTurn {
             return JsonUtils.wrap(name());
         }
     }
+
+    public static class Builder {
+
+        private final String mName;
+        private String mClassId;
+        private String mCodeBase;
+        private String mCodeType;
+        private String mData;
+        private String mType;
+        private final List<String> mArchives = new ArrayList<String>();
+        private ResourceFetchConfiguration mFetchConfiguration;
+        private final List<Parameter> mParameters = new ArrayList<Parameter>();
+        private String mPostObjectScript;
+
+        public Builder(String name) {
+            mName = name;
+        }
+
+        public Builder classId(String classId) {
+            Assert.notNull(classId, "classId");
+            mClassId = classId;
+            return this;
+        }
+
+        public Builder codeBase(String codeBase) {
+            mCodeBase = codeBase;
+            return this;
+        }
+
+        public Builder data(String data) {
+            mData = data;
+            return this;
+        }
+
+        public Builder type(String type) {
+            mType = type;
+            return this;
+        }
+
+        public Builder codeType(String codeType) {
+            mCodeType = codeType;
+            return this;
+        }
+
+        public Builder fetchConfiguration(ResourceFetchConfiguration fetchConfiguration) {
+            mFetchConfiguration = fetchConfiguration;
+            return this;
+        }
+
+        public Builder archive(String archive) {
+            Assert.notNull(archive, "archive");
+            mArchives.add(archive);
+            return this;
+        }
+
+        public Builder parameter(Parameter parameter) {
+            Assert.notNull(parameter, "parameter");
+            mParameters.add(parameter);
+            return this;
+        }
+
+        public Builder postObjectScript(String postObjectScript) {
+            mPostObjectScript = postObjectScript;
+            return this;
+        }
+
+        public ObjectCall build() {
+            ObjectCall objectCall = new ObjectCall(mName);
+            objectCall.setArchives(mArchives);
+            objectCall.setClassId(mClassId);
+            objectCall.setCodeBase(mCodeBase);
+            objectCall.setCodeType(mCodeType);
+            objectCall.setData(mData);
+            objectCall.setFetchConfiguration(mFetchConfiguration);
+            objectCall.setParameters(mParameters);
+            objectCall.setPostObjectScript(mPostObjectScript);
+            objectCall.setType(mType);
+            return objectCall;
+        }
+    }
 }

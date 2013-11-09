@@ -109,4 +109,38 @@ public abstract class Transfer extends VoiceXmlOutputTurn {
         createScript(filledElement, script);
         createGotoSubmit(filledElement);
     }
+
+    protected static class Builder {
+
+        private final String mName;
+        private String mDestination;
+        private String mApplicationToApplicationInformation;
+
+        protected Builder(String name) {
+            mName = name;
+        }
+
+        public Builder destination(String destination) {
+            mDestination = destination;
+            return this;
+        }
+
+        public Builder applicationToApplication(String applicationToApplicationInformation) {
+            mApplicationToApplicationInformation = applicationToApplicationInformation;
+            return this;
+        }
+
+        protected String getName() {
+            return mName;
+        }
+
+        protected String getDestination() {
+            return mDestination;
+        }
+
+        protected void build(Transfer transfer) {
+            transfer.setApplicationToApplicationInformation(mApplicationToApplicationInformation);
+        }
+
+    }
 }

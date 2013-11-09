@@ -62,4 +62,26 @@ public class BridgeTransfer extends SupervisedTransfer {
         super.addTurnProperties(builder);
         JsonUtils.addDurationProperty(builder, MAXIMUM_TIME_PROPERTY_NAME, mMaximumTime);
     }
+
+    public static class Builder extends SupervisedTransfer.Builder {
+
+        private Duration mMaximumTime;
+
+        public Builder maximumDuration(Duration maximumTime) {
+            mMaximumTime = maximumTime;
+            return this;
+        }
+
+        public Builder(String name) {
+            super(name);
+        }
+
+        public BridgeTransfer build() {
+            BridgeTransfer bridgeTransfer = new BridgeTransfer(getName(), getDestination());
+            bridgeTransfer.setMaximumTime(mMaximumTime);
+            super.build(bridgeTransfer);
+            return bridgeTransfer;
+
+        }
+    }
 }

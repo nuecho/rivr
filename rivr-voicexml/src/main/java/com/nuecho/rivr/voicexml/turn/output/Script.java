@@ -107,4 +107,42 @@ public class Script extends VoiceXmlOutputTurn {
         createScript(blockElement, scriptBuffer.toString());
         createGotoSubmit(blockElement);
     }
+
+    public static class Builder {
+
+        private final String mName;
+        private final VariableList mVariables = new VariableList();
+        private String mScript;
+
+        public Builder(String name) {
+            mName = name;
+        }
+
+        public Builder variable(String name) {
+            mVariables.add(name);
+            return this;
+        }
+
+        public Builder variableString(String name, String string) {
+            mVariables.addWithString(name, string);
+            return this;
+        }
+
+        public Builder variableExpression(String name, String expression) {
+            mVariables.addWithExpression(name, expression);
+            return this;
+        }
+
+        public Builder code(String code) {
+            mScript = code;
+            return this;
+        }
+
+        public Script build() {
+            Script script = new Script(mName);
+            script.setScript(mScript);
+            script.setVariables(mVariables);
+            return script;
+        }
+    }
 }

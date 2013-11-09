@@ -113,4 +113,39 @@ public class Message extends VoiceXmlOutputTurn {
         createPrompt(mLanguage, blockElement, dialogueContext, mBargeIn, mAudioItems);
         createGotoSubmit(blockElement);
     }
+
+    public static class Builder {
+
+        private final String mName;
+        private final List<AudioItem> mAudioItems = new ArrayList<AudioItem>();
+        private String mLanguage;
+        private Boolean mBargeIn;
+
+        public Builder(String name) {
+            mName = name;
+        }
+
+        public Builder addItem(AudioItem audioItem) {
+            Assert.notNull(audioItem, "audioItem");
+            mAudioItems.add(audioItem);
+            return this;
+        }
+
+        public Builder language(String language) {
+            mLanguage = language;
+            return this;
+        }
+
+        public Builder bargein(Boolean bargeIn) {
+            mBargeIn = bargeIn;
+            return this;
+        }
+
+        public Message build() {
+            Message message = new Message(mName, mAudioItems);
+            message.setBargeIn(mBargeIn);
+            message.setLanguage(mLanguage);
+            return message;
+        }
+    }
 }
