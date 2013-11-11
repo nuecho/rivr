@@ -22,9 +22,11 @@ import com.nuecho.rivr.voicexml.util.json.*;
 /**
  * An {@link Interaction} is a {@link VoiceXmlOutputTurn} that represents a list
  * of {@link Prompt} with an optional {@link FinalRecognitionWindow} or
- * {@link FinalRecordingWindow} phase. <p> Each {@link Interaction.Prompt}
- * represents a phase of the interaction with a sequence of {@link AudioItem}
- * and optional speech/DTMF recognition configurations.
+ * {@link FinalRecordingWindow} phase.
+ * <p>
+ * Each {@link Interaction.Prompt} represents a phase of the interaction with a
+ * sequence of {@link AudioItem} and optional speech/DTMF recognition
+ * configurations.
  * 
  * @author Nu Echo Inc.
  * @see Interaction.Prompt
@@ -500,9 +502,11 @@ public class Interaction extends VoiceXmlOutputTurn {
 
     /**
      * A {@link FinalRecognitionWindow} is an optional final phase of an
-     * {@link Interaction}. <p> It specifies a recognition configuration, and
-     * optionally, a no input timeout and a sequence of {@link AudioItem} that
-     * is played if a recognition is successful.
+     * {@link Interaction}.
+     * <p>
+     * It specifies a recognition configuration, and optionally, a no input
+     * timeout and a sequence of {@link AudioItem} that is played if a
+     * recognition is successful.
      * 
      * @author Nu Echo Inc.
      */
@@ -632,9 +636,11 @@ public class Interaction extends VoiceXmlOutputTurn {
 
     /**
      * A {@link FinalRecordingWindow} is an optional final phase of an
-     * {@link Interaction}. <p> It specifies a recording configuration, and
-     * optionally, a no input timeout and a sequence of {@link AudioItem} that
-     * is played if a recording is successful.
+     * {@link Interaction}.
+     * <p>
+     * It specifies a recording configuration, and optionally, a no input
+     * timeout and a sequence of {@link AudioItem} that is played if a recording
+     * is successful.
      * 
      * @author Nu Echo Inc.
      */
@@ -909,16 +915,30 @@ public class Interaction extends VoiceXmlOutputTurn {
     }
 
     /**
-     * Builder used to ease creation of instances of {@link Interaction} <p>
-     * Building an {@link Interaction} implies the following steps: <ul> <li>Add
-     * some prompts</li> <ul> <li>For each prompt, speech/DTMF recognition can
-     * be specified (thus enabling <i>barge-in</i> when the prompt is played).
-     * </ul> <li>Once all prompts are added, optionally specify either: <ul>
-     * <li>a final recognition window (speech or DTMF)</li> <li>a recording</li>
-     * </ul> </ul> <p> At any time, it is possible to change the current
-     * language used for prompts (relevant to speech synthesis) and the barge-in
-     * type, i.e. <i>speech</i> or <i>hotword</i>. <p> This can be translated
-     * to: <pre> Builder builder = Builder.interaction();
+     * Builder used to ease creation of instances of {@link Interaction}
+     * <p>
+     * Building an {@link Interaction} implies the following steps:
+     * <ul>
+     * <li>Add some prompts</li>
+     * <ul>
+     * <li>For each prompt, speech/DTMF recognition can be specified (thus
+     * enabling <i>barge-in</i> when the prompt is played).
+     * </ul>
+     * <li>Once all prompts are added, optionally specify either:
+     * <ul>
+     * <li>a final recognition window (speech or DTMF)</li>
+     * <li>a recording</li>
+     * </ul>
+     * </ul>
+     * <p>
+     * At any time, it is possible to change the current language used for
+     * prompts (relevant to speech synthesis) and the barge-in type, i.e.
+     * <i>speech</i> or <i>hotword</i>.
+     * <p>
+     * This can be translated to:
+     * 
+     * <pre>
+     * Builder builder = Builder.interaction();
      * builder.addPrompt(...); builder.addPrompt(...); //repeat as needed
      * builder.addPrompt(...); Interaction interaction = builder.build(...);
      * </pre>
@@ -951,14 +971,17 @@ public class Interaction extends VoiceXmlOutputTurn {
         /**
          * Sets the barge-in type to either {@link BargeInType#speech} or
          * {@link BargeInType#hotword} for the prompts that will be added using
-         * one of the <code>addPrompt(...)</code> methods. <p> Note: When a
-         * {@link Builder} is created, the default value for this flag is
-         * <code>null</code>, meaning the barge-in type will be
+         * one of the <code>addPrompt(...)</code> methods.
+         * <p>
+         * Note: When a {@link Builder} is created, the default value for this
+         * flag is <code>null</code>, meaning the barge-in type will be
          * platform-dependant.
          * 
-         * @param bargeInType <ul> <li>{@link BargeInType#speech}</li> <li>
+         * @param bargeInType <ul>
+         *            <li>{@link BargeInType#speech}</li> <li>
          *            {@link BargeInType#hotword}</li><li><code>null</code>
-         *            reverts to platform default value</li></ul
+         *            reverts to platform default value</li>
+         *            </ul
          */
         public Builder setBargeInType(BargeInType bargeInType) {
             mBargeInType = bargeInType;
@@ -967,11 +990,12 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         /**
          * Sets the language code for the prompts that will be added using one
-         * of the <code>addPrompt(...)</code> methods. <p> Note: When a @{link
-         * Builder} is created, the default value for this property is
-         * <code>null</code>, i.e. no explicit language code will be generated
-         * in the VoiceXML thus relying on the platform-specific default
-         * language code.
+         * of the <code>addPrompt(...)</code> methods.
+         * <p>
+         * Note: When a @{link Builder} is created, the default value for this
+         * property is <code>null</code>, i.e. no explicit language code will be
+         * generated in the VoiceXML thus relying on the platform-specific
+         * default language code.
          * 
          * @param language language code for this prompt. <code>null</code> if
          *            language should be reset to platform-specific default
