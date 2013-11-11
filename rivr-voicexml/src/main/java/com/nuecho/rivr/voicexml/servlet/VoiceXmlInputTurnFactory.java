@@ -173,7 +173,7 @@ public final class VoiceXmlInputTurnFactory implements
         String dtmfTermChar = recordingMetaData.getString(TERM_CHAR_PROPERTY, null);
 
         FileUpload file;
-        if (!parameters.containsKey(RECORDING_PARAMETER)) {
+        if (!files.containsKey(RECORDING_PARAMETER)) {
             file = null;
         } else {
             file = files.get(RECORDING_PARAMETER);
