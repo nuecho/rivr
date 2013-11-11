@@ -9,37 +9,41 @@ import com.nuecho.rivr.voicexml.turn.output.*;
 /**
  * @author Nu Echo Inc.
  */
-public class OutputTurns {
+public final class OutputTurns {
 
-    public Interaction.Builder interaction(String name) {
+    private OutputTurns() {
+        //utility class: instantiation forbidden
+    }
+
+    public static Interaction.Builder interaction(String name) {
         return new Interaction.Builder(name);
     }
 
-    public Message.Builder message(String name) {
+    public static Message.Builder message(String name) {
         return new Message.Builder(name);
     }
 
-    public Script.Builder script(String name) {
+    public static Script.Builder script(String name) {
         return new Script.Builder(name);
     }
 
-    public ObjectCall.Builder objectCall(String name) {
+    public static ObjectCall.Builder objectCall(String name) {
         return new ObjectCall.Builder(name);
     }
 
-    public SubdialogueCall.Builder subdialogueCall(String name) {
+    public static SubdialogueCall.Builder subdialogueCall(String name) {
         return new SubdialogueCall.Builder(name);
     }
 
-    public BlindTransfer.Builder blindTransfer(String name) {
+    public static BlindTransfer.Builder blindTransfer(String name) {
         return new BlindTransfer.Builder(name);
     }
 
-    public BridgeTransfer.Builder bridgeTransfer(String name) {
+    public static BridgeTransfer.Builder bridgeTransfer(String name) {
         return new BridgeTransfer.Builder(name);
     }
 
-    public ConsultationTransfer.Builder consultationTransfer(String name) {
+    public static ConsultationTransfer.Builder consultationTransfer(String name) {
         return new ConsultationTransfer.Builder(name);
     }
 
