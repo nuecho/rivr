@@ -104,7 +104,7 @@ public final class VoiceXmlInputTurnFactory implements
         addObject(resultObject, voiceXmlInputTurn);
         addTransferStatusInfo(resultObject, voiceXmlInputTurn);
         addRecognitionInfo(resultObject, voiceXmlInputTurn);
-        addRecordingInfo(resultObject, voiceXmlInputTurn, parameters, files);
+        addRecordingInfo(resultObject, voiceXmlInputTurn, files);
         return voiceXmlInputTurn;
     }
 
@@ -154,7 +154,6 @@ public final class VoiceXmlInputTurnFactory implements
 
     private static void addRecordingInfo(JsonObject resultObject,
                                          VoiceXmlInputTurn voiceXmlInputTurn,
-                                         Map<String, String> parameters,
                                          Map<String, FileUpload> files) {
         if (!resultObject.containsKey(RECORDING_META_DATA_PROPERTY)) return;
 
