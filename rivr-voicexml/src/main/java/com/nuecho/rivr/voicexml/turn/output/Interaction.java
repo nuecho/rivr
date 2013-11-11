@@ -485,7 +485,7 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         if (mFinalRecognitionWindow != null) {
             List<? extends AudioItem> acknowledgeAudioItems = mFinalRecognitionWindow.getAcknowledgeAudioItems();
-            if (!acknowledgeAudioItems.isEmpty()) {
+            if (acknowledgeAudioItems != null && !acknowledgeAudioItems.isEmpty()) {
                 processAudioItems(acknowledgeAudioItems, filledElement);
             }
         }
@@ -516,24 +516,35 @@ public class Interaction extends VoiceXmlOutputTurn {
         private final SpeechRecognition mSpeechRecognition;
         private final DtmfRecognition mDtmfRecognition;
         private Duration mNoInputTimeout;
-        private final List<AudioItem> mAcknowledgeAudioItems;
+        private List<AudioItem> mAcknowledgeAudioItems;
 
         public FinalRecognitionWindow(DtmfRecognition dtmfRecognition,
                                       SpeechRecognition speechRecognition,
-                                      Duration noInputTimeout,
-                                      AudioItem... acknowledgeAudioItems) {
-            this(dtmfRecognition, speechRecognition, noInputTimeout, asList(acknowledgeAudioItems));
-        }
-
-        public FinalRecognitionWindow(DtmfRecognition dtmfRecognition,
-                                      SpeechRecognition speechRecognition,
-                                      Duration noInputTimeout,
-                                      List<? extends AudioItem> acknowledgeAudioItems) {
+                                      Duration noInputTimeout) {
             mSpeechRecognition = speechRecognition;
             mDtmfRecognition = dtmfRecognition;
             mNoInputTimeout = noInputTimeout;
-            mAcknowledgeAudioItems = new ArrayList<AudioItem>(acknowledgeAudioItems);
             assertInvariant();
+        }
+
+        public FinalRecognitionWindow(DtmfRecognition dtmfRecognition, SpeechRecognition speechRecognition) {
+            this(dtmfRecognition, speechRecognition, null);
+        }
+
+        public FinalRecognitionWindow(DtmfRecognition dtmfRecognition) {
+            this(dtmfRecognition, null, null);
+        }
+
+        public FinalRecognitionWindow(SpeechRecognition speechRecognition) {
+            this(null, speechRecognition, null);
+        }
+
+        public FinalRecognitionWindow(DtmfRecognition dtmfRecognition, Duration noInputTimeout) {
+            this(dtmfRecognition, null, noInputTimeout);
+        }
+
+        public FinalRecognitionWindow(SpeechRecognition speechRecognition, Duration noInputTimeout) {
+            this(null, speechRecognition, noInputTimeout);
         }
 
         public SpeechRecognition getSpeechRecognition() {
@@ -554,6 +565,16 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         public void setNoInputTimeout(Duration noInputTimeout) {
             mNoInputTimeout = noInputTimeout;
+        }
+
+        public void setAcknowledgeAudioItems(List<? extends AudioItem> acknowledgeAudioItems) {
+            Assert.notNull(acknowledgeAudioItems, "acknowledgeAudioItems");
+            mAcknowledgeAudioItems = new ArrayList<AudioItem>(acknowledgeAudioItems);
+        }
+
+        public void setAcknowledgeAudioItems(AudioItem... acknowledgeAudioItems) {
+            Assert.notNull(acknowledgeAudioItems, "acknowledgeAudioItems");
+            mAcknowledgeAudioItems = asList(acknowledgeAudioItems);
         }
 
         private void assertInvariant() {
@@ -624,21 +645,17 @@ public class Interaction extends VoiceXmlOutputTurn {
         private static final String NO_INPUT_TIMEOUT_PROPERTY = "noInputTimeout";
 
         private final Recording mRecording;
-        private final Duration mNoInputTimeout;
-        private final List<AudioItem> mAcknowledgeAudioItems;
+        private Duration mNoInputTimeout;
+        private List<AudioItem> mAcknowledgeAudioItems;
 
-        public FinalRecordingWindow(Recording recording, Duration noInputTimeout, AudioItem... acknowledgeAudioItems) {
-            this(recording, noInputTimeout, asList(acknowledgeAudioItems));
+        public FinalRecordingWindow(Recording recording) {
+            this(recording, null);
         }
 
-        public FinalRecordingWindow(Recording recording,
-                                    Duration noInputTimeout,
-                                    List<? extends AudioItem> acknowledgeAudioItems) {
+        public FinalRecordingWindow(Recording recording, Duration noInputTimeout) {
             Assert.notNull(recording, "recording");
-            Assert.notNull(acknowledgeAudioItems, "acknowledgeAudioItems");
             mRecording = recording;
             mNoInputTimeout = noInputTimeout;
-            mAcknowledgeAudioItems = new ArrayList<AudioItem>(acknowledgeAudioItems);
         }
 
         public Recording getRecording() {
@@ -651,6 +668,19 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         public List<? extends AudioItem> getAcknowledgeAudioItems() {
             return mAcknowledgeAudioItems;
+        }
+
+        public void setAcknowledgeAudioItems(List<? extends AudioItem> acknowledgeAudioItems) {
+            Assert.notNull(acknowledgeAudioItems, "acknowledgeAudioItems");
+            mAcknowledgeAudioItems = new ArrayList<AudioItem>(acknowledgeAudioItems);
+        }
+
+        public void setAcknowledgeAudioItems(AudioItem... acknowledgeAudioItems) {
+            mAcknowledgeAudioItems = asList(acknowledgeAudioItems);
+        }
+
+        public void setNoInputTimeout(Duration noInputTimeout) {
+            mNoInputTimeout = noInputTimeout;
         }
 
         @Override
@@ -1154,8 +1184,12 @@ public class Interaction extends VoiceXmlOutputTurn {
             checkBuilt();
             FinalRecognitionWindow finalRecognitionWindow = new FinalRecognitionWindow(dtmfRecognition,
                                                                                        speechRecognition,
-                                                                                       noinputTimeout,
-                                                                                       acknowledgeAudioItems);
+                                                                                       noinputTimeout);
+
+            if (acknowledgeAudioItems != null) {
+                finalRecognitionWindow.setAcknowledgeAudioItems(acknowledgeAudioItems);
+            }
+
             return new Interaction(mTurnName, mPrompts, finalRecognitionWindow);
 
         }
@@ -1191,9 +1225,12 @@ public class Interaction extends VoiceXmlOutputTurn {
             Assert.notNull(acknowledgeAudioItems, "acknowledgeAudioItems");
 
             checkBuilt();
-            FinalRecordingWindow finalRecordingWindow = new FinalRecordingWindow(recording,
-                                                                                 noinputTimeout,
-                                                                                 acknowledgeAudioItems);
+            FinalRecordingWindow finalRecordingWindow = new FinalRecordingWindow(recording, noinputTimeout);
+
+            if (acknowledgeAudioItems != null) {
+                finalRecordingWindow.setAcknowledgeAudioItems(acknowledgeAudioItems);
+            }
+
             return new Interaction(mTurnName, mPrompts, finalRecordingWindow);
         }
 
