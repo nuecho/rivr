@@ -86,10 +86,6 @@ public class Interaction extends VoiceXmlOutputTurn {
         mFinalRecognitionWindow = null;
     }
 
-    public static Builder interaction(String interactionName) {
-        return new Builder(interactionName);
-    }
-
     public final List<Prompt> getPrompts() {
         return Collections.unmodifiableList(mPrompts);
     }
@@ -958,16 +954,6 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         public Builder(String turnName) {
             mTurnName = turnName;
-        }
-
-        /**
-         * Creates a {@link Builder}.
-         * 
-         * @param turnName of the interaction to be created.
-         */
-
-        public static Builder interaction(String turnName) {
-            return new Builder(turnName);
         }
 
         /**
