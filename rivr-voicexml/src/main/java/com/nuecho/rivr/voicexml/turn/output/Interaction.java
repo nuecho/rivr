@@ -188,8 +188,8 @@ public class Interaction extends VoiceXmlOutputTurn {
                                          recognitionFormItemElement);
 
                 addDurationProperty(recognitionFormItemElement,
-                                TIMEOUT_PROPERTY,
-                                mFinalRecognitionWindow.getNoInputTimeout());
+                                    TIMEOUT_PROPERTY,
+                                    mFinalRecognitionWindow.getNoInputTimeout());
             }
         } else if (mFinalRecordingWindow != null) {
             Element recordingFormItemElement = DomUtils.appendNewElement(formElement, RECORD_ELEMENT);
