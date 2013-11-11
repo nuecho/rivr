@@ -915,7 +915,7 @@ public class Interaction extends VoiceXmlOutputTurn {
     }
 
     /**
-     * Builder used to ease creation of instances of {@link Interaction}
+     * Builder used to ease the creation of instances of {@link Interaction}
      * <p>
      * Building an {@link Interaction} implies the following steps:
      * <ul>
@@ -927,7 +927,7 @@ public class Interaction extends VoiceXmlOutputTurn {
      * <li>Once all prompts are added, optionally specify either:
      * <ul>
      * <li>a final recognition window (speech or DTMF)</li>
-     * <li>a recording</li>
+     * <li>a final recording window</li>
      * </ul>
      * </ul>
      * <p>
@@ -938,9 +938,11 @@ public class Interaction extends VoiceXmlOutputTurn {
      * This can be translated to:
      * 
      * <pre>
-     * Builder builder = Builder.interaction();
-     * builder.addPrompt(...); builder.addPrompt(...); //repeat as needed
-     * builder.addPrompt(...); Interaction interaction = builder.build(...);
+     * Builder builder = new Builder();
+     * builder.addPrompt(...); 
+     * builder.addPrompt(...); 
+     * //... repeat as needed
+     * Interaction interaction = builder.build(...);
      * </pre>
      * 
      * @author Nu Echo Inc.
