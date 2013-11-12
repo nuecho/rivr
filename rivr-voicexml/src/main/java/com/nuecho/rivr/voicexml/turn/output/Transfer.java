@@ -112,7 +112,7 @@ public abstract class Transfer extends VoiceXmlOutputTurn {
         createGotoSubmit(filledElement);
     }
 
-    protected static class Builder {
+    public abstract static class Builder {
 
         private final String mName;
         private String mDestination;
