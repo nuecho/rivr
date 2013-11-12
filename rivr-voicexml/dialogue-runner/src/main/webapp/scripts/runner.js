@@ -348,7 +348,7 @@ function processScriptExecutionTurn(result) {
   var scriptPre = $("<pre>");
   $("#script").empty();
   $("#script").append(scriptPre);
-  scriptPre.text(data.script);
+  scriptPre.text(data.code);
 
   var variableTable = $("#variables");
 
