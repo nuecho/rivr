@@ -379,58 +379,58 @@ public class ObjectCall extends VoiceXmlOutputTurn {
         private String mData;
         private String mType;
         private final List<String> mArchives = new ArrayList<String>();
-        private ResourceFetchConfiguration mFetchConfiguration;
         private final List<Parameter> mParameters = new ArrayList<Parameter>();
+        private ResourceFetchConfiguration mFetchConfiguration;
         private String mPostObjectScript;
 
         public Builder(String name) {
             mName = name;
         }
 
-        public Builder classId(String classId) {
+        public Builder setClassId(String classId) {
             Assert.notNull(classId, "classId");
             mClassId = classId;
             return this;
         }
 
-        public Builder codeBase(String codeBase) {
+        public Builder setCodeBase(String codeBase) {
             mCodeBase = codeBase;
             return this;
         }
 
-        public Builder data(String data) {
+        public Builder setData(String data) {
             mData = data;
             return this;
         }
 
-        public Builder type(String type) {
+        public Builder setType(String type) {
             mType = type;
             return this;
         }
 
-        public Builder codeType(String codeType) {
+        public Builder setCodeType(String codeType) {
             mCodeType = codeType;
             return this;
         }
 
-        public Builder fetchConfiguration(ResourceFetchConfiguration fetchConfiguration) {
+        public Builder setFetchConfiguration(ResourceFetchConfiguration fetchConfiguration) {
             mFetchConfiguration = fetchConfiguration;
             return this;
         }
 
-        public Builder archive(String archive) {
+        public Builder addArchive(String archive) {
             Assert.notNull(archive, "archive");
             mArchives.add(archive);
             return this;
         }
 
-        public Builder parameter(Parameter parameter) {
+        public Builder addParameter(Parameter parameter) {
             Assert.notNull(parameter, "parameter");
             mParameters.add(parameter);
             return this;
         }
 
-        public Builder postObjectScript(String postObjectScript) {
+        public Builder setPostObjectScript(String postObjectScript) {
             mPostObjectScript = postObjectScript;
             return this;
         }

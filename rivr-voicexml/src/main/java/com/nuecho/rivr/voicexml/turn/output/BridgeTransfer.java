@@ -69,7 +69,7 @@ public class BridgeTransfer extends SupervisedTransfer {
 
         private Duration mMaximumTime;
 
-        public Builder maximumDuration(Duration maximumTime) {
+        public Builder setMaximumDuration(Duration maximumTime) {
             mMaximumTime = maximumTime;
             return this;
         }

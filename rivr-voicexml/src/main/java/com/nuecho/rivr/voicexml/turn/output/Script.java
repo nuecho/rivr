@@ -118,22 +118,22 @@ public class Script extends VoiceXmlOutputTurn {
             mName = name;
         }
 
-        public Builder variable(String name) {
+        public Builder addVariable(String name) {
             mVariables.add(name);
             return this;
         }
 
-        public Builder variableString(String name, String string) {
+        public Builder addVariableString(String name, String string) {
             mVariables.addWithString(name, string);
             return this;
         }
 
-        public Builder variableExpression(String name, String expression) {
+        public Builder addVariableExpression(String name, String expression) {
             mVariables.addWithExpression(name, expression);
             return this;
         }
 
-        public Builder code(String code) {
+        public Builder setCode(String code) {
             mCode = code;
             return this;
         }

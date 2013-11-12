@@ -349,18 +349,18 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
             return this;
         }
 
-        public Builder method(SubmitMethod method) {
+        public Builder setMethod(SubmitMethod method) {
             Assert.notNull(method, "method");
             mMethod = method;
             return this;
         }
 
-        public Builder fetchConfiguration(FetchConfiguration fetchConfiguration) {
+        public Builder setFetchConfiguration(FetchConfiguration fetchConfiguration) {
             mFetchConfiguration = fetchConfiguration;
             return this;
         }
 
-        public Builder audio(String postDialogueScript) {
+        public Builder setPostDialogueScript(String postDialogueScript) {
             mPostDialogueScript = postDialogueScript;
             return this;
         }

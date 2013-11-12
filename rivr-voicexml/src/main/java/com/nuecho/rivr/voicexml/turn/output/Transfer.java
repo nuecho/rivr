@@ -122,12 +122,12 @@ public abstract class Transfer extends VoiceXmlOutputTurn {
             mName = name;
         }
 
-        public Builder destination(String destination) {
+        public Builder setDestination(String destination) {
             mDestination = destination;
             return this;
         }
 
-        public Builder applicationToApplication(String applicationToApplicationInformation) {
+        public Builder setApplicationToApplication(String applicationToApplicationInformation) {
             mApplicationToApplicationInformation = applicationToApplicationInformation;
             return this;
         }

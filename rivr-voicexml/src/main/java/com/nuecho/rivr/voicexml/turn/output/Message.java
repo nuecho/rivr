@@ -124,18 +124,18 @@ public class Message extends VoiceXmlOutputTurn {
             mName = name;
         }
 
-        public Builder addItem(AudioItem audioItem) {
+        public Builder addAudio(AudioItem audioItem) {
             Assert.notNull(audioItem, "audioItem");
             mAudioItems.add(audioItem);
             return this;
         }
 
-        public Builder language(String language) {
+        public Builder setLanguage(String language) {
             mLanguage = language;
             return this;
         }
 
-        public Builder bargein(Boolean bargeIn) {
+        public Builder setBargein(Boolean bargeIn) {
             mBargeIn = bargeIn;
             return this;
         }

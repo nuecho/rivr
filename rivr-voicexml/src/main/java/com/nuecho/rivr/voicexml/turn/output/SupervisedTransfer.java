@@ -122,22 +122,22 @@ public abstract class SupervisedTransfer extends Transfer {
             super(name);
         }
 
-        public Builder dtmfRecognition(DtmfRecognition dtmfRecognition) {
+        public Builder setDtmfRecognition(DtmfRecognition dtmfRecognition) {
             mDtmfRecognition = dtmfRecognition;
             return this;
         }
 
-        public Builder speechRecognition(SpeechRecognition speechRecognition) {
+        public Builder setSpeechRecognition(SpeechRecognition speechRecognition) {
             mSpeechRecognition = speechRecognition;
             return this;
         }
 
-        public Builder audio(String transferAudio) {
+        public Builder setTransferAudio(String transferAudio) {
             mTransferAudio = transferAudio;
             return this;
         }
 
-        public Builder connectTimeout(Duration connectTimeout) {
+        public Builder setConnectTimeout(Duration connectTimeout) {
             mConnectTimeout = connectTimeout;
             return this;
         }
