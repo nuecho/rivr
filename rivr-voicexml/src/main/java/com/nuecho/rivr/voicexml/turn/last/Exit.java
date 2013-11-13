@@ -10,6 +10,7 @@ import javax.json.*;
 
 import org.w3c.dom.*;
 
+import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.dialogue.*;
 import com.nuecho.rivr.voicexml.rendering.voicexml.*;
@@ -17,7 +18,15 @@ import com.nuecho.rivr.voicexml.turn.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * Terminates the {@link VoiceXmlDialogue} with an exit, returning the control
+ * to the platform. Additional information may be returned with an expression of
+ * a list of variables.
+ * 
  * @author Nu Echo Inc.
+ * @see VoiceXmlDialogue
+ * @see LastTurn
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml5.3.9">http://www.w3.org/TR/voicexml20/#dml5.3.9</a>
  */
 public class Exit extends VoiceXmlLastTurn {
 

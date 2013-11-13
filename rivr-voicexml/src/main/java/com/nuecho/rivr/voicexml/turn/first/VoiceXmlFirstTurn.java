@@ -7,9 +7,14 @@ package com.nuecho.rivr.voicexml.turn.first;
 import java.util.*;
 
 import com.nuecho.rivr.core.channel.*;
+import com.nuecho.rivr.voicexml.dialogue.*;
 
 /**
+ * First turn passed when running a {@link VoiceXmlDialogue}, it can be used to
+ * consult the parameters from the initial request.
+ * 
  * @author Nu Echo Inc.
+ * @see VoiceXmlDialogue
  */
 public class VoiceXmlFirstTurn implements FirstTurn {
 

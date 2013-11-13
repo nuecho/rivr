@@ -10,6 +10,7 @@ import javax.json.*;
 
 import org.w3c.dom.*;
 
+import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.dialogue.*;
 import com.nuecho.rivr.voicexml.rendering.voicexml.*;
@@ -17,7 +18,14 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * Terminates the {@link VoiceXmlDialogue} with a goto, transferring the control
+ * to another application specified with a URI.
+ * 
  * @author Nu Echo Inc.
+ * @see VoiceXmlDialogue
+ * @see LastTurn
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml5.3.7">http://www.w3.org/TR/voicexml20/#dml5.3.7</a>
  */
 public class Goto extends VoiceXmlLastTurn {
 
