@@ -19,19 +19,19 @@ import com.nuecho.rivr.voicexml.turn.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A {@link Script} is a {@link VoiceXmlOutputTurn} that declares
- * variables and/or executes a script.
+ * A {@link Script} is a {@link VoiceXmlOutputTurn} that declares variables
+ * and/or executes a script.
  * 
  * @author Nu Echo Inc.
  */
 public class Script extends VoiceXmlOutputTurn {
     private static final String SCRIPT_TURN_TYPE = "script";
 
-    private static final String SCRIPT_PROPERTY = "script";
+    private static final String CODE_PROPERTY = "code";
     private static final String VARIABLES_PROPERTY = "variables";
 
     private VariableList mVariables = new VariableList();
-    private String mScript;
+    private String mCode;
 
     /**
      * @param name The name of this turn. Not empty.
@@ -49,18 +49,18 @@ public class Script extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param script The script to execute. <code>null</code> to use the VoiceXML platform default.
+     * @param code The (optional) code to execute.
      */
-    public final void setScript(String script) {
-        mScript = script;
+    public final void setCode(String code) {
+        mCode = code;
     }
 
     public final VariableList getVariables() {
         return mVariables;
     }
 
-    public final String getScript() {
-        return mScript;
+    public final String getCode() {
+        return mCode;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Script extends VoiceXmlOutputTurn {
 
     @Override
     protected void addTurnProperties(JsonObjectBuilder builder) {
-        JsonUtils.add(builder, SCRIPT_PROPERTY, mScript);
+        JsonUtils.add(builder, CODE_PROPERTY, mCode);
         JsonUtils.add(builder, VARIABLES_PROPERTY, mVariables);
     }
 
@@ -81,9 +81,9 @@ public class Script extends VoiceXmlOutputTurn {
 
         Element blockElement = DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
 
-        if (mScript != null) {
+        if (mCode != null) {
             Element scriptElement = DomUtils.appendNewElement(blockElement, SCRIPT_ELEMENT);
-            DomUtils.appendNewText(scriptElement, mScript);
+            DomUtils.appendNewText(scriptElement, mCode);
         }
 
         StringBuffer scriptBuffer = new StringBuffer();
@@ -106,5 +106,43 @@ public class Script extends VoiceXmlOutputTurn {
 
         createScript(blockElement, scriptBuffer.toString());
         createGotoSubmit(blockElement);
+    }
+
+    public static class Builder {
+
+        private final String mName;
+        private final VariableList mVariables = new VariableList();
+        private String mCode;
+
+        public Builder(String name) {
+            mName = name;
+        }
+
+        public Builder addVariable(String name) {
+            mVariables.add(name);
+            return this;
+        }
+
+        public Builder addVariableString(String name, String string) {
+            mVariables.addWithString(name, string);
+            return this;
+        }
+
+        public Builder addVariableExpression(String name, String expression) {
+            mVariables.addWithExpression(name, expression);
+            return this;
+        }
+
+        public Builder setCode(String code) {
+            mCode = code;
+            return this;
+        }
+
+        public Script build() {
+            Script script = new Script(mName);
+            script.setCode(mCode);
+            script.setVariables(mVariables);
+            return script;
+        }
     }
 }

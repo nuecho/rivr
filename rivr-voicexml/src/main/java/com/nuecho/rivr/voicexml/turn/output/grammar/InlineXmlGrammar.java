@@ -11,8 +11,8 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * An {@link InlineXmlGrammar} represents an XML source grammar inlined in
- * the VoiceXML document.
+ * An {@link InlineXmlGrammar} represents an XML source grammar inlined in the
+ * VoiceXML document.
  * 
  * @author Nu Echo Inc.
  */

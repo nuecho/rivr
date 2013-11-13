@@ -12,10 +12,11 @@ import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
  * A {@link Recording} represents the description of a recording final phase of
- * an interaction. <p> It may have an optional {@link DtmfRecognition} to
- * recognize DTMF input while recording. A DTMF input matching one of the
- * {@link DtmfRecognition} grammar will terminate the recording and place the
- * recording in a variable.
+ * an interaction.
+ * <p>
+ * It may have an optional {@link DtmfRecognition} to recognize DTMF input while
+ * recording. A DTMF input matching one of the {@link DtmfRecognition} grammar
+ * will terminate the recording and place the recording in a variable.
  * 
  * @author Nu Echo Inc.
  * @see DtmfRecognition

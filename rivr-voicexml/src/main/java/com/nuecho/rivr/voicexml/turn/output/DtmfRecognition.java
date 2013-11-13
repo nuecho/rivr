@@ -13,8 +13,8 @@ import com.nuecho.rivr.voicexml.turn.output.grammar.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A {@link DtmfRecognition} represents the DTMF part of an
- * interaction phase recognition configuration. It is composed of a list of DTMF
+ * A {@link DtmfRecognition} represents the DTMF part of an interaction phase
+ * recognition configuration. It is composed of a list of DTMF
  * {@link GrammarItem} and optional properties (inter-digit timeout, term
  * timeout, term char).
  * 
@@ -45,8 +45,10 @@ public final class DtmfRecognition extends Recognition {
 
     /**
      * @param interDigitTimeout The inter-digit timeout value to use when
-     *            recognizing DTMF input. <code>null</code> to use the VoiceXML platform default.
-     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.3">http://www.w3.org/TR/voicexml20/#dml6.3.3</a>
+     *            recognizing DTMF input. <code>null</code> to use the VoiceXML
+     *            platform default.
+     * @see <a
+     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.3">http://www.w3.org/TR/voicexml20/#dml6.3.3</a>
      */
     public void setInterDigitTimeout(Duration interDigitTimeout) {
         mInterDigitTimeout = interDigitTimeout;
@@ -55,7 +57,8 @@ public final class DtmfRecognition extends Recognition {
     /**
      * @param termTimeout The terminating timeout to use when recognizing DTMF
      *            input. <code>null</code> to use the VoiceXML platform default
-     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.3">http://www.w3.org/TR/voicexml20/#dml6.3.3</a>
+     * @see <a
+     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.3">http://www.w3.org/TR/voicexml20/#dml6.3.3</a>
      */
     public void setTermTimeout(Duration termTimeout) {
         mTermTimeout = termTimeout;
@@ -63,8 +66,10 @@ public final class DtmfRecognition extends Recognition {
 
     /**
      * @param termChar The terminating DTMF character for DTMF input
-     *            recognition. Must be empty or a single character. <code>null</code> to use the VoiceXML platform default
-     * @see <a href="http://www.w3.org/TR/voicexml20/#dml6.3.3">http://www.w3.org/TR/voicexml20/#dml6.3.3</a>
+     *            recognition. Must be empty or a single character.
+     *            <code>null</code> to use the VoiceXML platform default
+     * @see <a
+     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.3">http://www.w3.org/TR/voicexml20/#dml6.3.3</a>
      */
     public void setTermChar(String termChar) {
         if (termChar != null) {

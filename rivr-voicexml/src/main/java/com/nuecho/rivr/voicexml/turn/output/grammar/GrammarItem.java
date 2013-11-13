@@ -36,7 +36,8 @@ public abstract class GrammarItem implements JsonSerializable {
     }
 
     /**
-     * @param mediaType The preferred media type for this grammar. <code>null</code> to use the VoiceXML platform default
+     * @param mediaType The preferred media type for this grammar.
+     *            <code>null</code> to use the VoiceXML platform default
      * @see <a
      *      href="http://www.w3.org/TR/voicexml20/#dml3.1.1.4">http://www.w3.org/TR/voicexml20/#dml3.1.1.4</a>
      */

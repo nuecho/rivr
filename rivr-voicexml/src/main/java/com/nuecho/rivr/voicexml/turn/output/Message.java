@@ -20,8 +20,8 @@ import com.nuecho.rivr.voicexml.turn.output.audio.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A {@link Message} is a {@link VoiceXmlOutputTurn} that plays a
- * sequence of {@link AudioItem}.
+ * A {@link Message} is a {@link VoiceXmlOutputTurn} that plays a sequence of
+ * {@link AudioItem}.
  * 
  * @author Nu Echo Inc.
  * @see AudioItem
@@ -41,8 +41,7 @@ public class Message extends VoiceXmlOutputTurn {
 
     /**
      * @param name The name of this turn. Not empty.
-     * @param audioItems The sequence of {@link AudioItem} to play. Not
-     *            empty.
+     * @param audioItems The sequence of {@link AudioItem} to play. Not empty.
      */
     public Message(String name, List<AudioItem> audioItems) {
         super(name);
@@ -52,8 +51,7 @@ public class Message extends VoiceXmlOutputTurn {
 
     /**
      * @param name The name of this turn. Not empty.
-     * @param audioItems The sequence of {@link AudioItem} to play. Not
-     *            empty.
+     * @param audioItems The sequence of {@link AudioItem} to play. Not empty.
      */
     public Message(String name, AudioItem... audioItems) {
         this(name, asList(audioItems));
@@ -61,18 +59,19 @@ public class Message extends VoiceXmlOutputTurn {
 
     /**
      * @param language The language identifier (e.g. "en-US") for the message.
-     *            <code>null</code> to use the VoiceXML platform
-     *            default
+     *            <code>null</code> to use the VoiceXML platform default
      */
     public final void setLanguage(String language) {
         mLanguage = language;
     }
 
     /**
-     * @param bargeIn <ul><li>{@link Boolean#TRUE} to enable barge-in</li>
-     *            <li>{@link Boolean#FALSE} to disable barge-in</li>
-     *            <li><code>null</code> to use the VoiceXML platform
-     *            default</li></ul>
+     * @param bargeIn <ul>
+     *            <li>{@link Boolean#TRUE} to enable barge-in</li>
+     *            <li>
+     *            {@link Boolean#FALSE} to disable barge-in</li>
+     *            <li><code>null</code> to use the VoiceXML platform default</li>
+     *            </ul>
      */
     public final void setBargeIn(Boolean bargeIn) {
         mBargeIn = bargeIn;
@@ -112,5 +111,40 @@ public class Message extends VoiceXmlOutputTurn {
         Element blockElement = addBlockElement(formElement);
         createPrompt(mLanguage, blockElement, dialogueContext, mBargeIn, mAudioItems);
         createGotoSubmit(blockElement);
+    }
+
+    public static class Builder {
+
+        private final String mName;
+        private final List<AudioItem> mAudioItems = new ArrayList<AudioItem>();
+        private String mLanguage;
+        private Boolean mBargeIn;
+
+        public Builder(String name) {
+            mName = name;
+        }
+
+        public Builder addAudio(AudioItem audioItem) {
+            Assert.notNull(audioItem, "audioItem");
+            mAudioItems.add(audioItem);
+            return this;
+        }
+
+        public Builder setLanguage(String language) {
+            mLanguage = language;
+            return this;
+        }
+
+        public Builder setBargein(Boolean bargeIn) {
+            mBargeIn = bargeIn;
+            return this;
+        }
+
+        public Message build() {
+            Message message = new Message(mName, mAudioItems);
+            message.setBargeIn(mBargeIn);
+            message.setLanguage(mLanguage);
+            return message;
+        }
     }
 }

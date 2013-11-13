@@ -22,8 +22,8 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A {@link SubdialogueCall} is a {@link VoiceXmlOutputTurn} that
- * invokes another external dialogue.
+ * A {@link SubdialogueCall} is a {@link VoiceXmlOutputTurn} that invokes
+ * another external dialogue.
  * <p>
  * Parameters may be passed to the subdialogue and return values may be
  * retrieved if the invoked subdialogue ends with a <code>&lt;return&gt;</code>
@@ -47,7 +47,7 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
     private static final String FETCH_CONFIGURATION_PROPERTY = "fetchConfiguration";
 
     private final String mUri;
-    private List<Parameter> mParameters = Collections.emptyList();
+    private Collection<Parameter> mParameters = Collections.emptyList();
     private VariableList mSubmitParameters = new VariableList();
     private SubmitMethod mMethod = SubmitMethod.get;
     private FetchConfiguration mFetchConfiguration;
@@ -64,17 +64,17 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param parameters A list of {@link Parameter} that
-     *            will be passed to the subdialogue. Not null.
+     * @param parameters A list of {@link Parameter} that will be passed to the
+     *            subdialogue. Not null.
      */
-    public final void setSubdialogueParameters(List<Parameter> parameters) {
+    public final void setSubdialogueParameters(Collection<Parameter> parameters) {
         Assert.notNull(parameters, "subdialogueParameters");
         mParameters = new ArrayList<Parameter>(parameters);
     }
 
     /**
-     * @param subdialogueParameters A list of {@link Parameter} that
-     *            will be passed to the subdialogue. Not null.
+     * @param subdialogueParameters A list of {@link Parameter} that will be
+     *            passed to the subdialogue. Not null.
      */
     public final void setSubdialogueParameters(Parameter... subdialogueParameters) {
         setSubdialogueParameters(asList(subdialogueParameters));
@@ -99,7 +99,8 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param fetchConfiguration The {@link FetchConfiguration}.  <code>null</code> to use the VoiceXML platform default.
+     * @param fetchConfiguration The {@link FetchConfiguration}.
+     *            <code>null</code> to use the VoiceXML platform default.
      */
     public final void setSubdialogueFetchConfiguration(FetchConfiguration fetchConfiguration) {
         mFetchConfiguration = fetchConfiguration;
@@ -117,8 +118,8 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
         return mUri;
     }
 
-    public final List<? extends Parameter> getVoiceXmlParameters() {
-        return unmodifiableList(mParameters);
+    public final Collection<Parameter> getVoiceXmlParameters() {
+        return unmodifiableCollection(mParameters);
     }
 
     public final VariableList getSubmitParameters() {
@@ -308,6 +309,70 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
             JsonUtils.add(builder, RESOURCE_FETCH_CONFIGURATION, mResourceFetchConfiguration);
             return builder.build();
         }
+    }
 
+    public static class Builder {
+
+        private final String mName;
+        private String mUri;
+        private final List<Parameter> mParameters = Collections.emptyList();
+        private final VariableList mSubmitParameters = new VariableList();
+        private SubmitMethod mMethod = SubmitMethod.get;
+        private FetchConfiguration mFetchConfiguration;
+        private String mPostDialogueScript;
+
+        public Builder(String name) {
+            mName = name;
+        }
+
+        public Builder uri(String uri) {
+            Assert.notEmpty(uri, "uri");
+            mUri = uri;
+            return this;
+        }
+
+        public Builder addVoiceXmlParameter(Parameter parameter) {
+            Assert.notNull(parameter, "parameter");
+            mParameters.add(parameter);
+            return this;
+        }
+
+        public Builder addSubmitParameterExpression(String name, String expression) {
+            Assert.notEmpty(name, "name");
+            mSubmitParameters.addWithExpression(name, expression);
+            return this;
+        }
+
+        public Builder addSubmitParameterString(String name, String string) {
+            Assert.notEmpty(name, "name");
+            mSubmitParameters.addWithString(name, string);
+            return this;
+        }
+
+        public Builder setMethod(SubmitMethod method) {
+            Assert.notNull(method, "method");
+            mMethod = method;
+            return this;
+        }
+
+        public Builder setFetchConfiguration(FetchConfiguration fetchConfiguration) {
+            mFetchConfiguration = fetchConfiguration;
+            return this;
+        }
+
+        public Builder setPostDialogueScript(String postDialogueScript) {
+            mPostDialogueScript = postDialogueScript;
+            return this;
+        }
+
+        public SubdialogueCall build() {
+            SubdialogueCall subdialogueCall = new SubdialogueCall(mName, mUri);
+            subdialogueCall.setMethod(mMethod);
+            subdialogueCall.setPostDialogueScript(mPostDialogueScript);
+            subdialogueCall.setSubdialogueFetchConfiguration(mFetchConfiguration);
+            subdialogueCall.setSubdialogueParameters(mParameters);
+            subdialogueCall.setSubmitParameters(mSubmitParameters);
+            return subdialogueCall;
+        }
     }
 }

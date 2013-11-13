@@ -13,8 +13,8 @@ import com.nuecho.rivr.voicexml.turn.output.grammar.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * A {@link SpeechRecognition} represents the speech part of an interaction phase
- * recognition configuration. It is composed of a list of speech
+ * A {@link SpeechRecognition} represents the speech part of an interaction
+ * phase recognition configuration. It is composed of a list of speech
  * {@link GrammarItem} and optional properties (complete timeout, incomplete
  * timeout, max speech timeout, max nbest, confidence level, speed versus
  * accuracy and sensitivity).
@@ -76,7 +76,8 @@ public final class SpeechRecognition extends Recognition {
     }
 
     /**
-     * @param maxSpeechTimeout The maximum duration of user speech. <code>null</code> to use the VoiceXML platform default
+     * @param maxSpeechTimeout The maximum duration of user speech.
+     *            <code>null</code> to use the VoiceXML platform default
      * @see <a
      *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
@@ -86,7 +87,8 @@ public final class SpeechRecognition extends Recognition {
 
     /**
      * @param maxNBest The maximum size of the recognition result. Must be a
-     *            positive integer. <code>null</code> to use the VoiceXML platform default
+     *            positive integer. <code>null</code> to use the VoiceXML
+     *            platform default
      * @see <a
      *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
@@ -101,7 +103,8 @@ public final class SpeechRecognition extends Recognition {
     /**
      * @param confidenceLevel The speech recognition confidence level. Results
      *            with confidence below this value will be rejected (nomatch).
-     *            Value must be between 0.0 and 1.0.<code>null</code> to use the VoiceXML platform default.
+     *            Value must be between 0.0 and 1.0.<code>null</code> to use the
+     *            VoiceXML platform default.
      * @see <a
      *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
@@ -116,7 +119,8 @@ public final class SpeechRecognition extends Recognition {
     /**
      * @param speedVersusAccuracy A hint specifying the desired balance between
      *            speed versus accuracy. A value of 0.0 means fastest
-     *            recognition. A value of 1.0 means best accuracy. <code>null</code> to use the VoiceXML platform default
+     *            recognition. A value of 1.0 means best accuracy.
+     *            <code>null</code> to use the VoiceXML platform default
      * @see <a
      *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
@@ -131,7 +135,8 @@ public final class SpeechRecognition extends Recognition {
     /**
      * @param sensitivity Set the sensitivity level. A value of 1.0 means that
      *            it is highly sensitive to quiet input. A value of 0.0 means it
-     *            is least sensitive to noise. <code>null</code> to use the VoiceXML platform default.
+     *            is least sensitive to noise. <code>null</code> to use the
+     *            VoiceXML platform default.
      */
     public void setSensitivity(Double sensitivity) {
         if (sensitivity != null) {

@@ -22,8 +22,10 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see BlindTransfer
  * @see BridgeTransfer
  * @see ConsultationTransfer
- * @see <a href="http://www.w3.org/TR/voicexml20/#dml2.3.6">http://www.w3.org/TR/voicexml20/#dml2.3.6</a>
- * @see <a href="http://www.w3.org/TR/voicexml21/#sec-transfer">http://www.w3.org/TR/voicexml21/#sec-transfer</a>
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml2.3.6">http://www.w3.org/TR/voicexml20/#dml2.3.6</a>
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml21/#sec-transfer">http://www.w3.org/TR/voicexml21/#sec-transfer</a>
  */
 public abstract class Transfer extends VoiceXmlOutputTurn {
     private static final String TRANSFER_TURN_TYPE = "transfer";
@@ -108,5 +110,39 @@ public abstract class Transfer extends VoiceXmlOutputTurn {
                         + "$);";
         createScript(filledElement, script);
         createGotoSubmit(filledElement);
+    }
+
+    public abstract static class Builder {
+
+        private final String mName;
+        private String mDestination;
+        private String mApplicationToApplicationInformation;
+
+        protected Builder(String name) {
+            mName = name;
+        }
+
+        public Builder setDestination(String destination) {
+            mDestination = destination;
+            return this;
+        }
+
+        public Builder setApplicationToApplication(String applicationToApplicationInformation) {
+            mApplicationToApplicationInformation = applicationToApplicationInformation;
+            return this;
+        }
+
+        protected String getName() {
+            return mName;
+        }
+
+        protected String getDestination() {
+            return mDestination;
+        }
+
+        protected void build(Transfer transfer) {
+            transfer.setApplicationToApplicationInformation(mApplicationToApplicationInformation);
+        }
+
     }
 }

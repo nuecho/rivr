@@ -46,16 +46,16 @@ public abstract class SupervisedTransfer extends Transfer {
     }
 
     /**
-     * @param dtmfRecognition The active DTMF recognition
-     *            configuration during the transfer.
+     * @param dtmfRecognition The active DTMF recognition configuration during
+     *            the transfer.
      */
     public final void setDtmfRecognition(DtmfRecognition dtmfRecognition) {
         mDtmfRecognition = dtmfRecognition;
     }
 
     /**
-     * @param speechRecognition The active speech recognition
-     *            configuration during the transfer.
+     * @param speechRecognition The active speech recognition configuration
+     *            during the transfer.
      */
     public final void setSpeechRecognition(SpeechRecognition speechRecognition) {
         mSpeechRecognition = speechRecognition;
@@ -63,8 +63,7 @@ public abstract class SupervisedTransfer extends Transfer {
 
     /**
      * @param transferAudio The location (URI or path) of audio source to play
-     *            while the transfer
-     *            attempt is in progress.
+     *            while the transfer attempt is in progress.
      */
     public final void setTransferAudio(String transferAudio) {
         mTransferAudio = transferAudio;
@@ -72,7 +71,8 @@ public abstract class SupervisedTransfer extends Transfer {
 
     /**
      * @param connectTimeout The time to wait while trying to connect the call
-     *            before returning with {@link TransferStatus#NO_ANSWER}. <code>null</code> to use the VoiceXML platform default.
+     *            before returning with {@link TransferStatus#NO_ANSWER}.
+     *            <code>null</code> to use the VoiceXML platform default.
      */
     public final void setConnectTimeout(Duration connectTimeout) {
         mConnectTimeout = connectTimeout;
@@ -109,5 +109,45 @@ public abstract class SupervisedTransfer extends Transfer {
         JsonUtils.add(builder, TRANSFER_AUDIO_PROPERTY, mTransferAudio);
         JsonUtils.add(builder, DTMF_RECOGNITION_PROPERTY, mDtmfRecognition);
         JsonUtils.add(builder, SPEECH_RECOGNITION_PROPERTY, mSpeechRecognition);
+    }
+
+    public abstract static class Builder extends Transfer.Builder {
+
+        private DtmfRecognition mDtmfRecognition;
+        private SpeechRecognition mSpeechRecognition;
+        private String mTransferAudio;
+        private Duration mConnectTimeout;
+
+        protected Builder(String name) {
+            super(name);
+        }
+
+        public Builder setDtmfRecognition(DtmfRecognition dtmfRecognition) {
+            mDtmfRecognition = dtmfRecognition;
+            return this;
+        }
+
+        public Builder setSpeechRecognition(SpeechRecognition speechRecognition) {
+            mSpeechRecognition = speechRecognition;
+            return this;
+        }
+
+        public Builder setTransferAudio(String transferAudio) {
+            mTransferAudio = transferAudio;
+            return this;
+        }
+
+        public Builder setConnectTimeout(Duration connectTimeout) {
+            mConnectTimeout = connectTimeout;
+            return this;
+        }
+
+        public void build(SupervisedTransfer supervisedTransfer) {
+            supervisedTransfer.setConnectTimeout(mConnectTimeout);
+            supervisedTransfer.setDtmfRecognition(mDtmfRecognition);
+            supervisedTransfer.setSpeechRecognition(mSpeechRecognition);
+            supervisedTransfer.setTransferAudio(mTransferAudio);
+            super.build(supervisedTransfer);
+        }
     }
 }

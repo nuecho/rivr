@@ -86,10 +86,6 @@ public class Interaction extends VoiceXmlOutputTurn {
         mFinalRecognitionWindow = null;
     }
 
-    public static Builder interaction(String interactionName) {
-        return new Builder(interactionName);
-    }
-
     public final List<Prompt> getPrompts() {
         return Collections.unmodifiableList(mPrompts);
     }
@@ -915,7 +911,7 @@ public class Interaction extends VoiceXmlOutputTurn {
     }
 
     /**
-     * Builder used to ease creation of instances of {@link Interaction}
+     * Builder used to ease the creation of instances of {@link Interaction}
      * <p>
      * Building an {@link Interaction} implies the following steps:
      * <ul>
@@ -927,7 +923,7 @@ public class Interaction extends VoiceXmlOutputTurn {
      * <li>Once all prompts are added, optionally specify either:
      * <ul>
      * <li>a final recognition window (speech or DTMF)</li>
-     * <li>a recording</li>
+     * <li>a final recording window</li>
      * </ul>
      * </ul>
      * <p>
@@ -938,9 +934,11 @@ public class Interaction extends VoiceXmlOutputTurn {
      * This can be translated to:
      * 
      * <pre>
-     * Builder builder = Builder.interaction();
-     * builder.addPrompt(...); builder.addPrompt(...); //repeat as needed
-     * builder.addPrompt(...); Interaction interaction = builder.build(...);
+     * Builder builder = new Builder();
+     * builder.addPrompt(...); 
+     * builder.addPrompt(...); 
+     * //... repeat as needed
+     * Interaction interaction = builder.build(...);
      * </pre>
      * 
      * @author Nu Echo Inc.
@@ -956,16 +954,6 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         public Builder(String turnName) {
             mTurnName = turnName;
-        }
-
-        /**
-         * Creates a {@link Builder}.
-         * 
-         * @param turnName of the interaction to be created.
-         */
-
-        public static Builder interaction(String turnName) {
-            return new Builder(turnName);
         }
 
         /**
