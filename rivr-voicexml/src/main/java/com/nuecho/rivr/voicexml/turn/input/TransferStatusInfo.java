@@ -6,10 +6,15 @@ package com.nuecho.rivr.voicexml.turn.input;
 import javax.json.*;
 
 import com.nuecho.rivr.core.util.*;
+import com.nuecho.rivr.voicexml.turn.output.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * {@link TransferStatusInfo} is the result of a {@link Transfer} and is
+ * composed of a {@link TransferStatus} and the transfer {@link Duration}.
+ * 
  * @author Nu Echo Inc.
+ * @see TransferStatus
  */
 public final class TransferStatusInfo implements JsonSerializable {
 

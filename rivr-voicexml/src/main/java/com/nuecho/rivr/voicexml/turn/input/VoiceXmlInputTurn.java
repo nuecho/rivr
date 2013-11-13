@@ -14,6 +14,18 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.servlet.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
+/**
+ * The result of an interaction with the platform, it may contains one or many
+ * of the following: a recognition result, a recording, VoiceXml events, a
+ * transfer status, a script result, uploaded files.
+ * 
+ * @author Nu Echo Inc.
+ * @see RecognitionInfo
+ * @see RecordingInfo
+ * @see TransferStatusInfo
+ * @see VoiceXmlEvent
+ * @see FileUpload
+ */
 public final class VoiceXmlInputTurn implements InputTurn, JsonSerializable {
 
     private static final String TRANSFER_RESULT_PROPERTY = "transferResult";
@@ -93,5 +105,4 @@ public final class VoiceXmlInputTurn implements InputTurn, JsonSerializable {
         JsonUtils.add(builder, TRANSFER_RESULT_PROPERTY, mTransferResult);
         return builder.build();
     }
-
 }

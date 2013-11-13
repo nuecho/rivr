@@ -7,10 +7,20 @@ import javax.json.*;
 
 import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.servlet.*;
+import com.nuecho.rivr.voicexml.turn.output.*;
+import com.nuecho.rivr.voicexml.turn.output.Interaction.FinalRecordingWindow;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * {@link RecordingInfo} contains the recorded file, its duration and other meta
+ * information produced by an {@link Interaction} with a
+ * {@link FinalRecordingWindow}.
+ * 
  * @author Nu Echo Inc.
+ * @see Interaction
+ * @see FinalRecordingWindow
+ * @see Recording
+ * @see FileUpload
  */
 public final class RecordingInfo implements JsonSerializable {
 

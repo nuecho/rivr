@@ -5,6 +5,14 @@ import javax.json.*;
 import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
+/**
+ * {@link MarkInfo} contains the name of the last mark encountered before a
+ * recognition and the time elapsed between the beginning of the interaction and
+ * the start of the recognition.
+ * 
+ * @author Nu Echo Inc.
+ * @see MarkInfo
+ */
 public final class MarkInfo implements JsonSerializable {
 
     private static final String TIME_PROPERTY = "time";
