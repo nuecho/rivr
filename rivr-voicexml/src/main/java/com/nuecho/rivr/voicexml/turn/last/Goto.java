@@ -18,7 +18,7 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * Terminates the {@link VoiceXmlDialogue} with a goto, transferring the control
+ * Terminates a {@link VoiceXmlDialogue} with a goto, transferring the control
  * to another application specified with a URI.
  * 
  * @author Nu Echo Inc.

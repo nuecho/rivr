@@ -111,6 +111,10 @@ public abstract class SupervisedTransfer extends Transfer {
         JsonUtils.add(builder, SPEECH_RECOGNITION_PROPERTY, mSpeechRecognition);
     }
 
+    /**
+     * Builder used to ease the creation of instances of
+     * {@link SupervisedTransfer}
+     */
     public abstract static class Builder extends Transfer.Builder {
 
         private DtmfRecognition mDtmfRecognition;

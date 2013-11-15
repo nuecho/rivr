@@ -19,8 +19,8 @@ import com.nuecho.rivr.voicexml.turn.output.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * Terminates the {@link VoiceXmlDialogue} with a return, transferring the
- * control back to the calling dialogue. A list of variables or an event can be
+ * Terminates a {@link VoiceXmlDialogue} with a return, transferring the control
+ * back to the calling dialogue. A list of variables or an event can be
  * returned. Must be used it the {@link VoiceXmlDialogue} was called using a
  * {@link SubdialogueCall}.
  * 

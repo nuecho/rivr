@@ -911,7 +911,7 @@ public class Interaction extends VoiceXmlOutputTurn {
     }
 
     /**
-     * Builder used to ease the creation of instances of {@link Interaction}
+     * Builder used to ease the creation of instances of {@link Interaction}.
      * <p>
      * Building an {@link Interaction} implies the following steps:
      * <ul>

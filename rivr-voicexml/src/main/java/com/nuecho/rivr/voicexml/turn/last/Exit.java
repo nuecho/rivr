@@ -18,9 +18,9 @@ import com.nuecho.rivr.voicexml.turn.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * Terminates the {@link VoiceXmlDialogue} with an exit, returning the control
- * to the platform. Additional information may be returned with an expression of
- * a list of variables.
+ * Terminates a {@link VoiceXmlDialogue} with an exit, returning the control to
+ * the platform. Additional information may be returned with an expression of a
+ * list of variables.
  * 
  * @author Nu Echo Inc.
  * @see VoiceXmlDialogue

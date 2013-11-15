@@ -18,7 +18,7 @@ import com.nuecho.rivr.voicexml.turn.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * Terminates the {@link VoiceXmlDialogue} with a disconnect (throwing a
+ * Terminates a {@link VoiceXmlDialogue} with a disconnect (throwing a
  * connection.disconnect.hangup event). A list of variables can optionally be
  * returned.
  * 

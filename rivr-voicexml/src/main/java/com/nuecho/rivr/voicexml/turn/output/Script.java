@@ -108,6 +108,9 @@ public class Script extends VoiceXmlOutputTurn {
         createGotoSubmit(blockElement);
     }
 
+    /**
+     * Builder used to ease the creation of instances of {@link Script}.
+     */
     public static class Builder {
 
         private final String mName;

@@ -16,6 +16,8 @@ import com.nuecho.rivr.voicexml.turn.output.grammar.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * Base class of an interaction phase recognition configuration parts.
+ * 
  * @author Nu Echo Inc.
  * @see DtmfRecognition
  * @see SpeechRecognition
