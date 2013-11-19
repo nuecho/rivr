@@ -18,7 +18,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
 /**
  * @author Nu Echo Inc.
  */
-public abstract class VoiceXmlDocumentTurn implements JsonSerializable, NamedTurn {
+public abstract class VoiceXmlDocumentTurn implements JsonSerializable {
 
     private static final String DATA_PROPERTY = "data";
     private static final String NAME_PROPERTY = "name";
@@ -46,7 +46,6 @@ public abstract class VoiceXmlDocumentTurn implements JsonSerializable, NamedTur
         mAdapters.add(adapter);
     }
 
-    @Override
     public final String getName() {
         return mName;
     }
