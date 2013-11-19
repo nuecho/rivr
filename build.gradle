@@ -127,6 +127,12 @@ task globalJavadoc(type: Javadoc) {
      destinationDir = new File(buildDir, 'javadoc')
      classpath = files(subprojects.collect {project -> project.sourceSets.main.compileClasspath}) 
 
+     // To use Java 7 Javadoc: 
+     //    gradlew  -DjavadocExecutable=/usr/java/jdk7/bin/javadoc  globalJavadoc
+     if(System.getProperty("javadocExecutable") != null) {
+         executable = System.getProperty("javadocExecutable")
+     }
+
      configure(options) {
         splitIndex true
         linkSource true
@@ -140,6 +146,8 @@ task globalJavadoc(type: Javadoc) {
         footer "To report errors, inconsistencies and omissions in the Rivr API documentation, please <a href=\"https://github.com/nuecho/rivr/issues/new\" target=\"_blank\">open an issue</a>."
         links "http://download.oracle.com/javase/6/docs/api/" 
         links "http://download.oracle.com/javaee/6/api/"
+        links "http://slf4j.org/api/"
+        links "https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/"
         setOverview("${projectDir}/doc/javadoc-extra/overview.html")
         stylesheetFile = new File( projectDir, 'doc/javadoc-extra/rivr-javadoc.css' ) 
         docTitle "<a href=\"http://rivr.nuecho.com/\" target=\"_blank\"><img src=\"http://rivr.nuecho.com/img/logo.png\" /></a><br/>API documentation of <a href=\"http://rivr.nuecho.com/\" target=\"_blank\">Rivr</a> $project.version"
