@@ -10,10 +10,28 @@ import org.slf4j.*;
 
 import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.dialogue.*;
+import com.nuecho.rivr.core.servlet.*;
 import com.nuecho.rivr.core.util.*;
 
 /**
+ * Stores {@link Session} and check for expirations.
+ * <p>
+ * Rivr has its own SessionContainer independent from the Web server. This
+ * solves many issues related to cookies and encoding of session ID in the URI.
+ * <p>
+ * A clean-up thread checks periodically that every session has not timed-out.
+ * The scan period and the session time-out value can be specified in the
+ * {@link #SessionContainer(Logger, Duration, Duration, String) constructor},
+ * although they are normally specified via the {@link DialogueServlet}.
+ * 
+ * @see DialogueServlet#setSessionScanPeriod(Duration)
+ * @see DialogueServlet#setSessionTimeout(Duration)
  * @author Nu Echo Inc.
+ * @param <F> type of {@link FirstTurn}
+ * @param <L> type of {@link LastTurn}
+ * @param <O> type of {@link OutputTurn}
+ * @param <I> type of {@link InputTurn}
+ * @param <C> type of {@link DialogueContext}
  */
 public final class SessionContainer<I extends InputTurn, O extends OutputTurn, F extends FirstTurn, L extends LastTurn, C extends DialogueContext<I, O>> {
 

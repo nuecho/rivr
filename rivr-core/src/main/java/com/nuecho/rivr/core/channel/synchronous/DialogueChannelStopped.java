@@ -4,7 +4,12 @@
 
 package com.nuecho.rivr.core.channel.synchronous;
 
+import com.nuecho.rivr.core.channel.*;
+
 /**
+ * Exception used to indicate that the exchange of turns cannot occur since the
+ * {@link DialogueChannel} has been stopped.
+ * 
  * @author Nu Echo Inc.
  */
 public class DialogueChannelStopped extends RuntimeException {

@@ -10,6 +10,8 @@ import java.util.*;
 import org.slf4j.*;
 
 /**
+ * {@link Logger} storing entries in memory.
+ * 
  * @author Nu Echo Inc.
  */
 public final class AccumulatingLog extends LoggerAdapter {

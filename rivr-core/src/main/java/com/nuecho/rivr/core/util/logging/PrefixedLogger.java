@@ -9,6 +9,8 @@ import static org.slf4j.helpers.MessageFormatter.*;
 import org.slf4j.*;
 
 /**
+ * {@link Logger} adding a prefix to each message.
+ * 
  * @author Nu Echo Inc.
  */
 public class PrefixedLogger extends LoggerAdapter {

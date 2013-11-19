@@ -1,5 +1,10 @@
 package com.nuecho.rivr.core.util;
 
+/**
+ * Class used in toString() methods.
+ * 
+ * @author Nu Echo Inc.
+ */
 public final class ToStringBuilder {
 
     private final StringBuilder mBuffer = new StringBuilder();

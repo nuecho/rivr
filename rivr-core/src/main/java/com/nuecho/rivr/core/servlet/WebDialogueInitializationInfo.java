@@ -11,6 +11,8 @@ import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.dialogue.*;
 
 /**
+ * Servlet-specific {@link DialogueInitializationInfo}.
+ * 
  * @author Nu Echo Inc.
  */
 public class WebDialogueInitializationInfo<I extends InputTurn, O extends OutputTurn, C extends DialogueContext<I, O>>

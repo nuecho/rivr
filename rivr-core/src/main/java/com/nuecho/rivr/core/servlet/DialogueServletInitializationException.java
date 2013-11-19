@@ -5,6 +5,8 @@
 package com.nuecho.rivr.core.servlet;
 
 /**
+ * Error during initialization of {@link DialogueServlet}
+ * 
  * @author Nu Echo Inc.
  */
 public final class DialogueServletInitializationException extends Exception {

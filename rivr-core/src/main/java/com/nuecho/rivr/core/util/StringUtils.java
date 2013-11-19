@@ -8,6 +8,8 @@ import java.util.*;
 import java.util.regex.*;
 
 /**
+ * String manipulation utility classes.
+ * 
  * @author Nu Echo Inc.
  */
 public final class StringUtils {
@@ -149,8 +151,8 @@ public final class StringUtils {
      * <code>byte</code> array.
      * 
      * @param bytes the <code>byte</code> array to be expressed
-     * @return the resulting {@link String}, in which each input byte has
-     *         been turned into two hexadecimal characters.
+     * @return the resulting {@link String}, in which each input byte has been
+     *         turned into two hexadecimal characters.
      */
     public static String bytesToHex(byte[] bytes) {
         char[] buffer = new char[2 * (bytes.length)];

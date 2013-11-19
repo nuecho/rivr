@@ -4,6 +4,8 @@
 package com.nuecho.rivr.core.dialogue;
 
 /**
+ * Exception used to indicate that an error occured during dialogue creation.
+ * 
  * @author Nu Echo Inc.
  */
 public class DialogueFactoryException extends Exception {

@@ -20,6 +20,31 @@ import com.nuecho.rivr.core.servlet.session.*;
 import com.nuecho.rivr.core.util.*;
 
 /**
+ * Abstract servlet interacting with a web client acting as the controller of a
+ * {@link SynchronousDialogueChannel}.
+ * <p>
+ * This abstract servlet must be extended in order to provide a specific
+ * implementation. For each session,
+ * <ol>
+ * <li>the servlet creates the {@link Session} and place it in the
+ * {@link SessionContainer}</li>
+ * <li>it creates a {@link Dialogue} with a {@link DialogueFactory}</li>
+ * <li>it creates a {@link DialogueContext} with a
+ * {@link DialogueContextFactory}</li>
+ * <li>it creates a {@link SynchronousDialogueChannel} and starts the dialogue
+ * upon initial HTTP request</li>
+ * <li>it renders the various {@link Step steps} from the dialogue channel into
+ * appropriate HTTP responses</li>
+ * <li>it translates HTTP requests into {@link InputTurn InputTurns} using the
+ * {@link InputTurnFactory}
+ * <li>once the dialogue is done, the servlet perform necessary clean-up.</li>
+ * </ol>
+ * 
+ * @param <F> type of {@link FirstTurn}
+ * @param <L> type of {@link LastTurn}
+ * @param <O> type of {@link OutputTurn}
+ * @param <I> type of {@link InputTurn}
+ * @param <C> type of {@link DialogueContext}
  * @author Nu Echo Inc.
  */
 public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn, F extends FirstTurn, L extends LastTurn, C extends DialogueContext<I, O>>
@@ -44,13 +69,27 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     private Duration mSessionTimeout = Duration.minutes(30);
     private Duration mSessionScanPeriod = Duration.minutes(2);
 
+    /**
+     * Perform initialization.
+     */
     protected abstract void initDialogueServlet() throws DialogueServletInitializationException;
 
+    /**
+     * Perform shutdown.
+     */
     protected abstract void destroyDialogueServlet();
 
+    /**
+     * Provided the {@link StepRenderer} appropriate for the context.
+     */
     protected abstract StepRenderer<I, O, L, C> getStepRenderer(HttpServletRequest request,
                                                                 Session<I, O, F, L, C> session);
 
+    /**
+     * Initialize the servlet. The first thing done in this method is to call
+     * {@link #initDialogueServlet()}. This method is called by the servlet
+     * container.
+     */
     @Override
     public final void init() throws ServletException {
 
@@ -78,6 +117,11 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
     }
 
+    /**
+     * Destroys the servlet. This methods calls
+     * {@link #destroyDialogueServlet()}. This method is called by the servlet
+     * container.
+     */
     @Override
     public void destroy() {
         destroyDialogueServlet();
@@ -159,6 +203,11 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         mLoggerFactory = loggerFactory;
     }
 
+    /**
+     * Sets maximum duration the servlet thread can wait for the dialogue
+     * response. Cannot be <code>null</code>. A value of Duration.ZERO (or
+     * equivalent) means to wait forever.
+     */
     public final void setDialogueTimeout(Duration dialogueTimeout) {
         Assert.notNull(dialogueTimeout, "dialogueTimeout");
         mDialogueTimeout = dialogueTimeout;

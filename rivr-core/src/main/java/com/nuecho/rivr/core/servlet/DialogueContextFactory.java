@@ -12,6 +12,12 @@ import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.dialogue.*;
 
 /**
+ * Creates {@link DialogueContext} based on the {@link HttpServletRequest HTTP
+ * request}, the dialogue ID and the {@link DialogueChannel}.
+ * 
+ * @param <O> type of {@link OutputTurn}
+ * @param <I> type of {@link InputTurn}
+ * @param <C> type of {@link DialogueContext}
  * @author Nu Echo Inc.
  */
 public interface DialogueContextFactory<C extends DialogueContext<I, O>, I extends InputTurn, O extends OutputTurn> {

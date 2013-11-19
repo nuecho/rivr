@@ -5,6 +5,10 @@
 package com.nuecho.rivr.core.servlet.session;
 
 /**
+ * Thrown when a session could not be found in the SessionContainer. Typically,
+ * this occurs when an error occurs on the client-side while the dialogue has
+ * terminated on the server-side.
+ * 
  * @author Nu Echo Inc.
  */
 public final class SessionNotFoundException extends Exception {

@@ -8,6 +8,11 @@ import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.util.*;
 
 /**
+ * Step wrapping a {@link LastTurn}. This kind of step tells that the dialogue
+ * is done.
+ * 
+ * @param <O> type of {@link OutputTurn}
+ * @param <L> type of {@link LastTurn}
  * @author Nu Echo Inc.
  */
 public final class LastTurnStep<O extends OutputTurn, L extends LastTurn> implements Step<O, L> {

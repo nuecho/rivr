@@ -7,6 +7,8 @@ package com.nuecho.rivr.core.util;
 import java.util.*;
 
 /**
+ * Assertion facilities.
+ * 
  * @author Nu Echo Inc.
  */
 public final class Assert {

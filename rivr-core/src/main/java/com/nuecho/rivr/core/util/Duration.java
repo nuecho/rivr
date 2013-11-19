@@ -8,6 +8,8 @@ import java.io.*;
 import java.util.regex.*;
 
 /**
+ * Represents a delta of time.
+ * 
  * @author Nu Echo Inc.
  */
 public final class Duration implements Comparable<Duration>, Serializable {

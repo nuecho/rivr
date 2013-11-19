@@ -13,6 +13,8 @@ import org.w3c.dom.bootstrap.*;
 import org.w3c.dom.ls.*;
 
 /**
+ * XML DOM manipulation utility class.
+ * 
  * @author Nu Echo Inc.
  */
 public final class DomUtils {
