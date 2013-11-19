@@ -145,10 +145,10 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         return mLoggerFactory;
     }
 
-    public void renderOutputTurn(O outputTurn,
-                                 HttpServletRequest request,
-                                 final HttpServletResponse response,
-                                 Session<I, O, F, L, C> session) throws IOException, StepRendererException {
+    protected void renderOutputTurn(O outputTurn,
+                                    HttpServletRequest request,
+                                    final HttpServletResponse response,
+                                    Session<I, O, F, L, C> session) throws IOException, StepRendererException {
         ServletResponseContent responseContent = getStepRenderer(request, session).createDocumentForOutputTurn(outputTurn,
                                                                                                                request,
                                                                                                                response,
@@ -156,10 +156,10 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         commitToResponse(response, responseContent);
     }
 
-    public void renderLastTurn(L result,
-                               HttpServletRequest request,
-                               HttpServletResponse response,
-                               Session<I, O, F, L, C> session) throws IOException, StepRendererException {
+    protected void renderLastTurn(L result,
+                                  HttpServletRequest request,
+                                  HttpServletResponse response,
+                                  Session<I, O, F, L, C> session) throws IOException, StepRendererException {
         ServletResponseContent responseContent = getStepRenderer(request, session).createDocumentForLastTurn(result,
                                                                                                              request,
                                                                                                              response,
@@ -168,10 +168,10 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         session.stop();
     }
 
-    public void renderError(Throwable error,
-                            HttpServletRequest request,
-                            HttpServletResponse response,
-                            Session<I, O, F, L, C> session) throws IOException, StepRendererException {
+    protected void renderError(Throwable error,
+                               HttpServletRequest request,
+                               HttpServletResponse response,
+                               Session<I, O, F, L, C> session) throws IOException, StepRendererException {
 
         L fatalErrorTurn = mErrorHandler.handleError(error);
 
