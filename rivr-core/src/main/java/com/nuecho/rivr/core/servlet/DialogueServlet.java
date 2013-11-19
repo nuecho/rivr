@@ -65,7 +65,7 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     private SessionContainer<I, O, F, L, C> mSessionContainer;
     private InputTurnFactory<I, F> mInputTurnFactory;
 
-    private Duration mDialogueTimeout = Duration.milliseconds(10000);
+    private Duration mDialogueTimeout = Duration.seconds(10);
     private Duration mSessionTimeout = Duration.minutes(30);
     private Duration mSessionScanPeriod = Duration.minutes(2);
 
