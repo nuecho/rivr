@@ -359,7 +359,7 @@ public class ObjectCall extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @author NuEcho Inc.
+     * @author Nu Echo Inc.
      */
     public enum ParameterValueType implements JsonSerializable {
         data, ref;

@@ -12,6 +12,9 @@ import org.w3c.dom.*;
 
 import com.nuecho.rivr.core.servlet.*;
 
+/**
+ * @author Nu Echo Inc.
+ */
 public class XmlDocumentServletResponseContent implements ServletResponseContent {
 
     private final Document mDocument;

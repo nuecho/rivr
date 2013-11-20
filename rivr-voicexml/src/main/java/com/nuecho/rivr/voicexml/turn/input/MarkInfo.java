@@ -9,6 +9,9 @@ import javax.json.*;
 import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
+/**
+ * @author Nu Echo Inc.
+ */
 public final class MarkInfo implements JsonSerializable {
 
     private static final String TIME_PROPERTY = "time";

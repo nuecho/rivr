@@ -4,6 +4,9 @@
 
 package com.nuecho.rivr.core.servlet;
 
+/**
+ * @author Nu Echo Inc.
+ */
 public final class StepRendererException extends Exception {
 
     private static final long serialVersionUID = 1L;

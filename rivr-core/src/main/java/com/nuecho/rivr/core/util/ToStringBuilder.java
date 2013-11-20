@@ -4,6 +4,9 @@
 
 package com.nuecho.rivr.core.util;
 
+/**
+ * @author Nu Echo Inc.
+ */
 public final class ToStringBuilder {
 
     private final StringBuilder mBuffer = new StringBuilder();

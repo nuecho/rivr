@@ -4,7 +4,7 @@
 package com.nuecho.rivr.voicexml.turn.output.fetch;
 
 /**
- * @author NuEcho Inc.
+ * @author Nu Echo Inc.
  */
 public enum FetchHint {
     prefetch, safe;

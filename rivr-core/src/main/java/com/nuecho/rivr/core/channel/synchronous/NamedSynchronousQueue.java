@@ -2,6 +2,9 @@
  * Copyright (c) 2013 Nu Echo Inc. All rights reserved.
  */
 
+/**
+ * @author Nu Echo Inc.
+ */
 package com.nuecho.rivr.core.channel.synchronous;
 
 import java.util.concurrent.*;

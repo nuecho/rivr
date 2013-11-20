@@ -18,9 +18,6 @@ import com.nuecho.rivr.core.util.*;
  */
 public final class JsonUtils {
 
-    /**
-     * @author Nu Echo Inc.
-     */
     private static final class JsonStringImplementation implements JsonString {
         private final String mString;
 

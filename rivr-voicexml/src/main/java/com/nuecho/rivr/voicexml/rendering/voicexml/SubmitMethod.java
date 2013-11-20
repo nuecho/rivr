@@ -4,6 +4,9 @@
 
 package com.nuecho.rivr.voicexml.rendering.voicexml;
 
+/**
+ * @author Nu Echo Inc.
+ */
 public enum SubmitMethod {
     post, get;
 }

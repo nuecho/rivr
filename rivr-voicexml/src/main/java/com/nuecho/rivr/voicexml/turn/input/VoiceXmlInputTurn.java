@@ -14,6 +14,9 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.servlet.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
+/**
+ * @author Nu Echo Inc.
+ */
 public final class VoiceXmlInputTurn implements InputTurn, JsonSerializable {
 
     private static final String TRANSFER_RESULT_PROPERTY = "transferResult";
