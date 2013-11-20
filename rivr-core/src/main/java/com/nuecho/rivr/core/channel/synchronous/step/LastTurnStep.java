@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 Nu Echo Inc. All rights reserved.
+ * Copyright (c) 2013 Nu Echo Inc. All rights reserved.
  */
 
 package com.nuecho.rivr.core.channel.synchronous.step;

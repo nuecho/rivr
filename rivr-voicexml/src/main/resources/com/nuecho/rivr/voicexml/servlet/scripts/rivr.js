@@ -1,5 +1,8 @@
 /*global application */
 
+/*
+ * Copyright (c) 2013 Nu Echo Inc. All rights reserved.
+ */
 (function(rivr) {
 
   rivr.addRecognitionResult = function() {

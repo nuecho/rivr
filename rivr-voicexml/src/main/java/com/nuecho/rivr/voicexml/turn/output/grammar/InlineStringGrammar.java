@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004 Nu Echo Inc. All rights reserved.
+ * Copyright (c) 2013 Nu Echo Inc. All rights reserved.
  */
 package com.nuecho.rivr.voicexml.turn.output.grammar;
 
