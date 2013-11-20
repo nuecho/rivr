@@ -31,9 +31,6 @@ import com.nuecho.rivr.voicexml.util.*;
 /**
  * @author Nu Echo Inc.
  */
-/**
- * @author Nu Echo Inc.
- */
 public class VoiceXmlDialogueServlet
         extends
         DialogueServlet<VoiceXmlInputTurn, VoiceXmlOutputTurn, VoiceXmlFirstTurn, VoiceXmlLastTurn, VoiceXmlDialogueContext> {
