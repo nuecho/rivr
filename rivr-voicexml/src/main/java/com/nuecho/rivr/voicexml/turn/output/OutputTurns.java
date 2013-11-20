@@ -2,9 +2,7 @@
  * Copyright (c) 2013 Nu Echo Inc. All rights reserved.
  */
 
-package com.nuecho.rivr.voicexml.turn;
-
-import com.nuecho.rivr.voicexml.turn.output.*;
+package com.nuecho.rivr.voicexml.turn.output;
 
 /**
  * @author Nu Echo Inc.
