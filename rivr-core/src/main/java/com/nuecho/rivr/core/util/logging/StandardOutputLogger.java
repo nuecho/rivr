@@ -6,7 +6,11 @@ package com.nuecho.rivr.core.util.logging;
 
 import java.io.*;
 
+import org.slf4j.*;
+
 /**
+ * Standard Output Console {@link Logger}
+ * 
  * @author Nu Echo Inc.
  */
 public class StandardOutputLogger extends ConsoleLogger {

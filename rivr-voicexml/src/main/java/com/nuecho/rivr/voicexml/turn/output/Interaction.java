@@ -483,7 +483,7 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         if (mFinalRecognitionWindow != null) {
             List<? extends AudioItem> acknowledgeAudioItems = mFinalRecognitionWindow.getAcknowledgeAudioItems();
-            if (acknowledgeAudioItems != null && !acknowledgeAudioItems.isEmpty()) {
+            if (!acknowledgeAudioItems.isEmpty()) {
                 processAudioItems(acknowledgeAudioItems, filledElement);
             }
         }
@@ -516,7 +516,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         private final SpeechRecognition mSpeechRecognition;
         private final DtmfRecognition mDtmfRecognition;
         private Duration mNoInputTimeout;
-        private List<AudioItem> mAcknowledgeAudioItems;
+        private List<AudioItem> mAcknowledgeAudioItems = new ArrayList<AudioItem>();
 
         public FinalRecognitionWindow(DtmfRecognition dtmfRecognition,
                                       SpeechRecognition speechRecognition,
@@ -648,7 +648,7 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         private final Recording mRecording;
         private Duration mNoInputTimeout;
-        private List<AudioItem> mAcknowledgeAudioItems;
+        private List<AudioItem> mAcknowledgeAudioItems = new ArrayList<AudioItem>();
 
         public FinalRecordingWindow(Recording recording) {
             this(recording, null);
@@ -669,7 +669,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         }
 
         public List<? extends AudioItem> getAcknowledgeAudioItems() {
-            return mAcknowledgeAudioItems;
+            return Collections.unmodifiableList(mAcknowledgeAudioItems);
         }
 
         public void setAcknowledgeAudioItems(List<? extends AudioItem> acknowledgeAudioItems) {
@@ -911,7 +911,7 @@ public class Interaction extends VoiceXmlOutputTurn {
     }
 
     /**
-     * Builder used to ease the creation of instances of {@link Interaction}
+     * Builder used to ease the creation of instances of {@link Interaction}.
      * <p>
      * Building an {@link Interaction} implies the following steps:
      * <ul>

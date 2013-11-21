@@ -9,6 +9,8 @@ import java.io.*;
 import org.slf4j.*;
 
 /**
+ * Console implementation of a {@link Logger}.
+ * 
  * @author Nu Echo Inc.
  */
 public abstract class ConsoleLogger extends LoggerAdapter {

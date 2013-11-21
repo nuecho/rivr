@@ -14,6 +14,10 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.core.util.logging.*;
 
 /**
+ * A dialogue channel implementation for testing. This {@link DialogueChannel}
+ * is intended for unit testing. Test case acts as the controller and interact
+ * with the dialogue channel. Dialogue steps can be obtained and asserted.
+ * 
  * @author Nu Echo Inc.
  */
 public abstract class TestDialogueChannel<I extends InputTurn, O extends OutputTurn, F extends FirstTurn, L extends LastTurn, C extends DialogueContext<I, O>>

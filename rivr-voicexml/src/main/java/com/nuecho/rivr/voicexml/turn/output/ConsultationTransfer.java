@@ -30,6 +30,10 @@ public class ConsultationTransfer extends SupervisedTransfer {
         return CONSULTATION_TRANSFER_TYPE;
     }
 
+    /**
+     * Builder used to ease the creation of instances of
+     * {@link ConsultationTransfer}.
+     */
     public static class Builder extends SupervisedTransfer.Builder {
 
         public Builder(String name) {

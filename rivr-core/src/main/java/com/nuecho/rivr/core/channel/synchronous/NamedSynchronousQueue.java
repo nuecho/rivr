@@ -9,6 +9,9 @@ package com.nuecho.rivr.core.channel.synchronous;
 
 import java.util.concurrent.*;
 
+/**
+ * A {@link SynchronousQueue} with an additional <i>name</i> property.
+ */
 public class NamedSynchronousQueue<E> extends SynchronousQueue<E> {
 
     private static final long serialVersionUID = 6507522115811287461L;

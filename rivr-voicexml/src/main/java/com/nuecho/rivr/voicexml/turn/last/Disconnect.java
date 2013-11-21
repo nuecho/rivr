@@ -10,6 +10,7 @@ import javax.json.*;
 
 import org.w3c.dom.*;
 
+import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.dialogue.*;
 import com.nuecho.rivr.voicexml.rendering.voicexml.*;
@@ -17,7 +18,17 @@ import com.nuecho.rivr.voicexml.turn.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * Terminates a {@link VoiceXmlDialogue} with a disconnect (throwing a
+ * connection.disconnect.hangup event). A list of variables can optionally be
+ * returned.
+ * 
  * @author Nu Echo Inc.
+ * @see VoiceXmlDialogue
+ * @see LastTurn
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml5.3.11">http://www.w3.org/TR/voicexml20/#dml5.3.11</a>
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml21/#sec-disconnect">http://www.w3.org/TR/voicexml21/#sec-disconnect</a>
  */
 public class Disconnect extends VoiceXmlLastTurn {
 

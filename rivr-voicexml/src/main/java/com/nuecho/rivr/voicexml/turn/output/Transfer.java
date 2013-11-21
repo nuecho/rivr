@@ -112,6 +112,9 @@ public abstract class Transfer extends VoiceXmlOutputTurn {
         createGotoSubmit(filledElement);
     }
 
+    /**
+     * Base class for all {@link Transfer} builders.
+     */
     public abstract static class Builder {
 
         private final String mName;

@@ -5,10 +5,15 @@ package com.nuecho.rivr.voicexml.turn.input;
 
 import javax.json.*;
 
+import com.nuecho.rivr.voicexml.turn.output.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
- * @author Nu Echo Inc.
+ * The status of a {@link Transfer}.
+ * 
+ * @author NuEcho Inc.
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml2.3.7.2.2">http://www.w3.org/TR/voicexml20/#dml2.3.7.2.2</a>
  */
 public class TransferStatus implements JsonSerializable {
 
@@ -35,5 +40,4 @@ public class TransferStatus implements JsonSerializable {
     public JsonValue asJson() {
         return JsonUtils.wrap(mStatusCode);
     }
-
 }

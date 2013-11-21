@@ -9,6 +9,9 @@ import javax.servlet.http.*;
 import com.nuecho.rivr.core.channel.*;
 
 /**
+ * Creates {@link InputTurn} and {@link FirstTurn} from
+ * {@link HttpServletRequest} and {@link HttpServletResponse}.
+ * 
  * @author Nu Echo Inc.
  */
 public interface InputTurnFactory<I extends InputTurn, F extends FirstTurn> {

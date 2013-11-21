@@ -5,6 +5,8 @@
 package com.nuecho.rivr.core.util;
 
 /**
+ * Some predefined encodings.
+ * 
  * @author Nu Echo Inc.
  */
 public enum Encoding {

@@ -7,6 +7,8 @@ package com.nuecho.rivr.core.util.logging;
 import org.slf4j.*;
 
 /**
+ * Internal logging utilities.
+ * 
  * @author Nu Echo Inc.
  */
 public class LogUtil {

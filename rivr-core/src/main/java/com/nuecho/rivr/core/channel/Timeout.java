@@ -5,6 +5,9 @@
 package com.nuecho.rivr.core.channel;
 
 /**
+ * Exception thrown when {@link DialogueChannel} exceeds maximum time allowed to
+ * perform an operation.
+ * 
  * @author Nu Echo Inc.
  */
 public final class Timeout extends Exception {

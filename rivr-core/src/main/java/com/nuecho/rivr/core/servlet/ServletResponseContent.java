@@ -7,6 +7,8 @@ package com.nuecho.rivr.core.servlet;
 import java.io.*;
 
 /**
+ * Encapsulate servlet response (content + content type)
+ * 
  * @author Nu Echo Inc.
  */
 public interface ServletResponseContent {

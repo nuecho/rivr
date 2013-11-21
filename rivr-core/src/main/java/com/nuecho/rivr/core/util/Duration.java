@@ -8,6 +8,8 @@ import java.io.*;
 import java.util.regex.*;
 
 /**
+ * Represents a delta of time.
+ * 
  * @author Nu Echo Inc.
  */
 public final class Duration implements Comparable<Duration>, Serializable {
@@ -27,11 +29,11 @@ public final class Duration implements Comparable<Duration>, Serializable {
 
     public static final Duration ZERO = new Duration(0);
     public static final Pattern DURATION_EXPRESSION_REGEXP = Pattern.compile("((\\d+)\\s*y)?\\s*"
-                                                                         + "((\\d+)\\s*d)?\\s*"
-                                                                         + "((\\d+)\\s*h)?\\s*"
-                                                                         + "((\\d+)\\s*m)?\\s*"
-                                                                         + "((\\d+)\\s*s)?\\s*"
-                                                                         + "((\\d+)\\s*ms)?");
+                                                                             + "((\\d+)\\s*d)?\\s*"
+                                                                             + "((\\d+)\\s*h)?\\s*"
+                                                                             + "((\\d+)\\s*m)?\\s*"
+                                                                             + "((\\d+)\\s*s)?\\s*"
+                                                                             + "((\\d+)\\s*ms)?");
 
     public static Duration seconds(long seconds) {
         Assert.between(0, seconds, Long.MAX_VALUE / SECOND_IN_MILLIS);

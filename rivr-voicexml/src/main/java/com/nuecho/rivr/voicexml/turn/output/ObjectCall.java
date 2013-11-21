@@ -248,6 +248,10 @@ public class ObjectCall extends VoiceXmlOutputTurn {
         createGotoSubmit(filledElement);
     }
 
+    /**
+     * {@link ObjectCall} parameter, can be created with a string value, a
+     * {@link JsonValue} or an expression.
+     */
     public static final class Parameter implements JsonSerializable {
         private static final String NAME_PROPERTY = "name";
         private static final String VALUE_PROPERTY = "value";
@@ -370,6 +374,9 @@ public class ObjectCall extends VoiceXmlOutputTurn {
         }
     }
 
+    /**
+     * Builder used to ease the creation of instances of {@link ObjectCall}.
+     */
     public static class Builder {
 
         private final String mName;

@@ -4,7 +4,11 @@
 
 package com.nuecho.rivr.core.servlet;
 
+import com.nuecho.rivr.core.channel.*;
+
 /**
+ * Error during the creation of {@link FirstTurn} or {@link InputTurn}.
+ * 
  * @author Nu Echo Inc.
  */
 public final class InputTurnFactoryException extends Exception {

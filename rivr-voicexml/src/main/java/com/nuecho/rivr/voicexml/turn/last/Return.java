@@ -10,14 +10,26 @@ import javax.json.*;
 
 import org.w3c.dom.*;
 
+import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.dialogue.*;
 import com.nuecho.rivr.voicexml.rendering.voicexml.*;
 import com.nuecho.rivr.voicexml.turn.*;
+import com.nuecho.rivr.voicexml.turn.output.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * Terminates a {@link VoiceXmlDialogue} with a return, transferring the control
+ * back to the calling dialogue. A list of variables or an event can be
+ * returned. Must be used it the {@link VoiceXmlDialogue} was called using a
+ * {@link SubdialogueCall}.
+ * 
  * @author Nu Echo Inc.
+ * @see VoiceXmlDialogue
+ * @see LastTurn
+ * @see SubdialogueCall
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml5.3.10">http://www.w3.org/TR/voicexml20/#dml5.3.10</a>
  */
 public class Return extends VoiceXmlLastTurn {
 

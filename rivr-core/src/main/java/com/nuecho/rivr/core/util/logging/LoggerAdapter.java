@@ -9,6 +9,8 @@ import static com.nuecho.rivr.core.util.logging.LogLevel.*;
 import org.slf4j.*;
 
 /**
+ * Base {@link Logger} implementation.
+ * 
  * @author Nu Echo Inc.
  */
 public abstract class LoggerAdapter implements Logger {

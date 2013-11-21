@@ -10,6 +10,7 @@ import javax.json.*;
 
 import org.w3c.dom.*;
 
+import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.dialogue.*;
 import com.nuecho.rivr.voicexml.rendering.voicexml.*;
@@ -18,7 +19,16 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * Terminates a {@link VoiceXmlDialogue} with a submit, sending information to
+ * the server and leaving control to the document returned by the request.
+ * Submit can be performed with a <code>GET</code> or a <code>POST</code>.
+ * 
  * @author Nu Echo Inc.
+ * @see VoiceXmlDialogue
+ * @see LastTurn
+ * @see SubmitMethod
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml5.3.8">http://www.w3.org/TR/voicexml20/#dml5.3.8</a>
  */
 public class Submit extends VoiceXmlLastTurn {
 

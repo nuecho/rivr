@@ -113,6 +113,9 @@ public class Message extends VoiceXmlOutputTurn {
         createGotoSubmit(blockElement);
     }
 
+    /**
+     * Builder used to ease the creation of instances of {@link Message}.
+     */
     public static class Builder {
 
         private final String mName;

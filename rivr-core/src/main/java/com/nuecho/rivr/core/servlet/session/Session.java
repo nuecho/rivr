@@ -13,6 +13,22 @@ import com.nuecho.rivr.core.servlet.*;
 import com.nuecho.rivr.core.util.*;
 
 /**
+ * Contains everything that is required for the dialogue to run in a
+ * {@link DialogueServlet} controller.
+ * <p>
+ * NOTE: a Rivr {@link Session} can be linked with an {@link HttpSession}. This
+ * can be useful to maintain server stickyness in a clustered environment with
+ * load balancers. Web container generates JSESSIONID cookies for session
+ * tracking purpose but this information is also used by load balancer equipment
+ * between the HTTP user agent and the server to preserve server stickyness.
+ * 
+ * @param <F> type of {@link FirstTurn}
+ * @param <L> type of {@link LastTurn}
+ * @param <O> type of {@link OutputTurn}
+ * @param <I> type of {@link InputTurn}
+ * @param <C> type of {@link DialogueContext}
+ * @see DialogueServlet
+ * @see SessionContainer
  * @author Nu Echo Inc.
  */
 public final class Session<I extends InputTurn, O extends OutputTurn, F extends FirstTurn, L extends LastTurn, C extends DialogueContext<I, O>>

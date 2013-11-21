@@ -12,7 +12,11 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * A VoiceXml event thrown by the platform composed of a name and a message.
+ * 
  * @author Nu Echo Inc.
+ * @see <a
+ *      href="http://www.w3.org/TR/voicexml20/#dml5.2.6">http://www.w3.org/TR/voicexml20/#dml5.2.6</a>
  */
 public final class VoiceXmlEvent implements JsonSerializable {
 

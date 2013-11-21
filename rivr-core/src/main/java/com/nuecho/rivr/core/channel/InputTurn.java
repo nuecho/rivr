@@ -4,7 +4,12 @@
 
 package com.nuecho.rivr.core.channel;
 
+import com.nuecho.rivr.core.util.*;
+
 /**
+ * A base interface for the type of turn representing input from the controller.
+ * 
+ * @see DialogueChannel#doTurn(OutputTurn, Duration)
  * @author Nu Echo Inc.
  */
 public interface InputTurn {}

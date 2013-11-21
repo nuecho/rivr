@@ -5,6 +5,8 @@
 package com.nuecho.rivr.core.util.logging;
 
 /**
+ * Log levels for {@link LoggerAdapter}
+ * 
  * @author Nu Echo Inc.
  */
 public enum LogLevel {

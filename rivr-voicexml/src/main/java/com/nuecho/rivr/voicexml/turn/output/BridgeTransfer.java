@@ -65,6 +65,9 @@ public class BridgeTransfer extends SupervisedTransfer {
         JsonUtils.addDurationProperty(builder, MAXIMUM_TIME_PROPERTY_NAME, mMaximumTime);
     }
 
+    /**
+     * Builder used to ease the creation of instances of {@link BridgeTransfer}.
+     */
     public static class Builder extends SupervisedTransfer.Builder {
 
         private Duration mMaximumTime;

@@ -15,7 +15,10 @@ import com.nuecho.rivr.voicexml.rendering.voicexml.*;
 import com.nuecho.rivr.voicexml.turn.*;
 
 /**
+ * Base class for the last turn returned by a {@link VoiceXmlDialogue}.
+ * 
  * @author Nu Echo Inc.
+ * @see VoiceXmlDialogue
  */
 public abstract class VoiceXmlLastTurn extends VoiceXmlDocumentTurn implements LastTurn {
 

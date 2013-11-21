@@ -31,6 +31,9 @@ public class BlindTransfer extends Transfer {
         return BLIND_TRANSFER_TYPE;
     }
 
+    /**
+     * Builder used to ease the creation of instances of {@link BlindTransfer}.
+     */
     public static class Builder extends Transfer.Builder {
 
         public Builder(String name) {

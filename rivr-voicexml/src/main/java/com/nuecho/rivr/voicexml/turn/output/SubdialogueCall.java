@@ -205,6 +205,10 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
         createGotoSubmit(filledElement);
     }
 
+    /**
+     * {@link SubdialogueCall} parameter, can be created with a string value, a
+     * {@link JsonValue} or an expression.
+     */
     public static final class Parameter implements JsonSerializable {
         private static final String NAME_PROPERTY = "name";
         private static final String VALUE_PROPERTY = "value";
@@ -278,6 +282,10 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
         }
     }
 
+    /**
+     * {@link SubdialogueCall} fetch configuration, composed of a
+     * {@link ResourceFetchConfiguration} and a fetch audio.
+     */
     public static final class FetchConfiguration implements JsonSerializable {
 
         private static final String RESOURCE_FETCH_CONFIGURATION = "resourceFetchConfiguration";
@@ -311,6 +319,10 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
         }
     }
 
+    /**
+     * Builder used to ease the creation of instances of {@link SubdialogueCall}
+     * .
+     */
     public static class Builder {
 
         private final String mName;
