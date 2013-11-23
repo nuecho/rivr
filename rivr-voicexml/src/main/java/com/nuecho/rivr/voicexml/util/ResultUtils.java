@@ -6,9 +6,13 @@ package com.nuecho.rivr.voicexml.util;
 
 import javax.json.*;
 
+import com.nuecho.rivr.voicexml.turn.last.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * Utility class containing helper methods for result returned in some
+ * {@link VoiceXmlLastTurn last turns}.
+ * 
  * @author Nu Echo Inc.
  */
 public class ResultUtils {

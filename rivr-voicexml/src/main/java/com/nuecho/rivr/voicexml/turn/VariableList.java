@@ -15,6 +15,10 @@ import com.nuecho.rivr.voicexml.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * Collection of pairs of variable names and initial expression. The collection
+ * ensure that variable names are valid ECMAScript identifiers. The collection
+ * preserves order as it internal container is a {@link LinkedHashMap}.
+ * 
  * @author Nu Echo Inc.
  */
 public final class VariableList implements Iterable<Entry<String, String>>, JsonSerializable {

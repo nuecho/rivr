@@ -10,6 +10,8 @@ import java.util.regex.*;
 import com.nuecho.rivr.core.util.*;
 
 /**
+ * Utility class for VoiceXML-related aspects.
+ * 
  * @author Nu Echo Inc.
  */
 public final class VoiceXmlUtils {

@@ -9,6 +9,8 @@ import java.io.*;
 import com.nuecho.rivr.core.util.*;
 
 /**
+ * IO utility class.
+ * 
  * @author Nu Echo Inc.
  */
 public final class IOUtils {

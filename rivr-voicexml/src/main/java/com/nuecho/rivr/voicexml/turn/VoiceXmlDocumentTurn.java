@@ -13,9 +13,15 @@ import org.w3c.dom.*;
 import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.dialogue.*;
 import com.nuecho.rivr.voicexml.rendering.voicexml.*;
+import com.nuecho.rivr.voicexml.turn.last.*;
+import com.nuecho.rivr.voicexml.turn.output.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * Base class for {@link VoiceXmlOutputTurn} and {@link VoiceXmlLastTurn}. A
+ * {@link VoiceXmlDocumentTurn} has a
+ * <code>name<code> and a list (possibly empty) of {@link VoiceXmlDocumentAdapter}.
+ * 
  * @author Nu Echo Inc.
  */
 public abstract class VoiceXmlDocumentTurn implements JsonSerializable {

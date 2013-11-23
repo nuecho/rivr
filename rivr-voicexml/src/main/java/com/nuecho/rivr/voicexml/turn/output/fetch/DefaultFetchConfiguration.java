@@ -17,7 +17,7 @@ import com.nuecho.rivr.voicexml.turn.output.audio.*;
  * <p>
  * To specify the fetch properties on a per-resource basis, specify a
  * {@link FetchConfiguration} on the required resource, for example
- * {@link AudioFile#setResourceFetchConfiguration(FetchConfiguration)}.
+ * {@link AudioFile#setFetchConfiguration(FetchConfiguration)}.
  * 
  * @see VoiceXmlDialogueContext
  * @author Nu Echo Inc.

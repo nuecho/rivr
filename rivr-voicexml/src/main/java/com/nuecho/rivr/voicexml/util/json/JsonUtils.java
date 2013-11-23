@@ -14,6 +14,8 @@ import org.w3c.dom.*;
 import com.nuecho.rivr.core.util.*;
 
 /**
+ * JSON-related helper methods.
+ * 
  * @author Nu Echo Inc.
  */
 public final class JsonUtils {
