@@ -5,24 +5,42 @@
 package com.nuecho.rivr.voicexml.turn.output.fetch;
 
 import com.nuecho.rivr.core.util.*;
+import com.nuecho.rivr.voicexml.turn.output.audio.*;
 
 /**
+ * VoiceXML resource fetch configuration default properties: <code>maxage</code>
+ * , <code>maxstale</code> and <code>fetchhint</code>.
+ * <p>
+ * This class defines default values for fetch properties and is used in
+ * {@link DefaultFetchConfiguration} which is used to generate VoiceXML global
+ * default properties for resource and document fetching.
+ * <p>
+ * To specify the fetch properties on a per-resource basis, specify a
+ * {@link FetchConfiguration} on the required resource, for example
+ * {@link AudioFile#setFetchConfiguration(FetchConfiguration)}.
+ * 
+ * @see DefaultFetchConfiguration
  * @author Nu Echo Inc.
  */
-public abstract class BaseResourceFetchConfiguration {
+public class ResourceDefaultFetchConfiguration {
 
-    private final String mName;
+    private final ResourceType mResourceType;
 
     private Duration mMaxAge;
     private Duration mMaxStale;
     private FetchHint mFetchHint;
 
-    protected BaseResourceFetchConfiguration(String name) {
-        mName = name;
+    public enum ResourceType {
+        object, audio, grammar, script
     }
 
-    public final String getName() {
-        return mName;
+    public ResourceDefaultFetchConfiguration(ResourceType resourceType) {
+        Assert.notNull(resourceType, "resourceType");
+        mResourceType = resourceType;
+    }
+
+    public final ResourceType getResourceType() {
+        return mResourceType;
     }
 
     public final Duration getMaxAge() {
@@ -56,7 +74,7 @@ public abstract class BaseResourceFetchConfiguration {
         result = prime * result + (mFetchHint == null ? 0 : mFetchHint.hashCode());
         result = prime * result + (mMaxAge == null ? 0 : mMaxAge.hashCode());
         result = prime * result + (mMaxStale == null ? 0 : mMaxStale.hashCode());
-        result = prime * result + (mName == null ? 0 : mName.hashCode());
+        result = prime * result + (mResourceType == null ? 0 : mResourceType.hashCode());
         return result;
     }
 
@@ -65,7 +83,7 @@ public abstract class BaseResourceFetchConfiguration {
         if (this == obj) return true;
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
-        BaseResourceFetchConfiguration other = (BaseResourceFetchConfiguration) obj;
+        ResourceDefaultFetchConfiguration other = (ResourceDefaultFetchConfiguration) obj;
         if (mFetchHint == null) {
             if (other.mFetchHint != null) return false;
         } else if (!mFetchHint.equals(other.mFetchHint)) return false;
@@ -75,9 +93,9 @@ public abstract class BaseResourceFetchConfiguration {
         if (mMaxStale == null) {
             if (other.mMaxStale != null) return false;
         } else if (!mMaxStale.equals(other.mMaxStale)) return false;
-        if (mName == null) {
-            if (other.mName != null) return false;
-        } else if (!mName.equals(other.mName)) return false;
+        if (mResourceType == null) {
+            if (other.mResourceType != null) return false;
+        } else if (!mResourceType.equals(other.mResourceType)) return false;
         return true;
     }
 }

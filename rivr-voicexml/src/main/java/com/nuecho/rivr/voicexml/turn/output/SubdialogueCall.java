@@ -50,7 +50,7 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
     private Collection<Parameter> mParameters = Collections.emptyList();
     private VariableList mSubmitParameters = new VariableList();
     private SubmitMethod mMethod = SubmitMethod.get;
-    private FetchConfiguration mFetchConfiguration;
+    private DocumentFetchConfiguration mFetchConfiguration;
     private String mPostDialogueScript;
 
     /**
@@ -99,10 +99,10 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param fetchConfiguration The {@link FetchConfiguration}.
+     * @param fetchConfiguration The {@link DocumentFetchConfiguration}.
      *            <code>null</code> to use the VoiceXML platform default.
      */
-    public final void setSubdialogueFetchConfiguration(FetchConfiguration fetchConfiguration) {
+    public final void setFetchConfiguration(DocumentFetchConfiguration fetchConfiguration) {
         mFetchConfiguration = fetchConfiguration;
     }
 
@@ -134,7 +134,7 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
         return mPostDialogueScript;
     }
 
-    public final FetchConfiguration getSubdialogueFetchConfiguration() {
+    public final DocumentFetchConfiguration getFetchConfiguration() {
         return mFetchConfiguration;
     }
 
@@ -187,10 +187,10 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
             subdialogueElement.setAttribute(METHOD_ATTRIBUTE, submitMethod.name());
         }
 
-        FetchConfiguration fetchConfiguration = mFetchConfiguration;
+        DocumentFetchConfiguration fetchConfiguration = mFetchConfiguration;
         if (fetchConfiguration != null) {
             applyFetchAudio(subdialogueElement, fetchConfiguration.getFetchAudio());
-            applyRessourceFetchConfiguration(subdialogueElement, fetchConfiguration.getResourceFetchConfiguration());
+            applyRessourceFetchConfiguration(subdialogueElement, fetchConfiguration);
         }
 
         Element filledElement = DomUtils.appendNewElement(subdialogueElement, FILLED_ELEMENT);
@@ -283,43 +283,6 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
     }
 
     /**
-     * {@link SubdialogueCall} fetch configuration, composed of a
-     * {@link ResourceFetchConfiguration} and a fetch audio.
-     */
-    public static final class FetchConfiguration implements JsonSerializable {
-
-        private static final String RESOURCE_FETCH_CONFIGURATION = "resourceFetchConfiguration";
-        private static final String FETCH_AUDIO = "fetchAudio";
-
-        private ResourceFetchConfiguration mResourceFetchConfiguration;
-        private String mFetchAudio;
-
-        public ResourceFetchConfiguration getResourceFetchConfiguration() {
-            return mResourceFetchConfiguration;
-        }
-
-        public String getFetchAudio() {
-            return mFetchAudio;
-        }
-
-        public void setResourceFetchConfiguration(ResourceFetchConfiguration resourceFetchConfiguration) {
-            mResourceFetchConfiguration = resourceFetchConfiguration;
-        }
-
-        public void setFetchAudio(String fetchAudio) {
-            mFetchAudio = fetchAudio;
-        }
-
-        @Override
-        public JsonValue asJson() {
-            JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
-            JsonUtils.add(builder, FETCH_AUDIO, mFetchAudio);
-            JsonUtils.add(builder, RESOURCE_FETCH_CONFIGURATION, mResourceFetchConfiguration);
-            return builder.build();
-        }
-    }
-
-    /**
      * Builder used to ease the creation of instances of {@link SubdialogueCall}
      * .
      */
@@ -330,7 +293,7 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
         private final List<Parameter> mParameters = Collections.emptyList();
         private final VariableList mSubmitParameters = new VariableList();
         private SubmitMethod mMethod = SubmitMethod.get;
-        private FetchConfiguration mFetchConfiguration;
+        private DocumentFetchConfiguration mFetchConfiguration;
         private String mPostDialogueScript;
 
         public Builder(String name) {
@@ -367,7 +330,7 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
             return this;
         }
 
-        public Builder setFetchConfiguration(FetchConfiguration fetchConfiguration) {
+        public Builder setFetchConfiguration(DocumentFetchConfiguration fetchConfiguration) {
             mFetchConfiguration = fetchConfiguration;
             return this;
         }
@@ -381,7 +344,7 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
             SubdialogueCall subdialogueCall = new SubdialogueCall(mName, mUri);
             subdialogueCall.setMethod(mMethod);
             subdialogueCall.setPostDialogueScript(mPostDialogueScript);
-            subdialogueCall.setSubdialogueFetchConfiguration(mFetchConfiguration);
+            subdialogueCall.setFetchConfiguration(mFetchConfiguration);
             subdialogueCall.setSubdialogueParameters(mParameters);
             subdialogueCall.setSubmitParameters(mSubmitParameters);
             return subdialogueCall;

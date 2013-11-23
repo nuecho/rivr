@@ -49,7 +49,7 @@ public class ObjectCall extends VoiceXmlOutputTurn {
     private String mData;
     private String mType;
     private List<String> mArchives;
-    private ResourceFetchConfiguration mFetchConfiguration;
+    private FetchConfiguration mFetchConfiguration;
     private List<Parameter> mParameters = Collections.emptyList();
     private String mPostObjectScript;
 
@@ -107,9 +107,9 @@ public class ObjectCall extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param fetchConfiguration The object {@link ResourceFetchConfiguration}.
+     * @param fetchConfiguration The object {@link FetchConfiguration}.
      */
-    public final void setFetchConfiguration(ResourceFetchConfiguration fetchConfiguration) {
+    public final void setFetchConfiguration(FetchConfiguration fetchConfiguration) {
         mFetchConfiguration = fetchConfiguration;
     }
 
@@ -162,7 +162,7 @@ public class ObjectCall extends VoiceXmlOutputTurn {
         return mArchives;
     }
 
-    public final ResourceFetchConfiguration getFetchConfiguration() {
+    public final FetchConfiguration getFetchConfiguration() {
         return mFetchConfiguration;
     }
 
@@ -231,7 +231,7 @@ public class ObjectCall extends VoiceXmlOutputTurn {
             }
         }
 
-        ResourceFetchConfiguration fetchConfiguration = mFetchConfiguration;
+        FetchConfiguration fetchConfiguration = mFetchConfiguration;
         if (fetchConfiguration != null) {
             applyRessourceFetchConfiguration(objectElement, fetchConfiguration);
         }
@@ -387,7 +387,7 @@ public class ObjectCall extends VoiceXmlOutputTurn {
         private String mType;
         private final List<String> mArchives = new ArrayList<String>();
         private final List<Parameter> mParameters = new ArrayList<Parameter>();
-        private ResourceFetchConfiguration mFetchConfiguration;
+        private FetchConfiguration mFetchConfiguration;
         private String mPostObjectScript;
 
         public Builder(String name) {
@@ -420,7 +420,7 @@ public class ObjectCall extends VoiceXmlOutputTurn {
             return this;
         }
 
-        public Builder setFetchConfiguration(ResourceFetchConfiguration fetchConfiguration) {
+        public Builder setFetchConfiguration(FetchConfiguration fetchConfiguration) {
             mFetchConfiguration = fetchConfiguration;
             return this;
         }

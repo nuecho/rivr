@@ -37,7 +37,7 @@ public final class VoiceXmlDialogueContext implements DialogueContext<VoiceXmlIn
 
     private String mLanguage;
 
-    private FetchConfiguration mFetchConfiguration = new FetchConfiguration();
+    private DefaultFetchConfiguration mDefaultFetchConfiguration = new DefaultFetchConfiguration();
     private final Map<String, String> mProperties = new HashMap<String, String>();
 
     private String mDialogueId;
@@ -89,12 +89,12 @@ public final class VoiceXmlDialogueContext implements DialogueContext<VoiceXmlIn
         mLanguage = language;
     }
 
-    public FetchConfiguration getFetchConfiguration() {
-        return mFetchConfiguration;
+    public DefaultFetchConfiguration getFetchConfiguration() {
+        return mDefaultFetchConfiguration;
     }
 
-    public void setFetchConfiguration(FetchConfiguration fetchConfiguration) {
-        mFetchConfiguration = fetchConfiguration;
+    public void setFetchConfiguration(DefaultFetchConfiguration defaultFetchConfiguration) {
+        mDefaultFetchConfiguration = defaultFetchConfiguration;
     }
 
     public Map<String, String> getProperties() {
@@ -131,7 +131,7 @@ public final class VoiceXmlDialogueContext implements DialogueContext<VoiceXmlIn
     public String toString() {
         ToStringBuilder builder = new ToStringBuilder(this);
         builder.appendItem("mLanguage", mLanguage);
-        builder.appendItem("mFetchConfiguration", mFetchConfiguration);
+        builder.appendItem("mDefaultFetchConfiguration", mDefaultFetchConfiguration);
         builder.appendItem("mProperties", mProperties);
         builder.appendItem("mDialogueId", mDialogueId);
         builder.appendItem("mContextPath", mContextPath);

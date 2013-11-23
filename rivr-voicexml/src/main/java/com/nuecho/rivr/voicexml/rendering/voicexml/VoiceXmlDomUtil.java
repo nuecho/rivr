@@ -240,20 +240,24 @@ public final class VoiceXmlDomUtil {
     }
 
     private static void processFetchRendering(VoiceXmlDialogueContext voiceXmlDialogueContext, Element vxmlElement) {
-        FetchConfiguration fetchConfiguration = voiceXmlDialogueContext.getFetchConfiguration();
-        if (fetchConfiguration == null) return;
+        DefaultFetchConfiguration defaultFetchConfiguration = voiceXmlDialogueContext.getFetchConfiguration();
+        if (defaultFetchConfiguration == null) return;
 
-        String fetchAudioLocation = fetchConfiguration.getDefaultFetchAudio();
+        String fetchAudioLocation = defaultFetchConfiguration.getDefaultFetchAudio();
         if (fetchAudioLocation != null) {
             addFetchAudioProperty(vxmlElement, fetchAudioLocation);
         }
 
-        addDurationProperty(vxmlElement, FETCH_TIMEOUT_PROPERTY, fetchConfiguration.getDefaultFetchTimeout());
+        addDurationProperty(vxmlElement, FETCH_TIMEOUT_PROPERTY, defaultFetchConfiguration.getDefaultFetchTimeout());
 
-        applyDefaultResourceFetchConfiguration(vxmlElement, fetchConfiguration.getDefaultAudioFetchConfiguration());
-        applyDefaultResourceFetchConfiguration(vxmlElement, fetchConfiguration.getDefaultGrammarFetchConfiguration());
-        applyDefaultResourceFetchConfiguration(vxmlElement, fetchConfiguration.getDefaultObjectFetchConfiguration());
-        applyDefaultResourceFetchConfiguration(vxmlElement, fetchConfiguration.getDefaultScriptFetchConfiguration());
+        applyResourceDefaultFetchConfiguration(vxmlElement,
+                                               defaultFetchConfiguration.getDefaultAudioFetchConfiguration());
+        applyResourceDefaultFetchConfiguration(vxmlElement,
+                                               defaultFetchConfiguration.getDefaultGrammarFetchConfiguration());
+        applyResourceDefaultFetchConfiguration(vxmlElement,
+                                               defaultFetchConfiguration.getDefaultObjectFetchConfiguration());
+        applyResourceDefaultFetchConfiguration(vxmlElement,
+                                               defaultFetchConfiguration.getDefaultScriptFetchConfiguration());
     }
 
     public static void createAssignation(Element parent, String variableName, String expression) {
@@ -262,23 +266,26 @@ public final class VoiceXmlDomUtil {
         assingElement.setAttribute(EXPR_ATTRIBUTE, expression);
     }
 
-    public static void applyRessourceFetchConfiguration(Element element,
-                                                        ResourceFetchConfiguration resourceFetchConfiguration) {
-        if (resourceFetchConfiguration != null) {
-            setCacheControlDurationAttribute(element, MAX_AGE_ATTRIBUTE, resourceFetchConfiguration.getMaxAge());
-            setCacheControlDurationAttribute(element, MAX_STALE_ATTRIBUTE, resourceFetchConfiguration.getMaxStale());
-            setFetchHintAttribute(element, FETCH_HINT_ATTRIBUTE, resourceFetchConfiguration.getFetchHint());
-            setDurationAttribute(element, FETCH_TIMEOUT_ATTRIBUTE, resourceFetchConfiguration.getTimeOut());
+    public static void applyRessourceFetchConfiguration(Element element, FetchConfiguration fetchConfiguration) {
+        if (fetchConfiguration != null) {
+            setCacheControlDurationAttribute(element, MAX_AGE_ATTRIBUTE, fetchConfiguration.getMaxAge());
+            setCacheControlDurationAttribute(element, MAX_STALE_ATTRIBUTE, fetchConfiguration.getMaxStale());
+            setFetchHintAttribute(element, FETCH_HINT_ATTRIBUTE, fetchConfiguration.getFetchHint());
+            setDurationAttribute(element, FETCH_TIMEOUT_ATTRIBUTE, fetchConfiguration.getTimeOut());
         }
     }
 
-    private static void applyDefaultResourceFetchConfiguration(Element parent,
-                                                               BaseResourceFetchConfiguration fetchConfiguration) {
+    private static void applyResourceDefaultFetchConfiguration(Element parent,
+                                                               ResourceDefaultFetchConfiguration fetchConfiguration) {
         if (fetchConfiguration != null) {
-            String name = fetchConfiguration.getName();
-            addFetchHintProperty(parent, name + FETCH_HINT_PROPERTY_SUFFIX, fetchConfiguration.getFetchHint());
-            addCacheControlDurationProperty(parent, name + MAX_AGE_PROPERTY_SUFFIX, fetchConfiguration.getMaxAge());
-            addCacheControlDurationProperty(parent, name + MAX_STALE_PROPERTY_SUFFIX, fetchConfiguration.getMaxStale());
+            String resourceType = fetchConfiguration.getResourceType().name();
+            addFetchHintProperty(parent, resourceType + FETCH_HINT_PROPERTY_SUFFIX, fetchConfiguration.getFetchHint());
+            addCacheControlDurationProperty(parent,
+                                            resourceType + MAX_AGE_PROPERTY_SUFFIX,
+                                            fetchConfiguration.getMaxAge());
+            addCacheControlDurationProperty(parent,
+                                            resourceType + MAX_STALE_PROPERTY_SUFFIX,
+                                            fetchConfiguration.getMaxStale());
         }
     }
 
@@ -325,7 +332,7 @@ public final class VoiceXmlDomUtil {
                     }
                 }
 
-                applyRessourceFetchConfiguration(audioElement, audioFile.getResourceFetchConfiguration());
+                applyRessourceFetchConfiguration(audioElement, audioFile.getFetchConfiguration());
             } else if (audioItem instanceof SpeechSynthesis) {
                 SpeechSynthesis speechSynthesis = (SpeechSynthesis) audioItem;
 
@@ -494,10 +501,10 @@ public final class VoiceXmlDomUtil {
 
     public static void applyDocumentFetchConfiguration(Element submitElement,
                                                        VoiceXmlDialogueContext voiceXmlDialogueContext) {
-        FetchConfiguration fetchConfiguration = voiceXmlDialogueContext.getFetchConfiguration();
-        if (fetchConfiguration == null) return;
+        DefaultFetchConfiguration defaultFetchConfiguration = voiceXmlDialogueContext.getFetchConfiguration();
+        if (defaultFetchConfiguration == null) return;
 
-        DocumentFetchConfiguration documentFetchConfiguration = fetchConfiguration.getDocumentFetchConfiguration();
+        DocumentFetchConfiguration documentFetchConfiguration = defaultFetchConfiguration.getDocumentFetchConfiguration();
 
         applyDocumentFetchConfiguration(submitElement, documentFetchConfiguration);
     }
@@ -669,8 +676,8 @@ public final class VoiceXmlDomUtil {
 
         grammarElement.setAttribute(SRC_ATTRIBUTE, grammarReference.getUri());
 
-        ResourceFetchConfiguration resourceFetchConfiguration = grammarReference.getResourceFetchConfiguration();
-        applyRessourceFetchConfiguration(grammarElement, resourceFetchConfiguration);
+        FetchConfiguration fetchConfiguration = grammarReference.getFetchConfiguration();
+        applyRessourceFetchConfiguration(grammarElement, fetchConfiguration);
     }
 
     public static void addNumberProperty(Element parent, String propertyName, Number value) {

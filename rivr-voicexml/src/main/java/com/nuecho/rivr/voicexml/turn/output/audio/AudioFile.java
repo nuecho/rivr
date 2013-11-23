@@ -15,11 +15,11 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * 
  * @author Nu Echo Inc.
  * @see SpeechSynthesis
- * @see ResourceFetchConfiguration
+ * @see FetchConfiguration
  */
 public final class AudioFile extends AudioItem {
     public static final String AUDIO_FILE_ELEMENT_TYPE = "audioFile";
-    private static final String RESOURCE_FETCH_CONFIGURATION_PROPERTY = "resourceFetchConfiguration";
+    private static final String FETCH_CONFIGURATION_PROPERTY = "fetchConfiguration";
     private static final String LOCATION_PROPERTY = "location";
     private static final String EXPRESSION_PROPERTY = "expression";
     private static final String ALTERNATE_PROPERTY = "alternate";
@@ -27,7 +27,7 @@ public final class AudioFile extends AudioItem {
     private String mLocation;
     private String mExpression;
     private SpeechSynthesis mAlternate;
-    private ResourceFetchConfiguration mResourceFetchConfiguration;
+    private FetchConfiguration mFetchConfiguration;
 
     public static AudioFile fromLocation(String location) {
         Assert.notEmpty(location, "location");
@@ -68,11 +68,11 @@ public final class AudioFile extends AudioItem {
     }
 
     /**
-     * @param resourceFetchConfiguration The resource fetch configuration.
+     * @param fetchConfiguration The resource fetch configuration.
      *            <code>null</code> to use the VoiceXML platform default.
      */
-    public void setResourceFetchConfiguration(ResourceFetchConfiguration resourceFetchConfiguration) {
-        mResourceFetchConfiguration = resourceFetchConfiguration;
+    public void setFetchConfiguration(FetchConfiguration fetchConfiguration) {
+        mFetchConfiguration = fetchConfiguration;
     }
 
     public void setAlternate(SpeechSynthesis alternate) {
@@ -100,15 +100,15 @@ public final class AudioFile extends AudioItem {
         return mAlternate;
     }
 
-    public ResourceFetchConfiguration getResourceFetchConfiguration() {
-        return mResourceFetchConfiguration;
+    public FetchConfiguration getFetchConfiguration() {
+        return mFetchConfiguration;
     }
 
     @Override
     protected void addJsonProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, LOCATION_PROPERTY, mLocation);
         JsonUtils.add(builder, EXPRESSION_PROPERTY, mExpression);
-        JsonUtils.add(builder, RESOURCE_FETCH_CONFIGURATION_PROPERTY, mResourceFetchConfiguration);
+        JsonUtils.add(builder, FETCH_CONFIGURATION_PROPERTY, mFetchConfiguration);
         JsonUtils.add(builder, ALTERNATE_PROPERTY, mAlternate);
     }
 
@@ -118,7 +118,7 @@ public final class AudioFile extends AudioItem {
         int result = 1;
         result = prime * result + (mExpression == null ? 0 : mExpression.hashCode());
         result = prime * result + (mLocation == null ? 0 : mLocation.hashCode());
-        result = prime * result + (mResourceFetchConfiguration == null ? 0 : mResourceFetchConfiguration.hashCode());
+        result = prime * result + (mFetchConfiguration == null ? 0 : mFetchConfiguration.hashCode());
         result = prime * result + (mAlternate == null ? 0 : mAlternate.hashCode());
         return result;
     }
@@ -135,9 +135,9 @@ public final class AudioFile extends AudioItem {
         if (mLocation == null) {
             if (other.mLocation != null) return false;
         } else if (!mLocation.equals(other.mLocation)) return false;
-        if (mResourceFetchConfiguration == null) {
-            if (other.mResourceFetchConfiguration != null) return false;
-        } else if (!mResourceFetchConfiguration.equals(other.mResourceFetchConfiguration)) return false;
+        if (mFetchConfiguration == null) {
+            if (other.mFetchConfiguration != null) return false;
+        } else if (!mFetchConfiguration.equals(other.mFetchConfiguration)) return false;
         if (mAlternate == null) {
             if (other.mAlternate != null) return false;
         } else if (!mAlternate.equals(other.mAlternate)) return false;

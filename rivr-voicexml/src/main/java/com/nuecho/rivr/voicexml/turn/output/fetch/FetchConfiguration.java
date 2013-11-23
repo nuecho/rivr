@@ -4,90 +4,101 @@
 
 package com.nuecho.rivr.voicexml.turn.output.fetch;
 
+import javax.json.*;
+
 import com.nuecho.rivr.core.util.*;
+import com.nuecho.rivr.voicexml.turn.output.*;
+import com.nuecho.rivr.voicexml.turn.output.audio.*;
+import com.nuecho.rivr.voicexml.turn.output.grammar.*;
+import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * Fetch properties for a resource:
+ * <ul>
+ * <li>maxage</li>
+ * <li>maxstale</li>
+ * <li>timeout</li>
+ * <li>fetchhint</li>
+ * </ul>
+ * 
+ * @see AudioFile#setFetchConfiguration(FetchConfiguration)
+ * @see GrammarReference#setFetchConfiguration(FetchConfiguration)
+ * @see ObjectCall#setFetchConfiguration(FetchConfiguration)
  * @author Nu Echo Inc.
  */
-public final class FetchConfiguration {
+public class FetchConfiguration implements JsonSerializable {
 
-    private AudioFetchConfiguration mAudioFetchConfiguration = new AudioFetchConfiguration();
-    private GrammarFetchConfiguration mGrammarFetchConfiguration = new GrammarFetchConfiguration();
-    private ScriptFetchConfiguration mScriptFetchConfiguration = new ScriptFetchConfiguration();
-    private ObjectFetchConfiguration mObjectFetchConfiguration = new ObjectFetchConfiguration();
+    private static final String MAX_AGE_PROPERTY = "maxAge";
+    private static final String MAX_STALE_PROPERTY = "maxStale";
+    private static final String TIME_OUT_PROPERTY = "timeOut";
+    private static final String FETCH_HINT_PROPERTY = "fetchHint";
 
-    private DocumentFetchConfiguration mDocumentFetchConfiguration = new DocumentFetchConfiguration();
+    private Duration mTimeOut;
+    private Duration mMaxAge;
+    private Duration mMaxStale;
+    private FetchHint mFetchHint;
 
-    private Duration mDefaultFetchTimeout;
-    private String mDefaultFetchAudio;
-
-    public AudioFetchConfiguration getDefaultAudioFetchConfiguration() {
-        return mAudioFetchConfiguration;
+    public Duration getTimeOut() {
+        return mTimeOut;
     }
 
-    public void setDefaultAudioFetchConfiguration(AudioFetchConfiguration audioFetchConfiguration) {
-        mAudioFetchConfiguration = audioFetchConfiguration;
+    public Duration getMaxAge() {
+        return mMaxAge;
     }
 
-    public GrammarFetchConfiguration getDefaultGrammarFetchConfiguration() {
-        return mGrammarFetchConfiguration;
+    public Duration getMaxStale() {
+        return mMaxStale;
     }
 
-    public void setDefaultGrammarFetchConfiguration(GrammarFetchConfiguration grammarFetchConfiguration) {
-        mGrammarFetchConfiguration = grammarFetchConfiguration;
+    public FetchHint getFetchHint() {
+        return mFetchHint;
     }
 
-    public ScriptFetchConfiguration getDefaultScriptFetchConfiguration() {
-        return mScriptFetchConfiguration;
+    public void setTimeOut(Duration timeOut) {
+        mTimeOut = timeOut;
     }
 
-    public void setDefaultScriptFetchConfiguration(ScriptFetchConfiguration scriptFetchConfiguration) {
-        mScriptFetchConfiguration = scriptFetchConfiguration;
+    public void setMaxAge(Duration maxAge) {
+        mMaxAge = maxAge;
     }
 
-    public ObjectFetchConfiguration getDefaultObjectFetchConfiguration() {
-        return mObjectFetchConfiguration;
+    public void setMaxStale(Duration maxStale) {
+        mMaxStale = maxStale;
     }
 
-    public void setDefaultObjectFetchConfiguration(ObjectFetchConfiguration objectFetchConfiguration) {
-        mObjectFetchConfiguration = objectFetchConfiguration;
+    public void setFetchHint(FetchHint fetchHint) {
+        mFetchHint = fetchHint;
     }
 
-    public Duration getDefaultFetchTimeout() {
-        return mDefaultFetchTimeout;
+    @Override
+    public String toString() {
+        return asJson().toString();
     }
 
-    public void setDefaultFetchTimeout(Duration defaultFetchTimeout) {
-        mDefaultFetchTimeout = defaultFetchTimeout;
-    }
+    @Override
+    public JsonValue asJson() {
+        JsonObjectBuilder builder = JsonUtils.createObjectBuilder();
+        JsonUtils.addDurationProperty(builder, MAX_AGE_PROPERTY, mMaxAge);
+        JsonUtils.addDurationProperty(builder, MAX_STALE_PROPERTY, mMaxStale);
+        JsonUtils.addDurationProperty(builder, TIME_OUT_PROPERTY, mTimeOut);
 
-    public String getDefaultFetchAudio() {
-        return mDefaultFetchAudio;
-    }
+        if (mFetchHint == null) {
+            builder.addNull(FETCH_HINT_PROPERTY);
+        } else {
+            JsonUtils.add(builder, FETCH_HINT_PROPERTY, mFetchHint.name());
+        }
 
-    public void setDefaultFetchAudio(String defaultFetchAudio) {
-        mDefaultFetchAudio = defaultFetchAudio;
-    }
-
-    public DocumentFetchConfiguration getDocumentFetchConfiguration() {
-        return mDocumentFetchConfiguration;
-    }
-
-    public void setDocumentFetchConfiguration(DocumentFetchConfiguration documentFetchConfiguration) {
-        mDocumentFetchConfiguration = documentFetchConfiguration;
+        return builder.build();
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((mAudioFetchConfiguration == null) ? 0 : mAudioFetchConfiguration.hashCode());
-        result = prime * result + ((mDefaultFetchAudio == null) ? 0 : mDefaultFetchAudio.hashCode());
-        result = prime * result + ((mDefaultFetchTimeout == null) ? 0 : mDefaultFetchTimeout.hashCode());
-        result = prime * result + ((mGrammarFetchConfiguration == null) ? 0 : mGrammarFetchConfiguration.hashCode());
-        result = prime * result + ((mObjectFetchConfiguration == null) ? 0 : mObjectFetchConfiguration.hashCode());
-        result = prime * result + ((mScriptFetchConfiguration == null) ? 0 : mScriptFetchConfiguration.hashCode());
-        result = prime * result + ((mDocumentFetchConfiguration == null) ? 0 : mDocumentFetchConfiguration.hashCode());
+        result = prime * result + (mFetchHint == null ? 0 : mFetchHint.hashCode());
+        result = prime * result + (mMaxAge == null ? 0 : mMaxAge.hashCode());
+        result = prime * result + (mMaxStale == null ? 0 : mMaxStale.hashCode());
+        result = prime * result + (mTimeOut == null ? 0 : mTimeOut.hashCode());
         return result;
     }
 
@@ -97,40 +108,19 @@ public final class FetchConfiguration {
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
         FetchConfiguration other = (FetchConfiguration) obj;
-        if (mAudioFetchConfiguration == null) {
-            if (other.mAudioFetchConfiguration != null) return false;
-        } else if (!mAudioFetchConfiguration.equals(other.mAudioFetchConfiguration)) return false;
-        if (mDefaultFetchAudio == null) {
-            if (other.mDefaultFetchAudio != null) return false;
-        } else if (!mDefaultFetchAudio.equals(other.mDefaultFetchAudio)) return false;
-        if (mDefaultFetchTimeout == null) {
-            if (other.mDefaultFetchTimeout != null) return false;
-        } else if (!mDefaultFetchTimeout.equals(other.mDefaultFetchTimeout)) return false;
-        if (mGrammarFetchConfiguration == null) {
-            if (other.mGrammarFetchConfiguration != null) return false;
-        } else if (!mGrammarFetchConfiguration.equals(other.mGrammarFetchConfiguration)) return false;
-        if (mObjectFetchConfiguration == null) {
-            if (other.mObjectFetchConfiguration != null) return false;
-        } else if (!mObjectFetchConfiguration.equals(other.mObjectFetchConfiguration)) return false;
-        if (mScriptFetchConfiguration == null) {
-            if (other.mScriptFetchConfiguration != null) return false;
-        } else if (!mScriptFetchConfiguration.equals(other.mScriptFetchConfiguration)) return false;
-        if (mDocumentFetchConfiguration == null) {
-            if (other.mDocumentFetchConfiguration != null) return false;
-        } else if (!mDocumentFetchConfiguration.equals(other.mDocumentFetchConfiguration)) return false;
+        if (mFetchHint == null) {
+            if (other.mFetchHint != null) return false;
+        } else if (!mFetchHint.equals(other.mFetchHint)) return false;
+        if (mMaxAge == null) {
+            if (other.mMaxAge != null) return false;
+        } else if (!mMaxAge.equals(other.mMaxAge)) return false;
+        if (mMaxStale == null) {
+            if (other.mMaxStale != null) return false;
+        } else if (!mMaxStale.equals(other.mMaxStale)) return false;
+        if (mTimeOut == null) {
+            if (other.mTimeOut != null) return false;
+        } else if (!mTimeOut.equals(other.mTimeOut)) return false;
         return true;
     }
 
-    @Override
-    public String toString() {
-        ToStringBuilder builder = new ToStringBuilder(this);
-        builder.appendItem("mDocumentFetchConfiguration", mDocumentFetchConfiguration);
-        builder.appendItem("mDefaultFetchAudio", mDefaultFetchAudio);
-        builder.appendItem("mDefaultFetchTimeout", mDefaultFetchTimeout);
-        builder.appendItem("mAudioFetchConfiguration", mAudioFetchConfiguration);
-        builder.appendItem("mGrammarFetchConfiguration", mGrammarFetchConfiguration);
-        builder.appendItem("mObjectFetchConfiguration", mObjectFetchConfiguration);
-        builder.appendItem("mScriptFetchConfiguration", mScriptFetchConfiguration);
-        return builder.getString();
-    }
 }

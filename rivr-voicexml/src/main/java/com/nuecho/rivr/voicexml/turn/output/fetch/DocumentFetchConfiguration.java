@@ -11,7 +11,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
 /**
  * @author Nu Echo Inc.
  */
-public class DocumentFetchConfiguration extends ResourceFetchConfiguration {
+public class DocumentFetchConfiguration extends FetchConfiguration {
 
     private static final String FETCH_AUDIO_PROPERTY = "fetchAudio";
 
