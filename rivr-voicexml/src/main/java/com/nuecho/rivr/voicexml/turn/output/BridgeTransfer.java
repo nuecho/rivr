@@ -72,13 +72,13 @@ public class BridgeTransfer extends SupervisedTransfer {
 
         private Duration mMaximumTime;
 
+        public Builder(String name) {
+            super(name);
+        }
+
         public Builder setMaximumDuration(Duration maximumTime) {
             mMaximumTime = maximumTime;
             return this;
-        }
-
-        public Builder(String name) {
-            super(name);
         }
 
         public BridgeTransfer build() {
