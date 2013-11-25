@@ -944,7 +944,7 @@ public class Interaction extends VoiceXmlOutputTurn {
      * @author Nu Echo Inc.
      */
     public static final class Builder {
-        private final String mTurnName;
+        private final String mName;
         private final List<Prompt> mPrompts = new ArrayList<Prompt>();
 
         private String mLanguage;
@@ -952,8 +952,8 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         private boolean mBuilt;
 
-        public Builder(String turnName) {
-            mTurnName = turnName;
+        public Builder(String name) {
+            mName = name;
         }
 
         /**
@@ -1202,7 +1202,7 @@ public class Interaction extends VoiceXmlOutputTurn {
                 finalRecognitionWindow.setAcknowledgeAudioItems(acknowledgeAudioItems);
             }
 
-            return new Interaction(mTurnName, mPrompts, finalRecognitionWindow);
+            return new Interaction(mName, mPrompts, finalRecognitionWindow);
 
         }
 
@@ -1243,7 +1243,7 @@ public class Interaction extends VoiceXmlOutputTurn {
                 finalRecordingWindow.setAcknowledgeAudioItems(acknowledgeAudioItems);
             }
 
-            return new Interaction(mTurnName, mPrompts, finalRecordingWindow);
+            return new Interaction(mName, mPrompts, finalRecordingWindow);
         }
 
         /**
@@ -1252,7 +1252,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          */
         public Interaction build() {
             checkBuilt();
-            return new Interaction(mTurnName, mPrompts);
+            return new Interaction(mName, mPrompts);
         }
 
         private void checkBuilt() {
