@@ -13,7 +13,7 @@ import com.nuecho.rivr.voicexml.turn.*;
 /**
  * @author Nu Echo Inc.
  */
-public class AbstractFatalErrorFactory implements FatalErrorFormFactory {
+class AbstractFatalErrorFactory implements FatalErrorFormFactory {
 
     private final String mElementName;
 
