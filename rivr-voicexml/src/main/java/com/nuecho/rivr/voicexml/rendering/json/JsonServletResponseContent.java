@@ -26,7 +26,7 @@ public class JsonServletResponseContent implements ServletResponseContent {
     private final JsonpMode mJsonpMode;
     private final String mJsonpCallback;
 
-    public enum JsonpMode {
+    enum JsonpMode {
         DISABLED, NORMAL, TEXTAREA
     }
 
