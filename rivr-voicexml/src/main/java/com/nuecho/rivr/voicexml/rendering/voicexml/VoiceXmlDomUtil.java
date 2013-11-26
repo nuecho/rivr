@@ -20,6 +20,8 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 import com.nuecho.rivr.voicexml.turn.output.grammar.*;
 
 /**
+ * Utility class containing most of the VoiceXML document generation methods.
+ * 
  * @author Nu Echo Inc.
  */
 public final class VoiceXmlDomUtil {

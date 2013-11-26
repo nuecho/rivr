@@ -7,12 +7,20 @@ package com.nuecho.rivr.voicexml.dialogue;
 import java.lang.reflect.*;
 
 import com.nuecho.rivr.core.dialogue.*;
+import com.nuecho.rivr.voicexml.servlet.*;
 import com.nuecho.rivr.voicexml.turn.first.*;
 import com.nuecho.rivr.voicexml.turn.input.*;
 import com.nuecho.rivr.voicexml.turn.last.*;
 import com.nuecho.rivr.voicexml.turn.output.*;
 
 /**
+ * Dialogue factory creating instances of a given {@link VoiceXmlDialogue}
+ * class. This is the {@link VoiceXmlDialogueFactory} used by the
+ * {@link VoiceXmlDialogueServlet} when the
+ * <code>com.nuecho.rivr.voicexml.dialogue.class</code> servlet init-arg is
+ * specified in {@link VoiceXmlDialogueServlet}.
+ * 
+ * @see VoiceXmlDialogueServlet
  * @author Nu Echo Inc.
  */
 public class SimpleVoiceXmlDialogueFactory implements VoiceXmlDialogueFactory {

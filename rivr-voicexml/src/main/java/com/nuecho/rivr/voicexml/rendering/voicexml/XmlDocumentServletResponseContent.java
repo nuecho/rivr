@@ -13,6 +13,8 @@ import org.w3c.dom.*;
 import com.nuecho.rivr.core.servlet.*;
 
 /**
+ * {@link ServletResponseContent} wrapping a {@link Document org.w3c.Document}.
+ * 
  * @author Nu Echo Inc.
  */
 public class XmlDocumentServletResponseContent implements ServletResponseContent {

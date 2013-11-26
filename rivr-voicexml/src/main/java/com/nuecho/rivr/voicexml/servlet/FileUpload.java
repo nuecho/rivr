@@ -11,6 +11,10 @@ import javax.json.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * HTTP-uploaded file via <code>multipart/form-data</code>, typically the audio
+ * file of a recording. This class contains the content type, the headers and
+ * the data (ie. a byte array).
+ * 
  * @author Nu Echo Inc.
  */
 public final class FileUpload implements JsonSerializable {

@@ -20,6 +20,14 @@ import com.nuecho.rivr.voicexml.turn.output.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * Implementation of {@link VoiceXmlDialogueChannel} intended for unit testing.
+ * This class allows a unit test method to be the controller of the dialogue
+ * channel by simulating results from the VoiceXML platform (i.e. DTMF
+ * recognition, events, recording, etc).
+ * <p>
+ * In addition to all methods of {@link TestDialogueChannel}, this class adds
+ * VoiceXML-related functions.
+ * 
  * @author Nu Echo Inc.
  */
 public class VoiceXmlTestDialogueChannel

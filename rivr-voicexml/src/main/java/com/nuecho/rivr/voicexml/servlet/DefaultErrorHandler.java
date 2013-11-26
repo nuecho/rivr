@@ -7,6 +7,8 @@ package com.nuecho.rivr.voicexml.servlet;
 import com.nuecho.rivr.voicexml.turn.last.*;
 
 /**
+ * Error handler generating an empty &lt;exit&gt; element.
+ * 
  * @author Nu Echo Inc.
  */
 public class DefaultErrorHandler implements VoiceXmlErrorHandler {

@@ -23,6 +23,8 @@ import com.nuecho.rivr.voicexml.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * VoiceXML specialization of {@link InputTurnFactory}.
+ * 
  * @author Nu Echo Inc.
  */
 public final class VoiceXmlInputTurnFactory implements

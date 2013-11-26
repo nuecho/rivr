@@ -17,7 +17,7 @@ import com.nuecho.rivr.voicexml.turn.output.*;
 import com.nuecho.rivr.voicexml.turn.output.fetch.*;
 
 /**
- * VoiceXML implementation of a dialogue context. In addition to properties
+ * VoiceXML specialization of {@link DialogueContext}. In addition to properties
  * provided by a {@link DialogueContext} (like <code>dialogueChannel</code>,
  * <code>dialogueId</code>, and <code>logger</code>), the
  * {@link VoiceXmlDialogueContext} exposes:

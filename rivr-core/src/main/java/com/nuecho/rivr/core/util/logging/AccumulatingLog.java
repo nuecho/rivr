@@ -104,7 +104,7 @@ public final class AccumulatingLog extends LoggerAdapter {
         return Collections.unmodifiableList(mMessages);
     }
 
-    public static class LogEntry {
+    static class LogEntry {
 
         private final String mMessage;
         private final Throwable mThrowable;

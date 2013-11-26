@@ -14,6 +14,7 @@ import javax.servlet.http.*;
 import org.slf4j.*;
 import org.w3c.dom.*;
 
+import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.dialogue.*;
 import com.nuecho.rivr.core.servlet.*;
 import com.nuecho.rivr.core.servlet.session.*;
@@ -29,6 +30,82 @@ import com.nuecho.rivr.voicexml.turn.output.*;
 import com.nuecho.rivr.voicexml.util.*;
 
 /**
+ * Implementation of the {@link DialogueServlet} specialized for VoiceXML. This
+ * servlet handles requests from the VoiceXML platform and responds with
+ * VoiceXML documents. It also intercepts special resources (
+ * <code>/script</code> and <code>/root</code>).
+ * <p/>
+ * <h3>init args</h3> The following servlet initial arguments are supported:
+ * <p/>
+ * <dt>com.nuecho.rivr.voicexml.dialogueTimeout
+ * <dd>Maximum time for dialogue to produce an {@link OutputTurn}. Value
+ * specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
+ * for 10 seconds. Default value: <code>10 s</code></dd></dt>
+ * <p/>
+ * <dt>com.nuecho.rivr.voicexml.sessionTimeout</dt>
+ * <dd>Maximum inactivity time for a session. Value specified must be followed
+ * by unit (ms, s, m, h, d, y), e.g. <code>10s</code> for 10 seconds. Default
+ * value: <code>30 m</code></dd>
+ * <p/>
+ * <dt>com.nuecho.rivr.voicexml.sessionScanPeriod</dt>
+ * <dd>Time between each scan for dead sessions in the session container. Value
+ * specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
+ * for 10 seconds. Default value: <code>2 m</code></dd>
+ * <p/>
+ * <dt>com.nuecho.rivr.voicexml.errorHandler.class</dt>
+ * <dd>Class name of the error handlder. This class must implements
+ * {@link VoiceXmlErrorHandler}, be public and non-abstract and have a public
+ * no-argument constructor. Default:
+ * <code>com.nuecho.rivr.voicexml.servlet.DefaultErrorHandler</code></dd>
+ * <p/>
+ * <dt>com.nuecho.rivr.voicexml.errorHandler.key</dt>
+ * <dd>As an alternative to
+ * <code>com.nuecho.rivr.voicexml.errorHandler.class</code>, this indicates the
+ * servlet context attribute name under which the {@link VoiceXmlErrorHandler}
+ * can be found. Default: (none: an instance of
+ * <code>com.nuecho.rivr.voicexml.servlet.DefaultErrorHandler</code> is used)</dd>
+ * <p/>
+ * <dt>com.nuecho.rivr.voicexml.dialogueFactory.class</dt>
+ * <dd>Class name of the dialogue factory. This class must implements
+ * {@link VoiceXmlDialogueFactory}, be public and non-abstract and have a public
+ * no-argument constructor. Default: (none).</dd>
+ * <p/>
+ * <dt>com.nuecho.rivr.voicexml.dialogueFactory.key</dt>
+ * <dd>As an alternative to
+ * <code>com.nuecho.rivr.voicexml.dialogueFactory.class</code>, this indicates
+ * the servlet context attribute name under which the
+ * {@link VoiceXmlDialogueFactory} can be found. Default: (none)</dd>
+ * <p/>
+ * <dt>com.nuecho.rivr.voicexml.dialogue.class</dt>
+ * <dd>If neither <code>com.nuecho.rivr.voicexml.dialogueFactory.class</code>
+ * nor <code>com.nuecho.rivr.voicexml.dialogueFactory.key</code> is specified,
+ * this specifies the class name of the dialogue. This class must implements
+ * {@link VoiceXmlDialogue}, be public and non-abstract and have a public
+ * no-argument constructor. Default: (none).</dd>
+ * <p/>
+ * <dt>com.nuecho.rivr.voicexml.loggerFactory.class</dt>
+ * <dd>Class name of the dialogue factory. This class must implements
+ * {@link LoggerFactory org.slf4j.LoggerFactory}, be public and non-abstract and
+ * have a public no-argument constructor. Default: (none:
+ * {@link org.slf4j.LoggerFactory#getILoggerFactory()} is used as the logger
+ * factory).</dd>
+ * <p/>
+ * <dt>com.nuecho.rivr.voicexml.loggerFactory.key</dt>
+ * <dd>As an alternative to
+ * <code>com.nuecho.rivr.voicexml.dialogueFactory.class</code>, this indicates
+ * the servlet context attribute name under which the {@link LoggerFactory
+ * org.slf4j.LoggerFactory} can be found. Default: (none:
+ * {@link org.slf4j.LoggerFactory#getILoggerFactory()} is used as the logger
+ * factory).</dd>
+ * <p>
+ * <b>Important:</b> one of the following must be specified, they are mutually
+ * exclusive:
+ * <ul>
+ * <li>com.nuecho.rivr.voicexml.dialogueFactory.class</li>
+ * <li>com.nuecho.rivr.voicexml.dialogueFactory.key</li>
+ * <li>com.nuecho.rivr.voicexml.dialogue.class</li>
+ * </ul>
+ * 
  * @author Nu Echo Inc.
  */
 public class VoiceXmlDialogueServlet

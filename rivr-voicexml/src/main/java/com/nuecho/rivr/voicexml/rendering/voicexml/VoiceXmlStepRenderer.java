@@ -19,6 +19,10 @@ import com.nuecho.rivr.voicexml.turn.last.*;
 import com.nuecho.rivr.voicexml.turn.output.*;
 
 /**
+ * VoiceXML specialization of {@link StepRenderer}. {@link VoiceXmlOutputTurn
+ * VoiceXmlOutputTurns} and {@link VoiceXmlLastTurn VoiceXmlLastTurns} are
+ * converted to VoiceXML documents.
+ * 
  * @author Nu Echo Inc.
  */
 public class VoiceXmlStepRenderer implements

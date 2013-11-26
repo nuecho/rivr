@@ -5,6 +5,8 @@
 package com.nuecho.rivr.voicexml.rendering.voicexml;
 
 /**
+ * Error during generation of VoiceXML document.
+ * 
  * @author Nu Echo Inc.
  */
 public class VoiceXmlDocumentRenderingException extends Exception {

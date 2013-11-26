@@ -13,6 +13,13 @@ import org.w3c.dom.*;
 import com.nuecho.rivr.core.util.*;
 
 /**
+ * Generates the standard Rivr root document. The root document will:
+ * <ul>
+ * <li>declare the <code>rivr</code> variable (an object)</li>
+ * <li>load the <code>rivr.js</code> script which contains the necessary
+ * JavaScript methods for result manipulation</li>
+ * </ul>
+ * 
  * @author Nu Echo Inc.
  */
 public class DefaultVoiceXmlRootDocumentFactory implements VoiceXmlRootDocumentFactory {

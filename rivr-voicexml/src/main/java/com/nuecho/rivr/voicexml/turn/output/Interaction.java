@@ -492,8 +492,22 @@ public class Interaction extends VoiceXmlOutputTurn {
         createGotoSubmit(filledElement);
     }
 
+    /**
+     * Barge-in types.
+     * 
+     * @author Nu Echo Inc.
+     */
     public enum BargeInType {
-        speech, hotword;
+        /**
+         * Normal speech-detection barge-in. Triggers only when speech is
+         * detected.
+         */
+        speech,
+
+        /**
+         * Hotword barge-in. Triggers only when grammar is matched.
+         */
+        hotword;
     }
 
     /**

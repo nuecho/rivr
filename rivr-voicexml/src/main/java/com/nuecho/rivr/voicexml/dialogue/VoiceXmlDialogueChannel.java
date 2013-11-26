@@ -9,6 +9,8 @@ import com.nuecho.rivr.voicexml.turn.input.*;
 import com.nuecho.rivr.voicexml.turn.output.*;
 
 /**
+ * VoiceXML specialization of {@link DialogueChannel}
+ * 
  * @author Nu Echo Inc.
  */
 public interface VoiceXmlDialogueChannel extends DialogueChannel<VoiceXmlInputTurn, VoiceXmlOutputTurn> {

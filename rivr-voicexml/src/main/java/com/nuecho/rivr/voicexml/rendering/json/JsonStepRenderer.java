@@ -20,6 +20,10 @@ import com.nuecho.rivr.voicexml.turn.output.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * {@link StepRenderer} used for Rivr dialogue runner. All the
+ * {@link VoiceXmlOutputTurn VoiceXmlOutputTurns} and {@link VoiceXmlLastTurn
+ * VoiceXmlLastTurns} are rendered as JSON object.
+ * 
  * @author Nu Echo Inc.
  */
 public class JsonStepRenderer implements

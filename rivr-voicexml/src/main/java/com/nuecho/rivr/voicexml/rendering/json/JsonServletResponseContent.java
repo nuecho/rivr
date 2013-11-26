@@ -13,6 +13,8 @@ import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
+ * Wraps a JSON value in a {@link ServletResponseContent}.
+ * 
  * @author Nu Echo Inc.
  */
 public class JsonServletResponseContent implements ServletResponseContent {

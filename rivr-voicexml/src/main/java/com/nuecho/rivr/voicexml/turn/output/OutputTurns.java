@@ -5,6 +5,9 @@
 package com.nuecho.rivr.voicexml.turn.output;
 
 /**
+ * Factory methods for various <i>fluent</i> builders for
+ * {@link VoiceXmlOutputTurn VoiceXmlOutputTurns}.
+ * 
  * @author Nu Echo Inc.
  */
 public final class OutputTurns {

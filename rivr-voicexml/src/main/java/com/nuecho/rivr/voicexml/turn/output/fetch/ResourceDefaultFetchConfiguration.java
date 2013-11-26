@@ -30,6 +30,11 @@ public class ResourceDefaultFetchConfiguration {
     private Duration mMaxStale;
     private FetchHint mFetchHint;
 
+    /**
+     * Types of resources that can be fetched.
+     * 
+     * @author Nu Echo Inc.
+     */
     public enum ResourceType {
         object, audio, grammar, script
     }

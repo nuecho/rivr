@@ -15,6 +15,8 @@ import com.nuecho.rivr.voicexml.turn.input.*;
 import com.nuecho.rivr.voicexml.turn.output.*;
 
 /**
+ * Default {@link DialogueContextFactory} for VoiceXML.
+ * 
  * @author Nu Echo Inc.
  */
 public final class VoiceXmlDialogueContextFactory implements
