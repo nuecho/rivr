@@ -39,6 +39,22 @@ import com.nuecho.rivr.core.util.*;
  * {@link InputTurnFactory}
  * <li>once the dialogue is done, the servlet perform necessary clean-up.</li>
  * </ol>
+ * <h3>init args</h3> The following servlet initial arguments are supported:
+ * <p/>
+ * <dt>com.nuecho.rivr.core.dialogueTimeout
+ * <dd>Maximum time for dialogue to produce an {@link OutputTurn}. Value
+ * specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
+ * for 10 seconds. Default value: <code>10 s</code></dd></dt>
+ * <p/>
+ * <dt>com.nuecho.rivr.core.sessionTimeout</dt>
+ * <dd>Maximum inactivity time for a session. Value specified must be followed
+ * by unit (ms, s, m, h, d, y), e.g. <code>10s</code> for 10 seconds. Default
+ * value: <code>30 m</code></dd>
+ * <p/>
+ * <dt>com.nuecho.rivr.core.sessionScanPeriod</dt>
+ * <dd>Time between each scan for dead sessions in the session container. Value
+ * specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
+ * for 10 seconds. Default value: <code>2 m</code></dd>
  * 
  * @param <F> type of {@link FirstTurn}
  * @param <L> type of {@link LastTurn}
@@ -57,6 +73,11 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
     private static final long serialVersionUID = 1L;
     private static final String SESSION_CONTAINER_NAME = "com.nuecho.rivr.sessionContainer";
+
+    private static final String INITIAL_ARGUMENT_PREFIX = "com.nuecho.core.voicexml.";
+    private static final String INITIAL_ARGUMENT_DIALOGUE_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "dialogueTimeout";
+    private static final String INITIAL_ARGUMENT_SESSION_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "sessionTimeout";
+    private static final String INITIAL_ARGUMENT_SESSION_SCAN_PERIOD = INITIAL_ARGUMENT_PREFIX + "sessionScanPeriod";
 
     private ErrorHandler<L> mErrorHandler;
     private DialogueFactory<I, O, F, L, C> mDialogueFactory;
@@ -115,6 +136,21 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
                                                                 mSessionScanPeriod,
                                                                 SESSION_CONTAINER_NAME);
 
+        Duration sessionScanPeriod = getDuration(INITIAL_ARGUMENT_SESSION_SCAN_PERIOD);
+        if (sessionScanPeriod != null) {
+            setSessionScanPeriod(sessionScanPeriod);
+        }
+
+        Duration sessionTimeout = getDuration(INITIAL_ARGUMENT_SESSION_TIMEOUT);
+        if (sessionTimeout != null) {
+            setSessionTimeout(sessionTimeout);
+        }
+
+        Duration dialogueTimeout = getDuration(INITIAL_ARGUMENT_DIALOGUE_TIMEOUT);
+        if (dialogueTimeout != null) {
+            setDialogueTimeout(dialogueTimeout);
+        }
+
     }
 
     /**
@@ -125,6 +161,17 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     @Override
     public void destroy() {
         destroyDialogueServlet();
+    }
+
+    private Duration getDuration(String key) throws ServletException {
+        ServletConfig servletConfig = getServletConfig();
+        String duration = servletConfig.getInitParameter(key);
+        if (duration == null) return null;
+        try {
+            return Duration.parse(duration);
+        } catch (IllegalArgumentException exception) {
+            throw new ServletException("Unable to parse duration for init-arg '" + key + "'", exception);
+        }
     }
 
     private void ensureFieldIsSet(Object fieldValue, String fieldName) {

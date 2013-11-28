@@ -14,7 +14,6 @@ import javax.servlet.http.*;
 import org.slf4j.*;
 import org.w3c.dom.*;
 
-import com.nuecho.rivr.core.channel.*;
 import com.nuecho.rivr.core.dialogue.*;
 import com.nuecho.rivr.core.servlet.*;
 import com.nuecho.rivr.core.servlet.session.*;
@@ -36,22 +35,6 @@ import com.nuecho.rivr.voicexml.util.*;
  * <code>/script</code> and <code>/root</code>).
  * <p/>
  * <h3>init args</h3> The following servlet initial arguments are supported:
- * <p/>
- * <dt>com.nuecho.rivr.voicexml.dialogueTimeout
- * <dd>Maximum time for dialogue to produce an {@link OutputTurn}. Value
- * specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
- * for 10 seconds. Default value: <code>10 s</code></dd></dt>
- * <p/>
- * <dt>com.nuecho.rivr.voicexml.sessionTimeout</dt>
- * <dd>Maximum inactivity time for a session. Value specified must be followed
- * by unit (ms, s, m, h, d, y), e.g. <code>10s</code> for 10 seconds. Default
- * value: <code>30 m</code></dd>
- * <p/>
- * <dt>com.nuecho.rivr.voicexml.sessionScanPeriod</dt>
- * <dd>Time between each scan for dead sessions in the session container. Value
- * specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
- * for 10 seconds. Default value: <code>2 m</code></dd>
- * <p/>
  * <dt>com.nuecho.rivr.voicexml.errorHandler.class</dt>
  * <dd>Class name of the error handlder. This class must implements
  * {@link VoiceXmlErrorHandler}, be public and non-abstract and have a public
@@ -115,9 +98,6 @@ public class VoiceXmlDialogueServlet
     private static final long serialVersionUID = 1L;
 
     private static final String INITIAL_ARGUMENT_PREFIX = "com.nuecho.rivr.voicexml.";
-    private static final String INITIAL_ARGUMENT_DIALOGUE_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "dialogueTimeout";
-    private static final String INITIAL_ARGUMENT_SESSION_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "sessionTimeout";
-    private static final String INITIAL_ARGUMENT_SESSION_SCAN_PERIOD = INITIAL_ARGUMENT_PREFIX + "sessionScanPeriod";
     private static final String INITIAL_ARGUMENT_ERROR_HANDLER = INITIAL_ARGUMENT_PREFIX + "errorHandler";
     private static final String INITIAL_ARGUMENT_DIALOGUE_FACTORY = INITIAL_ARGUMENT_PREFIX + "dialogueFactory";
     private static final String INITIAL_ARGUMENT_DIALOGUE_CLASS = INITIAL_ARGUMENT_PREFIX + "dialogue.class";
@@ -205,20 +185,6 @@ public class VoiceXmlDialogueServlet
             setErrorHandler(errorHandler);
         }
 
-        Duration sessionScanPeriod = getDuration(INITIAL_ARGUMENT_SESSION_SCAN_PERIOD);
-        if (sessionScanPeriod != null) {
-            setSessionScanPeriod(sessionScanPeriod);
-        }
-
-        Duration sessionTimeout = getDuration(INITIAL_ARGUMENT_SESSION_TIMEOUT);
-        if (sessionTimeout != null) {
-            setSessionTimeout(sessionTimeout);
-        }
-
-        Duration dialogueTimeout = getDuration(INITIAL_ARGUMENT_DIALOGUE_TIMEOUT);
-        if (dialogueTimeout != null) {
-            setDialogueTimeout(dialogueTimeout);
-        }
     }
 
     private void setImplicitDialogueFactory() throws DialogueServletInitializationException {
@@ -243,17 +209,6 @@ public class VoiceXmlDialogueServlet
             throw new DialogueServletInitializationException("Cannot find dialogue class.", exception);
         } catch (DialogueFactoryException exception) {
             throw new DialogueServletInitializationException("Cannot initialize dialogue factory.", exception);
-        }
-    }
-
-    private Duration getDuration(String key) throws DialogueServletInitializationException {
-        ServletConfig servletConfig = getServletConfig();
-        String duration = servletConfig.getInitParameter(key);
-        if (duration == null) return null;
-        try {
-            return Duration.parse(duration);
-        } catch (IllegalArgumentException exception) {
-            throw new DialogueServletInitializationException("Unable to parse duration.", exception);
         }
     }
 
