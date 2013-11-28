@@ -27,8 +27,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * 
  * @author Nu Echo Inc.
  */
-public final class VoiceXmlInputTurnFactory implements
-        com.nuecho.rivr.core.servlet.InputTurnFactory<VoiceXmlInputTurn, VoiceXmlFirstTurn> {
+public final class VoiceXmlInputTurnFactory implements InputTurnFactory<VoiceXmlInputTurn, VoiceXmlFirstTurn> {
     public static final String INPUT_TURN_PARAMETER = "inputTurn";
     public static final String ROOT_PATH = "/root/";
 
