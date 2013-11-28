@@ -1,3 +1,3 @@
-include 'rivr-core', 'rivr-voicexml:rivr-voicexml-dialogue-runner'
+include 'rivr-core', 'rivr-voicexml', 'rivr-voicexml-dialogue-runner'
 
 rootProject.name = 'rivr'

@@ -2,9 +2,7 @@ group = "com.nuecho"
 version = "0.9.3"
 
 subprojects {
-    apply plugin: 'java'
     apply plugin: 'eclipse'
-    apply plugin: 'checkstyle'
     apply plugin: 'ivy-publish' // ivy publishing is for fallback if maven doesn't work.
     apply plugin: 'maven'
     apply plugin: 'signing'
@@ -12,45 +10,7 @@ subprojects {
     group = rootProject.group
     version = rootProject.version
 
-    dependencies { checkstyle 'com.puppycrawl.tools:checkstyle:5.5' }
     repositories { mavenCentral() }
-
-    checkstyle.configFile = rootProject.file('checkstyle/checkstyle.xml')
-    sourceCompatibility = '1.6'
-
-    // Fix for Unable to get class information
-    checkstyleMain { classpath += configurations.compile }
-    checkstyleTest { classpath += configurations.compile }
-
-    eclipse {
-        project {
-            natures 'net.sf.eclipsecs.core.CheckstyleNature'
-            buildCommand 'net.sf.eclipsecs.core.CheckstyleBuilder'
-        }
-        classpath {
-            defaultOutputDir = file("${project.projectDir}/build/classes")
-            // This should probably be submitted as a patch to the eclipse plugin.
-            containers.clear()
-            containers.add("org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6")
-        }
-    }
-
-    task sourcesJar(type: Jar) {
-        from sourceSets.main.java
-        classifier 'sources'
-    }
-
-    // Required for Maven central
-    task javadocJar(type: Jar, dependsOn: javadoc) {
-        classifier = 'javadoc'
-        from javadoc.destinationDir
-    }
-
-    // Maven central release use the "old" uploadArchives mechanism since maven-publish doesn't support signing yet.
-    artifacts {
-        archives javadocJar
-        archives sourcesJar
-    }
 
     signing {
         required { gradle.taskGraph.hasTask("uploadArchives") } // Only sign during release.
@@ -109,6 +69,49 @@ configure([
     project("rivr-core"),
     project("rivr-voicexml")
 ]) {
+    apply plugin: 'java'
+    apply plugin: 'checkstyle'
+
+    dependencies { checkstyle 'com.puppycrawl.tools:checkstyle:5.5' }
+
+    checkstyle.configFile = rootProject.file('checkstyle/checkstyle.xml')
+    sourceCompatibility = '1.6'
+
+    // Fix for Unable to get class information
+    checkstyleMain { classpath += configurations.compile }
+    checkstyleTest { classpath += configurations.compile }
+
+    task sourcesJar(type: Jar) {
+        from sourceSets.main.java
+        classifier 'sources'
+    }
+
+    // Required for Maven central
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    eclipse {
+        project {
+            natures 'net.sf.eclipsecs.core.CheckstyleNature'
+            buildCommand 'net.sf.eclipsecs.core.CheckstyleBuilder'
+        }
+        classpath {
+            defaultOutputDir = file("${project.projectDir}/build/classes")
+            // This should probably be submitted as a patch to the eclipse plugin.
+            containers.clear()
+            containers.add("org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6")
+        }
+    }
+
+
+    // Maven central release use the "old" uploadArchives mechanism since maven-publish doesn't support signing yet.
+    artifacts {
+        archives javadocJar
+        archives sourcesJar
+    }
+
     artifacts { archives jar }
 
     uploadArchives{
@@ -118,11 +121,8 @@ configure([
             }
         }
     }
-}
-
-task wrapper(type: Wrapper) { gradleVersion = '1.6' }
-
-task globalJavadoc(type: Javadoc) {
+    
+    task globalJavadoc(type: Javadoc) {
      source subprojects.collect {project -> project.sourceSets.main.allJava } 
      destinationDir = new File(buildDir, 'javadoc')
      classpath = files(subprojects.collect {project -> project.sourceSets.main.compileClasspath}) 
@@ -153,5 +153,7 @@ task globalJavadoc(type: Javadoc) {
         docTitle "<a href=\"http://rivr.nuecho.com/\" target=\"_blank\"><img src=\"http://rivr.nuecho.com/img/logo.png\" /></a><br/>API documentation of <a href=\"http://rivr.nuecho.com/\" target=\"_blank\">Rivr</a> $project.version"
     }
 }
+    
+}
 
-
+task wrapper(type: Wrapper) { gradleVersion = '1.9' }
