@@ -66,6 +66,13 @@ import com.nuecho.rivr.voicexml.util.*;
  * {@link VoiceXmlDialogue}, be public and non-abstract and have a public
  * no-argument constructor. Default: (none).</dd>
  * <p/>
+ * <dt>com.nuecho.rivr.voicexml.dialogue.key</dt>
+ * <dd>If neither <code>com.nuecho.rivr.voicexml.dialogueFactory.class</code>,
+ * <code>com.nuecho.rivr.voicexml.dialogueFactory.key</code> nor
+ * <code>com.nuecho.rivr.voicexml.dialogue.class</code> is specified, this
+ * specifies the servlet context attribute name under which the
+ * {@link VoiceXmlDialogue} can be found. Default: (none)</dd>
+ * <p/>
  * <dt>com.nuecho.rivr.voicexml.loggerFactory.class</dt>
  * <dd>Class name of the dialogue factory. This class must implements
  * {@link LoggerFactory org.slf4j.LoggerFactory}, be public and non-abstract and
@@ -75,8 +82,8 @@ import com.nuecho.rivr.voicexml.util.*;
  * <p/>
  * <dt>com.nuecho.rivr.voicexml.loggerFactory.key</dt>
  * <dd>As an alternative to
- * <code>com.nuecho.rivr.voicexml.dialogueFactory.class</code>, this indicates
- * the servlet context attribute name under which the {@link LoggerFactory
+ * <code>com.nuecho.rivr.voicexml.loggerFactory.class</code>, this indicates the
+ * servlet context attribute name under which the {@link LoggerFactory
  * org.slf4j.LoggerFactory} can be found. Default: (none:
  * {@link org.slf4j.LoggerFactory#getILoggerFactory()} is used as the logger
  * factory).</dd>
@@ -87,6 +94,7 @@ import com.nuecho.rivr.voicexml.util.*;
  * <li>com.nuecho.rivr.voicexml.dialogueFactory.class</li>
  * <li>com.nuecho.rivr.voicexml.dialogueFactory.key</li>
  * <li>com.nuecho.rivr.voicexml.dialogue.class</li>
+ * <li>com.nuecho.rivr.voicexml.dialogue.key</li>
  * </ul>
  * 
  * @author Nu Echo Inc.
@@ -100,7 +108,7 @@ public class VoiceXmlDialogueServlet
     private static final String INITIAL_ARGUMENT_PREFIX = "com.nuecho.rivr.voicexml.";
     private static final String INITIAL_ARGUMENT_ERROR_HANDLER = INITIAL_ARGUMENT_PREFIX + "errorHandler";
     private static final String INITIAL_ARGUMENT_DIALOGUE_FACTORY = INITIAL_ARGUMENT_PREFIX + "dialogueFactory";
-    private static final String INITIAL_ARGUMENT_DIALOGUE_CLASS = INITIAL_ARGUMENT_PREFIX + "dialogue.class";
+    private static final String INITIAL_ARGUMENT_DIALOGUE = INITIAL_ARGUMENT_PREFIX + "dialogue";
     private static final String INITIAL_ARGUMENT_LOGGER_FACTORY = INITIAL_ARGUMENT_PREFIX + "loggerFactory";
 
     public static final String ROOT_PATH = "/root/";
@@ -188,27 +196,33 @@ public class VoiceXmlDialogueServlet
     }
 
     private void setImplicitDialogueFactory() throws DialogueServletInitializationException {
-        String dialogueClassName = getServletConfig().getInitParameter(INITIAL_ARGUMENT_DIALOGUE_CLASS);
-        if (dialogueClassName == null) return;
+        ServletConfig servletConfig = getServletConfig();
+        String className = servletConfig.getInitParameter(INITIAL_ARGUMENT_DIALOGUE + ".class");
+        String key = servletConfig.getInitParameter(INITIAL_ARGUMENT_DIALOGUE + ".key");
 
-        try {
-            Class<?> rawDialogueClass = Class.forName(dialogueClassName);
-            if (!VoiceXmlDialogue.class.isAssignableFrom(rawDialogueClass)) {
-                String message = "Dialogue class "
-                                 + rawDialogueClass
-                                 + " does not implements "
-                                 + VoiceXmlDialogue.class.getName()
-                                 + ".";
-                throw new DialogueServletInitializationException(message);
+        if (className != null) {
+            try {
+                Class<?> rawDialogueClass = Class.forName(className);
+                if (!VoiceXmlDialogue.class.isAssignableFrom(rawDialogueClass)) {
+                    String message = "Dialogue class "
+                                     + rawDialogueClass
+                                     + " does not implements "
+                                     + VoiceXmlDialogue.class.getName()
+                                     + ".";
+                    throw new DialogueServletInitializationException(message);
+                }
+
+                @SuppressWarnings("unchecked")
+                Class<? extends VoiceXmlDialogue> dialogueClass = (Class<? extends VoiceXmlDialogue>) rawDialogueClass;
+                setDialogueFactory(new SimpleVoiceXmlDialogueFactory(dialogueClass));
+            } catch (ClassNotFoundException exception) {
+                throw new DialogueServletInitializationException("Cannot find dialogue class.", exception);
+            } catch (DialogueFactoryException exception) {
+                throw new DialogueServletInitializationException("Cannot initialize dialogue factory.", exception);
             }
-
-            @SuppressWarnings("unchecked")
-            Class<? extends VoiceXmlDialogue> dialogueClass = (Class<? extends VoiceXmlDialogue>) rawDialogueClass;
-            setDialogueFactory(new SimpleVoiceXmlDialogueFactory(dialogueClass));
-        } catch (ClassNotFoundException exception) {
-            throw new DialogueServletInitializationException("Cannot find dialogue class.", exception);
-        } catch (DialogueFactoryException exception) {
-            throw new DialogueServletInitializationException("Cannot initialize dialogue factory.", exception);
+        } else if (key != null) {
+            VoiceXmlDialogue dialogue = findInServletContext(key, VoiceXmlDialogue.class, key);
+            setDialogueFactory(new SimpleVoiceXmlDialogueFactory(dialogue));
         }
     }
 

@@ -7,6 +7,7 @@ package com.nuecho.rivr.voicexml.dialogue;
 import java.lang.reflect.*;
 
 import com.nuecho.rivr.core.dialogue.*;
+import com.nuecho.rivr.core.util.*;
 import com.nuecho.rivr.voicexml.servlet.*;
 import com.nuecho.rivr.voicexml.turn.first.*;
 import com.nuecho.rivr.voicexml.turn.input.*;
@@ -19,16 +20,28 @@ import com.nuecho.rivr.voicexml.turn.output.*;
  * {@link VoiceXmlDialogueServlet} when the
  * <code>com.nuecho.rivr.voicexml.dialogue.class</code> servlet init-arg is
  * specified in {@link VoiceXmlDialogueServlet}.
+ * <p>
+ * This factory can also provide the same instance of a give
+ * {@link VoiceXmlDialogue} when the
+ * {@link SimpleVoiceXmlDialogueFactory#SimpleVoiceXmlDialogueFactory(VoiceXmlDialogue)}
+ * constructor is used.
  * 
  * @see VoiceXmlDialogueServlet
  * @author Nu Echo Inc.
  */
 public class SimpleVoiceXmlDialogueFactory implements VoiceXmlDialogueFactory {
 
-    private final Class<? extends VoiceXmlDialogue> mVoiceXmlDialogueClass;
+    private Class<? extends VoiceXmlDialogue> mVoiceXmlDialogueClass;
+    private VoiceXmlDialogue mDialogue;
+
+    public SimpleVoiceXmlDialogueFactory(VoiceXmlDialogue dialogue) {
+        Assert.notNull(dialogue, "dialogue");
+        mDialogue = dialogue;
+    }
 
     public SimpleVoiceXmlDialogueFactory(Class<? extends VoiceXmlDialogue> voiceXmlDialogueClass)
             throws DialogueFactoryException {
+        Assert.notNull(voiceXmlDialogueClass, "voiceXmlDialogueClass");
         mVoiceXmlDialogueClass = voiceXmlDialogueClass;
         if (mVoiceXmlDialogueClass.isInterface())
             throw new DialogueFactoryException("Dialogue cannot be an interface.");
@@ -57,6 +70,9 @@ public class SimpleVoiceXmlDialogueFactory implements VoiceXmlDialogueFactory {
     @Override
     public Dialogue<VoiceXmlInputTurn, VoiceXmlOutputTurn, VoiceXmlFirstTurn, VoiceXmlLastTurn, VoiceXmlDialogueContext> create(DialogueInitializationInfo<VoiceXmlInputTurn, VoiceXmlOutputTurn, VoiceXmlDialogueContext> dialogueInitializationInfo)
             throws DialogueFactoryException {
+
+        if (mDialogue != null) return mDialogue;
+
         try {
             return mVoiceXmlDialogueClass.newInstance();
         } catch (InstantiationException exception) {
