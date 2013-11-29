@@ -19,7 +19,7 @@ public final class DialogueUtils {
     }
 
     /**
-     * Perform turn exchange with default timeout.
+     * Performs turn exchange with default timeout.
      */
     public static <I extends InputTurn, O extends OutputTurn> I doTurn(O outputTurn, DialogueContext<I, O> context)
             throws Timeout, InterruptedException {
@@ -27,7 +27,7 @@ public final class DialogueUtils {
     }
 
     /**
-     * Perform turn exchange with specified timeout.
+     * Performs turn exchange with specified timeout.
      */
     public static <I extends InputTurn, O extends OutputTurn> I doTurn(O outputTurn,
                                                                        DialogueContext<I, O> context,

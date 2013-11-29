@@ -310,7 +310,7 @@ public final class SynchronousDialogueChannel<I extends InputTurn, O extends Out
     }
 
     /**
-     * Wait for the dialogue thread to end.
+     * Waits for the dialogue thread to end.
      * 
      * @param timeout maximum time to wait for the thread to end. A value of
      *            Duration.ZERO (or equivalent) means to wait forever.

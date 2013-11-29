@@ -91,23 +91,23 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     private Duration mSessionScanPeriod = Duration.minutes(2);
 
     /**
-     * Perform initialization.
+     * Performs initialization.
      */
     protected abstract void initDialogueServlet() throws DialogueServletInitializationException;
 
     /**
-     * Perform shutdown.
+     * Performs shutdown.
      */
     protected abstract void destroyDialogueServlet();
 
     /**
-     * Provided the {@link StepRenderer} appropriate for the context.
+     * Provides the {@link StepRenderer} appropriate for the context.
      */
     protected abstract StepRenderer<I, O, L, C> getStepRenderer(HttpServletRequest request,
                                                                 Session<I, O, F, L, C> session);
 
     /**
-     * Initialize the servlet. The first thing done in this method is to call
+     * Initializes the servlet. The first thing done in this method is to call
      * {@link #initDialogueServlet()}. This method is called by the servlet
      * container.
      */

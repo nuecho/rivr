@@ -147,7 +147,7 @@ public final class StringUtils {
     }
 
     /**
-     * Create a lowercase hexadecimal {@link String} representing a
+     * Creates a lowercase hexadecimal {@link String} representing a
      * <code>byte</code> array.
      * 
      * @param bytes the <code>byte</code> array to be expressed
