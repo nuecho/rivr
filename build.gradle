@@ -65,10 +65,10 @@ subprojects {
 }
 
 // Configure the java projects release.
-configure([
-    project("rivr-core"),
-    project("rivr-voicexml")
-]) {
+
+def javaProjects = [project(':rivr-core'), project(':rivr-voicexml')] 
+
+configure(javaProjects) {
     apply plugin: 'java'
     apply plugin: 'checkstyle'
 
@@ -121,11 +121,12 @@ configure([
             }
         }
     }
-    
-    task globalJavadoc(type: Javadoc) {
-     source subprojects.collect {project -> project.sourceSets.main.allJava } 
+}
+
+task globalJavadoc(type: Javadoc) {
+     source javaProjects.collect {project -> project.sourceSets.main.allJava } 
      destinationDir = new File(buildDir, 'javadoc')
-     classpath = files(subprojects.collect {project -> project.sourceSets.main.compileClasspath}) 
+     classpath = files(javaProjects.collect {project -> project.sourceSets.main.compileClasspath}) 
 
      // To use Java 7 Javadoc: 
      //    gradlew  -DjavadocExecutable=/usr/java/jdk7/bin/javadoc  globalJavadoc
@@ -152,8 +153,6 @@ configure([
         stylesheetFile = new File( projectDir, 'doc/javadoc-extra/rivr-javadoc.css' ) 
         docTitle "<a href=\"http://rivr.nuecho.com/\" target=\"_blank\"><img src=\"http://rivr.nuecho.com/img/logo.png\" /></a><br/>API documentation of <a href=\"http://rivr.nuecho.com/\" target=\"_blank\">Rivr</a> $project.version"
     }
-}
-    
 }
 
 task wrapper(type: Wrapper) { gradleVersion = '1.9' }
