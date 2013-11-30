@@ -20,50 +20,6 @@ import com.nuecho.rivr.core.util.*;
  */
 public final class JsonUtils {
 
-    private static final class JsonStringImplementation implements JsonString {
-        private final String mString;
-
-        private JsonStringImplementation(String string) {
-            mString = string;
-        }
-
-        @Override
-        public ValueType getValueType() {
-            return ValueType.STRING;
-        }
-
-        @Override
-        public String getString() {
-            return mString;
-        }
-
-        @Override
-        public CharSequence getChars() {
-            return mString;
-        }
-
-        @Override
-        public int hashCode() {
-            final int prime = 31;
-            int result = 1;
-            result = prime * result + ((mString == null) ? 0 : mString.hashCode());
-            return result;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj) return true;
-            if (obj == null) return false;
-            if (getClass() != obj.getClass()) return false;
-            JsonStringImplementation other = (JsonStringImplementation) obj;
-            if (mString == null) {
-                if (other.mString != null) return false;
-            } else if (!mString.equals(other.mString)) return false;
-            return true;
-        }
-
-    }
-
     private JsonUtils() {
         //utility class: instantiation forbidden
     }
@@ -79,7 +35,7 @@ public final class JsonUtils {
     }
 
     public static JsonString wrap(final String string) {
-        return new JsonStringImplementation(string);
+        return Json.createArrayBuilder().add(string).build().getJsonString(0);
     }
 
     public static void addDurationProperty(JsonObjectBuilder builder, String propertyName, Duration duration) {
@@ -161,17 +117,8 @@ public final class JsonUtils {
     }
 
     public static void write(Writer writer, JsonStructure structure) {
-
-        Writer filterWriter = new FilterWriter(writer) {
-            @Override
-            public void close() throws IOException {
-                //no-op.  jsonWriter.close() would close the underlying stream otherwise.
-            }
-        };
-
-        JsonWriter jsonWriter = createWriter(filterWriter);
+        JsonWriter jsonWriter = createWriter(writer);
         jsonWriter.write(structure);
-        jsonWriter.close();
     }
 
     public static void add(JsonObjectBuilder builder, String property, String string) {

@@ -83,14 +83,7 @@ public final class VariableList implements Iterable<Entry<String, String>>, Json
         VariableList list = new VariableList();
         for (String propertyName : jsonObject.keySet()) {
             JsonValue jsonValue = jsonObject.get(propertyName);
-
-            if (jsonValue instanceof JsonString) {
-                JsonString jsonString = (JsonString) jsonValue;
-                list.addWithString(propertyName, jsonString.getString());
-            } else {
-                list.addWithExpression(propertyName, jsonValue.toString());
-            }
-
+            list.addWithExpression(propertyName, jsonValue.toString());
         }
         return list;
     }
