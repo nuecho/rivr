@@ -1,0 +1,27 @@
+# Definition of a custom attribute that reverse binary attribute
+[attr]textfile text diff merge
+
+# Declare files as binary by default preventing potential problematic end-of-line conversion
+* binary
+
+# Declare files that will always have native line endings on checkout.
+*.checkstyle textfile
+*.css textfile
+*.gitattributes textfile
+*.gitignore textfile
+*.gradle textfile
+*.java textfile
+*.js textfile
+*.json textfile
+*.MF textfile
+*.md textfile
+*.properties textfile
+*.txt textfile
+
+# Declare files that will always have LF line endings on checkout.
+*.sh textfile eol=lf
+gradlew textfile eol=lf
+
+# Declare files that will always have CRLF line endings on checkout.
+*.bat textfile eol=crlf
+*.cmd textfile eol=crlf
