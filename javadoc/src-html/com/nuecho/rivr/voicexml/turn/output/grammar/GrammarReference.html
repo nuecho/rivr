@@ -1,91 +1,97 @@
-<HTML>
-<BODY BGCOLOR="white">
-<PRE>
-<FONT color="green">001</FONT>    /*<a name="line.1"></a>
-<FONT color="green">002</FONT>     * Copyright (c) 2004 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
-<FONT color="green">003</FONT>     */<a name="line.3"></a>
-<FONT color="green">004</FONT>    package com.nuecho.rivr.voicexml.turn.output.grammar;<a name="line.4"></a>
-<FONT color="green">005</FONT>    <a name="line.5"></a>
-<FONT color="green">006</FONT>    import javax.json.*;<a name="line.6"></a>
-<FONT color="green">007</FONT>    <a name="line.7"></a>
-<FONT color="green">008</FONT>    import com.nuecho.rivr.core.util.*;<a name="line.8"></a>
-<FONT color="green">009</FONT>    import com.nuecho.rivr.voicexml.turn.output.fetch.*;<a name="line.9"></a>
-<FONT color="green">010</FONT>    import com.nuecho.rivr.voicexml.util.json.*;<a name="line.10"></a>
-<FONT color="green">011</FONT>    <a name="line.11"></a>
-<FONT color="green">012</FONT>    /**<a name="line.12"></a>
-<FONT color="green">013</FONT>     * A &lt;code&gt;GrammarReference&lt;/code&gt; represents an external grammar reachable with<a name="line.13"></a>
-<FONT color="green">014</FONT>     * an URI.<a name="line.14"></a>
-<FONT color="green">015</FONT>     * <a name="line.15"></a>
-<FONT color="green">016</FONT>     * @author Nu Echo Inc.<a name="line.16"></a>
-<FONT color="green">017</FONT>     * @see &lt;a href="http://www.w3.org/TR/voicexml20/#dml3.1.1.2"&gt;http://www.w3.org/TR/voicexml20/#dml3.1.1.2&lt;/a&gt;<a name="line.17"></a>
-<FONT color="green">018</FONT>     */<a name="line.18"></a>
-<FONT color="green">019</FONT>    public final class GrammarReference extends GrammarItem {<a name="line.19"></a>
-<FONT color="green">020</FONT>        private static final String REFERENCE_ELEMENT_TYPE = "reference";<a name="line.20"></a>
-<FONT color="green">021</FONT>        private static final String URI_PROPERTY = "uri";<a name="line.21"></a>
-<FONT color="green">022</FONT>        private static final String RESOURCE_FETCH_CONFIGURATION_PROPERTY = "resourceFetchConfiguration";<a name="line.22"></a>
-<FONT color="green">023</FONT>    <a name="line.23"></a>
-<FONT color="green">024</FONT>        private final String mUri;<a name="line.24"></a>
-<FONT color="green">025</FONT>        private ResourceFetchConfiguration mResourceFetchConfiguration;<a name="line.25"></a>
-<FONT color="green">026</FONT>    <a name="line.26"></a>
-<FONT color="green">027</FONT>        /**<a name="line.27"></a>
-<FONT color="green">028</FONT>         * @param uri The URI of the external grammar. Not empty.<a name="line.28"></a>
-<FONT color="green">029</FONT>         */<a name="line.29"></a>
-<FONT color="green">030</FONT>        public GrammarReference(String uri) {<a name="line.30"></a>
-<FONT color="green">031</FONT>            Assert.notEmpty(uri, "uri");<a name="line.31"></a>
-<FONT color="green">032</FONT>            mUri = uri;<a name="line.32"></a>
-<FONT color="green">033</FONT>        }<a name="line.33"></a>
-<FONT color="green">034</FONT>    <a name="line.34"></a>
-<FONT color="green">035</FONT>        /**<a name="line.35"></a>
-<FONT color="green">036</FONT>         * @param resourceFetchConfiguration The resource fetch configuration. Null<a name="line.36"></a>
-<FONT color="green">037</FONT>         *            reverts to VoiceXML default value.<a name="line.37"></a>
-<FONT color="green">038</FONT>         */<a name="line.38"></a>
-<FONT color="green">039</FONT>        public void setResourceFetchConfiguration(ResourceFetchConfiguration resourceFetchConfiguration) {<a name="line.39"></a>
-<FONT color="green">040</FONT>            mResourceFetchConfiguration = resourceFetchConfiguration;<a name="line.40"></a>
-<FONT color="green">041</FONT>        }<a name="line.41"></a>
-<FONT color="green">042</FONT>    <a name="line.42"></a>
-<FONT color="green">043</FONT>        @Override<a name="line.43"></a>
-<FONT color="green">044</FONT>        public String getElementType() {<a name="line.44"></a>
-<FONT color="green">045</FONT>            return REFERENCE_ELEMENT_TYPE;<a name="line.45"></a>
-<FONT color="green">046</FONT>        }<a name="line.46"></a>
-<FONT color="green">047</FONT>    <a name="line.47"></a>
-<FONT color="green">048</FONT>        public String getUri() {<a name="line.48"></a>
-<FONT color="green">049</FONT>            return mUri;<a name="line.49"></a>
-<FONT color="green">050</FONT>        }<a name="line.50"></a>
-<FONT color="green">051</FONT>    <a name="line.51"></a>
-<FONT color="green">052</FONT>        public ResourceFetchConfiguration getResourceFetchConfiguration() {<a name="line.52"></a>
-<FONT color="green">053</FONT>            return mResourceFetchConfiguration;<a name="line.53"></a>
-<FONT color="green">054</FONT>        }<a name="line.54"></a>
-<FONT color="green">055</FONT>    <a name="line.55"></a>
-<FONT color="green">056</FONT>        @Override<a name="line.56"></a>
-<FONT color="green">057</FONT>        protected void addJsonProperties(JsonObjectBuilder builder) {<a name="line.57"></a>
-<FONT color="green">058</FONT>            JsonUtils.add(builder, URI_PROPERTY, mUri);<a name="line.58"></a>
-<FONT color="green">059</FONT>            JsonUtils.add(builder, RESOURCE_FETCH_CONFIGURATION_PROPERTY, mResourceFetchConfiguration);<a name="line.59"></a>
-<FONT color="green">060</FONT>        }<a name="line.60"></a>
-<FONT color="green">061</FONT>    <a name="line.61"></a>
-<FONT color="green">062</FONT>        @Override<a name="line.62"></a>
-<FONT color="green">063</FONT>        public int hashCode() {<a name="line.63"></a>
-<FONT color="green">064</FONT>            final int prime = 31;<a name="line.64"></a>
-<FONT color="green">065</FONT>            int result = 1;<a name="line.65"></a>
-<FONT color="green">066</FONT>            result = prime * result + (mResourceFetchConfiguration == null ? 0 : mResourceFetchConfiguration.hashCode());<a name="line.66"></a>
-<FONT color="green">067</FONT>            result = prime * result + (mUri == null ? 0 : mUri.hashCode());<a name="line.67"></a>
-<FONT color="green">068</FONT>            return result;<a name="line.68"></a>
-<FONT color="green">069</FONT>        }<a name="line.69"></a>
-<FONT color="green">070</FONT>    <a name="line.70"></a>
-<FONT color="green">071</FONT>        @Override<a name="line.71"></a>
-<FONT color="green">072</FONT>        public boolean equals(Object obj) {<a name="line.72"></a>
-<FONT color="green">073</FONT>            if (this == obj) return true;<a name="line.73"></a>
-<FONT color="green">074</FONT>            if (obj == null) return false;<a name="line.74"></a>
-<FONT color="green">075</FONT>            if (getClass() != obj.getClass()) return false;<a name="line.75"></a>
-<FONT color="green">076</FONT>            GrammarReference other = (GrammarReference) obj;<a name="line.76"></a>
-<FONT color="green">077</FONT>            if (mResourceFetchConfiguration == null) {<a name="line.77"></a>
-<FONT color="green">078</FONT>                if (other.mResourceFetchConfiguration != null) return false;<a name="line.78"></a>
-<FONT color="green">079</FONT>            } else if (!mResourceFetchConfiguration.equals(other.mResourceFetchConfiguration)) return false;<a name="line.79"></a>
-<FONT color="green">080</FONT>            if (mUri == null) {<a name="line.80"></a>
-<FONT color="green">081</FONT>                if (other.mUri != null) return false;<a name="line.81"></a>
-<FONT color="green">082</FONT>            } else if (!mUri.equals(other.mUri)) return false;<a name="line.82"></a>
-<FONT color="green">083</FONT>            return true;<a name="line.83"></a>
-<FONT color="green">084</FONT>        }<a name="line.84"></a>
-<FONT color="green">085</FONT>    }<a name="line.85"></a>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../../rivr-javadoc.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>/*<a name="line.1"></a>
+<span class="sourceLineNo">002</span> * Copyright (c) 2013 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
+<span class="sourceLineNo">003</span> */<a name="line.3"></a>
+<span class="sourceLineNo">004</span>package com.nuecho.rivr.voicexml.turn.output.grammar;<a name="line.4"></a>
+<span class="sourceLineNo">005</span><a name="line.5"></a>
+<span class="sourceLineNo">006</span>import javax.json.*;<a name="line.6"></a>
+<span class="sourceLineNo">007</span><a name="line.7"></a>
+<span class="sourceLineNo">008</span>import com.nuecho.rivr.core.util.*;<a name="line.8"></a>
+<span class="sourceLineNo">009</span>import com.nuecho.rivr.voicexml.turn.output.fetch.*;<a name="line.9"></a>
+<span class="sourceLineNo">010</span>import com.nuecho.rivr.voicexml.util.json.*;<a name="line.10"></a>
+<span class="sourceLineNo">011</span><a name="line.11"></a>
+<span class="sourceLineNo">012</span>/**<a name="line.12"></a>
+<span class="sourceLineNo">013</span> * A {@link GrammarReference} represents an external grammar reachable with an<a name="line.13"></a>
+<span class="sourceLineNo">014</span> * URI.<a name="line.14"></a>
+<span class="sourceLineNo">015</span> * <a name="line.15"></a>
+<span class="sourceLineNo">016</span> * @author Nu Echo Inc.<a name="line.16"></a>
+<span class="sourceLineNo">017</span> * @see &lt;a<a name="line.17"></a>
+<span class="sourceLineNo">018</span> *      href="http://www.w3.org/TR/voicexml20/#dml3.1.1.2"&gt;http://www.w3.org/TR/voicexml20/#dml3.1.1.2&lt;/a&gt;<a name="line.18"></a>
+<span class="sourceLineNo">019</span> */<a name="line.19"></a>
+<span class="sourceLineNo">020</span>public final class GrammarReference extends GrammarItem {<a name="line.20"></a>
+<span class="sourceLineNo">021</span>    private static final String REFERENCE_ELEMENT_TYPE = "reference";<a name="line.21"></a>
+<span class="sourceLineNo">022</span>    private static final String URI_PROPERTY = "uri";<a name="line.22"></a>
+<span class="sourceLineNo">023</span>    private static final String FETCH_CONFIGURATION_PROPERTY = "fetchConfiguration";<a name="line.23"></a>
+<span class="sourceLineNo">024</span><a name="line.24"></a>
+<span class="sourceLineNo">025</span>    private final String mUri;<a name="line.25"></a>
+<span class="sourceLineNo">026</span>    private FetchConfiguration mFetchConfiguration;<a name="line.26"></a>
+<span class="sourceLineNo">027</span><a name="line.27"></a>
+<span class="sourceLineNo">028</span>    /**<a name="line.28"></a>
+<span class="sourceLineNo">029</span>     * @param uri The URI of the external grammar. Not empty.<a name="line.29"></a>
+<span class="sourceLineNo">030</span>     */<a name="line.30"></a>
+<span class="sourceLineNo">031</span>    public GrammarReference(String uri) {<a name="line.31"></a>
+<span class="sourceLineNo">032</span>        Assert.notEmpty(uri, "uri");<a name="line.32"></a>
+<span class="sourceLineNo">033</span>        mUri = uri;<a name="line.33"></a>
+<span class="sourceLineNo">034</span>    }<a name="line.34"></a>
+<span class="sourceLineNo">035</span><a name="line.35"></a>
+<span class="sourceLineNo">036</span>    /**<a name="line.36"></a>
+<span class="sourceLineNo">037</span>     * @param fetchConfiguration The resource fetch configuration.<a name="line.37"></a>
+<span class="sourceLineNo">038</span>     *            &lt;code&gt;null&lt;/code&gt; to use the VoiceXML platform default.<a name="line.38"></a>
+<span class="sourceLineNo">039</span>     */<a name="line.39"></a>
+<span class="sourceLineNo">040</span>    public void setFetchConfiguration(FetchConfiguration fetchConfiguration) {<a name="line.40"></a>
+<span class="sourceLineNo">041</span>        mFetchConfiguration = fetchConfiguration;<a name="line.41"></a>
+<span class="sourceLineNo">042</span>    }<a name="line.42"></a>
+<span class="sourceLineNo">043</span><a name="line.43"></a>
+<span class="sourceLineNo">044</span>    @Override<a name="line.44"></a>
+<span class="sourceLineNo">045</span>    public String getElementType() {<a name="line.45"></a>
+<span class="sourceLineNo">046</span>        return REFERENCE_ELEMENT_TYPE;<a name="line.46"></a>
+<span class="sourceLineNo">047</span>    }<a name="line.47"></a>
+<span class="sourceLineNo">048</span><a name="line.48"></a>
+<span class="sourceLineNo">049</span>    public String getUri() {<a name="line.49"></a>
+<span class="sourceLineNo">050</span>        return mUri;<a name="line.50"></a>
+<span class="sourceLineNo">051</span>    }<a name="line.51"></a>
+<span class="sourceLineNo">052</span><a name="line.52"></a>
+<span class="sourceLineNo">053</span>    public FetchConfiguration getFetchConfiguration() {<a name="line.53"></a>
+<span class="sourceLineNo">054</span>        return mFetchConfiguration;<a name="line.54"></a>
+<span class="sourceLineNo">055</span>    }<a name="line.55"></a>
+<span class="sourceLineNo">056</span><a name="line.56"></a>
+<span class="sourceLineNo">057</span>    @Override<a name="line.57"></a>
+<span class="sourceLineNo">058</span>    protected void addJsonProperties(JsonObjectBuilder builder) {<a name="line.58"></a>
+<span class="sourceLineNo">059</span>        JsonUtils.add(builder, URI_PROPERTY, mUri);<a name="line.59"></a>
+<span class="sourceLineNo">060</span>        JsonUtils.add(builder, FETCH_CONFIGURATION_PROPERTY, mFetchConfiguration);<a name="line.60"></a>
+<span class="sourceLineNo">061</span>    }<a name="line.61"></a>
+<span class="sourceLineNo">062</span><a name="line.62"></a>
+<span class="sourceLineNo">063</span>    @Override<a name="line.63"></a>
+<span class="sourceLineNo">064</span>    public int hashCode() {<a name="line.64"></a>
+<span class="sourceLineNo">065</span>        final int prime = 31;<a name="line.65"></a>
+<span class="sourceLineNo">066</span>        int result = 1;<a name="line.66"></a>
+<span class="sourceLineNo">067</span>        result = prime * result + (mFetchConfiguration == null ? 0 : mFetchConfiguration.hashCode());<a name="line.67"></a>
+<span class="sourceLineNo">068</span>        result = prime * result + (mUri == null ? 0 : mUri.hashCode());<a name="line.68"></a>
+<span class="sourceLineNo">069</span>        return result;<a name="line.69"></a>
+<span class="sourceLineNo">070</span>    }<a name="line.70"></a>
+<span class="sourceLineNo">071</span><a name="line.71"></a>
+<span class="sourceLineNo">072</span>    @Override<a name="line.72"></a>
+<span class="sourceLineNo">073</span>    public boolean equals(Object obj) {<a name="line.73"></a>
+<span class="sourceLineNo">074</span>        if (this == obj) return true;<a name="line.74"></a>
+<span class="sourceLineNo">075</span>        if (obj == null) return false;<a name="line.75"></a>
+<span class="sourceLineNo">076</span>        if (getClass() != obj.getClass()) return false;<a name="line.76"></a>
+<span class="sourceLineNo">077</span>        GrammarReference other = (GrammarReference) obj;<a name="line.77"></a>
+<span class="sourceLineNo">078</span>        if (mFetchConfiguration == null) {<a name="line.78"></a>
+<span class="sourceLineNo">079</span>            if (other.mFetchConfiguration != null) return false;<a name="line.79"></a>
+<span class="sourceLineNo">080</span>        } else if (!mFetchConfiguration.equals(other.mFetchConfiguration)) return false;<a name="line.80"></a>
+<span class="sourceLineNo">081</span>        if (mUri == null) {<a name="line.81"></a>
+<span class="sourceLineNo">082</span>            if (other.mUri != null) return false;<a name="line.82"></a>
+<span class="sourceLineNo">083</span>        } else if (!mUri.equals(other.mUri)) return false;<a name="line.83"></a>
+<span class="sourceLineNo">084</span>        return true;<a name="line.84"></a>
+<span class="sourceLineNo">085</span>    }<a name="line.85"></a>
+<span class="sourceLineNo">086</span>}<a name="line.86"></a>
 
 
 
@@ -146,6 +152,7 @@
 
 
 
-</PRE>
-</BODY>
-</HTML>
+</pre>
+</div>
+</body>
+</html>

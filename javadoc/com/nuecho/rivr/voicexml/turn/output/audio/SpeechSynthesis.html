@@ -1,0 +1,428 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- NewPage -->
+<html lang="en">
+<head>
+<title>SpeechSynthesis (Rivr API documentation)</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../rivr-javadoc.css" title="Style">
+</head>
+<body>
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="SpeechSynthesis (Rivr API documentation)";
+    }
+//-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="topNav"><a name="navbar_top">
+<!--   -->
+</a><a href="#skip-navbar_top" title="Skip navigation links"></a><a name="navbar_top_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/SpeechSynthesis.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../../index-files/index-1.html">Index</a></li>
+<li><a href="../../../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/Pause.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio"><span class="strong">Prev Class</span></a></li>
+<li>Next Class</li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../../../index.html?com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html" target="_top">Frames</a></li>
+<li><a href="SpeechSynthesis.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_top">
+<!--   -->
+</a></div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">com.nuecho.rivr.voicexml.turn.output.audio</div>
+<h2 title="Class SpeechSynthesis" class="title">Class SpeechSynthesis</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">com.nuecho.rivr.voicexml.turn.output.audio.AudioItem</a></li>
+<li>
+<ul class="inheritance">
+<li>com.nuecho.rivr.voicexml.turn.output.audio.SpeechSynthesis</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="../../../../../../../com/nuecho/rivr/voicexml/util/json/JsonSerializable.html" title="interface in com.nuecho.rivr.voicexml.util.json">JsonSerializable</a></dd>
+</dl>
+<hr>
+<br>
+<pre>public final class <a href="../../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#line.21">SpeechSynthesis</a>
+extends <a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a></pre>
+<div class="block">A <a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio"><code>SpeechSynthesis</code></a> represents a text that will be spoken using a
+ synthesis voice. It can be either a string of text or a SSML document.</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a
+      href="http://www.w3.org/TR/speech-synthesis/">http://www.w3.org/TR/speech-synthesis/</a></dd></dl>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#SPEECH_SYNTHESIS_ELEMENT_TYPE">SPEECH_SYNTHESIS_ELEMENT_TYPE</a></strong></code>&nbsp;</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_com.nuecho.rivr.voicexml.turn.output.audio.AudioItem">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;com.nuecho.rivr.voicexml.turn.output.audio.<a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a></h3>
+<code><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html#TYPE_PROPERTY">TYPE_PROPERTY</a></code></li>
+</ul>
+</li>
+</ul>
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_summary">
+<!--   -->
+</a>
+<h3>Constructor Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#SpeechSynthesis(org.w3c.dom.DocumentFragment)">SpeechSynthesis</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/DocumentFragment.html?is-external=true" title="class or interface in org.w3c.dom">DocumentFragment</a>&nbsp;documentFragment)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#SpeechSynthesis(java.lang.String)">SpeechSynthesis</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</code>&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#addJsonProperties(javax.json.JsonObjectBuilder)">addJsonProperties</a></strong>(<a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonObjectBuilder.html?is-external=true" title="class or interface in javax.json">JsonObjectBuilder</a>&nbsp;builder)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#equals(java.lang.Object)">equals</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/DocumentFragment.html?is-external=true" title="class or interface in org.w3c.dom">DocumentFragment</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#getDocumentFragment()">getDocumentFragment</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#getElementType()">getElementType</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#getText()">getText</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#hashCode()">hashCode</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#isSsml()">isSsml</a></strong>()</code>&nbsp;</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_com.nuecho.rivr.voicexml.turn.output.audio.AudioItem">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;com.nuecho.rivr.voicexml.turn.output.audio.<a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a></h3>
+<code><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html#asJson()">asJson</a>, <a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html#toString()">toString</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="SPEECH_SYNTHESIS_ELEMENT_TYPE">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>SPEECH_SYNTHESIS_ELEMENT_TYPE</h4>
+<pre>public static final&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> <a href="../../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#line.22">SPEECH_SYNTHESIS_ELEMENT_TYPE</a></pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../../constant-values.html#com.nuecho.rivr.voicexml.turn.output.audio.SpeechSynthesis.SPEECH_SYNTHESIS_ELEMENT_TYPE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_detail">
+<!--   -->
+</a>
+<h3>Constructor Detail</h3>
+<a name="SpeechSynthesis(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>SpeechSynthesis</h4>
+<pre>public&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#line.32">SpeechSynthesis</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;text)</pre>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>text</code> - The synthesis text. Not empty.</dd></dl>
+</li>
+</ul>
+<a name="SpeechSynthesis(org.w3c.dom.DocumentFragment)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>SpeechSynthesis</h4>
+<pre>public&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#line.41">SpeechSynthesis</a>(<a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/DocumentFragment.html?is-external=true" title="class or interface in org.w3c.dom">DocumentFragment</a>&nbsp;documentFragment)</pre>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>documentFragment</code> - The SSML document. Not null.</dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="getElementType()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getElementType</h4>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#line.48">getElementType</a>()</pre>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html#getElementType()">getElementType</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="getText()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getText</h4>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#line.52">getText</a>()</pre>
+</li>
+</ul>
+<a name="getDocumentFragment()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDocumentFragment</h4>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/DocumentFragment.html?is-external=true" title="class or interface in org.w3c.dom">DocumentFragment</a>&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#line.56">getDocumentFragment</a>()</pre>
+</li>
+</ul>
+<a name="isSsml()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isSsml</h4>
+<pre>public&nbsp;boolean&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#line.60">isSsml</a>()</pre>
+</li>
+</ul>
+<a name="addJsonProperties(javax.json.JsonObjectBuilder)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addJsonProperties</h4>
+<pre>protected&nbsp;void&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#line.65">addJsonProperties</a>(<a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonObjectBuilder.html?is-external=true" title="class or interface in javax.json">JsonObjectBuilder</a>&nbsp;builder)</pre>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html#addJsonProperties(javax.json.JsonObjectBuilder)">addJsonProperties</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="hashCode()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hashCode</h4>
+<pre>public&nbsp;int&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#line.76">hashCode</a>()</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="equals(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>equals</h4>
+<pre>public&nbsp;boolean&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html#line.85">equals</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj)</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<div class="bottomNav"><a name="navbar_bottom">
+<!--   -->
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/SpeechSynthesis.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../../index-files/index-1.html">Index</a></li>
+<li><a href="../../../../../../../help-doc.html">Help</a></li>
+</ul>
+<div class="aboutLanguage"><em>To report errors, inconsistencies and omissions in the Rivr API documentation, please <a href="https://github.com/nuecho/rivr/issues/new" target="_blank">open an issue</a>.</em></div>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/Pause.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio"><span class="strong">Prev Class</span></a></li>
+<li>Next Class</li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../../../index.html?com/nuecho/rivr/voicexml/turn/output/audio/SpeechSynthesis.html" target="_top">Frames</a></li>
+<li><a href="SpeechSynthesis.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_bottom">
+<!--   -->
+</a></div>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+<p class="legalCopy"><small>Copyright &copy; 2013 <a href="http://www.nuecho.com">Nu Echo Inc.</a>.</small></p>
+</body>
+</html>

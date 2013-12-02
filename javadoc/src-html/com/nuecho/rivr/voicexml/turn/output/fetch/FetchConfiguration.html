@@ -1,143 +1,137 @@
-<HTML>
-<BODY BGCOLOR="white">
-<PRE>
-<FONT color="green">001</FONT>    /*<a name="line.1"></a>
-<FONT color="green">002</FONT>     * Copyright (c) 2002-2010 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
-<FONT color="green">003</FONT>     */<a name="line.3"></a>
-<FONT color="green">004</FONT>    <a name="line.4"></a>
-<FONT color="green">005</FONT>    package com.nuecho.rivr.voicexml.turn.output.fetch;<a name="line.5"></a>
-<FONT color="green">006</FONT>    <a name="line.6"></a>
-<FONT color="green">007</FONT>    import com.nuecho.rivr.core.util.*;<a name="line.7"></a>
-<FONT color="green">008</FONT>    import com.nuecho.rivr.voicexml.turn.output.audio.*;<a name="line.8"></a>
-<FONT color="green">009</FONT>    <a name="line.9"></a>
-<FONT color="green">010</FONT>    /**<a name="line.10"></a>
-<FONT color="green">011</FONT>     * @author Nu Echo Inc.<a name="line.11"></a>
-<FONT color="green">012</FONT>     */<a name="line.12"></a>
-<FONT color="green">013</FONT>    public final class FetchConfiguration {<a name="line.13"></a>
-<FONT color="green">014</FONT>    <a name="line.14"></a>
-<FONT color="green">015</FONT>        private AudioFetchConfiguration mAudioFetchConfiguration;<a name="line.15"></a>
-<FONT color="green">016</FONT>        private GrammarFetchConfiguration mGrammarFetchConfiguration;<a name="line.16"></a>
-<FONT color="green">017</FONT>        private ScriptFetchConfiguration mScriptFetchConfiguration;<a name="line.17"></a>
-<FONT color="green">018</FONT>        private ObjectFetchConfiguration mObjectFetchConfiguration;<a name="line.18"></a>
-<FONT color="green">019</FONT>    <a name="line.19"></a>
-<FONT color="green">020</FONT>        private DocumentFetchConfiguration mDocumentFetchConfiguration;<a name="line.20"></a>
-<FONT color="green">021</FONT>    <a name="line.21"></a>
-<FONT color="green">022</FONT>        private TimeValue mDefaultFetchTimeout;<a name="line.22"></a>
-<FONT color="green">023</FONT>        private Recording mDefaultFetchAudio;<a name="line.23"></a>
-<FONT color="green">024</FONT>    <a name="line.24"></a>
-<FONT color="green">025</FONT>        public AudioFetchConfiguration getDefaultAudioFetchConfiguration() {<a name="line.25"></a>
-<FONT color="green">026</FONT>            return mAudioFetchConfiguration;<a name="line.26"></a>
-<FONT color="green">027</FONT>        }<a name="line.27"></a>
-<FONT color="green">028</FONT>    <a name="line.28"></a>
-<FONT color="green">029</FONT>        public void setDefaultAudioFetchConfiguration(AudioFetchConfiguration audioFetchConfiguration) {<a name="line.29"></a>
-<FONT color="green">030</FONT>            mAudioFetchConfiguration = audioFetchConfiguration;<a name="line.30"></a>
-<FONT color="green">031</FONT>        }<a name="line.31"></a>
-<FONT color="green">032</FONT>    <a name="line.32"></a>
-<FONT color="green">033</FONT>        public GrammarFetchConfiguration getDefaultGrammarFetchConfiguration() {<a name="line.33"></a>
-<FONT color="green">034</FONT>            return mGrammarFetchConfiguration;<a name="line.34"></a>
-<FONT color="green">035</FONT>        }<a name="line.35"></a>
-<FONT color="green">036</FONT>    <a name="line.36"></a>
-<FONT color="green">037</FONT>        public void setDefaultGrammarFetchConfiguration(GrammarFetchConfiguration grammarFetchConfiguration) {<a name="line.37"></a>
-<FONT color="green">038</FONT>            mGrammarFetchConfiguration = grammarFetchConfiguration;<a name="line.38"></a>
-<FONT color="green">039</FONT>        }<a name="line.39"></a>
-<FONT color="green">040</FONT>    <a name="line.40"></a>
-<FONT color="green">041</FONT>        public ScriptFetchConfiguration getDefaultScriptFetchConfiguration() {<a name="line.41"></a>
-<FONT color="green">042</FONT>            return mScriptFetchConfiguration;<a name="line.42"></a>
-<FONT color="green">043</FONT>        }<a name="line.43"></a>
-<FONT color="green">044</FONT>    <a name="line.44"></a>
-<FONT color="green">045</FONT>        public void setDefaultScriptFetchConfiguration(ScriptFetchConfiguration scriptFetchConfiguration) {<a name="line.45"></a>
-<FONT color="green">046</FONT>            mScriptFetchConfiguration = scriptFetchConfiguration;<a name="line.46"></a>
-<FONT color="green">047</FONT>        }<a name="line.47"></a>
-<FONT color="green">048</FONT>    <a name="line.48"></a>
-<FONT color="green">049</FONT>        public ObjectFetchConfiguration getDefaultObjectFetchConfiguration() {<a name="line.49"></a>
-<FONT color="green">050</FONT>            return mObjectFetchConfiguration;<a name="line.50"></a>
-<FONT color="green">051</FONT>        }<a name="line.51"></a>
-<FONT color="green">052</FONT>    <a name="line.52"></a>
-<FONT color="green">053</FONT>        public void setDefaultObjectFetchConfiguration(ObjectFetchConfiguration objectFetchConfiguration) {<a name="line.53"></a>
-<FONT color="green">054</FONT>            mObjectFetchConfiguration = objectFetchConfiguration;<a name="line.54"></a>
-<FONT color="green">055</FONT>        }<a name="line.55"></a>
-<FONT color="green">056</FONT>    <a name="line.56"></a>
-<FONT color="green">057</FONT>        public TimeValue getDefaultFetchTimeout() {<a name="line.57"></a>
-<FONT color="green">058</FONT>            return mDefaultFetchTimeout;<a name="line.58"></a>
-<FONT color="green">059</FONT>        }<a name="line.59"></a>
-<FONT color="green">060</FONT>    <a name="line.60"></a>
-<FONT color="green">061</FONT>        public void setDefaultFetchTimeout(TimeValue defaultFetchTimeout) {<a name="line.61"></a>
-<FONT color="green">062</FONT>            mDefaultFetchTimeout = defaultFetchTimeout;<a name="line.62"></a>
-<FONT color="green">063</FONT>        }<a name="line.63"></a>
-<FONT color="green">064</FONT>    <a name="line.64"></a>
-<FONT color="green">065</FONT>        public Recording getDefaultFetchAudio() {<a name="line.65"></a>
-<FONT color="green">066</FONT>            return mDefaultFetchAudio;<a name="line.66"></a>
-<FONT color="green">067</FONT>        }<a name="line.67"></a>
-<FONT color="green">068</FONT>    <a name="line.68"></a>
-<FONT color="green">069</FONT>        public void setDefaultFetchAudio(Recording defaultFetchAudio) {<a name="line.69"></a>
-<FONT color="green">070</FONT>            mDefaultFetchAudio = defaultFetchAudio;<a name="line.70"></a>
-<FONT color="green">071</FONT>        }<a name="line.71"></a>
-<FONT color="green">072</FONT>    <a name="line.72"></a>
-<FONT color="green">073</FONT>        public DocumentFetchConfiguration getDocumentFetchConfiguration() {<a name="line.73"></a>
-<FONT color="green">074</FONT>            return mDocumentFetchConfiguration;<a name="line.74"></a>
-<FONT color="green">075</FONT>        }<a name="line.75"></a>
-<FONT color="green">076</FONT>    <a name="line.76"></a>
-<FONT color="green">077</FONT>        public void setDocumentFetchConfiguration(DocumentFetchConfiguration documentFetchConfiguration) {<a name="line.77"></a>
-<FONT color="green">078</FONT>            mDocumentFetchConfiguration = documentFetchConfiguration;<a name="line.78"></a>
-<FONT color="green">079</FONT>        }<a name="line.79"></a>
-<FONT color="green">080</FONT>    <a name="line.80"></a>
-<FONT color="green">081</FONT>        @Override<a name="line.81"></a>
-<FONT color="green">082</FONT>        public int hashCode() {<a name="line.82"></a>
-<FONT color="green">083</FONT>            final int prime = 31;<a name="line.83"></a>
-<FONT color="green">084</FONT>            int result = 1;<a name="line.84"></a>
-<FONT color="green">085</FONT>            result = prime * result + ((mAudioFetchConfiguration == null) ? 0 : mAudioFetchConfiguration.hashCode());<a name="line.85"></a>
-<FONT color="green">086</FONT>            result = prime * result + ((mDefaultFetchAudio == null) ? 0 : mDefaultFetchAudio.hashCode());<a name="line.86"></a>
-<FONT color="green">087</FONT>            result = prime * result + ((mDefaultFetchTimeout == null) ? 0 : mDefaultFetchTimeout.hashCode());<a name="line.87"></a>
-<FONT color="green">088</FONT>            result = prime * result + ((mGrammarFetchConfiguration == null) ? 0 : mGrammarFetchConfiguration.hashCode());<a name="line.88"></a>
-<FONT color="green">089</FONT>            result = prime * result + ((mObjectFetchConfiguration == null) ? 0 : mObjectFetchConfiguration.hashCode());<a name="line.89"></a>
-<FONT color="green">090</FONT>            result = prime * result + ((mScriptFetchConfiguration == null) ? 0 : mScriptFetchConfiguration.hashCode());<a name="line.90"></a>
-<FONT color="green">091</FONT>            result = prime * result + ((mDocumentFetchConfiguration == null) ? 0 : mDocumentFetchConfiguration.hashCode());<a name="line.91"></a>
-<FONT color="green">092</FONT>            return result;<a name="line.92"></a>
-<FONT color="green">093</FONT>        }<a name="line.93"></a>
-<FONT color="green">094</FONT>    <a name="line.94"></a>
-<FONT color="green">095</FONT>        @Override<a name="line.95"></a>
-<FONT color="green">096</FONT>        public boolean equals(Object obj) {<a name="line.96"></a>
-<FONT color="green">097</FONT>            if (this == obj) return true;<a name="line.97"></a>
-<FONT color="green">098</FONT>            if (obj == null) return false;<a name="line.98"></a>
-<FONT color="green">099</FONT>            if (getClass() != obj.getClass()) return false;<a name="line.99"></a>
-<FONT color="green">100</FONT>            FetchConfiguration other = (FetchConfiguration) obj;<a name="line.100"></a>
-<FONT color="green">101</FONT>            if (mAudioFetchConfiguration == null) {<a name="line.101"></a>
-<FONT color="green">102</FONT>                if (other.mAudioFetchConfiguration != null) return false;<a name="line.102"></a>
-<FONT color="green">103</FONT>            } else if (!mAudioFetchConfiguration.equals(other.mAudioFetchConfiguration)) return false;<a name="line.103"></a>
-<FONT color="green">104</FONT>            if (mDefaultFetchAudio == null) {<a name="line.104"></a>
-<FONT color="green">105</FONT>                if (other.mDefaultFetchAudio != null) return false;<a name="line.105"></a>
-<FONT color="green">106</FONT>            } else if (!mDefaultFetchAudio.equals(other.mDefaultFetchAudio)) return false;<a name="line.106"></a>
-<FONT color="green">107</FONT>            if (mDefaultFetchTimeout == null) {<a name="line.107"></a>
-<FONT color="green">108</FONT>                if (other.mDefaultFetchTimeout != null) return false;<a name="line.108"></a>
-<FONT color="green">109</FONT>            } else if (!mDefaultFetchTimeout.equals(other.mDefaultFetchTimeout)) return false;<a name="line.109"></a>
-<FONT color="green">110</FONT>            if (mGrammarFetchConfiguration == null) {<a name="line.110"></a>
-<FONT color="green">111</FONT>                if (other.mGrammarFetchConfiguration != null) return false;<a name="line.111"></a>
-<FONT color="green">112</FONT>            } else if (!mGrammarFetchConfiguration.equals(other.mGrammarFetchConfiguration)) return false;<a name="line.112"></a>
-<FONT color="green">113</FONT>            if (mObjectFetchConfiguration == null) {<a name="line.113"></a>
-<FONT color="green">114</FONT>                if (other.mObjectFetchConfiguration != null) return false;<a name="line.114"></a>
-<FONT color="green">115</FONT>            } else if (!mObjectFetchConfiguration.equals(other.mObjectFetchConfiguration)) return false;<a name="line.115"></a>
-<FONT color="green">116</FONT>            if (mScriptFetchConfiguration == null) {<a name="line.116"></a>
-<FONT color="green">117</FONT>                if (other.mScriptFetchConfiguration != null) return false;<a name="line.117"></a>
-<FONT color="green">118</FONT>            } else if (!mScriptFetchConfiguration.equals(other.mScriptFetchConfiguration)) return false;<a name="line.118"></a>
-<FONT color="green">119</FONT>            if (mDocumentFetchConfiguration == null) {<a name="line.119"></a>
-<FONT color="green">120</FONT>                if (other.mDocumentFetchConfiguration != null) return false;<a name="line.120"></a>
-<FONT color="green">121</FONT>            } else if (!mDocumentFetchConfiguration.equals(other.mDocumentFetchConfiguration)) return false;<a name="line.121"></a>
-<FONT color="green">122</FONT>            return true;<a name="line.122"></a>
-<FONT color="green">123</FONT>        }<a name="line.123"></a>
-<FONT color="green">124</FONT>    <a name="line.124"></a>
-<FONT color="green">125</FONT>        @Override<a name="line.125"></a>
-<FONT color="green">126</FONT>        public String toString() {<a name="line.126"></a>
-<FONT color="green">127</FONT>            ToStringBuilder builder = new ToStringBuilder(this);<a name="line.127"></a>
-<FONT color="green">128</FONT>            builder.appendItem("mDocumentFetchConfiguration", mDocumentFetchConfiguration);<a name="line.128"></a>
-<FONT color="green">129</FONT>            builder.appendItem("mDefaultFetchAudio", mDefaultFetchAudio);<a name="line.129"></a>
-<FONT color="green">130</FONT>            builder.appendItem("mDefaultFetchTimeout", mDefaultFetchTimeout);<a name="line.130"></a>
-<FONT color="green">131</FONT>            builder.appendItem("mAudioFetchConfiguration", mAudioFetchConfiguration);<a name="line.131"></a>
-<FONT color="green">132</FONT>            builder.appendItem("mGrammarFetchConfiguration", mGrammarFetchConfiguration);<a name="line.132"></a>
-<FONT color="green">133</FONT>            builder.appendItem("mObjectFetchConfiguration", mObjectFetchConfiguration);<a name="line.133"></a>
-<FONT color="green">134</FONT>            builder.appendItem("mScriptFetchConfiguration", mScriptFetchConfiguration);<a name="line.134"></a>
-<FONT color="green">135</FONT>            return builder.getString();<a name="line.135"></a>
-<FONT color="green">136</FONT>        }<a name="line.136"></a>
-<FONT color="green">137</FONT>    }<a name="line.137"></a>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../../rivr-javadoc.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>/*<a name="line.1"></a>
+<span class="sourceLineNo">002</span> * Copyright (c) 2013 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
+<span class="sourceLineNo">003</span> */<a name="line.3"></a>
+<span class="sourceLineNo">004</span><a name="line.4"></a>
+<span class="sourceLineNo">005</span>package com.nuecho.rivr.voicexml.turn.output.fetch;<a name="line.5"></a>
+<span class="sourceLineNo">006</span><a name="line.6"></a>
+<span class="sourceLineNo">007</span>import javax.json.*;<a name="line.7"></a>
+<span class="sourceLineNo">008</span><a name="line.8"></a>
+<span class="sourceLineNo">009</span>import com.nuecho.rivr.core.util.*;<a name="line.9"></a>
+<span class="sourceLineNo">010</span>import com.nuecho.rivr.voicexml.turn.output.*;<a name="line.10"></a>
+<span class="sourceLineNo">011</span>import com.nuecho.rivr.voicexml.turn.output.audio.*;<a name="line.11"></a>
+<span class="sourceLineNo">012</span>import com.nuecho.rivr.voicexml.turn.output.grammar.*;<a name="line.12"></a>
+<span class="sourceLineNo">013</span>import com.nuecho.rivr.voicexml.util.json.*;<a name="line.13"></a>
+<span class="sourceLineNo">014</span><a name="line.14"></a>
+<span class="sourceLineNo">015</span>/**<a name="line.15"></a>
+<span class="sourceLineNo">016</span> * Fetch properties for a resource:<a name="line.16"></a>
+<span class="sourceLineNo">017</span> * &lt;ul&gt;<a name="line.17"></a>
+<span class="sourceLineNo">018</span> * &lt;li&gt;maxage&lt;/li&gt;<a name="line.18"></a>
+<span class="sourceLineNo">019</span> * &lt;li&gt;maxstale&lt;/li&gt;<a name="line.19"></a>
+<span class="sourceLineNo">020</span> * &lt;li&gt;timeout&lt;/li&gt;<a name="line.20"></a>
+<span class="sourceLineNo">021</span> * &lt;li&gt;fetchhint&lt;/li&gt;<a name="line.21"></a>
+<span class="sourceLineNo">022</span> * &lt;/ul&gt;<a name="line.22"></a>
+<span class="sourceLineNo">023</span> * <a name="line.23"></a>
+<span class="sourceLineNo">024</span> * @see AudioFile#setFetchConfiguration(FetchConfiguration)<a name="line.24"></a>
+<span class="sourceLineNo">025</span> * @see GrammarReference#setFetchConfiguration(FetchConfiguration)<a name="line.25"></a>
+<span class="sourceLineNo">026</span> * @see ObjectCall#setFetchConfiguration(FetchConfiguration)<a name="line.26"></a>
+<span class="sourceLineNo">027</span> * @author Nu Echo Inc.<a name="line.27"></a>
+<span class="sourceLineNo">028</span> */<a name="line.28"></a>
+<span class="sourceLineNo">029</span>public class FetchConfiguration implements JsonSerializable {<a name="line.29"></a>
+<span class="sourceLineNo">030</span><a name="line.30"></a>
+<span class="sourceLineNo">031</span>    private static final String MAX_AGE_PROPERTY = "maxAge";<a name="line.31"></a>
+<span class="sourceLineNo">032</span>    private static final String MAX_STALE_PROPERTY = "maxStale";<a name="line.32"></a>
+<span class="sourceLineNo">033</span>    private static final String TIME_OUT_PROPERTY = "timeOut";<a name="line.33"></a>
+<span class="sourceLineNo">034</span>    private static final String FETCH_HINT_PROPERTY = "fetchHint";<a name="line.34"></a>
+<span class="sourceLineNo">035</span><a name="line.35"></a>
+<span class="sourceLineNo">036</span>    private Duration mTimeOut;<a name="line.36"></a>
+<span class="sourceLineNo">037</span>    private Duration mMaxAge;<a name="line.37"></a>
+<span class="sourceLineNo">038</span>    private Duration mMaxStale;<a name="line.38"></a>
+<span class="sourceLineNo">039</span>    private FetchHint mFetchHint;<a name="line.39"></a>
+<span class="sourceLineNo">040</span><a name="line.40"></a>
+<span class="sourceLineNo">041</span>    public Duration getTimeOut() {<a name="line.41"></a>
+<span class="sourceLineNo">042</span>        return mTimeOut;<a name="line.42"></a>
+<span class="sourceLineNo">043</span>    }<a name="line.43"></a>
+<span class="sourceLineNo">044</span><a name="line.44"></a>
+<span class="sourceLineNo">045</span>    public Duration getMaxAge() {<a name="line.45"></a>
+<span class="sourceLineNo">046</span>        return mMaxAge;<a name="line.46"></a>
+<span class="sourceLineNo">047</span>    }<a name="line.47"></a>
+<span class="sourceLineNo">048</span><a name="line.48"></a>
+<span class="sourceLineNo">049</span>    public Duration getMaxStale() {<a name="line.49"></a>
+<span class="sourceLineNo">050</span>        return mMaxStale;<a name="line.50"></a>
+<span class="sourceLineNo">051</span>    }<a name="line.51"></a>
+<span class="sourceLineNo">052</span><a name="line.52"></a>
+<span class="sourceLineNo">053</span>    public FetchHint getFetchHint() {<a name="line.53"></a>
+<span class="sourceLineNo">054</span>        return mFetchHint;<a name="line.54"></a>
+<span class="sourceLineNo">055</span>    }<a name="line.55"></a>
+<span class="sourceLineNo">056</span><a name="line.56"></a>
+<span class="sourceLineNo">057</span>    public void setTimeOut(Duration timeOut) {<a name="line.57"></a>
+<span class="sourceLineNo">058</span>        mTimeOut = timeOut;<a name="line.58"></a>
+<span class="sourceLineNo">059</span>    }<a name="line.59"></a>
+<span class="sourceLineNo">060</span><a name="line.60"></a>
+<span class="sourceLineNo">061</span>    public void setMaxAge(Duration maxAge) {<a name="line.61"></a>
+<span class="sourceLineNo">062</span>        mMaxAge = maxAge;<a name="line.62"></a>
+<span class="sourceLineNo">063</span>    }<a name="line.63"></a>
+<span class="sourceLineNo">064</span><a name="line.64"></a>
+<span class="sourceLineNo">065</span>    public void setMaxStale(Duration maxStale) {<a name="line.65"></a>
+<span class="sourceLineNo">066</span>        mMaxStale = maxStale;<a name="line.66"></a>
+<span class="sourceLineNo">067</span>    }<a name="line.67"></a>
+<span class="sourceLineNo">068</span><a name="line.68"></a>
+<span class="sourceLineNo">069</span>    public void setFetchHint(FetchHint fetchHint) {<a name="line.69"></a>
+<span class="sourceLineNo">070</span>        mFetchHint = fetchHint;<a name="line.70"></a>
+<span class="sourceLineNo">071</span>    }<a name="line.71"></a>
+<span class="sourceLineNo">072</span><a name="line.72"></a>
+<span class="sourceLineNo">073</span>    @Override<a name="line.73"></a>
+<span class="sourceLineNo">074</span>    public String toString() {<a name="line.74"></a>
+<span class="sourceLineNo">075</span>        return asJson().toString();<a name="line.75"></a>
+<span class="sourceLineNo">076</span>    }<a name="line.76"></a>
+<span class="sourceLineNo">077</span><a name="line.77"></a>
+<span class="sourceLineNo">078</span>    @Override<a name="line.78"></a>
+<span class="sourceLineNo">079</span>    public JsonValue asJson() {<a name="line.79"></a>
+<span class="sourceLineNo">080</span>        JsonObjectBuilder builder = JsonUtils.createObjectBuilder();<a name="line.80"></a>
+<span class="sourceLineNo">081</span>        JsonUtils.addDurationProperty(builder, MAX_AGE_PROPERTY, mMaxAge);<a name="line.81"></a>
+<span class="sourceLineNo">082</span>        JsonUtils.addDurationProperty(builder, MAX_STALE_PROPERTY, mMaxStale);<a name="line.82"></a>
+<span class="sourceLineNo">083</span>        JsonUtils.addDurationProperty(builder, TIME_OUT_PROPERTY, mTimeOut);<a name="line.83"></a>
+<span class="sourceLineNo">084</span><a name="line.84"></a>
+<span class="sourceLineNo">085</span>        if (mFetchHint == null) {<a name="line.85"></a>
+<span class="sourceLineNo">086</span>            builder.addNull(FETCH_HINT_PROPERTY);<a name="line.86"></a>
+<span class="sourceLineNo">087</span>        } else {<a name="line.87"></a>
+<span class="sourceLineNo">088</span>            JsonUtils.add(builder, FETCH_HINT_PROPERTY, mFetchHint.name());<a name="line.88"></a>
+<span class="sourceLineNo">089</span>        }<a name="line.89"></a>
+<span class="sourceLineNo">090</span><a name="line.90"></a>
+<span class="sourceLineNo">091</span>        return builder.build();<a name="line.91"></a>
+<span class="sourceLineNo">092</span>    }<a name="line.92"></a>
+<span class="sourceLineNo">093</span><a name="line.93"></a>
+<span class="sourceLineNo">094</span>    @Override<a name="line.94"></a>
+<span class="sourceLineNo">095</span>    public int hashCode() {<a name="line.95"></a>
+<span class="sourceLineNo">096</span>        final int prime = 31;<a name="line.96"></a>
+<span class="sourceLineNo">097</span>        int result = 1;<a name="line.97"></a>
+<span class="sourceLineNo">098</span>        result = prime * result + (mFetchHint == null ? 0 : mFetchHint.hashCode());<a name="line.98"></a>
+<span class="sourceLineNo">099</span>        result = prime * result + (mMaxAge == null ? 0 : mMaxAge.hashCode());<a name="line.99"></a>
+<span class="sourceLineNo">100</span>        result = prime * result + (mMaxStale == null ? 0 : mMaxStale.hashCode());<a name="line.100"></a>
+<span class="sourceLineNo">101</span>        result = prime * result + (mTimeOut == null ? 0 : mTimeOut.hashCode());<a name="line.101"></a>
+<span class="sourceLineNo">102</span>        return result;<a name="line.102"></a>
+<span class="sourceLineNo">103</span>    }<a name="line.103"></a>
+<span class="sourceLineNo">104</span><a name="line.104"></a>
+<span class="sourceLineNo">105</span>    @Override<a name="line.105"></a>
+<span class="sourceLineNo">106</span>    public boolean equals(Object obj) {<a name="line.106"></a>
+<span class="sourceLineNo">107</span>        if (this == obj) return true;<a name="line.107"></a>
+<span class="sourceLineNo">108</span>        if (obj == null) return false;<a name="line.108"></a>
+<span class="sourceLineNo">109</span>        if (getClass() != obj.getClass()) return false;<a name="line.109"></a>
+<span class="sourceLineNo">110</span>        FetchConfiguration other = (FetchConfiguration) obj;<a name="line.110"></a>
+<span class="sourceLineNo">111</span>        if (mFetchHint == null) {<a name="line.111"></a>
+<span class="sourceLineNo">112</span>            if (other.mFetchHint != null) return false;<a name="line.112"></a>
+<span class="sourceLineNo">113</span>        } else if (!mFetchHint.equals(other.mFetchHint)) return false;<a name="line.113"></a>
+<span class="sourceLineNo">114</span>        if (mMaxAge == null) {<a name="line.114"></a>
+<span class="sourceLineNo">115</span>            if (other.mMaxAge != null) return false;<a name="line.115"></a>
+<span class="sourceLineNo">116</span>        } else if (!mMaxAge.equals(other.mMaxAge)) return false;<a name="line.116"></a>
+<span class="sourceLineNo">117</span>        if (mMaxStale == null) {<a name="line.117"></a>
+<span class="sourceLineNo">118</span>            if (other.mMaxStale != null) return false;<a name="line.118"></a>
+<span class="sourceLineNo">119</span>        } else if (!mMaxStale.equals(other.mMaxStale)) return false;<a name="line.119"></a>
+<span class="sourceLineNo">120</span>        if (mTimeOut == null) {<a name="line.120"></a>
+<span class="sourceLineNo">121</span>            if (other.mTimeOut != null) return false;<a name="line.121"></a>
+<span class="sourceLineNo">122</span>        } else if (!mTimeOut.equals(other.mTimeOut)) return false;<a name="line.122"></a>
+<span class="sourceLineNo">123</span>        return true;<a name="line.123"></a>
+<span class="sourceLineNo">124</span>    }<a name="line.124"></a>
+<span class="sourceLineNo">125</span><a name="line.125"></a>
+<span class="sourceLineNo">126</span>}<a name="line.126"></a>
 
 
 
@@ -198,6 +192,7 @@
 
 
 
-</PRE>
-</BODY>
-</HTML>
+</pre>
+</div>
+</body>
+</html>

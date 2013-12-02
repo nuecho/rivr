@@ -1,47 +1,57 @@
-<HTML>
-<BODY BGCOLOR="white">
-<PRE>
-<FONT color="green">001</FONT>    /*<a name="line.1"></a>
-<FONT color="green">002</FONT>     * Copyright (c) 2013 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
-<FONT color="green">003</FONT>     */<a name="line.3"></a>
-<FONT color="green">004</FONT>    <a name="line.4"></a>
-<FONT color="green">005</FONT>    package com.nuecho.rivr.voicexml.turn.first;<a name="line.5"></a>
-<FONT color="green">006</FONT>    <a name="line.6"></a>
-<FONT color="green">007</FONT>    import java.util.*;<a name="line.7"></a>
-<FONT color="green">008</FONT>    <a name="line.8"></a>
-<FONT color="green">009</FONT>    import com.nuecho.rivr.core.channel.*;<a name="line.9"></a>
-<FONT color="green">010</FONT>    <a name="line.10"></a>
-<FONT color="green">011</FONT>    /**<a name="line.11"></a>
-<FONT color="green">012</FONT>     * @author Nu Echo Inc.<a name="line.12"></a>
-<FONT color="green">013</FONT>     */<a name="line.13"></a>
-<FONT color="green">014</FONT>    public class VoiceXmlFirstTurn implements FirstTurn {<a name="line.14"></a>
-<FONT color="green">015</FONT>    <a name="line.15"></a>
-<FONT color="green">016</FONT>        private final Map&lt;String, String&gt; mParameters;<a name="line.16"></a>
-<FONT color="green">017</FONT>    <a name="line.17"></a>
-<FONT color="green">018</FONT>        public VoiceXmlFirstTurn() {<a name="line.18"></a>
-<FONT color="green">019</FONT>            mParameters = Collections.emptyMap();<a name="line.19"></a>
-<FONT color="green">020</FONT>        }<a name="line.20"></a>
-<FONT color="green">021</FONT>    <a name="line.21"></a>
-<FONT color="green">022</FONT>        public VoiceXmlFirstTurn(Map&lt;String, String&gt; parameters) {<a name="line.22"></a>
-<FONT color="green">023</FONT>            mParameters = new HashMap&lt;String, String&gt;(parameters);<a name="line.23"></a>
-<FONT color="green">024</FONT>        }<a name="line.24"></a>
-<FONT color="green">025</FONT>    <a name="line.25"></a>
-<FONT color="green">026</FONT>        public Map&lt;String, String&gt; getParameters() {<a name="line.26"></a>
-<FONT color="green">027</FONT>            return Collections.unmodifiableMap(mParameters);<a name="line.27"></a>
-<FONT color="green">028</FONT>        }<a name="line.28"></a>
-<FONT color="green">029</FONT>    <a name="line.29"></a>
-<FONT color="green">030</FONT>        public boolean hasParameter(Object key) {<a name="line.30"></a>
-<FONT color="green">031</FONT>            return mParameters.containsKey(key);<a name="line.31"></a>
-<FONT color="green">032</FONT>        }<a name="line.32"></a>
-<FONT color="green">033</FONT>    <a name="line.33"></a>
-<FONT color="green">034</FONT>        public String getParameters(Object key) {<a name="line.34"></a>
-<FONT color="green">035</FONT>            return mParameters.get(key);<a name="line.35"></a>
-<FONT color="green">036</FONT>        }<a name="line.36"></a>
-<FONT color="green">037</FONT>    <a name="line.37"></a>
-<FONT color="green">038</FONT>        public Set&lt;String&gt; keySet() {<a name="line.38"></a>
-<FONT color="green">039</FONT>            return mParameters.keySet();<a name="line.39"></a>
-<FONT color="green">040</FONT>        }<a name="line.40"></a>
-<FONT color="green">041</FONT>    }<a name="line.41"></a>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../rivr-javadoc.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>/*<a name="line.1"></a>
+<span class="sourceLineNo">002</span> * Copyright (c) 2013 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
+<span class="sourceLineNo">003</span> */<a name="line.3"></a>
+<span class="sourceLineNo">004</span><a name="line.4"></a>
+<span class="sourceLineNo">005</span>package com.nuecho.rivr.voicexml.turn.first;<a name="line.5"></a>
+<span class="sourceLineNo">006</span><a name="line.6"></a>
+<span class="sourceLineNo">007</span>import java.util.*;<a name="line.7"></a>
+<span class="sourceLineNo">008</span><a name="line.8"></a>
+<span class="sourceLineNo">009</span>import com.nuecho.rivr.core.channel.*;<a name="line.9"></a>
+<span class="sourceLineNo">010</span>import com.nuecho.rivr.voicexml.dialogue.*;<a name="line.10"></a>
+<span class="sourceLineNo">011</span><a name="line.11"></a>
+<span class="sourceLineNo">012</span>/**<a name="line.12"></a>
+<span class="sourceLineNo">013</span> * First turn passed when running a {@link VoiceXmlDialogue}, it can be used to<a name="line.13"></a>
+<span class="sourceLineNo">014</span> * consult the parameters from the initial request.<a name="line.14"></a>
+<span class="sourceLineNo">015</span> * <a name="line.15"></a>
+<span class="sourceLineNo">016</span> * @author Nu Echo Inc.<a name="line.16"></a>
+<span class="sourceLineNo">017</span> * @see VoiceXmlDialogue<a name="line.17"></a>
+<span class="sourceLineNo">018</span> */<a name="line.18"></a>
+<span class="sourceLineNo">019</span>public class VoiceXmlFirstTurn implements FirstTurn {<a name="line.19"></a>
+<span class="sourceLineNo">020</span><a name="line.20"></a>
+<span class="sourceLineNo">021</span>    private final Map&lt;String, String&gt; mParameters;<a name="line.21"></a>
+<span class="sourceLineNo">022</span><a name="line.22"></a>
+<span class="sourceLineNo">023</span>    public VoiceXmlFirstTurn() {<a name="line.23"></a>
+<span class="sourceLineNo">024</span>        mParameters = Collections.emptyMap();<a name="line.24"></a>
+<span class="sourceLineNo">025</span>    }<a name="line.25"></a>
+<span class="sourceLineNo">026</span><a name="line.26"></a>
+<span class="sourceLineNo">027</span>    public VoiceXmlFirstTurn(Map&lt;String, String&gt; parameters) {<a name="line.27"></a>
+<span class="sourceLineNo">028</span>        mParameters = new HashMap&lt;String, String&gt;(parameters);<a name="line.28"></a>
+<span class="sourceLineNo">029</span>    }<a name="line.29"></a>
+<span class="sourceLineNo">030</span><a name="line.30"></a>
+<span class="sourceLineNo">031</span>    public Map&lt;String, String&gt; getParameters() {<a name="line.31"></a>
+<span class="sourceLineNo">032</span>        return Collections.unmodifiableMap(mParameters);<a name="line.32"></a>
+<span class="sourceLineNo">033</span>    }<a name="line.33"></a>
+<span class="sourceLineNo">034</span><a name="line.34"></a>
+<span class="sourceLineNo">035</span>    public boolean hasParameter(Object key) {<a name="line.35"></a>
+<span class="sourceLineNo">036</span>        return mParameters.containsKey(key);<a name="line.36"></a>
+<span class="sourceLineNo">037</span>    }<a name="line.37"></a>
+<span class="sourceLineNo">038</span><a name="line.38"></a>
+<span class="sourceLineNo">039</span>    public String getParameters(Object key) {<a name="line.39"></a>
+<span class="sourceLineNo">040</span>        return mParameters.get(key);<a name="line.40"></a>
+<span class="sourceLineNo">041</span>    }<a name="line.41"></a>
+<span class="sourceLineNo">042</span><a name="line.42"></a>
+<span class="sourceLineNo">043</span>    public Set&lt;String&gt; keySet() {<a name="line.43"></a>
+<span class="sourceLineNo">044</span>        return mParameters.keySet();<a name="line.44"></a>
+<span class="sourceLineNo">045</span>    }<a name="line.45"></a>
+<span class="sourceLineNo">046</span>}<a name="line.46"></a>
 
 
 
@@ -102,6 +112,7 @@
 
 
 
-</PRE>
-</BODY>
-</HTML>
+</pre>
+</div>
+</body>
+</html>

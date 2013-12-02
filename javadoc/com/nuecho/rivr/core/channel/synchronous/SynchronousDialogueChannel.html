@@ -1,662 +1,717 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!--NewPage-->
-<HTML>
-<HEAD>
-<TITLE>
-SynchronousDialogueChannel (Rivr API documentation)
-</TITLE>
-
-
-<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../../../rivr-javadoc.css" TITLE="Style">
-
-<SCRIPT type="text/javascript">
-function windowTitle()
-{
+<!-- NewPage -->
+<html lang="en">
+<head>
+<title>SynchronousDialogueChannel (Rivr API documentation)</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../rivr-javadoc.css" title="Style">
+</head>
+<body>
+<script type="text/javascript"><!--
     if (location.href.indexOf('is-external=true') == -1) {
         parent.document.title="SynchronousDialogueChannel (Rivr API documentation)";
     }
-}
-</SCRIPT>
-<NOSCRIPT>
-</NOSCRIPT>
-
-</HEAD>
-
-<BODY BGCOLOR="white" onload="windowTitle();">
-<HR>
-
-
+//-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
 <!-- ========= START OF TOP NAVBAR ======= -->
-<A NAME="navbar_top"><!-- --></A>
-<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
-<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
-<TR>
-<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
-<A NAME="navbar_top_firstrow"><!-- --></A>
-<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
-  <TR ALIGN="center" VALIGN="top">
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/SynchronousDialogueChannel.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
-  </TR>
-</TABLE>
-</TD>
-<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
-</EM>
-</TD>
-</TR>
-
-<TR>
-<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/NamedSynchronousQueue.html" title="class in com.nuecho.rivr.core.channel.synchronous"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;NEXT CLASS</FONT></TD>
-<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../../../index.html?com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="SynchronousDialogueChannel.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
-&nbsp;<SCRIPT type="text/javascript">
-  <!--
+<div class="topNav"><a name="navbar_top">
+<!--   -->
+</a><a href="#skip-navbar_top" title="Skip navigation links"></a><a name="navbar_top_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/SynchronousDialogueChannel.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../index-files/index-1.html">Index</a></li>
+<li><a href="../../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/NamedSynchronousQueue.html" title="class in com.nuecho.rivr.core.channel.synchronous"><span class="strong">Prev Class</span></a></li>
+<li>Next Class</li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../../index.html?com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" target="_top">Frames</a></li>
+<li><a href="SynchronousDialogueChannel.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
   if(window==top) {
-    document.writeln('<A HREF="../../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
   }
   //-->
-</SCRIPT>
-<NOSCRIPT>
-  <A HREF="../../../../../../allclasses-noframe.html"><B>All Classes</B></A>
-</NOSCRIPT>
-
-
-</FONT></TD>
-</TR>
-<TR>
-<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
-<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
-</TR>
-</TABLE>
-<A NAME="skip-navbar_top"></A>
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_top">
+<!--   -->
+</a></div>
 <!-- ========= END OF TOP NAVBAR ========= -->
-
-<HR>
 <!-- ======== START OF CLASS DATA ======== -->
-<H2>
-<FONT SIZE="-1">
-com.nuecho.rivr.core.channel.synchronous</FONT>
-<BR>
-Class SynchronousDialogueChannel&lt;I extends <A HREF="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</A>,O extends <A HREF="../../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</A>,F extends <A HREF="../../../../../../com/nuecho/rivr/core/channel/FirstTurn.html" title="interface in com.nuecho.rivr.core.channel">FirstTurn</A>,L extends <A HREF="../../../../../../com/nuecho/rivr/core/channel/LastTurn.html" title="interface in com.nuecho.rivr.core.channel">LastTurn</A>,C extends <A HREF="../../../../../../com/nuecho/rivr/core/dialogue/DialogueContext.html" title="interface in com.nuecho.rivr.core.dialogue">DialogueContext</A>&lt;I,O&gt;&gt;</H2>
-<PRE>
-<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</A>
-  <IMG SRC="../../../../../../resources/inherit.gif" ALT="extended by "><B>com.nuecho.rivr.core.channel.synchronous.SynchronousDialogueChannel&lt;I,O,F,L,C&gt;</B>
-</PRE>
-<DL>
-<DT><B>All Implemented Interfaces:</B> <DD><A HREF="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</A>&lt;I,O&gt;</DD>
-</DL>
-<HR>
-<DL>
-<DT><PRE>public final class <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.22"><B>SynchronousDialogueChannel&lt;I extends <A HREF="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</A>,O extends <A HREF="../../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</A>,F extends <A HREF="../../../../../../com/nuecho/rivr/core/channel/FirstTurn.html" title="interface in com.nuecho.rivr.core.channel">FirstTurn</A>,L extends <A HREF="../../../../../../com/nuecho/rivr/core/channel/LastTurn.html" title="interface in com.nuecho.rivr.core.channel">LastTurn</A>,C extends <A HREF="../../../../../../com/nuecho/rivr/core/dialogue/DialogueContext.html" title="interface in com.nuecho.rivr.core.dialogue">DialogueContext</A>&lt;I,O&gt;&gt;</B></A><DT>extends <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A><DT>implements <A HREF="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</A>&lt;I,O&gt;</DL>
-</PRE>
-
-<P>
-<HR>
-
-<P>
-
+<div class="header">
+<div class="subTitle">com.nuecho.rivr.core.channel.synchronous</div>
+<h2 title="Class SynchronousDialogueChannel" class="title">Class SynchronousDialogueChannel&lt;I extends <a href="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</a>,O extends <a href="../../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</a>,F extends <a href="../../../../../../com/nuecho/rivr/core/channel/FirstTurn.html" title="interface in com.nuecho.rivr.core.channel">FirstTurn</a>,L extends <a href="../../../../../../com/nuecho/rivr/core/channel/LastTurn.html" title="interface in com.nuecho.rivr.core.channel">LastTurn</a>,C extends <a href="../../../../../../com/nuecho/rivr/core/dialogue/DialogueContext.html" title="interface in com.nuecho.rivr.core.dialogue">DialogueContext</a>&lt;I,O&gt;&gt;</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>
+<ul class="inheritance">
+<li>com.nuecho.rivr.core.channel.synchronous.SynchronousDialogueChannel&lt;I,O,F,L,C&gt;</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl><dt><span class="strong">Type Parameters:</span></dt><dd><code>F</code> - type of <a href="../../../../../../com/nuecho/rivr/core/channel/FirstTurn.html" title="interface in com.nuecho.rivr.core.channel"><code>FirstTurn</code></a></dd><dd><code>L</code> - type of <a href="../../../../../../com/nuecho/rivr/core/channel/LastTurn.html" title="interface in com.nuecho.rivr.core.channel"><code>LastTurn</code></a></dd><dd><code>O</code> - type of <a href="../../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel"><code>OutputTurn</code></a></dd><dd><code>I</code> - type of <a href="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel"><code>InputTurn</code></a></dd><dd><code>C</code> - type of <a href="../../../../../../com/nuecho/rivr/core/dialogue/DialogueContext.html" title="interface in com.nuecho.rivr.core.dialogue"><code>DialogueContext</code></a></dd></dl>
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</a>&lt;I,O&gt;</dd>
+</dl>
+<hr>
+<br>
+<pre>public final class <a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.97">SynchronousDialogueChannel</a>&lt;I extends <a href="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</a>,O extends <a href="../../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</a>,F extends <a href="../../../../../../com/nuecho/rivr/core/channel/FirstTurn.html" title="interface in com.nuecho.rivr.core.channel">FirstTurn</a>,L extends <a href="../../../../../../com/nuecho/rivr/core/channel/LastTurn.html" title="interface in com.nuecho.rivr.core.channel">LastTurn</a>,C extends <a href="../../../../../../com/nuecho/rivr/core/dialogue/DialogueContext.html" title="interface in com.nuecho.rivr.core.dialogue">DialogueContext</a>&lt;I,O&gt;&gt;
+extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
+implements <a href="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</a>&lt;I,O&gt;</pre>
+<div class="block">Implementation of <a href="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel"><code>DialogueChannel</code></a> allowing turns to be apparently
+ exchanged in a regular synchronous fashion while underneath, it is done in
+ asynchronously.
+ <p>
+ This is the most useful implementation of <a href="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel"><code>DialogueChannel</code></a>. It is used
+ by the <a href="../../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="class in com.nuecho.rivr.core.servlet"><code>DialogueServlet</code></a> to handle different HTTP requests occurring in
+ separate threads.
+ <p>
+ When the controller (such as the <a href="../../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="class in com.nuecho.rivr.core.servlet"><code>DialogueServlet</code></a>) uses the
+ <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="class in com.nuecho.rivr.core.channel.synchronous"><code>SynchronousDialogueChannel</code></a>, it uses the
+ <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#start(com.nuecho.rivr.core.dialogue.Dialogue, F, com.nuecho.rivr.core.util.Duration, C)"><code>start(Dialogue, FirstTurn, Duration, DialogueContext)</code></a> method to
+ start the dialogue and the <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#doTurn(I, com.nuecho.rivr.core.util.Duration)"><code>doTurn(InputTurn, Duration)</code></a> method to
+ send input turns to the dialogue. In exchange, the
+ <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="class in com.nuecho.rivr.core.channel.synchronous"><code>SynchronousDialogueChannel</code></a> will return a <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step"><code>Step</code></a>:
+ <ul>
+ <li><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/OutputTurnStep.html" title="class in com.nuecho.rivr.core.channel.synchronous.step"><code>OutputTurnStep</code></a>: if the dialogue sends an OutputTurn in response</li>
+ <li><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/LastTurnStep.html" title="class in com.nuecho.rivr.core.channel.synchronous.step"><code>LastTurnStep</code></a>: when the dialogue is done</li>
+ <li><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html" title="class in com.nuecho.rivr.core.channel.synchronous.step"><code>ErrorStep</code></a>: if an error occurred following the delivery of the
+ <a href="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel"><code>InputTurn</code></a></li>
+ </ul>
+ <p>
+ <h3>States</h3> The <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="class in com.nuecho.rivr.core.channel.synchronous"><code>SynchronousDialogueChannel</code></a> has states related to
+ the dialogue:
+ <ul>
+ <li>started</li>
+ <li>done</li>
+ </ul>
+ The <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#isDialogueStarted()"><code>isDialogueStarted()</code></a> and <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#isDialogueDone()"><code>isDialogueDone()</code></a> methods
+ correspond to those states. Additionally, the <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#isDialogueActive()"><code>isDialogueActive()</code></a>
+ method tells if the dialogue is <i>started</i> but not yet <i>done</i>.
+ <p>
+ <h3>Time-out values</h3> The <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="class in com.nuecho.rivr.core.channel.synchronous"><code>SynchronousDialogueChannel</code></a> internally
+ keeps two <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/SynchronousQueue.html?is-external=true" title="class or interface in java.util.concurrent"><code>SynchronousQueues</code></a>:
+ <ul>
+ <li>one for communication of output turn from the <a href="../../../../../../com/nuecho/rivr/core/dialogue/Dialogue.html" title="interface in com.nuecho.rivr.core.dialogue"><code>Dialogue</code></a> to the
+ controller</li>
+ <li>one for communication of input turn from the controller to the
+ <a href="../../../../../../com/nuecho/rivr/core/dialogue/Dialogue.html" title="interface in com.nuecho.rivr.core.dialogue"><code>Dialogue</code></a></li>
+ </ul>
+ The default timeout values used while waiting from controller or dialogue can
+ be set with <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#setDefaultReceiveFromControllerTimeout(com.nuecho.rivr.core.util.Duration)"><code>setDefaultReceiveFromControllerTimeout(Duration)</code></a> and
+ <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#setDefaultReceiveFromDialogueTimeout(com.nuecho.rivr.core.util.Duration)"><code>setDefaultReceiveFromDialogueTimeout(Duration)</code></a>. These properties are
+ used if the <code>timeout</code> parameter is <code>null</code> for the
+ <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#doTurn(O, com.nuecho.rivr.core.util.Duration)"><code>doTurn(OutputTurn, Duration)</code></a>,
+ <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#start(com.nuecho.rivr.core.dialogue.Dialogue, F, com.nuecho.rivr.core.util.Duration, C)"><code>start(Dialogue, FirstTurn, Duration, DialogueContext)</code></a> and
+ <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#doTurn(I, com.nuecho.rivr.core.util.Duration)"><code>doTurn(InputTurn, Duration)</code></a> methods.
+ <p>
+ If not set, <code>defaultReceiveFromControllerTimeout</code> defaults to <b>5
+ minutes</b> and <code>defaultReceiveFromDialogueTimeout</code> defaults to
+ <b>1 minute</b>. This gives 5 minutes for the controller (like the
+ <a href="../../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="class in com.nuecho.rivr.core.servlet"><code>DialogueServlet</code></a>) to provide the <a href="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel"><code>InputTurn</code></a> and 1 minute for
+ the controller to provide the next turn or error before a <a href="../../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel"><code>Timeout</code></a>
+ exception is raised.
+ <p>
+ <b>Note:</b> There also exists a less important <code>sendTimeout</code>
+ property which indicates the maximum duration for send operations. A send
+ operation occurs when the controller sends the input turn to the dialogue and
+ when the dialogue send the output turn, the last turn or an error to the
+ controller. Since we expect the dialogue and the controller to already be in
+ a waiting state when the other thread sends the turn, the send operation
+ should not block. For this reason, the default value for this property is
+ <b>5 seconds</b>. This property can be set with the
+ <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#setSendTimeout(com.nuecho.rivr.core.util.Duration)"><code>setSendTimeout(Duration)</code></a> property.
+ <p></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="class in com.nuecho.rivr.core.servlet"><code>DialogueServlet</code></a>, 
+<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step"><code>Step</code></a>, 
+<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/OutputTurnStep.html" title="class in com.nuecho.rivr.core.channel.synchronous.step"><code>OutputTurnStep</code></a>, 
+<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/LastTurnStep.html" title="class in com.nuecho.rivr.core.channel.synchronous.step"><code>LastTurnStep</code></a>, 
+<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html" title="class in com.nuecho.rivr.core.channel.synchronous.step"><code>ErrorStep</code></a></dd></dl>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
-
-<A NAME="constructor_summary"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-<B>Constructor Summary</B></FONT></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#SynchronousDialogueChannel()">SynchronousDialogueChannel</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-</TABLE>
-&nbsp;
+<ul class="blockList">
+<li class="blockList"><a name="constructor_summary">
+<!--   -->
+</a>
+<h3>Constructor Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#SynchronousDialogueChannel()">SynchronousDialogueChannel</a></strong>()</code>&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
 <!-- ========== METHOD SUMMARY =========== -->
-
-<A NAME="method_summary"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-<B>Method Summary</B></FONT></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#addListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">addListener</A></B>(<A HREF="../../../../../../com/nuecho/rivr/core/servlet/DialogueChannelListener.html" title="interface in com.nuecho.rivr.core.servlet">DialogueChannelListener</A>&lt;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A>&gt;&nbsp;listener)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step">Step</A>&lt;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">L</A>&gt;</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#doTurn(I, com.nuecho.rivr.core.util.TimeValue)">doTurn</A></B>(<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</A>&nbsp;turn,
-             <A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;timeout)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#doTurn(O, com.nuecho.rivr.core.util.TimeValue)">doTurn</A></B>(<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A>&nbsp;turn,
-             <A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;timeout)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#getDefaultReceiveFromControllerTimeout()">getDefaultReceiveFromControllerTimeout</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#getDefaultReceiveFromDialogueTimeout()">getDefaultReceiveFromDialogueTimeout</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#getSendTimeout()">getSendTimeout</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#isDialogueActive()">isDialogueActive</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#isDialogueDone()">isDialogueDone</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#isDialogueStarted()">isDialogueStarted</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#join(com.nuecho.rivr.core.util.TimeValue)">join</A></B>(<A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;timeout)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#removeListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">removeListener</A></B>(<A HREF="../../../../../../com/nuecho/rivr/core/servlet/DialogueChannelListener.html" title="interface in com.nuecho.rivr.core.servlet">DialogueChannelListener</A>&lt;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A>&gt;&nbsp;listener)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#setDefaultReceiveFromControllerTimeout(com.nuecho.rivr.core.util.TimeValue)">setDefaultReceiveFromControllerTimeout</A></B>(<A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;defaultReceiveFromControllerTimeout)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#setDefaultReceiveFromDialogueTimeout(com.nuecho.rivr.core.util.TimeValue)">setDefaultReceiveFromDialogueTimeout</A></B>(<A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;defaultReceiveFromDialogueTimeout)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#setLogger(org.slf4j.Logger)">setLogger</A></B>(org.slf4j.Logger&nbsp;logger)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#setSendTimeout(com.nuecho.rivr.core.util.TimeValue)">setSendTimeout</A></B>(<A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;sendTimeout)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step">Step</A>&lt;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">L</A>&gt;</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#start(com.nuecho.rivr.core.dialogue.Dialogue, F, com.nuecho.rivr.core.util.TimeValue, C)">start</A></B>(<A HREF="../../../../../../com/nuecho/rivr/core/dialogue/Dialogue.html" title="interface in com.nuecho.rivr.core.dialogue">Dialogue</A>&lt;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">F</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">L</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">C</A>&gt;&nbsp;dialogue,
-           <A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">F</A>&nbsp;firstTurn,
-           <A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;timeout,
-           <A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">C</A>&nbsp;context)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#stop()">stop</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#stop(com.nuecho.rivr.core.util.TimeValue)">stop</A></B>(<A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;timeout)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-</TABLE>
-&nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left"><B>Methods inherited from class java.lang.<A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></B></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</A>, <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</A></CODE></TD>
-</TR>
-</TABLE>
-&nbsp;
-<P>
-
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#addListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">addListener</a></strong>(<a href="../../../../../../com/nuecho/rivr/core/servlet/DialogueChannelListener.html" title="interface in com.nuecho.rivr.core.servlet">DialogueChannelListener</a>&lt;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a>&gt;&nbsp;listener)</code>
+<div class="block">Adds a listener to this dialogue channel.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step">Step</a>&lt;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">L</a>&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#doTurn(I, com.nuecho.rivr.core.util.Duration)">doTurn</a></strong>(<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</a>&nbsp;turn,
+            <a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout)</code>
+<div class="block">Performs a turn exchange: the dialogue channel will return the Step</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#doTurn(O, com.nuecho.rivr.core.util.Duration)">doTurn</a></strong>(<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a>&nbsp;turn,
+            <a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout)</code>
+<div class="block">Performs a turn exchange: the dialogue channel will return the
+ <a href="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel"><code>InputTurn</code></a></div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#getDefaultReceiveFromControllerTimeout()">getDefaultReceiveFromControllerTimeout</a></strong>()</code>
+<div class="block">Gets the maximum duration the controller thread can wait for a turn or an
+ error from the dialogue thread when not specified by the controller.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#getDefaultReceiveFromDialogueTimeout()">getDefaultReceiveFromDialogueTimeout</a></strong>()</code>
+<div class="block">Retrieves the maximum duration for send operations.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#getSendTimeout()">getSendTimeout</a></strong>()</code>
+<div class="block">Gets the maximum duration for send operations.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#isDialogueActive()">isDialogueActive</a></strong>()</code>
+<div class="block">Tells if the dialogue has started but not yet ended.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#isDialogueDone()">isDialogueDone</a></strong>()</code>
+<div class="block">Tells if the dialogue has ended.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#isDialogueStarted()">isDialogueStarted</a></strong>()</code>
+<div class="block">Tells if the dialogue has started.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#join(com.nuecho.rivr.core.util.Duration)">join</a></strong>(<a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout)</code>
+<div class="block">Waits for the dialogue thread to end.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#removeListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">removeListener</a></strong>(<a href="../../../../../../com/nuecho/rivr/core/servlet/DialogueChannelListener.html" title="interface in com.nuecho.rivr.core.servlet">DialogueChannelListener</a>&lt;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a>&gt;&nbsp;listener)</code>
+<div class="block">Removes a listener from this dialogue channel.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#setDefaultReceiveFromControllerTimeout(com.nuecho.rivr.core.util.Duration)">setDefaultReceiveFromControllerTimeout</a></strong>(<a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;defaultReceiveFromControllerTimeout)</code>
+<div class="block">Sets the maximum duration the dialogue thread can wait for a turn from
+ the controller thread when not specified by the dialogue.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#setDefaultReceiveFromDialogueTimeout(com.nuecho.rivr.core.util.Duration)">setDefaultReceiveFromDialogueTimeout</a></strong>(<a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;defaultReceiveFromDialogueTimeout)</code>
+<div class="block">Sets the maximum duration the controller thread can wait for a turn or an
+ error from the dialogue thread when not specified by the controller.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#setLogger(org.slf4j.Logger)">setLogger</a></strong>(<a href="http://slf4j.org/api/org/slf4j/Logger.html?is-external=true" title="class or interface in org.slf4j">Logger</a>&nbsp;logger)</code>
+<div class="block">Sets the logger for this dialogue channel.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#setSendTimeout(com.nuecho.rivr.core.util.Duration)">setSendTimeout</a></strong>(<a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;sendTimeout)</code>
+<div class="block">Sets the maximum duration for send operations.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step">Step</a>&lt;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">L</a>&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#start(com.nuecho.rivr.core.dialogue.Dialogue, F, com.nuecho.rivr.core.util.Duration, C)">start</a></strong>(<a href="../../../../../../com/nuecho/rivr/core/dialogue/Dialogue.html" title="interface in com.nuecho.rivr.core.dialogue">Dialogue</a>&lt;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">F</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">L</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">C</a>&gt;&nbsp;dialogue,
+          <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">F</a>&nbsp;firstTurn,
+          <a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout,
+          <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">C</a>&nbsp;context)</code>
+<div class="block">Starts a <a href="../../../../../../com/nuecho/rivr/core/dialogue/Dialogue.html" title="interface in com.nuecho.rivr.core.dialogue"><code>Dialogue</code></a> in a new thread.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#stop()">stop</a></strong>()</code>
+<div class="block">Stops the dialogue.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#stop(com.nuecho.rivr.core.util.Duration)">stop</a></strong>(<a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout)</code>
+<div class="block">Stops the dialogue and wait for the dialogue thread to end.</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
-
-<A NAME="constructor_detail"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
-<B>Constructor Detail</B></FONT></TH>
-</TR>
-</TABLE>
-
-<A NAME="SynchronousDialogueChannel()"><!-- --></A><H3>
-SynchronousDialogueChannel</H3>
-<PRE>
-public <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.22"><B>SynchronousDialogueChannel</B></A>()</PRE>
-<DL>
-</DL>
-
+<ul class="blockList">
+<li class="blockList"><a name="constructor_detail">
+<!--   -->
+</a>
+<h3>Constructor Detail</h3>
+<a name="SynchronousDialogueChannel()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>SynchronousDialogueChannel</h4>
+<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.97">SynchronousDialogueChannel</a>()</pre>
+</li>
+</ul>
+</li>
+</ul>
 <!-- ============ METHOD DETAIL ========== -->
-
-<A NAME="method_detail"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
-<B>Method Detail</B></FONT></TH>
-</TR>
-</TABLE>
-
-<A NAME="getSendTimeout()"><!-- --></A><H3>
-getSendTimeout</H3>
-<PRE>
-public <A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A> <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.43"><B>getSendTimeout</B></A>()</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="setSendTimeout(com.nuecho.rivr.core.util.TimeValue)"><!-- --></A><H3>
-setSendTimeout</H3>
-<PRE>
-public void <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.47"><B>setSendTimeout</B></A>(<A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;sendTimeout)</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getDefaultReceiveFromDialogueTimeout()"><!-- --></A><H3>
-getDefaultReceiveFromDialogueTimeout</H3>
-<PRE>
-public <A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A> <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.52"><B>getDefaultReceiveFromDialogueTimeout</B></A>()</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="setDefaultReceiveFromDialogueTimeout(com.nuecho.rivr.core.util.TimeValue)"><!-- --></A><H3>
-setDefaultReceiveFromDialogueTimeout</H3>
-<PRE>
-public void <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.56"><B>setDefaultReceiveFromDialogueTimeout</B></A>(<A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;defaultReceiveFromDialogueTimeout)</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getDefaultReceiveFromControllerTimeout()"><!-- --></A><H3>
-getDefaultReceiveFromControllerTimeout</H3>
-<PRE>
-public <A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A> <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.61"><B>getDefaultReceiveFromControllerTimeout</B></A>()</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="setDefaultReceiveFromControllerTimeout(com.nuecho.rivr.core.util.TimeValue)"><!-- --></A><H3>
-setDefaultReceiveFromControllerTimeout</H3>
-<PRE>
-public void <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.65"><B>setDefaultReceiveFromControllerTimeout</B></A>(<A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;defaultReceiveFromControllerTimeout)</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="setLogger(org.slf4j.Logger)"><!-- --></A><H3>
-setLogger</H3>
-<PRE>
-public void <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.70"><B>setLogger</B></A>(org.slf4j.Logger&nbsp;logger)</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="start(com.nuecho.rivr.core.dialogue.Dialogue,com.nuecho.rivr.core.channel.FirstTurn,com.nuecho.rivr.core.util.TimeValue,com.nuecho.rivr.core.dialogue.DialogueContext)"><!-- --></A><A NAME="start(com.nuecho.rivr.core.dialogue.Dialogue, F, com.nuecho.rivr.core.util.TimeValue, C)"><!-- --></A><H3>
-start</H3>
-<PRE>
-public <A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step">Step</A>&lt;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">L</A>&gt; <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.75"><B>start</B></A>(<A HREF="../../../../../../com/nuecho/rivr/core/dialogue/Dialogue.html" title="interface in com.nuecho.rivr.core.dialogue">Dialogue</A>&lt;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">F</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">L</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">C</A>&gt;&nbsp;dialogue,
-                       <A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">F</A>&nbsp;firstTurn,
-                       <A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;timeout,
-                       <A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">C</A>&nbsp;context)
-                                                    throws <A HREF="../../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</A>,
-                                                           <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</A></PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-
-<DT><B>Throws:</B>
-<DD><CODE><A HREF="../../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</A></CODE>
-<DD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</A></CODE></DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="isDialogueStarted()"><!-- --></A><H3>
-isDialogueStarted</H3>
-<PRE>
-public boolean <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.124"><B>isDialogueStarted</B></A>()</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="isDialogueDone()"><!-- --></A><H3>
-isDialogueDone</H3>
-<PRE>
-public boolean <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.128"><B>isDialogueDone</B></A>()</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="isDialogueActive()"><!-- --></A><H3>
-isDialogueActive</H3>
-<PRE>
-public boolean <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.132"><B>isDialogueActive</B></A>()</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="stop(com.nuecho.rivr.core.util.TimeValue)"><!-- --></A><H3>
-stop</H3>
-<PRE>
-public void <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.140"><B>stop</B></A>(<A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;timeout)
-          throws <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</A></PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>timeout</CODE> - Time to wait for dialogue thread to terminate. A value of
-            TimeValue.ZERO (or equivalent) means to wait forever.
-<DT><B>Throws:</B>
-<DD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</A></CODE></DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="stop()"><!-- --></A><H3>
-stop</H3>
-<PRE>
-public void <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.145"><B>stop</B></A>()</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="join(com.nuecho.rivr.core.util.TimeValue)"><!-- --></A><H3>
-join</H3>
-<PRE>
-public void <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.150"><B>join</B></A>(<A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;timeout)
-          throws <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</A></PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-
-<DT><B>Throws:</B>
-<DD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</A></CODE></DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="doTurn(com.nuecho.rivr.core.channel.OutputTurn,com.nuecho.rivr.core.util.TimeValue)"><!-- --></A><A NAME="doTurn(O, com.nuecho.rivr.core.util.TimeValue)"><!-- --></A><H3>
-doTurn</H3>
-<PRE>
-public <A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</A> <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.155"><B>doTurn</B></A>(<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A>&nbsp;turn,
-                <A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;timeout)
-                           throws <A HREF="../../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</A>,
-                                  <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</A></PRE>
-<DL>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html#doTurn(O, com.nuecho.rivr.core.util.TimeValue)">doTurn</A></CODE> in interface <CODE><A HREF="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</A>&lt;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</A> extends <A HREF="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A> extends <A HREF="../../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</A>&gt;</CODE></DL>
-</DD>
-<DD><DL>
-
-<DT><B>Throws:</B>
-<DD><CODE><A HREF="../../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</A></CODE>
-<DD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</A></CODE></DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="doTurn(com.nuecho.rivr.core.channel.InputTurn,com.nuecho.rivr.core.util.TimeValue)"><!-- --></A><A NAME="doTurn(I, com.nuecho.rivr.core.util.TimeValue)"><!-- --></A><H3>
-doTurn</H3>
-<PRE>
-public <A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step">Step</A>&lt;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">L</A>&gt; <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.165"><B>doTurn</B></A>(<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</A>&nbsp;turn,
-                        <A HREF="../../../../../../com/nuecho/rivr/core/util/TimeValue.html" title="class in com.nuecho.rivr.core.util">TimeValue</A>&nbsp;timeout)
-                                                     throws <A HREF="../../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</A>,
-                                                            <A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</A></PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-<DD><DL>
-
-<DT><B>Throws:</B>
-<DD><CODE><A HREF="../../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</A></CODE>
-<DD><CODE><A HREF="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</A></CODE></DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="addListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)"><!-- --></A><H3>
-addListener</H3>
-<PRE>
-public void <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.211"><B>addListener</B></A>(<A HREF="../../../../../../com/nuecho/rivr/core/servlet/DialogueChannelListener.html" title="interface in com.nuecho.rivr.core.servlet">DialogueChannelListener</A>&lt;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A>&gt;&nbsp;listener)</PRE>
-<DL>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html#addListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">addListener</A></CODE> in interface <CODE><A HREF="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</A>&lt;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</A> extends <A HREF="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A> extends <A HREF="../../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</A>&gt;</CODE></DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="removeListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)"><!-- --></A><H3>
-removeListener</H3>
-<PRE>
-public void <A HREF="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.216"><B>removeListener</B></A>(<A HREF="../../../../../../com/nuecho/rivr/core/servlet/DialogueChannelListener.html" title="interface in com.nuecho.rivr.core.servlet">DialogueChannelListener</A>&lt;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A>&gt;&nbsp;listener)</PRE>
-<DL>
-<DD><DL>
-<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html#removeListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">removeListener</A></CODE> in interface <CODE><A HREF="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</A>&lt;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</A> extends <A HREF="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</A>,<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</A> extends <A HREF="../../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</A>&gt;</CODE></DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
+<ul class="blockList">
+<li class="blockList"><a name="method_detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="getSendTimeout()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSendTimeout</h4>
+<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.124">getSendTimeout</a>()</pre>
+<div class="block">Gets the maximum duration for send operations. A send operation occurs
+ when the controller sends the input turn to the dialogue and when the
+ dialogue send the output turn, the last turn or an error to the
+ controller.</div>
+</li>
+</ul>
+<a name="setSendTimeout(com.nuecho.rivr.core.util.Duration)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setSendTimeout</h4>
+<pre>public&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.140">setSendTimeout</a>(<a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;sendTimeout)</pre>
+<div class="block">Sets the maximum duration for send operations. A send operation occurs
+ when the controller sends the input turn to the dialogue and when the
+ dialogue send the output turn, the last turn or an error to the
+ controller. Since we expect the dialogue and the controller to already be
+ in a waiting state when the other thread sends the turn, the send
+ operation should not block. For this reason, the default value for this
+ property is <b>5 seconds</b>.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>sendTimeout</code> - The timeout value. Cannot be <code>null</code>. A
+            value of Duration.ZERO (or equivalent) means to wait forever.</dd></dl>
+</li>
+</ul>
+<a name="getDefaultReceiveFromDialogueTimeout()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDefaultReceiveFromDialogueTimeout</h4>
+<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.151">getDefaultReceiveFromDialogueTimeout</a>()</pre>
+<div class="block">Retrieves the maximum duration for send operations. A send operation
+ occurs when the controller sends the input turn to the dialogue and when
+ the dialogue send the output turn, the last turn or an error to the
+ controller.</div>
+</li>
+</ul>
+<a name="setDefaultReceiveFromDialogueTimeout(com.nuecho.rivr.core.util.Duration)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setDefaultReceiveFromDialogueTimeout</h4>
+<pre>public&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.163">setDefaultReceiveFromDialogueTimeout</a>(<a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;defaultReceiveFromDialogueTimeout)</pre>
+<div class="block">Sets the maximum duration the controller thread can wait for a turn or an
+ error from the dialogue thread when not specified by the controller. If
+ this method is not called, it defaults to 1 minute.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>defaultReceiveFromDialogueTimeout</code> - The default timeout to use when
+            not specified by the controller. Cannot be <code>null</code>.</dd></dl>
+</li>
+</ul>
+<a name="getDefaultReceiveFromControllerTimeout()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDefaultReceiveFromControllerTimeout</h4>
+<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.172">getDefaultReceiveFromControllerTimeout</a>()</pre>
+<div class="block">Gets the maximum duration the controller thread can wait for a turn or an
+ error from the dialogue thread when not specified by the controller.</div>
+</li>
+</ul>
+<a name="setDefaultReceiveFromControllerTimeout(com.nuecho.rivr.core.util.Duration)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setDefaultReceiveFromControllerTimeout</h4>
+<pre>public&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.184">setDefaultReceiveFromControllerTimeout</a>(<a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;defaultReceiveFromControllerTimeout)</pre>
+<div class="block">Sets the maximum duration the dialogue thread can wait for a turn from
+ the controller thread when not specified by the dialogue.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>defaultReceiveFromControllerTimeout</code> - The default timeout to use
+            when not specified by the dialogue. Cannot be
+            <code>null</code>.</dd></dl>
+</li>
+</ul>
+<a name="setLogger(org.slf4j.Logger)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setLogger</h4>
+<pre>public&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.194">setLogger</a>(<a href="http://slf4j.org/api/org/slf4j/Logger.html?is-external=true" title="class or interface in org.slf4j">Logger</a>&nbsp;logger)</pre>
+<div class="block">Sets the logger for this dialogue channel.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>logger</code> - The logger. Cannot be <code>null</code>.</dd></dl>
+</li>
+</ul>
+<a name="start(com.nuecho.rivr.core.dialogue.Dialogue,com.nuecho.rivr.core.channel.FirstTurn,com.nuecho.rivr.core.util.Duration,com.nuecho.rivr.core.dialogue.DialogueContext)">
+<!--   -->
+</a><a name="start(com.nuecho.rivr.core.dialogue.Dialogue, F, com.nuecho.rivr.core.util.Duration, C)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>start</h4>
+<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step">Step</a>&lt;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">L</a>&gt;&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.216">start</a>(<a href="../../../../../../com/nuecho/rivr/core/dialogue/Dialogue.html" title="interface in com.nuecho.rivr.core.dialogue">Dialogue</a>&lt;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">F</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">L</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">C</a>&gt;&nbsp;dialogue,
+              <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">F</a>&nbsp;firstTurn,
+              <a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout,
+              <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">C</a>&nbsp;context)
+                                                    throws <a href="../../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</a>,
+                                                           <a href="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></pre>
+<div class="block">Starts a <a href="../../../../../../com/nuecho/rivr/core/dialogue/Dialogue.html" title="interface in com.nuecho.rivr.core.dialogue"><code>Dialogue</code></a> in a new thread.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>dialogue</code> - Dialogue to start. Cannot be <code>null</code>.</dd><dd><code>firstTurn</code> - First turn used passed to
+            <a href="../../../../../../com/nuecho/rivr/core/dialogue/Dialogue.html#run(F, C)"><code>Dialogue.run(FirstTurn, DialogueContext)</code></a> method of the
+            dialogue. Cannot be <code>null</code>.</dd><dd><code>timeout</code> - maximum time allowed to receive the turn from the
+            dialogue. If <code>null</code>, uses the
+            <code>defaultReceiveFromDialogueTimeout</code> property. A
+            value of Duration.ZERO (or equivalent) means to wait forever.</dd><dd><code>context</code> - Dialogue context to pass to
+            <a href="../../../../../../com/nuecho/rivr/core/dialogue/Dialogue.html#run(F, C)"><code>Dialogue.run(FirstTurn, DialogueContext)</code></a> method of the
+            dialogue. Cannot be <code>null</code>.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</a></code> - If no result can be obtain from dialogue after delay
+             specified by <code>timeout</code> parameter.</dd>
+<dd><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></code></dd></dl>
+</li>
+</ul>
+<a name="isDialogueStarted()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isDialogueStarted</h4>
+<pre>public&nbsp;boolean&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.269">isDialogueStarted</a>()</pre>
+<div class="block">Tells if the dialogue has started.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the dialogue has started, <code>false</code>
+         otherwise.</dd></dl>
+</li>
+</ul>
+<a name="isDialogueDone()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isDialogueDone</h4>
+<pre>public&nbsp;boolean&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.279">isDialogueDone</a>()</pre>
+<div class="block">Tells if the dialogue has ended.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the dialogue has ended, <code>false</code>
+         otherwise.</dd></dl>
+</li>
+</ul>
+<a name="isDialogueActive()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isDialogueActive</h4>
+<pre>public&nbsp;boolean&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.289">isDialogueActive</a>()</pre>
+<div class="block">Tells if the dialogue has started but not yet ended.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the dialogue has started but not ended yet,
+         <code>false</code> otherwise.</dd></dl>
+</li>
+</ul>
+<a name="stop(com.nuecho.rivr.core.util.Duration)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>stop</h4>
+<pre>public&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.299">stop</a>(<a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout)
+          throws <a href="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></pre>
+<div class="block">Stops the dialogue and wait for the dialogue thread to end.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>timeout</code> - Time to wait for dialogue thread to terminate. A value of
+            Duration.ZERO (or equivalent) means to wait forever.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></code></dd></dl>
+</li>
+</ul>
+<a name="stop()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>stop</h4>
+<pre>public&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.307">stop</a>()</pre>
+<div class="block">Stops the dialogue.</div>
+</li>
+</ul>
+<a name="join(com.nuecho.rivr.core.util.Duration)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>join</h4>
+<pre>public&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.318">join</a>(<a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout)
+          throws <a href="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></pre>
+<div class="block">Waits for the dialogue thread to end.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>timeout</code> - maximum time to wait for the thread to end. A value of
+            Duration.ZERO (or equivalent) means to wait forever.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></code></dd></dl>
+</li>
+</ul>
+<a name="doTurn(com.nuecho.rivr.core.channel.OutputTurn,com.nuecho.rivr.core.util.Duration)">
+<!--   -->
+</a><a name="doTurn(O, com.nuecho.rivr.core.util.Duration)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>doTurn</h4>
+<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.339">doTurn</a>(<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a>&nbsp;turn,
+       <a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout)
+                           throws <a href="../../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</a>,
+                                  <a href="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></pre>
+<div class="block">Performs a turn exchange: the dialogue channel will return the
+ <a href="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel"><code>InputTurn</code></a></div>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html#doTurn(O, com.nuecho.rivr.core.util.Duration)">doTurn</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</a>&lt;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</a> extends <a href="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a> extends <a href="../../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</a>&gt;</code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>turn</code> - The output turn to send. Cannot be <code>null</code>.</dd><dd><code>timeout</code> - maximum time allowed to receive the turn from the
+            dialogue. If <code>null</code>, uses the
+            <code>defaultReceiveFromControllerTimeout</code>. A value of
+            Duration.ZERO (or equivalent) means to wait forever.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the received <a href="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel"><code>InputTurn</code></a>. Cannot be <code>null</code>.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</a></code> - if the dialogue channel has not been able to give the
+             InputTurn before <code>timeout</code> parameter.</dd>
+<dd><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></code> - if the thread has been interrupted while
+             waiting for the result.</dd></dl>
+</li>
+</ul>
+<a name="doTurn(com.nuecho.rivr.core.channel.InputTurn,com.nuecho.rivr.core.util.Duration)">
+<!--   -->
+</a><a name="doTurn(I, com.nuecho.rivr.core.util.Duration)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>doTurn</h4>
+<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step">Step</a>&lt;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">L</a>&gt;&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.361">doTurn</a>(<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</a>&nbsp;turn,
+               <a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout)
+                                                     throws <a href="../../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</a>,
+                                                            <a href="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></pre>
+<div class="block">Performs a turn exchange: the dialogue channel will return the Step</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>turn</code> - the input turn to send to the dialogue</dd><dd><code>timeout</code> - maximum time allowed to receive the turn from the
+            dialogue. If <code>null</code>, uses the
+            <code>defaultReceiveFromDialogueTimeout</code> property. A
+            value of Duration.ZERO (or equivalent) means to wait forever.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>the <a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step"><code>Step</code></a> wrapping the dialogue next step</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</a></code> - If no result can be obtain from dialogue after delay
+             specified by <code>timeout</code> parameter.</dd>
+<dd><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></code></dd></dl>
+</li>
+</ul>
+<a name="addListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addListener</h4>
+<pre>public&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.407">addListener</a>(<a href="../../../../../../com/nuecho/rivr/core/servlet/DialogueChannelListener.html" title="interface in com.nuecho.rivr.core.servlet">DialogueChannelListener</a>&lt;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a>&gt;&nbsp;listener)</pre>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html#addListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">DialogueChannel</a></code></strong></div>
+<div class="block">Adds a listener to this dialogue channel.</div>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html#addListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">addListener</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</a>&lt;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</a> extends <a href="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a> extends <a href="../../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a name="removeListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>removeListener</h4>
+<pre>public&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#line.412">removeListener</a>(<a href="../../../../../../com/nuecho/rivr/core/servlet/DialogueChannelListener.html" title="interface in com.nuecho.rivr.core.servlet">DialogueChannelListener</a>&lt;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a>&gt;&nbsp;listener)</pre>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html#removeListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">DialogueChannel</a></code></strong></div>
+<div class="block">Removes a listener from this dialogue channel.</div>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html#removeListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">removeListener</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</a>&lt;<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">I</a> extends <a href="../../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</a>,<a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="type parameter in SynchronousDialogueChannel">O</a> extends <a href="../../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <!-- ========= END OF CLASS DATA ========= -->
-<HR>
-
-
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
-<A NAME="navbar_bottom"><!-- --></A>
-<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
-<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
-<TR>
-<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
-<A NAME="navbar_bottom_firstrow"><!-- --></A>
-<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
-  <TR ALIGN="center" VALIGN="top">
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/SynchronousDialogueChannel.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
-  </TR>
-</TABLE>
-</TD>
-<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
-</EM>
-</TD>
-</TR>
-
-<TR>
-<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../../../com/nuecho/rivr/core/channel/synchronous/NamedSynchronousQueue.html" title="class in com.nuecho.rivr.core.channel.synchronous"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;NEXT CLASS</FONT></TD>
-<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../../../index.html?com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="SynchronousDialogueChannel.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
-&nbsp;<SCRIPT type="text/javascript">
-  <!--
+<div class="bottomNav"><a name="navbar_bottom">
+<!--   -->
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/SynchronousDialogueChannel.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../../../index-files/index-1.html">Index</a></li>
+<li><a href="../../../../../../help-doc.html">Help</a></li>
+</ul>
+<div class="aboutLanguage"><em>To report errors, inconsistencies and omissions in the Rivr API documentation, please <a href="https://github.com/nuecho/rivr/issues/new" target="_blank">open an issue</a>.</em></div>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../../../com/nuecho/rivr/core/channel/synchronous/NamedSynchronousQueue.html" title="class in com.nuecho.rivr.core.channel.synchronous"><span class="strong">Prev Class</span></a></li>
+<li>Next Class</li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../../../index.html?com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" target="_top">Frames</a></li>
+<li><a href="SynchronousDialogueChannel.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_bottom");
   if(window==top) {
-    document.writeln('<A HREF="../../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
   }
   //-->
-</SCRIPT>
-<NOSCRIPT>
-  <A HREF="../../../../../../allclasses-noframe.html"><B>All Classes</B></A>
-</NOSCRIPT>
-
-
-</FONT></TD>
-</TR>
-<TR>
-<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
-<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
-</TR>
-</TABLE>
-<A NAME="skip-navbar_bottom"></A>
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_bottom">
+<!--   -->
+</a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-
-<HR>
-Copyright &copy; 2013 <a href="http://www.nuecho.com">Nu Echo Inc.</a>.
-</BODY>
-</HTML>
+<p class="legalCopy"><small>Copyright &copy; 2013 <a href="http://www.nuecho.com">Nu Echo Inc.</a>.</small></p>
+</body>
+</html>

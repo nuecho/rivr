@@ -1,45 +1,54 @@
-<HTML>
-<BODY BGCOLOR="white">
-<PRE>
-<FONT color="green">001</FONT>    /*<a name="line.1"></a>
-<FONT color="green">002</FONT>     * Copyright (c) 2002-2005 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
-<FONT color="green">003</FONT>     */<a name="line.3"></a>
-<FONT color="green">004</FONT>    package com.nuecho.rivr.voicexml.turn.input;<a name="line.4"></a>
-<FONT color="green">005</FONT>    <a name="line.5"></a>
-<FONT color="green">006</FONT>    import javax.json.*;<a name="line.6"></a>
-<FONT color="green">007</FONT>    <a name="line.7"></a>
-<FONT color="green">008</FONT>    import com.nuecho.rivr.voicexml.util.json.*;<a name="line.8"></a>
-<FONT color="green">009</FONT>    <a name="line.9"></a>
-<FONT color="green">010</FONT>    /**<a name="line.10"></a>
-<FONT color="green">011</FONT>     * @author NuEcho Inc.<a name="line.11"></a>
-<FONT color="green">012</FONT>     */<a name="line.12"></a>
-<FONT color="green">013</FONT>    public class TransferStatus implements JsonSerializable {<a name="line.13"></a>
-<FONT color="green">014</FONT>    <a name="line.14"></a>
-<FONT color="green">015</FONT>        public static final String NO_ANSWER = "noanswer";<a name="line.15"></a>
-<FONT color="green">016</FONT>        public static final String NEAR_END_DISCONNECT = "near_end_disconnect";<a name="line.16"></a>
-<FONT color="green">017</FONT>        public static final String FAR_END_DISCONNECT = "far_end_disconnect";<a name="line.17"></a>
-<FONT color="green">018</FONT>        public static final String NETWORK_DISONNECT = "network_disconnect";<a name="line.18"></a>
-<FONT color="green">019</FONT>        public static final String MAXTIME_DISCONNECT = "maxtime_disconnect";<a name="line.19"></a>
-<FONT color="green">020</FONT>        public static final String BUSY = "busy";<a name="line.20"></a>
-<FONT color="green">021</FONT>        public static final String NETWORK_BUSY = "network_busy";<a name="line.21"></a>
-<FONT color="green">022</FONT>        public static final String UNKNOWN = "unknown";<a name="line.22"></a>
-<FONT color="green">023</FONT>    <a name="line.23"></a>
-<FONT color="green">024</FONT>        private final String mStatusCode;<a name="line.24"></a>
-<FONT color="green">025</FONT>    <a name="line.25"></a>
-<FONT color="green">026</FONT>        public TransferStatus(String statusCode) {<a name="line.26"></a>
-<FONT color="green">027</FONT>            mStatusCode = statusCode;<a name="line.27"></a>
-<FONT color="green">028</FONT>        }<a name="line.28"></a>
-<FONT color="green">029</FONT>    <a name="line.29"></a>
-<FONT color="green">030</FONT>        public String getStatusCode() {<a name="line.30"></a>
-<FONT color="green">031</FONT>            return mStatusCode;<a name="line.31"></a>
-<FONT color="green">032</FONT>        }<a name="line.32"></a>
-<FONT color="green">033</FONT>    <a name="line.33"></a>
-<FONT color="green">034</FONT>        @Override<a name="line.34"></a>
-<FONT color="green">035</FONT>        public JsonValue asJson() {<a name="line.35"></a>
-<FONT color="green">036</FONT>            return JsonUtils.wrap(mStatusCode);<a name="line.36"></a>
-<FONT color="green">037</FONT>        }<a name="line.37"></a>
-<FONT color="green">038</FONT>    <a name="line.38"></a>
-<FONT color="green">039</FONT>    }<a name="line.39"></a>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../rivr-javadoc.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>/*<a name="line.1"></a>
+<span class="sourceLineNo">002</span> * Copyright (c) 2013 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
+<span class="sourceLineNo">003</span> */<a name="line.3"></a>
+<span class="sourceLineNo">004</span>package com.nuecho.rivr.voicexml.turn.input;<a name="line.4"></a>
+<span class="sourceLineNo">005</span><a name="line.5"></a>
+<span class="sourceLineNo">006</span>import javax.json.*;<a name="line.6"></a>
+<span class="sourceLineNo">007</span><a name="line.7"></a>
+<span class="sourceLineNo">008</span>import com.nuecho.rivr.voicexml.turn.output.*;<a name="line.8"></a>
+<span class="sourceLineNo">009</span>import com.nuecho.rivr.voicexml.util.json.*;<a name="line.9"></a>
+<span class="sourceLineNo">010</span><a name="line.10"></a>
+<span class="sourceLineNo">011</span>/**<a name="line.11"></a>
+<span class="sourceLineNo">012</span> * The status of a {@link Transfer}.<a name="line.12"></a>
+<span class="sourceLineNo">013</span> * <a name="line.13"></a>
+<span class="sourceLineNo">014</span> * @author NuEcho Inc.<a name="line.14"></a>
+<span class="sourceLineNo">015</span> * @see &lt;a<a name="line.15"></a>
+<span class="sourceLineNo">016</span> *      href="http://www.w3.org/TR/voicexml20/#dml2.3.7.2.2"&gt;http://www.w3.org/TR/voicexml20/#dml2.3.7.2.2&lt;/a&gt;<a name="line.16"></a>
+<span class="sourceLineNo">017</span> */<a name="line.17"></a>
+<span class="sourceLineNo">018</span>public class TransferStatus implements JsonSerializable {<a name="line.18"></a>
+<span class="sourceLineNo">019</span><a name="line.19"></a>
+<span class="sourceLineNo">020</span>    public static final String NO_ANSWER = "noanswer";<a name="line.20"></a>
+<span class="sourceLineNo">021</span>    public static final String NEAR_END_DISCONNECT = "near_end_disconnect";<a name="line.21"></a>
+<span class="sourceLineNo">022</span>    public static final String FAR_END_DISCONNECT = "far_end_disconnect";<a name="line.22"></a>
+<span class="sourceLineNo">023</span>    public static final String NETWORK_DISONNECT = "network_disconnect";<a name="line.23"></a>
+<span class="sourceLineNo">024</span>    public static final String MAXTIME_DISCONNECT = "maxtime_disconnect";<a name="line.24"></a>
+<span class="sourceLineNo">025</span>    public static final String BUSY = "busy";<a name="line.25"></a>
+<span class="sourceLineNo">026</span>    public static final String NETWORK_BUSY = "network_busy";<a name="line.26"></a>
+<span class="sourceLineNo">027</span>    public static final String UNKNOWN = "unknown";<a name="line.27"></a>
+<span class="sourceLineNo">028</span><a name="line.28"></a>
+<span class="sourceLineNo">029</span>    private final String mStatusCode;<a name="line.29"></a>
+<span class="sourceLineNo">030</span><a name="line.30"></a>
+<span class="sourceLineNo">031</span>    public TransferStatus(String statusCode) {<a name="line.31"></a>
+<span class="sourceLineNo">032</span>        mStatusCode = statusCode;<a name="line.32"></a>
+<span class="sourceLineNo">033</span>    }<a name="line.33"></a>
+<span class="sourceLineNo">034</span><a name="line.34"></a>
+<span class="sourceLineNo">035</span>    public String getStatusCode() {<a name="line.35"></a>
+<span class="sourceLineNo">036</span>        return mStatusCode;<a name="line.36"></a>
+<span class="sourceLineNo">037</span>    }<a name="line.37"></a>
+<span class="sourceLineNo">038</span><a name="line.38"></a>
+<span class="sourceLineNo">039</span>    @Override<a name="line.39"></a>
+<span class="sourceLineNo">040</span>    public JsonValue asJson() {<a name="line.40"></a>
+<span class="sourceLineNo">041</span>        return JsonUtils.wrap(mStatusCode);<a name="line.41"></a>
+<span class="sourceLineNo">042</span>    }<a name="line.42"></a>
+<span class="sourceLineNo">043</span>}<a name="line.43"></a>
 
 
 
@@ -100,6 +109,7 @@
 
 
 
-</PRE>
-</BODY>
-</HTML>
+</pre>
+</div>
+</body>
+</html>

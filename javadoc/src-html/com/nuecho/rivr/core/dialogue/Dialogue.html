@@ -1,22 +1,56 @@
-<HTML>
-<BODY BGCOLOR="white">
-<PRE>
-<FONT color="green">001</FONT>    /*<a name="line.1"></a>
-<FONT color="green">002</FONT>     * Copyright (c) 2013 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
-<FONT color="green">003</FONT>     */<a name="line.3"></a>
-<FONT color="green">004</FONT>    <a name="line.4"></a>
-<FONT color="green">005</FONT>    package com.nuecho.rivr.core.dialogue;<a name="line.5"></a>
-<FONT color="green">006</FONT>    <a name="line.6"></a>
-<FONT color="green">007</FONT>    import com.nuecho.rivr.core.channel.*;<a name="line.7"></a>
-<FONT color="green">008</FONT>    <a name="line.8"></a>
-<FONT color="green">009</FONT>    /**<a name="line.9"></a>
-<FONT color="green">010</FONT>     * @author Nu Echo Inc.<a name="line.10"></a>
-<FONT color="green">011</FONT>     */<a name="line.11"></a>
-<FONT color="green">012</FONT>    public interface Dialogue&lt;I extends InputTurn, O extends OutputTurn, F extends FirstTurn, L extends LastTurn, C extends DialogueContext&lt;I, O&gt;&gt; {<a name="line.12"></a>
-<FONT color="green">013</FONT>    <a name="line.13"></a>
-<FONT color="green">014</FONT>        L run(F firstTurn, C context) throws Exception;<a name="line.14"></a>
-<FONT color="green">015</FONT>    <a name="line.15"></a>
-<FONT color="green">016</FONT>    }<a name="line.16"></a>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../rivr-javadoc.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>/*<a name="line.1"></a>
+<span class="sourceLineNo">002</span> * Copyright (c) 2013 Nu Echo Inc. All rights reserved.<a name="line.2"></a>
+<span class="sourceLineNo">003</span> */<a name="line.3"></a>
+<span class="sourceLineNo">004</span><a name="line.4"></a>
+<span class="sourceLineNo">005</span>package com.nuecho.rivr.core.dialogue;<a name="line.5"></a>
+<span class="sourceLineNo">006</span><a name="line.6"></a>
+<span class="sourceLineNo">007</span>import org.slf4j.*;<a name="line.7"></a>
+<span class="sourceLineNo">008</span><a name="line.8"></a>
+<span class="sourceLineNo">009</span>import com.nuecho.rivr.core.channel.*;<a name="line.9"></a>
+<span class="sourceLineNo">010</span>import com.nuecho.rivr.core.servlet.*;<a name="line.10"></a>
+<span class="sourceLineNo">011</span><a name="line.11"></a>
+<span class="sourceLineNo">012</span>/**<a name="line.12"></a>
+<span class="sourceLineNo">013</span> * Rivr applications are expected to provide one or many implementations of this<a name="line.13"></a>
+<span class="sourceLineNo">014</span> * interface or its subtypes. This interface provides a single method performing<a name="line.14"></a>
+<span class="sourceLineNo">015</span> * the dialogue, i.e. sequence of turn exchanges with the<a name="line.15"></a>
+<span class="sourceLineNo">016</span> * {@link DialogueChannel} and dialogue-related logic.<a name="line.16"></a>
+<span class="sourceLineNo">017</span> * <a name="line.17"></a>
+<span class="sourceLineNo">018</span> * @param &lt;F&gt; type of {@link FirstTurn}<a name="line.18"></a>
+<span class="sourceLineNo">019</span> * @param &lt;L&gt; type of {@link LastTurn}<a name="line.19"></a>
+<span class="sourceLineNo">020</span> * @param &lt;O&gt; type of {@link OutputTurn}<a name="line.20"></a>
+<span class="sourceLineNo">021</span> * @param &lt;I&gt; type of {@link InputTurn}<a name="line.21"></a>
+<span class="sourceLineNo">022</span> * @param &lt;C&gt; type of {@link DialogueContext}<a name="line.22"></a>
+<span class="sourceLineNo">023</span> * @author Nu Echo Inc.<a name="line.23"></a>
+<span class="sourceLineNo">024</span> */<a name="line.24"></a>
+<span class="sourceLineNo">025</span>public interface Dialogue&lt;I extends InputTurn, O extends OutputTurn, F extends FirstTurn, L extends LastTurn, C extends DialogueContext&lt;I, O&gt;&gt; {<a name="line.25"></a>
+<span class="sourceLineNo">026</span><a name="line.26"></a>
+<span class="sourceLineNo">027</span>    /**<a name="line.27"></a>
+<span class="sourceLineNo">028</span>     * Method called by the controller (e.g. {@link DialogueServlet}) to run the<a name="line.28"></a>
+<span class="sourceLineNo">029</span>     * dialogue. It takes initial parameters from the &lt;code&gt;firstTurn&lt;/code&gt;<a name="line.29"></a>
+<span class="sourceLineNo">030</span>     * parameter and must return a {@link LastTurn}. The &lt;code&gt;context&lt;/code&gt;<a name="line.30"></a>
+<span class="sourceLineNo">031</span>     * allows the dialogue to access the {@link DialogueChannel} on which turn<a name="line.31"></a>
+<span class="sourceLineNo">032</span>     * exchanges can be performed (i.e. exchanges of {@link OutputTurn<a name="line.32"></a>
+<span class="sourceLineNo">033</span>     * OutputTurns} and {@link InputTurn InputTurns}).<a name="line.33"></a>
+<span class="sourceLineNo">034</span>     * <a name="line.34"></a>
+<span class="sourceLineNo">035</span>     * @param firstTurn First turn. Contains dialogue initialization<a name="line.35"></a>
+<span class="sourceLineNo">036</span>     *            information. Cannot be &lt;code&gt;null&lt;/code&gt;.<a name="line.36"></a>
+<span class="sourceLineNo">037</span>     * @param context Dialogue context. This context gives access to<a name="line.37"></a>
+<span class="sourceLineNo">038</span>     *            {@link DialogueChannel}, a {@link Logger} and the dialogue ID.<a name="line.38"></a>
+<span class="sourceLineNo">039</span>     *            Cannot be &lt;code&gt;null&lt;/code&gt;.<a name="line.39"></a>
+<span class="sourceLineNo">040</span>     * @return the result of the dialogue as a {@link LastTurn}. Cannot be<a name="line.40"></a>
+<span class="sourceLineNo">041</span>     *         &lt;code&gt;null&lt;/code&gt;.<a name="line.41"></a>
+<span class="sourceLineNo">042</span>     */<a name="line.42"></a>
+<span class="sourceLineNo">043</span>    L run(F firstTurn, C context) throws Exception;<a name="line.43"></a>
+<span class="sourceLineNo">044</span><a name="line.44"></a>
+<span class="sourceLineNo">045</span>}<a name="line.45"></a>
 
 
 
@@ -77,6 +111,7 @@
 
 
 
-</PRE>
-</BODY>
-</HTML>
+</pre>
+</div>
+</body>
+</html>

@@ -21,9 +21,5 @@ com.nuecho.rivr.voicexml.turn.output
 com.nuecho.rivr.voicexml.turn.output.audio
 com.nuecho.rivr.voicexml.turn.output.fetch
 com.nuecho.rivr.voicexml.turn.output.grammar
-com.nuecho.rivr.voicexml.turn.output.interaction
-com.nuecho.rivr.voicexml.turn.output.object
-com.nuecho.rivr.voicexml.turn.output.subdialogue
-com.nuecho.rivr.voicexml.turn.output.transfer
 com.nuecho.rivr.voicexml.util
 com.nuecho.rivr.voicexml.util.json
