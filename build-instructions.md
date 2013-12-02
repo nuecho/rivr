@@ -39,24 +39,17 @@ If you don't have Gradle installed, you can simply use the _Gradle wrapper_ prov
 
         gradlew.bat build
 
-The `gradlew` script will download Gradle in your user directory (i.e. your home) and use it from there. Of course, following invocations of `gradlew` will
-not trigger the download of Gradle.
+The `gradlew` script will download Gradle in your user directory (i.e. your home) and use it from there. Of course, following invocations of `gradlew` will not trigger the download of Gradle.
 
-NOTE: The gradle wrapper can be configured via the gradle-wrapper.properties file, under the gradle/wrapper folder. The most important
-property is the distributionUrl, which determines which version of Gradle is downloaded. The pattern for the url
-is: `http://services.gradle.org/distributions/gradle-[versionNumber]-[versionStyle].zip`. The `versionStyle` can be
-either `bin` or `all`; `bin` only contains the runtime, where `all` also contains the documentation and source. By default, we are using `bin`.
+NOTE: The gradle wrapper can be configured via the gradle-wrapper.properties file, under the gradle/wrapper folder. The most important property is the distributionUrl, which determines which version of Gradle is downloaded. The pattern for the URL is: `http://services.gradle.org/distributions/gradle-[versionNumber]-[versionStyle].zip`. The `versionStyle` can be either `bin` or `all`; `bin` only contains the runtime, where `all` also contains the documentation and source. By default, we are using `bin`.
 
 ## Eclipse integration
 
-Install the Gradle IDE plugin from [Spring's update site](http://dist.springsource.com/release/TOOLS/gradle). To load the projects 
-inside Eclipse, choose File -> Import -> Gradle -> Gradle Project, select the root directory of the project, click Build Model and finish.
+Install the Gradle IDE plugin from [Spring's update site](http://dist.springsource.com/release/TOOLS/gradle). To load the projects inside Eclipse, choose File -> Import -> Gradle -> Gradle Project, select the root directory of the project, click Build Model and finish.
 
-You can also configure which version of Gradle the IDE plugin uses: go to Window -> Preferences -> Gradle and change 
-the URI of Gradle distribution. This is the same URL pattern as the Gradle wrapper.
+You can also configure which version of Gradle the IDE plugin uses: go to Window -> Preferences -> Gradle and change the URI of Gradle distribution. This is the same URL pattern as the Gradle wrapper.
 
-The Rivr subprojects (rivr-core, rivr-voicexml, rivr-voicexml-dialogue-runner) can also be imported into Eclipse without
-using the Gradle plugin. In order to to so, you must generate the corresponding `.project` files. Simply run `gradlew eclipse`.  
+The Rivr subprojects (rivr-core, rivr-voicexml, rivr-voicexml-dialogue-runner) can also be imported into Eclipse without using the Gradle plugin. In order to to so, you must generate the corresponding `.project` files. Simply run `gradlew eclipse`.  
 
 NOTE: If later on you install the Eclipse Gradle plugin, you can convert the projects into Gradle projects by applying the Gradle nature:
 
@@ -111,8 +104,7 @@ In your runtime classpath (i.e. your WEB-INF/lib), you should have:
 
 ## Using the dialogue runner
 
-The dialogue runner is a HTML interface to simulate VoiceXML input for a Rivr application.  It is packaged as 
-a _partial_ WAR file.  All you need to do is to extract it (unzip) over your web project.
+The dialogue runner is a HTML interface to simulate VoiceXML input for a Rivr application.  It is packaged as a _partial_ WAR file.  All you need to do is to extract it (unzip) over your web project.
 
 If you use Gradle, you can add the following in your `build.gradle` file:
 
