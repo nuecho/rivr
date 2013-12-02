@@ -42,7 +42,10 @@ public abstract class VoiceXmlDocumentTurn implements JsonSerializable {
             throws VoiceXmlDocumentRenderingException;
 
     /**
-     * @param builder
+     * Adds top level properties to the JSON representation of this turn
+     * 
+     * @param builder A {@link JsonObjectBuilder} that can be used to create the
+     *            top level JSON properties
      */
     protected void addTopLevelProperties(JsonObjectBuilder builder) {}
 

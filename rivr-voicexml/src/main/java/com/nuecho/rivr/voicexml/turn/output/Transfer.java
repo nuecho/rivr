@@ -68,8 +68,11 @@ public abstract class Transfer extends VoiceXmlOutputTurn {
     protected abstract String getTransferType();
 
     /**
+     * Allows the customization of the generated transfer element
+     * 
      * @param transferElement The transfer element to customize.
-     * @throws VoiceXmlDocumentRenderingException
+     * @throws VoiceXmlDocumentRenderingException when an error occurs while
+     *             rendering the VoiceXml document
      */
     protected void customizeTransferElement(Element transferElement) throws VoiceXmlDocumentRenderingException {}
 

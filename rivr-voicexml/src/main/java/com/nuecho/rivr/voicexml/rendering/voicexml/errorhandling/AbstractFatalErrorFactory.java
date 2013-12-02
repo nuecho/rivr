@@ -29,9 +29,11 @@ class AbstractFatalErrorFactory implements FatalErrorFormFactory {
     }
 
     /**
-     * @param form
-     * @param blockElement
-     * @param element
+     * Allows the customization of the generated fatal error form
+     * 
+     * @param form The fatal error form
+     * @param blockElement The block element inside the form
+     * @param element The error element inside the block
      */
     protected void customizeForm(Element form, Element blockElement, Element element) {}
 
