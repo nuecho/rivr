@@ -1,6 +1,57 @@
 group = "com.nuecho"
 version = "1.0.0"
 
+// Configure the java projects release.
+
+def javaProjects = [project(':rivr-core'), project(':rivr-voicexml')]
+
+configure(javaProjects) {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'checkstyle'
+
+    dependencies { checkstyle 'com.puppycrawl.tools:checkstyle:5.5' }
+
+    checkstyle.configFile = rootProject.file('checkstyle/checkstyle.xml')
+    sourceCompatibility = '1.6'
+
+    // Fix for Unable to get class information
+    checkstyleMain { classpath += configurations.compile }
+    checkstyleTest { classpath += configurations.compile }
+
+    eclipse {
+        project {
+            natures 'net.sf.eclipsecs.core.CheckstyleNature'
+            buildCommand 'net.sf.eclipsecs.core.CheckstyleBuilder'
+        }
+        classpath {
+            defaultOutputDir = file("${project.projectDir}/build/classes")
+            // This should probably be submitted as a patch to the eclipse plugin.
+            containers.clear()
+            containers.add("org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6")
+        }
+    }
+
+    task sourcesJar(type: Jar) {
+        from sourceSets.main.java
+        classifier 'sources'
+    }
+
+    // Required for Maven central
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    // Maven central release use the "old" uploadArchives mechanism since maven-publish doesn't support signing yet.
+    artifacts {
+        archives javadocJar
+        archives sourcesJar
+    }
+
+    artifacts { archives jar }
+}
+
 subprojects {
     apply plugin: 'eclipse'
     apply plugin: 'ivy-publish' // ivy publishing is for fallback if maven doesn't work.
@@ -64,56 +115,7 @@ subprojects {
     }
 }
 
-// Configure the java projects release.
-
-def javaProjects = [project(':rivr-core'), project(':rivr-voicexml')] 
-
 configure(javaProjects) {
-    apply plugin: 'java'
-    apply plugin: 'checkstyle'
-
-    dependencies { checkstyle 'com.puppycrawl.tools:checkstyle:5.5' }
-
-    checkstyle.configFile = rootProject.file('checkstyle/checkstyle.xml')
-    sourceCompatibility = '1.6'
-
-    // Fix for Unable to get class information
-    checkstyleMain { classpath += configurations.compile }
-    checkstyleTest { classpath += configurations.compile }
-
-    task sourcesJar(type: Jar) {
-        from sourceSets.main.java
-        classifier 'sources'
-    }
-
-    // Required for Maven central
-    task javadocJar(type: Jar, dependsOn: javadoc) {
-        classifier = 'javadoc'
-        from javadoc.destinationDir
-    }
-
-    eclipse {
-        project {
-            natures 'net.sf.eclipsecs.core.CheckstyleNature'
-            buildCommand 'net.sf.eclipsecs.core.CheckstyleBuilder'
-        }
-        classpath {
-            defaultOutputDir = file("${project.projectDir}/build/classes")
-            // This should probably be submitted as a patch to the eclipse plugin.
-            containers.clear()
-            containers.add("org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6")
-        }
-    }
-
-
-    // Maven central release use the "old" uploadArchives mechanism since maven-publish doesn't support signing yet.
-    artifacts {
-        archives javadocJar
-        archives sourcesJar
-    }
-
-    artifacts { archives jar }
-
     uploadArchives{
         repositories {
             mavenCentral{
@@ -124,11 +126,11 @@ configure(javaProjects) {
 }
 
 task globalJavadoc(type: Javadoc) {
-     source javaProjects.collect {project -> project.sourceSets.main.allJava } 
-     destinationDir = new File(buildDir, 'javadoc')
-     classpath = files(javaProjects.collect {project -> project.sourceSets.main.compileClasspath}) 
+     source javaProjects.collect {project -> project.sourceSets.main.allJava }
+//     destinationDir = file buildDir, 'javadoc'
+     classpath = files(javaProjects.collect {project -> project.sourceSets.main.compileClasspath})
 
-     // To use Java 7 Javadoc: 
+     // To use Java 7 Javadoc:
      //    gradlew  -DjavadocExecutable=/usr/java/jdk7/bin/javadoc  globalJavadoc
      if(System.getProperty("javadocExecutable") != null) {
          executable = System.getProperty("javadocExecutable")
@@ -140,17 +142,17 @@ task globalJavadoc(type: Javadoc) {
         windowTitle "Rivr API documentation"
         docTitle "Rivr documentation ($project.version)"
         bottom 'Copyright &copy; 2013 <a href="http://www.nuecho.com">Nu Echo Inc.</a>.'
-        use = true 
+        use = true
         noTimestamp = true
         group("Rivr Core Packages", "com.nuecho.rivr.core*")
         group("Rivr VoiceXML Packages", "com.nuecho.rivr.voicexml*")
         footer "To report errors, inconsistencies and omissions in the Rivr API documentation, please <a href=\"https://github.com/nuecho/rivr/issues/new\" target=\"_blank\">open an issue</a>."
-        links "http://download.oracle.com/javase/6/docs/api/" 
+        links "http://download.oracle.com/javase/6/docs/api/"
         links "http://download.oracle.com/javaee/6/api/"
         links "http://slf4j.org/api/"
         links "https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/"
-        setOverview("${projectDir}/doc/javadoc-extra/overview.html")
-        stylesheetFile = new File( projectDir, 'doc/javadoc-extra/rivr-javadoc.css' ) 
+        overview = "${projectDir}/doc/javadoc-extra/overview.html"
+        stylesheetFile = file 'doc/javadoc-extra/rivr-javadoc.css'
         docTitle "<a href=\"http://rivr.nuecho.com/\" target=\"_blank\"><img src=\"http://rivr.nuecho.com/img/logo.png\" /></a><br/>API documentation of <a href=\"http://rivr.nuecho.com/\" target=\"_blank\">Rivr</a> $project.version"
     }
 }
