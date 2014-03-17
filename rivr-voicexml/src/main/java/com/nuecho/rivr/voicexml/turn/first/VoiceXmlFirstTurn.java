@@ -32,11 +32,27 @@ public class VoiceXmlFirstTurn implements FirstTurn {
         return Collections.unmodifiableMap(mParameters);
     }
 
+    public boolean hasParameter(String key) {
+        return mParameters.containsKey(key);
+    }
+
+    /**
+     * @deprecated use {@link #hasParameter(String)} instead
+     */
+    @Deprecated
     public boolean hasParameter(Object key) {
         return mParameters.containsKey(key);
     }
 
+    /**
+     * @deprecated use {@link #getParameter(String)} instead
+     */
+    @Deprecated
     public String getParameters(Object key) {
+        return mParameters.get(key);
+    }
+
+    public String getParameter(String key) {
         return mParameters.get(key);
     }
 
