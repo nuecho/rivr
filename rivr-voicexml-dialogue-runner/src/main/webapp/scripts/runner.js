@@ -138,17 +138,17 @@ function processConfiguration(configuration, isDtmf, table) {
 }
 
 function processAudioItem(audioItem, table) {
-  var promptAudioItemRow = $("<tr>");
+  var promptAudioItemRow = $("<tr/>");
   table.append(promptAudioItemRow);
 
-  var audioItemTypeCell = $("<td>");
+  var audioItemTypeCell = $("<td/>");
   audioItemTypeCell.addClass("content-cell");
   promptAudioItemRow.append(audioItemTypeCell);
 
   var type = audioItem.type;
 
   if (audioItem.location) {
-    var link = $("<a>");
+    var link = $("<a/>");
     link.attr("href", audioItem.location);
     link.text(type);
     audioItemTypeCell.append(link);
@@ -156,16 +156,40 @@ function processAudioItem(audioItem, table) {
     audioItemTypeCell.text(type);
   }
 
-  var audioItemTextCell = $("<td>");
+  var audioItemTextCell = $("<td/>");
   audioItemTextCell.addClass("content-cell");
-  audioItemTextCell.addClass("prompt-text");
   promptAudioItemRow.append(audioItemTextCell);
 
-  if (audioItem.text) {
-    audioItemTextCell.append('"' + audioItem.text + '"');
+  if (audioItem.type == "audioFile") {
+
+    var audioFileTable = $("<table/>");
+    audioItemTextCell.append(audioFileTable);
+
+    if ("alternate" in audioItem && audioItem.alternate != null) {
+
+      var alternateRow = $("<tr/>");
+      audioFileTable.append(alternateRow);
+
+      alternateRow.append($("<td/>").text("alternate"));
+
+      var alternateTable = $("<table/>");
+      alternateRow.append($("<td/>").append(alternateTable));
+      processAudioItem(audioItem.alternate, alternateTable);
+    }
+
+    if ("expression" in audioItem && audioItem.expression != null) {
+      var expressionRow = $("<tr/>");
+      audioFileTable.append(expressionRow);
+
+      expressionRow.append($("<td/>").text("expression"));
+      var pre = $("<pre/>");
+      pre.text(audioItem.expression);
+      expressionRow.append($("<td/>").append(pre));
+
+    }
   }
 
-  if (audioItem.ssml) {
+  if ("ssml" in audioItem && audioItem.ssml != null) {
     var showSsmlButton = $("<button>").button({
       "label" : "Show SSML...",
       "icons" : {
@@ -182,23 +206,17 @@ function processAudioItem(audioItem, table) {
     audioItemTextCell.append(showSsmlButton);
   }
 
-  if (audioItem.expression) {
-    var pre = $("<pre>");
-    audioItemTextCell.removeClass("prompt-text");
-    pre.text(audioItem.expression);
-    audioItemTextCell.append(pre);
-  }
-
   if (audioItem.pause) {
     audioItemTextCell.append(audioItem.pause + " ms");
   }
 
-  if (audioItem.dtmf) {
-    audioItemTextCell.append(audioItem.dtmf);
-  }
-
   if (audioItem.mark) {
     audioItemTextCell.append(audioItem.mark);
+  }
+
+  if (audioItem.text) {
+    audioItemTextCell.addClass("prompt-text");
+    audioItemTextCell.append(audioItem.text);
   }
 }
 
