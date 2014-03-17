@@ -74,7 +74,7 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     private static final long serialVersionUID = 1L;
     private static final String SESSION_CONTAINER_NAME = "com.nuecho.rivr.sessionContainer";
 
-    private static final String INITIAL_ARGUMENT_PREFIX = "com.nuecho.core.voicexml.";
+    private static final String INITIAL_ARGUMENT_PREFIX = "com.nuecho.rivr.core.";
     private static final String INITIAL_ARGUMENT_DIALOGUE_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "dialogueTimeout";
     private static final String INITIAL_ARGUMENT_SESSION_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "sessionTimeout";
     private static final String INITIAL_ARGUMENT_SESSION_SCAN_PERIOD = INITIAL_ARGUMENT_PREFIX + "sessionScanPeriod";
