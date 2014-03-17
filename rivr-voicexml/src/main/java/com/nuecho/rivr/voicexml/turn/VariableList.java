@@ -34,11 +34,15 @@ public final class VariableList implements Iterable<Entry<String, String>>, Json
 
     public void addWithExpression(String name, String initialExpression) {
         Assert.notNull(name, "name");
+        Assert.notNull(initialExpression, "initialExpression");
         Assert.ensure(VoiceXmlUtils.isValidIdentifierName(name), "Invalid ECMAScript identifier name: '" + name + "'");
         mVariables.put(name, initialExpression);
     }
 
     public void addWithString(String name, String string) {
+        Assert.notNull(name, "name");
+        Assert.ensure(VoiceXmlUtils.isValidIdentifierName(name), "Invalid ECMAScript identifier name: '" + name + "'");
+        Assert.notNull(string, "string");
         mVariables.put(name, VoiceXmlDomUtil.createEcmaScriptStringLiteral(string));
     }
 
