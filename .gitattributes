@@ -17,6 +17,7 @@
 *.md textfile
 *.properties textfile
 *.txt textfile
+*.html textfile
 
 # Declare files that will always have LF line endings on checkout.
 *.sh textfile eol=lf
