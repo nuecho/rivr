@@ -127,9 +127,27 @@ public class Message extends VoiceXmlOutputTurn {
             mName = name;
         }
 
+        /**
+         * @deprecated Use {@link #addAudioItem(AudioItem)} instead
+         */
+        @Deprecated
         public Builder addAudio(AudioItem audioItem) {
+            return addAudioItem(audioItem);
+        }
+
+        public Builder addAudioItem(AudioItem audioItem) {
             Assert.notNull(audioItem, "audioItem");
             mAudioItems.add(audioItem);
+            return this;
+        }
+
+        public Builder addAudioItems(AudioItem... audioItems) {
+            return addAudioItems(Arrays.asList(audioItems));
+        }
+
+        public Builder addAudioItems(List<AudioItem> audioItems) {
+            Assert.noNullValues(audioItems, mLanguage);
+            mAudioItems.addAll(audioItems);
             return this;
         }
 
