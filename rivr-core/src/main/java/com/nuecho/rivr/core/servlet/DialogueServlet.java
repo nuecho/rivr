@@ -175,7 +175,7 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     }
 
     private void ensureFieldIsSet(Object fieldValue, String fieldName) {
-        if (fieldValue == null) throw new IllegalStateException(fieldName + "  is not set.");
+        if (fieldValue == null) throw new IllegalStateException(fieldName + " is not set.");
     }
 
     @Override
