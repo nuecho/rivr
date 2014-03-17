@@ -31,6 +31,31 @@ public final class Assert {
         ensure(!collection.isEmpty(), symbol + " should not be empty.");
     }
 
+    public static void noNullValues(Collection<?> collection, String symbol) {
+        Assert.notNull(collection, symbol);
+        for (Object item : collection) {
+            ensure(item != null, symbol + " should not contain null values.");
+        }
+    }
+
+    public static void noNullValues(Object[] array, String symbol) {
+        Assert.notNull(array, symbol);
+        int index = 0;
+        for (Object item : array) {
+            ensure(item != null, symbol + "[" + index + "]  should not be null.");
+            index++;
+        }
+    }
+
+    public static void noNullValues(List<?> list, String symbol) {
+        Assert.notNull(list, symbol);
+        int index = 0;
+        for (Object item : list) {
+            ensure(item != null, "item #" + index + " of " + symbol + " should not be null.");
+            index++;
+        }
+    }
+
     public static void between(long min, long value, long max) {
         if (value < min || value > max)
             throw new AssertionError("Value should not be in the range [" + min + ", " + max + "]");
