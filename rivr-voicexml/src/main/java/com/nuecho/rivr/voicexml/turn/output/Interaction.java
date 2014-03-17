@@ -582,12 +582,12 @@ public class Interaction extends VoiceXmlOutputTurn {
         }
 
         public void setAcknowledgeAudioItems(List<? extends AudioItem> acknowledgeAudioItems) {
-            Assert.notNull(acknowledgeAudioItems, "acknowledgeAudioItems");
+            Assert.noNullValues(acknowledgeAudioItems, "acknowledgeAudioItems");
             mAcknowledgeAudioItems = new ArrayList<AudioItem>(acknowledgeAudioItems);
         }
 
         public void setAcknowledgeAudioItems(AudioItem... acknowledgeAudioItems) {
-            Assert.notNull(acknowledgeAudioItems, "acknowledgeAudioItems");
+            Assert.noNullValues(acknowledgeAudioItems, "acknowledgeAudioItems");
             mAcknowledgeAudioItems = asList(acknowledgeAudioItems);
         }
 
@@ -687,11 +687,12 @@ public class Interaction extends VoiceXmlOutputTurn {
         }
 
         public void setAcknowledgeAudioItems(List<? extends AudioItem> acknowledgeAudioItems) {
-            Assert.notNull(acknowledgeAudioItems, "acknowledgeAudioItems");
+            Assert.noNullValues(acknowledgeAudioItems, "acknowledgeAudioItems");
             mAcknowledgeAudioItems = new ArrayList<AudioItem>(acknowledgeAudioItems);
         }
 
         public void setAcknowledgeAudioItems(AudioItem... acknowledgeAudioItems) {
+            Assert.noNullValues(acknowledgeAudioItems, "acknowledgeAudioItems");
             mAcknowledgeAudioItems = asList(acknowledgeAudioItems);
         }
 
@@ -773,7 +774,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         public Prompt(SpeechRecognition speechRecognition,
                       DtmfRecognition dtmfRecognition,
                       List<? extends AudioItem> audioItems) {
-            Assert.notNull(audioItems, "audioItems");
+            Assert.noNullValues(audioItems, "audioItems");
             mAudioItems = new ArrayList<AudioItem>(audioItems);
             mSpeechRecognition = speechRecognition;
             mDtmfRecognition = dtmfRecognition;
@@ -1075,6 +1076,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         public Builder addPrompt(DtmfRecognition dtmfRecognition,
                                  SpeechRecognition speechRecognition,
                                  List<? extends AudioItem> audioItems) {
+            Assert.noNullValues(audioItems, "audioItems");
             Prompt prompt = new Prompt(speechRecognition, dtmfRecognition, audioItems);
             prompt.setLanguage(mLanguage);
             prompt.setHotWordBargeIn(mBargeInType);
@@ -1088,7 +1090,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          * @param audioItems audio items to be played during this prompt.
          */
         public Builder addPrompt(AudioItem... audioItems) {
-            return addPrompt(Arrays.asList(audioItems));
+            return addPrompt(asList(audioItems));
         }
 
         /**
@@ -1097,6 +1099,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          * @param audioItems audio items to be played during this prompt.
          */
         public Builder addPrompt(List<? extends AudioItem> audioItems) {
+            Assert.noNullValues(audioItems, "audioItems");
             Prompt prompt = new Prompt(audioItems);
             prompt.setLanguage(mLanguage);
             prompt.setHotWordBargeIn(mBargeInType);
