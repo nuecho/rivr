@@ -1,9 +1,15 @@
-@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic);
+@import
+	url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic)
+	;
 
 body {
 	background: #ddd;
 	font-family: Ubuntu, Verdana, Arial, sans-serif;
 	font-size: 12px;
+}
+
+.ui-widget {
+	font-family: Ubuntu, Verdana, Arial, sans-serif;
 }
 
 #main {
@@ -78,7 +84,6 @@ body {
 	border-radius: 4px;
 	padding: 3px;
 }
-
 
 .sub-table {
 	margin-left: 10px;
