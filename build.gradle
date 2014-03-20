@@ -1,5 +1,5 @@
 group = "com.nuecho"
-version = "1.0.0"
+version = "1.0.1"
 
 // Configure the java projects release.
 
@@ -127,7 +127,7 @@ configure(javaProjects) {
 
 task globalJavadoc(type: Javadoc) {
      source javaProjects.collect {project -> project.sourceSets.main.allJava }
-//     destinationDir = file buildDir, 'javadoc'
+     destinationDir = new java.io.File(buildDir, 'javadoc')
      classpath = files(javaProjects.collect {project -> project.sourceSets.main.compileClasspath})
 
      // To use Java 7 Javadoc:
