@@ -46,6 +46,11 @@ import com.nuecho.rivr.core.util.*;
  * specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
  * for 10 seconds. Default value: <code>10 s</code></dd></dt>
  * <p/>
+ * <dt>com.nuecho.rivr.core.controllerTimeout
+ * <dd>Maximum time for controller to produce an {@link InputTurn}. Value
+ * specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
+ * for 10 seconds. Default value: <code>5 m</code></dd></dt>
+ * <p/>
  * <dt>com.nuecho.rivr.core.sessionTimeout</dt>
  * <dd>Maximum inactivity time for a session. Value specified must be followed
  * by unit (ms, s, m, h, d, y), e.g. <code>10s</code> for 10 seconds. Default
@@ -55,6 +60,12 @@ import com.nuecho.rivr.core.util.*;
  * <dd>Time between each scan for dead sessions in the session container. Value
  * specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
  * for 10 seconds. Default value: <code>2 m</code></dd>
+ * <p/>
+ * <dt>com.nuecho.rivr.core.webappServerSessionTrackingEnabled</dt>
+ * <dd>Whether a {@link javax.servlet.http.HttpSession} should be created for
+ * each dialogue or not. This is useful for load-balancers using JSESSIONID
+ * cookie to enforce server affinity (or stickyness). Value should be
+ * <code>true</code> or <code>false</code>. Default value: <code>true</code>.
  * 
  * @param <F> type of {@link FirstTurn}
  * @param <L> type of {@link LastTurn}
@@ -78,6 +89,10 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     private static final String INITIAL_ARGUMENT_DIALOGUE_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "dialogueTimeout";
     private static final String INITIAL_ARGUMENT_SESSION_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "sessionTimeout";
     private static final String INITIAL_ARGUMENT_SESSION_SCAN_PERIOD = INITIAL_ARGUMENT_PREFIX + "sessionScanPeriod";
+    private static final String INITIAL_ARGUMENT_CONTROLLER_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "controllerTimeout";
+
+    private static final String INITIAL_ARGUMENT_ENABLE_WEBAPP_SERVER_SESSION_TRACKING = INITIAL_ARGUMENT_PREFIX
+                                                                                         + "webappServerSessionTrackingEnabled";
 
     private ErrorHandler<L> mErrorHandler;
     private DialogueFactory<I, O, F, L, C> mDialogueFactory;
@@ -87,8 +102,12 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     private InputTurnFactory<I, F> mInputTurnFactory;
 
     private Duration mDialogueTimeout = Duration.seconds(10);
+    private Duration mControllerTimeout = Duration.minutes(5);
+
     private Duration mSessionTimeout = Duration.minutes(30);
     private Duration mSessionScanPeriod = Duration.minutes(2);
+
+    private boolean mWebappServerSessionTrackingEnabled = true;
 
     /**
      * Performs initialization.
@@ -151,6 +170,16 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
             setDialogueTimeout(dialogueTimeout);
         }
 
+        Duration controllerTimeout = getDuration(INITIAL_ARGUMENT_CONTROLLER_TIMEOUT);
+        if (controllerTimeout != null) {
+            setControllerTimeout(controllerTimeout);
+        }
+
+        Boolean enableWebappServerSessionTracking = getBoolean(INITIAL_ARGUMENT_ENABLE_WEBAPP_SERVER_SESSION_TRACKING);
+        if (enableWebappServerSessionTracking != null) {
+            setWebappServerSessionTrackingEnabled(mWebappServerSessionTrackingEnabled);
+        }
+
     }
 
     /**
@@ -172,6 +201,19 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         } catch (IllegalArgumentException exception) {
             throw new ServletException("Unable to parse duration for init-arg '" + key + "'", exception);
         }
+    }
+
+    private Boolean getBoolean(String key) throws ServletException {
+        ServletConfig servletConfig = getServletConfig();
+        String booleanString = servletConfig.getInitParameter(key);
+        if (booleanString == null) return null;
+        if (booleanString.equalsIgnoreCase("true")) return Boolean.TRUE;
+        else if (booleanString.equalsIgnoreCase("false")) return Boolean.FALSE;
+        else throw new ServletException("Unable to parse boolean for init-arg '"
+                                        + key
+                                        + "'.  Should be 'true' of 'false' but not '"
+                                        + booleanString
+                                        + "'.");
     }
 
     private void ensureFieldIsSet(Object fieldValue, String fieldName) {
@@ -260,6 +302,16 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         mDialogueTimeout = dialogueTimeout;
     }
 
+    /**
+     * Sets maximum duration the dialogue thread can wait for the controller
+     * response. Cannot be <code>null</code>. A value of Duration.ZERO (or
+     * equivalent) means to wait forever.
+     */
+    public final void setControllerTimeout(Duration controllerTimeout) {
+        Assert.notNull(controllerTimeout, "controllerTimeout");
+        mControllerTimeout = controllerTimeout;
+    }
+
     public void setSessionTimeout(Duration sessionTimeout) {
         Assert.notNull(sessionTimeout, "sessionTimeout");
         mSessionTimeout = sessionTimeout;
@@ -273,6 +325,10 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     public void setErrorHandler(ErrorHandler<L> errorHandler) {
         Assert.notNull(errorHandler, "errorHandler");
         mErrorHandler = errorHandler;
+    }
+
+    public void setWebappServerSessionTrackingEnabled(boolean enableWebappServerSessionTracking) {
+        mWebappServerSessionTrackingEnabled = enableWebappServerSessionTracking;
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException {
@@ -347,6 +403,9 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         Logger logger = mLoggerFactory.getLogger(DIALOGUE_LOGGER_NAME);
         dialogueChannel.setLogger(logger);
 
+        dialogueChannel.setDefaultReceiveFromControllerTimeout(mControllerTimeout);
+        dialogueChannel.setDefaultReceiveFromDialogueTimeout(mDialogueTimeout);
+
         C dialogueContext = createContext(request, session, dialogueChannel, logger);
 
         DialogueInitializationInfo<I, O, C> initializationInfo;
@@ -398,6 +457,10 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
             Session<I, O, F, L, C> session = new Session<I, O, F, L, C>(mSessionContainer, sessionId);
             mSessionContainer.addSession(session);
+            if (mWebappServerSessionTrackingEnabled) {
+                session.setAssociatedHttpSession(request.getSession());
+            }
+
             return session;
         }
     }
