@@ -584,7 +584,7 @@ public class Interaction extends VoiceXmlOutputTurn {
 
         public void setAcknowledgeAudioItems(AudioItem... acknowledgeAudioItems) {
             Assert.noNullValues(acknowledgeAudioItems, "acknowledgeAudioItems");
-            mAcknowledgeAudioItems = asList(acknowledgeAudioItems);
+            mAcknowledgeAudioItems = new ArrayList(asList(acknowledgeAudioItems));
         }
 
         private void assertInvariant() {
@@ -688,8 +688,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         }
 
         public void setAcknowledgeAudioItems(AudioItem... acknowledgeAudioItems) {
-            Assert.noNullValues(acknowledgeAudioItems, "acknowledgeAudioItems");
-            mAcknowledgeAudioItems = asList(acknowledgeAudioItems);
+            setAcknowledgeAudioItems(new ArrayList(asList(acknowledgeAudioItems)));
         }
 
         public void setNoInputTimeout(Duration noInputTimeout) {
