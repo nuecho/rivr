@@ -4,6 +4,8 @@
 
 package com.nuecho.rivr.voicexml.util;
 
+import static java.util.Arrays.*;
+
 import java.util.*;
 import java.util.regex.*;
 
@@ -83,7 +85,7 @@ public final class VoiceXmlUtils {
                                            "import",
                                            "public"};
 
-    private static final Set<String> RESERVED = new HashSet<String>(Arrays.asList(WORDS));
+    private static final Set<String> RESERVED = new HashSet<String>(asList(WORDS));
 
     /**
      * Checks if a name is a valid VoiceXML identifier as per VoiceXML 2.0
