@@ -142,7 +142,7 @@ public class Message extends VoiceXmlOutputTurn {
         }
 
         public Builder addAudioItems(AudioItem... audioItems) {
-            return addAudioItems(Arrays.asList(audioItems));
+            return addAudioItems(asList(audioItems));
         }
 
         public Builder addAudioItems(List<AudioItem> audioItems) {
