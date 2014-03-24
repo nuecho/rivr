@@ -113,7 +113,6 @@ public class Interaction extends VoiceXmlOutputTurn {
     @Override
     protected void fillVoiceXmlDocument(Document document, Element formElement, VoiceXmlDialogueContext dialogueContext)
             throws VoiceXmlDocumentRenderingException {
-
         DtmfRecognition dtmfGlobalRecognition = factorizeGlobalDtmfRecognition();
         SpeechRecognition speechGlobalRecognition = factorizeGlobalSpeechRecognition();
 
@@ -251,7 +250,6 @@ public class Interaction extends VoiceXmlOutputTurn {
     }
 
     private SpeechRecognition factorizeGlobalSpeechRecognition() {
-
         List<SpeechRecognition> speechConfigurations = getSpeechRecognitions();
         if (speechConfigurations.isEmpty()) return null;
 
@@ -330,7 +328,6 @@ public class Interaction extends VoiceXmlOutputTurn {
     }
 
     private List<SpeechRecognition> getSpeechRecognitions() {
-
         List<SpeechRecognition> configurations = new ArrayList<SpeechRecognition>();
 
         for (Prompt prompt : mPrompts) {
@@ -380,7 +377,6 @@ public class Interaction extends VoiceXmlOutputTurn {
 
     private static void factorizeParameters(Recognition globalRecognition, Recognition localRecognition) {
         for (String propertyName : globalRecognition.getPropertyNames()) {
-
             if (!same(localRecognition.getProperty(propertyName), globalRecognition.getProperty(propertyName))) {
                 globalRecognition.removeProperty(propertyName);
             }
@@ -1119,9 +1115,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         public Interaction build(DtmfRecognition dtmfRecognition,
                                  Duration noinputTimeout,
                                  AudioItem... acknowledgeAudioItems) {
-
             return build(dtmfRecognition, null, noinputTimeout, asList(acknowledgeAudioItems));
-
         }
 
         /**
@@ -1136,9 +1130,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         public Interaction build(SpeechRecognition speechRecognition,
                                  Duration noinputTimeout,
                                  AudioItem... acknowledgeAudioItems) {
-
             return build(null, speechRecognition, noinputTimeout, asList(acknowledgeAudioItems));
-
         }
 
         /**
@@ -1187,9 +1179,7 @@ public class Interaction extends VoiceXmlOutputTurn {
                                  SpeechRecognition speechRecognition,
                                  Duration noinputTimeout,
                                  AudioItem... acknowledgeAudioItems) {
-
             return build(dtmfRecognition, speechRecognition, noinputTimeout, asList(acknowledgeAudioItems));
-
         }
 
         /**
@@ -1206,7 +1196,6 @@ public class Interaction extends VoiceXmlOutputTurn {
                                  SpeechRecognition speechRecognition,
                                  Duration noinputTimeout,
                                  List<? extends AudioItem> acknowledgeAudioItems) {
-
             Assert.ensure(dtmfRecognition != null || speechRecognition != null,
                           "Must provide at least one recognition configuration (speech or DTMF)");
 
