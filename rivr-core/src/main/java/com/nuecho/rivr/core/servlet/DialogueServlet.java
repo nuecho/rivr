@@ -306,6 +306,8 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
      * Sets maximum duration the dialogue thread can wait for the controller
      * response. Cannot be <code>null</code>. A value of Duration.ZERO (or
      * equivalent) means to wait forever.
+     * 
+     * @since 1.0.1
      */
     public final void setControllerTimeout(Duration controllerTimeout) {
         Assert.notNull(controllerTimeout, "controllerTimeout");
@@ -327,6 +329,9 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         mErrorHandler = errorHandler;
     }
 
+    /**
+     * @since 1.0.1
+     */
     public final void setWebappServerSessionTrackingEnabled(boolean enableWebappServerSessionTracking) {
         mWebappServerSessionTrackingEnabled = enableWebappServerSessionTracking;
     }

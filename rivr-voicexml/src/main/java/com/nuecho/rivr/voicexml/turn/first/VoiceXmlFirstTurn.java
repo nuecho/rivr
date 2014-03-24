@@ -32,6 +32,9 @@ public class VoiceXmlFirstTurn implements FirstTurn {
         return Collections.unmodifiableMap(mParameters);
     }
 
+    /**
+     * @since 1.0.1
+     */
     public boolean hasParameter(String key) {
         return mParameters.containsKey(key);
     }
@@ -52,6 +55,9 @@ public class VoiceXmlFirstTurn implements FirstTurn {
         return mParameters.get(key);
     }
 
+    /**
+     * @since 1.0.1
+     */
     public String getParameter(String key) {
         return mParameters.get(key);
     }

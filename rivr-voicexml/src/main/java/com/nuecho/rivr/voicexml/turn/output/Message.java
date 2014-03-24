@@ -135,12 +135,18 @@ public class Message extends VoiceXmlOutputTurn {
             return addAudioItem(audioItem);
         }
 
+        /**
+         * @since 1.0.1
+         */
         public Builder addAudioItem(AudioItem audioItem) {
             Assert.notNull(audioItem, "audioItem");
             mAudioItems.add(audioItem);
             return this;
         }
 
+        /**
+         * @since 1.0.1
+         */
         public Builder addAudioItems(AudioItem... audioItems) {
             return addAudioItems(asList(audioItems));
         }
