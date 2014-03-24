@@ -208,12 +208,12 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         String booleanString = servletConfig.getInitParameter(key);
         if (booleanString == null) return null;
         if (booleanString.equalsIgnoreCase("true")) return Boolean.TRUE;
-        else if (booleanString.equalsIgnoreCase("false")) return Boolean.FALSE;
-        else throw new ServletException("Unable to parse boolean for init-arg '"
-                                        + key
-                                        + "'.  Should be 'true' of 'false' but not '"
-                                        + booleanString
-                                        + "'.");
+        if (booleanString.equalsIgnoreCase("false")) return Boolean.FALSE;
+        throw new ServletException("Unable to parse boolean for init-arg '"
+                                   + key
+                                   + "'.  Should be 'true' of 'false' but not '"
+                                   + booleanString
+                                   + "'.");
     }
 
     private void ensureFieldIsSet(Object fieldValue, String fieldName) {
