@@ -312,22 +312,22 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         mControllerTimeout = controllerTimeout;
     }
 
-    public void setSessionTimeout(Duration sessionTimeout) {
+    public final void setSessionTimeout(Duration sessionTimeout) {
         Assert.notNull(sessionTimeout, "sessionTimeout");
         mSessionTimeout = sessionTimeout;
     }
 
-    public void setSessionScanPeriod(Duration sessionScanPeriod) {
+    public final void setSessionScanPeriod(Duration sessionScanPeriod) {
         Assert.notNull(sessionScanPeriod, "sessionScanPeriod");
         mSessionScanPeriod = sessionScanPeriod;
     }
 
-    public void setErrorHandler(ErrorHandler<L> errorHandler) {
+    public final void setErrorHandler(ErrorHandler<L> errorHandler) {
         Assert.notNull(errorHandler, "errorHandler");
         mErrorHandler = errorHandler;
     }
 
-    public void setWebappServerSessionTrackingEnabled(boolean enableWebappServerSessionTracking) {
+    public final void setWebappServerSessionTrackingEnabled(boolean enableWebappServerSessionTracking) {
         mWebappServerSessionTrackingEnabled = enableWebappServerSessionTracking;
     }
 
