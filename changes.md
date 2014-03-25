@@ -1,5 +1,56 @@
 # Rivr change log
 
+## Version 1.0.1:
+
+### Rivr core
+
+#### Changed
+
+* `DialogueServlet`: Made setters final (might break existing subclasses).
+
+#### Added
+
+* `DialogueServlet`: Added 2 new initial arguments:
+    * `com.nuecho.rivr.core.controllerTimeout`
+    * `com.nuecho.rivr.core.webappServerSessionTrackingEnabled`
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* `DialogueServlet`: Fixed whitespace in error message.
+* `DialogueServlet`: Fixed init-arg prefix.  Correctly documented as `com.nuecho.rivr.core` but was using `com.nuecho.core.voicexml`.
+
+### Rivr VoiceXML
+
+#### Changed
+
+* `VoiceXmlFirstTurn`: Deprecated method signatures 
+    * `getParameter(Object)`
+    * `hasParameter(Object)`
+* `Message.Builder`: Deprecated `addAudio`
+
+#### Added
+
+* `VoiceXmlFirstTurn`: Added methods with better signatures
+    * `getParameter(String)`
+    * `hasParameter(String)` 
+* `Message.Builder`: Added 2 methods:
+    * `addAudioItem(AudioItem)`
+    * `addAudioItems(AudioItem...)`
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* `Interaction`: Added null checks in arrays and collections passed as parameters.
+* `VariableList`: Added more checks.
+* `Interaction`: Fixed encapsulation issue with `setAcknowledgeAudioItems()`
+
 ## Version 1.0.0:
 
 ### Rivr core
