@@ -4,8 +4,8 @@
 
 package com.nuecho.rivr.voicexml.turn.output;
 
+import static com.nuecho.rivr.core.util.Assert.*;
 import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;
-import static java.util.Arrays.*;
 
 import java.util.*;
 
@@ -54,7 +54,7 @@ public class Message extends VoiceXmlOutputTurn {
      * @param audioItems The sequence of {@link AudioItem} to play. Not empty.
      */
     public Message(String name, AudioItem... audioItems) {
-        this(name, asList(audioItems));
+        this(name, asListChecked(audioItems));
     }
 
     /**
@@ -148,7 +148,7 @@ public class Message extends VoiceXmlOutputTurn {
          * @since 1.0.1
          */
         public Builder addAudioItems(AudioItem... audioItems) {
-            return addAudioItems(asList(audioItems));
+            return addAudioItems(asListChecked(audioItems));
         }
 
         public Builder addAudioItems(List<AudioItem> audioItems) {

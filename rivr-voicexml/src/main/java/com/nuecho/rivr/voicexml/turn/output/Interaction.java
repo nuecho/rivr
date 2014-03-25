@@ -3,8 +3,8 @@
  */
 package com.nuecho.rivr.voicexml.turn.output;
 
+import static com.nuecho.rivr.core.util.Assert.*;
 import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;
-import static java.util.Arrays.*;
 
 import java.util.*;
 
@@ -583,8 +583,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         }
 
         public void setAcknowledgeAudioItems(AudioItem... acknowledgeAudioItems) {
-            Assert.noNullValues(acknowledgeAudioItems, "acknowledgeAudioItems");
-            mAcknowledgeAudioItems = new ArrayList(asList(acknowledgeAudioItems));
+            setAcknowledgeAudioItems(asListChecked(acknowledgeAudioItems));
         }
 
         private void assertInvariant() {
@@ -688,7 +687,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         }
 
         public void setAcknowledgeAudioItems(AudioItem... acknowledgeAudioItems) {
-            setAcknowledgeAudioItems(new ArrayList(asList(acknowledgeAudioItems)));
+            setAcknowledgeAudioItems(asListChecked(acknowledgeAudioItems));
         }
 
         public void setNoInputTimeout(Duration noInputTimeout) {
@@ -781,7 +780,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          * @param audioItems The list of {@link AudioItem}. Not null.
          */
         public Prompt(SpeechRecognition speechRecognition, DtmfRecognition dtmfRecognition, AudioItem... audioItems) {
-            this(speechRecognition, dtmfRecognition, asList(audioItems));
+            this(speechRecognition, dtmfRecognition, asListChecked(audioItems));
         }
 
         /**
@@ -1011,7 +1010,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          * @param audioItems audio items to be played during this prompt.
          */
         public Builder addPrompt(DtmfRecognition dtmfRecognition, AudioItem... audioItems) {
-            return addPrompt(dtmfRecognition, null, asList(audioItems));
+            return addPrompt(dtmfRecognition, null, asListChecked(audioItems));
         }
 
         /**
@@ -1031,7 +1030,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          * @param audioItems audio items to be played during this prompt.
          */
         public Builder addPrompt(SpeechRecognition speechRecognition, AudioItem... audioItems) {
-            return addPrompt(null, speechRecognition, asList(audioItems));
+            return addPrompt(null, speechRecognition, asListChecked(audioItems));
         }
 
         /**
@@ -1056,7 +1055,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         public Builder addPrompt(DtmfRecognition dtmfRecognition,
                                  SpeechRecognition speechRecognition,
                                  AudioItem... audioItems) {
-            return addPrompt(dtmfRecognition, speechRecognition, asList(audioItems));
+            return addPrompt(dtmfRecognition, speechRecognition, asListChecked(audioItems));
         }
 
         /**
@@ -1085,7 +1084,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          * @param audioItems audio items to be played during this prompt.
          */
         public Builder addPrompt(AudioItem... audioItems) {
-            return addPrompt(asList(audioItems));
+            return addPrompt(asListChecked(audioItems));
         }
 
         /**
@@ -1114,7 +1113,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         public Interaction build(DtmfRecognition dtmfRecognition,
                                  Duration noinputTimeout,
                                  AudioItem... acknowledgeAudioItems) {
-            return build(dtmfRecognition, null, noinputTimeout, asList(acknowledgeAudioItems));
+            return build(dtmfRecognition, null, noinputTimeout, asListChecked(acknowledgeAudioItems));
         }
 
         /**
@@ -1129,7 +1128,7 @@ public class Interaction extends VoiceXmlOutputTurn {
         public Interaction build(SpeechRecognition speechRecognition,
                                  Duration noinputTimeout,
                                  AudioItem... acknowledgeAudioItems) {
-            return build(null, speechRecognition, noinputTimeout, asList(acknowledgeAudioItems));
+            return build(null, speechRecognition, noinputTimeout, asListChecked(acknowledgeAudioItems));
         }
 
         /**
@@ -1178,7 +1177,7 @@ public class Interaction extends VoiceXmlOutputTurn {
                                  SpeechRecognition speechRecognition,
                                  Duration noinputTimeout,
                                  AudioItem... acknowledgeAudioItems) {
-            return build(dtmfRecognition, speechRecognition, noinputTimeout, asList(acknowledgeAudioItems));
+            return build(dtmfRecognition, speechRecognition, noinputTimeout, asListChecked(acknowledgeAudioItems));
         }
 
         /**
@@ -1222,7 +1221,7 @@ public class Interaction extends VoiceXmlOutputTurn {
          *            completion
          */
         public Interaction build(Recording recording, Duration noinputTimeout, AudioItem... acknowledgeAudioItems) {
-            return build(recording, noinputTimeout, asList(acknowledgeAudioItems));
+            return build(recording, noinputTimeout, asListChecked(acknowledgeAudioItems));
         }
 
         /**
@@ -1265,4 +1264,5 @@ public class Interaction extends VoiceXmlOutputTurn {
             mBuilt = true;
         }
     }
+
 }

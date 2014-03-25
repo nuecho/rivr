@@ -4,6 +4,8 @@
 
 package com.nuecho.rivr.core.util;
 
+import static java.util.Arrays.*;
+
 import java.util.*;
 
 /**
@@ -76,6 +78,11 @@ public final class Assert {
 
     public static void ensure(boolean condition, String message) {
         if (!condition) throw new AssertionError(message);
+    }
+
+    public static <T> List<T> asListChecked(T[] items) {
+        notNull(items, "items");
+        return asList(items);
     }
 
 }

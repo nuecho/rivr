@@ -3,8 +3,8 @@
  */
 package com.nuecho.rivr.voicexml.turn.output;
 
+import static com.nuecho.rivr.core.util.Assert.*;
 import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;
-import static java.util.Arrays.*;
 import static java.util.Collections.*;
 
 import java.util.*;
@@ -68,7 +68,7 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
      *            subdialogue. Not null.
      */
     public final void setSubdialogueParameters(Collection<Parameter> parameters) {
-        Assert.notNull(parameters, "subdialogueParameters");
+        Assert.noNullValues(parameters, "parameters");
         mParameters = new ArrayList<Parameter>(parameters);
     }
 
@@ -77,7 +77,7 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
      *            passed to the subdialogue. Not null.
      */
     public final void setSubdialogueParameters(Parameter... subdialogueParameters) {
-        setSubdialogueParameters(asList(subdialogueParameters));
+        setSubdialogueParameters(asListChecked(subdialogueParameters));
     }
 
     /**

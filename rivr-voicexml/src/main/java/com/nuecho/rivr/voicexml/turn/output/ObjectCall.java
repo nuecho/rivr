@@ -4,8 +4,8 @@
 
 package com.nuecho.rivr.voicexml.turn.output;
 
+import static com.nuecho.rivr.core.util.Assert.*;
 import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;
-import static java.util.Arrays.*;
 import static java.util.Collections.*;
 
 import java.util.*;
@@ -118,7 +118,7 @@ public class ObjectCall extends VoiceXmlOutputTurn {
      *            null.
      */
     public final void setParameters(List<Parameter> parameters) {
-        Assert.notNull(parameters, "parameters");
+        Assert.noNullValues(parameters, "parameters");
         mParameters = new ArrayList<Parameter>(parameters);
     }
 
@@ -127,7 +127,7 @@ public class ObjectCall extends VoiceXmlOutputTurn {
      *            null.
      */
     public final void setParameters(Parameter... parameters) {
-        setParameters(asList(parameters));
+        setParameters(asListChecked(parameters));
     }
 
     /**

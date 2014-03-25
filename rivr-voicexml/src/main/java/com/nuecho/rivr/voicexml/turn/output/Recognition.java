@@ -4,7 +4,7 @@
 
 package com.nuecho.rivr.voicexml.turn.output;
 
-import static java.util.Arrays.*;
+import static com.nuecho.rivr.core.util.Assert.*;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -84,11 +84,11 @@ public abstract class Recognition implements JsonSerializable {
     }
 
     public void setGrammarItems(GrammarItem... grammarItems) {
-        setGrammarItems(asList(grammarItems));
+        setGrammarItems(asListChecked(grammarItems));
     }
 
     public void setGrammarItems(List<? extends GrammarItem> grammarItems) {
-        Assert.notNull(grammarItems, "grammarItems");
+        Assert.noNullValues(grammarItems, "grammarItems");
         mGrammarItems = new ArrayList<GrammarItem>(grammarItems);
     }
 
