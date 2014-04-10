@@ -113,7 +113,11 @@ public class JsonStepRenderer implements
         JsonpMode jsonpMode = callback != null
                 ? textarea != null ? JsonpMode.TEXTAREA : JsonpMode.NORMAL
                 : JsonpMode.DISABLED;
-        return new JsonServletResponseContent(builder.build(), jsonpMode, callback);
+        try {
+            return new JsonServletResponseContent(builder.build(), jsonpMode, callback);
+        } catch (IOException exception) {
+            throw new StepRendererException("Unable to create response.", exception);
+        }
     }
 
 }

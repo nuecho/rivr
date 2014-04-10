@@ -4,6 +4,7 @@
 
 package com.nuecho.rivr.voicexml.rendering.voicexml;
 
+import java.io.*;
 import java.util.*;
 
 import javax.servlet.http.*;
@@ -79,7 +80,11 @@ public class VoiceXmlStepRenderer implements
         }
 
         voiceXmlDialogueContext.incrementTurnIndex();
-        return new XmlDocumentServletResponseContent(voiceXmlDocument, VOICE_XML_MIME_TYPE);
+        try {
+            return new XmlDocumentServletResponseContent(voiceXmlDocument, VOICE_XML_MIME_TYPE);
+        } catch (IOException exception) {
+            throw new StepRendererException("Unable to create response.", exception);
+        }
     }
 
 }

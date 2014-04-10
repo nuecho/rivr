@@ -22,20 +22,20 @@ public class JsonServletResponseContent implements ServletResponseContent {
     private static final String JSON_MIME_TYPE = "application/json";
     private static final String HTML_MIME_TYPE = "text/html";
 
-    private final JsonStructure mJsonData;
+    private final byte[] mContent;
     private final JsonpMode mJsonpMode;
-    private final String mJsonpCallback;
 
     enum JsonpMode {
         DISABLED, NORMAL, TEXTAREA
     }
 
-    public JsonServletResponseContent(JsonStructure jsonData, JsonpMode jsonpMode, String jsonpCallback) {
+    public JsonServletResponseContent(JsonStructure jsonData, JsonpMode jsonpMode, String jsonpCallback)
+            throws IOException {
         Assert.notNull(jsonpMode, "jsonpMode");
         Assert.notNull(jsonData, "jsonData");
-        mJsonData = jsonData;
+
         mJsonpMode = jsonpMode;
-        mJsonpCallback = jsonpCallback;
+        mContent = buildContent(jsonData, jsonpCallback);
     }
 
     @Override
@@ -48,18 +48,24 @@ public class JsonServletResponseContent implements ServletResponseContent {
 
     @Override
     public void writeTo(OutputStream outputStream) throws IOException {
-        Writer writer = new OutputStreamWriter(outputStream, "utf-8");
+        outputStream.write(mContent);
+    }
+
+    private byte[] buildContent(JsonStructure jsonData, String jsonpCallback) throws IOException {
+
+        ByteArrayOutputStream binaryArrayOutputStream = new ByteArrayOutputStream();
+        Writer writer = new OutputStreamWriter(binaryArrayOutputStream, "utf-8");
 
         if (mJsonpMode == JsonpMode.TEXTAREA) {
             writer.write("<textarea>");
         }
 
         if (mJsonpMode != JsonpMode.DISABLED) {
-            writer.write(mJsonpCallback);
+            writer.write(jsonpCallback);
             writer.write('(');
         }
 
-        JsonUtils.write(writer, mJsonData);
+        JsonUtils.write(writer, jsonData);
 
         if (mJsonpMode != JsonpMode.DISABLED) {
             writer.write(')');
@@ -70,6 +76,12 @@ public class JsonServletResponseContent implements ServletResponseContent {
         }
 
         writer.flush();
+        return binaryArrayOutputStream.toByteArray();
+    }
+
+    @Override
+    public Integer getContentLength() {
+        return mContent.length;
     }
 
 }

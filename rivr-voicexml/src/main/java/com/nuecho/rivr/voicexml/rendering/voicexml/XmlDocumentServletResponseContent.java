@@ -19,11 +19,13 @@ import com.nuecho.rivr.core.servlet.*;
  */
 public class XmlDocumentServletResponseContent implements ServletResponseContent {
 
-    private final Document mDocument;
+    private final byte[] mContent;
     private final String mContentType;
 
-    public XmlDocumentServletResponseContent(Document document, String contentType) {
-        mDocument = document;
+    public XmlDocumentServletResponseContent(Document document, String contentType) throws IOException {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        writeToOutputStream(document, byteArrayOutputStream);
+        mContent = byteArrayOutputStream.toByteArray();
         mContentType = contentType;
     }
 
@@ -34,6 +36,11 @@ public class XmlDocumentServletResponseContent implements ServletResponseContent
 
     @Override
     public void writeTo(OutputStream outputStream) throws IOException {
-        writeToOutputStream(mDocument, outputStream);
+        outputStream.write(mContent);
+    }
+
+    @Override
+    public Integer getContentLength() {
+        return mContent.length;
     }
 }

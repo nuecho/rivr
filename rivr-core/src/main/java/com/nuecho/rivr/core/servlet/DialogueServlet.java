@@ -498,6 +498,11 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
             throws IOException {
         ServletOutputStream outputStream = response.getOutputStream();
         response.setContentType(responseContent.getContentType());
+        Integer contentLength = responseContent.getContentLength();
+        if (contentLength != null) {
+            response.setContentLength(contentLength);
+        }
+
         responseContent.writeTo(outputStream);
     }
 }
