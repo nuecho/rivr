@@ -79,6 +79,9 @@ public class JsonServletResponseContent implements ServletResponseContent {
         return binaryArrayOutputStream.toByteArray();
     }
 
+    /**
+     * @since 1.0.2
+     */
     @Override
     public Integer getContentLength() {
         return mContent.length;

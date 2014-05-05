@@ -39,6 +39,9 @@ public class XmlDocumentServletResponseContent implements ServletResponseContent
         outputStream.write(mContent);
     }
 
+    /**
+     * @since 1.0.2
+     */
     @Override
     public Integer getContentLength() {
         return mContent.length;

@@ -7,7 +7,7 @@ package com.nuecho.rivr.core.servlet;
 import java.io.*;
 
 /**
- * Encapsulate servlet response (content + content type)
+ * Encapsulates servlet response (content, type and length)
  * 
  * @author Nu Echo Inc.
  */
@@ -16,5 +16,8 @@ public interface ServletResponseContent {
 
     void writeTo(OutputStream outputStream) throws IOException;
 
+    /**
+     * @since 1.0.2
+     */
     Integer getContentLength();
 }
