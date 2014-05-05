@@ -1,5 +1,43 @@
 # Rivr change log
 
+## Version 1.0.2:
+
+### Rivr core
+
+####
+
+* (nothing)
+
+#### Added
+
+* `ServletResponseContent`: added `getContentLength()`
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* `DialogueServlet`: Generates the `Content-Length` header.  This prevents chunked encoding on some servlet containers (at least on Oracle WebLogic).  This was causing problem for the dialogue runner.
+
+### Rivr VoiceXML
+
+#### Changed
+
+* `XmlDocumentServletResponseContent` and `JsonServletResponseContent`: added `getContentLength()`
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* (nothing)
+
 ## Version 1.0.1:
 
 ### Rivr core
