@@ -158,3 +158,13 @@ task globalJavadoc(type: Javadoc) {
 }
 
 task wrapper(type: Wrapper) { gradleVersion = '1.9' }
+
+void createVersionFile(File resourceDir, String fileName) {
+    File versionFile = new File(resourceDir, fileName)
+    versionFile.getParentFile().mkdirs()
+    Writer writer = new OutputStreamWriter(new FileOutputStream(versionFile), "utf-8")
+    writer.write("version=")
+    writer.write(version)
+    writer.write("\n")
+    writer.close()
+}

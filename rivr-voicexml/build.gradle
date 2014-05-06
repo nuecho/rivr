@@ -5,3 +5,7 @@ dependencies {
     compile 'javax.json:javax.json-api:1.0'
     runtime 'org.glassfish:javax.json:1.0.3'
 }
+
+processResources {
+    createVersionFile(sourceSets.main.output.resourcesDir, "com/nuecho/rivr/voicexml/version.properties");
+}

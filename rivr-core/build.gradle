@@ -2,3 +2,7 @@ dependencies {
     compile 'javax.servlet:servlet-api:2.5'
     compile 'org.slf4j:slf4j-api:1.7.5'
 }
+
+processResources {
+    createVersionFile(sourceSets.main.output.resourcesDir, "com/nuecho/rivr/core/version.properties");
+}
