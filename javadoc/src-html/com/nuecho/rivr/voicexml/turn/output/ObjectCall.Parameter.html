@@ -12,8 +12,8 @@
 <span class="sourceLineNo">004</span><a name="line.4"></a>
 <span class="sourceLineNo">005</span>package com.nuecho.rivr.voicexml.turn.output;<a name="line.5"></a>
 <span class="sourceLineNo">006</span><a name="line.6"></a>
-<span class="sourceLineNo">007</span>import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;<a name="line.7"></a>
-<span class="sourceLineNo">008</span>import static java.util.Arrays.*;<a name="line.8"></a>
+<span class="sourceLineNo">007</span>import static com.nuecho.rivr.core.util.Assert.*;<a name="line.7"></a>
+<span class="sourceLineNo">008</span>import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;<a name="line.8"></a>
 <span class="sourceLineNo">009</span>import static java.util.Collections.*;<a name="line.9"></a>
 <span class="sourceLineNo">010</span><a name="line.10"></a>
 <span class="sourceLineNo">011</span>import java.util.*;<a name="line.11"></a>
@@ -126,7 +126,7 @@
 <span class="sourceLineNo">118</span>     *            null.<a name="line.118"></a>
 <span class="sourceLineNo">119</span>     */<a name="line.119"></a>
 <span class="sourceLineNo">120</span>    public final void setParameters(List&lt;Parameter&gt; parameters) {<a name="line.120"></a>
-<span class="sourceLineNo">121</span>        Assert.notNull(parameters, "parameters");<a name="line.121"></a>
+<span class="sourceLineNo">121</span>        Assert.noNullValues(parameters, "parameters");<a name="line.121"></a>
 <span class="sourceLineNo">122</span>        mParameters = new ArrayList&lt;Parameter&gt;(parameters);<a name="line.122"></a>
 <span class="sourceLineNo">123</span>    }<a name="line.123"></a>
 <span class="sourceLineNo">124</span><a name="line.124"></a>
@@ -135,7 +135,7 @@
 <span class="sourceLineNo">127</span>     *            null.<a name="line.127"></a>
 <span class="sourceLineNo">128</span>     */<a name="line.128"></a>
 <span class="sourceLineNo">129</span>    public final void setParameters(Parameter... parameters) {<a name="line.129"></a>
-<span class="sourceLineNo">130</span>        setParameters(asList(parameters));<a name="line.130"></a>
+<span class="sourceLineNo">130</span>        setParameters(asListChecked(parameters));<a name="line.130"></a>
 <span class="sourceLineNo">131</span>    }<a name="line.131"></a>
 <span class="sourceLineNo">132</span><a name="line.132"></a>
 <span class="sourceLineNo">133</span>    /**<a name="line.133"></a>

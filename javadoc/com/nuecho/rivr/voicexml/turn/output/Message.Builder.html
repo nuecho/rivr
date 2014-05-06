@@ -138,17 +138,33 @@ extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.h
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#addAudio(com.nuecho.rivr.voicexml.turn.output.audio.AudioItem)">addAudio</a></strong>(<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a>&nbsp;audioItem)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#addAudio(com.nuecho.rivr.voicexml.turn.output.audio.AudioItem)">addAudio</a></strong>(<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a>&nbsp;audioItem)</code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>Use <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#addAudioItem(com.nuecho.rivr.voicexml.turn.output.audio.AudioItem)"><code>addAudioItem(AudioItem)</code></a> instead</i></div>
+</div>
+</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#build()">build</a></strong>()</code>&nbsp;</td>
+<td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#addAudioItem(com.nuecho.rivr.voicexml.turn.output.audio.AudioItem)">addAudioItem</a></strong>(<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a>&nbsp;audioItem)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#setBargein(java.lang.Boolean)">setBargein</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&nbsp;bargeIn)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#addAudioItems(com.nuecho.rivr.voicexml.turn.output.audio.AudioItem...)">addAudioItems</a></strong>(<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a>...&nbsp;audioItems)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#addAudioItems(java.util.List)">addAudioItems</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a>&gt;&nbsp;audioItems)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#build()">build</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#setBargein(java.lang.Boolean)">setBargein</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&nbsp;bargeIn)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#setLanguage(java.lang.String)">setLanguage</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;language)</code>&nbsp;</td>
 </tr>
@@ -197,7 +213,40 @@ extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.h
 <ul class="blockList">
 <li class="blockList">
 <h4>addAudio</h4>
-<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#line.130">addAudio</a>(<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a>&nbsp;audioItem)</pre>
+<pre><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#line.134">addAudio</a>(<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a>&nbsp;audioItem)</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>Use <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#addAudioItem(com.nuecho.rivr.voicexml.turn.output.audio.AudioItem)"><code>addAudioItem(AudioItem)</code></a> instead</i></div>
+</li>
+</ul>
+<a name="addAudioItem(com.nuecho.rivr.voicexml.turn.output.audio.AudioItem)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addAudioItem</h4>
+<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#line.141">addAudioItem</a>(<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a>&nbsp;audioItem)</pre>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>1.0.1</dd></dl>
+</li>
+</ul>
+<a name="addAudioItems(com.nuecho.rivr.voicexml.turn.output.audio.AudioItem...)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addAudioItems</h4>
+<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#line.150">addAudioItems</a>(<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a>...&nbsp;audioItems)</pre>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>1.0.1</dd></dl>
+</li>
+</ul>
+<a name="addAudioItems(java.util.List)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addAudioItems</h4>
+<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#line.154">addAudioItems</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/audio/AudioItem.html" title="class in com.nuecho.rivr.voicexml.turn.output.audio">AudioItem</a>&gt;&nbsp;audioItems)</pre>
 </li>
 </ul>
 <a name="setLanguage(java.lang.String)">
@@ -206,7 +255,7 @@ extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.h
 <ul class="blockList">
 <li class="blockList">
 <h4>setLanguage</h4>
-<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#line.136">setLanguage</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;language)</pre>
+<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#line.160">setLanguage</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;language)</pre>
 </li>
 </ul>
 <a name="setBargein(java.lang.Boolean)">
@@ -215,7 +264,7 @@ extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.h
 <ul class="blockList">
 <li class="blockList">
 <h4>setBargein</h4>
-<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#line.141">setBargein</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&nbsp;bargeIn)</pre>
+<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.Builder.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message.Builder</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#line.165">setBargein</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&nbsp;bargeIn)</pre>
 </li>
 </ul>
 <a name="build()">
@@ -224,7 +273,7 @@ extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.h
 <ul class="blockListLast">
 <li class="blockList">
 <h4>build</h4>
-<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#line.146">build</a>()</pre>
+<pre>public&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Message.html" title="class in com.nuecho.rivr.voicexml.turn.output">Message</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Message.Builder.html#line.170">build</a>()</pre>
 </li>
 </ul>
 </li>

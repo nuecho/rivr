@@ -113,7 +113,7 @@
 </dl>
 <hr>
 <br>
-<pre>public abstract class <a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.66">DialogueServlet</a>&lt;I extends <a href="../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</a>,O extends <a href="../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</a>,F extends <a href="../../../../../com/nuecho/rivr/core/channel/FirstTurn.html" title="interface in com.nuecho.rivr.core.channel">FirstTurn</a>,L extends <a href="../../../../../com/nuecho/rivr/core/channel/LastTurn.html" title="interface in com.nuecho.rivr.core.channel">LastTurn</a>,C extends <a href="../../../../../com/nuecho/rivr/core/dialogue/DialogueContext.html" title="interface in com.nuecho.rivr.core.dialogue">DialogueContext</a>&lt;I,O&gt;&gt;
+<pre>public abstract class <a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.77">DialogueServlet</a>&lt;I extends <a href="../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</a>,O extends <a href="../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</a>,F extends <a href="../../../../../com/nuecho/rivr/core/channel/FirstTurn.html" title="interface in com.nuecho.rivr.core.channel">FirstTurn</a>,L extends <a href="../../../../../com/nuecho/rivr/core/channel/LastTurn.html" title="interface in com.nuecho.rivr.core.channel">LastTurn</a>,C extends <a href="../../../../../com/nuecho/rivr/core/dialogue/DialogueContext.html" title="interface in com.nuecho.rivr.core.dialogue">DialogueContext</a>&lt;I,O&gt;&gt;
 extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServlet.html?is-external=true" title="class or interface in javax.servlet.http">HttpServlet</a></pre>
 <div class="block">Abstract servlet interacting with a web client acting as the controller of a
  <a href="../../../../../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="class in com.nuecho.rivr.core.channel.synchronous"><code>SynchronousDialogueChannel</code></a>.
@@ -141,6 +141,11 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
  specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
  for 10 seconds. Default value: <code>10 s</code></dd></dt>
  <p/>
+ <dt>com.nuecho.rivr.core.controllerTimeout
+ <dd>Maximum time for controller to produce an <a href="../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel"><code>InputTurn</code></a>. Value
+ specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
+ for 10 seconds. Default value: <code>5 m</code></dd></dt>
+ <p/>
  <dt>com.nuecho.rivr.core.sessionTimeout</dt>
  <dd>Maximum inactivity time for a session. Value specified must be followed
  by unit (ms, s, m, h, d, y), e.g. <code>10s</code> for 10 seconds. Default
@@ -149,7 +154,13 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
  <dt>com.nuecho.rivr.core.sessionScanPeriod</dt>
  <dd>Time between each scan for dead sessions in the session container. Value
  specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
- for 10 seconds. Default value: <code>2 m</code></dd></div>
+ for 10 seconds. Default value: <code>2 m</code></dd>
+ <p/>
+ <dt>com.nuecho.rivr.core.webappServerSessionTrackingEnabled</dt>
+ <dd>Whether a <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpSession.html?is-external=true" title="class or interface in javax.servlet.http"><code>HttpSession</code></a> should be created for
+ each dialogue or not. This is useful for load-balancers using JSESSIONID
+ cookie to enforce server affinity (or stickyness). Value should be
+ <code>true</code> or <code>false</code>. Default value: <code>true</code>.</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../serialized-form.html#com.nuecho.rivr.core.servlet.DialogueServlet">Serialized Form</a></dd></dl>
 </li>
 </ul>
@@ -262,38 +273,49 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html#setDialogueContextFactory(com.nuecho.rivr.core.servlet.DialogueContextFactory)">setDialogueContextFactory</a></strong>(<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueContextFactory.html" title="interface in com.nuecho.rivr.core.servlet">DialogueContextFactory</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>&gt;&nbsp;dialogueContextFactory)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html#setControllerTimeout(com.nuecho.rivr.core.util.Duration)">setControllerTimeout</a></strong>(<a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;controllerTimeout)</code>
+<div class="block">Sets maximum duration the dialogue thread can wait for the controller
+ response.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html#setDialogueFactory(com.nuecho.rivr.core.dialogue.DialogueFactory)">setDialogueFactory</a></strong>(<a href="../../../../../com/nuecho/rivr/core/dialogue/DialogueFactory.html" title="interface in com.nuecho.rivr.core.dialogue">DialogueFactory</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>&gt;&nbsp;dialogueFactory)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html#setDialogueContextFactory(com.nuecho.rivr.core.servlet.DialogueContextFactory)">setDialogueContextFactory</a></strong>(<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueContextFactory.html" title="interface in com.nuecho.rivr.core.servlet">DialogueContextFactory</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>&gt;&nbsp;dialogueContextFactory)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html#setDialogueFactory(com.nuecho.rivr.core.dialogue.DialogueFactory)">setDialogueFactory</a></strong>(<a href="../../../../../com/nuecho/rivr/core/dialogue/DialogueFactory.html" title="interface in com.nuecho.rivr.core.dialogue">DialogueFactory</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>&gt;&nbsp;dialogueFactory)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html#setDialogueTimeout(com.nuecho.rivr.core.util.Duration)">setDialogueTimeout</a></strong>(<a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;dialogueTimeout)</code>
 <div class="block">Sets maximum duration the servlet thread can wait for the dialogue
  response.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html#setErrorHandler(com.nuecho.rivr.core.servlet.ErrorHandler)">setErrorHandler</a></strong>(<a href="../../../../../com/nuecho/rivr/core/servlet/ErrorHandler.html" title="interface in com.nuecho.rivr.core.servlet">ErrorHandler</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>&gt;&nbsp;errorHandler)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html#setInputTurnFactory(com.nuecho.rivr.core.servlet.InputTurnFactory)">setInputTurnFactory</a></strong>(<a href="../../../../../com/nuecho/rivr/core/servlet/InputTurnFactory.html" title="interface in com.nuecho.rivr.core.servlet">InputTurnFactory</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>&gt;&nbsp;inputTurnFactory)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html#setLoggerFactory(org.slf4j.ILoggerFactory)">setLoggerFactory</a></strong>(<a href="http://slf4j.org/api/org/slf4j/ILoggerFactory.html?is-external=true" title="class or interface in org.slf4j">ILoggerFactory</a>&nbsp;loggerFactory)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html#setSessionScanPeriod(com.nuecho.rivr.core.util.Duration)">setSessionScanPeriod</a></strong>(<a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;sessionScanPeriod)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html#setSessionTimeout(com.nuecho.rivr.core.util.Duration)">setSessionTimeout</a></strong>(<a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;sessionTimeout)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html#setWebappServerSessionTrackingEnabled(boolean)">setWebappServerSessionTrackingEnabled</a></strong>(boolean&nbsp;enableWebappServerSessionTracking)</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -337,7 +359,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockListLast">
 <li class="blockList">
 <h4>DialogueServlet</h4>
-<pre>public&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.66">DialogueServlet</a>()</pre>
+<pre>public&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.77">DialogueServlet</a>()</pre>
 </li>
 </ul>
 </li>
@@ -354,7 +376,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>initDialogueServlet</h4>
-<pre>protected abstract&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.96">initDialogueServlet</a>()
+<pre>protected abstract&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.115">initDialogueServlet</a>()
                                      throws <a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServletInitializationException.html" title="class in com.nuecho.rivr.core.servlet">DialogueServletInitializationException</a></pre>
 <div class="block">Performs initialization.</div>
 <dl><dt><span class="strong">Throws:</span></dt>
@@ -367,7 +389,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>destroyDialogueServlet</h4>
-<pre>protected abstract&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.101">destroyDialogueServlet</a>()</pre>
+<pre>protected abstract&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.120">destroyDialogueServlet</a>()</pre>
 <div class="block">Performs shutdown.</div>
 </li>
 </ul>
@@ -377,7 +399,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>getStepRenderer</h4>
-<pre>protected abstract&nbsp;<a href="../../../../../com/nuecho/rivr/core/servlet/StepRenderer.html" title="interface in com.nuecho.rivr.core.servlet">StepRenderer</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>&gt;&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.106">getStepRenderer</a>(<a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletRequest</a>&nbsp;request,
+<pre>protected abstract&nbsp;<a href="../../../../../com/nuecho/rivr/core/servlet/StepRenderer.html" title="interface in com.nuecho.rivr.core.servlet">StepRenderer</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>&gt;&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.125">getStepRenderer</a>(<a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletRequest</a>&nbsp;request,
                                     <a href="../../../../../com/nuecho/rivr/core/servlet/session/Session.html" title="class in com.nuecho.rivr.core.servlet.session">Session</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>&gt;&nbsp;session)</pre>
 <div class="block">Provides the <a href="../../../../../com/nuecho/rivr/core/servlet/StepRenderer.html" title="interface in com.nuecho.rivr.core.servlet"><code>StepRenderer</code></a> appropriate for the context.</div>
 </li>
@@ -388,7 +410,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>init</h4>
-<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.115">init</a>()
+<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.134">init</a>()
                 throws <a href="http://download.oracle.com/javaee/6/api/javax/servlet/ServletException.html?is-external=true" title="class or interface in javax.servlet">ServletException</a></pre>
 <div class="block">Initializes the servlet. The first thing done in this method is to call
  <a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html#initDialogueServlet()"><code>initDialogueServlet()</code></a>. This method is called by the servlet
@@ -406,7 +428,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>destroy</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.162">destroy</a>()</pre>
+<pre>public&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.191">destroy</a>()</pre>
 <div class="block">Destroys the servlet. This methods calls
  <a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html#destroyDialogueServlet()"><code>destroyDialogueServlet()</code></a>. This method is called by the servlet
  container.</div>
@@ -424,7 +446,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>doGet</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.182">doGet</a>(<a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletRequest</a>&nbsp;request,
+<pre>protected&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.224">doGet</a>(<a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletRequest</a>&nbsp;request,
          <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletResponse.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletResponse</a>&nbsp;response)
               throws <a href="http://download.oracle.com/javaee/6/api/javax/servlet/ServletException.html?is-external=true" title="class or interface in javax.servlet">ServletException</a>,
                      <a href="http://download.oracle.com/javase/6/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
@@ -442,7 +464,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>doPost</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.187">doPost</a>(<a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletRequest</a>&nbsp;request,
+<pre>protected&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.229">doPost</a>(<a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletRequest</a>&nbsp;request,
           <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletResponse.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletResponse</a>&nbsp;response)
                throws <a href="http://download.oracle.com/javaee/6/api/javax/servlet/ServletException.html?is-external=true" title="class or interface in javax.servlet">ServletException</a>,
                       <a href="http://download.oracle.com/javase/6/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
@@ -460,7 +482,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>getLoggerFactory</h4>
-<pre>public final&nbsp;<a href="http://slf4j.org/api/org/slf4j/ILoggerFactory.html?is-external=true" title="class or interface in org.slf4j">ILoggerFactory</a>&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.191">getLoggerFactory</a>()</pre>
+<pre>public final&nbsp;<a href="http://slf4j.org/api/org/slf4j/ILoggerFactory.html?is-external=true" title="class or interface in org.slf4j">ILoggerFactory</a>&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.233">getLoggerFactory</a>()</pre>
 </li>
 </ul>
 <a name="renderOutputTurn(com.nuecho.rivr.core.channel.OutputTurn,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,com.nuecho.rivr.core.servlet.session.Session)">
@@ -471,7 +493,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>renderOutputTurn</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.195">renderOutputTurn</a>(<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>&nbsp;outputTurn,
+<pre>protected&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.237">renderOutputTurn</a>(<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>&nbsp;outputTurn,
                     <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletRequest</a>&nbsp;request,
                     <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletResponse.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletResponse</a>&nbsp;response,
                     <a href="../../../../../com/nuecho/rivr/core/servlet/session/Session.html" title="class in com.nuecho.rivr.core.servlet.session">Session</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>&gt;&nbsp;session)
@@ -490,7 +512,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>renderLastTurn</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.206">renderLastTurn</a>(<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>&nbsp;result,
+<pre>protected&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.248">renderLastTurn</a>(<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>&nbsp;result,
                   <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletRequest</a>&nbsp;request,
                   <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletResponse.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletResponse</a>&nbsp;response,
                   <a href="../../../../../com/nuecho/rivr/core/servlet/session/Session.html" title="class in com.nuecho.rivr.core.servlet.session">Session</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>&gt;&nbsp;session)
@@ -507,7 +529,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>renderError</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.218">renderError</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;error,
+<pre>protected&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.260">renderError</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;error,
                <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletRequest</a>&nbsp;request,
                <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletResponse.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletResponse</a>&nbsp;response,
                <a href="../../../../../com/nuecho/rivr/core/servlet/session/Session.html" title="class in com.nuecho.rivr.core.servlet.session">Session</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>&gt;&nbsp;session)
@@ -524,7 +546,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>setInputTurnFactory</h4>
-<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.233">setInputTurnFactory</a>(<a href="../../../../../com/nuecho/rivr/core/servlet/InputTurnFactory.html" title="interface in com.nuecho.rivr.core.servlet">InputTurnFactory</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>&gt;&nbsp;inputTurnFactory)</pre>
+<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.275">setInputTurnFactory</a>(<a href="../../../../../com/nuecho/rivr/core/servlet/InputTurnFactory.html" title="interface in com.nuecho.rivr.core.servlet">InputTurnFactory</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>&gt;&nbsp;inputTurnFactory)</pre>
 </li>
 </ul>
 <a name="setDialogueFactory(com.nuecho.rivr.core.dialogue.DialogueFactory)">
@@ -533,7 +555,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>setDialogueFactory</h4>
-<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.238">setDialogueFactory</a>(<a href="../../../../../com/nuecho/rivr/core/dialogue/DialogueFactory.html" title="interface in com.nuecho.rivr.core.dialogue">DialogueFactory</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>&gt;&nbsp;dialogueFactory)</pre>
+<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.280">setDialogueFactory</a>(<a href="../../../../../com/nuecho/rivr/core/dialogue/DialogueFactory.html" title="interface in com.nuecho.rivr.core.dialogue">DialogueFactory</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>&gt;&nbsp;dialogueFactory)</pre>
 </li>
 </ul>
 <a name="setDialogueContextFactory(com.nuecho.rivr.core.servlet.DialogueContextFactory)">
@@ -542,7 +564,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>setDialogueContextFactory</h4>
-<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.243">setDialogueContextFactory</a>(<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueContextFactory.html" title="interface in com.nuecho.rivr.core.servlet">DialogueContextFactory</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>&gt;&nbsp;dialogueContextFactory)</pre>
+<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.285">setDialogueContextFactory</a>(<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueContextFactory.html" title="interface in com.nuecho.rivr.core.servlet">DialogueContextFactory</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>&gt;&nbsp;dialogueContextFactory)</pre>
 </li>
 </ul>
 <a name="setLoggerFactory(org.slf4j.ILoggerFactory)">
@@ -551,7 +573,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>setLoggerFactory</h4>
-<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.248">setLoggerFactory</a>(<a href="http://slf4j.org/api/org/slf4j/ILoggerFactory.html?is-external=true" title="class or interface in org.slf4j">ILoggerFactory</a>&nbsp;loggerFactory)</pre>
+<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.290">setLoggerFactory</a>(<a href="http://slf4j.org/api/org/slf4j/ILoggerFactory.html?is-external=true" title="class or interface in org.slf4j">ILoggerFactory</a>&nbsp;loggerFactory)</pre>
 </li>
 </ul>
 <a name="setDialogueTimeout(com.nuecho.rivr.core.util.Duration)">
@@ -560,10 +582,24 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>setDialogueTimeout</h4>
-<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.258">setDialogueTimeout</a>(<a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;dialogueTimeout)</pre>
+<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.300">setDialogueTimeout</a>(<a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;dialogueTimeout)</pre>
 <div class="block">Sets maximum duration the servlet thread can wait for the dialogue
  response. Cannot be <code>null</code>. A value of Duration.ZERO (or
  equivalent) means to wait forever.</div>
+</li>
+</ul>
+<a name="setControllerTimeout(com.nuecho.rivr.core.util.Duration)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setControllerTimeout</h4>
+<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.312">setControllerTimeout</a>(<a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;controllerTimeout)</pre>
+<div class="block">Sets maximum duration the dialogue thread can wait for the controller
+ response. Cannot be <code>null</code>. A value of Duration.ZERO (or
+ equivalent) means to wait forever.</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>1.0.1</dd></dl>
 </li>
 </ul>
 <a name="setSessionTimeout(com.nuecho.rivr.core.util.Duration)">
@@ -572,7 +608,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>setSessionTimeout</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.263">setSessionTimeout</a>(<a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;sessionTimeout)</pre>
+<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.317">setSessionTimeout</a>(<a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;sessionTimeout)</pre>
 </li>
 </ul>
 <a name="setSessionScanPeriod(com.nuecho.rivr.core.util.Duration)">
@@ -581,7 +617,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>setSessionScanPeriod</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.268">setSessionScanPeriod</a>(<a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;sessionScanPeriod)</pre>
+<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.322">setSessionScanPeriod</a>(<a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;sessionScanPeriod)</pre>
 </li>
 </ul>
 <a name="setErrorHandler(com.nuecho.rivr.core.servlet.ErrorHandler)">
@@ -590,7 +626,18 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>setErrorHandler</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.273">setErrorHandler</a>(<a href="../../../../../com/nuecho/rivr/core/servlet/ErrorHandler.html" title="interface in com.nuecho.rivr.core.servlet">ErrorHandler</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>&gt;&nbsp;errorHandler)</pre>
+<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.327">setErrorHandler</a>(<a href="../../../../../com/nuecho/rivr/core/servlet/ErrorHandler.html" title="interface in com.nuecho.rivr.core.servlet">ErrorHandler</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>&gt;&nbsp;errorHandler)</pre>
+</li>
+</ul>
+<a name="setWebappServerSessionTrackingEnabled(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setWebappServerSessionTrackingEnabled</h4>
+<pre>public final&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.335">setWebappServerSessionTrackingEnabled</a>(boolean&nbsp;enableWebappServerSessionTracking)</pre>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>1.0.1</dd></dl>
 </li>
 </ul>
 <a name="getSession(javax.servlet.http.HttpServletRequest)">
@@ -599,7 +646,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockList">
 <li class="blockList">
 <h4>getSession</h4>
-<pre>protected&nbsp;<a href="../../../../../com/nuecho/rivr/core/servlet/session/Session.html" title="class in com.nuecho.rivr.core.servlet.session">Session</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>&gt;&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.382">getSession</a>(<a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletRequest</a>&nbsp;request)
+<pre>protected&nbsp;<a href="../../../../../com/nuecho/rivr/core/servlet/session/Session.html" title="class in com.nuecho.rivr.core.servlet.session">Session</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>&gt;&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.446">getSession</a>(<a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html?is-external=true" title="class or interface in javax.servlet.http">HttpServletRequest</a>&nbsp;request)
                                                                                                                                       throws <a href="../../../../../com/nuecho/rivr/core/servlet/session/SessionNotFoundException.html" title="class in com.nuecho.rivr.core.servlet.session">SessionNotFoundException</a></pre>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../../../com/nuecho/rivr/core/servlet/session/SessionNotFoundException.html" title="class in com.nuecho.rivr.core.servlet.session">SessionNotFoundException</a></code></dd></dl>
@@ -611,7 +658,7 @@ extends <a href="http://download.oracle.com/javaee/6/api/javax/servlet/http/Http
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getExistingSession</h4>
-<pre>protected&nbsp;<a href="../../../../../com/nuecho/rivr/core/servlet/session/Session.html" title="class in com.nuecho.rivr.core.servlet.session">Session</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>&gt;&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.405">getExistingSession</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;sessionId)
+<pre>protected&nbsp;<a href="../../../../../com/nuecho/rivr/core/servlet/session/Session.html" title="class in com.nuecho.rivr.core.servlet.session">Session</a>&lt;<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">I</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">O</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">F</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">L</a>,<a href="../../../../../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="type parameter in DialogueServlet">C</a>&gt;&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/servlet/DialogueServlet.html#line.473">getExistingSession</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;sessionId)
                                                                                                                                               throws <a href="../../../../../com/nuecho/rivr/core/servlet/session/SessionNotFoundException.html" title="class in com.nuecho.rivr.core.servlet.session">SessionNotFoundException</a></pre>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../../../com/nuecho/rivr/core/servlet/session/SessionNotFoundException.html" title="class in com.nuecho.rivr.core.servlet.session">SessionNotFoundException</a></code></dd></dl>

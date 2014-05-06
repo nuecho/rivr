@@ -54,393 +54,466 @@
 <span class="sourceLineNo">046</span> * specified must be followed by unit (ms, s, m, h, d, y), e.g. &lt;code&gt;10s&lt;/code&gt;<a name="line.46"></a>
 <span class="sourceLineNo">047</span> * for 10 seconds. Default value: &lt;code&gt;10 s&lt;/code&gt;&lt;/dd&gt;&lt;/dt&gt;<a name="line.47"></a>
 <span class="sourceLineNo">048</span> * &lt;p/&gt;<a name="line.48"></a>
-<span class="sourceLineNo">049</span> * &lt;dt&gt;com.nuecho.rivr.core.sessionTimeout&lt;/dt&gt;<a name="line.49"></a>
-<span class="sourceLineNo">050</span> * &lt;dd&gt;Maximum inactivity time for a session. Value specified must be followed<a name="line.50"></a>
-<span class="sourceLineNo">051</span> * by unit (ms, s, m, h, d, y), e.g. &lt;code&gt;10s&lt;/code&gt; for 10 seconds. Default<a name="line.51"></a>
-<span class="sourceLineNo">052</span> * value: &lt;code&gt;30 m&lt;/code&gt;&lt;/dd&gt;<a name="line.52"></a>
+<span class="sourceLineNo">049</span> * &lt;dt&gt;com.nuecho.rivr.core.controllerTimeout<a name="line.49"></a>
+<span class="sourceLineNo">050</span> * &lt;dd&gt;Maximum time for controller to produce an {@link InputTurn}. Value<a name="line.50"></a>
+<span class="sourceLineNo">051</span> * specified must be followed by unit (ms, s, m, h, d, y), e.g. &lt;code&gt;10s&lt;/code&gt;<a name="line.51"></a>
+<span class="sourceLineNo">052</span> * for 10 seconds. Default value: &lt;code&gt;5 m&lt;/code&gt;&lt;/dd&gt;&lt;/dt&gt;<a name="line.52"></a>
 <span class="sourceLineNo">053</span> * &lt;p/&gt;<a name="line.53"></a>
-<span class="sourceLineNo">054</span> * &lt;dt&gt;com.nuecho.rivr.core.sessionScanPeriod&lt;/dt&gt;<a name="line.54"></a>
-<span class="sourceLineNo">055</span> * &lt;dd&gt;Time between each scan for dead sessions in the session container. Value<a name="line.55"></a>
-<span class="sourceLineNo">056</span> * specified must be followed by unit (ms, s, m, h, d, y), e.g. &lt;code&gt;10s&lt;/code&gt;<a name="line.56"></a>
-<span class="sourceLineNo">057</span> * for 10 seconds. Default value: &lt;code&gt;2 m&lt;/code&gt;&lt;/dd&gt;<a name="line.57"></a>
-<span class="sourceLineNo">058</span> * <a name="line.58"></a>
-<span class="sourceLineNo">059</span> * @param &lt;F&gt; type of {@link FirstTurn}<a name="line.59"></a>
-<span class="sourceLineNo">060</span> * @param &lt;L&gt; type of {@link LastTurn}<a name="line.60"></a>
-<span class="sourceLineNo">061</span> * @param &lt;O&gt; type of {@link OutputTurn}<a name="line.61"></a>
-<span class="sourceLineNo">062</span> * @param &lt;I&gt; type of {@link InputTurn}<a name="line.62"></a>
-<span class="sourceLineNo">063</span> * @param &lt;C&gt; type of {@link DialogueContext}<a name="line.63"></a>
-<span class="sourceLineNo">064</span> * @author Nu Echo Inc.<a name="line.64"></a>
-<span class="sourceLineNo">065</span> */<a name="line.65"></a>
-<span class="sourceLineNo">066</span>public abstract class DialogueServlet&lt;I extends InputTurn, O extends OutputTurn, F extends FirstTurn, L extends LastTurn, C extends DialogueContext&lt;I, O&gt;&gt;<a name="line.66"></a>
-<span class="sourceLineNo">067</span>        extends HttpServlet {<a name="line.67"></a>
-<span class="sourceLineNo">068</span><a name="line.68"></a>
-<span class="sourceLineNo">069</span>    private static final String MDC_KEY_DIALOGUE_ID = "dialogueId";<a name="line.69"></a>
-<span class="sourceLineNo">070</span><a name="line.70"></a>
-<span class="sourceLineNo">071</span>    private static final String SESSION_LOGGER_NAME = "com.nuecho.rivr.session";<a name="line.71"></a>
-<span class="sourceLineNo">072</span>    private static final String DIALOGUE_LOGGER_NAME = "com.nuecho.rivr.dialogue";<a name="line.72"></a>
-<span class="sourceLineNo">073</span><a name="line.73"></a>
-<span class="sourceLineNo">074</span>    private static final long serialVersionUID = 1L;<a name="line.74"></a>
-<span class="sourceLineNo">075</span>    private static final String SESSION_CONTAINER_NAME = "com.nuecho.rivr.sessionContainer";<a name="line.75"></a>
-<span class="sourceLineNo">076</span><a name="line.76"></a>
-<span class="sourceLineNo">077</span>    private static final String INITIAL_ARGUMENT_PREFIX = "com.nuecho.core.voicexml.";<a name="line.77"></a>
-<span class="sourceLineNo">078</span>    private static final String INITIAL_ARGUMENT_DIALOGUE_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "dialogueTimeout";<a name="line.78"></a>
-<span class="sourceLineNo">079</span>    private static final String INITIAL_ARGUMENT_SESSION_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "sessionTimeout";<a name="line.79"></a>
-<span class="sourceLineNo">080</span>    private static final String INITIAL_ARGUMENT_SESSION_SCAN_PERIOD = INITIAL_ARGUMENT_PREFIX + "sessionScanPeriod";<a name="line.80"></a>
+<span class="sourceLineNo">054</span> * &lt;dt&gt;com.nuecho.rivr.core.sessionTimeout&lt;/dt&gt;<a name="line.54"></a>
+<span class="sourceLineNo">055</span> * &lt;dd&gt;Maximum inactivity time for a session. Value specified must be followed<a name="line.55"></a>
+<span class="sourceLineNo">056</span> * by unit (ms, s, m, h, d, y), e.g. &lt;code&gt;10s&lt;/code&gt; for 10 seconds. Default<a name="line.56"></a>
+<span class="sourceLineNo">057</span> * value: &lt;code&gt;30 m&lt;/code&gt;&lt;/dd&gt;<a name="line.57"></a>
+<span class="sourceLineNo">058</span> * &lt;p/&gt;<a name="line.58"></a>
+<span class="sourceLineNo">059</span> * &lt;dt&gt;com.nuecho.rivr.core.sessionScanPeriod&lt;/dt&gt;<a name="line.59"></a>
+<span class="sourceLineNo">060</span> * &lt;dd&gt;Time between each scan for dead sessions in the session container. Value<a name="line.60"></a>
+<span class="sourceLineNo">061</span> * specified must be followed by unit (ms, s, m, h, d, y), e.g. &lt;code&gt;10s&lt;/code&gt;<a name="line.61"></a>
+<span class="sourceLineNo">062</span> * for 10 seconds. Default value: &lt;code&gt;2 m&lt;/code&gt;&lt;/dd&gt;<a name="line.62"></a>
+<span class="sourceLineNo">063</span> * &lt;p/&gt;<a name="line.63"></a>
+<span class="sourceLineNo">064</span> * &lt;dt&gt;com.nuecho.rivr.core.webappServerSessionTrackingEnabled&lt;/dt&gt;<a name="line.64"></a>
+<span class="sourceLineNo">065</span> * &lt;dd&gt;Whether a {@link javax.servlet.http.HttpSession} should be created for<a name="line.65"></a>
+<span class="sourceLineNo">066</span> * each dialogue or not. This is useful for load-balancers using JSESSIONID<a name="line.66"></a>
+<span class="sourceLineNo">067</span> * cookie to enforce server affinity (or stickyness). Value should be<a name="line.67"></a>
+<span class="sourceLineNo">068</span> * &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;. Default value: &lt;code&gt;true&lt;/code&gt;.<a name="line.68"></a>
+<span class="sourceLineNo">069</span> * <a name="line.69"></a>
+<span class="sourceLineNo">070</span> * @param &lt;F&gt; type of {@link FirstTurn}<a name="line.70"></a>
+<span class="sourceLineNo">071</span> * @param &lt;L&gt; type of {@link LastTurn}<a name="line.71"></a>
+<span class="sourceLineNo">072</span> * @param &lt;O&gt; type of {@link OutputTurn}<a name="line.72"></a>
+<span class="sourceLineNo">073</span> * @param &lt;I&gt; type of {@link InputTurn}<a name="line.73"></a>
+<span class="sourceLineNo">074</span> * @param &lt;C&gt; type of {@link DialogueContext}<a name="line.74"></a>
+<span class="sourceLineNo">075</span> * @author Nu Echo Inc.<a name="line.75"></a>
+<span class="sourceLineNo">076</span> */<a name="line.76"></a>
+<span class="sourceLineNo">077</span>public abstract class DialogueServlet&lt;I extends InputTurn, O extends OutputTurn, F extends FirstTurn, L extends LastTurn, C extends DialogueContext&lt;I, O&gt;&gt;<a name="line.77"></a>
+<span class="sourceLineNo">078</span>        extends HttpServlet {<a name="line.78"></a>
+<span class="sourceLineNo">079</span><a name="line.79"></a>
+<span class="sourceLineNo">080</span>    private static final String MDC_KEY_DIALOGUE_ID = "dialogueId";<a name="line.80"></a>
 <span class="sourceLineNo">081</span><a name="line.81"></a>
-<span class="sourceLineNo">082</span>    private ErrorHandler&lt;L&gt; mErrorHandler;<a name="line.82"></a>
-<span class="sourceLineNo">083</span>    private DialogueFactory&lt;I, O, F, L, C&gt; mDialogueFactory;<a name="line.83"></a>
-<span class="sourceLineNo">084</span>    private DialogueContextFactory&lt;C, I, O&gt; mDialogueContextFactory;<a name="line.84"></a>
-<span class="sourceLineNo">085</span>    private ILoggerFactory mLoggerFactory;<a name="line.85"></a>
-<span class="sourceLineNo">086</span>    private SessionContainer&lt;I, O, F, L, C&gt; mSessionContainer;<a name="line.86"></a>
-<span class="sourceLineNo">087</span>    private InputTurnFactory&lt;I, F&gt; mInputTurnFactory;<a name="line.87"></a>
-<span class="sourceLineNo">088</span><a name="line.88"></a>
-<span class="sourceLineNo">089</span>    private Duration mDialogueTimeout = Duration.seconds(10);<a name="line.89"></a>
-<span class="sourceLineNo">090</span>    private Duration mSessionTimeout = Duration.minutes(30);<a name="line.90"></a>
-<span class="sourceLineNo">091</span>    private Duration mSessionScanPeriod = Duration.minutes(2);<a name="line.91"></a>
-<span class="sourceLineNo">092</span><a name="line.92"></a>
-<span class="sourceLineNo">093</span>    /**<a name="line.93"></a>
-<span class="sourceLineNo">094</span>     * Performs initialization.<a name="line.94"></a>
-<span class="sourceLineNo">095</span>     */<a name="line.95"></a>
-<span class="sourceLineNo">096</span>    protected abstract void initDialogueServlet() throws DialogueServletInitializationException;<a name="line.96"></a>
-<span class="sourceLineNo">097</span><a name="line.97"></a>
-<span class="sourceLineNo">098</span>    /**<a name="line.98"></a>
-<span class="sourceLineNo">099</span>     * Performs shutdown.<a name="line.99"></a>
-<span class="sourceLineNo">100</span>     */<a name="line.100"></a>
-<span class="sourceLineNo">101</span>    protected abstract void destroyDialogueServlet();<a name="line.101"></a>
-<span class="sourceLineNo">102</span><a name="line.102"></a>
-<span class="sourceLineNo">103</span>    /**<a name="line.103"></a>
-<span class="sourceLineNo">104</span>     * Provides the {@link StepRenderer} appropriate for the context.<a name="line.104"></a>
-<span class="sourceLineNo">105</span>     */<a name="line.105"></a>
-<span class="sourceLineNo">106</span>    protected abstract StepRenderer&lt;I, O, L, C&gt; getStepRenderer(HttpServletRequest request,<a name="line.106"></a>
-<span class="sourceLineNo">107</span>                                                                Session&lt;I, O, F, L, C&gt; session);<a name="line.107"></a>
-<span class="sourceLineNo">108</span><a name="line.108"></a>
-<span class="sourceLineNo">109</span>    /**<a name="line.109"></a>
-<span class="sourceLineNo">110</span>     * Initializes the servlet. The first thing done in this method is to call<a name="line.110"></a>
-<span class="sourceLineNo">111</span>     * {@link #initDialogueServlet()}. This method is called by the servlet<a name="line.111"></a>
-<span class="sourceLineNo">112</span>     * container.<a name="line.112"></a>
-<span class="sourceLineNo">113</span>     */<a name="line.113"></a>
-<span class="sourceLineNo">114</span>    @Override<a name="line.114"></a>
-<span class="sourceLineNo">115</span>    public final void init() throws ServletException {<a name="line.115"></a>
+<span class="sourceLineNo">082</span>    private static final String SESSION_LOGGER_NAME = "com.nuecho.rivr.session";<a name="line.82"></a>
+<span class="sourceLineNo">083</span>    private static final String DIALOGUE_LOGGER_NAME = "com.nuecho.rivr.dialogue";<a name="line.83"></a>
+<span class="sourceLineNo">084</span><a name="line.84"></a>
+<span class="sourceLineNo">085</span>    private static final long serialVersionUID = 1L;<a name="line.85"></a>
+<span class="sourceLineNo">086</span>    private static final String SESSION_CONTAINER_NAME = "com.nuecho.rivr.sessionContainer";<a name="line.86"></a>
+<span class="sourceLineNo">087</span><a name="line.87"></a>
+<span class="sourceLineNo">088</span>    private static final String INITIAL_ARGUMENT_PREFIX = "com.nuecho.rivr.core.";<a name="line.88"></a>
+<span class="sourceLineNo">089</span>    private static final String INITIAL_ARGUMENT_DIALOGUE_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "dialogueTimeout";<a name="line.89"></a>
+<span class="sourceLineNo">090</span>    private static final String INITIAL_ARGUMENT_SESSION_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "sessionTimeout";<a name="line.90"></a>
+<span class="sourceLineNo">091</span>    private static final String INITIAL_ARGUMENT_SESSION_SCAN_PERIOD = INITIAL_ARGUMENT_PREFIX + "sessionScanPeriod";<a name="line.91"></a>
+<span class="sourceLineNo">092</span>    private static final String INITIAL_ARGUMENT_CONTROLLER_TIMEOUT = INITIAL_ARGUMENT_PREFIX + "controllerTimeout";<a name="line.92"></a>
+<span class="sourceLineNo">093</span><a name="line.93"></a>
+<span class="sourceLineNo">094</span>    private static final String INITIAL_ARGUMENT_ENABLE_WEBAPP_SERVER_SESSION_TRACKING = INITIAL_ARGUMENT_PREFIX<a name="line.94"></a>
+<span class="sourceLineNo">095</span>                                                                                         + "webappServerSessionTrackingEnabled";<a name="line.95"></a>
+<span class="sourceLineNo">096</span><a name="line.96"></a>
+<span class="sourceLineNo">097</span>    private ErrorHandler&lt;L&gt; mErrorHandler;<a name="line.97"></a>
+<span class="sourceLineNo">098</span>    private DialogueFactory&lt;I, O, F, L, C&gt; mDialogueFactory;<a name="line.98"></a>
+<span class="sourceLineNo">099</span>    private DialogueContextFactory&lt;C, I, O&gt; mDialogueContextFactory;<a name="line.99"></a>
+<span class="sourceLineNo">100</span>    private ILoggerFactory mLoggerFactory;<a name="line.100"></a>
+<span class="sourceLineNo">101</span>    private SessionContainer&lt;I, O, F, L, C&gt; mSessionContainer;<a name="line.101"></a>
+<span class="sourceLineNo">102</span>    private InputTurnFactory&lt;I, F&gt; mInputTurnFactory;<a name="line.102"></a>
+<span class="sourceLineNo">103</span><a name="line.103"></a>
+<span class="sourceLineNo">104</span>    private Duration mDialogueTimeout = Duration.seconds(10);<a name="line.104"></a>
+<span class="sourceLineNo">105</span>    private Duration mControllerTimeout = Duration.minutes(5);<a name="line.105"></a>
+<span class="sourceLineNo">106</span><a name="line.106"></a>
+<span class="sourceLineNo">107</span>    private Duration mSessionTimeout = Duration.minutes(30);<a name="line.107"></a>
+<span class="sourceLineNo">108</span>    private Duration mSessionScanPeriod = Duration.minutes(2);<a name="line.108"></a>
+<span class="sourceLineNo">109</span><a name="line.109"></a>
+<span class="sourceLineNo">110</span>    private boolean mWebappServerSessionTrackingEnabled = true;<a name="line.110"></a>
+<span class="sourceLineNo">111</span><a name="line.111"></a>
+<span class="sourceLineNo">112</span>    /**<a name="line.112"></a>
+<span class="sourceLineNo">113</span>     * Performs initialization.<a name="line.113"></a>
+<span class="sourceLineNo">114</span>     */<a name="line.114"></a>
+<span class="sourceLineNo">115</span>    protected abstract void initDialogueServlet() throws DialogueServletInitializationException;<a name="line.115"></a>
 <span class="sourceLineNo">116</span><a name="line.116"></a>
-<span class="sourceLineNo">117</span>        try {<a name="line.117"></a>
-<span class="sourceLineNo">118</span>            initDialogueServlet();<a name="line.118"></a>
-<span class="sourceLineNo">119</span>        } catch (DialogueServletInitializationException exception) {<a name="line.119"></a>
-<span class="sourceLineNo">120</span>            throw new ServletException("Unable to initialize dialogue servlet.s", exception);<a name="line.120"></a>
-<span class="sourceLineNo">121</span>        }<a name="line.121"></a>
-<span class="sourceLineNo">122</span><a name="line.122"></a>
-<span class="sourceLineNo">123</span>        if (mLoggerFactory == null) {<a name="line.123"></a>
-<span class="sourceLineNo">124</span>            mLoggerFactory = LoggerFactory.getILoggerFactory();<a name="line.124"></a>
-<span class="sourceLineNo">125</span>        }<a name="line.125"></a>
-<span class="sourceLineNo">126</span><a name="line.126"></a>
-<span class="sourceLineNo">127</span>        ensureFieldIsSet(mInputTurnFactory, "InputTurnFactory");<a name="line.127"></a>
-<span class="sourceLineNo">128</span>        ensureFieldIsSet(mDialogueFactory, "DialogueFactory");<a name="line.128"></a>
-<span class="sourceLineNo">129</span>        ensureFieldIsSet(mDialogueContextFactory, "DialogueContextFactory");<a name="line.129"></a>
-<span class="sourceLineNo">130</span>        ensureFieldIsSet(mErrorHandler, "ErrorHandler");<a name="line.130"></a>
-<span class="sourceLineNo">131</span><a name="line.131"></a>
-<span class="sourceLineNo">132</span>        Logger logger = mLoggerFactory.getLogger(SESSION_LOGGER_NAME);<a name="line.132"></a>
-<span class="sourceLineNo">133</span><a name="line.133"></a>
-<span class="sourceLineNo">134</span>        mSessionContainer = new SessionContainer&lt;I, O, F, L, C&gt;(logger,<a name="line.134"></a>
-<span class="sourceLineNo">135</span>                                                                mSessionTimeout,<a name="line.135"></a>
-<span class="sourceLineNo">136</span>                                                                mSessionScanPeriod,<a name="line.136"></a>
-<span class="sourceLineNo">137</span>                                                                SESSION_CONTAINER_NAME);<a name="line.137"></a>
-<span class="sourceLineNo">138</span><a name="line.138"></a>
-<span class="sourceLineNo">139</span>        Duration sessionScanPeriod = getDuration(INITIAL_ARGUMENT_SESSION_SCAN_PERIOD);<a name="line.139"></a>
-<span class="sourceLineNo">140</span>        if (sessionScanPeriod != null) {<a name="line.140"></a>
-<span class="sourceLineNo">141</span>            setSessionScanPeriod(sessionScanPeriod);<a name="line.141"></a>
-<span class="sourceLineNo">142</span>        }<a name="line.142"></a>
-<span class="sourceLineNo">143</span><a name="line.143"></a>
-<span class="sourceLineNo">144</span>        Duration sessionTimeout = getDuration(INITIAL_ARGUMENT_SESSION_TIMEOUT);<a name="line.144"></a>
-<span class="sourceLineNo">145</span>        if (sessionTimeout != null) {<a name="line.145"></a>
-<span class="sourceLineNo">146</span>            setSessionTimeout(sessionTimeout);<a name="line.146"></a>
-<span class="sourceLineNo">147</span>        }<a name="line.147"></a>
-<span class="sourceLineNo">148</span><a name="line.148"></a>
-<span class="sourceLineNo">149</span>        Duration dialogueTimeout = getDuration(INITIAL_ARGUMENT_DIALOGUE_TIMEOUT);<a name="line.149"></a>
-<span class="sourceLineNo">150</span>        if (dialogueTimeout != null) {<a name="line.150"></a>
-<span class="sourceLineNo">151</span>            setDialogueTimeout(dialogueTimeout);<a name="line.151"></a>
-<span class="sourceLineNo">152</span>        }<a name="line.152"></a>
-<span class="sourceLineNo">153</span><a name="line.153"></a>
-<span class="sourceLineNo">154</span>    }<a name="line.154"></a>
-<span class="sourceLineNo">155</span><a name="line.155"></a>
-<span class="sourceLineNo">156</span>    /**<a name="line.156"></a>
-<span class="sourceLineNo">157</span>     * Destroys the servlet. This methods calls<a name="line.157"></a>
-<span class="sourceLineNo">158</span>     * {@link #destroyDialogueServlet()}. This method is called by the servlet<a name="line.158"></a>
-<span class="sourceLineNo">159</span>     * container.<a name="line.159"></a>
-<span class="sourceLineNo">160</span>     */<a name="line.160"></a>
-<span class="sourceLineNo">161</span>    @Override<a name="line.161"></a>
-<span class="sourceLineNo">162</span>    public void destroy() {<a name="line.162"></a>
-<span class="sourceLineNo">163</span>        destroyDialogueServlet();<a name="line.163"></a>
-<span class="sourceLineNo">164</span>    }<a name="line.164"></a>
-<span class="sourceLineNo">165</span><a name="line.165"></a>
-<span class="sourceLineNo">166</span>    private Duration getDuration(String key) throws ServletException {<a name="line.166"></a>
-<span class="sourceLineNo">167</span>        ServletConfig servletConfig = getServletConfig();<a name="line.167"></a>
-<span class="sourceLineNo">168</span>        String duration = servletConfig.getInitParameter(key);<a name="line.168"></a>
-<span class="sourceLineNo">169</span>        if (duration == null) return null;<a name="line.169"></a>
-<span class="sourceLineNo">170</span>        try {<a name="line.170"></a>
-<span class="sourceLineNo">171</span>            return Duration.parse(duration);<a name="line.171"></a>
-<span class="sourceLineNo">172</span>        } catch (IllegalArgumentException exception) {<a name="line.172"></a>
-<span class="sourceLineNo">173</span>            throw new ServletException("Unable to parse duration for init-arg '" + key + "'", exception);<a name="line.173"></a>
-<span class="sourceLineNo">174</span>        }<a name="line.174"></a>
-<span class="sourceLineNo">175</span>    }<a name="line.175"></a>
-<span class="sourceLineNo">176</span><a name="line.176"></a>
-<span class="sourceLineNo">177</span>    private void ensureFieldIsSet(Object fieldValue, String fieldName) {<a name="line.177"></a>
-<span class="sourceLineNo">178</span>        if (fieldValue == null) throw new IllegalStateException(fieldName + "  is not set.");<a name="line.178"></a>
-<span class="sourceLineNo">179</span>    }<a name="line.179"></a>
-<span class="sourceLineNo">180</span><a name="line.180"></a>
-<span class="sourceLineNo">181</span>    @Override<a name="line.181"></a>
-<span class="sourceLineNo">182</span>    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {<a name="line.182"></a>
-<span class="sourceLineNo">183</span>        process(request, response);<a name="line.183"></a>
-<span class="sourceLineNo">184</span>    }<a name="line.184"></a>
-<span class="sourceLineNo">185</span><a name="line.185"></a>
-<span class="sourceLineNo">186</span>    @Override<a name="line.186"></a>
-<span class="sourceLineNo">187</span>    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {<a name="line.187"></a>
-<span class="sourceLineNo">188</span>        process(request, response);<a name="line.188"></a>
-<span class="sourceLineNo">189</span>    }<a name="line.189"></a>
-<span class="sourceLineNo">190</span><a name="line.190"></a>
-<span class="sourceLineNo">191</span>    public final ILoggerFactory getLoggerFactory() {<a name="line.191"></a>
-<span class="sourceLineNo">192</span>        return mLoggerFactory;<a name="line.192"></a>
+<span class="sourceLineNo">117</span>    /**<a name="line.117"></a>
+<span class="sourceLineNo">118</span>     * Performs shutdown.<a name="line.118"></a>
+<span class="sourceLineNo">119</span>     */<a name="line.119"></a>
+<span class="sourceLineNo">120</span>    protected abstract void destroyDialogueServlet();<a name="line.120"></a>
+<span class="sourceLineNo">121</span><a name="line.121"></a>
+<span class="sourceLineNo">122</span>    /**<a name="line.122"></a>
+<span class="sourceLineNo">123</span>     * Provides the {@link StepRenderer} appropriate for the context.<a name="line.123"></a>
+<span class="sourceLineNo">124</span>     */<a name="line.124"></a>
+<span class="sourceLineNo">125</span>    protected abstract StepRenderer&lt;I, O, L, C&gt; getStepRenderer(HttpServletRequest request,<a name="line.125"></a>
+<span class="sourceLineNo">126</span>                                                                Session&lt;I, O, F, L, C&gt; session);<a name="line.126"></a>
+<span class="sourceLineNo">127</span><a name="line.127"></a>
+<span class="sourceLineNo">128</span>    /**<a name="line.128"></a>
+<span class="sourceLineNo">129</span>     * Initializes the servlet. The first thing done in this method is to call<a name="line.129"></a>
+<span class="sourceLineNo">130</span>     * {@link #initDialogueServlet()}. This method is called by the servlet<a name="line.130"></a>
+<span class="sourceLineNo">131</span>     * container.<a name="line.131"></a>
+<span class="sourceLineNo">132</span>     */<a name="line.132"></a>
+<span class="sourceLineNo">133</span>    @Override<a name="line.133"></a>
+<span class="sourceLineNo">134</span>    public final void init() throws ServletException {<a name="line.134"></a>
+<span class="sourceLineNo">135</span><a name="line.135"></a>
+<span class="sourceLineNo">136</span>        try {<a name="line.136"></a>
+<span class="sourceLineNo">137</span>            initDialogueServlet();<a name="line.137"></a>
+<span class="sourceLineNo">138</span>        } catch (DialogueServletInitializationException exception) {<a name="line.138"></a>
+<span class="sourceLineNo">139</span>            throw new ServletException("Unable to initialize dialogue servlet.s", exception);<a name="line.139"></a>
+<span class="sourceLineNo">140</span>        }<a name="line.140"></a>
+<span class="sourceLineNo">141</span><a name="line.141"></a>
+<span class="sourceLineNo">142</span>        if (mLoggerFactory == null) {<a name="line.142"></a>
+<span class="sourceLineNo">143</span>            mLoggerFactory = LoggerFactory.getILoggerFactory();<a name="line.143"></a>
+<span class="sourceLineNo">144</span>        }<a name="line.144"></a>
+<span class="sourceLineNo">145</span><a name="line.145"></a>
+<span class="sourceLineNo">146</span>        ensureFieldIsSet(mInputTurnFactory, "InputTurnFactory");<a name="line.146"></a>
+<span class="sourceLineNo">147</span>        ensureFieldIsSet(mDialogueFactory, "DialogueFactory");<a name="line.147"></a>
+<span class="sourceLineNo">148</span>        ensureFieldIsSet(mDialogueContextFactory, "DialogueContextFactory");<a name="line.148"></a>
+<span class="sourceLineNo">149</span>        ensureFieldIsSet(mErrorHandler, "ErrorHandler");<a name="line.149"></a>
+<span class="sourceLineNo">150</span><a name="line.150"></a>
+<span class="sourceLineNo">151</span>        Logger logger = mLoggerFactory.getLogger(SESSION_LOGGER_NAME);<a name="line.151"></a>
+<span class="sourceLineNo">152</span><a name="line.152"></a>
+<span class="sourceLineNo">153</span>        mSessionContainer = new SessionContainer&lt;I, O, F, L, C&gt;(logger,<a name="line.153"></a>
+<span class="sourceLineNo">154</span>                                                                mSessionTimeout,<a name="line.154"></a>
+<span class="sourceLineNo">155</span>                                                                mSessionScanPeriod,<a name="line.155"></a>
+<span class="sourceLineNo">156</span>                                                                SESSION_CONTAINER_NAME);<a name="line.156"></a>
+<span class="sourceLineNo">157</span><a name="line.157"></a>
+<span class="sourceLineNo">158</span>        Duration sessionScanPeriod = getDuration(INITIAL_ARGUMENT_SESSION_SCAN_PERIOD);<a name="line.158"></a>
+<span class="sourceLineNo">159</span>        if (sessionScanPeriod != null) {<a name="line.159"></a>
+<span class="sourceLineNo">160</span>            setSessionScanPeriod(sessionScanPeriod);<a name="line.160"></a>
+<span class="sourceLineNo">161</span>        }<a name="line.161"></a>
+<span class="sourceLineNo">162</span><a name="line.162"></a>
+<span class="sourceLineNo">163</span>        Duration sessionTimeout = getDuration(INITIAL_ARGUMENT_SESSION_TIMEOUT);<a name="line.163"></a>
+<span class="sourceLineNo">164</span>        if (sessionTimeout != null) {<a name="line.164"></a>
+<span class="sourceLineNo">165</span>            setSessionTimeout(sessionTimeout);<a name="line.165"></a>
+<span class="sourceLineNo">166</span>        }<a name="line.166"></a>
+<span class="sourceLineNo">167</span><a name="line.167"></a>
+<span class="sourceLineNo">168</span>        Duration dialogueTimeout = getDuration(INITIAL_ARGUMENT_DIALOGUE_TIMEOUT);<a name="line.168"></a>
+<span class="sourceLineNo">169</span>        if (dialogueTimeout != null) {<a name="line.169"></a>
+<span class="sourceLineNo">170</span>            setDialogueTimeout(dialogueTimeout);<a name="line.170"></a>
+<span class="sourceLineNo">171</span>        }<a name="line.171"></a>
+<span class="sourceLineNo">172</span><a name="line.172"></a>
+<span class="sourceLineNo">173</span>        Duration controllerTimeout = getDuration(INITIAL_ARGUMENT_CONTROLLER_TIMEOUT);<a name="line.173"></a>
+<span class="sourceLineNo">174</span>        if (controllerTimeout != null) {<a name="line.174"></a>
+<span class="sourceLineNo">175</span>            setControllerTimeout(controllerTimeout);<a name="line.175"></a>
+<span class="sourceLineNo">176</span>        }<a name="line.176"></a>
+<span class="sourceLineNo">177</span><a name="line.177"></a>
+<span class="sourceLineNo">178</span>        Boolean enableWebappServerSessionTracking = getBoolean(INITIAL_ARGUMENT_ENABLE_WEBAPP_SERVER_SESSION_TRACKING);<a name="line.178"></a>
+<span class="sourceLineNo">179</span>        if (enableWebappServerSessionTracking != null) {<a name="line.179"></a>
+<span class="sourceLineNo">180</span>            setWebappServerSessionTrackingEnabled(mWebappServerSessionTrackingEnabled);<a name="line.180"></a>
+<span class="sourceLineNo">181</span>        }<a name="line.181"></a>
+<span class="sourceLineNo">182</span><a name="line.182"></a>
+<span class="sourceLineNo">183</span>    }<a name="line.183"></a>
+<span class="sourceLineNo">184</span><a name="line.184"></a>
+<span class="sourceLineNo">185</span>    /**<a name="line.185"></a>
+<span class="sourceLineNo">186</span>     * Destroys the servlet. This methods calls<a name="line.186"></a>
+<span class="sourceLineNo">187</span>     * {@link #destroyDialogueServlet()}. This method is called by the servlet<a name="line.187"></a>
+<span class="sourceLineNo">188</span>     * container.<a name="line.188"></a>
+<span class="sourceLineNo">189</span>     */<a name="line.189"></a>
+<span class="sourceLineNo">190</span>    @Override<a name="line.190"></a>
+<span class="sourceLineNo">191</span>    public void destroy() {<a name="line.191"></a>
+<span class="sourceLineNo">192</span>        destroyDialogueServlet();<a name="line.192"></a>
 <span class="sourceLineNo">193</span>    }<a name="line.193"></a>
 <span class="sourceLineNo">194</span><a name="line.194"></a>
-<span class="sourceLineNo">195</span>    protected void renderOutputTurn(O outputTurn,<a name="line.195"></a>
-<span class="sourceLineNo">196</span>                                    HttpServletRequest request,<a name="line.196"></a>
-<span class="sourceLineNo">197</span>                                    final HttpServletResponse response,<a name="line.197"></a>
-<span class="sourceLineNo">198</span>                                    Session&lt;I, O, F, L, C&gt; session) throws IOException, StepRendererException {<a name="line.198"></a>
-<span class="sourceLineNo">199</span>        ServletResponseContent responseContent = getStepRenderer(request, session).createDocumentForOutputTurn(outputTurn,<a name="line.199"></a>
-<span class="sourceLineNo">200</span>                                                                                                               request,<a name="line.200"></a>
-<span class="sourceLineNo">201</span>                                                                                                               response,<a name="line.201"></a>
-<span class="sourceLineNo">202</span>                                                                                                               session.getDialogueContext());<a name="line.202"></a>
-<span class="sourceLineNo">203</span>        commitToResponse(response, responseContent);<a name="line.203"></a>
+<span class="sourceLineNo">195</span>    private Duration getDuration(String key) throws ServletException {<a name="line.195"></a>
+<span class="sourceLineNo">196</span>        ServletConfig servletConfig = getServletConfig();<a name="line.196"></a>
+<span class="sourceLineNo">197</span>        String duration = servletConfig.getInitParameter(key);<a name="line.197"></a>
+<span class="sourceLineNo">198</span>        if (duration == null) return null;<a name="line.198"></a>
+<span class="sourceLineNo">199</span>        try {<a name="line.199"></a>
+<span class="sourceLineNo">200</span>            return Duration.parse(duration);<a name="line.200"></a>
+<span class="sourceLineNo">201</span>        } catch (IllegalArgumentException exception) {<a name="line.201"></a>
+<span class="sourceLineNo">202</span>            throw new ServletException("Unable to parse duration for init-arg '" + key + "'", exception);<a name="line.202"></a>
+<span class="sourceLineNo">203</span>        }<a name="line.203"></a>
 <span class="sourceLineNo">204</span>    }<a name="line.204"></a>
 <span class="sourceLineNo">205</span><a name="line.205"></a>
-<span class="sourceLineNo">206</span>    protected void renderLastTurn(L result,<a name="line.206"></a>
-<span class="sourceLineNo">207</span>                                  HttpServletRequest request,<a name="line.207"></a>
-<span class="sourceLineNo">208</span>                                  HttpServletResponse response,<a name="line.208"></a>
-<span class="sourceLineNo">209</span>                                  Session&lt;I, O, F, L, C&gt; session) throws IOException, StepRendererException {<a name="line.209"></a>
-<span class="sourceLineNo">210</span>        ServletResponseContent responseContent = getStepRenderer(request, session).createDocumentForLastTurn(result,<a name="line.210"></a>
-<span class="sourceLineNo">211</span>                                                                                                             request,<a name="line.211"></a>
-<span class="sourceLineNo">212</span>                                                                                                             response,<a name="line.212"></a>
-<span class="sourceLineNo">213</span>                                                                                                             session.getDialogueContext());<a name="line.213"></a>
-<span class="sourceLineNo">214</span>        commitToResponse(response, responseContent);<a name="line.214"></a>
-<span class="sourceLineNo">215</span>        session.stop();<a name="line.215"></a>
-<span class="sourceLineNo">216</span>    }<a name="line.216"></a>
-<span class="sourceLineNo">217</span><a name="line.217"></a>
-<span class="sourceLineNo">218</span>    protected void renderError(Throwable error,<a name="line.218"></a>
-<span class="sourceLineNo">219</span>                               HttpServletRequest request,<a name="line.219"></a>
-<span class="sourceLineNo">220</span>                               HttpServletResponse response,<a name="line.220"></a>
-<span class="sourceLineNo">221</span>                               Session&lt;I, O, F, L, C&gt; session) throws IOException, StepRendererException {<a name="line.221"></a>
+<span class="sourceLineNo">206</span>    private Boolean getBoolean(String key) throws ServletException {<a name="line.206"></a>
+<span class="sourceLineNo">207</span>        ServletConfig servletConfig = getServletConfig();<a name="line.207"></a>
+<span class="sourceLineNo">208</span>        String booleanString = servletConfig.getInitParameter(key);<a name="line.208"></a>
+<span class="sourceLineNo">209</span>        if (booleanString == null) return null;<a name="line.209"></a>
+<span class="sourceLineNo">210</span>        if (booleanString.equalsIgnoreCase("true")) return Boolean.TRUE;<a name="line.210"></a>
+<span class="sourceLineNo">211</span>        if (booleanString.equalsIgnoreCase("false")) return Boolean.FALSE;<a name="line.211"></a>
+<span class="sourceLineNo">212</span>        throw new ServletException("Unable to parse boolean for init-arg '"<a name="line.212"></a>
+<span class="sourceLineNo">213</span>                                   + key<a name="line.213"></a>
+<span class="sourceLineNo">214</span>                                   + "'.  Should be 'true' of 'false' but not '"<a name="line.214"></a>
+<span class="sourceLineNo">215</span>                                   + booleanString<a name="line.215"></a>
+<span class="sourceLineNo">216</span>                                   + "'.");<a name="line.216"></a>
+<span class="sourceLineNo">217</span>    }<a name="line.217"></a>
+<span class="sourceLineNo">218</span><a name="line.218"></a>
+<span class="sourceLineNo">219</span>    private void ensureFieldIsSet(Object fieldValue, String fieldName) {<a name="line.219"></a>
+<span class="sourceLineNo">220</span>        if (fieldValue == null) throw new IllegalStateException(fieldName + " is not set.");<a name="line.220"></a>
+<span class="sourceLineNo">221</span>    }<a name="line.221"></a>
 <span class="sourceLineNo">222</span><a name="line.222"></a>
-<span class="sourceLineNo">223</span>        L fatalErrorTurn = mErrorHandler.handleError(error);<a name="line.223"></a>
-<span class="sourceLineNo">224</span><a name="line.224"></a>
-<span class="sourceLineNo">225</span>        ServletResponseContent responseContent = getStepRenderer(request, session).createDocumentForLastTurn(fatalErrorTurn,<a name="line.225"></a>
-<span class="sourceLineNo">226</span>                                                                                                             request,<a name="line.226"></a>
-<span class="sourceLineNo">227</span>                                                                                                             response,<a name="line.227"></a>
-<span class="sourceLineNo">228</span>                                                                                                             session.getDialogueContext());<a name="line.228"></a>
-<span class="sourceLineNo">229</span>        commitToResponse(response, responseContent);<a name="line.229"></a>
-<span class="sourceLineNo">230</span>        session.stop();<a name="line.230"></a>
+<span class="sourceLineNo">223</span>    @Override<a name="line.223"></a>
+<span class="sourceLineNo">224</span>    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {<a name="line.224"></a>
+<span class="sourceLineNo">225</span>        process(request, response);<a name="line.225"></a>
+<span class="sourceLineNo">226</span>    }<a name="line.226"></a>
+<span class="sourceLineNo">227</span><a name="line.227"></a>
+<span class="sourceLineNo">228</span>    @Override<a name="line.228"></a>
+<span class="sourceLineNo">229</span>    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {<a name="line.229"></a>
+<span class="sourceLineNo">230</span>        process(request, response);<a name="line.230"></a>
 <span class="sourceLineNo">231</span>    }<a name="line.231"></a>
 <span class="sourceLineNo">232</span><a name="line.232"></a>
-<span class="sourceLineNo">233</span>    public final void setInputTurnFactory(InputTurnFactory&lt;I, F&gt; inputTurnFactory) {<a name="line.233"></a>
-<span class="sourceLineNo">234</span>        Assert.notNull(inputTurnFactory, "inputTurnFactory");<a name="line.234"></a>
-<span class="sourceLineNo">235</span>        mInputTurnFactory = inputTurnFactory;<a name="line.235"></a>
-<span class="sourceLineNo">236</span>    }<a name="line.236"></a>
-<span class="sourceLineNo">237</span><a name="line.237"></a>
-<span class="sourceLineNo">238</span>    public final void setDialogueFactory(DialogueFactory&lt;I, O, F, L, C&gt; dialogueFactory) {<a name="line.238"></a>
-<span class="sourceLineNo">239</span>        Assert.notNull(dialogueFactory, "dialogueFactory");<a name="line.239"></a>
-<span class="sourceLineNo">240</span>        mDialogueFactory = dialogueFactory;<a name="line.240"></a>
-<span class="sourceLineNo">241</span>    }<a name="line.241"></a>
-<span class="sourceLineNo">242</span><a name="line.242"></a>
-<span class="sourceLineNo">243</span>    public final void setDialogueContextFactory(DialogueContextFactory&lt;C, I, O&gt; dialogueContextFactory) {<a name="line.243"></a>
-<span class="sourceLineNo">244</span>        Assert.notNull(dialogueContextFactory, "dialogueContextFactory");<a name="line.244"></a>
-<span class="sourceLineNo">245</span>        mDialogueContextFactory = dialogueContextFactory;<a name="line.245"></a>
+<span class="sourceLineNo">233</span>    public final ILoggerFactory getLoggerFactory() {<a name="line.233"></a>
+<span class="sourceLineNo">234</span>        return mLoggerFactory;<a name="line.234"></a>
+<span class="sourceLineNo">235</span>    }<a name="line.235"></a>
+<span class="sourceLineNo">236</span><a name="line.236"></a>
+<span class="sourceLineNo">237</span>    protected void renderOutputTurn(O outputTurn,<a name="line.237"></a>
+<span class="sourceLineNo">238</span>                                    HttpServletRequest request,<a name="line.238"></a>
+<span class="sourceLineNo">239</span>                                    final HttpServletResponse response,<a name="line.239"></a>
+<span class="sourceLineNo">240</span>                                    Session&lt;I, O, F, L, C&gt; session) throws IOException, StepRendererException {<a name="line.240"></a>
+<span class="sourceLineNo">241</span>        ServletResponseContent responseContent = getStepRenderer(request, session).createDocumentForOutputTurn(outputTurn,<a name="line.241"></a>
+<span class="sourceLineNo">242</span>                                                                                                               request,<a name="line.242"></a>
+<span class="sourceLineNo">243</span>                                                                                                               response,<a name="line.243"></a>
+<span class="sourceLineNo">244</span>                                                                                                               session.getDialogueContext());<a name="line.244"></a>
+<span class="sourceLineNo">245</span>        commitToResponse(response, responseContent);<a name="line.245"></a>
 <span class="sourceLineNo">246</span>    }<a name="line.246"></a>
 <span class="sourceLineNo">247</span><a name="line.247"></a>
-<span class="sourceLineNo">248</span>    public final void setLoggerFactory(ILoggerFactory loggerFactory) {<a name="line.248"></a>
-<span class="sourceLineNo">249</span>        Assert.notNull(loggerFactory, "loggerFactory");<a name="line.249"></a>
-<span class="sourceLineNo">250</span>        mLoggerFactory = loggerFactory;<a name="line.250"></a>
-<span class="sourceLineNo">251</span>    }<a name="line.251"></a>
-<span class="sourceLineNo">252</span><a name="line.252"></a>
-<span class="sourceLineNo">253</span>    /**<a name="line.253"></a>
-<span class="sourceLineNo">254</span>     * Sets maximum duration the servlet thread can wait for the dialogue<a name="line.254"></a>
-<span class="sourceLineNo">255</span>     * response. Cannot be &lt;code&gt;null&lt;/code&gt;. A value of Duration.ZERO (or<a name="line.255"></a>
-<span class="sourceLineNo">256</span>     * equivalent) means to wait forever.<a name="line.256"></a>
-<span class="sourceLineNo">257</span>     */<a name="line.257"></a>
-<span class="sourceLineNo">258</span>    public final void setDialogueTimeout(Duration dialogueTimeout) {<a name="line.258"></a>
-<span class="sourceLineNo">259</span>        Assert.notNull(dialogueTimeout, "dialogueTimeout");<a name="line.259"></a>
-<span class="sourceLineNo">260</span>        mDialogueTimeout = dialogueTimeout;<a name="line.260"></a>
-<span class="sourceLineNo">261</span>    }<a name="line.261"></a>
-<span class="sourceLineNo">262</span><a name="line.262"></a>
-<span class="sourceLineNo">263</span>    public void setSessionTimeout(Duration sessionTimeout) {<a name="line.263"></a>
-<span class="sourceLineNo">264</span>        Assert.notNull(sessionTimeout, "sessionTimeout");<a name="line.264"></a>
-<span class="sourceLineNo">265</span>        mSessionTimeout = sessionTimeout;<a name="line.265"></a>
-<span class="sourceLineNo">266</span>    }<a name="line.266"></a>
-<span class="sourceLineNo">267</span><a name="line.267"></a>
-<span class="sourceLineNo">268</span>    public void setSessionScanPeriod(Duration sessionScanPeriod) {<a name="line.268"></a>
-<span class="sourceLineNo">269</span>        Assert.notNull(sessionScanPeriod, "sessionScanPeriod");<a name="line.269"></a>
-<span class="sourceLineNo">270</span>        mSessionScanPeriod = sessionScanPeriod;<a name="line.270"></a>
-<span class="sourceLineNo">271</span>    }<a name="line.271"></a>
-<span class="sourceLineNo">272</span><a name="line.272"></a>
-<span class="sourceLineNo">273</span>    public void setErrorHandler(ErrorHandler&lt;L&gt; errorHandler) {<a name="line.273"></a>
-<span class="sourceLineNo">274</span>        Assert.notNull(errorHandler, "errorHandler");<a name="line.274"></a>
-<span class="sourceLineNo">275</span>        mErrorHandler = errorHandler;<a name="line.275"></a>
-<span class="sourceLineNo">276</span>    }<a name="line.276"></a>
-<span class="sourceLineNo">277</span><a name="line.277"></a>
-<span class="sourceLineNo">278</span>    private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException {<a name="line.278"></a>
-<span class="sourceLineNo">279</span>        Session&lt;I, O, F, L, C&gt; session;<a name="line.279"></a>
-<span class="sourceLineNo">280</span>        try {<a name="line.280"></a>
-<span class="sourceLineNo">281</span>            session = getSession(request);<a name="line.281"></a>
-<span class="sourceLineNo">282</span>            MDC.put(MDC_KEY_DIALOGUE_ID, session.getId());<a name="line.282"></a>
-<span class="sourceLineNo">283</span>        } catch (SessionNotFoundException exception) {<a name="line.283"></a>
-<span class="sourceLineNo">284</span>            throw new ServletException("Cannot find session.", exception);<a name="line.284"></a>
-<span class="sourceLineNo">285</span>        }<a name="line.285"></a>
-<span class="sourceLineNo">286</span><a name="line.286"></a>
-<span class="sourceLineNo">287</span>        process(request, response, session);<a name="line.287"></a>
+<span class="sourceLineNo">248</span>    protected void renderLastTurn(L result,<a name="line.248"></a>
+<span class="sourceLineNo">249</span>                                  HttpServletRequest request,<a name="line.249"></a>
+<span class="sourceLineNo">250</span>                                  HttpServletResponse response,<a name="line.250"></a>
+<span class="sourceLineNo">251</span>                                  Session&lt;I, O, F, L, C&gt; session) throws IOException, StepRendererException {<a name="line.251"></a>
+<span class="sourceLineNo">252</span>        ServletResponseContent responseContent = getStepRenderer(request, session).createDocumentForLastTurn(result,<a name="line.252"></a>
+<span class="sourceLineNo">253</span>                                                                                                             request,<a name="line.253"></a>
+<span class="sourceLineNo">254</span>                                                                                                             response,<a name="line.254"></a>
+<span class="sourceLineNo">255</span>                                                                                                             session.getDialogueContext());<a name="line.255"></a>
+<span class="sourceLineNo">256</span>        commitToResponse(response, responseContent);<a name="line.256"></a>
+<span class="sourceLineNo">257</span>        session.stop();<a name="line.257"></a>
+<span class="sourceLineNo">258</span>    }<a name="line.258"></a>
+<span class="sourceLineNo">259</span><a name="line.259"></a>
+<span class="sourceLineNo">260</span>    protected void renderError(Throwable error,<a name="line.260"></a>
+<span class="sourceLineNo">261</span>                               HttpServletRequest request,<a name="line.261"></a>
+<span class="sourceLineNo">262</span>                               HttpServletResponse response,<a name="line.262"></a>
+<span class="sourceLineNo">263</span>                               Session&lt;I, O, F, L, C&gt; session) throws IOException, StepRendererException {<a name="line.263"></a>
+<span class="sourceLineNo">264</span><a name="line.264"></a>
+<span class="sourceLineNo">265</span>        L fatalErrorTurn = mErrorHandler.handleError(error);<a name="line.265"></a>
+<span class="sourceLineNo">266</span><a name="line.266"></a>
+<span class="sourceLineNo">267</span>        ServletResponseContent responseContent = getStepRenderer(request, session).createDocumentForLastTurn(fatalErrorTurn,<a name="line.267"></a>
+<span class="sourceLineNo">268</span>                                                                                                             request,<a name="line.268"></a>
+<span class="sourceLineNo">269</span>                                                                                                             response,<a name="line.269"></a>
+<span class="sourceLineNo">270</span>                                                                                                             session.getDialogueContext());<a name="line.270"></a>
+<span class="sourceLineNo">271</span>        commitToResponse(response, responseContent);<a name="line.271"></a>
+<span class="sourceLineNo">272</span>        session.stop();<a name="line.272"></a>
+<span class="sourceLineNo">273</span>    }<a name="line.273"></a>
+<span class="sourceLineNo">274</span><a name="line.274"></a>
+<span class="sourceLineNo">275</span>    public final void setInputTurnFactory(InputTurnFactory&lt;I, F&gt; inputTurnFactory) {<a name="line.275"></a>
+<span class="sourceLineNo">276</span>        Assert.notNull(inputTurnFactory, "inputTurnFactory");<a name="line.276"></a>
+<span class="sourceLineNo">277</span>        mInputTurnFactory = inputTurnFactory;<a name="line.277"></a>
+<span class="sourceLineNo">278</span>    }<a name="line.278"></a>
+<span class="sourceLineNo">279</span><a name="line.279"></a>
+<span class="sourceLineNo">280</span>    public final void setDialogueFactory(DialogueFactory&lt;I, O, F, L, C&gt; dialogueFactory) {<a name="line.280"></a>
+<span class="sourceLineNo">281</span>        Assert.notNull(dialogueFactory, "dialogueFactory");<a name="line.281"></a>
+<span class="sourceLineNo">282</span>        mDialogueFactory = dialogueFactory;<a name="line.282"></a>
+<span class="sourceLineNo">283</span>    }<a name="line.283"></a>
+<span class="sourceLineNo">284</span><a name="line.284"></a>
+<span class="sourceLineNo">285</span>    public final void setDialogueContextFactory(DialogueContextFactory&lt;C, I, O&gt; dialogueContextFactory) {<a name="line.285"></a>
+<span class="sourceLineNo">286</span>        Assert.notNull(dialogueContextFactory, "dialogueContextFactory");<a name="line.286"></a>
+<span class="sourceLineNo">287</span>        mDialogueContextFactory = dialogueContextFactory;<a name="line.287"></a>
 <span class="sourceLineNo">288</span>    }<a name="line.288"></a>
 <span class="sourceLineNo">289</span><a name="line.289"></a>
-<span class="sourceLineNo">290</span>    private void process(HttpServletRequest request, HttpServletResponse response, Session&lt;I, O, F, L, C&gt; session)<a name="line.290"></a>
-<span class="sourceLineNo">291</span>            throws ServletException {<a name="line.291"></a>
-<span class="sourceLineNo">292</span>        try {<a name="line.292"></a>
-<span class="sourceLineNo">293</span><a name="line.293"></a>
-<span class="sourceLineNo">294</span>            Step&lt;O, L&gt; step;<a name="line.294"></a>
-<span class="sourceLineNo">295</span>            C dialogueContext = session.getDialogueContext();<a name="line.295"></a>
-<span class="sourceLineNo">296</span><a name="line.296"></a>
-<span class="sourceLineNo">297</span>            try {<a name="line.297"></a>
-<span class="sourceLineNo">298</span>                if (dialogueContext == null) {<a name="line.298"></a>
-<span class="sourceLineNo">299</span>                    step = startDialogue(request, response, session);<a name="line.299"></a>
-<span class="sourceLineNo">300</span>                } else {<a name="line.300"></a>
-<span class="sourceLineNo">301</span>                    step = continueDialogue(request, response, session);<a name="line.301"></a>
-<span class="sourceLineNo">302</span>                }<a name="line.302"></a>
-<span class="sourceLineNo">303</span>            } catch (Timeout exception) {<a name="line.303"></a>
-<span class="sourceLineNo">304</span>                renderError(exception, request, response, session);<a name="line.304"></a>
-<span class="sourceLineNo">305</span>                return;<a name="line.305"></a>
-<span class="sourceLineNo">306</span>            } catch (InterruptedException exception) {<a name="line.306"></a>
-<span class="sourceLineNo">307</span>                Thread.currentThread().interrupt();<a name="line.307"></a>
-<span class="sourceLineNo">308</span>                renderError(exception, request, response, session);<a name="line.308"></a>
-<span class="sourceLineNo">309</span>                return;<a name="line.309"></a>
-<span class="sourceLineNo">310</span>            }<a name="line.310"></a>
-<span class="sourceLineNo">311</span><a name="line.311"></a>
-<span class="sourceLineNo">312</span>            if (step instanceof OutputTurnStep) {<a name="line.312"></a>
-<span class="sourceLineNo">313</span>                OutputTurnStep&lt;O, L&gt; outputTurnStep = (OutputTurnStep&lt;O, L&gt;) step;<a name="line.313"></a>
-<span class="sourceLineNo">314</span>                renderOutputTurn(outputTurnStep.getOutputTurn(), request, response, session);<a name="line.314"></a>
-<span class="sourceLineNo">315</span>            } else if (step instanceof LastTurnStep) {<a name="line.315"></a>
-<span class="sourceLineNo">316</span>                LastTurnStep&lt;O, L&gt; lastTurnStep = (LastTurnStep&lt;O, L&gt;) step;<a name="line.316"></a>
-<span class="sourceLineNo">317</span>                renderLastTurn(lastTurnStep.getLastTurn(), request, response, session);<a name="line.317"></a>
-<span class="sourceLineNo">318</span>            } else if (step instanceof ErrorStep) {<a name="line.318"></a>
-<span class="sourceLineNo">319</span>                ErrorStep&lt;O, L&gt; errorStep = (ErrorStep&lt;O, L&gt;) step;<a name="line.319"></a>
-<span class="sourceLineNo">320</span>                Throwable throwable = errorStep.getThrowable();<a name="line.320"></a>
-<span class="sourceLineNo">321</span>                renderError(throwable, request, response, session);<a name="line.321"></a>
-<span class="sourceLineNo">322</span>            }<a name="line.322"></a>
-<span class="sourceLineNo">323</span>        } catch (Exception exception) {<a name="line.323"></a>
-<span class="sourceLineNo">324</span>            throw new ServletException("Error while rendering step.", exception);<a name="line.324"></a>
-<span class="sourceLineNo">325</span>        }<a name="line.325"></a>
-<span class="sourceLineNo">326</span>    }<a name="line.326"></a>
-<span class="sourceLineNo">327</span><a name="line.327"></a>
-<span class="sourceLineNo">328</span>    private Step&lt;O, L&gt; continueDialogue(HttpServletRequest request,<a name="line.328"></a>
-<span class="sourceLineNo">329</span>                                        HttpServletResponse response,<a name="line.329"></a>
-<span class="sourceLineNo">330</span>                                        Session&lt;I, O, F, L, C&gt; session) throws ServletException, Timeout,<a name="line.330"></a>
-<span class="sourceLineNo">331</span>            InterruptedException {<a name="line.331"></a>
-<span class="sourceLineNo">332</span>        Assert.notNull(session, "session");<a name="line.332"></a>
-<span class="sourceLineNo">333</span>        I inputTurn = createInputTurn(request, response);<a name="line.333"></a>
-<span class="sourceLineNo">334</span>        SynchronousDialogueChannel&lt;I, O, F, L, C&gt; dialogueChannel = session.getDialogueChannel();<a name="line.334"></a>
-<span class="sourceLineNo">335</span>        Assert.notNull(dialogueChannel, "dialogueChannel");<a name="line.335"></a>
-<span class="sourceLineNo">336</span>        return dialogueChannel.doTurn(inputTurn, mDialogueTimeout);<a name="line.336"></a>
+<span class="sourceLineNo">290</span>    public final void setLoggerFactory(ILoggerFactory loggerFactory) {<a name="line.290"></a>
+<span class="sourceLineNo">291</span>        Assert.notNull(loggerFactory, "loggerFactory");<a name="line.291"></a>
+<span class="sourceLineNo">292</span>        mLoggerFactory = loggerFactory;<a name="line.292"></a>
+<span class="sourceLineNo">293</span>    }<a name="line.293"></a>
+<span class="sourceLineNo">294</span><a name="line.294"></a>
+<span class="sourceLineNo">295</span>    /**<a name="line.295"></a>
+<span class="sourceLineNo">296</span>     * Sets maximum duration the servlet thread can wait for the dialogue<a name="line.296"></a>
+<span class="sourceLineNo">297</span>     * response. Cannot be &lt;code&gt;null&lt;/code&gt;. A value of Duration.ZERO (or<a name="line.297"></a>
+<span class="sourceLineNo">298</span>     * equivalent) means to wait forever.<a name="line.298"></a>
+<span class="sourceLineNo">299</span>     */<a name="line.299"></a>
+<span class="sourceLineNo">300</span>    public final void setDialogueTimeout(Duration dialogueTimeout) {<a name="line.300"></a>
+<span class="sourceLineNo">301</span>        Assert.notNull(dialogueTimeout, "dialogueTimeout");<a name="line.301"></a>
+<span class="sourceLineNo">302</span>        mDialogueTimeout = dialogueTimeout;<a name="line.302"></a>
+<span class="sourceLineNo">303</span>    }<a name="line.303"></a>
+<span class="sourceLineNo">304</span><a name="line.304"></a>
+<span class="sourceLineNo">305</span>    /**<a name="line.305"></a>
+<span class="sourceLineNo">306</span>     * Sets maximum duration the dialogue thread can wait for the controller<a name="line.306"></a>
+<span class="sourceLineNo">307</span>     * response. Cannot be &lt;code&gt;null&lt;/code&gt;. A value of Duration.ZERO (or<a name="line.307"></a>
+<span class="sourceLineNo">308</span>     * equivalent) means to wait forever.<a name="line.308"></a>
+<span class="sourceLineNo">309</span>     * <a name="line.309"></a>
+<span class="sourceLineNo">310</span>     * @since 1.0.1<a name="line.310"></a>
+<span class="sourceLineNo">311</span>     */<a name="line.311"></a>
+<span class="sourceLineNo">312</span>    public final void setControllerTimeout(Duration controllerTimeout) {<a name="line.312"></a>
+<span class="sourceLineNo">313</span>        Assert.notNull(controllerTimeout, "controllerTimeout");<a name="line.313"></a>
+<span class="sourceLineNo">314</span>        mControllerTimeout = controllerTimeout;<a name="line.314"></a>
+<span class="sourceLineNo">315</span>    }<a name="line.315"></a>
+<span class="sourceLineNo">316</span><a name="line.316"></a>
+<span class="sourceLineNo">317</span>    public final void setSessionTimeout(Duration sessionTimeout) {<a name="line.317"></a>
+<span class="sourceLineNo">318</span>        Assert.notNull(sessionTimeout, "sessionTimeout");<a name="line.318"></a>
+<span class="sourceLineNo">319</span>        mSessionTimeout = sessionTimeout;<a name="line.319"></a>
+<span class="sourceLineNo">320</span>    }<a name="line.320"></a>
+<span class="sourceLineNo">321</span><a name="line.321"></a>
+<span class="sourceLineNo">322</span>    public final void setSessionScanPeriod(Duration sessionScanPeriod) {<a name="line.322"></a>
+<span class="sourceLineNo">323</span>        Assert.notNull(sessionScanPeriod, "sessionScanPeriod");<a name="line.323"></a>
+<span class="sourceLineNo">324</span>        mSessionScanPeriod = sessionScanPeriod;<a name="line.324"></a>
+<span class="sourceLineNo">325</span>    }<a name="line.325"></a>
+<span class="sourceLineNo">326</span><a name="line.326"></a>
+<span class="sourceLineNo">327</span>    public final void setErrorHandler(ErrorHandler&lt;L&gt; errorHandler) {<a name="line.327"></a>
+<span class="sourceLineNo">328</span>        Assert.notNull(errorHandler, "errorHandler");<a name="line.328"></a>
+<span class="sourceLineNo">329</span>        mErrorHandler = errorHandler;<a name="line.329"></a>
+<span class="sourceLineNo">330</span>    }<a name="line.330"></a>
+<span class="sourceLineNo">331</span><a name="line.331"></a>
+<span class="sourceLineNo">332</span>    /**<a name="line.332"></a>
+<span class="sourceLineNo">333</span>     * @since 1.0.1<a name="line.333"></a>
+<span class="sourceLineNo">334</span>     */<a name="line.334"></a>
+<span class="sourceLineNo">335</span>    public final void setWebappServerSessionTrackingEnabled(boolean enableWebappServerSessionTracking) {<a name="line.335"></a>
+<span class="sourceLineNo">336</span>        mWebappServerSessionTrackingEnabled = enableWebappServerSessionTracking;<a name="line.336"></a>
 <span class="sourceLineNo">337</span>    }<a name="line.337"></a>
 <span class="sourceLineNo">338</span><a name="line.338"></a>
-<span class="sourceLineNo">339</span>    private Step&lt;O, L&gt; startDialogue(HttpServletRequest request,<a name="line.339"></a>
-<span class="sourceLineNo">340</span>                                     HttpServletResponse response,<a name="line.340"></a>
-<span class="sourceLineNo">341</span>                                     Session&lt;I, O, F, L, C&gt; session) throws ServletException, Timeout,<a name="line.341"></a>
-<span class="sourceLineNo">342</span>            InterruptedException {<a name="line.342"></a>
-<span class="sourceLineNo">343</span>        SynchronousDialogueChannel&lt;I, O, F, L, C&gt; dialogueChannel;<a name="line.343"></a>
-<span class="sourceLineNo">344</span>        dialogueChannel = new SynchronousDialogueChannel&lt;I, O, F, L, C&gt;();<a name="line.344"></a>
-<span class="sourceLineNo">345</span>        session.setDialogueChannel(dialogueChannel);<a name="line.345"></a>
-<span class="sourceLineNo">346</span><a name="line.346"></a>
-<span class="sourceLineNo">347</span>        Logger logger = mLoggerFactory.getLogger(DIALOGUE_LOGGER_NAME);<a name="line.347"></a>
-<span class="sourceLineNo">348</span>        dialogueChannel.setLogger(logger);<a name="line.348"></a>
-<span class="sourceLineNo">349</span><a name="line.349"></a>
-<span class="sourceLineNo">350</span>        C dialogueContext = createContext(request, session, dialogueChannel, logger);<a name="line.350"></a>
-<span class="sourceLineNo">351</span><a name="line.351"></a>
-<span class="sourceLineNo">352</span>        DialogueInitializationInfo&lt;I, O, C&gt; initializationInfo;<a name="line.352"></a>
-<span class="sourceLineNo">353</span>        initializationInfo = createInitializationInfo(request, response, dialogueContext);<a name="line.353"></a>
-<span class="sourceLineNo">354</span>        Dialogue&lt;I, O, F, L, C&gt; dialogue;<a name="line.354"></a>
-<span class="sourceLineNo">355</span>        try {<a name="line.355"></a>
-<span class="sourceLineNo">356</span>            dialogue = mDialogueFactory.create(initializationInfo);<a name="line.356"></a>
-<span class="sourceLineNo">357</span>        } catch (DialogueFactoryException exception) {<a name="line.357"></a>
-<span class="sourceLineNo">358</span>            throw new ServletException("Unable to create dialogue.", exception);<a name="line.358"></a>
-<span class="sourceLineNo">359</span>        }<a name="line.359"></a>
-<span class="sourceLineNo">360</span>        F firstTurn = createFirstTurn(request, response);<a name="line.360"></a>
-<span class="sourceLineNo">361</span>        return dialogueChannel.start(dialogue, firstTurn, mDialogueTimeout, dialogueContext);<a name="line.361"></a>
-<span class="sourceLineNo">362</span>    }<a name="line.362"></a>
-<span class="sourceLineNo">363</span><a name="line.363"></a>
-<span class="sourceLineNo">364</span>    private C createContext(HttpServletRequest request,<a name="line.364"></a>
-<span class="sourceLineNo">365</span>                            Session&lt;I, O, F, L, C&gt; session,<a name="line.365"></a>
-<span class="sourceLineNo">366</span>                            SynchronousDialogueChannel&lt;I, O, F, L, C&gt; dialogueChannel,<a name="line.366"></a>
-<span class="sourceLineNo">367</span>                            Logger logger) {<a name="line.367"></a>
-<span class="sourceLineNo">368</span>        C dialogueContext = mDialogueContextFactory.createDialogueContext(request,<a name="line.368"></a>
-<span class="sourceLineNo">369</span>                                                                          session.getId(),<a name="line.369"></a>
-<span class="sourceLineNo">370</span>                                                                          dialogueChannel,<a name="line.370"></a>
-<span class="sourceLineNo">371</span>                                                                          logger);<a name="line.371"></a>
-<span class="sourceLineNo">372</span>        session.setDialogueContext(dialogueContext);<a name="line.372"></a>
-<span class="sourceLineNo">373</span>        return dialogueContext;<a name="line.373"></a>
-<span class="sourceLineNo">374</span>    }<a name="line.374"></a>
-<span class="sourceLineNo">375</span><a name="line.375"></a>
-<span class="sourceLineNo">376</span>    private WebDialogueInitializationInfo&lt;I, O, C&gt; createInitializationInfo(HttpServletRequest request,<a name="line.376"></a>
-<span class="sourceLineNo">377</span>                                                                            HttpServletResponse response,<a name="line.377"></a>
-<span class="sourceLineNo">378</span>                                                                            C dialogueContext) {<a name="line.378"></a>
-<span class="sourceLineNo">379</span>        return new WebDialogueInitializationInfo&lt;I, O, C&gt;(dialogueContext, request, response, getServletContext(), this);<a name="line.379"></a>
-<span class="sourceLineNo">380</span>    }<a name="line.380"></a>
-<span class="sourceLineNo">381</span><a name="line.381"></a>
-<span class="sourceLineNo">382</span>    protected Session&lt;I, O, F, L, C&gt; getSession(HttpServletRequest request) throws SessionNotFoundException {<a name="line.382"></a>
-<span class="sourceLineNo">383</span>        String pathInfo = request.getPathInfo();<a name="line.383"></a>
-<span class="sourceLineNo">384</span><a name="line.384"></a>
-<span class="sourceLineNo">385</span>        if (pathInfo != null &amp;&amp; !pathInfo.equals("/")) {<a name="line.385"></a>
-<span class="sourceLineNo">386</span>            if (pathInfo.startsWith("/")) {<a name="line.386"></a>
-<span class="sourceLineNo">387</span>                pathInfo = pathInfo.substring(1);<a name="line.387"></a>
-<span class="sourceLineNo">388</span>            }<a name="line.388"></a>
-<span class="sourceLineNo">389</span><a name="line.389"></a>
-<span class="sourceLineNo">390</span>            int firstSlash = pathInfo.indexOf('/');<a name="line.390"></a>
-<span class="sourceLineNo">391</span>            if (firstSlash != -1) {<a name="line.391"></a>
-<span class="sourceLineNo">392</span>                pathInfo = pathInfo.substring(0, firstSlash);<a name="line.392"></a>
-<span class="sourceLineNo">393</span>            }<a name="line.393"></a>
-<span class="sourceLineNo">394</span><a name="line.394"></a>
-<span class="sourceLineNo">395</span>            return getExistingSession(pathInfo);<a name="line.395"></a>
-<span class="sourceLineNo">396</span>        } else {<a name="line.396"></a>
-<span class="sourceLineNo">397</span>            String sessionId = UUID.randomUUID().toString();<a name="line.397"></a>
-<span class="sourceLineNo">398</span><a name="line.398"></a>
-<span class="sourceLineNo">399</span>            Session&lt;I, O, F, L, C&gt; session = new Session&lt;I, O, F, L, C&gt;(mSessionContainer, sessionId);<a name="line.399"></a>
-<span class="sourceLineNo">400</span>            mSessionContainer.addSession(session);<a name="line.400"></a>
-<span class="sourceLineNo">401</span>            return session;<a name="line.401"></a>
-<span class="sourceLineNo">402</span>        }<a name="line.402"></a>
-<span class="sourceLineNo">403</span>    }<a name="line.403"></a>
-<span class="sourceLineNo">404</span><a name="line.404"></a>
-<span class="sourceLineNo">405</span>    protected Session&lt;I, O, F, L, C&gt; getExistingSession(String sessionId) throws SessionNotFoundException {<a name="line.405"></a>
-<span class="sourceLineNo">406</span>        Session&lt;I, O, F, L, C&gt; session = mSessionContainer.getSession(sessionId);<a name="line.406"></a>
+<span class="sourceLineNo">339</span>    private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException {<a name="line.339"></a>
+<span class="sourceLineNo">340</span>        Session&lt;I, O, F, L, C&gt; session;<a name="line.340"></a>
+<span class="sourceLineNo">341</span>        try {<a name="line.341"></a>
+<span class="sourceLineNo">342</span>            session = getSession(request);<a name="line.342"></a>
+<span class="sourceLineNo">343</span>            MDC.put(MDC_KEY_DIALOGUE_ID, session.getId());<a name="line.343"></a>
+<span class="sourceLineNo">344</span>        } catch (SessionNotFoundException exception) {<a name="line.344"></a>
+<span class="sourceLineNo">345</span>            throw new ServletException("Cannot find session.", exception);<a name="line.345"></a>
+<span class="sourceLineNo">346</span>        }<a name="line.346"></a>
+<span class="sourceLineNo">347</span><a name="line.347"></a>
+<span class="sourceLineNo">348</span>        process(request, response, session);<a name="line.348"></a>
+<span class="sourceLineNo">349</span>    }<a name="line.349"></a>
+<span class="sourceLineNo">350</span><a name="line.350"></a>
+<span class="sourceLineNo">351</span>    private void process(HttpServletRequest request, HttpServletResponse response, Session&lt;I, O, F, L, C&gt; session)<a name="line.351"></a>
+<span class="sourceLineNo">352</span>            throws ServletException {<a name="line.352"></a>
+<span class="sourceLineNo">353</span>        try {<a name="line.353"></a>
+<span class="sourceLineNo">354</span><a name="line.354"></a>
+<span class="sourceLineNo">355</span>            Step&lt;O, L&gt; step;<a name="line.355"></a>
+<span class="sourceLineNo">356</span>            C dialogueContext = session.getDialogueContext();<a name="line.356"></a>
+<span class="sourceLineNo">357</span><a name="line.357"></a>
+<span class="sourceLineNo">358</span>            try {<a name="line.358"></a>
+<span class="sourceLineNo">359</span>                if (dialogueContext == null) {<a name="line.359"></a>
+<span class="sourceLineNo">360</span>                    step = startDialogue(request, response, session);<a name="line.360"></a>
+<span class="sourceLineNo">361</span>                } else {<a name="line.361"></a>
+<span class="sourceLineNo">362</span>                    step = continueDialogue(request, response, session);<a name="line.362"></a>
+<span class="sourceLineNo">363</span>                }<a name="line.363"></a>
+<span class="sourceLineNo">364</span>            } catch (Timeout exception) {<a name="line.364"></a>
+<span class="sourceLineNo">365</span>                renderError(exception, request, response, session);<a name="line.365"></a>
+<span class="sourceLineNo">366</span>                return;<a name="line.366"></a>
+<span class="sourceLineNo">367</span>            } catch (InterruptedException exception) {<a name="line.367"></a>
+<span class="sourceLineNo">368</span>                Thread.currentThread().interrupt();<a name="line.368"></a>
+<span class="sourceLineNo">369</span>                renderError(exception, request, response, session);<a name="line.369"></a>
+<span class="sourceLineNo">370</span>                return;<a name="line.370"></a>
+<span class="sourceLineNo">371</span>            }<a name="line.371"></a>
+<span class="sourceLineNo">372</span><a name="line.372"></a>
+<span class="sourceLineNo">373</span>            if (step instanceof OutputTurnStep) {<a name="line.373"></a>
+<span class="sourceLineNo">374</span>                OutputTurnStep&lt;O, L&gt; outputTurnStep = (OutputTurnStep&lt;O, L&gt;) step;<a name="line.374"></a>
+<span class="sourceLineNo">375</span>                renderOutputTurn(outputTurnStep.getOutputTurn(), request, response, session);<a name="line.375"></a>
+<span class="sourceLineNo">376</span>            } else if (step instanceof LastTurnStep) {<a name="line.376"></a>
+<span class="sourceLineNo">377</span>                LastTurnStep&lt;O, L&gt; lastTurnStep = (LastTurnStep&lt;O, L&gt;) step;<a name="line.377"></a>
+<span class="sourceLineNo">378</span>                renderLastTurn(lastTurnStep.getLastTurn(), request, response, session);<a name="line.378"></a>
+<span class="sourceLineNo">379</span>            } else if (step instanceof ErrorStep) {<a name="line.379"></a>
+<span class="sourceLineNo">380</span>                ErrorStep&lt;O, L&gt; errorStep = (ErrorStep&lt;O, L&gt;) step;<a name="line.380"></a>
+<span class="sourceLineNo">381</span>                Throwable throwable = errorStep.getThrowable();<a name="line.381"></a>
+<span class="sourceLineNo">382</span>                renderError(throwable, request, response, session);<a name="line.382"></a>
+<span class="sourceLineNo">383</span>            }<a name="line.383"></a>
+<span class="sourceLineNo">384</span>        } catch (Exception exception) {<a name="line.384"></a>
+<span class="sourceLineNo">385</span>            throw new ServletException("Error while rendering step.", exception);<a name="line.385"></a>
+<span class="sourceLineNo">386</span>        }<a name="line.386"></a>
+<span class="sourceLineNo">387</span>    }<a name="line.387"></a>
+<span class="sourceLineNo">388</span><a name="line.388"></a>
+<span class="sourceLineNo">389</span>    private Step&lt;O, L&gt; continueDialogue(HttpServletRequest request,<a name="line.389"></a>
+<span class="sourceLineNo">390</span>                                        HttpServletResponse response,<a name="line.390"></a>
+<span class="sourceLineNo">391</span>                                        Session&lt;I, O, F, L, C&gt; session) throws ServletException, Timeout,<a name="line.391"></a>
+<span class="sourceLineNo">392</span>            InterruptedException {<a name="line.392"></a>
+<span class="sourceLineNo">393</span>        Assert.notNull(session, "session");<a name="line.393"></a>
+<span class="sourceLineNo">394</span>        I inputTurn = createInputTurn(request, response);<a name="line.394"></a>
+<span class="sourceLineNo">395</span>        SynchronousDialogueChannel&lt;I, O, F, L, C&gt; dialogueChannel = session.getDialogueChannel();<a name="line.395"></a>
+<span class="sourceLineNo">396</span>        Assert.notNull(dialogueChannel, "dialogueChannel");<a name="line.396"></a>
+<span class="sourceLineNo">397</span>        return dialogueChannel.doTurn(inputTurn, mDialogueTimeout);<a name="line.397"></a>
+<span class="sourceLineNo">398</span>    }<a name="line.398"></a>
+<span class="sourceLineNo">399</span><a name="line.399"></a>
+<span class="sourceLineNo">400</span>    private Step&lt;O, L&gt; startDialogue(HttpServletRequest request,<a name="line.400"></a>
+<span class="sourceLineNo">401</span>                                     HttpServletResponse response,<a name="line.401"></a>
+<span class="sourceLineNo">402</span>                                     Session&lt;I, O, F, L, C&gt; session) throws ServletException, Timeout,<a name="line.402"></a>
+<span class="sourceLineNo">403</span>            InterruptedException {<a name="line.403"></a>
+<span class="sourceLineNo">404</span>        SynchronousDialogueChannel&lt;I, O, F, L, C&gt; dialogueChannel;<a name="line.404"></a>
+<span class="sourceLineNo">405</span>        dialogueChannel = new SynchronousDialogueChannel&lt;I, O, F, L, C&gt;();<a name="line.405"></a>
+<span class="sourceLineNo">406</span>        session.setDialogueChannel(dialogueChannel);<a name="line.406"></a>
 <span class="sourceLineNo">407</span><a name="line.407"></a>
-<span class="sourceLineNo">408</span>        if (session == null) throw new SessionNotFoundException("Unable to find session [" + sessionId + "]");<a name="line.408"></a>
-<span class="sourceLineNo">409</span><a name="line.409"></a>
-<span class="sourceLineNo">410</span>        return session;<a name="line.410"></a>
-<span class="sourceLineNo">411</span>    }<a name="line.411"></a>
-<span class="sourceLineNo">412</span><a name="line.412"></a>
-<span class="sourceLineNo">413</span>    private I createInputTurn(HttpServletRequest request, HttpServletResponse response) throws ServletException {<a name="line.413"></a>
-<span class="sourceLineNo">414</span>        try {<a name="line.414"></a>
-<span class="sourceLineNo">415</span>            return mInputTurnFactory.createInputTurn(request, response);<a name="line.415"></a>
-<span class="sourceLineNo">416</span>        } catch (InputTurnFactoryException exception) {<a name="line.416"></a>
-<span class="sourceLineNo">417</span>            throw new ServletException(exception);<a name="line.417"></a>
-<span class="sourceLineNo">418</span>        }<a name="line.418"></a>
-<span class="sourceLineNo">419</span>    }<a name="line.419"></a>
-<span class="sourceLineNo">420</span><a name="line.420"></a>
-<span class="sourceLineNo">421</span>    private F createFirstTurn(HttpServletRequest request, HttpServletResponse response) throws ServletException {<a name="line.421"></a>
-<span class="sourceLineNo">422</span>        try {<a name="line.422"></a>
-<span class="sourceLineNo">423</span>            return mInputTurnFactory.createFirstTurn(request, response);<a name="line.423"></a>
-<span class="sourceLineNo">424</span>        } catch (InputTurnFactoryException exception) {<a name="line.424"></a>
-<span class="sourceLineNo">425</span>            throw new ServletException(exception);<a name="line.425"></a>
-<span class="sourceLineNo">426</span>        }<a name="line.426"></a>
-<span class="sourceLineNo">427</span>    }<a name="line.427"></a>
-<span class="sourceLineNo">428</span><a name="line.428"></a>
-<span class="sourceLineNo">429</span>    private static void commitToResponse(final HttpServletResponse response, ServletResponseContent responseContent)<a name="line.429"></a>
-<span class="sourceLineNo">430</span>            throws IOException {<a name="line.430"></a>
-<span class="sourceLineNo">431</span>        ServletOutputStream outputStream = response.getOutputStream();<a name="line.431"></a>
-<span class="sourceLineNo">432</span>        response.setContentType(responseContent.getContentType());<a name="line.432"></a>
-<span class="sourceLineNo">433</span>        responseContent.writeTo(outputStream);<a name="line.433"></a>
-<span class="sourceLineNo">434</span>    }<a name="line.434"></a>
-<span class="sourceLineNo">435</span>}<a name="line.435"></a>
+<span class="sourceLineNo">408</span>        Logger logger = mLoggerFactory.getLogger(DIALOGUE_LOGGER_NAME);<a name="line.408"></a>
+<span class="sourceLineNo">409</span>        dialogueChannel.setLogger(logger);<a name="line.409"></a>
+<span class="sourceLineNo">410</span><a name="line.410"></a>
+<span class="sourceLineNo">411</span>        dialogueChannel.setDefaultReceiveFromControllerTimeout(mControllerTimeout);<a name="line.411"></a>
+<span class="sourceLineNo">412</span>        dialogueChannel.setDefaultReceiveFromDialogueTimeout(mDialogueTimeout);<a name="line.412"></a>
+<span class="sourceLineNo">413</span><a name="line.413"></a>
+<span class="sourceLineNo">414</span>        C dialogueContext = createContext(request, session, dialogueChannel, logger);<a name="line.414"></a>
+<span class="sourceLineNo">415</span><a name="line.415"></a>
+<span class="sourceLineNo">416</span>        DialogueInitializationInfo&lt;I, O, C&gt; initializationInfo;<a name="line.416"></a>
+<span class="sourceLineNo">417</span>        initializationInfo = createInitializationInfo(request, response, dialogueContext);<a name="line.417"></a>
+<span class="sourceLineNo">418</span>        Dialogue&lt;I, O, F, L, C&gt; dialogue;<a name="line.418"></a>
+<span class="sourceLineNo">419</span>        try {<a name="line.419"></a>
+<span class="sourceLineNo">420</span>            dialogue = mDialogueFactory.create(initializationInfo);<a name="line.420"></a>
+<span class="sourceLineNo">421</span>        } catch (DialogueFactoryException exception) {<a name="line.421"></a>
+<span class="sourceLineNo">422</span>            throw new ServletException("Unable to create dialogue.", exception);<a name="line.422"></a>
+<span class="sourceLineNo">423</span>        }<a name="line.423"></a>
+<span class="sourceLineNo">424</span>        F firstTurn = createFirstTurn(request, response);<a name="line.424"></a>
+<span class="sourceLineNo">425</span>        return dialogueChannel.start(dialogue, firstTurn, mDialogueTimeout, dialogueContext);<a name="line.425"></a>
+<span class="sourceLineNo">426</span>    }<a name="line.426"></a>
+<span class="sourceLineNo">427</span><a name="line.427"></a>
+<span class="sourceLineNo">428</span>    private C createContext(HttpServletRequest request,<a name="line.428"></a>
+<span class="sourceLineNo">429</span>                            Session&lt;I, O, F, L, C&gt; session,<a name="line.429"></a>
+<span class="sourceLineNo">430</span>                            SynchronousDialogueChannel&lt;I, O, F, L, C&gt; dialogueChannel,<a name="line.430"></a>
+<span class="sourceLineNo">431</span>                            Logger logger) {<a name="line.431"></a>
+<span class="sourceLineNo">432</span>        C dialogueContext = mDialogueContextFactory.createDialogueContext(request,<a name="line.432"></a>
+<span class="sourceLineNo">433</span>                                                                          session.getId(),<a name="line.433"></a>
+<span class="sourceLineNo">434</span>                                                                          dialogueChannel,<a name="line.434"></a>
+<span class="sourceLineNo">435</span>                                                                          logger);<a name="line.435"></a>
+<span class="sourceLineNo">436</span>        session.setDialogueContext(dialogueContext);<a name="line.436"></a>
+<span class="sourceLineNo">437</span>        return dialogueContext;<a name="line.437"></a>
+<span class="sourceLineNo">438</span>    }<a name="line.438"></a>
+<span class="sourceLineNo">439</span><a name="line.439"></a>
+<span class="sourceLineNo">440</span>    private WebDialogueInitializationInfo&lt;I, O, C&gt; createInitializationInfo(HttpServletRequest request,<a name="line.440"></a>
+<span class="sourceLineNo">441</span>                                                                            HttpServletResponse response,<a name="line.441"></a>
+<span class="sourceLineNo">442</span>                                                                            C dialogueContext) {<a name="line.442"></a>
+<span class="sourceLineNo">443</span>        return new WebDialogueInitializationInfo&lt;I, O, C&gt;(dialogueContext, request, response, getServletContext(), this);<a name="line.443"></a>
+<span class="sourceLineNo">444</span>    }<a name="line.444"></a>
+<span class="sourceLineNo">445</span><a name="line.445"></a>
+<span class="sourceLineNo">446</span>    protected Session&lt;I, O, F, L, C&gt; getSession(HttpServletRequest request) throws SessionNotFoundException {<a name="line.446"></a>
+<span class="sourceLineNo">447</span>        String pathInfo = request.getPathInfo();<a name="line.447"></a>
+<span class="sourceLineNo">448</span><a name="line.448"></a>
+<span class="sourceLineNo">449</span>        if (pathInfo != null &amp;&amp; !pathInfo.equals("/")) {<a name="line.449"></a>
+<span class="sourceLineNo">450</span>            if (pathInfo.startsWith("/")) {<a name="line.450"></a>
+<span class="sourceLineNo">451</span>                pathInfo = pathInfo.substring(1);<a name="line.451"></a>
+<span class="sourceLineNo">452</span>            }<a name="line.452"></a>
+<span class="sourceLineNo">453</span><a name="line.453"></a>
+<span class="sourceLineNo">454</span>            int firstSlash = pathInfo.indexOf('/');<a name="line.454"></a>
+<span class="sourceLineNo">455</span>            if (firstSlash != -1) {<a name="line.455"></a>
+<span class="sourceLineNo">456</span>                pathInfo = pathInfo.substring(0, firstSlash);<a name="line.456"></a>
+<span class="sourceLineNo">457</span>            }<a name="line.457"></a>
+<span class="sourceLineNo">458</span><a name="line.458"></a>
+<span class="sourceLineNo">459</span>            return getExistingSession(pathInfo);<a name="line.459"></a>
+<span class="sourceLineNo">460</span>        } else {<a name="line.460"></a>
+<span class="sourceLineNo">461</span>            String sessionId = UUID.randomUUID().toString();<a name="line.461"></a>
+<span class="sourceLineNo">462</span><a name="line.462"></a>
+<span class="sourceLineNo">463</span>            Session&lt;I, O, F, L, C&gt; session = new Session&lt;I, O, F, L, C&gt;(mSessionContainer, sessionId);<a name="line.463"></a>
+<span class="sourceLineNo">464</span>            mSessionContainer.addSession(session);<a name="line.464"></a>
+<span class="sourceLineNo">465</span>            if (mWebappServerSessionTrackingEnabled) {<a name="line.465"></a>
+<span class="sourceLineNo">466</span>                session.setAssociatedHttpSession(request.getSession());<a name="line.466"></a>
+<span class="sourceLineNo">467</span>            }<a name="line.467"></a>
+<span class="sourceLineNo">468</span><a name="line.468"></a>
+<span class="sourceLineNo">469</span>            return session;<a name="line.469"></a>
+<span class="sourceLineNo">470</span>        }<a name="line.470"></a>
+<span class="sourceLineNo">471</span>    }<a name="line.471"></a>
+<span class="sourceLineNo">472</span><a name="line.472"></a>
+<span class="sourceLineNo">473</span>    protected Session&lt;I, O, F, L, C&gt; getExistingSession(String sessionId) throws SessionNotFoundException {<a name="line.473"></a>
+<span class="sourceLineNo">474</span>        Session&lt;I, O, F, L, C&gt; session = mSessionContainer.getSession(sessionId);<a name="line.474"></a>
+<span class="sourceLineNo">475</span><a name="line.475"></a>
+<span class="sourceLineNo">476</span>        if (session == null) throw new SessionNotFoundException("Unable to find session [" + sessionId + "]");<a name="line.476"></a>
+<span class="sourceLineNo">477</span><a name="line.477"></a>
+<span class="sourceLineNo">478</span>        return session;<a name="line.478"></a>
+<span class="sourceLineNo">479</span>    }<a name="line.479"></a>
+<span class="sourceLineNo">480</span><a name="line.480"></a>
+<span class="sourceLineNo">481</span>    private I createInputTurn(HttpServletRequest request, HttpServletResponse response) throws ServletException {<a name="line.481"></a>
+<span class="sourceLineNo">482</span>        try {<a name="line.482"></a>
+<span class="sourceLineNo">483</span>            return mInputTurnFactory.createInputTurn(request, response);<a name="line.483"></a>
+<span class="sourceLineNo">484</span>        } catch (InputTurnFactoryException exception) {<a name="line.484"></a>
+<span class="sourceLineNo">485</span>            throw new ServletException(exception);<a name="line.485"></a>
+<span class="sourceLineNo">486</span>        }<a name="line.486"></a>
+<span class="sourceLineNo">487</span>    }<a name="line.487"></a>
+<span class="sourceLineNo">488</span><a name="line.488"></a>
+<span class="sourceLineNo">489</span>    private F createFirstTurn(HttpServletRequest request, HttpServletResponse response) throws ServletException {<a name="line.489"></a>
+<span class="sourceLineNo">490</span>        try {<a name="line.490"></a>
+<span class="sourceLineNo">491</span>            return mInputTurnFactory.createFirstTurn(request, response);<a name="line.491"></a>
+<span class="sourceLineNo">492</span>        } catch (InputTurnFactoryException exception) {<a name="line.492"></a>
+<span class="sourceLineNo">493</span>            throw new ServletException(exception);<a name="line.493"></a>
+<span class="sourceLineNo">494</span>        }<a name="line.494"></a>
+<span class="sourceLineNo">495</span>    }<a name="line.495"></a>
+<span class="sourceLineNo">496</span><a name="line.496"></a>
+<span class="sourceLineNo">497</span>    private static void commitToResponse(final HttpServletResponse response, ServletResponseContent responseContent)<a name="line.497"></a>
+<span class="sourceLineNo">498</span>            throws IOException {<a name="line.498"></a>
+<span class="sourceLineNo">499</span>        ServletOutputStream outputStream = response.getOutputStream();<a name="line.499"></a>
+<span class="sourceLineNo">500</span>        response.setContentType(responseContent.getContentType());<a name="line.500"></a>
+<span class="sourceLineNo">501</span>        Integer contentLength = responseContent.getContentLength();<a name="line.501"></a>
+<span class="sourceLineNo">502</span>        if (contentLength != null) {<a name="line.502"></a>
+<span class="sourceLineNo">503</span>            response.setContentLength(contentLength);<a name="line.503"></a>
+<span class="sourceLineNo">504</span>        }<a name="line.504"></a>
+<span class="sourceLineNo">505</span><a name="line.505"></a>
+<span class="sourceLineNo">506</span>        responseContent.writeTo(outputStream);<a name="line.506"></a>
+<span class="sourceLineNo">507</span>    }<a name="line.507"></a>
+<span class="sourceLineNo">508</span>}<a name="line.508"></a>
 
 
 

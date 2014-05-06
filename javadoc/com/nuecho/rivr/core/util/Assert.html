@@ -94,7 +94,7 @@
 <li class="blockList">
 <hr>
 <br>
-<pre>public final class <a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.14">Assert</a>
+<pre>public final class <a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.16">Assert</a>
 extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">Assertion facilities.</div>
 </li>
@@ -116,21 +116,40 @@ extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.h
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;T&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/util/Assert.html#asListChecked(T[])">asListChecked</a></strong>(T[]&nbsp;items)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/util/Assert.html#between(double, double, double)">between</a></strong>(double&nbsp;min,
               double&nbsp;value,
               double&nbsp;max)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/util/Assert.html#between(long, long, long)">between</a></strong>(long&nbsp;min,
               long&nbsp;value,
               long&nbsp;max)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/util/Assert.html#ensure(boolean, java.lang.String)">ensure</a></strong>(boolean&nbsp;condition,
             <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;message)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/util/Assert.html#noNullValues(java.util.Collection, java.lang.String)">noNullValues</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;?&gt;&nbsp;collection,
+                        <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/util/Assert.html#noNullValues(java.util.List, java.lang.String)">noNullValues</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;?&gt;&nbsp;list,
+                        <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/util/Assert.html#noNullValues(java.lang.Object[], java.lang.String)">noNullValues</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>[]&nbsp;array,
+                        <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
@@ -185,7 +204,7 @@ extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.h
 <ul class="blockList">
 <li class="blockList">
 <h4>notNull</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.20">notNull</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;item,
+<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.22">notNull</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;item,
            <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol)</pre>
 </li>
 </ul>
@@ -195,7 +214,7 @@ extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.h
 <ul class="blockList">
 <li class="blockList">
 <h4>notEmpty</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.24">notEmpty</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;string,
+<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.26">notEmpty</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;string,
             <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol)</pre>
 </li>
 </ul>
@@ -205,8 +224,38 @@ extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.h
 <ul class="blockList">
 <li class="blockList">
 <h4>notEmpty</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.29">notEmpty</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;?&gt;&nbsp;collection,
+<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.31">notEmpty</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;?&gt;&nbsp;collection,
             <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol)</pre>
+</li>
+</ul>
+<a name="noNullValues(java.util.Collection, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>noNullValues</h4>
+<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.36">noNullValues</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;?&gt;&nbsp;collection,
+                <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol)</pre>
+</li>
+</ul>
+<a name="noNullValues(java.lang.Object[], java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>noNullValues</h4>
+<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.43">noNullValues</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>[]&nbsp;array,
+                <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol)</pre>
+</li>
+</ul>
+<a name="noNullValues(java.util.List, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>noNullValues</h4>
+<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.52">noNullValues</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;?&gt;&nbsp;list,
+                <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol)</pre>
 </li>
 </ul>
 <a name="between(long, long, long)">
@@ -215,7 +264,7 @@ extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.h
 <ul class="blockList">
 <li class="blockList">
 <h4>between</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.34">between</a>(long&nbsp;min,
+<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.61">between</a>(long&nbsp;min,
            long&nbsp;value,
            long&nbsp;max)</pre>
 </li>
@@ -226,7 +275,7 @@ extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.h
 <ul class="blockList">
 <li class="blockList">
 <h4>between</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.39">between</a>(double&nbsp;min,
+<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.66">between</a>(double&nbsp;min,
            double&nbsp;value,
            double&nbsp;max)</pre>
 </li>
@@ -237,7 +286,7 @@ extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.h
 <ul class="blockList">
 <li class="blockList">
 <h4>notNegative</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.44">notNegative</a>(long&nbsp;value,
+<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.71">notNegative</a>(long&nbsp;value,
                <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol)</pre>
 </li>
 </ul>
@@ -247,18 +296,29 @@ extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.h
 <ul class="blockList">
 <li class="blockList">
 <h4>positive</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.48">positive</a>(long&nbsp;value,
+<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.75">positive</a>(long&nbsp;value,
             <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol)</pre>
 </li>
 </ul>
 <a name="ensure(boolean, java.lang.String)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>ensure</h4>
-<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.52">ensure</a>(boolean&nbsp;condition,
+<pre>public static&nbsp;void&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.79">ensure</a>(boolean&nbsp;condition,
           <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;message)</pre>
+</li>
+</ul>
+<a name="asListChecked(java.lang.Object[])">
+<!--   -->
+</a><a name="asListChecked(T[])">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>asListChecked</h4>
+<pre>public static&nbsp;&lt;T&gt;&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;T&gt;&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/util/Assert.html#line.83">asListChecked</a>(T[]&nbsp;items)</pre>
 </li>
 </ul>
 </li>
