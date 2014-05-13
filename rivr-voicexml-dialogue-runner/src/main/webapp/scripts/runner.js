@@ -736,7 +736,8 @@ function sendSingleHypothesis(mode, value) {
       result : [ {
         utterance : value,
         confidence : 1.0,
-        inputmode : mode
+        inputmode : mode,
+        interpretation: value
       } ]
     }
   };
