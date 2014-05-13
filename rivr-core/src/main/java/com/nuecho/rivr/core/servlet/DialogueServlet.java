@@ -77,6 +77,9 @@ import com.nuecho.rivr.core.util.*;
 public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn, F extends FirstTurn, L extends LastTurn, C extends DialogueContext<I, O>>
         extends HttpServlet {
 
+    private static final String FALSE = "false";
+    private static final String TRUE = "true";
+
     private static final String MDC_KEY_DIALOGUE_ID = "dialogueId";
 
     private static final String SESSION_LOGGER_NAME = "com.nuecho.rivr.session";
@@ -207,11 +210,15 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         ServletConfig servletConfig = getServletConfig();
         String booleanString = servletConfig.getInitParameter(key);
         if (booleanString == null) return null;
-        if (booleanString.equalsIgnoreCase("true")) return Boolean.TRUE;
-        if (booleanString.equalsIgnoreCase("false")) return Boolean.FALSE;
+        if (booleanString.equalsIgnoreCase(TRUE)) return Boolean.TRUE;
+        if (booleanString.equalsIgnoreCase(FALSE)) return Boolean.FALSE;
         throw new ServletException("Unable to parse boolean for init-arg '"
                                    + key
-                                   + "'.  Should be 'true' of 'false' but not '"
+                                   + "'.  Should be '"
+                                   + TRUE
+                                   + "' of '"
+                                   + FALSE
+                                   + "' but not '"
                                    + booleanString
                                    + "'.");
     }
