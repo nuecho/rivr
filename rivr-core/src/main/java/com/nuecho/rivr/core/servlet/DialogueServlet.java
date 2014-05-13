@@ -191,7 +191,8 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
      * container.
      */
     @Override
-    public void destroy() {
+    public final void destroy() {
+        mSessionContainer.stop();
         destroyDialogueServlet();
     }
 
