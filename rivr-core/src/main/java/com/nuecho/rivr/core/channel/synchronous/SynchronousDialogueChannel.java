@@ -234,8 +234,10 @@ public final class SynchronousDialogueChannel<I extends InputTurn, O extends Out
                 }
 
                 try {
-                    mLogger.trace("Last step: {}", lastStep);
-                    send(mFromDialogueToController, lastStep, mSendTimeout);
+                    if (!mStopped) {
+                        mLogger.trace("Last step: {}", lastStep);
+                        send(mFromDialogueToController, lastStep, mSendTimeout);
+                    }
                 } catch (Timeout exception) {
                     throw new RuntimeException("Timeout while sending final result.", exception);
                 } catch (InterruptedException exception) {
