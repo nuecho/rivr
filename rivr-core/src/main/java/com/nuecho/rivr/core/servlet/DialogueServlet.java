@@ -140,9 +140,12 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     @Override
     public final void init() throws ServletException {
 
+        Throwable initError = null;
+
         try {
             initDialogueServlet();
         } catch (DialogueServletInitializationException exception) {
+            initError = exception;
         }
 
         if (mLoggerFactory == null) {
@@ -150,7 +153,13 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         }
 
         mLogger = mLoggerFactory.getLogger(SERVLET_LOGGER_NAME);
+
+        if (initError != null) {
+            mLogger.error("Unable to initialize dialogue servlet.", initError);
+            destroy();
             throw new ServletException("Unable to initialize dialogue servlet.", initError);
+        }
+
         ensureFieldIsSet(mInputTurnFactory, "InputTurnFactory");
         ensureFieldIsSet(mDialogueFactory, "DialogueFactory");
         ensureFieldIsSet(mDialogueContextFactory, "DialogueContextFactory");
