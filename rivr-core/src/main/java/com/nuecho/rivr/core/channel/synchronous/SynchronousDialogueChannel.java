@@ -110,10 +110,10 @@ public final class SynchronousDialogueChannel<I extends InputTurn, O extends Out
 
     private final List<DialogueChannelListener<I, O>> mListener = new ArrayList<DialogueChannelListener<I, O>>();
     private Logger mLogger = NOPLogger.NOP_LOGGER;
-    private boolean mStopped;
 
-    private boolean mDialogueStarted;
-    private boolean mDialogueDone;
+    private volatile boolean mStopped;
+    private volatile boolean mDialogueStarted;
+    private volatile boolean mDialogueDone;
 
     /**
      * Gets the maximum duration for send operations. A send operation occurs
