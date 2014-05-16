@@ -62,7 +62,11 @@ public final class Session<I extends InputTurn, O extends OutputTurn, F extends 
         mContainer.removeSession(mId);
 
         if (mAssociatedHttpSession != null) {
-            mAssociatedHttpSession.invalidate();
+            try {
+                mAssociatedHttpSession.invalidate();
+            } catch (IllegalStateException exception) {
+                //already invalidated
+            }
             mAssociatedHttpSession = null;
         }
     }
