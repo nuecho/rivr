@@ -165,9 +165,9 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         ensureFieldIsSet(mDialogueContextFactory, "DialogueContextFactory");
         ensureFieldIsSet(mErrorHandler, "ErrorHandler");
 
-        Logger logger = mLoggerFactory.getLogger(SESSION_LOGGER_NAME);
+        Logger sessionContainerLogger = mLoggerFactory.getLogger(SESSION_LOGGER_NAME);
 
-        mSessionContainer = new SessionContainer<I, O, F, L, C>(logger,
+        mSessionContainer = new SessionContainer<I, O, F, L, C>(sessionContainerLogger,
                                                                 mSessionTimeout,
                                                                 mSessionScanPeriod,
                                                                 SESSION_CONTAINER_NAME);
