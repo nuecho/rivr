@@ -54,7 +54,7 @@ public final class Session<I extends InputTurn, O extends OutputTurn, F extends 
         stop();
     }
 
-    public void stop() {
+    public synchronized void stop() {
         if (mDialogueChannel != null && mDialogueChannel.isDialogueActive()) {
             mDialogueChannel.stop();
         }
