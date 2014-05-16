@@ -197,6 +197,8 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
             setWebappServerSessionTrackingEnabled(mWebappServerSessionTrackingEnabled);
         }
 
+        mLogger.info("Dialogue servlet initialized.");
+
     }
 
     /**
