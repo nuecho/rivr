@@ -349,11 +349,13 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         try {
             session = getSession(request);
             MDC.put(MDC_KEY_DIALOGUE_ID, session.getId());
+            process(request, response, session);
         } catch (SessionNotFoundException exception) {
             throw new ServletException("Cannot find session.", exception);
+        } finally {
+            MDC.remove(MDC_KEY_DIALOGUE_ID);
         }
 
-        process(request, response, session);
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response, Session<I, O, F, L, C> session)
