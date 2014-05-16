@@ -114,6 +114,8 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     private boolean mWebappServerSessionTrackingEnabled = true;
     private Logger mLogger;
 
+    private boolean mDestroyed;
+
     /**
      * Performs initialization.
      */
@@ -194,9 +196,15 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
      * container.
      */
     @Override
-    public final void destroy() {
-        mSessionContainer.stop();
+    public final synchronized void destroy() {
+        if (mDestroyed) return;
+        if (mSessionContainer != null) {
+            mSessionContainer.stop();
+        }
         destroyDialogueServlet();
+
+        mLogger.info("Dialogue servlet destroyed.");
+        mDestroyed = true;
     }
 
     private Duration getDuration(String key) throws ServletException {
