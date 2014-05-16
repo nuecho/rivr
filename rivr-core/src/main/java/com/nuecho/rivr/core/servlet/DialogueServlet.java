@@ -84,6 +84,7 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
     private static final String SESSION_LOGGER_NAME = "com.nuecho.rivr.session";
     private static final String DIALOGUE_LOGGER_NAME = "com.nuecho.rivr.dialogue";
+    private static final String SERVLET_LOGGER_NAME = "com.nuecho.rivr.servlet";
 
     private static final long serialVersionUID = 1L;
     private static final String SESSION_CONTAINER_NAME = "com.nuecho.rivr.sessionContainer";
@@ -111,6 +112,7 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     private Duration mSessionScanPeriod = Duration.minutes(2);
 
     private boolean mWebappServerSessionTrackingEnabled = true;
+    private Logger mLogger;
 
     /**
      * Performs initialization.
@@ -146,6 +148,7 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
             mLoggerFactory = LoggerFactory.getILoggerFactory();
         }
 
+        mLogger = mLoggerFactory.getLogger(SERVLET_LOGGER_NAME);
         ensureFieldIsSet(mInputTurnFactory, "InputTurnFactory");
         ensureFieldIsSet(mDialogueFactory, "DialogueFactory");
         ensureFieldIsSet(mDialogueContextFactory, "DialogueContextFactory");
