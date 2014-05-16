@@ -128,6 +128,28 @@ public final class SessionContainer<I extends InputTurn, O extends OutputTurn, F
 
     public synchronized void stop() {
         if (!mStopped) {
+
+            Collection<Session<I, O, F, L, C>> sessions = new HashSet<Session<I, O, F, L, C>>(mSessions.values());
+
+            for (Session<I, O, F, L, C> session : sessions) {
+                try {
+                    mLogger.info("Stopping session {}.", session.getId());
+                    session.stop();
+                } catch (Throwable throwable) {
+                    mLogger.error("Unable to stop session {}.", session.getId(), throwable);
+                }
+            }
+
+            for (Session<I, O, F, L, C> session : sessions) {
+                try {
+                    mLogger.info("Waiting for dialogue thread {} to complete.", session.getId());
+                    session.getDialogueChannel().join(Duration.ZERO);
+                    mLogger.info("Dialogue thread {} done.", session.getId());
+                } catch (Throwable throwable) {
+                    mLogger.error("Error while waiting for dialogue thread {} to complete.", session.getId(), throwable);
+                }
+            }
+
             mStopped = true;
             mTimeoutCheckScanThread.interrupt();
         }
