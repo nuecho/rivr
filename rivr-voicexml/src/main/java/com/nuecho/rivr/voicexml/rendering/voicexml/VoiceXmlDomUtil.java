@@ -462,7 +462,9 @@ public final class VoiceXmlDomUtil {
     public static void createVarElement(Element parent, String name, String expr) {
         Element varElement = DomUtils.appendNewElement(parent, VAR_ELEMENT);
         varElement.setAttribute(NAME_ATTRIBUTE, name);
-        setAttribute(varElement, EXPR_ATTRIBUTE, expr);
+        if (expr != null) {
+            setAttribute(varElement, EXPR_ATTRIBUTE, expr);
+        }
     }
 
     private static Element createSubmitElement(Element parent,
