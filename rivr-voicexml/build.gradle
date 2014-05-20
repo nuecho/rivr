@@ -3,7 +3,7 @@ dependencies {
     compile 'javax.servlet:servlet-api:2.5'
     compile 'commons-fileupload:commons-fileupload:1.2.1'
     compile 'javax.json:javax.json-api:1.0'
-    runtime 'org.glassfish:javax.json:1.0.3'
+    runtime 'org.glassfish:javax.json:1.0.4'
 }
 
 processResources {
