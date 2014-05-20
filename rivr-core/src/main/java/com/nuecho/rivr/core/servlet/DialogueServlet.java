@@ -84,7 +84,9 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
     private static final String SESSION_LOGGER_NAME = "com.nuecho.rivr.session";
     private static final String DIALOGUE_LOGGER_NAME = "com.nuecho.rivr.dialogue";
+
     private static final String SERVLET_LOGGER_NAME = "com.nuecho.rivr.servlet";
+    private static final String RESPONSES_LOGGER_NAME = "com.nuecho.rivr.servlet.responses";
 
     private static final long serialVersionUID = 1L;
     private static final String SESSION_CONTAINER_NAME = "com.nuecho.rivr.sessionContainer";
@@ -113,6 +115,7 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
     private boolean mWebappServerSessionTrackingEnabled = true;
     private Logger mLogger;
+    private Logger mResponseLogger;
 
     private boolean mDestroyed;
 
@@ -153,6 +156,7 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         }
 
         mLogger = mLoggerFactory.getLogger(SERVLET_LOGGER_NAME);
+        mResponseLogger = mLoggerFactory.getLogger(RESPONSES_LOGGER_NAME);
 
         if (initError != null) {
             mLogger.error("Unable to initialize dialogue servlet.", initError);
@@ -526,9 +530,16 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         }
     }
 
-    private static void commitToResponse(final HttpServletResponse response, ServletResponseContent responseContent)
+    private void commitToResponse(final HttpServletResponse response, ServletResponseContent responseContent)
             throws IOException {
         ServletOutputStream outputStream = response.getOutputStream();
+
+        if (mResponseLogger.isDebugEnabled()) {
+            mResponseLogger.debug("Content-length: {}", responseContent.getContentLength());
+            mResponseLogger.debug("Content-type: {}", responseContent.getContentType());
+            mResponseLogger.debug("Content: {}", responseContent.getContentAsString());
+        }
+
         response.setContentType(responseContent.getContentType());
         Integer contentLength = responseContent.getContentLength();
         if (contentLength != null) {
