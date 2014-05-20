@@ -63,7 +63,7 @@ public class JsonServletResponseContent implements ServletResponseContent {
     private byte[] buildContent(JsonStructure jsonData, String jsonpCallback) throws IOException {
 
         ByteArrayOutputStream binaryArrayOutputStream = new ByteArrayOutputStream();
-        Writer writer = new OutputStreamWriter(binaryArrayOutputStream, "utf-8");
+        Writer writer = new OutputStreamWriter(binaryArrayOutputStream, Encoding.UTF_8.getId());
 
         if (mJsonpMode == JsonpMode.TEXTAREA) {
             writer.write("<textarea>");
