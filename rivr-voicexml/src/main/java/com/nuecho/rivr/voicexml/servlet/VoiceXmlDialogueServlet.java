@@ -321,7 +321,7 @@ public class VoiceXmlDialogueServlet
         try {
             Document rootDocument = mRootDocumentFactory.getDocument(request);
             response.setContentType(VOICE_XML_CONTENT_TYPE);
-            DomUtils.writeToOutputStream(rootDocument, response.getOutputStream());
+            DomUtils.writeToOutputStream(rootDocument, response.getOutputStream(), Encoding.UTF_8);
         } catch (VoiceXmlDocumentRenderingException exception) {
             throw new ServletException("Error while rendering root document.", exception);
         }

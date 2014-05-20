@@ -11,6 +11,7 @@ import java.io.*;
 import org.w3c.dom.*;
 
 import com.nuecho.rivr.core.servlet.*;
+import com.nuecho.rivr.core.util.*;
 
 /**
  * {@link ServletResponseContent} wrapping a {@link Document org.w3c.Document}.
@@ -24,7 +25,7 @@ public class XmlDocumentServletResponseContent implements ServletResponseContent
 
     public XmlDocumentServletResponseContent(Document document, String contentType) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        writeToOutputStream(document, byteArrayOutputStream);
+        writeToOutputStream(document, byteArrayOutputStream, Encoding.UTF_8);
         mContent = byteArrayOutputStream.toByteArray();
         mContentType = contentType;
     }

@@ -75,12 +75,13 @@ public final class DomUtils {
         parentElement.appendChild(textNode);
     }
 
-    public static void writeToOutputStream(Node node, OutputStream outputStream) throws IOException {
+    public static void writeToOutputStream(Node node, OutputStream outputStream, Encoding encoding) throws IOException {
 
         LSSerializer xmlSerializer = getSerializer();
 
         LSOutput destination = DOM_IMPLEMENTATION.createLSOutput();
         destination.setByteStream(outputStream);
+        destination.setEncoding(encoding.getId());
 
         try {
             xmlSerializer.write(node, destination);
