@@ -10,7 +10,7 @@ package com.nuecho.rivr.core.util;
  * @author Nu Echo Inc.
  */
 public enum Encoding {
-    US_ASCII("us-ascii"), UTF_8("utf-8"), ISO_8859_1("iso-8859-1");
+    US_ASCII("US-ASCII"), UTF_8("UTF-8"), ISO_8859_1("ISO-8859-1");
 
     private String mId;
 
