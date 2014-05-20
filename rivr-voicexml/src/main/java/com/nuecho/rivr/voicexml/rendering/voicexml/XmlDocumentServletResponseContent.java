@@ -39,6 +39,15 @@ public class XmlDocumentServletResponseContent implements ServletResponseContent
         outputStream.write(mContent);
     }
 
+    @Override
+    public String getContentAsString() {
+        try {
+            return new String(mContent, Encoding.UTF_8.getId());
+        } catch (UnsupportedEncodingException exception) {
+            throw new AssertionError("Missing " + Encoding.UTF_8.getId() + " encoding.");
+        }
+    }
+
     /**
      * @since 1.0.2
      */

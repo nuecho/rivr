@@ -51,6 +51,15 @@ public class JsonServletResponseContent implements ServletResponseContent {
         outputStream.write(mContent);
     }
 
+    @Override
+    public String getContentAsString() {
+        try {
+            return new String(mContent, Encoding.UTF_8.getId());
+        } catch (UnsupportedEncodingException exception) {
+            throw new AssertionError("Missing " + Encoding.UTF_8.getId() + " encoding.");
+        }
+    }
+
     private byte[] buildContent(JsonStructure jsonData, String jsonpCallback) throws IOException {
 
         ByteArrayOutputStream binaryArrayOutputStream = new ByteArrayOutputStream();

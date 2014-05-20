@@ -17,7 +17,13 @@ public interface ServletResponseContent {
     void writeTo(OutputStream outputStream) throws IOException;
 
     /**
+     * @since 1.0.3
+     */
+    String getContentAsString();
+
+    /**
      * @since 1.0.2
      */
     Integer getContentLength();
+
 }
