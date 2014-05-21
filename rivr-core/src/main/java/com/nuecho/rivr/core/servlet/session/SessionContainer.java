@@ -129,7 +129,7 @@ public final class SessionContainer<I extends InputTurn, O extends OutputTurn, F
     public synchronized void stop() {
         if (!mStopped) {
 
-            Collection<Session<I, O, F, L, C>> sessions = new HashSet<Session<I, O, F, L, C>>(mSessions.values());
+            final Collection<Session<I, O, F, L, C>> sessions = new HashSet<Session<I, O, F, L, C>>(mSessions.values());
 
             for (Session<I, O, F, L, C> session : sessions) {
                 try {
@@ -140,18 +140,46 @@ public final class SessionContainer<I extends InputTurn, O extends OutputTurn, F
                 }
             }
 
-            for (Session<I, O, F, L, C> session : sessions) {
-                try {
-                    mLogger.info("Waiting for dialogue thread {} to complete.", session.getId());
-                    session.getDialogueChannel().join(Duration.ZERO);
-                    mLogger.info("Dialogue thread {} done.", session.getId());
-                } catch (Throwable throwable) {
-                    mLogger.error("Error while waiting for dialogue thread {} to complete.", session.getId(), throwable);
+            Runnable waitForDialoguesToTerminate = new Runnable() {
+                @Override
+                public void run() {
+                    for (Session<I, O, F, L, C> session : sessions) {
+                        String sessionId = session.getId();
+                        try {
+                            mLogger.info("Waiting for dialogue thread {} to terminate.", sessionId);
+                            session.getDialogueChannel().join(Duration.seconds(10));
+                            mLogger.info("Dialogue thread {} terminated.", sessionId);
+                        } catch (InterruptedException throwable) {
+                            mLogger.error("Stopped waiting for dialogue threads to terminate.", sessionId);
+                            return;
+                        }
+                    }
                 }
-            }
+            };
 
-            mStopped = true;
-            mTimeoutCheckScanThread.interrupt();
+            Thread waitForDialoguesToTerminateThread = new Thread(waitForDialoguesToTerminate,
+                                                                  "Session container/waiting for dialogue termination");
+
+            waitForDialoguesToTerminateThread.start();
+            try {
+                waitForDialoguesToTerminateThread.join(Duration.seconds(10).getMilliseconds());
+                if (waitForDialoguesToTerminateThread.isAlive()) {
+                    waitForDialoguesToTerminateThread.interrupt();
+                    waitForDialoguesToTerminateThread.join(Duration.seconds(2).getMilliseconds());
+                }
+
+                for (Session<I, O, F, L, C> session : sessions) {
+                    if (!session.getDialogueChannel().isDialogueDone()) {
+                        mLogger.warn("Dialogue {} is still not terminated.  Possible leak detected.", session.getId());
+                    }
+                }
+
+            } catch (InterruptedException exception) {
+                waitForDialoguesToTerminateThread.interrupt();
+            } finally {
+                mStopped = true;
+                mTimeoutCheckScanThread.interrupt();
+            }
         }
     }
 
