@@ -1,10 +1,51 @@
 # Rivr change log
 
+## Version 1.0.3:
+
+### Rivr core
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* New mechanism to query version number of Rivr.
+* DialogueServlet: Added loggers for servlet itself and for responses.
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* DialogueServlet: destroy() called on initialization error.
+* DialogueServlet: Stopping session container on shutdown.
+* DialogueServlet: Fixed leak caused by MDC (slf4j) stored in a ThreadLocal.
+
+### Rivr VoiceXML
+
+#### Changed
+
+* build.gradle: Updated run-time dependency: org.glassfish:javax.json:1.0.4.
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* Fixed problem preventing a variable declaration not to have an initial value.
+
 ## Version 1.0.2:
 
 ### Rivr core
 
-####
+#### Changed
 
 * (nothing)
 
