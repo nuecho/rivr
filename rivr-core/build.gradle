@@ -3,6 +3,14 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.5'
 }
 
+jar {
+    manifest {
+        attributes("Implementation-Title": "Rivr Core", 
+                   "Implementation-Version": version,
+                   "Implementation-Vendor": "Nu Echo Inc.")
+    }
+}
+
 processResources {
     createVersionFile(sourceSets.main.output.resourcesDir, "com/nuecho/rivr/core/version.properties");
 }
