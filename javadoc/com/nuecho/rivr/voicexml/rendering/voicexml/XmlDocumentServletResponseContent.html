@@ -98,7 +98,7 @@
 </dl>
 <hr>
 <br>
-<pre>public class <a href="../../../../../../src-html/com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#line.20">XmlDocumentServletResponseContent</a>
+<pre>public class <a href="../../../../../../src-html/com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#line.21">XmlDocumentServletResponseContent</a>
 extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../../../../../com/nuecho/rivr/core/servlet/ServletResponseContent.html" title="interface in com.nuecho.rivr.core.servlet">ServletResponseContent</a></pre>
 <div class="block"><a href="../../../../../../com/nuecho/rivr/core/servlet/ServletResponseContent.html" title="interface in com.nuecho.rivr.core.servlet"><code>ServletResponseContent</code></a> wrapping a <a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/Document.html?is-external=true" title="class or interface in org.w3c.dom"><code>org.w3c.Document</code></a>.</div>
@@ -139,14 +139,18 @@ implements <a href="../../../../../../com/nuecho/rivr/core/servlet/ServletRespon
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#getContentAsString()">getContentAsString</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#getContentLength()">getContentLength</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#getContentType()">getContentType</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#writeTo(java.io.OutputStream)">writeTo</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/io/OutputStream.html?is-external=true" title="class or interface in java.io">OutputStream</a>&nbsp;outputStream)</code>&nbsp;</td>
 </tr>
@@ -178,7 +182,7 @@ implements <a href="../../../../../../com/nuecho/rivr/core/servlet/ServletRespon
 <ul class="blockListLast">
 <li class="blockList">
 <h4>XmlDocumentServletResponseContent</h4>
-<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#line.25">XmlDocumentServletResponseContent</a>(<a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/Document.html?is-external=true" title="class or interface in org.w3c.dom">Document</a>&nbsp;document,
+<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#line.26">XmlDocumentServletResponseContent</a>(<a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/Document.html?is-external=true" title="class or interface in org.w3c.dom">Document</a>&nbsp;document,
                                  <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;contentType)
                                   throws <a href="http://download.oracle.com/javase/6/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
 <dl><dt><span class="strong">Throws:</span></dt>
@@ -199,7 +203,7 @@ implements <a href="../../../../../../com/nuecho/rivr/core/servlet/ServletRespon
 <ul class="blockList">
 <li class="blockList">
 <h4>getContentType</h4>
-<pre>public&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#line.33">getContentType</a>()</pre>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#line.34">getContentType</a>()</pre>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../../com/nuecho/rivr/core/servlet/ServletResponseContent.html#getContentType()">getContentType</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../com/nuecho/rivr/core/servlet/ServletResponseContent.html" title="interface in com.nuecho.rivr.core.servlet">ServletResponseContent</a></code></dd>
@@ -212,7 +216,7 @@ implements <a href="../../../../../../com/nuecho/rivr/core/servlet/ServletRespon
 <ul class="blockList">
 <li class="blockList">
 <h4>writeTo</h4>
-<pre>public&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#line.38">writeTo</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/io/OutputStream.html?is-external=true" title="class or interface in java.io">OutputStream</a>&nbsp;outputStream)
+<pre>public&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#line.39">writeTo</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/io/OutputStream.html?is-external=true" title="class or interface in java.io">OutputStream</a>&nbsp;outputStream)
              throws <a href="http://download.oracle.com/javase/6/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
 <dl>
 <dt><strong>Specified by:</strong></dt>
@@ -221,13 +225,26 @@ implements <a href="../../../../../../com/nuecho/rivr/core/servlet/ServletRespon
 <dd><code><a href="http://download.oracle.com/javase/6/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code></dd></dl>
 </li>
 </ul>
+<a name="getContentAsString()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getContentAsString</h4>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#line.44">getContentAsString</a>()</pre>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../../../../com/nuecho/rivr/core/servlet/ServletResponseContent.html#getContentAsString()">getContentAsString</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../com/nuecho/rivr/core/servlet/ServletResponseContent.html" title="interface in com.nuecho.rivr.core.servlet">ServletResponseContent</a></code></dd>
+</dl>
+</li>
+</ul>
 <a name="getContentLength()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getContentLength</h4>
-<pre>public&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#line.46">getContentLength</a>()</pre>
+<pre>public&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#line.56">getContentLength</a>()</pre>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../../com/nuecho/rivr/core/servlet/ServletResponseContent.html#getContentLength()">getContentLength</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../com/nuecho/rivr/core/servlet/ServletResponseContent.html" title="interface in com.nuecho.rivr.core.servlet">ServletResponseContent</a></code></dd>

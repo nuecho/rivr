@@ -1,3 +1,4 @@
+com.nuecho.rivr.core
 com.nuecho.rivr.core.channel
 com.nuecho.rivr.core.channel.synchronous
 com.nuecho.rivr.core.channel.synchronous.step
@@ -7,6 +8,7 @@ com.nuecho.rivr.core.servlet.session
 com.nuecho.rivr.core.test
 com.nuecho.rivr.core.util
 com.nuecho.rivr.core.util.logging
+com.nuecho.rivr.voicexml
 com.nuecho.rivr.voicexml.dialogue
 com.nuecho.rivr.voicexml.rendering.json
 com.nuecho.rivr.voicexml.rendering.voicexml

@@ -62,7 +62,7 @@
 <span class="sourceLineNo">054</span>        stop();<a name="line.54"></a>
 <span class="sourceLineNo">055</span>    }<a name="line.55"></a>
 <span class="sourceLineNo">056</span><a name="line.56"></a>
-<span class="sourceLineNo">057</span>    public void stop() {<a name="line.57"></a>
+<span class="sourceLineNo">057</span>    public synchronized void stop() {<a name="line.57"></a>
 <span class="sourceLineNo">058</span>        if (mDialogueChannel != null &amp;&amp; mDialogueChannel.isDialogueActive()) {<a name="line.58"></a>
 <span class="sourceLineNo">059</span>            mDialogueChannel.stop();<a name="line.59"></a>
 <span class="sourceLineNo">060</span>        }<a name="line.60"></a>
@@ -70,51 +70,55 @@
 <span class="sourceLineNo">062</span>        mContainer.removeSession(mId);<a name="line.62"></a>
 <span class="sourceLineNo">063</span><a name="line.63"></a>
 <span class="sourceLineNo">064</span>        if (mAssociatedHttpSession != null) {<a name="line.64"></a>
-<span class="sourceLineNo">065</span>            mAssociatedHttpSession.invalidate();<a name="line.65"></a>
-<span class="sourceLineNo">066</span>            mAssociatedHttpSession = null;<a name="line.66"></a>
-<span class="sourceLineNo">067</span>        }<a name="line.67"></a>
-<span class="sourceLineNo">068</span>    }<a name="line.68"></a>
-<span class="sourceLineNo">069</span><a name="line.69"></a>
-<span class="sourceLineNo">070</span>    public void keepAlive() {<a name="line.70"></a>
-<span class="sourceLineNo">071</span>        if (mAssociatedHttpSession != null) {<a name="line.71"></a>
-<span class="sourceLineNo">072</span>            mAssociatedHttpSession.getAttributeNames();<a name="line.72"></a>
-<span class="sourceLineNo">073</span>        }<a name="line.73"></a>
-<span class="sourceLineNo">074</span>    }<a name="line.74"></a>
-<span class="sourceLineNo">075</span><a name="line.75"></a>
-<span class="sourceLineNo">076</span>    public String getId() {<a name="line.76"></a>
-<span class="sourceLineNo">077</span>        return mId;<a name="line.77"></a>
+<span class="sourceLineNo">065</span>            try {<a name="line.65"></a>
+<span class="sourceLineNo">066</span>                mAssociatedHttpSession.invalidate();<a name="line.66"></a>
+<span class="sourceLineNo">067</span>            } catch (IllegalStateException exception) {<a name="line.67"></a>
+<span class="sourceLineNo">068</span>                //already invalidated<a name="line.68"></a>
+<span class="sourceLineNo">069</span>            }<a name="line.69"></a>
+<span class="sourceLineNo">070</span>            mAssociatedHttpSession = null;<a name="line.70"></a>
+<span class="sourceLineNo">071</span>        }<a name="line.71"></a>
+<span class="sourceLineNo">072</span>    }<a name="line.72"></a>
+<span class="sourceLineNo">073</span><a name="line.73"></a>
+<span class="sourceLineNo">074</span>    public void keepAlive() {<a name="line.74"></a>
+<span class="sourceLineNo">075</span>        if (mAssociatedHttpSession != null) {<a name="line.75"></a>
+<span class="sourceLineNo">076</span>            mAssociatedHttpSession.getAttributeNames();<a name="line.76"></a>
+<span class="sourceLineNo">077</span>        }<a name="line.77"></a>
 <span class="sourceLineNo">078</span>    }<a name="line.78"></a>
 <span class="sourceLineNo">079</span><a name="line.79"></a>
-<span class="sourceLineNo">080</span>    public SynchronousDialogueChannel&lt;I, O, F, L, C&gt; getDialogueChannel() {<a name="line.80"></a>
-<span class="sourceLineNo">081</span>        return mDialogueChannel;<a name="line.81"></a>
+<span class="sourceLineNo">080</span>    public String getId() {<a name="line.80"></a>
+<span class="sourceLineNo">081</span>        return mId;<a name="line.81"></a>
 <span class="sourceLineNo">082</span>    }<a name="line.82"></a>
 <span class="sourceLineNo">083</span><a name="line.83"></a>
-<span class="sourceLineNo">084</span>    public void setDialogueChannel(SynchronousDialogueChannel&lt;I, O, F, L, C&gt; dialogueChannel) {<a name="line.84"></a>
-<span class="sourceLineNo">085</span>        mDialogueChannel = dialogueChannel;<a name="line.85"></a>
-<span class="sourceLineNo">086</span>        mDialogueChannel.addListener(this);<a name="line.86"></a>
-<span class="sourceLineNo">087</span>    }<a name="line.87"></a>
-<span class="sourceLineNo">088</span><a name="line.88"></a>
-<span class="sourceLineNo">089</span>    public C getDialogueContext() {<a name="line.89"></a>
-<span class="sourceLineNo">090</span>        return mDialogueContext;<a name="line.90"></a>
+<span class="sourceLineNo">084</span>    public SynchronousDialogueChannel&lt;I, O, F, L, C&gt; getDialogueChannel() {<a name="line.84"></a>
+<span class="sourceLineNo">085</span>        return mDialogueChannel;<a name="line.85"></a>
+<span class="sourceLineNo">086</span>    }<a name="line.86"></a>
+<span class="sourceLineNo">087</span><a name="line.87"></a>
+<span class="sourceLineNo">088</span>    public void setDialogueChannel(SynchronousDialogueChannel&lt;I, O, F, L, C&gt; dialogueChannel) {<a name="line.88"></a>
+<span class="sourceLineNo">089</span>        mDialogueChannel = dialogueChannel;<a name="line.89"></a>
+<span class="sourceLineNo">090</span>        mDialogueChannel.addListener(this);<a name="line.90"></a>
 <span class="sourceLineNo">091</span>    }<a name="line.91"></a>
 <span class="sourceLineNo">092</span><a name="line.92"></a>
-<span class="sourceLineNo">093</span>    public void setDialogueContext(C dialogueContext) {<a name="line.93"></a>
-<span class="sourceLineNo">094</span>        mDialogueContext = dialogueContext;<a name="line.94"></a>
+<span class="sourceLineNo">093</span>    public C getDialogueContext() {<a name="line.93"></a>
+<span class="sourceLineNo">094</span>        return mDialogueContext;<a name="line.94"></a>
 <span class="sourceLineNo">095</span>    }<a name="line.95"></a>
 <span class="sourceLineNo">096</span><a name="line.96"></a>
-<span class="sourceLineNo">097</span>    public void setAssociatedHttpSession(HttpSession associatedHttpSession) {<a name="line.97"></a>
-<span class="sourceLineNo">098</span>        mAssociatedHttpSession = associatedHttpSession;<a name="line.98"></a>
+<span class="sourceLineNo">097</span>    public void setDialogueContext(C dialogueContext) {<a name="line.97"></a>
+<span class="sourceLineNo">098</span>        mDialogueContext = dialogueContext;<a name="line.98"></a>
 <span class="sourceLineNo">099</span>    }<a name="line.99"></a>
 <span class="sourceLineNo">100</span><a name="line.100"></a>
-<span class="sourceLineNo">101</span>    @Override<a name="line.101"></a>
-<span class="sourceLineNo">102</span>    public String toString() {<a name="line.102"></a>
-<span class="sourceLineNo">103</span>        ToStringBuilder builder = new ToStringBuilder(this);<a name="line.103"></a>
-<span class="sourceLineNo">104</span>        builder.appendItem("mDialogueChannel", mDialogueChannel);<a name="line.104"></a>
-<span class="sourceLineNo">105</span>        builder.appendItem("mDialogueContext", mDialogueContext);<a name="line.105"></a>
-<span class="sourceLineNo">106</span>        builder.appendItem("mId", mId);<a name="line.106"></a>
-<span class="sourceLineNo">107</span>        return builder.getString();<a name="line.107"></a>
-<span class="sourceLineNo">108</span>    }<a name="line.108"></a>
-<span class="sourceLineNo">109</span>}<a name="line.109"></a>
+<span class="sourceLineNo">101</span>    public void setAssociatedHttpSession(HttpSession associatedHttpSession) {<a name="line.101"></a>
+<span class="sourceLineNo">102</span>        mAssociatedHttpSession = associatedHttpSession;<a name="line.102"></a>
+<span class="sourceLineNo">103</span>    }<a name="line.103"></a>
+<span class="sourceLineNo">104</span><a name="line.104"></a>
+<span class="sourceLineNo">105</span>    @Override<a name="line.105"></a>
+<span class="sourceLineNo">106</span>    public String toString() {<a name="line.106"></a>
+<span class="sourceLineNo">107</span>        ToStringBuilder builder = new ToStringBuilder(this);<a name="line.107"></a>
+<span class="sourceLineNo">108</span>        builder.appendItem("mDialogueChannel", mDialogueChannel);<a name="line.108"></a>
+<span class="sourceLineNo">109</span>        builder.appendItem("mDialogueContext", mDialogueContext);<a name="line.109"></a>
+<span class="sourceLineNo">110</span>        builder.appendItem("mId", mId);<a name="line.110"></a>
+<span class="sourceLineNo">111</span>        return builder.getString();<a name="line.111"></a>
+<span class="sourceLineNo">112</span>    }<a name="line.112"></a>
+<span class="sourceLineNo">113</span>}<a name="line.113"></a>
 
 
 
