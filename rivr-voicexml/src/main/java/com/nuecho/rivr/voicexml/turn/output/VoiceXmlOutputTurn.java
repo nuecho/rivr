@@ -77,6 +77,11 @@ public abstract class VoiceXmlOutputTurn extends VoiceXmlDocumentTurn implements
                               .append(TRUE);
         createScript(ifErrorHandlingElement, setErrorHandlingScript.toString());
 
+        addEventHandlerScript(catchElement);
+        createGotoSubmit(catchElement);
+    }
+
+    protected static void addEventHandlerScript(Element parent) {
         StringBuilder addEventScript = new StringBuilder();
         addEventScript.append(RIVR_SCOPE_OBJECT)
                       .append(".addEventResult(")
@@ -85,8 +90,7 @@ public abstract class VoiceXmlOutputTurn extends VoiceXmlDocumentTurn implements
                       .append(EVENT_MESSAGE_VARIABLE)
                       .append(")");
 
-        createScript(catchElement, addEventScript.toString());
-        createGotoSubmit(catchElement);
+        createScript(parent, addEventScript.toString());
     }
 
     protected abstract void fillVoiceXmlDocument(Document document,
