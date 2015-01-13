@@ -5,6 +5,7 @@ package com.nuecho.rivr.voicexml.turn.output;
 
 import static com.nuecho.rivr.core.util.Assert.*;
 import static com.nuecho.rivr.voicexml.rendering.voicexml.VoiceXmlDomUtil.*;
+import static com.nuecho.rivr.voicexml.turn.input.VoiceXmlEvent.*;
 
 import java.util.*;
 
@@ -218,15 +219,15 @@ public class Interaction extends VoiceXmlOutputTurn {
                 createAssignation(filledElement, clientSideAssignationDestination, RECORD_FORM_ITEM_NAME);
             }
 
-            createScript(filledElement, RIVR_SCOPE_OBJECT
-                                        + ".addRecordingResult(dialog."
-                                        + RECORD_FORM_ITEM_NAME
-                                        + ", dialog."
-                                        + RECORD_FORM_ITEM_NAME
-                                        + "$, "
-                                        + recording.isPostAudioToServer()
-                                        + ");");
+            addRecordingResultHandlerScript(recording, filledElement);
             createGotoSubmit(filledElement);
+
+            Element catchElement = DomUtils.appendNewElement(recordingFormItemElement, CATCH_ELEMENT);
+            catchElement.setAttribute(EVENT_ATTRIBUTE, CONNECTION_DISCONNECT);
+            addRecordingResultHandlerScript(recording, catchElement);
+            addEventHandlerScript(catchElement);
+            createGotoSubmit(catchElement);
+
         } else {
             if (hasAtLeastOneField) {
                 Element blockElement = DomUtils.appendNewElement(formElement, BLOCK_ELEMENT);
@@ -239,6 +240,18 @@ public class Interaction extends VoiceXmlOutputTurn {
         if (hasAtLeastOneField) {
             createFormLevelFilled(formElement);
         }
+    }
+
+    private void addRecordingResultHandlerScript(Recording recording, Element parent) {
+        createScript(parent, RIVR_SCOPE_OBJECT
+                             + ".addRecordingResult(dialog."
+                             + RECORD_FORM_ITEM_NAME
+                             + ", dialog."
+                             + RECORD_FORM_ITEM_NAME
+                             + "$, "
+                             + recording.isPostAudioToServer()
+                             + ");");
+
     }
 
     private static void renderPrompts(Prompt prompt,
