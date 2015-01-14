@@ -85,23 +85,27 @@
 <span class="sourceLineNo">077</span>                              .append(TRUE);<a name="line.77"></a>
 <span class="sourceLineNo">078</span>        createScript(ifErrorHandlingElement, setErrorHandlingScript.toString());<a name="line.78"></a>
 <span class="sourceLineNo">079</span><a name="line.79"></a>
-<span class="sourceLineNo">080</span>        StringBuilder addEventScript = new StringBuilder();<a name="line.80"></a>
-<span class="sourceLineNo">081</span>        addEventScript.append(RIVR_SCOPE_OBJECT)<a name="line.81"></a>
-<span class="sourceLineNo">082</span>                      .append(".addEventResult(")<a name="line.82"></a>
-<span class="sourceLineNo">083</span>                      .append(EVENT_NAME_VARIABLE)<a name="line.83"></a>
-<span class="sourceLineNo">084</span>                      .append(", ")<a name="line.84"></a>
-<span class="sourceLineNo">085</span>                      .append(EVENT_MESSAGE_VARIABLE)<a name="line.85"></a>
-<span class="sourceLineNo">086</span>                      .append(")");<a name="line.86"></a>
-<span class="sourceLineNo">087</span><a name="line.87"></a>
-<span class="sourceLineNo">088</span>        createScript(catchElement, addEventScript.toString());<a name="line.88"></a>
-<span class="sourceLineNo">089</span>        createGotoSubmit(catchElement);<a name="line.89"></a>
-<span class="sourceLineNo">090</span>    }<a name="line.90"></a>
-<span class="sourceLineNo">091</span><a name="line.91"></a>
-<span class="sourceLineNo">092</span>    protected abstract void fillVoiceXmlDocument(Document document,<a name="line.92"></a>
-<span class="sourceLineNo">093</span>                                                 Element formElement,<a name="line.93"></a>
-<span class="sourceLineNo">094</span>                                                 VoiceXmlDialogueContext dialogueContext)<a name="line.94"></a>
-<span class="sourceLineNo">095</span>            throws VoiceXmlDocumentRenderingException;<a name="line.95"></a>
-<span class="sourceLineNo">096</span>}<a name="line.96"></a>
+<span class="sourceLineNo">080</span>        addEventHandlerScript(catchElement);<a name="line.80"></a>
+<span class="sourceLineNo">081</span>        createGotoSubmit(catchElement);<a name="line.81"></a>
+<span class="sourceLineNo">082</span>    }<a name="line.82"></a>
+<span class="sourceLineNo">083</span><a name="line.83"></a>
+<span class="sourceLineNo">084</span>    protected static void addEventHandlerScript(Element parent) {<a name="line.84"></a>
+<span class="sourceLineNo">085</span>        StringBuilder addEventScript = new StringBuilder();<a name="line.85"></a>
+<span class="sourceLineNo">086</span>        addEventScript.append(RIVR_SCOPE_OBJECT)<a name="line.86"></a>
+<span class="sourceLineNo">087</span>                      .append(".addEventResult(")<a name="line.87"></a>
+<span class="sourceLineNo">088</span>                      .append(EVENT_NAME_VARIABLE)<a name="line.88"></a>
+<span class="sourceLineNo">089</span>                      .append(", ")<a name="line.89"></a>
+<span class="sourceLineNo">090</span>                      .append(EVENT_MESSAGE_VARIABLE)<a name="line.90"></a>
+<span class="sourceLineNo">091</span>                      .append(")");<a name="line.91"></a>
+<span class="sourceLineNo">092</span><a name="line.92"></a>
+<span class="sourceLineNo">093</span>        createScript(parent, addEventScript.toString());<a name="line.93"></a>
+<span class="sourceLineNo">094</span>    }<a name="line.94"></a>
+<span class="sourceLineNo">095</span><a name="line.95"></a>
+<span class="sourceLineNo">096</span>    protected abstract void fillVoiceXmlDocument(Document document,<a name="line.96"></a>
+<span class="sourceLineNo">097</span>                                                 Element formElement,<a name="line.97"></a>
+<span class="sourceLineNo">098</span>                                                 VoiceXmlDialogueContext dialogueContext)<a name="line.98"></a>
+<span class="sourceLineNo">099</span>            throws VoiceXmlDocumentRenderingException;<a name="line.99"></a>
+<span class="sourceLineNo">100</span>}<a name="line.100"></a>
 
 
 

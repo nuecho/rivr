@@ -108,7 +108,7 @@
 </dl>
 <hr>
 <br>
-<pre>public class <a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.36">Interaction</a>
+<pre>public class <a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.37">Interaction</a>
 extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXmlOutputTurn.html" title="class in com.nuecho.rivr.voicexml.turn.output">VoiceXmlOutputTurn</a></pre>
 <div class="block">An <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.html" title="class in com.nuecho.rivr.voicexml.turn.output"><code>Interaction</code></a> is a <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXmlOutputTurn.html" title="class in com.nuecho.rivr.voicexml.turn.output"><code>VoiceXmlOutputTurn</code></a> that represents a list
  of <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.Prompt.html" title="class in com.nuecho.rivr.voicexml.turn.output"><code>Interaction.Prompt</code></a> with an optional <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.FinalRecognitionWindow.html" title="class in com.nuecho.rivr.voicexml.turn.output"><code>Interaction.FinalRecognitionWindow</code></a> or
@@ -247,7 +247,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.nuecho.rivr.voicexml.turn.output.<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXmlOutputTurn.html" title="class in com.nuecho.rivr.voicexml.turn.output">VoiceXmlOutputTurn</a></h3>
-<code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXmlOutputTurn.html#addTopLevelProperties(javax.json.JsonObjectBuilder)">addTopLevelProperties</a>, <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXmlOutputTurn.html#createVoiceXmlDocument(com.nuecho.rivr.voicexml.dialogue.VoiceXmlDialogueContext)">createVoiceXmlDocument</a></code></li>
+<code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXmlOutputTurn.html#addEventHandlerScript(org.w3c.dom.Element)">addEventHandlerScript</a>, <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXmlOutputTurn.html#addTopLevelProperties(javax.json.JsonObjectBuilder)">addTopLevelProperties</a>, <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXmlOutputTurn.html#createVoiceXmlDocument(com.nuecho.rivr.voicexml.dialogue.VoiceXmlDialogueContext)">createVoiceXmlDocument</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_com.nuecho.rivr.voicexml.turn.VoiceXmlDocumentTurn">
@@ -283,7 +283,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockList">
 <li class="blockList">
 <h4>Interaction</h4>
-<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.51">Interaction</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.52">Interaction</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
            <a href="http://download.oracle.com/javase/6/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.Prompt.html" title="class in com.nuecho.rivr.voicexml.turn.output">Interaction.Prompt</a>&gt;&nbsp;prompts)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>name</code> - The name of this turn. Not empty.</dd><dd><code>prompts</code> - The list of <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.Prompt.html" title="class in com.nuecho.rivr.voicexml.turn.output"><code>Interaction.Prompt</code></a>. Not null.</dd></dl>
 </li>
@@ -294,7 +294,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockList">
 <li class="blockList">
 <h4>Interaction</h4>
-<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.65">Interaction</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.66">Interaction</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
            <a href="http://download.oracle.com/javase/6/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.Prompt.html" title="class in com.nuecho.rivr.voicexml.turn.output">Interaction.Prompt</a>&gt;&nbsp;prompts,
            <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.FinalRecognitionWindow.html" title="class in com.nuecho.rivr.voicexml.turn.output">Interaction.FinalRecognitionWindow</a>&nbsp;finalRecognitionWindow)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>name</code> - The name of this turn. Not empty.</dd><dd><code>prompts</code> - The list of <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.Prompt.html" title="class in com.nuecho.rivr.voicexml.turn.output"><code>Interaction.Prompt</code></a>. Not null.</dd><dd><code>finalRecognitionWindow</code> - The final recognition phase configuration.
@@ -307,7 +307,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Interaction</h4>
-<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.80">Interaction</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.81">Interaction</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
            <a href="http://download.oracle.com/javase/6/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.Prompt.html" title="class in com.nuecho.rivr.voicexml.turn.output">Interaction.Prompt</a>&gt;&nbsp;prompts,
            <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.FinalRecordingWindow.html" title="class in com.nuecho.rivr.voicexml.turn.output">Interaction.FinalRecordingWindow</a>&nbsp;finalRecordingWindow)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>name</code> - The name of this turn. Not empty.</dd><dd><code>prompts</code> - The list of <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.Prompt.html" title="class in com.nuecho.rivr.voicexml.turn.output"><code>Interaction.Prompt</code></a>. Not null.</dd><dd><code>finalRecordingWindow</code> - The final recording phase configuration. Not
@@ -328,7 +328,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockList">
 <li class="blockList">
 <h4>getPrompts</h4>
-<pre>public final&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.Prompt.html" title="class in com.nuecho.rivr.voicexml.turn.output">Interaction.Prompt</a>&gt;&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.89">getPrompts</a>()</pre>
+<pre>public final&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.Prompt.html" title="class in com.nuecho.rivr.voicexml.turn.output">Interaction.Prompt</a>&gt;&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.90">getPrompts</a>()</pre>
 </li>
 </ul>
 <a name="getRecognition()">
@@ -337,7 +337,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockList">
 <li class="blockList">
 <h4>getRecognition</h4>
-<pre>public final&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.FinalRecognitionWindow.html" title="class in com.nuecho.rivr.voicexml.turn.output">Interaction.FinalRecognitionWindow</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.93">getRecognition</a>()</pre>
+<pre>public final&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.FinalRecognitionWindow.html" title="class in com.nuecho.rivr.voicexml.turn.output">Interaction.FinalRecognitionWindow</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.94">getRecognition</a>()</pre>
 </li>
 </ul>
 <a name="getRecording()">
@@ -346,7 +346,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockList">
 <li class="blockList">
 <h4>getRecording</h4>
-<pre>public final&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.FinalRecordingWindow.html" title="class in com.nuecho.rivr.voicexml.turn.output">Interaction.FinalRecordingWindow</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.97">getRecording</a>()</pre>
+<pre>public final&nbsp;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Interaction.FinalRecordingWindow.html" title="class in com.nuecho.rivr.voicexml.turn.output">Interaction.FinalRecordingWindow</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.98">getRecording</a>()</pre>
 </li>
 </ul>
 <a name="getOuputTurnType()">
@@ -355,7 +355,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockList">
 <li class="blockList">
 <h4>getOuputTurnType</h4>
-<pre>protected final&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.102">getOuputTurnType</a>()</pre>
+<pre>protected final&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.103">getOuputTurnType</a>()</pre>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXmlOutputTurn.html#getOuputTurnType()">getOuputTurnType</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXmlOutputTurn.html" title="class in com.nuecho.rivr.voicexml.turn.output">VoiceXmlOutputTurn</a></code></dd>
@@ -368,7 +368,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockList">
 <li class="blockList">
 <h4>addTurnProperties</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.107">addTurnProperties</a>(<a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonObjectBuilder.html?is-external=true" title="class or interface in javax.json">JsonObjectBuilder</a>&nbsp;builder)</pre>
+<pre>protected&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.108">addTurnProperties</a>(<a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonObjectBuilder.html?is-external=true" title="class or interface in javax.json">JsonObjectBuilder</a>&nbsp;builder)</pre>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/VoiceXmlDocumentTurn.html#addTurnProperties(javax.json.JsonObjectBuilder)">addTurnProperties</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/VoiceXmlDocumentTurn.html" title="class in com.nuecho.rivr.voicexml.turn">VoiceXmlDocumentTurn</a></code></dd>
@@ -381,7 +381,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockListLast">
 <li class="blockList">
 <h4>fillVoiceXmlDocument</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.114">fillVoiceXmlDocument</a>(<a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/Document.html?is-external=true" title="class or interface in org.w3c.dom">Document</a>&nbsp;document,
+<pre>protected&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/Interaction.html#line.115">fillVoiceXmlDocument</a>(<a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/Document.html?is-external=true" title="class or interface in org.w3c.dom">Document</a>&nbsp;document,
                         <a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/Element.html?is-external=true" title="class or interface in org.w3c.dom">Element</a>&nbsp;formElement,
                         <a href="../../../../../../com/nuecho/rivr/voicexml/dialogue/VoiceXmlDialogueContext.html" title="class in com.nuecho.rivr.voicexml.dialogue">VoiceXmlDialogueContext</a>&nbsp;dialogueContext)
                              throws <a href="../../../../../../com/nuecho/rivr/voicexml/rendering/voicexml/VoiceXmlDocumentRenderingException.html" title="class in com.nuecho.rivr.voicexml.rendering.voicexml">VoiceXmlDocumentRenderingException</a></pre>
