@@ -1,6 +1,44 @@
 # Rivr change log
 
-## Version 1.0.3:
+## Version 1.0.4:
+
+### Rivr core
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* (nothing)
+
+### Rivr VoiceXML
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* Fixed [Github issue #1](https://github.com/nuecho/rivr/issues/1) A recording stopped by a connection.disconnect event wasn't added to the result.
+
+## Version 1.0.3
 
 ### Rivr core
 
