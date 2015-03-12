@@ -179,20 +179,20 @@
 <span class="sourceLineNo">171</span><a name="line.171"></a>
 <span class="sourceLineNo">172</span>        Logger sessionContainerLogger = mLoggerFactory.getLogger(SESSION_LOGGER_NAME);<a name="line.172"></a>
 <span class="sourceLineNo">173</span><a name="line.173"></a>
-<span class="sourceLineNo">174</span>        mSessionContainer = new SessionContainer&lt;I, O, F, L, C&gt;(sessionContainerLogger,<a name="line.174"></a>
-<span class="sourceLineNo">175</span>                                                                mSessionTimeout,<a name="line.175"></a>
-<span class="sourceLineNo">176</span>                                                                mSessionScanPeriod,<a name="line.176"></a>
-<span class="sourceLineNo">177</span>                                                                SESSION_CONTAINER_NAME);<a name="line.177"></a>
+<span class="sourceLineNo">174</span>        Duration sessionScanPeriod = getDuration(INITIAL_ARGUMENT_SESSION_SCAN_PERIOD);<a name="line.174"></a>
+<span class="sourceLineNo">175</span>        if (sessionScanPeriod != null) {<a name="line.175"></a>
+<span class="sourceLineNo">176</span>            setSessionScanPeriod(sessionScanPeriod);<a name="line.176"></a>
+<span class="sourceLineNo">177</span>        }<a name="line.177"></a>
 <span class="sourceLineNo">178</span><a name="line.178"></a>
-<span class="sourceLineNo">179</span>        Duration sessionScanPeriod = getDuration(INITIAL_ARGUMENT_SESSION_SCAN_PERIOD);<a name="line.179"></a>
-<span class="sourceLineNo">180</span>        if (sessionScanPeriod != null) {<a name="line.180"></a>
-<span class="sourceLineNo">181</span>            setSessionScanPeriod(sessionScanPeriod);<a name="line.181"></a>
+<span class="sourceLineNo">179</span>        Duration sessionTimeout = getDuration(INITIAL_ARGUMENT_SESSION_TIMEOUT);<a name="line.179"></a>
+<span class="sourceLineNo">180</span>        if (sessionTimeout != null) {<a name="line.180"></a>
+<span class="sourceLineNo">181</span>            setSessionTimeout(sessionTimeout);<a name="line.181"></a>
 <span class="sourceLineNo">182</span>        }<a name="line.182"></a>
 <span class="sourceLineNo">183</span><a name="line.183"></a>
-<span class="sourceLineNo">184</span>        Duration sessionTimeout = getDuration(INITIAL_ARGUMENT_SESSION_TIMEOUT);<a name="line.184"></a>
-<span class="sourceLineNo">185</span>        if (sessionTimeout != null) {<a name="line.185"></a>
-<span class="sourceLineNo">186</span>            setSessionTimeout(sessionTimeout);<a name="line.186"></a>
-<span class="sourceLineNo">187</span>        }<a name="line.187"></a>
+<span class="sourceLineNo">184</span>        mSessionContainer = new SessionContainer&lt;I, O, F, L, C&gt;(sessionContainerLogger,<a name="line.184"></a>
+<span class="sourceLineNo">185</span>                                                                mSessionTimeout,<a name="line.185"></a>
+<span class="sourceLineNo">186</span>                                                                mSessionScanPeriod,<a name="line.186"></a>
+<span class="sourceLineNo">187</span>                                                                SESSION_CONTAINER_NAME);<a name="line.187"></a>
 <span class="sourceLineNo">188</span><a name="line.188"></a>
 <span class="sourceLineNo">189</span>        Duration dialogueTimeout = getDuration(INITIAL_ARGUMENT_DIALOGUE_TIMEOUT);<a name="line.189"></a>
 <span class="sourceLineNo">190</span>        if (dialogueTimeout != null) {<a name="line.190"></a>
