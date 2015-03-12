@@ -171,11 +171,6 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
         Logger sessionContainerLogger = mLoggerFactory.getLogger(SESSION_LOGGER_NAME);
 
-        mSessionContainer = new SessionContainer<I, O, F, L, C>(sessionContainerLogger,
-                                                                mSessionTimeout,
-                                                                mSessionScanPeriod,
-                                                                SESSION_CONTAINER_NAME);
-
         Duration sessionScanPeriod = getDuration(INITIAL_ARGUMENT_SESSION_SCAN_PERIOD);
         if (sessionScanPeriod != null) {
             setSessionScanPeriod(sessionScanPeriod);
@@ -185,6 +180,11 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
         if (sessionTimeout != null) {
             setSessionTimeout(sessionTimeout);
         }
+
+        mSessionContainer = new SessionContainer<I, O, F, L, C>(sessionContainerLogger,
+                                                                mSessionTimeout,
+                                                                mSessionScanPeriod,
+                                                                SESSION_CONTAINER_NAME);
 
         Duration dialogueTimeout = getDuration(INITIAL_ARGUMENT_DIALOGUE_TIMEOUT);
         if (dialogueTimeout != null) {
