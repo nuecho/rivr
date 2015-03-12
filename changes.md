@@ -1,5 +1,43 @@
 # Rivr change log
 
+## Version 1.0.5:
+
+### Rivr core
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* DialogueServlet: Fixed bug where com.nuecho.rivr.core.sessionTimeout and com.nuecho.rivr.core.sessionScanPeriod servlet init-arg were ignored.
+
+### Rivr VoiceXML
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* (nothing)
+
 ## Version 1.0.4:
 
 ### Rivr core
