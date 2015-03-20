@@ -8,7 +8,7 @@ The complete [Javadoc for Rivr](http://nuecho.github.io/rivr/javadoc/) is availa
 
 You can also get started by trying some of the Rivr sample applications:
 
-- [Hello World](https://github.com/nuecho/rivr-cookbook/tree/hello-world) - a very simple hello world application
+- [Hello World](https://github.com/nuecho/rivr-cookbook/wiki/Hello-World) - a very simple hello world application
 - [Voicemail](http://github.com/nuecho/rivr-voicemail) - a prototype voicemail application 
 
 You can continue to learn by example with the [Rivr cookbook](https://github.com/nuecho/rivr-cookbook/wiki).
