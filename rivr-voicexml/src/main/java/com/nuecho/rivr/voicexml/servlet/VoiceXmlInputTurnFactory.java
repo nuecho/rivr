@@ -63,7 +63,7 @@ public final class VoiceXmlInputTurnFactory implements InputTurnFactory<VoiceXml
     //for subdialogue, script and object
     public static final String VALUE_PROPERTY = "value";
 
-    private static final Pattern CHAR_SET_PATTERN = Pattern.compile("charset\\s*=\\s*([^ ;])");
+    private static final Pattern CHAR_SET_PATTERN = Pattern.compile("charset\\s*=\\s*([^ ;]+)");
 
     @Override
     public VoiceXmlFirstTurn createFirstTurn(HttpServletRequest request, HttpServletResponse response)
@@ -211,12 +211,12 @@ public final class VoiceXmlInputTurnFactory implements InputTurnFactory<VoiceXml
                     FileItemStream fileItemStream = itemIterator.next();
 
                     byte[] bytes;
+                    String parameterName = fileItemStream.getFieldName();
                     try {
                         InputStream stream = fileItemStream.openStream();
                         bytes = IOUtils.toByteArray(stream);
                     } catch (IOException exception) {
-                        throw new ServletException("Unable to read stream from " + fileItemStream.getFieldName(),
-                                                   exception);
+                        throw new ServletException("Unable to read stream from " + parameterName, exception);
                     }
 
                     if (!fileItemStream.isFormField()) {
@@ -225,10 +225,18 @@ public final class VoiceXmlInputTurnFactory implements InputTurnFactory<VoiceXml
                                                                bytes,
                                                                getHeaders(fileItemStream));
 
-                        files.put(fileItemStream.getFieldName(), fileUpload);
+                        files.put(parameterName, fileUpload);
                     } else {
                         String encoding = findEncoding(request, fileItemStream);
-                        parameters.put(fileItemStream.getFieldName(), new String(bytes, encoding));
+                        try {
+                            parameters.put(parameterName, new String(bytes, encoding));
+                        } catch (UnsupportedEncodingException exception) {
+                            throw new Exception("Unable to find encoding '"
+                                                + encoding
+                                                + "'. Cannot decode text form field '"
+                                                + parameterName
+                                                + "' of multipart request.", exception);
+                        }
                     }
 
                 }
