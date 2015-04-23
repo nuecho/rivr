@@ -1,5 +1,43 @@
 # Rivr change log
 
+## Version 1.0.6:
+
+### Rivr core
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* (nothing)
+
+### Rivr VoiceXML
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* VoiceXmlInputTurnFactory: Fixed charset parsing in Content-Type header of multipart requests and improved error handling.
+
 ## Version 1.0.5:
 
 ### Rivr core
