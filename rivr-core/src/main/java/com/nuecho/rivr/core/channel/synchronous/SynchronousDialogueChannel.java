@@ -239,14 +239,16 @@ public final class SynchronousDialogueChannel<I extends InputTurn, O extends Out
                         send(mFromDialogueToController, lastStep, mSendTimeout);
                     }
                 } catch (Timeout exception) {
-                    throw new RuntimeException("Timeout while sending final result.", exception);
+                    mLogger.warn("Timeout while sending last step.", exception);
                 } catch (InterruptedException exception) {
-                    mLogger.info("Dialogue interrupted while sending final result.");
+                    mLogger.info("Dialogue interrupted while sending last step.", exception);
                     Thread.currentThread().interrupt();
+                } catch (Throwable throwable) {
+                    mLogger.info("Unexpected error while sending last step.", throwable);
                 } finally {
                     mDialogueDone = true;
-                    mFromDialogueToController = null; // ensure can't receive further output turns from dialogue
-                    mFromControllerToDialogue = null; // ensure can't send further input turns to dialogue
+                    mFromDialogueToController = null; // ensure we can't receive further output turns from dialogue
+                    mFromControllerToDialogue = null; // ensure we can't send further input turns to dialogue
                     for (DialogueChannelListener<I, O> listener : mListener) {
                         listener.onStop(SynchronousDialogueChannel.this);
                     }
