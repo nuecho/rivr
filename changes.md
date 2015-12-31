@@ -1,5 +1,43 @@
 # Rivr change log
 
+## Version 1.0.7:
+
+### Rivr core
+
+#### Changed
+
+* SynchronousDialogueChannel: Enhanced error handling.  Instead of throwing an exception in the dialogue thread, the error is logged.
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* (nothing)
+
+### Rivr VoiceXML
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* (nothing)
+
 ## Version 1.0.6:
 
 ### Rivr core
