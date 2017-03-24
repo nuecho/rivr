@@ -175,6 +175,7 @@ public final class VoiceXmlDomUtil {
                                                                              + ".data";
 
     public static final String VOICEXML_NAMESPACE = "http://www.w3.org/2001/vxml";
+    public static final String NAMESPACE_URI = "http://www.w3.org/2000/xmlns/";
 
     private static final Pattern ECMASCRIPT_BACKSLASH_PATTERN = Pattern.compile("\\\\");
     private static final Pattern ECMASCRIPT_QUOTE_PATTERN = Pattern.compile("\\'");
@@ -197,7 +198,7 @@ public final class VoiceXmlDomUtil {
         Document document = DomUtils.createDocument(VXML_ELEMENT);
 
         Element vxmlElement = document.getDocumentElement();
-        vxmlElement.setAttribute(XMLNS_ATTRIBUTE, VOICEXML_NAMESPACE);
+        vxmlElement.setAttributeNS(NAMESPACE_URI, XMLNS_ATTRIBUTE, VOICEXML_NAMESPACE);
         vxmlElement.setAttribute(VERSION_ATTRIBUTE, "2.1");
         setAttribute(vxmlElement, XML_LANGUAGE_ATTRIBUTE, language);
 
