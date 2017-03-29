@@ -43,7 +43,7 @@
 
   rivr.addTransferResult = function(field, fieldShadow) {
     var duration;
-    if (fieldShadow) {
+    if (fieldShadow && fieldShadow.duration !== undefined) {
       duration = fieldShadow.duration;
     } else {
       duration = 0;
