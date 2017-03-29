@@ -8,6 +8,8 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.*;
 
+import javax.xml.*;
+
 import org.w3c.dom.*;
 
 import com.nuecho.rivr.core.util.*;
@@ -78,7 +80,11 @@ public final class VoiceXmlDomUtil {
     public static final String PROMPT_ATTRIBUTE = "prompt";
     public static final String XML_LANGUAGE_ATTRIBUTE = "xml:lang";
     public static final String APPLICATION_ATTRIBUTE = "application";
-    public static final String XMLNS_ATTRIBUTE = "xmlns";
+    /**
+     * @deprecated use <code>XMLConstants.XMLNS_ATTRIBUTE</code> instead.
+     */
+    @Deprecated
+    public static final String XMLNS_ATTRIBUTE = XMLConstants.XMLNS_ATTRIBUTE;
     public static final String VERSION_ATTRIBUTE = "version";
     public static final String TYPE_ATTRIBUTE = "type";
     public static final String MAXTIME_ATTRIBUTE = "maxtime";
@@ -197,7 +203,7 @@ public final class VoiceXmlDomUtil {
         Document document = DomUtils.createDocument(VXML_ELEMENT);
 
         Element vxmlElement = document.getDocumentElement();
-        vxmlElement.setAttribute(XMLNS_ATTRIBUTE, VOICEXML_NAMESPACE);
+        vxmlElement.setAttributeNS(XMLConstants.XML_NS_URI, XMLConstants.XMLNS_ATTRIBUTE, VOICEXML_NAMESPACE);
         vxmlElement.setAttribute(VERSION_ATTRIBUTE, "2.1");
         setAttribute(vxmlElement, XML_LANGUAGE_ATTRIBUTE, language);
 
