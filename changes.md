@@ -1,5 +1,44 @@
 # Rivr change log
 
+## Version 1.0.8:
+
+### Rivr core
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* (nothing)
+
+### Rivr VoiceXML
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* Fixed GitHub issue #2 (error in VoiceXmlInputTurnFactory following transfer error)
+* Fixed GitHub issue #3 (On IBM Java runtime, xmlns attribute not set on VoiceXML document root element)
+
 ## Version 1.0.7:
 
 ### Rivr core
