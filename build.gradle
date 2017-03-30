@@ -149,7 +149,7 @@ task globalJavadoc(type: Javadoc) {
         footer "To report errors, inconsistencies and omissions in the Rivr API documentation, please <a href=\"https://github.com/nuecho/rivr/issues/new\" target=\"_blank\">open an issue</a>."
         links "http://download.oracle.com/javase/6/docs/api/"
         links "http://download.oracle.com/javaee/6/api/"
-        links "http://slf4j.org/api/"
+        links "https://www.slf4j.org/api/"
         links "https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/"
         overview = "${projectDir}/doc/javadoc-extra/overview.html"
         stylesheetFile = file 'doc/javadoc-extra/rivr-javadoc.css'
