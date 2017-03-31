@@ -1,5 +1,43 @@
 # Rivr change log
 
+## Version 1.0.9:
+
+### Rivr core
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* (nothing)
+
+### Rivr VoiceXML
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* Fixed error with invalid namespace for xmlns attribute.
+
 ## Version 1.0.8:
 
 ### Rivr core
