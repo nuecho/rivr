@@ -203,7 +203,9 @@ public final class VoiceXmlDomUtil {
         Document document = DomUtils.createDocument(VXML_ELEMENT);
 
         Element vxmlElement = document.getDocumentElement();
-        vxmlElement.setAttributeNS(XMLConstants.XML_NS_URI, XMLConstants.XMLNS_ATTRIBUTE, VOICEXML_NAMESPACE);
+        vxmlElement.setAttributeNS(XMLConstants.XMLNS_ATTRIBUTE_NS_URI,
+                                   XMLConstants.XMLNS_ATTRIBUTE,
+                                   VOICEXML_NAMESPACE);
         vxmlElement.setAttribute(VERSION_ATTRIBUTE, "2.1");
         setAttribute(vxmlElement, XML_LANGUAGE_ATTRIBUTE, language);
 
