@@ -108,9 +108,7 @@ public class FetchConfiguration implements JsonSerializable {
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
         FetchConfiguration other = (FetchConfiguration) obj;
-        if (mFetchHint == null) {
-            if (other.mFetchHint != null) return false;
-        } else if (!mFetchHint.equals(other.mFetchHint)) return false;
+        if (mFetchHint != other.mFetchHint) return false;
         if (mMaxAge == null) {
             if (other.mMaxAge != null) return false;
         } else if (!mMaxAge.equals(other.mMaxAge)) return false;
