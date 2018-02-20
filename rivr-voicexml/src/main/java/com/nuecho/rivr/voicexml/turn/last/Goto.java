@@ -71,4 +71,29 @@ public class Goto extends VoiceXmlLastTurn {
             VoiceXmlDomUtil.applyDocumentFetchConfiguration(submitElement, dialogueContext);
         }
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((mFetchConfiguration == null) ? 0 : mFetchConfiguration.hashCode());
+        result = prime * result + ((mUri == null) ? 0 : mUri.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
+        if (getClass() != obj.getClass()) return false;
+        Goto other = (Goto) obj;
+        if (mFetchConfiguration == null) {
+            if (other.mFetchConfiguration != null) return false;
+        } else if (!mFetchConfiguration.equals(other.mFetchConfiguration)) return false;
+        if (mUri == null) {
+            if (other.mUri != null) return false;
+        } else if (!mUri.equals(other.mUri)) return false;
+        return true;
+    }
+
 }

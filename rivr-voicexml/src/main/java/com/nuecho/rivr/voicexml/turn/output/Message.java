@@ -174,4 +174,33 @@ public class Message extends VoiceXmlOutputTurn {
             return message;
         }
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((mAudioItems == null) ? 0 : mAudioItems.hashCode());
+        result = prime * result + ((mBargeIn == null) ? 0 : mBargeIn.hashCode());
+        result = prime * result + ((mLanguage == null) ? 0 : mLanguage.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
+        if (getClass() != obj.getClass()) return false;
+        Message other = (Message) obj;
+        if (mAudioItems == null) {
+            if (other.mAudioItems != null) return false;
+        } else if (!mAudioItems.equals(other.mAudioItems)) return false;
+        if (mBargeIn == null) {
+            if (other.mBargeIn != null) return false;
+        } else if (!mBargeIn.equals(other.mBargeIn)) return false;
+        if (mLanguage == null) {
+            if (other.mLanguage != null) return false;
+        } else if (!mLanguage.equals(other.mLanguage)) return false;
+        return true;
+    }
+
 }

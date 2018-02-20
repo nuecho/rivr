@@ -50,4 +50,29 @@ public final class TransferStatusInfo implements JsonSerializable {
         builder.add(DURATION_PROPERTY, mDuration.getMilliseconds());
         return builder.build();
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((mDuration == null) ? 0 : mDuration.hashCode());
+        result = prime * result + ((mStatus == null) ? 0 : mStatus.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        TransferStatusInfo other = (TransferStatusInfo) obj;
+        if (mDuration == null) {
+            if (other.mDuration != null) return false;
+        } else if (!mDuration.equals(other.mDuration)) return false;
+        if (mStatus == null) {
+            if (other.mStatus != null) return false;
+        } else if (!mStatus.equals(other.mStatus)) return false;
+        return true;
+    }
+
 }

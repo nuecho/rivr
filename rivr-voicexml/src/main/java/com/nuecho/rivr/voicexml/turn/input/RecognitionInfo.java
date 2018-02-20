@@ -54,4 +54,28 @@ public final class RecognitionInfo implements JsonSerializable {
         JsonUtils.add(builder, MARK_INFO_PROPERTY, mMarkInfo);
         return builder.build();
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((mMarkInfo == null) ? 0 : mMarkInfo.hashCode());
+        result = prime * result + ((mRecognitionResult == null) ? 0 : mRecognitionResult.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        RecognitionInfo other = (RecognitionInfo) obj;
+        if (mMarkInfo == null) {
+            if (other.mMarkInfo != null) return false;
+        } else if (!mMarkInfo.equals(other.mMarkInfo)) return false;
+        if (mRecognitionResult == null) {
+            if (other.mRecognitionResult != null) return false;
+        } else if (!mRecognitionResult.equals(other.mRecognitionResult)) return false;
+        return true;
+    }
 }

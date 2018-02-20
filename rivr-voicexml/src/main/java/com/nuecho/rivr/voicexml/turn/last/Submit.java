@@ -106,4 +106,39 @@ public class Submit extends VoiceXmlLastTurn {
         VoiceXmlDomUtil.applyDocumentFetchConfiguration(submitElement, mFetchConfiguration);
         blockElement.appendChild(submitElement);
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((mFetchConfiguration == null) ? 0 : mFetchConfiguration.hashCode());
+        result = prime * result + ((mMediaEncodingType == null) ? 0 : mMediaEncodingType.hashCode());
+        result = prime * result + ((mMethod == null) ? 0 : mMethod.hashCode());
+        result = prime * result + ((mUri == null) ? 0 : mUri.hashCode());
+        result = prime * result + ((mVariables == null) ? 0 : mVariables.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
+        if (getClass() != obj.getClass()) return false;
+        Submit other = (Submit) obj;
+        if (mFetchConfiguration == null) {
+            if (other.mFetchConfiguration != null) return false;
+        } else if (!mFetchConfiguration.equals(other.mFetchConfiguration)) return false;
+        if (mMediaEncodingType == null) {
+            if (other.mMediaEncodingType != null) return false;
+        } else if (!mMediaEncodingType.equals(other.mMediaEncodingType)) return false;
+        if (mMethod != other.mMethod) return false;
+        if (mUri == null) {
+            if (other.mUri != null) return false;
+        } else if (!mUri.equals(other.mUri)) return false;
+        if (mVariables == null) {
+            if (other.mVariables != null) return false;
+        } else if (!mVariables.equals(other.mVariables)) return false;
+        return true;
+    }
+
 }

@@ -350,4 +350,43 @@ public class SubdialogueCall extends VoiceXmlOutputTurn {
             return subdialogueCall;
         }
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((mFetchConfiguration == null) ? 0 : mFetchConfiguration.hashCode());
+        result = prime * result + ((mMethod == null) ? 0 : mMethod.hashCode());
+        result = prime * result + ((mParameters == null) ? 0 : mParameters.hashCode());
+        result = prime * result + ((mPostDialogueScript == null) ? 0 : mPostDialogueScript.hashCode());
+        result = prime * result + ((mSubmitParameters == null) ? 0 : mSubmitParameters.hashCode());
+        result = prime * result + ((mUri == null) ? 0 : mUri.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
+        if (getClass() != obj.getClass()) return false;
+        SubdialogueCall other = (SubdialogueCall) obj;
+        if (mFetchConfiguration == null) {
+            if (other.mFetchConfiguration != null) return false;
+        } else if (!mFetchConfiguration.equals(other.mFetchConfiguration)) return false;
+        if (mMethod != other.mMethod) return false;
+        if (mParameters == null) {
+            if (other.mParameters != null) return false;
+        } else if (!mParameters.equals(other.mParameters)) return false;
+        if (mPostDialogueScript == null) {
+            if (other.mPostDialogueScript != null) return false;
+        } else if (!mPostDialogueScript.equals(other.mPostDialogueScript)) return false;
+        if (mSubmitParameters == null) {
+            if (other.mSubmitParameters != null) return false;
+        } else if (!mSubmitParameters.equals(other.mSubmitParameters)) return false;
+        if (mUri == null) {
+            if (other.mUri != null) return false;
+        } else if (!mUri.equals(other.mUri)) return false;
+        return true;
+    }
+
 }

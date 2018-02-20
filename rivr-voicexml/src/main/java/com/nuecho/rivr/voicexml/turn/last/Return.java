@@ -90,4 +90,33 @@ public class Return extends VoiceXmlLastTurn {
         }
         blockElement.appendChild(returnElement);
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((mEventMessage == null) ? 0 : mEventMessage.hashCode());
+        result = prime * result + ((mEventName == null) ? 0 : mEventName.hashCode());
+        result = prime * result + ((mVariables == null) ? 0 : mVariables.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
+        if (getClass() != obj.getClass()) return false;
+        Return other = (Return) obj;
+        if (mEventMessage == null) {
+            if (other.mEventMessage != null) return false;
+        } else if (!mEventMessage.equals(other.mEventMessage)) return false;
+        if (mEventName == null) {
+            if (other.mEventName != null) return false;
+        } else if (!mEventName.equals(other.mEventName)) return false;
+        if (mVariables == null) {
+            if (other.mVariables != null) return false;
+        } else if (!mVariables.equals(other.mVariables)) return false;
+        return true;
+    }
+
 }

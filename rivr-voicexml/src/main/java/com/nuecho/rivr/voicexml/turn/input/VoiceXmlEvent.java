@@ -104,4 +104,29 @@ public final class VoiceXmlEvent implements JsonSerializable {
         JsonUtils.add(builder, MESSAGE_PROPERT, mMessage);
         return builder.build();
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((mMessage == null) ? 0 : mMessage.hashCode());
+        result = prime * result + ((mName == null) ? 0 : mName.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        VoiceXmlEvent other = (VoiceXmlEvent) obj;
+        if (mMessage == null) {
+            if (other.mMessage != null) return false;
+        } else if (!mMessage.equals(other.mMessage)) return false;
+        if (mName == null) {
+            if (other.mName != null) return false;
+        } else if (!mName.equals(other.mName)) return false;
+        return true;
+    }
+
 }

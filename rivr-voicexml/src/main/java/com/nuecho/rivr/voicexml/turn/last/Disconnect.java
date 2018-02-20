@@ -66,4 +66,25 @@ public class Disconnect extends VoiceXmlLastTurn {
 
         blockElement.appendChild(disconnectElement);
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((mVariables == null) ? 0 : mVariables.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
+        if (getClass() != obj.getClass()) return false;
+        Disconnect other = (Disconnect) obj;
+        if (mVariables == null) {
+            if (other.mVariables != null) return false;
+        } else if (!mVariables.equals(other.mVariables)) return false;
+        return true;
+    }
+
 }

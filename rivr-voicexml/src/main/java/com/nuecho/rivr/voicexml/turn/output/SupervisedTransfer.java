@@ -154,4 +154,37 @@ public abstract class SupervisedTransfer extends Transfer {
             super.build(supervisedTransfer);
         }
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((mConnectTimeout == null) ? 0 : mConnectTimeout.hashCode());
+        result = prime * result + ((mDtmfRecognition == null) ? 0 : mDtmfRecognition.hashCode());
+        result = prime * result + ((mSpeechRecognition == null) ? 0 : mSpeechRecognition.hashCode());
+        result = prime * result + ((mTransferAudio == null) ? 0 : mTransferAudio.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
+        if (getClass() != obj.getClass()) return false;
+        SupervisedTransfer other = (SupervisedTransfer) obj;
+        if (mConnectTimeout == null) {
+            if (other.mConnectTimeout != null) return false;
+        } else if (!mConnectTimeout.equals(other.mConnectTimeout)) return false;
+        if (mDtmfRecognition == null) {
+            if (other.mDtmfRecognition != null) return false;
+        } else if (!mDtmfRecognition.equals(other.mDtmfRecognition)) return false;
+        if (mSpeechRecognition == null) {
+            if (other.mSpeechRecognition != null) return false;
+        } else if (!mSpeechRecognition.equals(other.mSpeechRecognition)) return false;
+        if (mTransferAudio == null) {
+            if (other.mTransferAudio != null) return false;
+        } else if (!mTransferAudio.equals(other.mTransferAudio)) return false;
+        return true;
+    }
+
 }

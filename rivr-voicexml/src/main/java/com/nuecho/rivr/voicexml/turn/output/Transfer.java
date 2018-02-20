@@ -149,6 +149,34 @@ public abstract class Transfer extends VoiceXmlOutputTurn {
         protected void build(Transfer transfer) {
             transfer.setApplicationToApplicationInformation(mApplicationToApplicationInformation);
         }
-
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result
+                 + ((mApplicationToApplicationInformation == null)
+                         ? 0
+                         : mApplicationToApplicationInformation.hashCode());
+        result = prime * result + ((mDestination == null) ? 0 : mDestination.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
+        if (getClass() != obj.getClass()) return false;
+        Transfer other = (Transfer) obj;
+        if (mApplicationToApplicationInformation == null) {
+            if (other.mApplicationToApplicationInformation != null) return false;
+        } else if (!mApplicationToApplicationInformation.equals(other.mApplicationToApplicationInformation))
+            return false;
+        if (mDestination == null) {
+            if (other.mDestination != null) return false;
+        } else if (!mDestination.equals(other.mDestination)) return false;
+        return true;
+    }
+
 }

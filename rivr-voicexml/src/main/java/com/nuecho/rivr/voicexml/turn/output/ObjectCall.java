@@ -458,4 +458,57 @@ public class ObjectCall extends VoiceXmlOutputTurn {
             return objectCall;
         }
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((mArchives == null) ? 0 : mArchives.hashCode());
+        result = prime * result + ((mClassId == null) ? 0 : mClassId.hashCode());
+        result = prime * result + ((mCodeBase == null) ? 0 : mCodeBase.hashCode());
+        result = prime * result + ((mCodeType == null) ? 0 : mCodeType.hashCode());
+        result = prime * result + ((mData == null) ? 0 : mData.hashCode());
+        result = prime * result + ((mFetchConfiguration == null) ? 0 : mFetchConfiguration.hashCode());
+        result = prime * result + ((mParameters == null) ? 0 : mParameters.hashCode());
+        result = prime * result + ((mPostObjectScript == null) ? 0 : mPostObjectScript.hashCode());
+        result = prime * result + ((mType == null) ? 0 : mType.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
+        if (getClass() != obj.getClass()) return false;
+        ObjectCall other = (ObjectCall) obj;
+        if (mArchives == null) {
+            if (other.mArchives != null) return false;
+        } else if (!mArchives.equals(other.mArchives)) return false;
+        if (mClassId == null) {
+            if (other.mClassId != null) return false;
+        } else if (!mClassId.equals(other.mClassId)) return false;
+        if (mCodeBase == null) {
+            if (other.mCodeBase != null) return false;
+        } else if (!mCodeBase.equals(other.mCodeBase)) return false;
+        if (mCodeType == null) {
+            if (other.mCodeType != null) return false;
+        } else if (!mCodeType.equals(other.mCodeType)) return false;
+        if (mData == null) {
+            if (other.mData != null) return false;
+        } else if (!mData.equals(other.mData)) return false;
+        if (mFetchConfiguration == null) {
+            if (other.mFetchConfiguration != null) return false;
+        } else if (!mFetchConfiguration.equals(other.mFetchConfiguration)) return false;
+        if (mParameters == null) {
+            if (other.mParameters != null) return false;
+        } else if (!mParameters.equals(other.mParameters)) return false;
+        if (mPostObjectScript == null) {
+            if (other.mPostObjectScript != null) return false;
+        } else if (!mPostObjectScript.equals(other.mPostObjectScript)) return false;
+        if (mType == null) {
+            if (other.mType != null) return false;
+        } else if (!mType.equals(other.mType)) return false;
+        return true;
+    }
+
 }

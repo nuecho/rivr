@@ -40,4 +40,25 @@ public class TransferStatus implements JsonSerializable {
     public JsonValue asJson() {
         return JsonUtils.wrap(mStatusCode);
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((mStatusCode == null) ? 0 : mStatusCode.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        TransferStatus other = (TransferStatus) obj;
+        if (mStatusCode == null) {
+            if (other.mStatusCode != null) return false;
+        } else if (!mStatusCode.equals(other.mStatusCode)) return false;
+        return true;
+    }
+
 }

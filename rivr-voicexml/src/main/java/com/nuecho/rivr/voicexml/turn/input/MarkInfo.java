@@ -44,4 +44,29 @@ public final class MarkInfo implements JsonSerializable {
         JsonUtils.addDurationProperty(builder, TIME_PROPERTY, mTime);
         return builder.build();
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((mName == null) ? 0 : mName.hashCode());
+        result = prime * result + ((mTime == null) ? 0 : mTime.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        MarkInfo other = (MarkInfo) obj;
+        if (mName == null) {
+            if (other.mName != null) return false;
+        } else if (!mName.equals(other.mName)) return false;
+        if (mTime == null) {
+            if (other.mTime != null) return false;
+        } else if (!mTime.equals(other.mTime)) return false;
+        return true;
+    }
+
 }

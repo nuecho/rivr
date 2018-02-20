@@ -40,4 +40,25 @@ public class DocumentFetchConfiguration extends FetchConfiguration {
     public void addJsonProperties(JsonObjectBuilder builder) {
         JsonUtils.add(builder, FETCH_AUDIO_PROPERTY, mFetchAudio);
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((mFetchAudio == null) ? 0 : mFetchAudio.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
+        if (getClass() != obj.getClass()) return false;
+        DocumentFetchConfiguration other = (DocumentFetchConfiguration) obj;
+        if (mFetchAudio == null) {
+            if (other.mFetchAudio != null) return false;
+        } else if (!mFetchAudio.equals(other.mFetchAudio)) return false;
+        return true;
+    }
+
 }

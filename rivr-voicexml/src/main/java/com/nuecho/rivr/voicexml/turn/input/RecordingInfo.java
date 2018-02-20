@@ -70,4 +70,35 @@ public final class RecordingInfo implements JsonSerializable {
         JsonUtils.add(builder, "file", mFile);
         return builder.build();
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((mDtmfTerm == null) ? 0 : mDtmfTerm.hashCode());
+        result = prime * result + ((mDuration == null) ? 0 : mDuration.hashCode());
+        result = prime * result + ((mFile == null) ? 0 : mFile.hashCode());
+        result = prime * result + (mMaxTime ? 1231 : 1237);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        RecordingInfo other = (RecordingInfo) obj;
+        if (mDtmfTerm == null) {
+            if (other.mDtmfTerm != null) return false;
+        } else if (!mDtmfTerm.equals(other.mDtmfTerm)) return false;
+        if (mDuration == null) {
+            if (other.mDuration != null) return false;
+        } else if (!mDuration.equals(other.mDuration)) return false;
+        if (mFile == null) {
+            if (other.mFile != null) return false;
+        } else if (!mFile.equals(other.mFile)) return false;
+        if (mMaxTime != other.mMaxTime) return false;
+        return true;
+    }
+
 }

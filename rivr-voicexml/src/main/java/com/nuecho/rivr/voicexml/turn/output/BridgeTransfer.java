@@ -89,4 +89,25 @@ public class BridgeTransfer extends SupervisedTransfer {
 
         }
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((mMaximumTime == null) ? 0 : mMaximumTime.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
+        if (getClass() != obj.getClass()) return false;
+        BridgeTransfer other = (BridgeTransfer) obj;
+        if (mMaximumTime == null) {
+            if (other.mMaximumTime != null) return false;
+        } else if (!mMaximumTime.equals(other.mMaximumTime)) return false;
+        return true;
+    }
+
 }

@@ -105,4 +105,45 @@ public final class VoiceXmlInputTurn implements InputTurn, JsonSerializable {
         JsonUtils.add(builder, TRANSFER_RESULT_PROPERTY, mTransferResult);
         return builder.build();
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((mEvents == null) ? 0 : mEvents.hashCode());
+        result = prime * result + ((mFiles == null) ? 0 : mFiles.hashCode());
+        result = prime * result + ((mJsonValue == null) ? 0 : mJsonValue.hashCode());
+        result = prime * result + ((mRecognitionInfo == null) ? 0 : mRecognitionInfo.hashCode());
+        result = prime * result + ((mRecordingInfo == null) ? 0 : mRecordingInfo.hashCode());
+        result = prime * result + ((mTransferResult == null) ? 0 : mTransferResult.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        VoiceXmlInputTurn other = (VoiceXmlInputTurn) obj;
+        if (mEvents == null) {
+            if (other.mEvents != null) return false;
+        } else if (!mEvents.equals(other.mEvents)) return false;
+        if (mFiles == null) {
+            if (other.mFiles != null) return false;
+        } else if (!mFiles.equals(other.mFiles)) return false;
+        if (mJsonValue == null) {
+            if (other.mJsonValue != null) return false;
+        } else if (!mJsonValue.equals(other.mJsonValue)) return false;
+        if (mRecognitionInfo == null) {
+            if (other.mRecognitionInfo != null) return false;
+        } else if (!mRecognitionInfo.equals(other.mRecognitionInfo)) return false;
+        if (mRecordingInfo == null) {
+            if (other.mRecordingInfo != null) return false;
+        } else if (!mRecordingInfo.equals(other.mRecordingInfo)) return false;
+        if (mTransferResult == null) {
+            if (other.mTransferResult != null) return false;
+        } else if (!mTransferResult.equals(other.mTransferResult)) return false;
+        return true;
+    }
+
 }

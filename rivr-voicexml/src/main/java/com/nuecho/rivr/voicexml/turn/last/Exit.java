@@ -78,4 +78,28 @@ public class Exit extends VoiceXmlLastTurn {
 
         blockElement.appendChild(exitElement);
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((mExpression == null) ? 0 : mExpression.hashCode());
+        result = prime * result + ((mVariables == null) ? 0 : mVariables.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
+        if (getClass() != obj.getClass()) return false;
+        Exit other = (Exit) obj;
+        if (mExpression == null) {
+            if (other.mExpression != null) return false;
+        } else if (!mExpression.equals(other.mExpression)) return false;
+        if (mVariables == null) {
+            if (other.mVariables != null) return false;
+        } else if (!mVariables.equals(other.mVariables)) return false;
+        return true;
+    }
 }
