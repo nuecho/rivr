@@ -10,7 +10,7 @@ import com.nuecho.rivr.core.util.*;
 /**
  * Step wrapping a {@link LastTurn}. This kind of step tells that the dialogue
  * is done.
- * 
+ *
  * @param <O> type of {@link OutputTurn}
  * @param <L> type of {@link LastTurn}
  * @author Nu Echo Inc.
@@ -33,4 +33,23 @@ public final class LastTurnStep<O extends OutputTurn, L extends LastTurn> implem
         return "Last Turn: " + mLastTurn;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((mLastTurn == null) ? 0 : mLastTurn.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        LastTurnStep other = (LastTurnStep) obj;
+        if (mLastTurn == null) {
+            if (other.mLastTurn != null) return false;
+        } else if (!mLastTurn.equals(other.mLastTurn)) return false;
+        return true;
+    }
 }
