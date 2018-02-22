@@ -19,6 +19,8 @@
 *.prefs textfile
 *.txt textfile
 *.html textfile
+*.xml textfile
+*.component textfile
 
 # Declare files that will always have LF line endings on checkout.
 *.sh textfile eol=lf
