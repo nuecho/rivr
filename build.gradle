@@ -1,5 +1,5 @@
 group = "com.nuecho"
-version = "1.0.9"
+version = "1.0.10"
 
 // Configure the java projects release.
 
@@ -14,6 +14,7 @@ configure(javaProjects) {
 
     checkstyle.configFile = rootProject.file('checkstyle/checkstyle.xml')
     sourceCompatibility = '1.6'
+    targetCompatibility = '1.6'
 
     // Fix for Unable to get class information
     checkstyleMain { classpath += configurations.compile }
