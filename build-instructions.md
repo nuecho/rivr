@@ -1,6 +1,6 @@
 ## How to build Rivr
 
-The build tool used in Rivr is [Gradle](http://www.gradle.org/). This distribution has been tested with Gradle 1.9. To build, simply do
+The build tool used in Rivr is [Gradle](http://www.gradle.org/). This distribution requires Gradle 4.5.1 (or more recent). To build, simply do
 
         gradle build 
 
@@ -13,18 +13,18 @@ Gradle will download the required build dependencies from Maven Central:
 
 After a successful build, The resulting jar file can be found here:
 
-* rivr-core/build/libs/rivr-core-1.0.0.jar
-* rivr-voicexml/build/libs/rivr-voicexml-1.0.0.jar
+* rivr-core/build/libs/rivr-core-1.0.10.jar
+* rivr-voicexml/build/libs/rivr-voicexml-1.0.10.jar
 
 The javadoc jar files:
 
-* rivr-core/build/libs/rivr-core-1.0.0-javadoc.jar
-* rivr-voicexml/build/libs/rivr-voicexml-1.0.0-javadoc.jar
+* rivr-core/build/libs/rivr-core-1.0.10-javadoc.jar
+* rivr-voicexml/build/libs/rivr-voicexml-1.0.10-javadoc.jar
 
 The source jar files:
 
-* rivr-core/build/libs/rivr-core-1.0.0-sources.jar
-* rivr-voicexml/build/libs/rivr-voicexml-1.0.0-sources.jar
+* rivr-core/build/libs/rivr-core-1.0.10-sources.jar
+* rivr-voicexml/build/libs/rivr-voicexml-1.0.10-sources.jar
  
 
 ### Gradle wrapper
@@ -45,17 +45,18 @@ NOTE: The gradle wrapper can be configured via the gradle-wrapper.properties fil
 
 ## Eclipse integration
 
-Install the Gradle IDE plugin from [Spring's update site](http://dist.springsource.com/release/TOOLS/gradle). To load the projects inside Eclipse, choose File -> Import -> Gradle -> Gradle Project, select the root directory of the project, click Build Model and finish.
+Development under Eclipse requires [BuildShip](https://projects.eclipse.org/projects/tools.buildship). 
 
-You can also configure which version of Gradle the IDE plugin uses: go to Window -> Preferences -> Gradle and change the URI of Gradle distribution. This is the same URL pattern as the Gradle wrapper.
+To import Rivr in Eclipse:
+
+* Select `Import...` from the `File` menu  
+* Select `Gradle` -> `Gradle Project` 
+* Choose the Rivr root directory
+* Click Finish
+
+Note: the Gradle Wrapper option can be selected in order to use the recommended Gradle version (4.5.1).
 
 The Rivr subprojects (rivr-core, rivr-voicexml, rivr-voicexml-dialogue-runner) can also be imported into Eclipse without using the Gradle plugin. In order to to so, you must generate the corresponding `.project` files. Simply run `gradlew eclipse`.  
-
-NOTE: If later on you install the Eclipse Gradle plugin, you can convert the projects into Gradle projects by applying the Gradle nature:
-
-* Right-click on the project
-* Select Configure > Convert to Gradle Project
-* Project should build and library references and such updated.  
 
 ## How to make a project depend on Rivr
 
@@ -63,7 +64,7 @@ NOTE: If later on you install the Eclipse Gradle plugin, you can convert the pro
 
 ```groovy
 dependencies {
-    compile 'com.nuecho:rivr-voicexml:1.0.0'
+    compile 'com.nuecho:rivr-voicexml:1.0.10'
 }
 ```
 
@@ -73,14 +74,14 @@ dependencies {
 <dependency>
     <groupId>com.nuecho</groupId>
     <artifactId>rivr-voicexml</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.10</version>
 </dependency>
 ```
 
 ### With Ivy
 
 ```xml
-<dependency org="com.nuecho" name="rivr-voicexml" rev="1.0.0"/>
+<dependency org="com.nuecho" name="rivr-voicexml" rev="1.0.10"/>
 ```
 
 ### Without dependency manager (Ant)
@@ -94,8 +95,8 @@ Obtain and add to your compilation classpath the following jar files:
 
 In your runtime classpath (i.e. your WEB-INF/lib), you should have:
 
-* rivr-voicexml-1.0.0.jar
-* rivr-core-1.0.0.jar
+* rivr-voicexml-1.0.10.jar
+* rivr-core-1.0.10.jar
 * commons-fileupload-1.2.1.jar
 * javax.json-api-1.0.jar
 * slf4j-api-1.7.5.jar
@@ -114,7 +115,7 @@ apply plugin: 'war' // Must be a webapp project
 configurations { dialogueRunner } 
 
 dependencies {
-    dialogueRunner 'com.nuecho:rivr-voicexml-dialogue-runner:1.0.0@war'
+    dialogueRunner 'com.nuecho:rivr-voicexml-dialogue-runner:1.0.10@war'
 }
 
 repositories { mavenCentral() }
