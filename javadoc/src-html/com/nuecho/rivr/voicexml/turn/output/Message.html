@@ -182,7 +182,36 @@
 <span class="sourceLineNo">174</span>            return message;<a name="line.174"></a>
 <span class="sourceLineNo">175</span>        }<a name="line.175"></a>
 <span class="sourceLineNo">176</span>    }<a name="line.176"></a>
-<span class="sourceLineNo">177</span>}<a name="line.177"></a>
+<span class="sourceLineNo">177</span><a name="line.177"></a>
+<span class="sourceLineNo">178</span>    @Override<a name="line.178"></a>
+<span class="sourceLineNo">179</span>    public int hashCode() {<a name="line.179"></a>
+<span class="sourceLineNo">180</span>        final int prime = 31;<a name="line.180"></a>
+<span class="sourceLineNo">181</span>        int result = super.hashCode();<a name="line.181"></a>
+<span class="sourceLineNo">182</span>        result = prime * result + ((mAudioItems == null) ? 0 : mAudioItems.hashCode());<a name="line.182"></a>
+<span class="sourceLineNo">183</span>        result = prime * result + ((mBargeIn == null) ? 0 : mBargeIn.hashCode());<a name="line.183"></a>
+<span class="sourceLineNo">184</span>        result = prime * result + ((mLanguage == null) ? 0 : mLanguage.hashCode());<a name="line.184"></a>
+<span class="sourceLineNo">185</span>        return result;<a name="line.185"></a>
+<span class="sourceLineNo">186</span>    }<a name="line.186"></a>
+<span class="sourceLineNo">187</span><a name="line.187"></a>
+<span class="sourceLineNo">188</span>    @Override<a name="line.188"></a>
+<span class="sourceLineNo">189</span>    public boolean equals(Object obj) {<a name="line.189"></a>
+<span class="sourceLineNo">190</span>        if (this == obj) return true;<a name="line.190"></a>
+<span class="sourceLineNo">191</span>        if (!super.equals(obj)) return false;<a name="line.191"></a>
+<span class="sourceLineNo">192</span>        if (getClass() != obj.getClass()) return false;<a name="line.192"></a>
+<span class="sourceLineNo">193</span>        Message other = (Message) obj;<a name="line.193"></a>
+<span class="sourceLineNo">194</span>        if (mAudioItems == null) {<a name="line.194"></a>
+<span class="sourceLineNo">195</span>            if (other.mAudioItems != null) return false;<a name="line.195"></a>
+<span class="sourceLineNo">196</span>        } else if (!mAudioItems.equals(other.mAudioItems)) return false;<a name="line.196"></a>
+<span class="sourceLineNo">197</span>        if (mBargeIn == null) {<a name="line.197"></a>
+<span class="sourceLineNo">198</span>            if (other.mBargeIn != null) return false;<a name="line.198"></a>
+<span class="sourceLineNo">199</span>        } else if (!mBargeIn.equals(other.mBargeIn)) return false;<a name="line.199"></a>
+<span class="sourceLineNo">200</span>        if (mLanguage == null) {<a name="line.200"></a>
+<span class="sourceLineNo">201</span>            if (other.mLanguage != null) return false;<a name="line.201"></a>
+<span class="sourceLineNo">202</span>        } else if (!mLanguage.equals(other.mLanguage)) return false;<a name="line.202"></a>
+<span class="sourceLineNo">203</span>        return true;<a name="line.203"></a>
+<span class="sourceLineNo">204</span>    }<a name="line.204"></a>
+<span class="sourceLineNo">205</span><a name="line.205"></a>
+<span class="sourceLineNo">206</span>}<a name="line.206"></a>
 
 
 

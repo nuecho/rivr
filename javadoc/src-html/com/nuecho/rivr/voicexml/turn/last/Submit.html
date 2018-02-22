@@ -114,7 +114,42 @@
 <span class="sourceLineNo">106</span>        VoiceXmlDomUtil.applyDocumentFetchConfiguration(submitElement, mFetchConfiguration);<a name="line.106"></a>
 <span class="sourceLineNo">107</span>        blockElement.appendChild(submitElement);<a name="line.107"></a>
 <span class="sourceLineNo">108</span>    }<a name="line.108"></a>
-<span class="sourceLineNo">109</span>}<a name="line.109"></a>
+<span class="sourceLineNo">109</span><a name="line.109"></a>
+<span class="sourceLineNo">110</span>    @Override<a name="line.110"></a>
+<span class="sourceLineNo">111</span>    public int hashCode() {<a name="line.111"></a>
+<span class="sourceLineNo">112</span>        final int prime = 31;<a name="line.112"></a>
+<span class="sourceLineNo">113</span>        int result = super.hashCode();<a name="line.113"></a>
+<span class="sourceLineNo">114</span>        result = prime * result + ((mFetchConfiguration == null) ? 0 : mFetchConfiguration.hashCode());<a name="line.114"></a>
+<span class="sourceLineNo">115</span>        result = prime * result + ((mMediaEncodingType == null) ? 0 : mMediaEncodingType.hashCode());<a name="line.115"></a>
+<span class="sourceLineNo">116</span>        result = prime * result + ((mMethod == null) ? 0 : mMethod.hashCode());<a name="line.116"></a>
+<span class="sourceLineNo">117</span>        result = prime * result + ((mUri == null) ? 0 : mUri.hashCode());<a name="line.117"></a>
+<span class="sourceLineNo">118</span>        result = prime * result + ((mVariables == null) ? 0 : mVariables.hashCode());<a name="line.118"></a>
+<span class="sourceLineNo">119</span>        return result;<a name="line.119"></a>
+<span class="sourceLineNo">120</span>    }<a name="line.120"></a>
+<span class="sourceLineNo">121</span><a name="line.121"></a>
+<span class="sourceLineNo">122</span>    @Override<a name="line.122"></a>
+<span class="sourceLineNo">123</span>    public boolean equals(Object obj) {<a name="line.123"></a>
+<span class="sourceLineNo">124</span>        if (this == obj) return true;<a name="line.124"></a>
+<span class="sourceLineNo">125</span>        if (!super.equals(obj)) return false;<a name="line.125"></a>
+<span class="sourceLineNo">126</span>        if (getClass() != obj.getClass()) return false;<a name="line.126"></a>
+<span class="sourceLineNo">127</span>        Submit other = (Submit) obj;<a name="line.127"></a>
+<span class="sourceLineNo">128</span>        if (mFetchConfiguration == null) {<a name="line.128"></a>
+<span class="sourceLineNo">129</span>            if (other.mFetchConfiguration != null) return false;<a name="line.129"></a>
+<span class="sourceLineNo">130</span>        } else if (!mFetchConfiguration.equals(other.mFetchConfiguration)) return false;<a name="line.130"></a>
+<span class="sourceLineNo">131</span>        if (mMediaEncodingType == null) {<a name="line.131"></a>
+<span class="sourceLineNo">132</span>            if (other.mMediaEncodingType != null) return false;<a name="line.132"></a>
+<span class="sourceLineNo">133</span>        } else if (!mMediaEncodingType.equals(other.mMediaEncodingType)) return false;<a name="line.133"></a>
+<span class="sourceLineNo">134</span>        if (mMethod != other.mMethod) return false;<a name="line.134"></a>
+<span class="sourceLineNo">135</span>        if (mUri == null) {<a name="line.135"></a>
+<span class="sourceLineNo">136</span>            if (other.mUri != null) return false;<a name="line.136"></a>
+<span class="sourceLineNo">137</span>        } else if (!mUri.equals(other.mUri)) return false;<a name="line.137"></a>
+<span class="sourceLineNo">138</span>        if (mVariables == null) {<a name="line.138"></a>
+<span class="sourceLineNo">139</span>            if (other.mVariables != null) return false;<a name="line.139"></a>
+<span class="sourceLineNo">140</span>        } else if (!mVariables.equals(other.mVariables)) return false;<a name="line.140"></a>
+<span class="sourceLineNo">141</span>        return true;<a name="line.141"></a>
+<span class="sourceLineNo">142</span>    }<a name="line.142"></a>
+<span class="sourceLineNo">143</span><a name="line.143"></a>
+<span class="sourceLineNo">144</span>}<a name="line.144"></a>
 
 
 

@@ -82,7 +82,7 @@
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
 <li><a href="../../../../../../com/nuecho/rivr/voicexml/turn/VoiceXmlDocumentTurn.html" title="class in com.nuecho.rivr.voicexml.turn">com.nuecho.rivr.voicexml.turn.VoiceXmlDocumentTurn</a></li>
@@ -148,7 +148,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.Parameter.html" title="class in com.nuecho.rivr.voicexml.turn.output">SubdialogueCall.Parameter</a></strong></code>
 <div class="block"><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html" title="class in com.nuecho.rivr.voicexml.turn.output"><code>SubdialogueCall</code></a> parameter, can be created with a string value, a
- <a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonValue.html?is-external=true" title="class or interface in javax.json"><code>JsonValue</code></a> or an expression.</div>
+ <code>JsonValue</code> or an expression.</div>
 </td>
 </tr>
 </table>
@@ -167,7 +167,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#SUBDIALOGUE_RESULT_VARIABLE_NAME">SUBDIALOGUE_RESULT_VARIABLE_NAME</a></strong></code>&nbsp;</td>
 </tr>
 </table>
@@ -185,8 +185,8 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#SubdialogueCall(java.lang.String, java.lang.String)">SubdialogueCall</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-                              <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;uri)</code>&nbsp;</td>
+<td class="colOne"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#SubdialogueCall(java.lang.String, java.lang.String)">SubdialogueCall</a></strong>(java.lang.String&nbsp;name,
+                              java.lang.String&nbsp;uri)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -205,41 +205,49 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#addTurnProperties(javax.json.JsonObjectBuilder)">addTurnProperties</a></strong>(<a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonObjectBuilder.html?is-external=true" title="class or interface in javax.json">JsonObjectBuilder</a>&nbsp;builder)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#addTurnProperties(javax.json.JsonObjectBuilder)">addTurnProperties</a></strong>(javax.json.JsonObjectBuilder&nbsp;builder)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#fillVoiceXmlDocument(org.w3c.dom.Document, org.w3c.dom.Element, com.nuecho.rivr.voicexml.dialogue.VoiceXmlDialogueContext)">fillVoiceXmlDocument</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/Document.html?is-external=true" title="class or interface in org.w3c.dom">Document</a>&nbsp;document,
-                                        <a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/Element.html?is-external=true" title="class or interface in org.w3c.dom">Element</a>&nbsp;formElement,
-                                        <a href="../../../../../../com/nuecho/rivr/voicexml/dialogue/VoiceXmlDialogueContext.html" title="class in com.nuecho.rivr.voicexml.dialogue">VoiceXmlDialogueContext</a>&nbsp;dialogueContext)</code>&nbsp;</td>
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#equals(java.lang.Object)">equals</a></strong>(java.lang.Object&nbsp;obj)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#fillVoiceXmlDocument(org.w3c.dom.Document, org.w3c.dom.Element, com.nuecho.rivr.voicexml.dialogue.VoiceXmlDialogueContext)">fillVoiceXmlDocument</a></strong>(org.w3c.dom.Document&nbsp;document,
+                                        org.w3c.dom.Element&nbsp;formElement,
+                                        <a href="../../../../../../com/nuecho/rivr/voicexml/dialogue/VoiceXmlDialogueContext.html" title="class in com.nuecho.rivr.voicexml.dialogue">VoiceXmlDialogueContext</a>&nbsp;dialogueContext)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/fetch/DocumentFetchConfiguration.html" title="class in com.nuecho.rivr.voicexml.turn.output.fetch">DocumentFetchConfiguration</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#getFetchConfiguration()">getFetchConfiguration</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/voicexml/rendering/voicexml/SubmitMethod.html" title="enum in com.nuecho.rivr.voicexml.rendering.voicexml">SubmitMethod</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#getMethod()">getMethod</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<tr class="rowColor">
+<td class="colFirst"><code>protected java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#getOuputTurnType()">getOuputTurnType</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<tr class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#getPostDialogueScript()">getPostDialogueScript</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/VariableList.html" title="class in com.nuecho.rivr.voicexml.turn">VariableList</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#getSubmitParameters()">getSubmitParameters</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<tr class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#getUri()">getUri</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://download.oracle.com/javase/6/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.Parameter.html" title="class in com.nuecho.rivr.voicexml.turn.output">SubdialogueCall.Parameter</a>&gt;</code></td>
+<tr class="rowColor">
+<td class="colFirst"><code>java.util.Collection&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.Parameter.html" title="class in com.nuecho.rivr.voicexml.turn.output">SubdialogueCall.Parameter</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#getVoiceXmlParameters()">getVoiceXmlParameters</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#hashCode()">hashCode</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -251,11 +259,11 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#setPostDialogueScript(java.lang.String)">setPostDialogueScript</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;postDialogueScript)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#setPostDialogueScript(java.lang.String)">setPostDialogueScript</a></strong>(java.lang.String&nbsp;postDialogueScript)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#setSubdialogueParameters(java.util.Collection)">setSubdialogueParameters</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.Parameter.html" title="class in com.nuecho.rivr.voicexml.turn.output">SubdialogueCall.Parameter</a>&gt;&nbsp;parameters)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#setSubdialogueParameters(java.util.Collection)">setSubdialogueParameters</a></strong>(java.util.Collection&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.Parameter.html" title="class in com.nuecho.rivr.voicexml.turn.output">SubdialogueCall.Parameter</a>&gt;&nbsp;parameters)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -284,8 +292,8 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</a></code></li>
+<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+<code>clone, finalize, getClass, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -307,7 +315,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockListLast">
 <li class="blockList">
 <h4>SUBDIALOGUE_RESULT_VARIABLE_NAME</h4>
-<pre>public static final&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> <a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.38">SUBDIALOGUE_RESULT_VARIABLE_NAME</a></pre>
+<pre>public static final&nbsp;java.lang.String <a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.38">SUBDIALOGUE_RESULT_VARIABLE_NAME</a></pre>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../constant-values.html#com.nuecho.rivr.voicexml.turn.output.SubdialogueCall.SUBDIALOGUE_RESULT_VARIABLE_NAME">Constant Field Values</a></dd></dl>
 </li>
 </ul>
@@ -325,8 +333,8 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockListLast">
 <li class="blockList">
 <h4>SubdialogueCall</h4>
-<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.60">SubdialogueCall</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-               <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;uri)</pre>
+<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.60">SubdialogueCall</a>(java.lang.String&nbsp;name,
+               java.lang.String&nbsp;uri)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>name</code> - The name of this turn. Not empty.</dd><dd><code>uri</code> - The URI of the subdialogue. Not empty.</dd></dl>
 </li>
 </ul>
@@ -344,7 +352,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockList">
 <li class="blockList">
 <h4>setSubdialogueParameters</h4>
-<pre>public final&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.70">setSubdialogueParameters</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.Parameter.html" title="class in com.nuecho.rivr.voicexml.turn.output">SubdialogueCall.Parameter</a>&gt;&nbsp;parameters)</pre>
+<pre>public final&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.70">setSubdialogueParameters</a>(java.util.Collection&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.Parameter.html" title="class in com.nuecho.rivr.voicexml.turn.output">SubdialogueCall.Parameter</a>&gt;&nbsp;parameters)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>parameters</code> - A list of <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.Parameter.html" title="class in com.nuecho.rivr.voicexml.turn.output"><code>SubdialogueCall.Parameter</code></a> that will be passed to the
             subdialogue. Not null.</dd></dl>
 </li>
@@ -399,7 +407,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockList">
 <li class="blockList">
 <h4>setPostDialogueScript</h4>
-<pre>public final&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.113">setPostDialogueScript</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;postDialogueScript)</pre>
+<pre>public final&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.113">setPostDialogueScript</a>(java.lang.String&nbsp;postDialogueScript)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>postDialogueScript</code> - The ECMAScript script to execute after
             subdialogue invocation.</dd></dl>
 </li>
@@ -410,7 +418,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockList">
 <li class="blockList">
 <h4>getUri</h4>
-<pre>public final&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.117">getUri</a>()</pre>
+<pre>public final&nbsp;java.lang.String&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.117">getUri</a>()</pre>
 </li>
 </ul>
 <a name="getVoiceXmlParameters()">
@@ -419,7 +427,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockList">
 <li class="blockList">
 <h4>getVoiceXmlParameters</h4>
-<pre>public final&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.Parameter.html" title="class in com.nuecho.rivr.voicexml.turn.output">SubdialogueCall.Parameter</a>&gt;&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.121">getVoiceXmlParameters</a>()</pre>
+<pre>public final&nbsp;java.util.Collection&lt;<a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.Parameter.html" title="class in com.nuecho.rivr.voicexml.turn.output">SubdialogueCall.Parameter</a>&gt;&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.121">getVoiceXmlParameters</a>()</pre>
 </li>
 </ul>
 <a name="getSubmitParameters()">
@@ -446,7 +454,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockList">
 <li class="blockList">
 <h4>getPostDialogueScript</h4>
-<pre>public final&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.133">getPostDialogueScript</a>()</pre>
+<pre>public final&nbsp;java.lang.String&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.133">getPostDialogueScript</a>()</pre>
 </li>
 </ul>
 <a name="getFetchConfiguration()">
@@ -464,7 +472,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockList">
 <li class="blockList">
 <h4>getOuputTurnType</h4>
-<pre>protected final&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.142">getOuputTurnType</a>()</pre>
+<pre>protected final&nbsp;java.lang.String&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.142">getOuputTurnType</a>()</pre>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXmlOutputTurn.html#getOuputTurnType()">getOuputTurnType</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXmlOutputTurn.html" title="class in com.nuecho.rivr.voicexml.turn.output">VoiceXmlOutputTurn</a></code></dd>
@@ -477,7 +485,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <ul class="blockList">
 <li class="blockList">
 <h4>addTurnProperties</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.147">addTurnProperties</a>(<a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonObjectBuilder.html?is-external=true" title="class or interface in javax.json">JsonObjectBuilder</a>&nbsp;builder)</pre>
+<pre>protected&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.147">addTurnProperties</a>(javax.json.JsonObjectBuilder&nbsp;builder)</pre>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/VoiceXmlDocumentTurn.html#addTurnProperties(javax.json.JsonObjectBuilder)">addTurnProperties</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/VoiceXmlDocumentTurn.html" title="class in com.nuecho.rivr.voicexml.turn">VoiceXmlDocumentTurn</a></code></dd>
@@ -487,11 +495,11 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <a name="fillVoiceXmlDocument(org.w3c.dom.Document, org.w3c.dom.Element, com.nuecho.rivr.voicexml.dialogue.VoiceXmlDialogueContext)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>fillVoiceXmlDocument</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.157">fillVoiceXmlDocument</a>(<a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/Document.html?is-external=true" title="class or interface in org.w3c.dom">Document</a>&nbsp;document,
-                        <a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/Element.html?is-external=true" title="class or interface in org.w3c.dom">Element</a>&nbsp;formElement,
+<pre>protected&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.157">fillVoiceXmlDocument</a>(org.w3c.dom.Document&nbsp;document,
+                        org.w3c.dom.Element&nbsp;formElement,
                         <a href="../../../../../../com/nuecho/rivr/voicexml/dialogue/VoiceXmlDialogueContext.html" title="class in com.nuecho.rivr.voicexml.dialogue">VoiceXmlDialogueContext</a>&nbsp;dialogueContext)
                              throws <a href="../../../../../../com/nuecho/rivr/voicexml/rendering/voicexml/VoiceXmlDocumentRenderingException.html" title="class in com.nuecho.rivr.voicexml.rendering.voicexml">VoiceXmlDocumentRenderingException</a></pre>
 <dl>
@@ -499,6 +507,32 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXml
 <dd><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXmlOutputTurn.html#fillVoiceXmlDocument(org.w3c.dom.Document, org.w3c.dom.Element, com.nuecho.rivr.voicexml.dialogue.VoiceXmlDialogueContext)">fillVoiceXmlDocument</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/VoiceXmlOutputTurn.html" title="class in com.nuecho.rivr.voicexml.turn.output">VoiceXmlOutputTurn</a></code></dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../../../../com/nuecho/rivr/voicexml/rendering/voicexml/VoiceXmlDocumentRenderingException.html" title="class in com.nuecho.rivr.voicexml.rendering.voicexml">VoiceXmlDocumentRenderingException</a></code></dd></dl>
+</li>
+</ul>
+<a name="hashCode()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hashCode</h4>
+<pre>public&nbsp;int&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.355">hashCode</a>()</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/VoiceXmlDocumentTurn.html#hashCode()">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/VoiceXmlDocumentTurn.html" title="class in com.nuecho.rivr.voicexml.turn">VoiceXmlDocumentTurn</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="equals(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>equals</h4>
+<pre>public&nbsp;boolean&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#line.368">equals</a>(java.lang.Object&nbsp;obj)</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/VoiceXmlDocumentTurn.html#equals(java.lang.Object)">equals</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/VoiceXmlDocumentTurn.html" title="class in com.nuecho.rivr.voicexml.turn">VoiceXmlDocumentTurn</a></code></dd>
+</dl>
 </li>
 </ul>
 </li>

@@ -466,7 +466,60 @@
 <span class="sourceLineNo">458</span>            return objectCall;<a name="line.458"></a>
 <span class="sourceLineNo">459</span>        }<a name="line.459"></a>
 <span class="sourceLineNo">460</span>    }<a name="line.460"></a>
-<span class="sourceLineNo">461</span>}<a name="line.461"></a>
+<span class="sourceLineNo">461</span><a name="line.461"></a>
+<span class="sourceLineNo">462</span>    @Override<a name="line.462"></a>
+<span class="sourceLineNo">463</span>    public int hashCode() {<a name="line.463"></a>
+<span class="sourceLineNo">464</span>        final int prime = 31;<a name="line.464"></a>
+<span class="sourceLineNo">465</span>        int result = super.hashCode();<a name="line.465"></a>
+<span class="sourceLineNo">466</span>        result = prime * result + ((mArchives == null) ? 0 : mArchives.hashCode());<a name="line.466"></a>
+<span class="sourceLineNo">467</span>        result = prime * result + ((mClassId == null) ? 0 : mClassId.hashCode());<a name="line.467"></a>
+<span class="sourceLineNo">468</span>        result = prime * result + ((mCodeBase == null) ? 0 : mCodeBase.hashCode());<a name="line.468"></a>
+<span class="sourceLineNo">469</span>        result = prime * result + ((mCodeType == null) ? 0 : mCodeType.hashCode());<a name="line.469"></a>
+<span class="sourceLineNo">470</span>        result = prime * result + ((mData == null) ? 0 : mData.hashCode());<a name="line.470"></a>
+<span class="sourceLineNo">471</span>        result = prime * result + ((mFetchConfiguration == null) ? 0 : mFetchConfiguration.hashCode());<a name="line.471"></a>
+<span class="sourceLineNo">472</span>        result = prime * result + ((mParameters == null) ? 0 : mParameters.hashCode());<a name="line.472"></a>
+<span class="sourceLineNo">473</span>        result = prime * result + ((mPostObjectScript == null) ? 0 : mPostObjectScript.hashCode());<a name="line.473"></a>
+<span class="sourceLineNo">474</span>        result = prime * result + ((mType == null) ? 0 : mType.hashCode());<a name="line.474"></a>
+<span class="sourceLineNo">475</span>        return result;<a name="line.475"></a>
+<span class="sourceLineNo">476</span>    }<a name="line.476"></a>
+<span class="sourceLineNo">477</span><a name="line.477"></a>
+<span class="sourceLineNo">478</span>    @Override<a name="line.478"></a>
+<span class="sourceLineNo">479</span>    public boolean equals(Object obj) {<a name="line.479"></a>
+<span class="sourceLineNo">480</span>        if (this == obj) return true;<a name="line.480"></a>
+<span class="sourceLineNo">481</span>        if (!super.equals(obj)) return false;<a name="line.481"></a>
+<span class="sourceLineNo">482</span>        if (getClass() != obj.getClass()) return false;<a name="line.482"></a>
+<span class="sourceLineNo">483</span>        ObjectCall other = (ObjectCall) obj;<a name="line.483"></a>
+<span class="sourceLineNo">484</span>        if (mArchives == null) {<a name="line.484"></a>
+<span class="sourceLineNo">485</span>            if (other.mArchives != null) return false;<a name="line.485"></a>
+<span class="sourceLineNo">486</span>        } else if (!mArchives.equals(other.mArchives)) return false;<a name="line.486"></a>
+<span class="sourceLineNo">487</span>        if (mClassId == null) {<a name="line.487"></a>
+<span class="sourceLineNo">488</span>            if (other.mClassId != null) return false;<a name="line.488"></a>
+<span class="sourceLineNo">489</span>        } else if (!mClassId.equals(other.mClassId)) return false;<a name="line.489"></a>
+<span class="sourceLineNo">490</span>        if (mCodeBase == null) {<a name="line.490"></a>
+<span class="sourceLineNo">491</span>            if (other.mCodeBase != null) return false;<a name="line.491"></a>
+<span class="sourceLineNo">492</span>        } else if (!mCodeBase.equals(other.mCodeBase)) return false;<a name="line.492"></a>
+<span class="sourceLineNo">493</span>        if (mCodeType == null) {<a name="line.493"></a>
+<span class="sourceLineNo">494</span>            if (other.mCodeType != null) return false;<a name="line.494"></a>
+<span class="sourceLineNo">495</span>        } else if (!mCodeType.equals(other.mCodeType)) return false;<a name="line.495"></a>
+<span class="sourceLineNo">496</span>        if (mData == null) {<a name="line.496"></a>
+<span class="sourceLineNo">497</span>            if (other.mData != null) return false;<a name="line.497"></a>
+<span class="sourceLineNo">498</span>        } else if (!mData.equals(other.mData)) return false;<a name="line.498"></a>
+<span class="sourceLineNo">499</span>        if (mFetchConfiguration == null) {<a name="line.499"></a>
+<span class="sourceLineNo">500</span>            if (other.mFetchConfiguration != null) return false;<a name="line.500"></a>
+<span class="sourceLineNo">501</span>        } else if (!mFetchConfiguration.equals(other.mFetchConfiguration)) return false;<a name="line.501"></a>
+<span class="sourceLineNo">502</span>        if (mParameters == null) {<a name="line.502"></a>
+<span class="sourceLineNo">503</span>            if (other.mParameters != null) return false;<a name="line.503"></a>
+<span class="sourceLineNo">504</span>        } else if (!mParameters.equals(other.mParameters)) return false;<a name="line.504"></a>
+<span class="sourceLineNo">505</span>        if (mPostObjectScript == null) {<a name="line.505"></a>
+<span class="sourceLineNo">506</span>            if (other.mPostObjectScript != null) return false;<a name="line.506"></a>
+<span class="sourceLineNo">507</span>        } else if (!mPostObjectScript.equals(other.mPostObjectScript)) return false;<a name="line.507"></a>
+<span class="sourceLineNo">508</span>        if (mType == null) {<a name="line.508"></a>
+<span class="sourceLineNo">509</span>            if (other.mType != null) return false;<a name="line.509"></a>
+<span class="sourceLineNo">510</span>        } else if (!mType.equals(other.mType)) return false;<a name="line.510"></a>
+<span class="sourceLineNo">511</span>        return true;<a name="line.511"></a>
+<span class="sourceLineNo">512</span>    }<a name="line.512"></a>
+<span class="sourceLineNo">513</span><a name="line.513"></a>
+<span class="sourceLineNo">514</span>}<a name="line.514"></a>
 
 
 

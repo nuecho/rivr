@@ -82,7 +82,7 @@
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
 <li>com.nuecho.rivr.voicexml.turn.input.RecognitionInfo</li>
@@ -99,7 +99,7 @@
 <hr>
 <br>
 <pre>public final class <a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#line.24">RecognitionInfo</a>
-extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
+extends java.lang.Object
 implements <a href="../../../../../../com/nuecho/rivr/voicexml/util/json/JsonSerializable.html" title="interface in com.nuecho.rivr.voicexml.util.json">JsonSerializable</a></pre>
 <div class="block"><a href="../../../../../../com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html" title="class in com.nuecho.rivr.voicexml.turn.input"><code>RecognitionInfo</code></a> contains a JSON representation of the VoiceXml
  recognition result (application.lastresult$) and optionally a
@@ -127,7 +127,7 @@ implements <a href="../../../../../../com/nuecho/rivr/voicexml/util/json/JsonSer
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#RecognitionInfo(javax.json.JsonArray, com.nuecho.rivr.voicexml.turn.input.MarkInfo)">RecognitionInfo</a></strong>(<a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonArray.html?is-external=true" title="class or interface in javax.json">JsonArray</a>&nbsp;recognitionResult,
+<td class="colOne"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#RecognitionInfo(javax.json.JsonArray, com.nuecho.rivr.voicexml.turn.input.MarkInfo)">RecognitionInfo</a></strong>(javax.json.JsonArray&nbsp;recognitionResult,
                               <a href="../../../../../../com/nuecho/rivr/voicexml/turn/input/MarkInfo.html" title="class in com.nuecho.rivr.voicexml.turn.input">MarkInfo</a>&nbsp;markInfo)</code>&nbsp;</td>
 </tr>
 </table>
@@ -146,19 +146,27 @@ implements <a href="../../../../../../com/nuecho/rivr/voicexml/util/json/JsonSer
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonValue.html?is-external=true" title="class or interface in javax.json">JsonValue</a></code></td>
+<td class="colFirst"><code>javax.json.JsonValue</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#asJson()">asJson</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#equals(java.lang.Object)">equals</a></strong>(java.lang.Object&nbsp;obj)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/input/MarkInfo.html" title="class in com.nuecho.rivr.voicexml.turn.input">MarkInfo</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#getMarkInfo()">getMarkInfo</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonArray.html?is-external=true" title="class or interface in javax.json">JsonArray</a></code></td>
+<tr class="rowColor">
+<td class="colFirst"><code>javax.json.JsonArray</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#getRecognitionResult()">getRecognitionResult</a></strong>()</code>&nbsp;</td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#hashCode()">hashCode</a></strong>()</code>&nbsp;</td>
+</tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#toString()">toString</a></strong>()</code>&nbsp;</td>
 </tr>
 </table>
@@ -166,8 +174,8 @@ implements <a href="../../../../../../com/nuecho/rivr/voicexml/util/json/JsonSer
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</a></code></li>
+<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+<code>clone, finalize, getClass, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -189,7 +197,7 @@ implements <a href="../../../../../../com/nuecho/rivr/voicexml/util/json/JsonSer
 <ul class="blockListLast">
 <li class="blockList">
 <h4>RecognitionInfo</h4>
-<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#line.31">RecognitionInfo</a>(<a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonArray.html?is-external=true" title="class or interface in javax.json">JsonArray</a>&nbsp;recognitionResult,
+<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#line.31">RecognitionInfo</a>(javax.json.JsonArray&nbsp;recognitionResult,
                <a href="../../../../../../com/nuecho/rivr/voicexml/turn/input/MarkInfo.html" title="class in com.nuecho.rivr.voicexml.turn.input">MarkInfo</a>&nbsp;markInfo)</pre>
 </li>
 </ul>
@@ -207,7 +215,7 @@ implements <a href="../../../../../../com/nuecho/rivr/voicexml/util/json/JsonSer
 <ul class="blockList">
 <li class="blockList">
 <h4>getRecognitionResult</h4>
-<pre>public&nbsp;<a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonArray.html?is-external=true" title="class or interface in javax.json">JsonArray</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#line.37">getRecognitionResult</a>()</pre>
+<pre>public&nbsp;javax.json.JsonArray&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#line.37">getRecognitionResult</a>()</pre>
 </li>
 </ul>
 <a name="getMarkInfo()">
@@ -225,23 +233,49 @@ implements <a href="../../../../../../com/nuecho/rivr/voicexml/util/json/JsonSer
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#line.46">toString</a>()</pre>
+<pre>public&nbsp;java.lang.String&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#line.46">toString</a>()</pre>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
 </dl>
 </li>
 </ul>
 <a name="asJson()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>asJson</h4>
-<pre>public&nbsp;<a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonValue.html?is-external=true" title="class or interface in javax.json">JsonValue</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#line.51">asJson</a>()</pre>
+<pre>public&nbsp;javax.json.JsonValue&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#line.51">asJson</a>()</pre>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../../com/nuecho/rivr/voicexml/util/json/JsonSerializable.html#asJson()">asJson</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../com/nuecho/rivr/voicexml/util/json/JsonSerializable.html" title="interface in com.nuecho.rivr.voicexml.util.json">JsonSerializable</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="hashCode()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hashCode</h4>
+<pre>public&nbsp;int&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#line.59">hashCode</a>()</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>hashCode</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+</dl>
+</li>
+</ul>
+<a name="equals(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>equals</h4>
+<pre>public&nbsp;boolean&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#line.68">equals</a>(java.lang.Object&nbsp;obj)</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>equals</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
 </dl>
 </li>
 </ul>

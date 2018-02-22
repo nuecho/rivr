@@ -170,7 +170,7 @@
 <pre><a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="type parameter in DialogueChannel">I</a>&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/channel/DialogueChannel.html#line.44">doTurn</a>(<a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="type parameter in DialogueChannel">O</a>&nbsp;outputTurn,
        <a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout)
                            throws <a href="../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</a>,
-                                  <a href="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></pre>
+                                  java.lang.InterruptedException</pre>
 <div class="block">Performs a turn exchange: the dialogue channel will return the
  <a href="../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel"><code>InputTurn</code></a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>outputTurn</code> - The output turn to send. Cannot be <code>null</code>.</dd><dd><code>timeout</code> - maximum time allowed to receive the turn from the
@@ -181,7 +181,7 @@
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</a></code> - if the dialogue channel has not been able to give the
              InputTurn before <code>timeout</code> parameter.</dd>
-<dd><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></code> - if the thread has been interrupted while
+<dd><code>java.lang.InterruptedException</code> - if the thread has been interrupted while
              waiting for the result.</dd></dl>
 </li>
 </ul>

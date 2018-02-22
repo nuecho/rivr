@@ -358,7 +358,46 @@
 <span class="sourceLineNo">350</span>            return subdialogueCall;<a name="line.350"></a>
 <span class="sourceLineNo">351</span>        }<a name="line.351"></a>
 <span class="sourceLineNo">352</span>    }<a name="line.352"></a>
-<span class="sourceLineNo">353</span>}<a name="line.353"></a>
+<span class="sourceLineNo">353</span><a name="line.353"></a>
+<span class="sourceLineNo">354</span>    @Override<a name="line.354"></a>
+<span class="sourceLineNo">355</span>    public int hashCode() {<a name="line.355"></a>
+<span class="sourceLineNo">356</span>        final int prime = 31;<a name="line.356"></a>
+<span class="sourceLineNo">357</span>        int result = super.hashCode();<a name="line.357"></a>
+<span class="sourceLineNo">358</span>        result = prime * result + ((mFetchConfiguration == null) ? 0 : mFetchConfiguration.hashCode());<a name="line.358"></a>
+<span class="sourceLineNo">359</span>        result = prime * result + ((mMethod == null) ? 0 : mMethod.hashCode());<a name="line.359"></a>
+<span class="sourceLineNo">360</span>        result = prime * result + ((mParameters == null) ? 0 : mParameters.hashCode());<a name="line.360"></a>
+<span class="sourceLineNo">361</span>        result = prime * result + ((mPostDialogueScript == null) ? 0 : mPostDialogueScript.hashCode());<a name="line.361"></a>
+<span class="sourceLineNo">362</span>        result = prime * result + ((mSubmitParameters == null) ? 0 : mSubmitParameters.hashCode());<a name="line.362"></a>
+<span class="sourceLineNo">363</span>        result = prime * result + ((mUri == null) ? 0 : mUri.hashCode());<a name="line.363"></a>
+<span class="sourceLineNo">364</span>        return result;<a name="line.364"></a>
+<span class="sourceLineNo">365</span>    }<a name="line.365"></a>
+<span class="sourceLineNo">366</span><a name="line.366"></a>
+<span class="sourceLineNo">367</span>    @Override<a name="line.367"></a>
+<span class="sourceLineNo">368</span>    public boolean equals(Object obj) {<a name="line.368"></a>
+<span class="sourceLineNo">369</span>        if (this == obj) return true;<a name="line.369"></a>
+<span class="sourceLineNo">370</span>        if (!super.equals(obj)) return false;<a name="line.370"></a>
+<span class="sourceLineNo">371</span>        if (getClass() != obj.getClass()) return false;<a name="line.371"></a>
+<span class="sourceLineNo">372</span>        SubdialogueCall other = (SubdialogueCall) obj;<a name="line.372"></a>
+<span class="sourceLineNo">373</span>        if (mFetchConfiguration == null) {<a name="line.373"></a>
+<span class="sourceLineNo">374</span>            if (other.mFetchConfiguration != null) return false;<a name="line.374"></a>
+<span class="sourceLineNo">375</span>        } else if (!mFetchConfiguration.equals(other.mFetchConfiguration)) return false;<a name="line.375"></a>
+<span class="sourceLineNo">376</span>        if (mMethod != other.mMethod) return false;<a name="line.376"></a>
+<span class="sourceLineNo">377</span>        if (mParameters == null) {<a name="line.377"></a>
+<span class="sourceLineNo">378</span>            if (other.mParameters != null) return false;<a name="line.378"></a>
+<span class="sourceLineNo">379</span>        } else if (!mParameters.equals(other.mParameters)) return false;<a name="line.379"></a>
+<span class="sourceLineNo">380</span>        if (mPostDialogueScript == null) {<a name="line.380"></a>
+<span class="sourceLineNo">381</span>            if (other.mPostDialogueScript != null) return false;<a name="line.381"></a>
+<span class="sourceLineNo">382</span>        } else if (!mPostDialogueScript.equals(other.mPostDialogueScript)) return false;<a name="line.382"></a>
+<span class="sourceLineNo">383</span>        if (mSubmitParameters == null) {<a name="line.383"></a>
+<span class="sourceLineNo">384</span>            if (other.mSubmitParameters != null) return false;<a name="line.384"></a>
+<span class="sourceLineNo">385</span>        } else if (!mSubmitParameters.equals(other.mSubmitParameters)) return false;<a name="line.385"></a>
+<span class="sourceLineNo">386</span>        if (mUri == null) {<a name="line.386"></a>
+<span class="sourceLineNo">387</span>            if (other.mUri != null) return false;<a name="line.387"></a>
+<span class="sourceLineNo">388</span>        } else if (!mUri.equals(other.mUri)) return false;<a name="line.388"></a>
+<span class="sourceLineNo">389</span>        return true;<a name="line.389"></a>
+<span class="sourceLineNo">390</span>    }<a name="line.390"></a>
+<span class="sourceLineNo">391</span><a name="line.391"></a>
+<span class="sourceLineNo">392</span>}<a name="line.392"></a>
 
 
 

@@ -82,7 +82,7 @@
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
 <li>com.nuecho.rivr.core.channel.synchronous.step.ErrorStep&lt;O,L&gt;</li>
@@ -100,9 +100,9 @@
 <hr>
 <br>
 <pre>public final class <a href="../../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#line.18">ErrorStep</a>&lt;O extends <a href="../../../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</a>,L extends <a href="../../../../../../../com/nuecho/rivr/core/channel/LastTurn.html" title="interface in com.nuecho.rivr.core.channel">LastTurn</a>&gt;
-extends <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
+extends java.lang.Object
 implements <a href="../../../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step">Step</a>&lt;O,L&gt;</pre>
-<div class="block">Step wrapping a <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang"><code>Throwable</code></a>. This kind of step tells that a fatal error
+<div class="block">Step wrapping a <code>Throwable</code>. This kind of step tells that a fatal error
  occurred in the dialogue.</div>
 </li>
 </ul>
@@ -122,7 +122,7 @@ implements <a href="../../../../../../../com/nuecho/rivr/core/channel/synchronou
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../../../../com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#ErrorStep(java.lang.Throwable)">ErrorStep</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;throwable)</code>&nbsp;</td>
+<td class="colOne"><code><strong><a href="../../../../../../../com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#ErrorStep(java.lang.Throwable)">ErrorStep</a></strong>(java.lang.Throwable&nbsp;throwable)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -140,11 +140,19 @@ implements <a href="../../../../../../../com/nuecho/rivr/core/channel/synchronou
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../../../../com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#getThrowable()">getThrowable</a></strong>()</code>&nbsp;</td>
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#equals(java.lang.Object)">equals</a></strong>(java.lang.Object&nbsp;obj)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colFirst"><code>java.lang.Throwable</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#getThrowable()">getThrowable</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#hashCode()">hashCode</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../../com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#toString()">toString</a></strong>()</code>&nbsp;</td>
 </tr>
 </table>
@@ -152,8 +160,8 @@ implements <a href="../../../../../../../com/nuecho/rivr/core/channel/synchronou
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</a></code></li>
+<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+<code>clone, finalize, getClass, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -175,7 +183,7 @@ implements <a href="../../../../../../../com/nuecho/rivr/core/channel/synchronou
 <ul class="blockListLast">
 <li class="blockList">
 <h4>ErrorStep</h4>
-<pre>public&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#line.22">ErrorStep</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;throwable)</pre>
+<pre>public&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#line.22">ErrorStep</a>(java.lang.Throwable&nbsp;throwable)</pre>
 </li>
 </ul>
 </li>
@@ -192,19 +200,45 @@ implements <a href="../../../../../../../com/nuecho/rivr/core/channel/synchronou
 <ul class="blockList">
 <li class="blockList">
 <h4>getThrowable</h4>
-<pre>public&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#line.27">getThrowable</a>()</pre>
+<pre>public&nbsp;java.lang.Throwable&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#line.27">getThrowable</a>()</pre>
 </li>
 </ul>
 <a name="toString()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#line.32">toString</a>()</pre>
+<pre>public&nbsp;java.lang.String&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#line.32">toString</a>()</pre>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+</dl>
+</li>
+</ul>
+<a name="hashCode()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hashCode</h4>
+<pre>public&nbsp;int&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#line.37">hashCode</a>()</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>hashCode</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+</dl>
+</li>
+</ul>
+<a name="equals(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>equals</h4>
+<pre>public&nbsp;boolean&nbsp;<a href="../../../../../../../src-html/com/nuecho/rivr/core/channel/synchronous/step/ErrorStep.html#line.45">equals</a>(java.lang.Object&nbsp;obj)</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>equals</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
 </dl>
 </li>
 </ul>

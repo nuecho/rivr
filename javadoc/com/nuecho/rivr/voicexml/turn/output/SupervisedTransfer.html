@@ -82,7 +82,7 @@
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
 <li><a href="../../../../../../com/nuecho/rivr/voicexml/turn/VoiceXmlDocumentTurn.html" title="class in com.nuecho.rivr.voicexml.turn">com.nuecho.rivr.voicexml.turn.VoiceXmlDocumentTurn</a></li>
@@ -165,8 +165,8 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#SupervisedTransfer(java.lang.String, java.lang.String)">SupervisedTransfer</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-                                    <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;destination)</code>&nbsp;</td>
+<td class="colOne"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#SupervisedTransfer(java.lang.String, java.lang.String)">SupervisedTransfer</a></strong>(java.lang.String&nbsp;name,
+                                    java.lang.String&nbsp;destination)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -185,29 +185,37 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#addTurnProperties(javax.json.JsonObjectBuilder)">addTurnProperties</a></strong>(<a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonObjectBuilder.html?is-external=true" title="class or interface in javax.json">JsonObjectBuilder</a>&nbsp;builder)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#addTurnProperties(javax.json.JsonObjectBuilder)">addTurnProperties</a></strong>(javax.json.JsonObjectBuilder&nbsp;builder)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#customizeTransferElement(org.w3c.dom.Element)">customizeTransferElement</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/Element.html?is-external=true" title="class or interface in org.w3c.dom">Element</a>&nbsp;transferElement)</code>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#customizeTransferElement(org.w3c.dom.Element)">customizeTransferElement</a></strong>(org.w3c.dom.Element&nbsp;transferElement)</code>
 <div class="block">Allows the customization of the generated transfer element</div>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#equals(java.lang.Object)">equals</a></strong>(java.lang.Object&nbsp;obj)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#getConnectTimeout()">getConnectTimeout</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/DtmfRecognition.html" title="class in com.nuecho.rivr.voicexml.turn.output">DtmfRecognition</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#getDtmfRecognition()">getDtmfRecognition</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SpeechRecognition.html" title="class in com.nuecho.rivr.voicexml.turn.output">SpeechRecognition</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#getSpeechRecognition()">getSpeechRecognition</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<tr class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#getTransferAudio()">getTransferAudio</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#hashCode()">hashCode</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -223,7 +231,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#setTransferAudio(java.lang.String)">setTransferAudio</a></strong>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;transferAudio)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#setTransferAudio(java.lang.String)">setTransferAudio</a></strong>(java.lang.String&nbsp;transferAudio)</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -251,8 +259,8 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</a></code></li>
+<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+<code>clone, finalize, getClass, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -274,8 +282,8 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer
 <ul class="blockListLast">
 <li class="blockList">
 <h4>SupervisedTransfer</h4>
-<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#line.44">SupervisedTransfer</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-                  <a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;destination)</pre>
+<pre>public&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#line.44">SupervisedTransfer</a>(java.lang.String&nbsp;name,
+                  java.lang.String&nbsp;destination)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>name</code> - The name of this turn. Not empty.</dd><dd><code>destination</code> - The URI of the destination (telephone, IP telephony
             address). Not empty.</dd></dl>
 </li>
@@ -316,7 +324,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer
 <ul class="blockList">
 <li class="blockList">
 <h4>setTransferAudio</h4>
-<pre>public final&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#line.68">setTransferAudio</a>(<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;transferAudio)</pre>
+<pre>public final&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#line.68">setTransferAudio</a>(java.lang.String&nbsp;transferAudio)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>transferAudio</code> - The location (URI or path) of audio source to play
             while the transfer attempt is in progress.</dd></dl>
 </li>
@@ -339,7 +347,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer
 <ul class="blockList">
 <li class="blockList">
 <h4>getTransferAudio</h4>
-<pre>public final&nbsp;<a href="http://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#line.81">getTransferAudio</a>()</pre>
+<pre>public final&nbsp;java.lang.String&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#line.81">getTransferAudio</a>()</pre>
 </li>
 </ul>
 <a name="getConnectTimeout()">
@@ -375,7 +383,7 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer
 <ul class="blockList">
 <li class="blockList">
 <h4>customizeTransferElement</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#line.98">customizeTransferElement</a>(<a href="http://download.oracle.com/javase/6/docs/api/org/w3c/dom/Element.html?is-external=true" title="class or interface in org.w3c.dom">Element</a>&nbsp;transferElement)
+<pre>protected&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#line.98">customizeTransferElement</a>(org.w3c.dom.Element&nbsp;transferElement)
                                  throws <a href="../../../../../../com/nuecho/rivr/voicexml/rendering/voicexml/VoiceXmlDocumentRenderingException.html" title="class in com.nuecho.rivr.voicexml.rendering.voicexml">VoiceXmlDocumentRenderingException</a></pre>
 <div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer.html#customizeTransferElement(org.w3c.dom.Element)">Transfer</a></code></strong></div>
 <div class="block">Allows the customization of the generated transfer element</div>
@@ -391,13 +399,39 @@ extends <a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer
 <a name="addTurnProperties(javax.json.JsonObjectBuilder)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>addTurnProperties</h4>
-<pre>protected&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#line.106">addTurnProperties</a>(<a href="https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/javax/json/JsonObjectBuilder.html?is-external=true" title="class or interface in javax.json">JsonObjectBuilder</a>&nbsp;builder)</pre>
+<pre>protected&nbsp;void&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#line.106">addTurnProperties</a>(javax.json.JsonObjectBuilder&nbsp;builder)</pre>
 <dl>
 <dt><strong>Overrides:</strong></dt>
 <dd><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer.html#addTurnProperties(javax.json.JsonObjectBuilder)">addTurnProperties</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer.html" title="class in com.nuecho.rivr.voicexml.turn.output">Transfer</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="hashCode()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hashCode</h4>
+<pre>public&nbsp;int&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#line.159">hashCode</a>()</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer.html#hashCode()">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer.html" title="class in com.nuecho.rivr.voicexml.turn.output">Transfer</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="equals(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>equals</h4>
+<pre>public&nbsp;boolean&nbsp;<a href="../../../../../../src-html/com/nuecho/rivr/voicexml/turn/output/SupervisedTransfer.html#line.170">equals</a>(java.lang.Object&nbsp;obj)</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer.html#equals(java.lang.Object)">equals</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../com/nuecho/rivr/voicexml/turn/output/Transfer.html" title="class in com.nuecho.rivr.voicexml.turn.output">Transfer</a></code></dd>
 </dl>
 </li>
 </ul>
