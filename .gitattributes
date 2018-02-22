@@ -16,6 +16,7 @@
 *.MF textfile
 *.md textfile
 *.properties textfile
+*.prefs textfile
 *.txt textfile
 *.html textfile
 
