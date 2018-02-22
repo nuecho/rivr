@@ -1,5 +1,43 @@
 # Rivr change log
 
+## Version 1.0.10:
+
+### Rivr core
+
+#### Changed
+
+* Using Gradle 4.5.1.  JDK 7 is the minimal version to build Rivr. Can still run under Java SE 6.
+
+#### Added
+
+* ErrorStep, LastTurnStep, OutputTurnStep: Added equals and hashCode methods.
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* Fixed servlet API dependency. Now a "compileOnly" dependency.  Should no longer be present in Maven POM files.
+
+### Rivr VoiceXML
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* Turn-related entities: Added equals and hashCode methods.
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* SpeechRecognition: Fixed hashCode and equals methods: now invoking methods of super.
+
 ## Version 1.0.9:
 
 ### Rivr core
