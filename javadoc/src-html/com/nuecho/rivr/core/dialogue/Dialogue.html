@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Source code</title>
-<link rel="stylesheet" type="text/css" href="../../../../../../rivr-javadoc.css" title="Style">
+<link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
 </head>
 <body>
 <div class="sourceContainer">
@@ -22,7 +22,7 @@
 <span class="sourceLineNo">014</span> * interface or its subtypes. This interface provides a single method performing<a name="line.14"></a>
 <span class="sourceLineNo">015</span> * the dialogue, i.e. sequence of turn exchanges with the<a name="line.15"></a>
 <span class="sourceLineNo">016</span> * {@link DialogueChannel} and dialogue-related logic.<a name="line.16"></a>
-<span class="sourceLineNo">017</span> * <a name="line.17"></a>
+<span class="sourceLineNo">017</span> *<a name="line.17"></a>
 <span class="sourceLineNo">018</span> * @param &lt;F&gt; type of {@link FirstTurn}<a name="line.18"></a>
 <span class="sourceLineNo">019</span> * @param &lt;L&gt; type of {@link LastTurn}<a name="line.19"></a>
 <span class="sourceLineNo">020</span> * @param &lt;O&gt; type of {@link OutputTurn}<a name="line.20"></a>
@@ -39,7 +39,7 @@
 <span class="sourceLineNo">031</span>     * allows the dialogue to access the {@link DialogueChannel} on which turn<a name="line.31"></a>
 <span class="sourceLineNo">032</span>     * exchanges can be performed (i.e. exchanges of {@link OutputTurn<a name="line.32"></a>
 <span class="sourceLineNo">033</span>     * OutputTurns} and {@link InputTurn InputTurns}).<a name="line.33"></a>
-<span class="sourceLineNo">034</span>     * <a name="line.34"></a>
+<span class="sourceLineNo">034</span>     *<a name="line.34"></a>
 <span class="sourceLineNo">035</span>     * @param firstTurn First turn. Contains dialogue initialization<a name="line.35"></a>
 <span class="sourceLineNo">036</span>     *            information. Cannot be &lt;code&gt;null&lt;/code&gt;.<a name="line.36"></a>
 <span class="sourceLineNo">037</span>     * @param context Dialogue context. This context gives access to<a name="line.37"></a>
@@ -47,10 +47,12 @@
 <span class="sourceLineNo">039</span>     *            Cannot be &lt;code&gt;null&lt;/code&gt;.<a name="line.39"></a>
 <span class="sourceLineNo">040</span>     * @return the result of the dialogue as a {@link LastTurn}. Cannot be<a name="line.40"></a>
 <span class="sourceLineNo">041</span>     *         &lt;code&gt;null&lt;/code&gt;.<a name="line.41"></a>
-<span class="sourceLineNo">042</span>     */<a name="line.42"></a>
-<span class="sourceLineNo">043</span>    L run(F firstTurn, C context) throws Exception;<a name="line.43"></a>
-<span class="sourceLineNo">044</span><a name="line.44"></a>
-<span class="sourceLineNo">045</span>}<a name="line.45"></a>
+<span class="sourceLineNo">042</span>     * @throws Exception when something prevents the dialogue from completing<a name="line.42"></a>
+<span class="sourceLineNo">043</span>     *             normally.<a name="line.43"></a>
+<span class="sourceLineNo">044</span>     */<a name="line.44"></a>
+<span class="sourceLineNo">045</span>    L run(F firstTurn, C context) throws Exception;<a name="line.45"></a>
+<span class="sourceLineNo">046</span><a name="line.46"></a>
+<span class="sourceLineNo">047</span>}<a name="line.47"></a>
 
 
 

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <title>G-Index (Rivr API documentation)</title>
-<link rel="stylesheet" type="text/css" href="../rivr-javadoc.css" title="Style">
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
 </head>
 <body>
 <script type="text/javascript"><!--
@@ -114,19 +114,25 @@
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/servlet/FileUpload.html#getContent()">getContent()</a></span> - Method in class com.nuecho.rivr.voicexml.servlet.<a href="../com/nuecho/rivr/voicexml/servlet/FileUpload.html" title="class in com.nuecho.rivr.voicexml.servlet">FileUpload</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/core/servlet/ServletResponseContent.html#getContentAsString()">getContentAsString()</a></span> - Method in interface com.nuecho.rivr.core.servlet.<a href="../com/nuecho/rivr/core/servlet/ServletResponseContent.html" title="interface in com.nuecho.rivr.core.servlet">ServletResponseContent</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Get the string representation of the response.</div>
+</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/rendering/json/JsonServletResponseContent.html#getContentAsString()">getContentAsString()</a></span> - Method in class com.nuecho.rivr.voicexml.rendering.json.<a href="../com/nuecho/rivr/voicexml/rendering/json/JsonServletResponseContent.html" title="class in com.nuecho.rivr.voicexml.rendering.json">JsonServletResponseContent</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#getContentAsString()">getContentAsString()</a></span> - Method in class com.nuecho.rivr.voicexml.rendering.voicexml.<a href="../com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html" title="class in com.nuecho.rivr.voicexml.rendering.voicexml">XmlDocumentServletResponseContent</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/core/servlet/ServletResponseContent.html#getContentLength()">getContentLength()</a></span> - Method in interface com.nuecho.rivr.core.servlet.<a href="../com/nuecho/rivr/core/servlet/ServletResponseContent.html" title="interface in com.nuecho.rivr.core.servlet">ServletResponseContent</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Get the size of the response.</div>
+</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/rendering/json/JsonServletResponseContent.html#getContentLength()">getContentLength()</a></span> - Method in class com.nuecho.rivr.voicexml.rendering.json.<a href="../com/nuecho/rivr/voicexml/rendering/json/JsonServletResponseContent.html" title="class in com.nuecho.rivr.voicexml.rendering.json">JsonServletResponseContent</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#getContentLength()">getContentLength()</a></span> - Method in class com.nuecho.rivr.voicexml.rendering.voicexml.<a href="../com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html" title="class in com.nuecho.rivr.voicexml.rendering.voicexml">XmlDocumentServletResponseContent</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/core/servlet/ServletResponseContent.html#getContentType()">getContentType()</a></span> - Method in interface com.nuecho.rivr.core.servlet.<a href="../com/nuecho/rivr/core/servlet/ServletResponseContent.html" title="interface in com.nuecho.rivr.core.servlet">ServletResponseContent</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Get the content type of the servlet response.</div>
+</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/rendering/json/JsonServletResponseContent.html#getContentType()">getContentType()</a></span> - Method in class com.nuecho.rivr.voicexml.rendering.json.<a href="../com/nuecho/rivr/voicexml/rendering/json/JsonServletResponseContent.html" title="class in com.nuecho.rivr.voicexml.rendering.json">JsonServletResponseContent</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html#getContentType()">getContentType()</a></span> - Method in class com.nuecho.rivr.voicexml.rendering.voicexml.<a href="../com/nuecho/rivr/voicexml/rendering/voicexml/XmlDocumentServletResponseContent.html" title="class in com.nuecho.rivr.voicexml.rendering.voicexml">XmlDocumentServletResponseContent</a></dt>
@@ -153,8 +159,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#getDefaultReceiveFromControllerTimeout()">getDefaultReceiveFromControllerTimeout()</a></span> - Method in class com.nuecho.rivr.core.channel.synchronous.<a href="../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="class in com.nuecho.rivr.core.channel.synchronous">SynchronousDialogueChannel</a></dt>
 <dd>
-<div class="block">Gets the maximum duration the controller thread can wait for a turn or an
- error from the dialogue thread when not specified by the controller.</div>
+<div class="block">Gets the maximum duration the dialogue thread can wait for a turn from
+ the controller thread when not specified by the dialogue.</div>
 </dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html#getDefaultReceiveFromDialogueTimeout()">getDefaultReceiveFromDialogueTimeout()</a></span> - Method in class com.nuecho.rivr.core.channel.synchronous.<a href="../com/nuecho/rivr/core/channel/synchronous/SynchronousDialogueChannel.html" title="class in com.nuecho.rivr.core.channel.synchronous">SynchronousDialogueChannel</a></dt>
 <dd>
@@ -228,7 +234,7 @@
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/turn/output/grammar/InlineXmlGrammar.html#getElementType()">getElementType()</a></span> - Method in class com.nuecho.rivr.voicexml.turn.output.grammar.<a href="../com/nuecho/rivr/voicexml/turn/output/grammar/InlineXmlGrammar.html" title="class in com.nuecho.rivr.voicexml.turn.output.grammar">InlineXmlGrammar</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/turn/input/VoiceXmlEvent.html#getEvent(java.lang.String, java.util.Collection)">getEvent(String, Collection&lt;? extends VoiceXmlEvent&gt;)</a></span> - Static method in class com.nuecho.rivr.voicexml.turn.input.<a href="../com/nuecho/rivr/voicexml/turn/input/VoiceXmlEvent.html" title="class in com.nuecho.rivr.voicexml.turn.input">VoiceXmlEvent</a></dt>
+<dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/turn/input/VoiceXmlEvent.html#getEvent(java.lang.String,%20java.util.Collection)">getEvent(String, Collection&lt;? extends VoiceXmlEvent&gt;)</a></span> - Static method in class com.nuecho.rivr.voicexml.turn.input.<a href="../com/nuecho/rivr/voicexml/turn/input/VoiceXmlEvent.html" title="class in com.nuecho.rivr.voicexml.turn.input">VoiceXmlEvent</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/turn/last/Return.html#getEventMessage()">getEventMessage()</a></span> - Method in class com.nuecho.rivr.voicexml.turn.last.<a href="../com/nuecho/rivr/voicexml/turn/last/Return.html" title="class in com.nuecho.rivr.voicexml.turn.last">Return</a></dt>
 <dd>&nbsp;</dd>
@@ -324,7 +330,7 @@
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/core/servlet/DialogueServlet.html#getLoggerFactory()">getLoggerFactory()</a></span> - Method in class com.nuecho.rivr.core.servlet.<a href="../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="class in com.nuecho.rivr.core.servlet">DialogueServlet</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/util/json/JsonUtils.html#getLongProperty(javax.json.JsonObject, java.lang.String)">getLongProperty(JsonObject, String)</a></span> - Static method in class com.nuecho.rivr.voicexml.util.json.<a href="../com/nuecho/rivr/voicexml/util/json/JsonUtils.html" title="class in com.nuecho.rivr.voicexml.util.json">JsonUtils</a></dt>
+<dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/util/json/JsonUtils.html#getLongProperty(javax.json.JsonObject,%20java.lang.String)">getLongProperty(JsonObject, String)</a></span> - Static method in class com.nuecho.rivr.voicexml.util.json.<a href="../com/nuecho/rivr/voicexml/util/json/JsonUtils.html" title="class in com.nuecho.rivr.voicexml.util.json">JsonUtils</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html#getMarkInfo()">getMarkInfo()</a></span> - Method in class com.nuecho.rivr.voicexml.turn.input.<a href="../com/nuecho/rivr/voicexml/turn/input/RecognitionInfo.html" title="class in com.nuecho.rivr.voicexml.turn.input">RecognitionInfo</a></dt>
 <dd>&nbsp;</dd>
@@ -407,7 +413,9 @@
 <dt><span class="strong"><a href="../com/nuecho/rivr/core/channel/synchronous/step/OutputTurnStep.html#getOutputTurn()">getOutputTurn()</a></span> - Method in class com.nuecho.rivr.core.channel.synchronous.step.<a href="../com/nuecho/rivr/core/channel/synchronous/step/OutputTurnStep.html" title="class in com.nuecho.rivr.core.channel.synchronous.step">OutputTurnStep</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/turn/first/VoiceXmlFirstTurn.html#getParameter(java.lang.String)">getParameter(String)</a></span> - Method in class com.nuecho.rivr.voicexml.turn.first.<a href="../com/nuecho/rivr/voicexml/turn/first/VoiceXmlFirstTurn.html" title="class in com.nuecho.rivr.voicexml.turn.first">VoiceXmlFirstTurn</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Get a parameter.</div>
+</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/turn/first/VoiceXmlFirstTurn.html#getParameters()">getParameters()</a></span> - Method in class com.nuecho.rivr.voicexml.turn.first.<a href="../com/nuecho/rivr/voicexml/turn/first/VoiceXmlFirstTurn.html" title="class in com.nuecho.rivr.voicexml.turn.first">VoiceXmlFirstTurn</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/turn/first/VoiceXmlFirstTurn.html#getParameters(java.lang.Object)">getParameters(Object)</a></span> - Method in class com.nuecho.rivr.voicexml.turn.first.<a href="../com/nuecho/rivr/voicexml/turn/first/VoiceXmlFirstTurn.html" title="class in com.nuecho.rivr.voicexml.turn.first">VoiceXmlFirstTurn</a></dt>
@@ -486,19 +494,19 @@
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/turn/input/TransferStatus.html#getStatusCode()">getStatusCode()</a></span> - Method in class com.nuecho.rivr.voicexml.turn.input.<a href="../com/nuecho/rivr/voicexml/turn/input/TransferStatus.html" title="class in com.nuecho.rivr.voicexml.turn.input">TransferStatus</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="strong"><a href="../com/nuecho/rivr/core/servlet/DialogueServlet.html#getStepRenderer(javax.servlet.http.HttpServletRequest, com.nuecho.rivr.core.servlet.session.Session)">getStepRenderer(HttpServletRequest, Session&lt;I, O, F, L, C&gt;)</a></span> - Method in class com.nuecho.rivr.core.servlet.<a href="../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="class in com.nuecho.rivr.core.servlet">DialogueServlet</a></dt>
+<dt><span class="strong"><a href="../com/nuecho/rivr/core/servlet/DialogueServlet.html#getStepRenderer(javax.servlet.http.HttpServletRequest,%20com.nuecho.rivr.core.servlet.session.Session)">getStepRenderer(HttpServletRequest, Session&lt;I, O, F, L, C&gt;)</a></span> - Method in class com.nuecho.rivr.core.servlet.<a href="../com/nuecho/rivr/core/servlet/DialogueServlet.html" title="class in com.nuecho.rivr.core.servlet">DialogueServlet</a></dt>
 <dd>
 <div class="block">Provides the <a href="../com/nuecho/rivr/core/servlet/StepRenderer.html" title="interface in com.nuecho.rivr.core.servlet"><code>StepRenderer</code></a> appropriate for the context.</div>
 </dd>
-<dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/servlet/VoiceXmlDialogueServlet.html#getStepRenderer(javax.servlet.http.HttpServletRequest, com.nuecho.rivr.core.servlet.session.Session)">getStepRenderer(HttpServletRequest, Session&lt;VoiceXmlInputTurn, VoiceXmlOutputTurn, VoiceXmlFirstTurn, VoiceXmlLastTurn, VoiceXmlDialogueContext&gt;)</a></span> - Method in class com.nuecho.rivr.voicexml.servlet.<a href="../com/nuecho/rivr/voicexml/servlet/VoiceXmlDialogueServlet.html" title="class in com.nuecho.rivr.voicexml.servlet">VoiceXmlDialogueServlet</a></dt>
+<dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/servlet/VoiceXmlDialogueServlet.html#getStepRenderer(javax.servlet.http.HttpServletRequest,%20com.nuecho.rivr.core.servlet.session.Session)">getStepRenderer(HttpServletRequest, Session&lt;VoiceXmlInputTurn, VoiceXmlOutputTurn, VoiceXmlFirstTurn, VoiceXmlLastTurn, VoiceXmlDialogueContext&gt;)</a></span> - Method in class com.nuecho.rivr.voicexml.servlet.<a href="../com/nuecho/rivr/voicexml/servlet/VoiceXmlDialogueServlet.html" title="class in com.nuecho.rivr.voicexml.servlet">VoiceXmlDialogueServlet</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/core/util/ToStringBuilder.html#getString()">getString()</a></span> - Method in class com.nuecho.rivr.core.util.<a href="../com/nuecho/rivr/core/util/ToStringBuilder.html" title="class in com.nuecho.rivr.core.util">ToStringBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html#getSubmitParameters()">getSubmitParameters()</a></span> - Method in class com.nuecho.rivr.voicexml.turn.output.<a href="../com/nuecho/rivr/voicexml/turn/output/SubdialogueCall.html" title="class in com.nuecho.rivr.voicexml.turn.output">SubdialogueCall</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/rendering/voicexml/VoiceXmlDomUtil.html#getSubmitPath(com.nuecho.rivr.voicexml.dialogue.VoiceXmlDialogueContext, int, java.lang.String)">getSubmitPath(VoiceXmlDialogueContext, int, String)</a></span> - Static method in class com.nuecho.rivr.voicexml.rendering.voicexml.<a href="../com/nuecho/rivr/voicexml/rendering/voicexml/VoiceXmlDomUtil.html" title="class in com.nuecho.rivr.voicexml.rendering.voicexml">VoiceXmlDomUtil</a></dt>
+<dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/rendering/voicexml/VoiceXmlDomUtil.html#getSubmitPath(com.nuecho.rivr.voicexml.dialogue.VoiceXmlDialogueContext,%20int,%20java.lang.String)">getSubmitPath(VoiceXmlDialogueContext, int, String)</a></span> - Static method in class com.nuecho.rivr.voicexml.rendering.voicexml.<a href="../com/nuecho/rivr/voicexml/rendering/voicexml/VoiceXmlDomUtil.html" title="class in com.nuecho.rivr.voicexml.rendering.voicexml">VoiceXmlDomUtil</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/rendering/voicexml/VoiceXmlDomUtil.html#getSubmitPathForTurn(com.nuecho.rivr.voicexml.dialogue.VoiceXmlDialogueContext, com.nuecho.rivr.voicexml.turn.output.VoiceXmlOutputTurn)">getSubmitPathForTurn(VoiceXmlDialogueContext, VoiceXmlOutputTurn)</a></span> - Static method in class com.nuecho.rivr.voicexml.rendering.voicexml.<a href="../com/nuecho/rivr/voicexml/rendering/voicexml/VoiceXmlDomUtil.html" title="class in com.nuecho.rivr.voicexml.rendering.voicexml">VoiceXmlDomUtil</a></dt>
+<dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/rendering/voicexml/VoiceXmlDomUtil.html#getSubmitPathForTurn(com.nuecho.rivr.voicexml.dialogue.VoiceXmlDialogueContext,%20com.nuecho.rivr.voicexml.turn.output.VoiceXmlOutputTurn)">getSubmitPathForTurn(VoiceXmlDialogueContext, VoiceXmlOutputTurn)</a></span> - Static method in class com.nuecho.rivr.voicexml.rendering.voicexml.<a href="../com/nuecho/rivr/voicexml/rendering/voicexml/VoiceXmlDomUtil.html" title="class in com.nuecho.rivr.voicexml.rendering.voicexml">VoiceXmlDomUtil</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/turn/output/grammar/InlineStringGrammar.html#getTagFormat()">getTagFormat()</a></span> - Method in class com.nuecho.rivr.voicexml.turn.output.grammar.<a href="../com/nuecho/rivr/voicexml/turn/output/grammar/InlineStringGrammar.html" title="class in com.nuecho.rivr.voicexml.turn.output.grammar">InlineStringGrammar</a></dt>
 <dd>&nbsp;</dd>
@@ -577,7 +585,7 @@
 <div class="block">Terminates a <a href="../com/nuecho/rivr/voicexml/dialogue/VoiceXmlDialogue.html" title="interface in com.nuecho.rivr.voicexml.dialogue"><code>VoiceXmlDialogue</code></a> with a goto, transferring the control
  to another application specified with a URI.</div>
 </dd>
-<dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/turn/last/Goto.html#Goto(java.lang.String, java.lang.String)">Goto(String, String)</a></span> - Constructor for class com.nuecho.rivr.voicexml.turn.last.<a href="../com/nuecho/rivr/voicexml/turn/last/Goto.html" title="class in com.nuecho.rivr.voicexml.turn.last">Goto</a></dt>
+<dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/turn/last/Goto.html#Goto(java.lang.String,%20java.lang.String)">Goto(String, String)</a></span> - Constructor for class com.nuecho.rivr.voicexml.turn.last.<a href="../com/nuecho/rivr/voicexml/turn/last/Goto.html" title="class in com.nuecho.rivr.voicexml.turn.last">Goto</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="../com/nuecho/rivr/voicexml/rendering/voicexml/VoiceXmlDomUtil.html#GOTO_ELEMENT">GOTO_ELEMENT</a></span> - Static variable in class com.nuecho.rivr.voicexml.rendering.voicexml.<a href="../com/nuecho/rivr/voicexml/rendering/voicexml/VoiceXmlDomUtil.html" title="class in com.nuecho.rivr.voicexml.rendering.voicexml">VoiceXmlDomUtil</a></dt>
 <dd>&nbsp;</dd>
@@ -645,6 +653,6 @@
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &copy; 2013 <a href="http://www.nuecho.com">Nu Echo Inc.</a>.</small></p>
+<p class="legalCopy"><small>Copyright &copy; 2018 <a href="https://www.nuecho.com">Nu Echo Inc.</a>.</small></p>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <title>TestDialogueChannel (Rivr API documentation)</title>
-<link rel="stylesheet" type="text/css" href="../../../../../rivr-javadoc.css" title="Style">
+<link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
 </head>
 <body>
 <script type="text/javascript"><!--
@@ -82,7 +82,7 @@
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li>java.lang.Object</li>
+<li><a href="https://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
 <li>com.nuecho.rivr.core.test.TestDialogueChannel&lt;I,O,F,L,C&gt;</li>
@@ -103,7 +103,7 @@
 <hr>
 <br>
 <pre>public abstract class <a href="../../../../../src-html/com/nuecho/rivr/core/test/TestDialogueChannel.html#line.23">TestDialogueChannel</a>&lt;I extends <a href="../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</a>,O extends <a href="../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</a>,F extends <a href="../../../../../com/nuecho/rivr/core/channel/FirstTurn.html" title="interface in com.nuecho.rivr.core.channel">FirstTurn</a>,L extends <a href="../../../../../com/nuecho/rivr/core/channel/LastTurn.html" title="interface in com.nuecho.rivr.core.channel">LastTurn</a>,C extends <a href="../../../../../com/nuecho/rivr/core/dialogue/DialogueContext.html" title="interface in com.nuecho.rivr.core.dialogue">DialogueContext</a>&lt;I,O&gt;&gt;
-extends java.lang.Object
+extends <a href="https://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</a>&lt;I,O&gt;</pre>
 <div class="block">A dialogue channel implementation for testing. This <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel"><code>DialogueChannel</code></a>
  is intended for unit testing. Test case acts as the controller and interact
@@ -126,7 +126,7 @@ implements <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html#TestDialogueChannel(java.lang.String, com.nuecho.rivr.core.util.Duration)">TestDialogueChannel</a></strong>(java.lang.String&nbsp;name,
+<td class="colOne"><code><strong><a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html#TestDialogueChannel(java.lang.String,%20com.nuecho.rivr.core.util.Duration)">TestDialogueChannel</a></strong>(<a href="https://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                                       <a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;defaultTimeout)</code>&nbsp;</td>
 </tr>
 </table>
@@ -156,7 +156,7 @@ implements <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">I</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html#doTurn(O, com.nuecho.rivr.core.util.Duration)">doTurn</a></strong>(<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">O</a>&nbsp;outputTurn,
+<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html#doTurn(O,%20com.nuecho.rivr.core.util.Duration)">doTurn</a></strong>(<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">O</a>&nbsp;outputTurn,
             <a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout)</code>
 <div class="block">Performs a turn exchange: the dialogue channel will return the
  <a href="../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel"><code>InputTurn</code></a></div>
@@ -183,7 +183,7 @@ implements <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.
 <td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html#getLastStep()">getLastStep</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>java.lang.Throwable</code></td>
+<td class="colFirst"><code><a href="https://download.oracle.com/javase/6/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html#getLastStepAsError()">getLastStepAsError</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -204,7 +204,7 @@ implements <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step">Step</a>&lt;<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">O</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">L</a>&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html#processInputTurn(I, com.nuecho.rivr.core.util.Duration)">processInputTurn</a></strong>(<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">I</a>&nbsp;inputTurn,
+<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html#processInputTurn(I,%20com.nuecho.rivr.core.util.Duration)">processInputTurn</a></strong>(<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">I</a>&nbsp;inputTurn,
                                 <a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -219,13 +219,13 @@ implements <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step">Step</a>&lt;<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">O</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">L</a>&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html#startDialogue(com.nuecho.rivr.core.dialogue.Dialogue, F, C)">startDialogue</a></strong>(<a href="../../../../../com/nuecho/rivr/core/dialogue/Dialogue.html" title="interface in com.nuecho.rivr.core.dialogue">Dialogue</a>&lt;<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">I</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">O</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">F</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">L</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">C</a>&gt;&nbsp;dialogue,
+<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html#startDialogue(com.nuecho.rivr.core.dialogue.Dialogue,%20F,%20C)">startDialogue</a></strong>(<a href="../../../../../com/nuecho/rivr/core/dialogue/Dialogue.html" title="interface in com.nuecho.rivr.core.dialogue">Dialogue</a>&lt;<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">I</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">O</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">F</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">L</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">C</a>&gt;&nbsp;dialogue,
                           <a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">F</a>&nbsp;firstTurn,
                           <a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">C</a>&nbsp;dialogueContext)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../com/nuecho/rivr/core/channel/synchronous/step/Step.html" title="interface in com.nuecho.rivr.core.channel.synchronous.step">Step</a>&lt;<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">O</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">L</a>&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html#startDialogue(com.nuecho.rivr.core.dialogue.Dialogue, F, com.nuecho.rivr.core.util.Duration, C)">startDialogue</a></strong>(<a href="../../../../../com/nuecho/rivr/core/dialogue/Dialogue.html" title="interface in com.nuecho.rivr.core.dialogue">Dialogue</a>&lt;<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">I</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">O</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">F</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">L</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">C</a>&gt;&nbsp;dialogue,
+<td class="colLast"><code><strong><a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html#startDialogue(com.nuecho.rivr.core.dialogue.Dialogue,%20F,%20com.nuecho.rivr.core.util.Duration,%20C)">startDialogue</a></strong>(<a href="../../../../../com/nuecho/rivr/core/dialogue/Dialogue.html" title="interface in com.nuecho.rivr.core.dialogue">Dialogue</a>&lt;<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">I</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">O</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">F</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">L</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">C</a>&gt;&nbsp;dialogue,
                           <a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">F</a>&nbsp;firstTurn,
                           <a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout,
                           <a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">C</a>&nbsp;dialogueContext)</code>&nbsp;</td>
@@ -239,8 +239,8 @@ implements <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="https://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="https://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="https://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="https://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="https://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="https://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="https://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="https://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="https://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</a>, <a href="https://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="https://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="https://download.oracle.com/javase/6/docs/api/java/lang/Object.html?is-external=true#wait(long,%20int)" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -262,7 +262,7 @@ implements <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.
 <ul class="blockListLast">
 <li class="blockList">
 <h4>TestDialogueChannel</h4>
-<pre>public&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/test/TestDialogueChannel.html#line.34">TestDialogueChannel</a>(java.lang.String&nbsp;name,
+<pre>public&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/test/TestDialogueChannel.html#line.34">TestDialogueChannel</a>(<a href="https://download.oracle.com/javase/6/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                    <a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;defaultTimeout)</pre>
 </li>
 </ul>
@@ -285,13 +285,13 @@ implements <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.
 <pre>public&nbsp;<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">I</a>&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/test/TestDialogueChannel.html#line.43">doTurn</a>(<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">O</a>&nbsp;outputTurn,
        <a href="../../../../../com/nuecho/rivr/core/util/Duration.html" title="class in com.nuecho.rivr.core.util">Duration</a>&nbsp;timeout)
                            throws <a href="../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</a>,
-                                  java.lang.InterruptedException</pre>
-<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html#doTurn(O, com.nuecho.rivr.core.util.Duration)">DialogueChannel</a></code></strong></div>
+                                  <a href="https://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></pre>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html#doTurn(O,%20com.nuecho.rivr.core.util.Duration)">DialogueChannel</a></code></strong></div>
 <div class="block">Performs a turn exchange: the dialogue channel will return the
  <a href="../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel"><code>InputTurn</code></a></div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html#doTurn(O, com.nuecho.rivr.core.util.Duration)">doTurn</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</a>&lt;<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">I</a> extends <a href="../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">O</a> extends <a href="../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</a>&gt;</code></dd>
+<dd><code><a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html#doTurn(O,%20com.nuecho.rivr.core.util.Duration)">doTurn</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</a>&lt;<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">I</a> extends <a href="../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">O</a> extends <a href="../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</a>&gt;</code></dd>
 <dt><span class="strong">Parameters:</span></dt><dd><code>outputTurn</code> - The output turn to send. Cannot be <code>null</code>.</dd><dd><code>timeout</code> - maximum time allowed to receive the turn from the
             dialogue. If <code>null</code>, uses the default value of this
             dialogue channel. A value of Duration.ZERO (or equivalent)
@@ -300,7 +300,7 @@ implements <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../../../com/nuecho/rivr/core/channel/Timeout.html" title="class in com.nuecho.rivr.core.channel">Timeout</a></code> - if the dialogue channel has not been able to give the
              InputTurn before <code>timeout</code> parameter.</dd>
-<dd><code>java.lang.InterruptedException</code> - if the thread has been interrupted while
+<dd><code><a href="https://download.oracle.com/javase/6/docs/api/java/lang/InterruptedException.html?is-external=true" title="class or interface in java.lang">InterruptedException</a></code> - if the thread has been interrupted while
              waiting for the result.</dd></dl>
 </li>
 </ul>
@@ -316,7 +316,7 @@ implements <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html#addListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">addListener</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</a>&lt;<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">I</a> extends <a href="../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">O</a> extends <a href="../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</a>&gt;</code></dd>
-</dl>
+<dt><span class="strong">Parameters:</span></dt><dd><code>listener</code> - the listener to add.</dd></dl>
 </li>
 </ul>
 <a name="removeListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">
@@ -331,7 +331,7 @@ implements <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html#removeListener(com.nuecho.rivr.core.servlet.DialogueChannelListener)">removeListener</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.html" title="interface in com.nuecho.rivr.core.channel">DialogueChannel</a>&lt;<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">I</a> extends <a href="../../../../../com/nuecho/rivr/core/channel/InputTurn.html" title="interface in com.nuecho.rivr.core.channel">InputTurn</a>,<a href="../../../../../com/nuecho/rivr/core/test/TestDialogueChannel.html" title="type parameter in TestDialogueChannel">O</a> extends <a href="../../../../../com/nuecho/rivr/core/channel/OutputTurn.html" title="interface in com.nuecho.rivr.core.channel">OutputTurn</a>&gt;</code></dd>
-</dl>
+<dt><span class="strong">Parameters:</span></dt><dd><code>listener</code> - the listener to remove.</dd></dl>
 </li>
 </ul>
 <a name="getDefaultTimeout(com.nuecho.rivr.core.util.Duration)">
@@ -462,7 +462,7 @@ implements <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.
 <ul class="blockList">
 <li class="blockList">
 <h4>getLastStepAsError</h4>
-<pre>public final&nbsp;java.lang.Throwable&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/test/TestDialogueChannel.html#line.152">getLastStepAsError</a>()</pre>
+<pre>public final&nbsp;<a href="https://download.oracle.com/javase/6/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;<a href="../../../../../src-html/com/nuecho/rivr/core/test/TestDialogueChannel.html#line.152">getLastStepAsError</a>()</pre>
 </li>
 </ul>
 <a name="getChannel()">
@@ -560,6 +560,6 @@ implements <a href="../../../../../com/nuecho/rivr/core/channel/DialogueChannel.
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &copy; 2013 <a href="http://www.nuecho.com">Nu Echo Inc.</a>.</small></p>
+<p class="legalCopy"><small>Copyright &copy; 2018 <a href="https://www.nuecho.com">Nu Echo Inc.</a>.</small></p>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Source code</title>
-<link rel="stylesheet" type="text/css" href="../../../../../../../rivr-javadoc.css" title="Style">
+<link rel="stylesheet" type="text/css" href="../../../../../../../stylesheet.css" title="Style">
 </head>
 <body>
 <div class="sourceContainer">
@@ -36,7 +36,7 @@
 <span class="sourceLineNo">028</span> * Each {@link Interaction.Prompt} represents a phase of the interaction with a<a name="line.28"></a>
 <span class="sourceLineNo">029</span> * sequence of {@link AudioItem} and optional speech/DTMF recognition<a name="line.29"></a>
 <span class="sourceLineNo">030</span> * configurations.<a name="line.30"></a>
-<span class="sourceLineNo">031</span> * <a name="line.31"></a>
+<span class="sourceLineNo">031</span> *<a name="line.31"></a>
 <span class="sourceLineNo">032</span> * @author Nu Echo Inc.<a name="line.32"></a>
 <span class="sourceLineNo">033</span> * @see Interaction.Prompt<a name="line.33"></a>
 <span class="sourceLineNo">034</span> * @see Interaction.FinalRecognitionWindow<a name="line.34"></a>
@@ -511,7 +511,7 @@
 <span class="sourceLineNo">503</span><a name="line.503"></a>
 <span class="sourceLineNo">504</span>    /**<a name="line.504"></a>
 <span class="sourceLineNo">505</span>     * Barge-in types.<a name="line.505"></a>
-<span class="sourceLineNo">506</span>     * <a name="line.506"></a>
+<span class="sourceLineNo">506</span>     *<a name="line.506"></a>
 <span class="sourceLineNo">507</span>     * @author Nu Echo Inc.<a name="line.507"></a>
 <span class="sourceLineNo">508</span>     */<a name="line.508"></a>
 <span class="sourceLineNo">509</span>    public enum BargeInType {<a name="line.509"></a>
@@ -534,7 +534,7 @@
 <span class="sourceLineNo">526</span>     * It specifies a recognition configuration, and optionally, a no input<a name="line.526"></a>
 <span class="sourceLineNo">527</span>     * timeout and a sequence of {@link AudioItem} that is played if a<a name="line.527"></a>
 <span class="sourceLineNo">528</span>     * recognition is successful.<a name="line.528"></a>
-<span class="sourceLineNo">529</span>     * <a name="line.529"></a>
+<span class="sourceLineNo">529</span>     *<a name="line.529"></a>
 <span class="sourceLineNo">530</span>     * @author Nu Echo Inc.<a name="line.530"></a>
 <span class="sourceLineNo">531</span>     */<a name="line.531"></a>
 <span class="sourceLineNo">532</span>    public static final class FinalRecognitionWindow implements JsonSerializable {<a name="line.532"></a>
@@ -667,7 +667,7 @@
 <span class="sourceLineNo">659</span>     * It specifies a recording configuration, and optionally, a no input<a name="line.659"></a>
 <span class="sourceLineNo">660</span>     * timeout and a sequence of {@link AudioItem} that is played if a recording<a name="line.660"></a>
 <span class="sourceLineNo">661</span>     * is successful.<a name="line.661"></a>
-<span class="sourceLineNo">662</span>     * <a name="line.662"></a>
+<span class="sourceLineNo">662</span>     *<a name="line.662"></a>
 <span class="sourceLineNo">663</span>     * @author Nu Echo Inc.<a name="line.663"></a>
 <span class="sourceLineNo">664</span>     */<a name="line.664"></a>
 <span class="sourceLineNo">665</span>    public static final class FinalRecordingWindow implements JsonSerializable {<a name="line.665"></a>
@@ -762,7 +762,7 @@
 <span class="sourceLineNo">754</span>     * A {@link Prompt} represent a phase in an {@link Interaction} and is<a name="line.754"></a>
 <span class="sourceLineNo">755</span>     * composed of a sequence of {@link AudioItem} and optionally a speech<a name="line.755"></a>
 <span class="sourceLineNo">756</span>     * and/or a DTMF recognition configuration.<a name="line.756"></a>
-<span class="sourceLineNo">757</span>     * <a name="line.757"></a>
+<span class="sourceLineNo">757</span>     *<a name="line.757"></a>
 <span class="sourceLineNo">758</span>     * @author Nu Echo Inc.<a name="line.758"></a>
 <span class="sourceLineNo">759</span>     */<a name="line.759"></a>
 <span class="sourceLineNo">760</span>    public static final class Prompt implements JsonSerializable {<a name="line.760"></a>
@@ -945,15 +945,15 @@
 <span class="sourceLineNo">937</span>     * &lt;p&gt;<a name="line.937"></a>
 <span class="sourceLineNo">938</span>     * Building an {@link Interaction} implies the following steps:<a name="line.938"></a>
 <span class="sourceLineNo">939</span>     * &lt;ul&gt;<a name="line.939"></a>
-<span class="sourceLineNo">940</span>     * &lt;li&gt;Add some prompts&lt;/li&gt;<a name="line.940"></a>
+<span class="sourceLineNo">940</span>     * &lt;li&gt;Add some prompts<a name="line.940"></a>
 <span class="sourceLineNo">941</span>     * &lt;ul&gt;<a name="line.941"></a>
 <span class="sourceLineNo">942</span>     * &lt;li&gt;For each prompt, speech/DTMF recognition can be specified (thus<a name="line.942"></a>
 <span class="sourceLineNo">943</span>     * enabling &lt;i&gt;barge-in&lt;/i&gt; when the prompt is played).<a name="line.943"></a>
 <span class="sourceLineNo">944</span>     * &lt;/ul&gt;<a name="line.944"></a>
 <span class="sourceLineNo">945</span>     * &lt;li&gt;Once all prompts are added, optionally specify either:<a name="line.945"></a>
 <span class="sourceLineNo">946</span>     * &lt;ul&gt;<a name="line.946"></a>
-<span class="sourceLineNo">947</span>     * &lt;li&gt;a final recognition window (speech or DTMF)&lt;/li&gt;<a name="line.947"></a>
-<span class="sourceLineNo">948</span>     * &lt;li&gt;a final recording window&lt;/li&gt;<a name="line.948"></a>
+<span class="sourceLineNo">947</span>     * &lt;li&gt;a final recognition window (speech or DTMF)<a name="line.947"></a>
+<span class="sourceLineNo">948</span>     * &lt;li&gt;a final recording window<a name="line.948"></a>
 <span class="sourceLineNo">949</span>     * &lt;/ul&gt;<a name="line.949"></a>
 <span class="sourceLineNo">950</span>     * &lt;/ul&gt;<a name="line.950"></a>
 <span class="sourceLineNo">951</span>     * &lt;p&gt;<a name="line.951"></a>
@@ -962,15 +962,15 @@
 <span class="sourceLineNo">954</span>     * &lt;i&gt;speech&lt;/i&gt; or &lt;i&gt;hotword&lt;/i&gt;.<a name="line.954"></a>
 <span class="sourceLineNo">955</span>     * &lt;p&gt;<a name="line.955"></a>
 <span class="sourceLineNo">956</span>     * This can be translated to:<a name="line.956"></a>
-<span class="sourceLineNo">957</span>     * <a name="line.957"></a>
+<span class="sourceLineNo">957</span>     *<a name="line.957"></a>
 <span class="sourceLineNo">958</span>     * &lt;pre&gt;<a name="line.958"></a>
 <span class="sourceLineNo">959</span>     * Builder builder = new Builder();<a name="line.959"></a>
-<span class="sourceLineNo">960</span>     * builder.addPrompt(...); <a name="line.960"></a>
-<span class="sourceLineNo">961</span>     * builder.addPrompt(...); <a name="line.961"></a>
+<span class="sourceLineNo">960</span>     * builder.addPrompt(...);<a name="line.960"></a>
+<span class="sourceLineNo">961</span>     * builder.addPrompt(...);<a name="line.961"></a>
 <span class="sourceLineNo">962</span>     * //... repeat as needed<a name="line.962"></a>
 <span class="sourceLineNo">963</span>     * Interaction interaction = builder.build(...);<a name="line.963"></a>
 <span class="sourceLineNo">964</span>     * &lt;/pre&gt;<a name="line.964"></a>
-<span class="sourceLineNo">965</span>     * <a name="line.965"></a>
+<span class="sourceLineNo">965</span>     *<a name="line.965"></a>
 <span class="sourceLineNo">966</span>     * @author Nu Echo Inc.<a name="line.966"></a>
 <span class="sourceLineNo">967</span>     */<a name="line.967"></a>
 <span class="sourceLineNo">968</span>    public static final class Builder {<a name="line.968"></a>
@@ -994,299 +994,320 @@
 <span class="sourceLineNo">986</span>         * Note: When a {@link Builder} is created, the default value for this<a name="line.986"></a>
 <span class="sourceLineNo">987</span>         * flag is &lt;code&gt;null&lt;/code&gt;, meaning the barge-in type will be<a name="line.987"></a>
 <span class="sourceLineNo">988</span>         * platform-dependant.<a name="line.988"></a>
-<span class="sourceLineNo">989</span>         * <a name="line.989"></a>
-<span class="sourceLineNo">990</span>         * @param bargeInType &lt;ul&gt;<a name="line.990"></a>
-<span class="sourceLineNo">991</span>         *            &lt;li&gt;{@link BargeInType#speech}&lt;/li&gt; &lt;li&gt;<a name="line.991"></a>
-<span class="sourceLineNo">992</span>         *            {@link BargeInType#hotword}&lt;/li&gt;&lt;li&gt;&lt;code&gt;null&lt;/code&gt;<a name="line.992"></a>
-<span class="sourceLineNo">993</span>         *            reverts to platform default value&lt;/li&gt;<a name="line.993"></a>
-<span class="sourceLineNo">994</span>         *            &lt;/ul<a name="line.994"></a>
-<span class="sourceLineNo">995</span>         */<a name="line.995"></a>
-<span class="sourceLineNo">996</span>        public Builder setBargeInType(BargeInType bargeInType) {<a name="line.996"></a>
-<span class="sourceLineNo">997</span>            mBargeInType = bargeInType;<a name="line.997"></a>
-<span class="sourceLineNo">998</span>            return this;<a name="line.998"></a>
-<span class="sourceLineNo">999</span>        }<a name="line.999"></a>
-<span class="sourceLineNo">1000</span><a name="line.1000"></a>
-<span class="sourceLineNo">1001</span>        /**<a name="line.1001"></a>
-<span class="sourceLineNo">1002</span>         * Sets the language code for the prompts that will be added using one<a name="line.1002"></a>
-<span class="sourceLineNo">1003</span>         * of the &lt;code&gt;addPrompt(...)&lt;/code&gt; methods.<a name="line.1003"></a>
-<span class="sourceLineNo">1004</span>         * &lt;p&gt;<a name="line.1004"></a>
-<span class="sourceLineNo">1005</span>         * Note: When a @{link Builder} is created, the default value for this<a name="line.1005"></a>
-<span class="sourceLineNo">1006</span>         * property is &lt;code&gt;null&lt;/code&gt;, i.e. no explicit language code will be<a name="line.1006"></a>
-<span class="sourceLineNo">1007</span>         * generated in the VoiceXML thus relying on the platform-specific<a name="line.1007"></a>
-<span class="sourceLineNo">1008</span>         * default language code.<a name="line.1008"></a>
-<span class="sourceLineNo">1009</span>         * <a name="line.1009"></a>
-<span class="sourceLineNo">1010</span>         * @param language language code for this prompt. &lt;code&gt;null&lt;/code&gt; if<a name="line.1010"></a>
-<span class="sourceLineNo">1011</span>         *            language should be reset to platform-specific default<a name="line.1011"></a>
-<span class="sourceLineNo">1012</span>         *            value for the prompts to be added.<a name="line.1012"></a>
-<span class="sourceLineNo">1013</span>         */<a name="line.1013"></a>
-<span class="sourceLineNo">1014</span>        public Builder setLanguage(String language) {<a name="line.1014"></a>
-<span class="sourceLineNo">1015</span>            mLanguage = language;<a name="line.1015"></a>
-<span class="sourceLineNo">1016</span>            return this;<a name="line.1016"></a>
-<span class="sourceLineNo">1017</span>        }<a name="line.1017"></a>
-<span class="sourceLineNo">1018</span><a name="line.1018"></a>
-<span class="sourceLineNo">1019</span>        /**<a name="line.1019"></a>
-<span class="sourceLineNo">1020</span>         * Adds a prompt with DTMF recognition only.<a name="line.1020"></a>
-<span class="sourceLineNo">1021</span>         * <a name="line.1021"></a>
-<span class="sourceLineNo">1022</span>         * @param dtmfRecognition configuration for the DTMF recognition<a name="line.1022"></a>
-<span class="sourceLineNo">1023</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1023"></a>
-<span class="sourceLineNo">1024</span>         */<a name="line.1024"></a>
-<span class="sourceLineNo">1025</span>        public Builder addPrompt(DtmfRecognition dtmfRecognition, AudioItem... audioItems) {<a name="line.1025"></a>
-<span class="sourceLineNo">1026</span>            return addPrompt(dtmfRecognition, null, asListChecked(audioItems));<a name="line.1026"></a>
-<span class="sourceLineNo">1027</span>        }<a name="line.1027"></a>
-<span class="sourceLineNo">1028</span><a name="line.1028"></a>
-<span class="sourceLineNo">1029</span>        /**<a name="line.1029"></a>
-<span class="sourceLineNo">1030</span>         * Adds a prompt with DTMF recognition only.<a name="line.1030"></a>
-<span class="sourceLineNo">1031</span>         * <a name="line.1031"></a>
-<span class="sourceLineNo">1032</span>         * @param dtmfRecognition configuration for the DTMF recognition<a name="line.1032"></a>
-<span class="sourceLineNo">1033</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1033"></a>
-<span class="sourceLineNo">1034</span>         */<a name="line.1034"></a>
-<span class="sourceLineNo">1035</span>        public Builder addPrompt(DtmfRecognition dtmfRecognition, List&lt;? extends AudioItem&gt; audioItems) {<a name="line.1035"></a>
-<span class="sourceLineNo">1036</span>            return addPrompt(dtmfRecognition, null, audioItems);<a name="line.1036"></a>
-<span class="sourceLineNo">1037</span>        }<a name="line.1037"></a>
-<span class="sourceLineNo">1038</span><a name="line.1038"></a>
-<span class="sourceLineNo">1039</span>        /**<a name="line.1039"></a>
-<span class="sourceLineNo">1040</span>         * Adds a prompt with speech recognition only.<a name="line.1040"></a>
-<span class="sourceLineNo">1041</span>         * <a name="line.1041"></a>
-<span class="sourceLineNo">1042</span>         * @param speechRecognition configuration for the speech recognition<a name="line.1042"></a>
-<span class="sourceLineNo">1043</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1043"></a>
-<span class="sourceLineNo">1044</span>         */<a name="line.1044"></a>
-<span class="sourceLineNo">1045</span>        public Builder addPrompt(SpeechRecognition speechRecognition, AudioItem... audioItems) {<a name="line.1045"></a>
-<span class="sourceLineNo">1046</span>            return addPrompt(null, speechRecognition, asListChecked(audioItems));<a name="line.1046"></a>
-<span class="sourceLineNo">1047</span>        }<a name="line.1047"></a>
-<span class="sourceLineNo">1048</span><a name="line.1048"></a>
-<span class="sourceLineNo">1049</span>        /**<a name="line.1049"></a>
-<span class="sourceLineNo">1050</span>         * Adds a prompt with speech recognition only.<a name="line.1050"></a>
-<span class="sourceLineNo">1051</span>         * <a name="line.1051"></a>
-<span class="sourceLineNo">1052</span>         * @param speechRecognition configuration for the speech recognition<a name="line.1052"></a>
-<span class="sourceLineNo">1053</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1053"></a>
-<span class="sourceLineNo">1054</span>         */<a name="line.1054"></a>
-<span class="sourceLineNo">1055</span>        public Builder addPrompt(SpeechRecognition speechRecognition, List&lt;? extends AudioItem&gt; audioItems) {<a name="line.1055"></a>
-<span class="sourceLineNo">1056</span>            return addPrompt(null, speechRecognition, audioItems);<a name="line.1056"></a>
-<span class="sourceLineNo">1057</span>        }<a name="line.1057"></a>
-<span class="sourceLineNo">1058</span><a name="line.1058"></a>
-<span class="sourceLineNo">1059</span>        /**<a name="line.1059"></a>
-<span class="sourceLineNo">1060</span>         * Adds a prompt with both DTMF and speech recognition.<a name="line.1060"></a>
-<span class="sourceLineNo">1061</span>         * <a name="line.1061"></a>
-<span class="sourceLineNo">1062</span>         * @param speechRecognition configuration for the speech recognition or<a name="line.1062"></a>
-<span class="sourceLineNo">1063</span>         *            &lt;code&gt;null&lt;/code&gt; to disable DTMF recognition.<a name="line.1063"></a>
-<span class="sourceLineNo">1064</span>         * @param dtmfRecognition configuration for the DTMF recognition or<a name="line.1064"></a>
-<span class="sourceLineNo">1065</span>         *            &lt;code&gt;null&lt;/code&gt; to disable DTMF recognition.<a name="line.1065"></a>
-<span class="sourceLineNo">1066</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1066"></a>
-<span class="sourceLineNo">1067</span>         */<a name="line.1067"></a>
-<span class="sourceLineNo">1068</span>        public Builder addPrompt(DtmfRecognition dtmfRecognition,<a name="line.1068"></a>
-<span class="sourceLineNo">1069</span>                                 SpeechRecognition speechRecognition,<a name="line.1069"></a>
-<span class="sourceLineNo">1070</span>                                 AudioItem... audioItems) {<a name="line.1070"></a>
-<span class="sourceLineNo">1071</span>            return addPrompt(dtmfRecognition, speechRecognition, asListChecked(audioItems));<a name="line.1071"></a>
-<span class="sourceLineNo">1072</span>        }<a name="line.1072"></a>
-<span class="sourceLineNo">1073</span><a name="line.1073"></a>
-<span class="sourceLineNo">1074</span>        /**<a name="line.1074"></a>
-<span class="sourceLineNo">1075</span>         * Adds a prompt with both DTMF and speech recognition.<a name="line.1075"></a>
-<span class="sourceLineNo">1076</span>         * <a name="line.1076"></a>
-<span class="sourceLineNo">1077</span>         * @param speechRecognition configuration for the speech recognition or<a name="line.1077"></a>
-<span class="sourceLineNo">1078</span>         *            &lt;code&gt;null&lt;/code&gt; to disable DTMF recognition.<a name="line.1078"></a>
-<span class="sourceLineNo">1079</span>         * @param dtmfRecognition configuration for the DTMF recognition or<a name="line.1079"></a>
-<span class="sourceLineNo">1080</span>         *            &lt;code&gt;null&lt;/code&gt; to disable DTMF recognition.<a name="line.1080"></a>
-<span class="sourceLineNo">1081</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1081"></a>
-<span class="sourceLineNo">1082</span>         */<a name="line.1082"></a>
-<span class="sourceLineNo">1083</span>        public Builder addPrompt(DtmfRecognition dtmfRecognition,<a name="line.1083"></a>
-<span class="sourceLineNo">1084</span>                                 SpeechRecognition speechRecognition,<a name="line.1084"></a>
-<span class="sourceLineNo">1085</span>                                 List&lt;? extends AudioItem&gt; audioItems) {<a name="line.1085"></a>
-<span class="sourceLineNo">1086</span>            Assert.noNullValues(audioItems, "audioItems");<a name="line.1086"></a>
-<span class="sourceLineNo">1087</span>            Prompt prompt = new Prompt(speechRecognition, dtmfRecognition, audioItems);<a name="line.1087"></a>
-<span class="sourceLineNo">1088</span>            prompt.setLanguage(mLanguage);<a name="line.1088"></a>
-<span class="sourceLineNo">1089</span>            prompt.setHotWordBargeIn(mBargeInType);<a name="line.1089"></a>
-<span class="sourceLineNo">1090</span>            mPrompts.add(prompt);<a name="line.1090"></a>
-<span class="sourceLineNo">1091</span>            return this;<a name="line.1091"></a>
-<span class="sourceLineNo">1092</span>        }<a name="line.1092"></a>
-<span class="sourceLineNo">1093</span><a name="line.1093"></a>
-<span class="sourceLineNo">1094</span>        /**<a name="line.1094"></a>
-<span class="sourceLineNo">1095</span>         * Adds a prompt without any DTMF nor speech recognition (no barge-in).<a name="line.1095"></a>
-<span class="sourceLineNo">1096</span>         * <a name="line.1096"></a>
-<span class="sourceLineNo">1097</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1097"></a>
-<span class="sourceLineNo">1098</span>         */<a name="line.1098"></a>
-<span class="sourceLineNo">1099</span>        public Builder addPrompt(AudioItem... audioItems) {<a name="line.1099"></a>
-<span class="sourceLineNo">1100</span>            return addPrompt(asListChecked(audioItems));<a name="line.1100"></a>
+<span class="sourceLineNo">989</span>         *<a name="line.989"></a>
+<span class="sourceLineNo">990</span>         * @param bargeInType<a name="line.990"></a>
+<span class="sourceLineNo">991</span>         *            &lt;ul&gt;<a name="line.991"></a>
+<span class="sourceLineNo">992</span>         *            &lt;li&gt;{@link BargeInType#speech}<a name="line.992"></a>
+<span class="sourceLineNo">993</span>         *            &lt;li&gt;{@link BargeInType#hotword}<a name="line.993"></a>
+<span class="sourceLineNo">994</span>         *            &lt;li&gt;&lt;code&gt;null&lt;/code&gt; reverts to platform default value<a name="line.994"></a>
+<span class="sourceLineNo">995</span>         *            &lt;/ul&gt;<a name="line.995"></a>
+<span class="sourceLineNo">996</span>         * @return this builder<a name="line.996"></a>
+<span class="sourceLineNo">997</span>         */<a name="line.997"></a>
+<span class="sourceLineNo">998</span>        public Builder setBargeInType(BargeInType bargeInType) {<a name="line.998"></a>
+<span class="sourceLineNo">999</span>            mBargeInType = bargeInType;<a name="line.999"></a>
+<span class="sourceLineNo">1000</span>            return this;<a name="line.1000"></a>
+<span class="sourceLineNo">1001</span>        }<a name="line.1001"></a>
+<span class="sourceLineNo">1002</span><a name="line.1002"></a>
+<span class="sourceLineNo">1003</span>        /**<a name="line.1003"></a>
+<span class="sourceLineNo">1004</span>         * Sets the language code for the prompts that will be added using one<a name="line.1004"></a>
+<span class="sourceLineNo">1005</span>         * of the &lt;code&gt;addPrompt(...)&lt;/code&gt; methods.<a name="line.1005"></a>
+<span class="sourceLineNo">1006</span>         * &lt;p&gt;<a name="line.1006"></a>
+<span class="sourceLineNo">1007</span>         * Note: When a @{link Builder} is created, the default value for this<a name="line.1007"></a>
+<span class="sourceLineNo">1008</span>         * property is &lt;code&gt;null&lt;/code&gt;, i.e. no explicit language code will be<a name="line.1008"></a>
+<span class="sourceLineNo">1009</span>         * generated in the VoiceXML thus relying on the platform-specific<a name="line.1009"></a>
+<span class="sourceLineNo">1010</span>         * default language code.<a name="line.1010"></a>
+<span class="sourceLineNo">1011</span>         *<a name="line.1011"></a>
+<span class="sourceLineNo">1012</span>         * @param language language code for this prompt. &lt;code&gt;null&lt;/code&gt; if<a name="line.1012"></a>
+<span class="sourceLineNo">1013</span>         *            language should be reset to platform-specific default<a name="line.1013"></a>
+<span class="sourceLineNo">1014</span>         *            value for the prompts to be added.<a name="line.1014"></a>
+<span class="sourceLineNo">1015</span>         * @return this builder<a name="line.1015"></a>
+<span class="sourceLineNo">1016</span>         */<a name="line.1016"></a>
+<span class="sourceLineNo">1017</span>        public Builder setLanguage(String language) {<a name="line.1017"></a>
+<span class="sourceLineNo">1018</span>            mLanguage = language;<a name="line.1018"></a>
+<span class="sourceLineNo">1019</span>            return this;<a name="line.1019"></a>
+<span class="sourceLineNo">1020</span>        }<a name="line.1020"></a>
+<span class="sourceLineNo">1021</span><a name="line.1021"></a>
+<span class="sourceLineNo">1022</span>        /**<a name="line.1022"></a>
+<span class="sourceLineNo">1023</span>         * Adds a prompt with DTMF recognition only.<a name="line.1023"></a>
+<span class="sourceLineNo">1024</span>         *<a name="line.1024"></a>
+<span class="sourceLineNo">1025</span>         * @param dtmfRecognition configuration for the DTMF recognition<a name="line.1025"></a>
+<span class="sourceLineNo">1026</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1026"></a>
+<span class="sourceLineNo">1027</span>         * @return this builder<a name="line.1027"></a>
+<span class="sourceLineNo">1028</span>         */<a name="line.1028"></a>
+<span class="sourceLineNo">1029</span>        public Builder addPrompt(DtmfRecognition dtmfRecognition, AudioItem... audioItems) {<a name="line.1029"></a>
+<span class="sourceLineNo">1030</span>            return addPrompt(dtmfRecognition, null, asListChecked(audioItems));<a name="line.1030"></a>
+<span class="sourceLineNo">1031</span>        }<a name="line.1031"></a>
+<span class="sourceLineNo">1032</span><a name="line.1032"></a>
+<span class="sourceLineNo">1033</span>        /**<a name="line.1033"></a>
+<span class="sourceLineNo">1034</span>         * Adds a prompt with DTMF recognition only.<a name="line.1034"></a>
+<span class="sourceLineNo">1035</span>         *<a name="line.1035"></a>
+<span class="sourceLineNo">1036</span>         * @param dtmfRecognition configuration for the DTMF recognition<a name="line.1036"></a>
+<span class="sourceLineNo">1037</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1037"></a>
+<span class="sourceLineNo">1038</span>         * @return this builder<a name="line.1038"></a>
+<span class="sourceLineNo">1039</span>         */<a name="line.1039"></a>
+<span class="sourceLineNo">1040</span>        public Builder addPrompt(DtmfRecognition dtmfRecognition, List&lt;? extends AudioItem&gt; audioItems) {<a name="line.1040"></a>
+<span class="sourceLineNo">1041</span>            return addPrompt(dtmfRecognition, null, audioItems);<a name="line.1041"></a>
+<span class="sourceLineNo">1042</span>        }<a name="line.1042"></a>
+<span class="sourceLineNo">1043</span><a name="line.1043"></a>
+<span class="sourceLineNo">1044</span>        /**<a name="line.1044"></a>
+<span class="sourceLineNo">1045</span>         * Adds a prompt with speech recognition only.<a name="line.1045"></a>
+<span class="sourceLineNo">1046</span>         *<a name="line.1046"></a>
+<span class="sourceLineNo">1047</span>         * @param speechRecognition configuration for the speech recognition<a name="line.1047"></a>
+<span class="sourceLineNo">1048</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1048"></a>
+<span class="sourceLineNo">1049</span>         * @return this builder<a name="line.1049"></a>
+<span class="sourceLineNo">1050</span>         */<a name="line.1050"></a>
+<span class="sourceLineNo">1051</span>        public Builder addPrompt(SpeechRecognition speechRecognition, AudioItem... audioItems) {<a name="line.1051"></a>
+<span class="sourceLineNo">1052</span>            return addPrompt(null, speechRecognition, asListChecked(audioItems));<a name="line.1052"></a>
+<span class="sourceLineNo">1053</span>        }<a name="line.1053"></a>
+<span class="sourceLineNo">1054</span><a name="line.1054"></a>
+<span class="sourceLineNo">1055</span>        /**<a name="line.1055"></a>
+<span class="sourceLineNo">1056</span>         * Adds a prompt with speech recognition only.<a name="line.1056"></a>
+<span class="sourceLineNo">1057</span>         *<a name="line.1057"></a>
+<span class="sourceLineNo">1058</span>         * @param speechRecognition configuration for the speech recognition<a name="line.1058"></a>
+<span class="sourceLineNo">1059</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1059"></a>
+<span class="sourceLineNo">1060</span>         * @return this builder<a name="line.1060"></a>
+<span class="sourceLineNo">1061</span>         */<a name="line.1061"></a>
+<span class="sourceLineNo">1062</span>        public Builder addPrompt(SpeechRecognition speechRecognition, List&lt;? extends AudioItem&gt; audioItems) {<a name="line.1062"></a>
+<span class="sourceLineNo">1063</span>            return addPrompt(null, speechRecognition, audioItems);<a name="line.1063"></a>
+<span class="sourceLineNo">1064</span>        }<a name="line.1064"></a>
+<span class="sourceLineNo">1065</span><a name="line.1065"></a>
+<span class="sourceLineNo">1066</span>        /**<a name="line.1066"></a>
+<span class="sourceLineNo">1067</span>         * Adds a prompt with both DTMF and speech recognition.<a name="line.1067"></a>
+<span class="sourceLineNo">1068</span>         *<a name="line.1068"></a>
+<span class="sourceLineNo">1069</span>         * @param speechRecognition configuration for the speech recognition or<a name="line.1069"></a>
+<span class="sourceLineNo">1070</span>         *            &lt;code&gt;null&lt;/code&gt; to disable DTMF recognition.<a name="line.1070"></a>
+<span class="sourceLineNo">1071</span>         * @param dtmfRecognition configuration for the DTMF recognition or<a name="line.1071"></a>
+<span class="sourceLineNo">1072</span>         *            &lt;code&gt;null&lt;/code&gt; to disable DTMF recognition.<a name="line.1072"></a>
+<span class="sourceLineNo">1073</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1073"></a>
+<span class="sourceLineNo">1074</span>         * @return this builder<a name="line.1074"></a>
+<span class="sourceLineNo">1075</span>         */<a name="line.1075"></a>
+<span class="sourceLineNo">1076</span>        public Builder addPrompt(DtmfRecognition dtmfRecognition,<a name="line.1076"></a>
+<span class="sourceLineNo">1077</span>                                 SpeechRecognition speechRecognition,<a name="line.1077"></a>
+<span class="sourceLineNo">1078</span>                                 AudioItem... audioItems) {<a name="line.1078"></a>
+<span class="sourceLineNo">1079</span>            return addPrompt(dtmfRecognition, speechRecognition, asListChecked(audioItems));<a name="line.1079"></a>
+<span class="sourceLineNo">1080</span>        }<a name="line.1080"></a>
+<span class="sourceLineNo">1081</span><a name="line.1081"></a>
+<span class="sourceLineNo">1082</span>        /**<a name="line.1082"></a>
+<span class="sourceLineNo">1083</span>         * Adds a prompt with both DTMF and speech recognition.<a name="line.1083"></a>
+<span class="sourceLineNo">1084</span>         *<a name="line.1084"></a>
+<span class="sourceLineNo">1085</span>         * @param speechRecognition configuration for the speech recognition or<a name="line.1085"></a>
+<span class="sourceLineNo">1086</span>         *            &lt;code&gt;null&lt;/code&gt; to disable DTMF recognition.<a name="line.1086"></a>
+<span class="sourceLineNo">1087</span>         * @param dtmfRecognition configuration for the DTMF recognition or<a name="line.1087"></a>
+<span class="sourceLineNo">1088</span>         *            &lt;code&gt;null&lt;/code&gt; to disable DTMF recognition.<a name="line.1088"></a>
+<span class="sourceLineNo">1089</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1089"></a>
+<span class="sourceLineNo">1090</span>         * @return this builder<a name="line.1090"></a>
+<span class="sourceLineNo">1091</span>         */<a name="line.1091"></a>
+<span class="sourceLineNo">1092</span>        public Builder addPrompt(DtmfRecognition dtmfRecognition,<a name="line.1092"></a>
+<span class="sourceLineNo">1093</span>                                 SpeechRecognition speechRecognition,<a name="line.1093"></a>
+<span class="sourceLineNo">1094</span>                                 List&lt;? extends AudioItem&gt; audioItems) {<a name="line.1094"></a>
+<span class="sourceLineNo">1095</span>            Assert.noNullValues(audioItems, "audioItems");<a name="line.1095"></a>
+<span class="sourceLineNo">1096</span>            Prompt prompt = new Prompt(speechRecognition, dtmfRecognition, audioItems);<a name="line.1096"></a>
+<span class="sourceLineNo">1097</span>            prompt.setLanguage(mLanguage);<a name="line.1097"></a>
+<span class="sourceLineNo">1098</span>            prompt.setHotWordBargeIn(mBargeInType);<a name="line.1098"></a>
+<span class="sourceLineNo">1099</span>            mPrompts.add(prompt);<a name="line.1099"></a>
+<span class="sourceLineNo">1100</span>            return this;<a name="line.1100"></a>
 <span class="sourceLineNo">1101</span>        }<a name="line.1101"></a>
 <span class="sourceLineNo">1102</span><a name="line.1102"></a>
 <span class="sourceLineNo">1103</span>        /**<a name="line.1103"></a>
 <span class="sourceLineNo">1104</span>         * Adds a prompt without any DTMF nor speech recognition (no barge-in).<a name="line.1104"></a>
-<span class="sourceLineNo">1105</span>         * <a name="line.1105"></a>
+<span class="sourceLineNo">1105</span>         *<a name="line.1105"></a>
 <span class="sourceLineNo">1106</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1106"></a>
-<span class="sourceLineNo">1107</span>         */<a name="line.1107"></a>
-<span class="sourceLineNo">1108</span>        public Builder addPrompt(List&lt;? extends AudioItem&gt; audioItems) {<a name="line.1108"></a>
-<span class="sourceLineNo">1109</span>            Assert.noNullValues(audioItems, "audioItems");<a name="line.1109"></a>
-<span class="sourceLineNo">1110</span>            Prompt prompt = new Prompt(audioItems);<a name="line.1110"></a>
-<span class="sourceLineNo">1111</span>            prompt.setLanguage(mLanguage);<a name="line.1111"></a>
-<span class="sourceLineNo">1112</span>            prompt.setHotWordBargeIn(mBargeInType);<a name="line.1112"></a>
-<span class="sourceLineNo">1113</span>            mPrompts.add(prompt);<a name="line.1113"></a>
-<span class="sourceLineNo">1114</span>            return this;<a name="line.1114"></a>
-<span class="sourceLineNo">1115</span>        }<a name="line.1115"></a>
-<span class="sourceLineNo">1116</span><a name="line.1116"></a>
-<span class="sourceLineNo">1117</span>        /**<a name="line.1117"></a>
-<span class="sourceLineNo">1118</span>         * Builds the interaction. This method adds a DTMF recognition window<a name="line.1118"></a>
-<span class="sourceLineNo">1119</span>         * after the prompts.<a name="line.1119"></a>
-<span class="sourceLineNo">1120</span>         * <a name="line.1120"></a>
-<span class="sourceLineNo">1121</span>         * @param dtmfRecognition configuration for the DTMF recognition<a name="line.1121"></a>
-<span class="sourceLineNo">1122</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1122"></a>
-<span class="sourceLineNo">1123</span>         *            generated.<a name="line.1123"></a>
-<span class="sourceLineNo">1124</span>         * @param acknowledgeAudioItems audioItems to be played upon recognition<a name="line.1124"></a>
-<span class="sourceLineNo">1125</span>         */<a name="line.1125"></a>
-<span class="sourceLineNo">1126</span>        public Interaction build(DtmfRecognition dtmfRecognition,<a name="line.1126"></a>
-<span class="sourceLineNo">1127</span>                                 Duration noinputTimeout,<a name="line.1127"></a>
-<span class="sourceLineNo">1128</span>                                 AudioItem... acknowledgeAudioItems) {<a name="line.1128"></a>
-<span class="sourceLineNo">1129</span>            return build(dtmfRecognition, null, noinputTimeout, asListChecked(acknowledgeAudioItems));<a name="line.1129"></a>
-<span class="sourceLineNo">1130</span>        }<a name="line.1130"></a>
-<span class="sourceLineNo">1131</span><a name="line.1131"></a>
-<span class="sourceLineNo">1132</span>        /**<a name="line.1132"></a>
-<span class="sourceLineNo">1133</span>         * Builds the interaction. This method adds a speech recognition window<a name="line.1133"></a>
-<span class="sourceLineNo">1134</span>         * after the prompts.<a name="line.1134"></a>
-<span class="sourceLineNo">1135</span>         * <a name="line.1135"></a>
-<span class="sourceLineNo">1136</span>         * @param speechRecognition configuration for the speech recognition<a name="line.1136"></a>
-<span class="sourceLineNo">1137</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1137"></a>
-<span class="sourceLineNo">1138</span>         *            generated.<a name="line.1138"></a>
-<span class="sourceLineNo">1139</span>         * @param acknowledgeAudioItems audioItems to be played upon recognition<a name="line.1139"></a>
-<span class="sourceLineNo">1140</span>         */<a name="line.1140"></a>
-<span class="sourceLineNo">1141</span>        public Interaction build(SpeechRecognition speechRecognition,<a name="line.1141"></a>
-<span class="sourceLineNo">1142</span>                                 Duration noinputTimeout,<a name="line.1142"></a>
-<span class="sourceLineNo">1143</span>                                 AudioItem... acknowledgeAudioItems) {<a name="line.1143"></a>
-<span class="sourceLineNo">1144</span>            return build(null, speechRecognition, noinputTimeout, asListChecked(acknowledgeAudioItems));<a name="line.1144"></a>
-<span class="sourceLineNo">1145</span>        }<a name="line.1145"></a>
-<span class="sourceLineNo">1146</span><a name="line.1146"></a>
-<span class="sourceLineNo">1147</span>        /**<a name="line.1147"></a>
-<span class="sourceLineNo">1148</span>         * Builds the interaction. This method adds a DTMF recognition window<a name="line.1148"></a>
-<span class="sourceLineNo">1149</span>         * after the prompts.<a name="line.1149"></a>
-<span class="sourceLineNo">1150</span>         * <a name="line.1150"></a>
-<span class="sourceLineNo">1151</span>         * @param dtmfRecognition configuration for the DTMF recognition<a name="line.1151"></a>
-<span class="sourceLineNo">1152</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1152"></a>
-<span class="sourceLineNo">1153</span>         *            generated.<a name="line.1153"></a>
-<span class="sourceLineNo">1154</span>         * @param acknowledgeAudioItems audioItems to be played upon recognition<a name="line.1154"></a>
-<span class="sourceLineNo">1155</span>         */<a name="line.1155"></a>
-<span class="sourceLineNo">1156</span>        public Interaction build(DtmfRecognition dtmfRecognition,<a name="line.1156"></a>
-<span class="sourceLineNo">1157</span>                                 Duration noinputTimeout,<a name="line.1157"></a>
-<span class="sourceLineNo">1158</span>                                 List&lt;? extends AudioItem&gt; acknowledgeAudioItems) {<a name="line.1158"></a>
-<span class="sourceLineNo">1159</span>            return build(dtmfRecognition, null, noinputTimeout, acknowledgeAudioItems);<a name="line.1159"></a>
-<span class="sourceLineNo">1160</span><a name="line.1160"></a>
-<span class="sourceLineNo">1161</span>        }<a name="line.1161"></a>
-<span class="sourceLineNo">1162</span><a name="line.1162"></a>
-<span class="sourceLineNo">1163</span>        /**<a name="line.1163"></a>
-<span class="sourceLineNo">1164</span>         * Builds the interaction. This method adds a speech recognition window<a name="line.1164"></a>
-<span class="sourceLineNo">1165</span>         * after the prompts.<a name="line.1165"></a>
-<span class="sourceLineNo">1166</span>         * <a name="line.1166"></a>
-<span class="sourceLineNo">1167</span>         * @param speechRecognition configuration for the speech recognition<a name="line.1167"></a>
-<span class="sourceLineNo">1168</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1168"></a>
-<span class="sourceLineNo">1169</span>         *            generated.<a name="line.1169"></a>
-<span class="sourceLineNo">1170</span>         * @param acknowledgeAudioItems audioItems to be played upon recognition<a name="line.1170"></a>
-<span class="sourceLineNo">1171</span>         */<a name="line.1171"></a>
-<span class="sourceLineNo">1172</span>        public Interaction build(SpeechRecognition speechRecognition,<a name="line.1172"></a>
-<span class="sourceLineNo">1173</span>                                 Duration noinputTimeout,<a name="line.1173"></a>
-<span class="sourceLineNo">1174</span>                                 List&lt;? extends AudioItem&gt; acknowledgeAudioItems) {<a name="line.1174"></a>
-<span class="sourceLineNo">1175</span>            return build(null, speechRecognition, noinputTimeout, acknowledgeAudioItems);<a name="line.1175"></a>
+<span class="sourceLineNo">1107</span>         * @return this builder<a name="line.1107"></a>
+<span class="sourceLineNo">1108</span>         */<a name="line.1108"></a>
+<span class="sourceLineNo">1109</span>        public Builder addPrompt(AudioItem... audioItems) {<a name="line.1109"></a>
+<span class="sourceLineNo">1110</span>            return addPrompt(asListChecked(audioItems));<a name="line.1110"></a>
+<span class="sourceLineNo">1111</span>        }<a name="line.1111"></a>
+<span class="sourceLineNo">1112</span><a name="line.1112"></a>
+<span class="sourceLineNo">1113</span>        /**<a name="line.1113"></a>
+<span class="sourceLineNo">1114</span>         * Adds a prompt without any DTMF nor speech recognition (no barge-in).<a name="line.1114"></a>
+<span class="sourceLineNo">1115</span>         *<a name="line.1115"></a>
+<span class="sourceLineNo">1116</span>         * @param audioItems audio items to be played during this prompt.<a name="line.1116"></a>
+<span class="sourceLineNo">1117</span>         * @return this builder<a name="line.1117"></a>
+<span class="sourceLineNo">1118</span>         */<a name="line.1118"></a>
+<span class="sourceLineNo">1119</span>        public Builder addPrompt(List&lt;? extends AudioItem&gt; audioItems) {<a name="line.1119"></a>
+<span class="sourceLineNo">1120</span>            Assert.noNullValues(audioItems, "audioItems");<a name="line.1120"></a>
+<span class="sourceLineNo">1121</span>            Prompt prompt = new Prompt(audioItems);<a name="line.1121"></a>
+<span class="sourceLineNo">1122</span>            prompt.setLanguage(mLanguage);<a name="line.1122"></a>
+<span class="sourceLineNo">1123</span>            prompt.setHotWordBargeIn(mBargeInType);<a name="line.1123"></a>
+<span class="sourceLineNo">1124</span>            mPrompts.add(prompt);<a name="line.1124"></a>
+<span class="sourceLineNo">1125</span>            return this;<a name="line.1125"></a>
+<span class="sourceLineNo">1126</span>        }<a name="line.1126"></a>
+<span class="sourceLineNo">1127</span><a name="line.1127"></a>
+<span class="sourceLineNo">1128</span>        /**<a name="line.1128"></a>
+<span class="sourceLineNo">1129</span>         * Builds the interaction. This method adds a DTMF recognition window<a name="line.1129"></a>
+<span class="sourceLineNo">1130</span>         * after the prompts.<a name="line.1130"></a>
+<span class="sourceLineNo">1131</span>         *<a name="line.1131"></a>
+<span class="sourceLineNo">1132</span>         * @param dtmfRecognition configuration for the DTMF recognition<a name="line.1132"></a>
+<span class="sourceLineNo">1133</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1133"></a>
+<span class="sourceLineNo">1134</span>         *            generated.<a name="line.1134"></a>
+<span class="sourceLineNo">1135</span>         * @param acknowledgeAudioItems audioItems to be played upon recognition<a name="line.1135"></a>
+<span class="sourceLineNo">1136</span>         * @return the interaction<a name="line.1136"></a>
+<span class="sourceLineNo">1137</span>         */<a name="line.1137"></a>
+<span class="sourceLineNo">1138</span>        public Interaction build(DtmfRecognition dtmfRecognition,<a name="line.1138"></a>
+<span class="sourceLineNo">1139</span>                                 Duration noinputTimeout,<a name="line.1139"></a>
+<span class="sourceLineNo">1140</span>                                 AudioItem... acknowledgeAudioItems) {<a name="line.1140"></a>
+<span class="sourceLineNo">1141</span>            return build(dtmfRecognition, null, noinputTimeout, asListChecked(acknowledgeAudioItems));<a name="line.1141"></a>
+<span class="sourceLineNo">1142</span>        }<a name="line.1142"></a>
+<span class="sourceLineNo">1143</span><a name="line.1143"></a>
+<span class="sourceLineNo">1144</span>        /**<a name="line.1144"></a>
+<span class="sourceLineNo">1145</span>         * Builds the interaction. This method adds a speech recognition window<a name="line.1145"></a>
+<span class="sourceLineNo">1146</span>         * after the prompts.<a name="line.1146"></a>
+<span class="sourceLineNo">1147</span>         *<a name="line.1147"></a>
+<span class="sourceLineNo">1148</span>         * @param speechRecognition configuration for the speech recognition<a name="line.1148"></a>
+<span class="sourceLineNo">1149</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1149"></a>
+<span class="sourceLineNo">1150</span>         *            generated.<a name="line.1150"></a>
+<span class="sourceLineNo">1151</span>         * @param acknowledgeAudioItems audioItems to be played upon recognition<a name="line.1151"></a>
+<span class="sourceLineNo">1152</span>         * @return the interaction<a name="line.1152"></a>
+<span class="sourceLineNo">1153</span>         */<a name="line.1153"></a>
+<span class="sourceLineNo">1154</span>        public Interaction build(SpeechRecognition speechRecognition,<a name="line.1154"></a>
+<span class="sourceLineNo">1155</span>                                 Duration noinputTimeout,<a name="line.1155"></a>
+<span class="sourceLineNo">1156</span>                                 AudioItem... acknowledgeAudioItems) {<a name="line.1156"></a>
+<span class="sourceLineNo">1157</span>            return build(null, speechRecognition, noinputTimeout, asListChecked(acknowledgeAudioItems));<a name="line.1157"></a>
+<span class="sourceLineNo">1158</span>        }<a name="line.1158"></a>
+<span class="sourceLineNo">1159</span><a name="line.1159"></a>
+<span class="sourceLineNo">1160</span>        /**<a name="line.1160"></a>
+<span class="sourceLineNo">1161</span>         * Builds the interaction. This method adds a DTMF recognition window<a name="line.1161"></a>
+<span class="sourceLineNo">1162</span>         * after the prompts.<a name="line.1162"></a>
+<span class="sourceLineNo">1163</span>         *<a name="line.1163"></a>
+<span class="sourceLineNo">1164</span>         * @param dtmfRecognition configuration for the DTMF recognition<a name="line.1164"></a>
+<span class="sourceLineNo">1165</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1165"></a>
+<span class="sourceLineNo">1166</span>         *            generated.<a name="line.1166"></a>
+<span class="sourceLineNo">1167</span>         * @param acknowledgeAudioItems audioItems to be played upon recognition<a name="line.1167"></a>
+<span class="sourceLineNo">1168</span>         * @return the interaction<a name="line.1168"></a>
+<span class="sourceLineNo">1169</span>         */<a name="line.1169"></a>
+<span class="sourceLineNo">1170</span>        public Interaction build(DtmfRecognition dtmfRecognition,<a name="line.1170"></a>
+<span class="sourceLineNo">1171</span>                                 Duration noinputTimeout,<a name="line.1171"></a>
+<span class="sourceLineNo">1172</span>                                 List&lt;? extends AudioItem&gt; acknowledgeAudioItems) {<a name="line.1172"></a>
+<span class="sourceLineNo">1173</span>            return build(dtmfRecognition, null, noinputTimeout, acknowledgeAudioItems);<a name="line.1173"></a>
+<span class="sourceLineNo">1174</span><a name="line.1174"></a>
+<span class="sourceLineNo">1175</span>        }<a name="line.1175"></a>
 <span class="sourceLineNo">1176</span><a name="line.1176"></a>
-<span class="sourceLineNo">1177</span>        }<a name="line.1177"></a>
-<span class="sourceLineNo">1178</span><a name="line.1178"></a>
-<span class="sourceLineNo">1179</span>        /**<a name="line.1179"></a>
-<span class="sourceLineNo">1180</span>         * Builds the interaction. This method adds a speech and DTMF<a name="line.1180"></a>
-<span class="sourceLineNo">1181</span>         * recognition window after the prompts.<a name="line.1181"></a>
-<span class="sourceLineNo">1182</span>         * <a name="line.1182"></a>
-<span class="sourceLineNo">1183</span>         * @param speechRecognition configuration for the speech recognition<a name="line.1183"></a>
-<span class="sourceLineNo">1184</span>         * @param dtmfRecognition configuration for the DTMF recognition<a name="line.1184"></a>
-<span class="sourceLineNo">1185</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1185"></a>
-<span class="sourceLineNo">1186</span>         *            generated.<a name="line.1186"></a>
-<span class="sourceLineNo">1187</span>         * @param acknowledgeAudioItems audioItems to be played upon recognition<a name="line.1187"></a>
-<span class="sourceLineNo">1188</span>         */<a name="line.1188"></a>
-<span class="sourceLineNo">1189</span>        public Interaction build(DtmfRecognition dtmfRecognition,<a name="line.1189"></a>
-<span class="sourceLineNo">1190</span>                                 SpeechRecognition speechRecognition,<a name="line.1190"></a>
-<span class="sourceLineNo">1191</span>                                 Duration noinputTimeout,<a name="line.1191"></a>
-<span class="sourceLineNo">1192</span>                                 AudioItem... acknowledgeAudioItems) {<a name="line.1192"></a>
-<span class="sourceLineNo">1193</span>            return build(dtmfRecognition, speechRecognition, noinputTimeout, asListChecked(acknowledgeAudioItems));<a name="line.1193"></a>
-<span class="sourceLineNo">1194</span>        }<a name="line.1194"></a>
-<span class="sourceLineNo">1195</span><a name="line.1195"></a>
-<span class="sourceLineNo">1196</span>        /**<a name="line.1196"></a>
-<span class="sourceLineNo">1197</span>         * Builds the interaction. This method adds a speech and DTMF<a name="line.1197"></a>
-<span class="sourceLineNo">1198</span>         * recognition window after the prompts.<a name="line.1198"></a>
-<span class="sourceLineNo">1199</span>         * <a name="line.1199"></a>
-<span class="sourceLineNo">1200</span>         * @param speechRecognition configuration for the speech recognition<a name="line.1200"></a>
-<span class="sourceLineNo">1201</span>         * @param dtmfRecognition configuration for the DTMF recognition<a name="line.1201"></a>
-<span class="sourceLineNo">1202</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1202"></a>
-<span class="sourceLineNo">1203</span>         *            generated.<a name="line.1203"></a>
-<span class="sourceLineNo">1204</span>         * @param acknowledgeAudioItems audioItems to be played upon recognition<a name="line.1204"></a>
-<span class="sourceLineNo">1205</span>         */<a name="line.1205"></a>
-<span class="sourceLineNo">1206</span>        public Interaction build(DtmfRecognition dtmfRecognition,<a name="line.1206"></a>
-<span class="sourceLineNo">1207</span>                                 SpeechRecognition speechRecognition,<a name="line.1207"></a>
-<span class="sourceLineNo">1208</span>                                 Duration noinputTimeout,<a name="line.1208"></a>
-<span class="sourceLineNo">1209</span>                                 List&lt;? extends AudioItem&gt; acknowledgeAudioItems) {<a name="line.1209"></a>
-<span class="sourceLineNo">1210</span>            Assert.ensure(dtmfRecognition != null || speechRecognition != null,<a name="line.1210"></a>
-<span class="sourceLineNo">1211</span>                          "Must provide at least one recognition configuration (speech or DTMF)");<a name="line.1211"></a>
-<span class="sourceLineNo">1212</span><a name="line.1212"></a>
-<span class="sourceLineNo">1213</span>            checkBuilt();<a name="line.1213"></a>
-<span class="sourceLineNo">1214</span>            FinalRecognitionWindow finalRecognitionWindow = new FinalRecognitionWindow(dtmfRecognition,<a name="line.1214"></a>
-<span class="sourceLineNo">1215</span>                                                                                       speechRecognition,<a name="line.1215"></a>
-<span class="sourceLineNo">1216</span>                                                                                       noinputTimeout);<a name="line.1216"></a>
-<span class="sourceLineNo">1217</span><a name="line.1217"></a>
-<span class="sourceLineNo">1218</span>            if (acknowledgeAudioItems != null) {<a name="line.1218"></a>
-<span class="sourceLineNo">1219</span>                finalRecognitionWindow.setAcknowledgeAudioItems(acknowledgeAudioItems);<a name="line.1219"></a>
-<span class="sourceLineNo">1220</span>            }<a name="line.1220"></a>
-<span class="sourceLineNo">1221</span><a name="line.1221"></a>
-<span class="sourceLineNo">1222</span>            return new Interaction(mName, mPrompts, finalRecognitionWindow);<a name="line.1222"></a>
-<span class="sourceLineNo">1223</span><a name="line.1223"></a>
-<span class="sourceLineNo">1224</span>        }<a name="line.1224"></a>
-<span class="sourceLineNo">1225</span><a name="line.1225"></a>
-<span class="sourceLineNo">1226</span>        /**<a name="line.1226"></a>
-<span class="sourceLineNo">1227</span>         * Builds the interaction. This method adds a recording window after the<a name="line.1227"></a>
-<span class="sourceLineNo">1228</span>         * prompts.<a name="line.1228"></a>
-<span class="sourceLineNo">1229</span>         * <a name="line.1229"></a>
-<span class="sourceLineNo">1230</span>         * @param recording configuration for the recording<a name="line.1230"></a>
-<span class="sourceLineNo">1231</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1231"></a>
-<span class="sourceLineNo">1232</span>         *            generated.<a name="line.1232"></a>
-<span class="sourceLineNo">1233</span>         * @param acknowledgeAudioItems audioItems to be played upon recording<a name="line.1233"></a>
-<span class="sourceLineNo">1234</span>         *            completion<a name="line.1234"></a>
-<span class="sourceLineNo">1235</span>         */<a name="line.1235"></a>
-<span class="sourceLineNo">1236</span>        public Interaction build(Recording recording, Duration noinputTimeout, AudioItem... acknowledgeAudioItems) {<a name="line.1236"></a>
-<span class="sourceLineNo">1237</span>            return build(recording, noinputTimeout, asListChecked(acknowledgeAudioItems));<a name="line.1237"></a>
-<span class="sourceLineNo">1238</span>        }<a name="line.1238"></a>
-<span class="sourceLineNo">1239</span><a name="line.1239"></a>
-<span class="sourceLineNo">1240</span>        /**<a name="line.1240"></a>
-<span class="sourceLineNo">1241</span>         * Builds the interaction. This method adds a recording window after the<a name="line.1241"></a>
-<span class="sourceLineNo">1242</span>         * prompts.<a name="line.1242"></a>
-<span class="sourceLineNo">1243</span>         * <a name="line.1243"></a>
-<span class="sourceLineNo">1244</span>         * @param recording configuration for the recording<a name="line.1244"></a>
-<span class="sourceLineNo">1245</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1245"></a>
-<span class="sourceLineNo">1246</span>         *            generated.<a name="line.1246"></a>
-<span class="sourceLineNo">1247</span>         * @param acknowledgeAudioItems audioItems to be played upon recording<a name="line.1247"></a>
-<span class="sourceLineNo">1248</span>         *            completion<a name="line.1248"></a>
-<span class="sourceLineNo">1249</span>         */<a name="line.1249"></a>
-<span class="sourceLineNo">1250</span>        public Interaction build(Recording recording,<a name="line.1250"></a>
-<span class="sourceLineNo">1251</span>                                 Duration noinputTimeout,<a name="line.1251"></a>
-<span class="sourceLineNo">1252</span>                                 List&lt;? extends AudioItem&gt; acknowledgeAudioItems) {<a name="line.1252"></a>
-<span class="sourceLineNo">1253</span>            Assert.notNull(recording, "recording");<a name="line.1253"></a>
-<span class="sourceLineNo">1254</span>            Assert.notNull(acknowledgeAudioItems, "acknowledgeAudioItems");<a name="line.1254"></a>
-<span class="sourceLineNo">1255</span><a name="line.1255"></a>
-<span class="sourceLineNo">1256</span>            checkBuilt();<a name="line.1256"></a>
-<span class="sourceLineNo">1257</span>            FinalRecordingWindow finalRecordingWindow = new FinalRecordingWindow(recording, noinputTimeout);<a name="line.1257"></a>
-<span class="sourceLineNo">1258</span><a name="line.1258"></a>
-<span class="sourceLineNo">1259</span>            if (acknowledgeAudioItems != null) {<a name="line.1259"></a>
-<span class="sourceLineNo">1260</span>                finalRecordingWindow.setAcknowledgeAudioItems(acknowledgeAudioItems);<a name="line.1260"></a>
-<span class="sourceLineNo">1261</span>            }<a name="line.1261"></a>
-<span class="sourceLineNo">1262</span><a name="line.1262"></a>
-<span class="sourceLineNo">1263</span>            return new Interaction(mName, mPrompts, finalRecordingWindow);<a name="line.1263"></a>
-<span class="sourceLineNo">1264</span>        }<a name="line.1264"></a>
-<span class="sourceLineNo">1265</span><a name="line.1265"></a>
-<span class="sourceLineNo">1266</span>        /**<a name="line.1266"></a>
-<span class="sourceLineNo">1267</span>         * Builds the interaction. This method does not allow any recording nor<a name="line.1267"></a>
-<span class="sourceLineNo">1268</span>         * recognition after the prompts.<a name="line.1268"></a>
-<span class="sourceLineNo">1269</span>         */<a name="line.1269"></a>
-<span class="sourceLineNo">1270</span>        public Interaction build() {<a name="line.1270"></a>
-<span class="sourceLineNo">1271</span>            checkBuilt();<a name="line.1271"></a>
-<span class="sourceLineNo">1272</span>            return new Interaction(mName, mPrompts);<a name="line.1272"></a>
-<span class="sourceLineNo">1273</span>        }<a name="line.1273"></a>
+<span class="sourceLineNo">1177</span>        /**<a name="line.1177"></a>
+<span class="sourceLineNo">1178</span>         * Builds the interaction. This method adds a speech recognition window<a name="line.1178"></a>
+<span class="sourceLineNo">1179</span>         * after the prompts.<a name="line.1179"></a>
+<span class="sourceLineNo">1180</span>         *<a name="line.1180"></a>
+<span class="sourceLineNo">1181</span>         * @param speechRecognition configuration for the speech recognition<a name="line.1181"></a>
+<span class="sourceLineNo">1182</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1182"></a>
+<span class="sourceLineNo">1183</span>         *            generated.<a name="line.1183"></a>
+<span class="sourceLineNo">1184</span>         * @param acknowledgeAudioItems audioItems to be played upon recognition<a name="line.1184"></a>
+<span class="sourceLineNo">1185</span>         * @return the interaction<a name="line.1185"></a>
+<span class="sourceLineNo">1186</span>         */<a name="line.1186"></a>
+<span class="sourceLineNo">1187</span>        public Interaction build(SpeechRecognition speechRecognition,<a name="line.1187"></a>
+<span class="sourceLineNo">1188</span>                                 Duration noinputTimeout,<a name="line.1188"></a>
+<span class="sourceLineNo">1189</span>                                 List&lt;? extends AudioItem&gt; acknowledgeAudioItems) {<a name="line.1189"></a>
+<span class="sourceLineNo">1190</span>            return build(null, speechRecognition, noinputTimeout, acknowledgeAudioItems);<a name="line.1190"></a>
+<span class="sourceLineNo">1191</span><a name="line.1191"></a>
+<span class="sourceLineNo">1192</span>        }<a name="line.1192"></a>
+<span class="sourceLineNo">1193</span><a name="line.1193"></a>
+<span class="sourceLineNo">1194</span>        /**<a name="line.1194"></a>
+<span class="sourceLineNo">1195</span>         * Builds the interaction. This method adds a speech and DTMF<a name="line.1195"></a>
+<span class="sourceLineNo">1196</span>         * recognition window after the prompts.<a name="line.1196"></a>
+<span class="sourceLineNo">1197</span>         *<a name="line.1197"></a>
+<span class="sourceLineNo">1198</span>         * @param speechRecognition configuration for the speech recognition<a name="line.1198"></a>
+<span class="sourceLineNo">1199</span>         * @param dtmfRecognition configuration for the DTMF recognition<a name="line.1199"></a>
+<span class="sourceLineNo">1200</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1200"></a>
+<span class="sourceLineNo">1201</span>         *            generated.<a name="line.1201"></a>
+<span class="sourceLineNo">1202</span>         * @param acknowledgeAudioItems audioItems to be played upon recognition<a name="line.1202"></a>
+<span class="sourceLineNo">1203</span>         * @return the interaction<a name="line.1203"></a>
+<span class="sourceLineNo">1204</span>         */<a name="line.1204"></a>
+<span class="sourceLineNo">1205</span>        public Interaction build(DtmfRecognition dtmfRecognition,<a name="line.1205"></a>
+<span class="sourceLineNo">1206</span>                                 SpeechRecognition speechRecognition,<a name="line.1206"></a>
+<span class="sourceLineNo">1207</span>                                 Duration noinputTimeout,<a name="line.1207"></a>
+<span class="sourceLineNo">1208</span>                                 AudioItem... acknowledgeAudioItems) {<a name="line.1208"></a>
+<span class="sourceLineNo">1209</span>            return build(dtmfRecognition, speechRecognition, noinputTimeout, asListChecked(acknowledgeAudioItems));<a name="line.1209"></a>
+<span class="sourceLineNo">1210</span>        }<a name="line.1210"></a>
+<span class="sourceLineNo">1211</span><a name="line.1211"></a>
+<span class="sourceLineNo">1212</span>        /**<a name="line.1212"></a>
+<span class="sourceLineNo">1213</span>         * Builds the interaction. This method adds a speech and DTMF<a name="line.1213"></a>
+<span class="sourceLineNo">1214</span>         * recognition window after the prompts.<a name="line.1214"></a>
+<span class="sourceLineNo">1215</span>         *<a name="line.1215"></a>
+<span class="sourceLineNo">1216</span>         * @param speechRecognition configuration for the speech recognition<a name="line.1216"></a>
+<span class="sourceLineNo">1217</span>         * @param dtmfRecognition configuration for the DTMF recognition<a name="line.1217"></a>
+<span class="sourceLineNo">1218</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1218"></a>
+<span class="sourceLineNo">1219</span>         *            generated.<a name="line.1219"></a>
+<span class="sourceLineNo">1220</span>         * @param acknowledgeAudioItems audioItems to be played upon recognition<a name="line.1220"></a>
+<span class="sourceLineNo">1221</span>         * @return the interaction<a name="line.1221"></a>
+<span class="sourceLineNo">1222</span>         */<a name="line.1222"></a>
+<span class="sourceLineNo">1223</span>        public Interaction build(DtmfRecognition dtmfRecognition,<a name="line.1223"></a>
+<span class="sourceLineNo">1224</span>                                 SpeechRecognition speechRecognition,<a name="line.1224"></a>
+<span class="sourceLineNo">1225</span>                                 Duration noinputTimeout,<a name="line.1225"></a>
+<span class="sourceLineNo">1226</span>                                 List&lt;? extends AudioItem&gt; acknowledgeAudioItems) {<a name="line.1226"></a>
+<span class="sourceLineNo">1227</span>            Assert.ensure(dtmfRecognition != null || speechRecognition != null,<a name="line.1227"></a>
+<span class="sourceLineNo">1228</span>                          "Must provide at least one recognition configuration (speech or DTMF)");<a name="line.1228"></a>
+<span class="sourceLineNo">1229</span><a name="line.1229"></a>
+<span class="sourceLineNo">1230</span>            checkBuilt();<a name="line.1230"></a>
+<span class="sourceLineNo">1231</span>            FinalRecognitionWindow finalRecognitionWindow = new FinalRecognitionWindow(dtmfRecognition,<a name="line.1231"></a>
+<span class="sourceLineNo">1232</span>                                                                                       speechRecognition,<a name="line.1232"></a>
+<span class="sourceLineNo">1233</span>                                                                                       noinputTimeout);<a name="line.1233"></a>
+<span class="sourceLineNo">1234</span><a name="line.1234"></a>
+<span class="sourceLineNo">1235</span>            if (acknowledgeAudioItems != null) {<a name="line.1235"></a>
+<span class="sourceLineNo">1236</span>                finalRecognitionWindow.setAcknowledgeAudioItems(acknowledgeAudioItems);<a name="line.1236"></a>
+<span class="sourceLineNo">1237</span>            }<a name="line.1237"></a>
+<span class="sourceLineNo">1238</span><a name="line.1238"></a>
+<span class="sourceLineNo">1239</span>            return new Interaction(mName, mPrompts, finalRecognitionWindow);<a name="line.1239"></a>
+<span class="sourceLineNo">1240</span><a name="line.1240"></a>
+<span class="sourceLineNo">1241</span>        }<a name="line.1241"></a>
+<span class="sourceLineNo">1242</span><a name="line.1242"></a>
+<span class="sourceLineNo">1243</span>        /**<a name="line.1243"></a>
+<span class="sourceLineNo">1244</span>         * Builds the interaction. This method adds a recording window after the<a name="line.1244"></a>
+<span class="sourceLineNo">1245</span>         * prompts.<a name="line.1245"></a>
+<span class="sourceLineNo">1246</span>         *<a name="line.1246"></a>
+<span class="sourceLineNo">1247</span>         * @param recording configuration for the recording<a name="line.1247"></a>
+<span class="sourceLineNo">1248</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1248"></a>
+<span class="sourceLineNo">1249</span>         *            generated.<a name="line.1249"></a>
+<span class="sourceLineNo">1250</span>         * @param acknowledgeAudioItems audioItems to be played upon recording<a name="line.1250"></a>
+<span class="sourceLineNo">1251</span>         *            completion<a name="line.1251"></a>
+<span class="sourceLineNo">1252</span>         * @return the interaction<a name="line.1252"></a>
+<span class="sourceLineNo">1253</span>         */<a name="line.1253"></a>
+<span class="sourceLineNo">1254</span>        public Interaction build(Recording recording, Duration noinputTimeout, AudioItem... acknowledgeAudioItems) {<a name="line.1254"></a>
+<span class="sourceLineNo">1255</span>            return build(recording, noinputTimeout, asListChecked(acknowledgeAudioItems));<a name="line.1255"></a>
+<span class="sourceLineNo">1256</span>        }<a name="line.1256"></a>
+<span class="sourceLineNo">1257</span><a name="line.1257"></a>
+<span class="sourceLineNo">1258</span>        /**<a name="line.1258"></a>
+<span class="sourceLineNo">1259</span>         * Builds the interaction. This method adds a recording window after the<a name="line.1259"></a>
+<span class="sourceLineNo">1260</span>         * prompts.<a name="line.1260"></a>
+<span class="sourceLineNo">1261</span>         *<a name="line.1261"></a>
+<span class="sourceLineNo">1262</span>         * @param recording configuration for the recording<a name="line.1262"></a>
+<span class="sourceLineNo">1263</span>         * @param noinputTimeout timeout value before a &lt;code&gt;noinput&lt;/code&gt; is<a name="line.1263"></a>
+<span class="sourceLineNo">1264</span>         *            generated.<a name="line.1264"></a>
+<span class="sourceLineNo">1265</span>         * @param acknowledgeAudioItems audioItems to be played upon recording<a name="line.1265"></a>
+<span class="sourceLineNo">1266</span>         *            completion<a name="line.1266"></a>
+<span class="sourceLineNo">1267</span>         * @return the interaction<a name="line.1267"></a>
+<span class="sourceLineNo">1268</span>         */<a name="line.1268"></a>
+<span class="sourceLineNo">1269</span>        public Interaction build(Recording recording,<a name="line.1269"></a>
+<span class="sourceLineNo">1270</span>                                 Duration noinputTimeout,<a name="line.1270"></a>
+<span class="sourceLineNo">1271</span>                                 List&lt;? extends AudioItem&gt; acknowledgeAudioItems) {<a name="line.1271"></a>
+<span class="sourceLineNo">1272</span>            Assert.notNull(recording, "recording");<a name="line.1272"></a>
+<span class="sourceLineNo">1273</span>            Assert.notNull(acknowledgeAudioItems, "acknowledgeAudioItems");<a name="line.1273"></a>
 <span class="sourceLineNo">1274</span><a name="line.1274"></a>
-<span class="sourceLineNo">1275</span>        private void checkBuilt() {<a name="line.1275"></a>
-<span class="sourceLineNo">1276</span>            if (mBuilt) throw new IllegalStateException("build() method was already called.");<a name="line.1276"></a>
-<span class="sourceLineNo">1277</span>            mBuilt = true;<a name="line.1277"></a>
-<span class="sourceLineNo">1278</span>        }<a name="line.1278"></a>
-<span class="sourceLineNo">1279</span>    }<a name="line.1279"></a>
-<span class="sourceLineNo">1280</span><a name="line.1280"></a>
-<span class="sourceLineNo">1281</span>}<a name="line.1281"></a>
+<span class="sourceLineNo">1275</span>            checkBuilt();<a name="line.1275"></a>
+<span class="sourceLineNo">1276</span>            FinalRecordingWindow finalRecordingWindow = new FinalRecordingWindow(recording, noinputTimeout);<a name="line.1276"></a>
+<span class="sourceLineNo">1277</span><a name="line.1277"></a>
+<span class="sourceLineNo">1278</span>            if (acknowledgeAudioItems != null) {<a name="line.1278"></a>
+<span class="sourceLineNo">1279</span>                finalRecordingWindow.setAcknowledgeAudioItems(acknowledgeAudioItems);<a name="line.1279"></a>
+<span class="sourceLineNo">1280</span>            }<a name="line.1280"></a>
+<span class="sourceLineNo">1281</span><a name="line.1281"></a>
+<span class="sourceLineNo">1282</span>            return new Interaction(mName, mPrompts, finalRecordingWindow);<a name="line.1282"></a>
+<span class="sourceLineNo">1283</span>        }<a name="line.1283"></a>
+<span class="sourceLineNo">1284</span><a name="line.1284"></a>
+<span class="sourceLineNo">1285</span>        /**<a name="line.1285"></a>
+<span class="sourceLineNo">1286</span>         * Builds the interaction. This method does not allow any recording nor<a name="line.1286"></a>
+<span class="sourceLineNo">1287</span>         * recognition after the prompts.<a name="line.1287"></a>
+<span class="sourceLineNo">1288</span>         *<a name="line.1288"></a>
+<span class="sourceLineNo">1289</span>         * @return the interaction<a name="line.1289"></a>
+<span class="sourceLineNo">1290</span>         */<a name="line.1290"></a>
+<span class="sourceLineNo">1291</span>        public Interaction build() {<a name="line.1291"></a>
+<span class="sourceLineNo">1292</span>            checkBuilt();<a name="line.1292"></a>
+<span class="sourceLineNo">1293</span>            return new Interaction(mName, mPrompts);<a name="line.1293"></a>
+<span class="sourceLineNo">1294</span>        }<a name="line.1294"></a>
+<span class="sourceLineNo">1295</span><a name="line.1295"></a>
+<span class="sourceLineNo">1296</span>        private void checkBuilt() {<a name="line.1296"></a>
+<span class="sourceLineNo">1297</span>            if (mBuilt) throw new IllegalStateException("build() method was already called.");<a name="line.1297"></a>
+<span class="sourceLineNo">1298</span>            mBuilt = true;<a name="line.1298"></a>
+<span class="sourceLineNo">1299</span>        }<a name="line.1299"></a>
+<span class="sourceLineNo">1300</span>    }<a name="line.1300"></a>
+<span class="sourceLineNo">1301</span><a name="line.1301"></a>
+<span class="sourceLineNo">1302</span>}<a name="line.1302"></a>
 
 
 
