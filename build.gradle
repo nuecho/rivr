@@ -153,7 +153,6 @@ task globalJavadoc(type: Javadoc) {
         links "https://www.slf4j.org/api/"
         links "https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/"
         overview = "${projectDir}/doc/javadoc-extra/overview.html"
-        stylesheetFile = file 'doc/javadoc-extra/rivr-javadoc.css'
         docTitle "<a href=\"http://rivr.nuecho.com/\" target=\"_blank\"><img src=\"http://rivr.nuecho.com/img/logo.png\" /></a><br/>API documentation of <a href=\"http://rivr.nuecho.com/\" target=\"_blank\">Rivr</a> $project.version"
     }
 }
