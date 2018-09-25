@@ -165,7 +165,9 @@ task globalJavadoc(type: Javadoc, dependsOn: prepareJavadoc ) {
     }
 }
 
-task wrapper(type: Wrapper) { gradleVersion = '1.9' }
+wrapper {
+  gradleVersion '4.10.2'
+}
 
 void createVersionFile(File resourceDir, String fileName) {
     File versionFile = new File(resourceDir, fileName)
