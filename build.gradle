@@ -87,7 +87,7 @@ subprojects {
                 pom.project {
                     name 'rivr'
                     description 'Rivr is a lightweight open-source dialogue engine enabling flexible VoiceXML web application development for the agile Java developer and enterprise.'
-                    url 'http://rivr.nuecho.com/'
+                    url 'https://github.com/nuecho/rivr'
 
                     scm {
                         url 'scm:git@github.com:nuecho/rivr.git'
@@ -161,7 +161,7 @@ task globalJavadoc(type: Javadoc, dependsOn: prepareJavadoc ) {
         links "https://www.slf4j.org/api/"
         links "https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/"
         overview = "${projectDir}/doc/javadoc-extra/overview.html"
-        docTitle "<a href=\"https://github.com/nuecho/rivr\" target=\"_blank\"><img src=\"rivr-logo.png\" /></a><br/>API documentation of <a href=\"http://rivr.nuecho.com/\" target=\"_blank\">Rivr</a> $project.version"
+        docTitle "<a href=\"https://github.com/nuecho/rivr\" target=\"_blank\"><img src=\"rivr-logo.png\" /></a><br/>Rivr $project.version &ndash; API documentation"
     }
 }
 
