@@ -1,6 +1,6 @@
 ## How to build Rivr
 
-The build tool used in Rivr is [Gradle](https://www.gradle.org/). This distribution requires Gradle 4.5.1 (or more recent). To build, simply do
+The build tool used in Rivr is [Gradle](https://www.gradle.org/). This distribution requires Gradle 4.10.2 (or more recent). To build, simply do
 
         gradle build 
 
@@ -54,7 +54,7 @@ To import Rivr in Eclipse:
 * Choose the Rivr root directory
 * Click Finish
 
-Note: the Gradle Wrapper option can be selected in order to use the recommended Gradle version (4.5.1).
+Note: the Gradle Wrapper option can be selected in order to use the recommended Gradle version (4.10.2).
 
 The Rivr subprojects (rivr-core, rivr-voicexml, rivr-voicexml-dialogue-runner) can also be imported into Eclipse without using the Gradle plugin. In order to to so, you must generate the corresponding `.project` files. Simply run `gradlew eclipse`.  
 
