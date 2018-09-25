@@ -126,7 +126,15 @@ configure(javaProjects) {
     }
 }
 
-task globalJavadoc(type: Javadoc) {
+task prepareJavadoc(type: Copy) {
+   from("${projectDir}/doc/javadoc-extra/") {
+     include "**"
+   }
+   into new java.io.File(buildDir, 'javadoc')
+}
+
+task globalJavadoc(type: Javadoc, dependsOn: prepareJavadoc ) {
+
      source javaProjects.collect {project -> project.sourceSets.main.allJava }
      destinationDir = new java.io.File(buildDir, 'javadoc')
      classpath = files(javaProjects.collect {project -> project.sourceSets.main.compileClasspath})
@@ -153,7 +161,7 @@ task globalJavadoc(type: Javadoc) {
         links "https://www.slf4j.org/api/"
         links "https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/"
         overview = "${projectDir}/doc/javadoc-extra/overview.html"
-        docTitle "<a href=\"http://rivr.nuecho.com/\" target=\"_blank\"><img src=\"http://rivr.nuecho.com/img/logo.png\" /></a><br/>API documentation of <a href=\"http://rivr.nuecho.com/\" target=\"_blank\">Rivr</a> $project.version"
+        docTitle "<a href=\"https://github.com/nuecho/rivr\" target=\"_blank\"><img src=\"rivr-logo.png\" /></a><br/>API documentation of <a href=\"http://rivr.nuecho.com/\" target=\"_blank\">Rivr</a> $project.version"
     }
 }
 
