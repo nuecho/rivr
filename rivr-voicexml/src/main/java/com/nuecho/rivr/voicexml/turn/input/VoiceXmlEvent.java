@@ -16,7 +16,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * 
  * @author Nu Echo Inc.
  * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml5.2.6">http://www.w3.org/TR/voicexml20/#dml5.2.6</a>
+ *      href="https://www.w3.org/TR/voicexml20/#dml5.2.6">https://www.w3.org/TR/voicexml20/#dml5.2.6</a>
  */
 public final class VoiceXmlEvent implements JsonSerializable {
 

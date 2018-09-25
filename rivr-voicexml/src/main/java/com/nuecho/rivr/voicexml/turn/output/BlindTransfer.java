@@ -12,7 +12,7 @@ package com.nuecho.rivr.voicexml.turn.output;
  * 
  * @author Nu Echo Inc.
  * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml2.3.7.1">http://www.w3.org/TR/voicexml20/#dml2.3.7.1</a>
+ *      href="https://www.w3.org/TR/voicexml20/#dml2.3.7.1">https://www.w3.org/TR/voicexml20/#dml2.3.7.1</a>
  */
 public class BlindTransfer extends Transfer {
     private static final String BLIND_TRANSFER_TYPE = "blind";

@@ -13,7 +13,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * 
  * @author NuEcho Inc.
  * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml2.3.7.2.2">http://www.w3.org/TR/voicexml20/#dml2.3.7.2.2</a>
+ *      href="https://www.w3.org/TR/voicexml20/#dml2.3.7.2.2">https://www.w3.org/TR/voicexml20/#dml2.3.7.2.2</a>
  */
 public class TransferStatus implements JsonSerializable {
 

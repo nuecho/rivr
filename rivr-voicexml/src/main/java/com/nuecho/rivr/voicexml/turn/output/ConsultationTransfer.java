@@ -11,7 +11,7 @@ package com.nuecho.rivr.voicexml.turn.output;
  * 
  * @author Nu Echo Inc.
  * @see <a
- *      href="http://www.w3.org/TR/voicexml21/#sec-xfer-consultation">http://www.w3.org/TR/voicexml21/#sec-xfer-consultation</a>
+ *      href="https://www.w3.org/TR/voicexml21/#sec-xfer-consultation">https://www.w3.org/TR/voicexml21/#sec-xfer-consultation</a>
  */
 public class ConsultationTransfer extends SupervisedTransfer {
     private static final String CONSULTATION_TRANSFER_TYPE = "consultation";

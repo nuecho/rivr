@@ -19,7 +19,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * 
  * @author Nu Echo Inc.
  * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml2.3.7.2">http://www.w3.org/TR/voicexml20/#dml2.3.7.2</a>
+ *      href="https://www.w3.org/TR/voicexml20/#dml2.3.7.2">https://www.w3.org/TR/voicexml20/#dml2.3.7.2</a>
  */
 public class BridgeTransfer extends SupervisedTransfer {
     private static final String BRIDGE_TRANSFER_TYPE = "bridge";

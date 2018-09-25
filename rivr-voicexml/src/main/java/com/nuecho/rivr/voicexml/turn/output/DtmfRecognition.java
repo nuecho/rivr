@@ -48,7 +48,7 @@ public final class DtmfRecognition extends Recognition {
      *            recognizing DTMF input. <code>null</code> to use the VoiceXML
      *            platform default.
      * @see <a
-     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.3">http://www.w3.org/TR/voicexml20/#dml6.3.3</a>
+     *      href="https://www.w3.org/TR/voicexml20/#dml6.3.3">https://www.w3.org/TR/voicexml20/#dml6.3.3</a>
      */
     public void setInterDigitTimeout(Duration interDigitTimeout) {
         mInterDigitTimeout = interDigitTimeout;
@@ -58,7 +58,7 @@ public final class DtmfRecognition extends Recognition {
      * @param termTimeout The terminating timeout to use when recognizing DTMF
      *            input. <code>null</code> to use the VoiceXML platform default
      * @see <a
-     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.3">http://www.w3.org/TR/voicexml20/#dml6.3.3</a>
+     *      href="https://www.w3.org/TR/voicexml20/#dml6.3.3">https://www.w3.org/TR/voicexml20/#dml6.3.3</a>
      */
     public void setTermTimeout(Duration termTimeout) {
         mTermTimeout = termTimeout;
@@ -69,7 +69,7 @@ public final class DtmfRecognition extends Recognition {
      *            recognition. Must be empty or a single character.
      *            <code>null</code> to use the VoiceXML platform default
      * @see <a
-     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.3">http://www.w3.org/TR/voicexml20/#dml6.3.3</a>
+     *      href="https://www.w3.org/TR/voicexml20/#dml6.3.3">https://www.w3.org/TR/voicexml20/#dml6.3.3</a>
      */
     public void setTermChar(String termChar) {
         if (termChar != null) {

@@ -26,7 +26,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * 
  * @author Nu Echo Inc.
  * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml2.3.5">http://www.w3.org/TR/voicexml20/#dml2.3.5</a>
+ *      href="https://www.w3.org/TR/voicexml20/#dml2.3.5">https://www.w3.org/TR/voicexml20/#dml2.3.5</a>
  */
 public class ObjectCall extends VoiceXmlOutputTurn {
     public static final String OBJECT_RESULT_VARIABLE_NAME = "object";

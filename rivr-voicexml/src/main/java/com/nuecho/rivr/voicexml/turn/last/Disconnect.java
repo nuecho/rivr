@@ -25,9 +25,9 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see VoiceXmlDialogue
  * @see LastTurn
  * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml5.3.11">http://www.w3.org/TR/voicexml20/#dml5.3.11</a>
+ *      href="https://www.w3.org/TR/voicexml20/#dml5.3.11">https://www.w3.org/TR/voicexml20/#dml5.3.11</a>
  * @see <a
- *      href="http://www.w3.org/TR/voicexml21/#sec-disconnect">http://www.w3.org/TR/voicexml21/#sec-disconnect</a>
+ *      href="https://www.w3.org/TR/voicexml21/#sec-disconnect">https://www.w3.org/TR/voicexml21/#sec-disconnect</a>
  */
 public class Disconnect extends VoiceXmlLastTurn {
 

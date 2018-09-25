@@ -150,14 +150,14 @@ task globalJavadoc(type: Javadoc, dependsOn: prepareJavadoc ) {
         linkSource true
         windowTitle "Rivr API documentation"
         docTitle "Rivr documentation ($project.version)"
-        bottom 'Copyright &copy; 2013 <a href="http://www.nuecho.com">Nu Echo Inc.</a>.'
+        bottom 'Copyright &copy; 2018 <a href="https://www.nuecho.com">Nu Echo Inc.</a>.'
         use = true
         noTimestamp = true
         group("Rivr Core Packages", "com.nuecho.rivr.core*")
         group("Rivr VoiceXML Packages", "com.nuecho.rivr.voicexml*")
         footer "To report errors, inconsistencies and omissions in the Rivr API documentation, please <a href=\"https://github.com/nuecho/rivr/issues/new\" target=\"_blank\">open an issue</a>."
-        links "http://download.oracle.com/javase/6/docs/api/"
-        links "http://download.oracle.com/javaee/6/api/"
+        links "https://download.oracle.com/javase/6/docs/api/"
+        links "https://download.oracle.com/javaee/6/api/"
         links "https://www.slf4j.org/api/"
         links "https://json-processing-spec.java.net/nonav/releases/1.0/fcs/javadocs/"
         overview = "${projectDir}/doc/javadoc-extra/overview.html"

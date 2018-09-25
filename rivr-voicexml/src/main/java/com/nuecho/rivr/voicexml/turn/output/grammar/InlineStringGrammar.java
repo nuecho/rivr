@@ -14,7 +14,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * 
  * @author Nu Echo Inc.
  * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml3.1.1.4">http://www.w3.org/TR/voicexml20/#dml3.1.1.4</a>
+ *      href="https://www.w3.org/TR/voicexml20/#dml3.1.1.4">https://www.w3.org/TR/voicexml20/#dml3.1.1.4</a>
  */
 public final class InlineStringGrammar extends GrammarItem {
     private static final String INLINE_STRING_ELEMENT_TYPE = "inlineString";

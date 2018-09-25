@@ -58,7 +58,7 @@ public final class SpeechRecognition extends Recognition {
      *            speech before the speech recognizer finalizes a complete
      *            result. <code>null</code> to use the VoiceXML platform default
      * @see <a
-     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
+     *      href="https://www.w3.org/TR/voicexml20/#dml6.3.2">https://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setCompleteTimeout(Duration completeTimeout) {
         mCompleteTimeout = completeTimeout;
@@ -69,7 +69,7 @@ public final class SpeechRecognition extends Recognition {
      *            speech after which a recognizer finalizes an incomplete
      *            result. <code>null</code> to use the VoiceXML platform default
      * @see <a
-     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
+     *      href="https://www.w3.org/TR/voicexml20/#dml6.3.2">https://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setIncompleteTimeout(Duration incompleteTimeout) {
         mIncompleteTimeout = incompleteTimeout;
@@ -79,7 +79,7 @@ public final class SpeechRecognition extends Recognition {
      * @param maxSpeechTimeout The maximum duration of user speech.
      *            <code>null</code> to use the VoiceXML platform default
      * @see <a
-     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
+     *      href="https://www.w3.org/TR/voicexml20/#dml6.3.2">https://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setMaxSpeechTimeout(Duration maxSpeechTimeout) {
         mMaxSpeechTimeout = maxSpeechTimeout;
@@ -90,7 +90,7 @@ public final class SpeechRecognition extends Recognition {
      *            positive integer. <code>null</code> to use the VoiceXML
      *            platform default
      * @see <a
-     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
+     *      href="https://www.w3.org/TR/voicexml20/#dml6.3.2">https://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setMaxNBest(Integer maxNBest) {
         if (maxNBest != null) {
@@ -106,7 +106,7 @@ public final class SpeechRecognition extends Recognition {
      *            Value must be between 0.0 and 1.0.<code>null</code> to use the
      *            VoiceXML platform default.
      * @see <a
-     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
+     *      href="https://www.w3.org/TR/voicexml20/#dml6.3.2">https://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setConfidenceLevel(Double confidenceLevel) {
         if (confidenceLevel != null) {
@@ -122,7 +122,7 @@ public final class SpeechRecognition extends Recognition {
      *            recognition. A value of 1.0 means best accuracy.
      *            <code>null</code> to use the VoiceXML platform default
      * @see <a
-     *      href="http://www.w3.org/TR/voicexml20/#dml6.3.2">http://www.w3.org/TR/voicexml20/#dml6.3.2</a>
+     *      href="https://www.w3.org/TR/voicexml20/#dml6.3.2">https://www.w3.org/TR/voicexml20/#dml6.3.2</a>
      */
     public void setSpeedVersusAccuracy(Double speedVersusAccuracy) {
         if (speedVersusAccuracy != null) {

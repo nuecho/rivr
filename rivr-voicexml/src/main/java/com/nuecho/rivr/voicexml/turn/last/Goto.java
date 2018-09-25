@@ -25,7 +25,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see VoiceXmlDialogue
  * @see LastTurn
  * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml5.3.7">http://www.w3.org/TR/voicexml20/#dml5.3.7</a>
+ *      href="https://www.w3.org/TR/voicexml20/#dml5.3.7">https://www.w3.org/TR/voicexml20/#dml5.3.7</a>
  */
 public class Goto extends VoiceXmlLastTurn {
 

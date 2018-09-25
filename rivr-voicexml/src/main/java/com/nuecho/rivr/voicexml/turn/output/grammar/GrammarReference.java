@@ -15,7 +15,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * 
  * @author Nu Echo Inc.
  * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml3.1.1.2">http://www.w3.org/TR/voicexml20/#dml3.1.1.2</a>
+ *      href="https://www.w3.org/TR/voicexml20/#dml3.1.1.2">https://www.w3.org/TR/voicexml20/#dml3.1.1.2</a>
  */
 public final class GrammarReference extends GrammarItem {
     private static final String REFERENCE_ELEMENT_TYPE = "reference";

@@ -19,7 +19,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see MarkInfo
  * @see Mark
  * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml5.1.5">http://www.w3.org/TR/voicexml20/#dml5.1.5</a>
+ *      href="https://www.w3.org/TR/voicexml20/#dml5.1.5">https://www.w3.org/TR/voicexml20/#dml5.1.5</a>
  */
 public final class RecognitionInfo implements JsonSerializable {
 

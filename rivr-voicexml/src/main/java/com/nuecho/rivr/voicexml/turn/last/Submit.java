@@ -28,7 +28,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * @see LastTurn
  * @see SubmitMethod
  * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml5.3.8">http://www.w3.org/TR/voicexml20/#dml5.3.8</a>
+ *      href="https://www.w3.org/TR/voicexml20/#dml5.3.8">https://www.w3.org/TR/voicexml20/#dml5.3.8</a>
  */
 public class Submit extends VoiceXmlLastTurn {
 

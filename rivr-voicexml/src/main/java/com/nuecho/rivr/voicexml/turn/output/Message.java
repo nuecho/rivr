@@ -22,11 +22,11 @@ import com.nuecho.rivr.voicexml.util.json.*;
 /**
  * A {@link Message} is a {@link VoiceXmlOutputTurn} that plays a sequence of
  * {@link AudioItem}.
- * 
+ *
  * @author Nu Echo Inc.
  * @see AudioItem
- * @see <a
- *      href="http://www.w3.org/TR/voicexml20/#dml4.1.8">http://www.w3.org/TR/voicexml20/#dml4.1.8</a>
+ * @see <a href=
+ *      "https://www.w3.org/TR/voicexml20/#dml4.1.8">https://www.w3.org/TR/voicexml20/#dml4.1.8</a>
  */
 public class Message extends VoiceXmlOutputTurn {
     private static final String MESSAGE_TURN_TYPE = "message";

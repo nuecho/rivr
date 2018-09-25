@@ -1,6 +1,6 @@
 ## How to build Rivr
 
-The build tool used in Rivr is [Gradle](http://www.gradle.org/). This distribution requires Gradle 4.5.1 (or more recent). To build, simply do
+The build tool used in Rivr is [Gradle](https://www.gradle.org/). This distribution requires Gradle 4.5.1 (or more recent). To build, simply do
 
         gradle build 
 
@@ -41,7 +41,7 @@ If you don't have Gradle installed, you can simply use the _Gradle wrapper_ prov
 
 The `gradlew` script will download Gradle in your user directory (i.e. your home) and use it from there. Of course, following invocations of `gradlew` will not trigger the download of Gradle.
 
-NOTE: The gradle wrapper can be configured via the gradle-wrapper.properties file, under the gradle/wrapper folder. The most important property is the distributionUrl, which determines which version of Gradle is downloaded. The pattern for the URL is: `http://services.gradle.org/distributions/gradle-[versionNumber]-[versionStyle].zip`. The `versionStyle` can be either `bin` or `all`; `bin` only contains the runtime, where `all` also contains the documentation and source. By default, we are using `bin`.
+NOTE: The gradle wrapper can be configured via the gradle-wrapper.properties file, under the gradle/wrapper folder. The most important property is the distributionUrl, which determines which version of Gradle is downloaded. The pattern for the URL is: `https://services.gradle.org/distributions/gradle-[versionNumber]-[versionStyle].zip`. The `versionStyle` can be either `bin` or `all`; `bin` only contains the runtime, where `all` also contains the documentation and source. By default, we are using `bin`.
 
 ## Eclipse integration
 

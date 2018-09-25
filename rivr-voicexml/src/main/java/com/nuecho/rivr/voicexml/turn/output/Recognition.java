@@ -49,7 +49,7 @@ public abstract class Recognition implements JsonSerializable {
      * @param propertyName The name of the property. Not empty.
      * @param propertyValue The value of the property. Not null.
      * @see <a
-     *      href="http://www.w3.org/TR/voicexml20/#dml6.3">http://www.w3.org/TR/voicexml20/#dml6.3</a>
+     *      href="https://www.w3.org/TR/voicexml20/#dml6.3">https://www.w3.org/TR/voicexml20/#dml6.3</a>
      */
     public void addProperty(String propertyName, String propertyValue) {
         Assert.notEmpty(propertyName, "propertyName");

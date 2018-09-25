@@ -16,7 +16,7 @@ import com.nuecho.rivr.voicexml.util.json.*;
  * 
  * @author Nu Echo Inc.
  * @see <a
- *      href="http://www.w3.org/TR/speech-synthesis/">http://www.w3.org/TR/speech-synthesis/</a>
+ *      href="https://www.w3.org/TR/speech-synthesis/">https://www.w3.org/TR/speech-synthesis/</a>
  */
 public final class SpeechSynthesis extends AudioItem {
     public static final String SPEECH_SYNTHESIS_ELEMENT_TYPE = "speechSynthesis";
