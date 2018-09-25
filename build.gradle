@@ -140,7 +140,7 @@ task globalJavadoc(type: Javadoc, dependsOn: prepareJavadoc ) {
      classpath = files(javaProjects.collect {project -> project.sourceSets.main.compileClasspath})
 
      // To use Java 7 Javadoc:
-     //    gradlew  -DjavadocExecutable=/usr/java/jdk7/bin/javadoc  globalJavadoc
+     //    gradlew  -DjavadocExecutable=/opt/java/java-7/bin/javadoc  globalJavadoc
      if(System.getProperty("javadocExecutable") != null) {
          executable = System.getProperty("javadocExecutable")
      }
