@@ -66,11 +66,12 @@ public class Message extends VoiceXmlOutputTurn {
     }
 
     /**
-     * @param bargeIn <ul>
+     * @param bargeIn
+     *            <ul>
      *            <li>{@link Boolean#TRUE} to enable barge-in</li>
-     *            <li>
-     *            {@link Boolean#FALSE} to disable barge-in</li>
-     *            <li><code>null</code> to use the VoiceXML platform default</li>
+     *            <li>{@link Boolean#FALSE} to disable barge-in</li>
+     *            <li><code>null</code> to use the VoiceXML platform
+     *            default</li>
      *            </ul>
      */
     public final void setBargeIn(Boolean bargeIn) {
@@ -128,6 +129,10 @@ public class Message extends VoiceXmlOutputTurn {
         }
 
         /**
+         * Add an audio item.
+         *
+         * @param audioItem the audio item to add
+         * @return this builder
          * @deprecated Use {@link #addAudioItem(AudioItem)} instead
          */
         @Deprecated
@@ -136,6 +141,10 @@ public class Message extends VoiceXmlOutputTurn {
         }
 
         /**
+         * Add an audio item.
+         *
+         * @param audioItem the audio item to add
+         * @return this builder
          * @since 1.0.1
          */
         public Builder addAudioItem(AudioItem audioItem) {
@@ -145,12 +154,22 @@ public class Message extends VoiceXmlOutputTurn {
         }
 
         /**
+         * Add some audio items.
+         *
+         * @param audioItems the audio items to add
+         * @return this builder
          * @since 1.0.1
          */
         public Builder addAudioItems(AudioItem... audioItems) {
             return addAudioItems(asListChecked(audioItems));
         }
 
+        /**
+         * Add some audio items.
+         *
+         * @param audioItems the audio items to add
+         * @return this builder
+         */
         public Builder addAudioItems(List<AudioItem> audioItems) {
             Assert.noNullValues(audioItems, mLanguage);
             mAudioItems.addAll(audioItems);
@@ -167,6 +186,11 @@ public class Message extends VoiceXmlOutputTurn {
             return this;
         }
 
+        /**
+         * Build the message.
+         *
+         * @return the message
+         */
         public Message build() {
             Message message = new Message(mName, mAudioItems);
             message.setBargeIn(mBargeIn);

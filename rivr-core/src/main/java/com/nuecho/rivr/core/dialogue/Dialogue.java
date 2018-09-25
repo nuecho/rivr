@@ -14,7 +14,7 @@ import com.nuecho.rivr.core.servlet.*;
  * interface or its subtypes. This interface provides a single method performing
  * the dialogue, i.e. sequence of turn exchanges with the
  * {@link DialogueChannel} and dialogue-related logic.
- * 
+ *
  * @param <F> type of {@link FirstTurn}
  * @param <L> type of {@link LastTurn}
  * @param <O> type of {@link OutputTurn}
@@ -31,7 +31,7 @@ public interface Dialogue<I extends InputTurn, O extends OutputTurn, F extends F
      * allows the dialogue to access the {@link DialogueChannel} on which turn
      * exchanges can be performed (i.e. exchanges of {@link OutputTurn
      * OutputTurns} and {@link InputTurn InputTurns}).
-     * 
+     *
      * @param firstTurn First turn. Contains dialogue initialization
      *            information. Cannot be <code>null</code>.
      * @param context Dialogue context. This context gives access to
@@ -39,6 +39,8 @@ public interface Dialogue<I extends InputTurn, O extends OutputTurn, F extends F
      *            Cannot be <code>null</code>.
      * @return the result of the dialogue as a {@link LastTurn}. Cannot be
      *         <code>null</code>.
+     * @throws Exception when something prevents the dialogue from completing
+     *             normally.
      */
     L run(F firstTurn, C context) throws Exception;
 

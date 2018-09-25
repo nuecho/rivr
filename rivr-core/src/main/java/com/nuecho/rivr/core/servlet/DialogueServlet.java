@@ -39,34 +39,38 @@ import com.nuecho.rivr.core.util.*;
  * {@link InputTurnFactory}
  * <li>once the dialogue is done, the servlet perform necessary clean-up.</li>
  * </ol>
- * <h3>init args</h3> The following servlet initial arguments are supported:
- * <p/>
- * <dt>com.nuecho.rivr.core.dialogueTimeout
+ * <h3>init args</h3>
+ * <p>
+ * The following servlet initial arguments are supported:
+ * <dl>
+ * <dt>com.nuecho.rivr.core.dialogueTimeout</dt>
  * <dd>Maximum time for dialogue to produce an {@link OutputTurn}. Value
  * specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
- * for 10 seconds. Default value: <code>10 s</code></dd></dt>
- * <p/>
- * <dt>com.nuecho.rivr.core.controllerTimeout
+ * for 10 seconds. Default value: <code>10 s</code></dd>
+ * <dt>com.nuecho.rivr.core.controllerTimeout</dt>
  * <dd>Maximum time for controller to produce an {@link InputTurn}. Value
  * specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
- * for 10 seconds. Default value: <code>5 m</code></dd></dt>
- * <p/>
+ * for 10 seconds. Default value: <code>5 m</code></dd>
  * <dt>com.nuecho.rivr.core.sessionTimeout</dt>
  * <dd>Maximum inactivity time for a session. Value specified must be followed
  * by unit (ms, s, m, h, d, y), e.g. <code>10s</code> for 10 seconds. Default
  * value: <code>30 m</code></dd>
- * <p/>
+ * </dl>
+ * <dl>
  * <dt>com.nuecho.rivr.core.sessionScanPeriod</dt>
  * <dd>Time between each scan for dead sessions in the session container. Value
  * specified must be followed by unit (ms, s, m, h, d, y), e.g. <code>10s</code>
  * for 10 seconds. Default value: <code>2 m</code></dd>
- * <p/>
+ * </dl>
+ * <dl>
  * <dt>com.nuecho.rivr.core.webappServerSessionTrackingEnabled</dt>
  * <dd>Whether a {@link javax.servlet.http.HttpSession} should be created for
  * each dialogue or not. This is useful for load-balancers using JSESSIONID
  * cookie to enforce server affinity (or stickyness). Value should be
- * <code>true</code> or <code>false</code>. Default value: <code>true</code>.
- * 
+ * <code>true</code> or <code>false</code>. Default value:
+ * <code>true</code></dd>
+ * </dl>
+ *
  * @param <F> type of {@link FirstTurn}
  * @param <L> type of {@link LastTurn}
  * @param <O> type of {@link OutputTurn}
@@ -121,6 +125,9 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
     /**
      * Performs initialization.
+     *
+     * @throws DialogueServletInitializationException when servlet can't be
+     *             initialized properly.
      */
     protected abstract void initDialogueServlet() throws DialogueServletInitializationException;
 
@@ -131,6 +138,10 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
     /**
      * Provides the {@link StepRenderer} appropriate for the context.
+     *
+     * @param request the request
+     * @param session the session
+     * @return the <code>StepRenderer</code> object.
      */
     protected abstract StepRenderer<I, O, L, C> getStepRenderer(HttpServletRequest request,
                                                                 Session<I, O, F, L, C> session);
@@ -328,8 +339,11 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
     /**
      * Sets maximum duration the servlet thread can wait for the dialogue
-     * response. Cannot be <code>null</code>. A value of Duration.ZERO (or
-     * equivalent) means to wait forever.
+     * response.
+     *
+     * @param dialogueTimeout the timeout. Cannot be <code>null</code>. A value
+     *            of <code>Duration.ZERO</code> (or equivalent) means to wait
+     *            forever.
      */
     public final void setDialogueTimeout(Duration dialogueTimeout) {
         Assert.notNull(dialogueTimeout, "dialogueTimeout");
@@ -338,9 +352,11 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
     /**
      * Sets maximum duration the dialogue thread can wait for the controller
-     * response. Cannot be <code>null</code>. A value of Duration.ZERO (or
-     * equivalent) means to wait forever.
-     * 
+     * response.
+     *
+     * @param controllerTimeout the timeout. Cannot be <code>null</code>. A
+     *            value of <code>Duration.ZERO</code> (or equivalent) means to
+     *            wait forever.
      * @since 1.0.1
      */
     public final void setControllerTimeout(Duration controllerTimeout) {
@@ -364,6 +380,15 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
     }
 
     /**
+     * Indicates if the servlet should create an HttpSession object for each
+     * dialogue. Note: Nothing is stored in the <code>HttpSession</code>.
+     * However, the creation of a session would force the web container to track
+     * the session using a cookie (JSESSIONID) or to do URL-rewriting. This is
+     * only relevant if there is more than one web container fronted by a load
+     * balancer.
+     *
+     * @param enableWebappServerSessionTracking true if HttpSession are to be
+     *            used for session tracking.
      * @since 1.0.1
      */
     public final void setWebappServerSessionTrackingEnabled(boolean enableWebappServerSessionTracking) {

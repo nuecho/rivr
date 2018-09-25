@@ -13,7 +13,6 @@
  * {@link com.nuecho.rivr.core.dialogue.DialogueContext}
  * <p>
  * How a dialogue is executed:
- * <p>
  * <ol>
  * <li>The {@link com.nuecho.rivr.core.dialogue.Dialogue#run
  * dialogue.run(FirstTurn firstTurn, DialogueContext context)} method is called

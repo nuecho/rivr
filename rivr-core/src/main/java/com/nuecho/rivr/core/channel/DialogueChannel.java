@@ -19,7 +19,7 @@ import com.nuecho.rivr.core.util.*;
  * <p>
  * Note: The {@link DialogueChannel} is typically wrapped in
  * {@link DialogueContext}.
- * 
+ *
  * @param <O> type of {@link OutputTurn}
  * @param <I> type of {@link InputTurn}
  * @author Nu Echo Inc.
@@ -29,7 +29,7 @@ public interface DialogueChannel<I extends InputTurn, O extends OutputTurn> {
     /**
      * Performs a turn exchange: the dialogue channel will return the
      * {@link InputTurn}
-     * 
+     *
      * @param outputTurn The output turn to send. Cannot be <code>null</code>.
      * @param timeout maximum time allowed to receive the turn from the
      *            dialogue. If <code>null</code>, uses the default value of this
@@ -45,11 +45,15 @@ public interface DialogueChannel<I extends InputTurn, O extends OutputTurn> {
 
     /**
      * Adds a listener to this dialogue channel.
+     *
+     * @param listener the listener to add.
      */
     void addListener(DialogueChannelListener<I, O> listener);
 
     /**
      * Removes a listener from this dialogue channel.
+     *
+     * @param listener the listener to remove.
      */
     void removeListener(DialogueChannelListener<I, O> listener);
 }

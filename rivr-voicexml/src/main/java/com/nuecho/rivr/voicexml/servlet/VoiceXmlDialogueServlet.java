@@ -33,53 +33,47 @@ import com.nuecho.rivr.voicexml.util.*;
  * servlet handles requests from the VoiceXML platform and responds with
  * VoiceXML documents. It also intercepts special resources (
  * <code>/script</code> and <code>/root</code>).
- * <p/>
- * <h3>init args</h3> The following servlet initial arguments are supported:
+ * <h3>init args</h3>
+ * <p> The following servlet initial arguments are supported:
+ * <dl>
  * <dt>com.nuecho.rivr.voicexml.errorHandler.class</dt>
  * <dd>Class name of the error handlder. This class must implements
  * {@link VoiceXmlErrorHandler}, be public and non-abstract and have a public
  * no-argument constructor. Default:
  * <code>com.nuecho.rivr.voicexml.servlet.DefaultErrorHandler</code></dd>
- * <p/>
  * <dt>com.nuecho.rivr.voicexml.errorHandler.key</dt>
  * <dd>As an alternative to
  * <code>com.nuecho.rivr.voicexml.errorHandler.class</code>, this indicates the
  * servlet context attribute name under which the {@link VoiceXmlErrorHandler}
  * can be found. Default: (none: an instance of
  * <code>com.nuecho.rivr.voicexml.servlet.DefaultErrorHandler</code> is used)</dd>
- * <p/>
  * <dt>com.nuecho.rivr.voicexml.dialogueFactory.class</dt>
  * <dd>Class name of the dialogue factory. This class must implements
  * {@link VoiceXmlDialogueFactory}, be public and non-abstract and have a public
  * no-argument constructor. Default: (none).</dd>
- * <p/>
  * <dt>com.nuecho.rivr.voicexml.dialogueFactory.key</dt>
  * <dd>As an alternative to
  * <code>com.nuecho.rivr.voicexml.dialogueFactory.class</code>, this indicates
  * the servlet context attribute name under which the
  * {@link VoiceXmlDialogueFactory} can be found. Default: (none)</dd>
- * <p/>
  * <dt>com.nuecho.rivr.voicexml.dialogue.class</dt>
  * <dd>If neither <code>com.nuecho.rivr.voicexml.dialogueFactory.class</code>
  * nor <code>com.nuecho.rivr.voicexml.dialogueFactory.key</code> is specified,
  * this specifies the class name of the dialogue. This class must implements
  * {@link VoiceXmlDialogue}, be public and non-abstract and have a public
  * no-argument constructor. Default: (none).</dd>
- * <p/>
  * <dt>com.nuecho.rivr.voicexml.dialogue.key</dt>
  * <dd>If neither <code>com.nuecho.rivr.voicexml.dialogueFactory.class</code>,
  * <code>com.nuecho.rivr.voicexml.dialogueFactory.key</code> nor
  * <code>com.nuecho.rivr.voicexml.dialogue.class</code> is specified, this
  * specifies the servlet context attribute name under which the
  * {@link VoiceXmlDialogue} can be found. Default: (none)</dd>
- * <p/>
  * <dt>com.nuecho.rivr.voicexml.loggerFactory.class</dt>
  * <dd>Class name of the dialogue factory. This class must implements
  * {@link LoggerFactory org.slf4j.LoggerFactory}, be public and non-abstract and
  * have a public no-argument constructor. Default: (none:
  * {@link org.slf4j.LoggerFactory#getILoggerFactory()} is used as the logger
  * factory).</dd>
- * <p/>
  * <dt>com.nuecho.rivr.voicexml.loggerFactory.key</dt>
  * <dd>As an alternative to
  * <code>com.nuecho.rivr.voicexml.loggerFactory.class</code>, this indicates the
@@ -87,6 +81,7 @@ import com.nuecho.rivr.voicexml.util.*;
  * org.slf4j.LoggerFactory} can be found. Default: (none:
  * {@link org.slf4j.LoggerFactory#getILoggerFactory()} is used as the logger
  * factory).</dd>
+ * </dl>
  * <p>
  * <b>Important:</b> one of the following must be specified, they are mutually
  * exclusive:

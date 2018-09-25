@@ -22,15 +22,16 @@ import com.nuecho.rivr.voicexml.turn.output.fetch.*;
  * <code>dialogueId</code>, and <code>logger</code>), the
  * {@link VoiceXmlDialogueContext} exposes:
  * <ul>
- * <li>servlet information used to build URI of some resources.:</li>
+ * <li>servlet information used to build URI of some resources:
  * <ul>
- * <li><code>servletPath</code></li>
- * <li><code>contextPath</code></li>
+ * <li><code>servletPath</code>
+ * <li><code>contextPath</code>
  * </ul>
- * <li>VoiceXML properties (for each generated document)</li> <li>VoiceXML
- * default language (for each generated document)</li> <li>
- * <code>turnIndex</code></li> </ul>
- * 
+ * <li>VoiceXML properties (for each generated document)
+ * <li>VoiceXML default language (for each generated document)
+ * <li><code>turnIndex</code>
+ * </ul>
+ *
  * @author Nu Echo Inc.
  */
 public final class VoiceXmlDialogueContext implements DialogueContext<VoiceXmlInputTurn, VoiceXmlOutputTurn> {

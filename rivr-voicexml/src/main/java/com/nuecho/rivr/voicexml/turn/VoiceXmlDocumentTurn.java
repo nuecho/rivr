@@ -19,9 +19,9 @@ import com.nuecho.rivr.voicexml.util.json.*;
 
 /**
  * Base class for {@link VoiceXmlOutputTurn} and {@link VoiceXmlLastTurn}. A
- * {@link VoiceXmlDocumentTurn} has a
- * <code>name<code> and a list (possibly empty) of {@link VoiceXmlDocumentAdapter}.
- * 
+ * {@link VoiceXmlDocumentTurn} has a <code>name</code> and a list (possibly
+ * empty) of {@link VoiceXmlDocumentAdapter}.
+ *
  * @author Nu Echo Inc.
  */
 public abstract class VoiceXmlDocumentTurn implements JsonSerializable {
@@ -43,7 +43,7 @@ public abstract class VoiceXmlDocumentTurn implements JsonSerializable {
 
     /**
      * Adds top level properties to the JSON representation of this turn
-     * 
+     *
      * @param builder A {@link JsonObjectBuilder} that can be used to create the
      *            top level JSON properties
      */
