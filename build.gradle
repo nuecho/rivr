@@ -10,15 +10,22 @@ configure(javaProjects) {
     apply plugin: 'eclipse'
     apply plugin: 'checkstyle'
 
-    dependencies { checkstyle 'com.puppycrawl.tools:checkstyle:5.5' }
+    dependencies {
+        checkstyle 'com.puppycrawl.tools:checkstyle:5.5'
+    }
 
     checkstyle.configFile = rootProject.file('checkstyle/checkstyle.xml')
     sourceCompatibility = '1.6'
     targetCompatibility = '1.6'
 
     // Fix for Unable to get class information
-    checkstyleMain { classpath += configurations.compile }
-    checkstyleTest { classpath += configurations.compile }
+    checkstyleMain {
+       classpath += configurations.compile
+    }
+
+    checkstyleTest {
+        classpath += configurations.compile
+    }
 
     eclipse {
         project {
@@ -48,9 +55,8 @@ configure(javaProjects) {
     artifacts {
         archives javadocJar
         archives sourcesJar
+        archives jar
     }
-
-    artifacts { archives jar }
 }
 
 subprojects {
@@ -62,25 +68,31 @@ subprojects {
     group = rootProject.group
     version = rootProject.version
 
-    repositories { mavenCentral() }
+    repositories {
+        mavenCentral()
+    }
 
     signing {
-        required { gradle.taskGraph.hasTask("uploadArchives") } // Only sign during release.
+        required {
+            gradle.taskGraph.hasTask("uploadArchives")  // Only sign during release.
+        }
         sign configurations.archives
     }
 
     uploadArchives {
         repositories {
-            mavenDeployer(name: 'mavenCentral') {
+            mavenDeployer {
                 repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
                     // Add credentials only if they are present in the project.
                     // Avoid build failure if not trying to release and user doesn't have proper credentials.
-                    if(project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')){
+                    if(project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
                         authentication(userName: sonatypeUsername, password: sonatypePassword)
                     }
                 }
 
-                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+                beforeDeployment {
+                    MavenDeployment deployment -> signing.signPom(deployment)
+                }
 
                 // All these are required for maven central release.
                 // See https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide#SonatypeOSSMavenRepositoryUsageGuide-6.CentralSyncRequirement
@@ -117,10 +129,12 @@ subprojects {
 }
 
 configure(javaProjects) {
-    uploadArchives{
+    uploadArchives {
         repositories {
-            mavenCentral{
-                pom.project{ packaging 'jar' }
+            mavenDeployer {
+                pom.project {
+                    packaging 'jar'
+                }
             }
         }
     }
@@ -135,9 +149,14 @@ task prepareJavadoc(type: Copy) {
 
 task globalJavadoc(type: Javadoc, dependsOn: prepareJavadoc ) {
 
-     source javaProjects.collect {project -> project.sourceSets.main.allJava }
+     source javaProjects.collect {
+         project -> project.sourceSets.main.allJava
+     }
+
      destinationDir = new java.io.File(buildDir, 'javadoc')
-     classpath = files(javaProjects.collect {project -> project.sourceSets.main.compileClasspath})
+     classpath = files(javaProjects.collect {
+         project -> project.sourceSets.main.compileClasspath}
+     )
 
      // To use Java 7 Javadoc:
      //    gradlew  -DjavadocExecutable=/opt/java/java-7/bin/javadoc  globalJavadoc
@@ -163,10 +182,6 @@ task globalJavadoc(type: Javadoc, dependsOn: prepareJavadoc ) {
         overview = "${projectDir}/doc/javadoc-extra/overview.html"
         docTitle "<a href=\"https://github.com/nuecho/rivr\" target=\"_blank\"><img src=\"rivr-logo.png\" /></a><br/>Rivr $project.version &ndash; API documentation"
     }
-}
-
-wrapper {
-  gradleVersion '4.10.2'
 }
 
 void createVersionFile(File resourceDir, String fileName) {

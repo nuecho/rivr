@@ -26,7 +26,7 @@ artifacts {
 
 uploadArchives {
     repositories {
-        mavenCentral {
+        mavenDeployer {
             pom.project { packaging 'war' }
         }
     }
