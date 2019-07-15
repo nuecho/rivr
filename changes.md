@@ -1,5 +1,44 @@
 # Rivr change log
 
+## Version 1.0.11:
+
+### Rivr core
+
+#### Changed
+
+* Now using Gradle 5.5.1 (for building Rivr itself)
+* Various Javadoc changes.
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* DialogueServlet: Parameter `com.nuecho.rivr.core.webappServerSessionTrackingEnabled` can now be set to `false`.
+
+### Rivr VoiceXML
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* (nothing)
+
 ## Version 1.0.10:
 
 ### Rivr core

@@ -1,6 +1,6 @@
 ## How to build Rivr
 
-The build tool used in Rivr is [Gradle](https://www.gradle.org/). This distribution requires Gradle 4.10.2 (or more recent). To build, simply do
+The build tool used in Rivr is [Gradle](https://www.gradle.org/). This distribution requires Gradle 5.5.1 (or more recent). To build, simply do
 
         gradle build 
 
@@ -13,18 +13,18 @@ Gradle will download the required build dependencies from Maven Central:
 
 After a successful build, The resulting jar file can be found here:
 
-* rivr-core/build/libs/rivr-core-1.0.10.jar
-* rivr-voicexml/build/libs/rivr-voicexml-1.0.10.jar
+* rivr-core/build/libs/rivr-core-1.0.11.jar
+* rivr-voicexml/build/libs/rivr-voicexml-1.0.11.jar
 
 The javadoc jar files:
 
-* rivr-core/build/libs/rivr-core-1.0.10-javadoc.jar
-* rivr-voicexml/build/libs/rivr-voicexml-1.0.10-javadoc.jar
+* rivr-core/build/libs/rivr-core-1.0.11-javadoc.jar
+* rivr-voicexml/build/libs/rivr-voicexml-1.0.11-javadoc.jar
 
 The source jar files:
 
-* rivr-core/build/libs/rivr-core-1.0.10-sources.jar
-* rivr-voicexml/build/libs/rivr-voicexml-1.0.10-sources.jar
+* rivr-core/build/libs/rivr-core-1.0.11-sources.jar
+* rivr-voicexml/build/libs/rivr-voicexml-1.0.11-sources.jar
  
 
 ### Gradle wrapper
@@ -64,7 +64,7 @@ The Rivr subprojects (rivr-core, rivr-voicexml, rivr-voicexml-dialogue-runner) c
 
 ```groovy
 dependencies {
-    compile 'com.nuecho:rivr-voicexml:1.0.10'
+    compile 'com.nuecho:rivr-voicexml:1.0.11'
 }
 ```
 
@@ -74,14 +74,14 @@ dependencies {
 <dependency>
     <groupId>com.nuecho</groupId>
     <artifactId>rivr-voicexml</artifactId>
-    <version>1.0.10</version>
+    <version>1.0.11</version>
 </dependency>
 ```
 
 ### With Ivy
 
 ```xml
-<dependency org="com.nuecho" name="rivr-voicexml" rev="1.0.10"/>
+<dependency org="com.nuecho" name="rivr-voicexml" rev="1.0.11"/>
 ```
 
 ### Without dependency manager (Ant)
@@ -95,8 +95,8 @@ Obtain and add to your compilation classpath the following jar files:
 
 In your runtime classpath (i.e. your WEB-INF/lib), you should have:
 
-* rivr-voicexml-1.0.10.jar
-* rivr-core-1.0.10.jar
+* rivr-voicexml-1.0.11.jar
+* rivr-core-1.0.11.jar
 * commons-fileupload-1.2.1.jar
 * javax.json-api-1.0.jar
 * slf4j-api-1.7.5.jar
@@ -115,7 +115,7 @@ apply plugin: 'war' // Must be a webapp project
 configurations { dialogueRunner } 
 
 dependencies {
-    dialogueRunner 'com.nuecho:rivr-voicexml-dialogue-runner:1.0.10@war'
+    dialogueRunner 'com.nuecho:rivr-voicexml-dialogue-runner:1.0.11@war'
 }
 
 repositories { mavenCentral() }
