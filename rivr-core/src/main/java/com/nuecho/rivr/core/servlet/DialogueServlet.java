@@ -209,7 +209,7 @@ public abstract class DialogueServlet<I extends InputTurn, O extends OutputTurn,
 
         Boolean enableWebappServerSessionTracking = getBoolean(INITIAL_ARGUMENT_ENABLE_WEBAPP_SERVER_SESSION_TRACKING);
         if (enableWebappServerSessionTracking != null) {
-            setWebappServerSessionTrackingEnabled(mWebappServerSessionTrackingEnabled);
+            setWebappServerSessionTrackingEnabled(enableWebappServerSessionTracking);
         }
 
         mLogger.info("Dialogue servlet initialized.");
