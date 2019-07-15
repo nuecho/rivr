@@ -1,4 +1,3 @@
 include 'rivr-core', 'rivr-voicexml', 'rivr-voicexml-dialogue-runner'
 
 rootProject.name = 'rivr'
-enableFeaturePreview('STABLE_PUBLISHING')
