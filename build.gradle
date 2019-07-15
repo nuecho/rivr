@@ -55,7 +55,6 @@ configure(javaProjects) {
     artifacts {
         archives javadocJar
         archives sourcesJar
-        archives jar
     }
 }
 
