@@ -1,5 +1,43 @@
 # Rivr change log
 
+## Version 1.0.12:
+
+### Rivr core
+
+#### Changed
+
+* (nothing)
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* (nothing)
+
+### Rivr VoiceXML
+
+#### Changed
+
+* Updated dependency for commons-fileupload (1.2.1 -> 1.4) [CVE-2014-0050 CVE-2013-0248]
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* (nothing)
+
 ## Version 1.0.11:
 
 ### Rivr core
