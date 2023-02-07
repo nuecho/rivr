@@ -3,40 +3,40 @@
 /*
  * Copyright (c) 2013 Nu Echo Inc. All rights reserved.
  */
-(function(rivr) {
-
-  rivr.addRecognitionResult = function() {
+(function (rivr) {
+  rivr.addRecognitionResult = function () {
     rivr.inputTurn.recognition = {
-      result : application.lastresult$,
-      inputMode : application.lastresult$.inputmode
+      result: application.lastresult$,
+      inputMode: application.lastresult$.inputmode,
     };
 
     if (application.lastresult$.markname) {
       rivr.inputTurn.recognition.mark = {
-        name : application.lastresult$.markname,
-        time : application.lastresult$.marktime
+        name: application.lastresult$.markname,
+        time: application.lastresult$.marktime,
       };
     }
 
     if (application.lastresult$.recording) {
       rivr.inputTurn.recordingMetaData = {
-        duration : application.lastresult$.recordingduration,
-        size : application.lastresult$.recordingsize
+        duration: application.lastresult$.recordingduration,
+        size: application.lastresult$.recordingsize,
       };
 
       rivr.inputTurn.recordingMetaData.data = application.lastresult$.recording;
     }
   };
 
-  rivr.addRecordingResult = function(field, fieldShadow, addAudio) {
+  rivr.addRecordingResult = function (field, fieldShadow, addAudio) {
     if (fieldShadow == null) {
       return;
     }
+
     rivr.inputTurn.recordingMetaData = {
-      duration : fieldShadow.duration,
-      size : fieldShadow.size,
-      termChar : fieldShadow.termchar,
-      maxTime : fieldShadow.maxtime
+      duration: fieldShadow.duration,
+      size: fieldShadow.size,
+      termChar: fieldShadow.termchar,
+      maxTime: fieldShadow.maxtime,
     };
 
     if (addAudio) {
@@ -44,7 +44,7 @@
     }
   };
 
-  rivr.addTransferResult = function(field, fieldShadow) {
+  rivr.addTransferResult = function (field, fieldShadow) {
     var duration;
     if (fieldShadow && fieldShadow.duration !== undefined) {
       duration = fieldShadow.duration;
@@ -53,30 +53,33 @@
     }
 
     rivr.inputTurn.transfer = {
-      status : field,
-      duration : duration
+      status: field,
+      duration: duration,
     };
   };
 
-  rivr.addEventResult = function(name, message) {
+  rivr.addEventResult = function (name, message) {
     if (!rivr.inputTurn.hasOwnProperty("events")) {
       rivr.inputTurn.events = [];
     }
 
     var event = {
-      name : name,
-      message : message
+      name: name,
+      message: message,
     };
 
     rivr.inputTurn.events.push(event);
   };
 
-  rivr.addValueResult = function(value) {
+  rivr.addValueResult = function (value) {
     rivr.inputTurn.value = value;
   };
 
-  rivr.hasRecording = function(inputTurn) {
-    return inputTurn.hasOwnProperty("recordingMetaData") && inputTurn.recordingMetaData.hasOwnProperty("data");
+  rivr.hasRecording = function (inputTurn) {
+    return (
+      inputTurn.hasOwnProperty("recordingMetaData") &&
+      inputTurn.recordingMetaData.hasOwnProperty("data")
+    );
   };
 
   function serialize(value, cycleDetectionValues) {
@@ -84,7 +87,7 @@
       cycleDetectionValues = [];
     }
 
-    for ( var index = 0; index < cycleDetectionValues.length; index++) {
+    for (var index = 0; index < cycleDetectionValues.length; index++) {
       if (value === cycleDetectionValues[index]) {
         throw "cycle detected.";
       }
@@ -127,8 +130,7 @@
 
     var propertyName;
     for (propertyName in object) {
-      if (object.hasOwnProperty(propertyName))
-        propertyNames.push(propertyName);
+      if (object.hasOwnProperty(propertyName)) propertyNames.push(propertyName);
     }
 
     propertyNames.sort();
@@ -138,7 +140,7 @@
         out += ",";
       }
 
-      if ((typeof propertyName) == "string") {
+      if (typeof propertyName == "string") {
         out += serializeString(propertyName);
 
         var value = object[propertyName];
@@ -152,7 +154,7 @@
   function serializeArray(array, cycleDetectionValues) {
     var out = "";
 
-    for ( var index = 0; index < array.length; index++) {
+    for (var index = 0; index < array.length; index++) {
       if (out !== "") {
         out += ",";
       }
@@ -175,15 +177,15 @@
   function serializeString(string) {
     var out = "";
 
-    for ( var index = 0; index < string.length; index++) {
+    for (var index = 0; index < string.length; index++) {
       var charCode = string.charCodeAt(index);
       if (charCode > 126 || charCode < 32) {
         out += "\\u";
         out += toHex(charCode);
       } else {
         var character = string.charAt(index);
-        if (character == '\\' || character == '"') {
-          out += '\\';
+        if (character == "\\" || character == '"') {
+          out += "\\";
         }
         out += character;
       }
@@ -202,5 +204,4 @@
     // defaulting to custom JSON serialization function
     rivr.toJson = serialize;
   }
-
 })(application.hasOwnProperty("rivr") ? application.rivr : document.rivr);
