@@ -33,7 +33,7 @@ import com.nuecho.rivr.voicexml.util.*;
  * servlet handles requests from the VoiceXML platform and responds with
  * VoiceXML documents. It also intercepts special resources (
  * <code>/script</code> and <code>/root</code>).
- * <h3>init args</h3>
+ * <h2>init args</h2>
  * <p> The following servlet initial arguments are supported:
  * <dl>
  * <dt>com.nuecho.rivr.voicexml.errorHandler.class</dt>
