@@ -29,6 +29,9 @@
   };
 
   rivr.addRecordingResult = function(field, fieldShadow, addAudio) {
+    if (fieldShadow == null) {
+      return;
+    }
     rivr.inputTurn.recordingMetaData = {
       duration : fieldShadow.duration,
       size : fieldShadow.size,
