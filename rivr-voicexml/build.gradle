@@ -1,15 +1,16 @@
 dependencies {
-    compile project(":rivr-core")
-    compileOnly 'javax.servlet:servlet-api:2.5'
-    compile 'commons-fileupload:commons-fileupload:1.4'
-    compile 'javax.json:javax.json-api:1.0'
-    runtime 'org.glassfish:javax.json:1.0.4'
+    api project(":rivr-core")
+    api 'javax.servlet:servlet-api:2.5'
+    api 'org.slf4j:slf4j-api:1.7.5'
+    api 'commons-fileupload:commons-fileupload:1.4'
+    api 'javax.json:javax.json-api:1.0'
+    implementation 'org.glassfish:javax.json:1.0.4'
 }
 
 jar {
     manifest {
-        attributes("Implementation-Title": "Rivr VoiceXML", 
-                   "Implementation-Version": version,
+        attributes("Implementation-Title": "Rivr VoiceXML",
+                   "Implementation-Version": rootProject.version,
                    "Implementation-Vendor": "Nu Echo Inc.")
     }
 }

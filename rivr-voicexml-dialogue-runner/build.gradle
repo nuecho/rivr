@@ -1,11 +1,5 @@
 apply plugin: 'war'
 
-publishing {
-    publications {
-        ivy(IvyPublication) { from components.web }
-    }
-}
-
 // Required for Maven central
 task sourcesJar(type: Jar) {
     from sourceSets.main.java
@@ -23,10 +17,11 @@ artifacts {
     archives sourcesJar
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            pom.project { packaging 'war' }
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from project.components.web
         }
     }
 }
+

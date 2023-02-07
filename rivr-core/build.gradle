@@ -1,12 +1,12 @@
 dependencies {
-    compileOnly 'javax.servlet:servlet-api:2.5'
-    compile 'org.slf4j:slf4j-api:1.7.5'
+    api 'javax.servlet:servlet-api:2.5'
+    api 'org.slf4j:slf4j-api:1.7.5'
 }
 
 jar {
     manifest {
-        attributes("Implementation-Title": "Rivr Core", 
-                   "Implementation-Version": version,
+        attributes("Implementation-Title": "Rivr Core",
+                   "Implementation-Version": rootProject.version,
                    "Implementation-Vendor": "Nu Echo Inc.")
     }
 }
