@@ -38,7 +38,7 @@ import com.nuecho.rivr.core.util.*;
  * <li>{@link ErrorStep}: if an error occurred following the delivery of the
  * {@link InputTurn}</li>
  * </ul>
- * <h3>States</h3>
+ * <h2>States</h2>
  * <p>
  * The {@link SynchronousDialogueChannel} has states related to the dialogue:
  * <ul>
@@ -48,7 +48,7 @@ import com.nuecho.rivr.core.util.*;
  * The {@link #isDialogueStarted()} and {@link #isDialogueDone()} methods
  * correspond to those states. Additionally, the {@link #isDialogueActive()}
  * method tells if the dialogue is <i>started</i> but not yet <i>done</i>.
- * <h3>Time-out values</h3>
+ * <h2>Time-out values</h2>
  * <p>
  * The {@link SynchronousDialogueChannel} internally keeps two
  * {@link SynchronousQueue SynchronousQueues}:

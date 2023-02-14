@@ -1,5 +1,43 @@
 # Rivr change log
 
+## Version 1.0.13:
+
+### Rivr core
+
+#### Changed
+
+* Code compiled for Java 8+.
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* (nothing)
+
+### Rivr VoiceXML
+
+#### Changed
+
+* Code compiled for Java 8+.
+
+#### Added
+
+* (nothing)
+
+#### Removed
+
+* (nothing)
+
+#### Fixed
+
+* Fixed problem with hangup during recording. In `rivr.js`, the `addRecordingResult` was raising an error when the `record$` variable is null or undefined. A null check was added.
+
 ## Version 1.0.12:
 
 ### Rivr core
